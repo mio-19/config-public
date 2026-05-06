@@ -247,8 +247,6 @@ with _include;
       dos2unix
       openssl
       nur.repos.mio.cb
-      nur.repos.mio.aria2
-      nur.repos.mio.aria2-wrapped
       catimg
       psmisc
       lz4
@@ -268,6 +266,13 @@ with _include;
       script.boot
       script.upboot
     ]
+    ++ lib.optionals config.mio_aria2 (
+      map hardenedPkg [
+        nur.repos.mio.aria2
+        nur.repos.mio.aria2-wrapped
+      ]
+    )
+    ++ lib.optionals (!config.mio_aria2) (map hardenedPkg [ aria2 ])
     ++ (map cleanPkg [
       ego
       #  they might execute some binary that doesn't like the grapheneos malloc

@@ -35,4 +35,9 @@
     default = true;
     description = "use mio hpn patched openssh";
   };
+  options.mio_aria2 = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "use mio patched aria2";
+  };
 }
