@@ -30,6 +30,7 @@ with _include;
     inputs.nur.legacyPackages."${system}".repos.mio.modules.zfs-impermanence-on-shutdown
     inputs.mio.legacyPackages."${system}".modules.darling
     ./nixbuild.nix
+    ../token.nix
   ];
   home-manager.sharedModules = [
     inputs.plasma-manager.homeModules.plasma-manager
