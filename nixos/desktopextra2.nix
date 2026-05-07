@@ -55,7 +55,7 @@ with _include;
       #mousam # cannot get weather data
       (wrapPrio gnome-maps)
       czkawka-full
-      (fixTauriPkg gitbutler)
+      #(fixTauriPkg gitbutler)
       kicad
       freac
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rain
