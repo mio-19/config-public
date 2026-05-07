@@ -4,6 +4,7 @@
   pkgs,
   lib,
   osConfig,
+  options,
   ...
 }:
 let
@@ -57,5 +58,9 @@ in
   */
 
   gtk.gtk4.theme = config.gtk.theme; # was default until 25.11
-  #xdg.userDirs.setSessionVariables = false; # default for 25.11 is xdg.userDirs.setSessionVariables = true;
+
+  xdg.userDirs = lib.optionalAttrs (options.xdg.userDirs ? setSessionVariables) {
+    # default for 25.11 is xdg.userDirs.setSessionVariables = true;
+    setSessionVariables = false;
+  };
 }
