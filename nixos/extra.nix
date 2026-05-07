@@ -72,6 +72,7 @@ with _include;
     ++ (map cleanPkg [
       opencode
       codex
+      gemini-cli
       #pkgs'.openclaw
       #claude-code
       distrobox
