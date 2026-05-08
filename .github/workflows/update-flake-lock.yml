@@ -1,0 +1,34 @@
+name: Update top-level flake.lock
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "flake.nix"
+      - "nixos/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-flake-lock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update only top-level flake.lock
+        run: nix flake lock --update-input nixos
+
+      - name: Commit only top-level flake.lock
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore: update top-level flake.lock"
+          file_pattern: "flake.lock"
