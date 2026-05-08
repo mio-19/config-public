@@ -79,10 +79,6 @@ with _include;
       gcc
       gef
       gdb
-    ])
-    ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
-      #oh-my-codex
-      oh-my-opencode
     ]);
   virtualisation.podman.enable = true;
 

@@ -19,5 +19,9 @@ with _include;
     ])
     ++ (map cleanPkg [
       github-copilot-cli
+    ])
+    ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+      #oh-my-codex
+      oh-my-opencode
     ]);
 }
