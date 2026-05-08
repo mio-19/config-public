@@ -130,4 +130,16 @@ with _include;
     lib.mkForce [ ]
   );
   security.polkit.package = inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.polkit126; # pkgs-pin.polkit;
+
+  # Dirty Frag Mitigation
+  boot.blacklistedKernelModules = [
+    "esp4"
+    "esp6"
+    "rxrpc"
+  ];
+  boot.extraModprobeConfig = ''
+    install esp4 /run/current-system/sw/bin/false
+    install esp6 /run/current-system/sw/bin/false
+    install rxrpc /run/current-system/sw/bin/false
+  '';
 }
