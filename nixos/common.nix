@@ -14,6 +14,7 @@ with _include;
   _module.args._include = _include;
 
   imports = [
+    ./bandaid.nix
     ./ccache.nix
     ./options.nix
     ./basic.nix
@@ -455,16 +456,4 @@ with _include;
       mount_recursively = config.security.pam.zfs.mountRecursively;
     };
   };
-
-  # Dirty Frag Mitigation
-  boot.blacklistedKernelModules = [
-    "esp4"
-    "esp6"
-    "rxrpc"
-  ];
-  boot.extraModprobeConfig = ''
-    install esp4 /run/current-system/sw/bin/false
-    install esp6 /run/current-system/sw/bin/false
-    install rxrpc /run/current-system/sw/bin/false
-  '';
 }
