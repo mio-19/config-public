@@ -111,20 +111,4 @@ with _include;
     ];
   };
   networking.timeServers = config.services.chrony.servers;
-
-  # polkit-127 testing failed in WSL. don't include this for WSL.
-  # https://github.com/NixOS/nixpkgs/issues/483867
-  # revert https://github.com/NixOS/nixpkgs/commit/92848a8fa03d4f0cee162876e570eac934b8a769 in staging https://github.com/NixOS/nixpkgs/commit/701f311414c3fecbddf6d9c4457d87e467e760ed#diff-25e457105e4437a83fba5ddcaa0bd524a26c0fb6247369c89a3da38e7f51bcea
-  # DETAILS REMOVED
-  security.wrappers.polkit-agent-helper-1 = lib.mkIf config.security.polkit.enable {
-    setuid = true;
-    owner = "root";
-    group = "root";
-    source = "${config.security.polkit.package.out}/lib/polkit-1/polkit-agent-helper-1";
-  };
-  systemd.sockets."polkit-agent-helper".wantedBy = lib.mkIf config.security.polkit.enable (
-    lib.mkForce [ ]
-  );
-  security.polkit.package = inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.polkit126; # pkgs-pin.polkit;
-
 }
