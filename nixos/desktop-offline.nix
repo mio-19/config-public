@@ -12,6 +12,14 @@ with _include;
   imports = [
     ./desktopextra2.nix
   ];
+
+  boot.supportedFilesystems = [
+    "apfs"
+  ]
+  ++ lib.optionals (!(builtins.any (tag: tag == "rc") config.system.nixos.tags)) [
+    "bcachefs"
+  ];
+
   # https://search.nixos.org/packages
   environment.systemPackages =
     with pkgs;

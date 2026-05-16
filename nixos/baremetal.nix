@@ -30,12 +30,8 @@ with _include;
 
   boot.supportedFilesystems = [
     "btrfs"
-    "ntfs"
     "exfat"
-  ]
-  ++ lib.optionals (!(builtins.any (tag: tag == "rc") config.system.nixos.tags)) [
-    # also need to check if kernel is too old. not supported on kernel 6.12 lts
-    #"bcachefs"
+    "ntfs-3g"
   ];
 
   # https://search.nixos.org/packages
