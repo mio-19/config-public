@@ -265,30 +265,62 @@ with _include;
           ];
         };
       */
+      # no: now we are not using hdmi audio.
+      /*
+            "51-hdmi-default" = {
+              "monitor.alsa.rules" = [
+                # Prefer HDMI
+                {
+                  matches = [
+                    { "node.name" = "alsa_output.pci-0000_01_00.1.hdmi-stereo"; }
+                  ];
+                  actions = {
+                    update-props = {
+                      "priority.session" = 2000;
+                      "priority.driver" = 2000;
+                    };
+                  };
+                }
+
+                # De-prioritize built-in digital audio
+                {
+                  matches = [
+                    { "node.name" = "alsa_output.pci-0000_00_1f.3.iec958-stereo"; }
+                  ];
+                  actions = {
+                    update-props = {
+                      "priority.session" = 100;
+                      "priority.driver" = 100;
+                    };
+                  };
+                }
+              ];
+            };
+      */
       "51-hdmi-default" = {
         "monitor.alsa.rules" = [
-          # Prefer HDMI
+          # De-prioritize HDMI
           {
             matches = [
               { "node.name" = "alsa_output.pci-0000_01_00.1.hdmi-stereo"; }
             ];
             actions = {
               update-props = {
-                "priority.session" = 2000;
-                "priority.driver" = 2000;
+                "priority.session" = 100;
+                "priority.driver" = 100;
               };
             };
           }
 
-          # De-prioritize built-in digital audio
+          #Prefer built-in digital audio
           {
             matches = [
               { "node.name" = "alsa_output.pci-0000_00_1f.3.iec958-stereo"; }
             ];
             actions = {
               update-props = {
-                "priority.session" = 100;
-                "priority.driver" = 100;
+                "priority.session" = 2000;
+                "priority.driver" = 2000;
               };
             };
           }
