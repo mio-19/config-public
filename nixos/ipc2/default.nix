@@ -332,7 +332,6 @@ with _include;
 
   services.power-profiles-daemon.enable = true;
 
-  # needs impure?
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
