@@ -353,8 +353,9 @@ with _include;
   programs.fish.enable = true;
   programs.fish.useBabelfish = true;
 
+  documentation.enable = false;
   # https://discourse.nixos.org/t/solve-slow-man-cache-the-content-addressed-way-but-not-ca-derivation/58463/2
-  documentation.man.cache.enable = lib.mkOverride 999 false; # higher proiority than nixos/modules/programs/fish.nix': true
+  documentation.man.cache.enable = lib.mkOverride (-1) false; # higher proiority than nixos/modules/programs/fish.nix': true
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.latest;

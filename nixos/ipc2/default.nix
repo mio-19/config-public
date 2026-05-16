@@ -356,6 +356,6 @@ with _include;
   #services.cloudflare-warp.enable = true;
   services.cloudflare-warp.openFirewall = true;
 
-  documentation.man.cache.enable = true;
-  documentation.enable = true;
+  # documentation.man.cache.enable = true;
+  # documentation.enable = true;
 }
