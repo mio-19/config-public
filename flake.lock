@@ -619,10 +619,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1778921576,
-        "narHash": "sha256-jgIbBcGgKTtkp+lBas29hNFUU1t5O/2+GFvUjbiG0vM=",
+        "lastModified": 1778937626,
+        "narHash": "sha256-OzLAT0G96WlT/WWaNdkTvQ7E9ohq9h0xQTdL1oe3gm0=",
         "ref": "master",
-        "rev": "32b42d71b4b22c4465963285bb6e462d7c93d45e",
+        "rev": "d5ece85b6d3d6b5ab5a514b2785fb952b629bfea",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager.git"
@@ -1803,11 +1803,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1778443072,
-        "narHash": "sha256-zi7/fsqM/kFdNuED//4WOCUtezGtKKqRNORjMvfwjnA=",
+        "lastModified": 1772542754,
+        "narHash": "sha256-WGV2hy+VIeQsYXpsLjdr4GvHv5eECMISX1zKLTedhdg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "da5ad661ba4e5ef59ba743f0d112cbc30e474f32",
+        "rev": "8c809a146a140c5c8806f13399592dbcb1bb5dc4",
         "type": "github"
       },
       "original": {
@@ -1952,10 +1952,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1778928309,
-        "narHash": "sha256-Ip1aeJq+v5B/UZCumsDP/uRadZkL/znNdiK3UNayYBQ=",
+        "lastModified": 1778935355,
+        "narHash": "sha256-xkNNhzZB2QVT1cj5X5ZtbIvlrJsvLcUE9PbOZd00cGs=",
         "ref": "refs/heads/main",
-        "rev": "65c51877443a1b3d63daabe7a696e6601df89caa",
+        "rev": "cce9ab49427c01a146369674ef79e160c785ae4f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2671,10 +2671,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1778890589,
-        "narHash": "sha256-z+QSJ8ue9WtnFJ6hfPxw60gWEw+Evmglxfao6e4b7Og=",
+        "lastModified": 1778937689,
+        "narHash": "sha256-Uo8HzEq8PtbdEpK9vWnD15BgauzGYYxvvqFl6RmzKYQ=",
         "ref": "refs/heads/main",
-        "rev": "658830c1cde0ec542097e5571240f263a42cc15e",
+        "rev": "c38a54c2ddcc3a4f87d11c147bc5bcef98b47dbd",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/vicinaehq/vicinae.git"
