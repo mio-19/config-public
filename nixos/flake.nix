@@ -324,7 +324,8 @@
     repo.url = "github:mio-19/repo";
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # has cache on garnix
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
