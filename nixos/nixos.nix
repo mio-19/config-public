@@ -21,6 +21,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
             hash = "sha256-ys6bro8F3fmxc4yvHgB3+LbnrU7yB8c/5RQ+NZMQCEI=";
           })
+          (fetchpatch {
+            name = "linuxPackages.ntfs: init at 0-unstable-2026-05-03, nixos/ntfs: add option to use new NTFS(NTFSPLUS) module";
+            url = "https://github.com/NixOS/nixpkgs/pull/519075.patch";
+            hash = "sha256-THHEjt0TnNnPRr3C5wvyTXk24C4Hfp+oJVt8A7GlTZ8=";
+          })
         ];
       };
       # what is self - https://discourse.nixos.org/t/who-is-self-in-flake-outputs/31859
