@@ -8,13 +8,12 @@
 }:
 let
   cfg = config.services.selector4nix;
-  # https://github.com/StarryReverie/selector4nix/blob/c822e52c58db4bf88cf4f150e7c1a54a6025037f/nix/nixos-module.nix#L151
-  itsown = "http://${cfg.settings.server.ip}:${builtins.toString cfg.settings.server.port}/";
   trusted-public-keys = [
     "staging.cachix.org-1:WX63nyFdVdWGn6n59pIYwkcH/AtjJGjvMQFKlI2z00w="
     "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+    # DETAILS REMOVED
   ];
 in
 {
@@ -61,7 +60,9 @@ in
           priority = 30;
         }
         { url = "https://nix-community.cachix.org"; }
-      ];
+      ]
+      # DETAILS REMOVED
+      ;
     };
   };
   nix = {
