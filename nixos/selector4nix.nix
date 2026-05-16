@@ -3,11 +3,10 @@
   config,
   pkgs,
   lib,
-  filter,
   ...
 }:
 let
-  cfg = config.services.selector4nix;
+  inherit (pkgs) stdenv;
   trusted-public-keys = [
     "staging.cachix.org-1:WX63nyFdVdWGn6n59pIYwkcH/AtjJGjvMQFKlI2z00w="
     "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
