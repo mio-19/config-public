@@ -77,6 +77,14 @@ in
     in
     {
       # DETAILS REMOVED
+      # Terminal app
+      nixosConfigurations.husky = nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./husky
+        ];
+      };
+      # DETAILS REMOVED
       nixosConfigurations.ipc = nixosSystem {
         system = "x86_64-linux";
         modules = [
