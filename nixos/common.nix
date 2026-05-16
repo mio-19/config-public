@@ -14,6 +14,7 @@ with _include;
   _module.args._include = _include;
 
   imports = [
+    ./selector4nix.nix
     ./bandaid.nix
     ./ccache.nix
     ./options.nix
