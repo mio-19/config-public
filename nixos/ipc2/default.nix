@@ -114,7 +114,7 @@ with _include;
 
   boot.loader = {
     timeout = 8;
-    #grub.memtest86.enable = true;
+    grub.memtest86.enable = true;
     grub.enable = true;
     # https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows
     grub.useOSProber = true;
