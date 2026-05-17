@@ -22,8 +22,8 @@ in
     enable = true;
     configureSubstituter = "overwrite";
     settings = {
-      network.nar_info_timeout_secs = 5;
-      network.nar_timeout_secs = 5;
+      network.nar_info_timeout_secs = 30;
+      network.nar_timeout_secs = 30;
       network.tolerance_msecs = 10000;
       substituters = [
         { url = "https://nix-gaming.cachix.org"; }
