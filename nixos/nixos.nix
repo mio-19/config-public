@@ -24,7 +24,7 @@ in
           (fetchpatch {
             name = "linuxPackages.ntfs: init at 0-unstable-2026-05-03, nixos/ntfs: add option to use new NTFS(NTFSPLUS) module";
             url = "https://github.com/NixOS/nixpkgs/pull/519075.patch";
-            hash = "sha256-RFOdrUolXKJ2xCHTma5bL515Z6CSeBOKVD91xwpvETw=";
+            hash = "sha256-E6ZRUd3nXN6AxNzUt1MC3jE1AVL7py/tnLUkd7UgN+o=";
           })
           (fetchpatch {
             name = "linuxPackages.apfs: 0.3.18 -> 0.3.20";
