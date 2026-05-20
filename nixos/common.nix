@@ -15,7 +15,7 @@ with _include;
 
   imports = [
     ./selector4nix.nix
-    ./bandaid.nix
+    ./bandaid
     ./ccache.nix
     ./options.nix
     ./basic.nix
