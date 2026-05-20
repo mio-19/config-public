@@ -14,7 +14,7 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false; # home-manager suggests this to be false
-    matchBlocks."*" = {
+    settings."*" = {
       # https://github.com/d12frosted/environment/blob/472f5df9bb533f21c40950179f438f4f7196a6c2/nix/home.nix#L85
       # https://github.com/Ericson2314/nixos-configuration/blob/8f2aa60bbd1172be828cf70872ed0c34e7a4d19a/user/secrets.nix#L15
       controlMaster = "auto";
