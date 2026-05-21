@@ -8,7 +8,8 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/c09727c23bd83e81248764ed6e2dd41aa3113972";
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/master";
     # https://github.com/NixOS/nixpkgs/issues/500198

@@ -26,11 +26,6 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/519075.patch";
             hash = "sha256-E6ZRUd3nXN6AxNzUt1MC3jE1AVL7py/tnLUkd7UgN+o=";
           })
-          (fetchpatch {
-            name = "linuxPackages.apfs: 0.3.18 -> 0.3.20";
-            url = "https://github.com/NixOS/nixpkgs/pull/520905.patch";
-            hash = "sha256-2QjagADdcIJNhLxXPMJBnmFy88/hGrA97dLLOCiTayU=";
-          })
         ];
       };
       # what is self - https://discourse.nixos.org/t/who-is-self-in-flake-outputs/31859
