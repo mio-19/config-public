@@ -40,7 +40,7 @@ with _include;
     ../desktopextra.nix
     ../desktop-offline.nix
     ../sunshine.nix
-    ../genai.nix
+    #../genai.nix # too much time to compile
     ../devcommand.nix
     ../cuda.nix
     ../games.nix
