@@ -68,6 +68,7 @@ with _include;
       program.antlr
       nh
       jadx
+      lynx
     ])
     ++ (map cleanPkg [
       opencode
