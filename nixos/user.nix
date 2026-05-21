@@ -48,7 +48,7 @@ in
   programs.ssh = {
     enableDefaultConfig = false;
     enable = true;
-    settings = {
+    matchBlocks = {
       # DETAILS REMOVED
     };
   };
