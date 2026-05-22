@@ -89,6 +89,12 @@ in
           ./husky
         ];
       };
+      nixosConfigurations.macvirt = nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./macvirt
+        ];
+      };
       # DETAILS REMOVED
       nixosConfigurations.ipc = nixosSystem {
         system = "x86_64-linux";
