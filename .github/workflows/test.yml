@@ -16,4 +16,4 @@ jobs:
       with:
         name: mio-config
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#nixosConfigurations.ipc.config.system.build.toplevel
+    - run: cd nixos && nix build .#nixosConfigurations.ipc.config.system.build.toplevel
