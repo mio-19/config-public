@@ -67,7 +67,7 @@ with _include;
         appName = "chatgpt";
         desktopName = "ChatGPT";
         icon = pkgs.fetchurl {
-          url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png";
+          url = "https://web.archive.org/web/20260516193252if_/https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png";
           sha256 = "sha256-JC1rxU4Kh5EnWMJ2v2DBKDvYBb/RWnbM8RCCmTZHzeQ=";
         };
         url = "https://chatgpt.com";
