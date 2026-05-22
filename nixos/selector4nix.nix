@@ -53,6 +53,10 @@ in
           priority = 20;
         }
         {
+          # https://github.com/numtide/nixos-passthru-cache
+          url = "https://hetzner-cache.numtide.com";
+        }
+        {
           # https://github.com/numtide/llm-agents.nix
           url = "https://cache.numtide.com";
         }
