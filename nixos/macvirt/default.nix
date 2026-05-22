@@ -93,6 +93,7 @@ in
       "noatime"
     ];
   };
+  boot.initrd.systemd.enable = false; # systemd stage 1 does not support `boot.initrd.postResumeCommands`
   # from https://github.com/nix-community/impermanence/blob/4b3e914cdf97a5b536a889e939fb2fd2b043a170/README.org
   boot.initrd.postResumeCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
