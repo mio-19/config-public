@@ -328,6 +328,13 @@
       # has cache on garnix
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-mineral = {
+      url = "github:cynicsketch/nix-mineral/";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.ndg.inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
