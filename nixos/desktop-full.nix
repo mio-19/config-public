@@ -70,7 +70,7 @@ with _include;
         desktopName = "ChatGPT";
         icon = pkgs.fetchurl {
           url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png";
-          sha256 = "sha256-+QlDubjI8MLTnpK2Sy3eAKgn2/jTIkNdFUk8rtfYU7k=";
+          sha256 = "sha256-JC1rxU4Kh5EnWMJ2v2DBKDvYBb/RWnbM8RCCmTZHzeQ=";
         };
         url = "https://chatgpt.com";
         class = "chrome-chatgpt.com__-Default";
