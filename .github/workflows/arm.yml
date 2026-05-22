@@ -2,6 +2,8 @@ name: "ArmBuild"
 on:
   pull_request:
   push:
+  schedule:
+    - cron: '00 8 * * *' # runs daily at 8:00
 jobs:
   tests:
     runs-on: ubuntu-24.04-arm
