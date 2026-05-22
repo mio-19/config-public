@@ -10,7 +10,6 @@ with _include;
 {
   imports = [
     ./keepBootedSystemEntry.nix
-    ./hardened.nix # does this break waydroid?
     inputs.grub2-themes.nixosModules.default
     ./wifi.nix
     ./common.nix

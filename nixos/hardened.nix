@@ -8,6 +8,14 @@
 }@args:
 with _include;
 {
+  imports = [
+    inputs.nix-mineral.nixosModules.nix-mineral
+  ];
+  nix-mineral = {
+    enable = true;
+    preset = "compatibility";
+  };
+
   services.openssh.package = lib.mkDefault (hardenedPkg pkgs.openssh);
   #services.chrony.package = (hardenedPkg pkgs.chrony); # conflicts with https://github.com/NixOS/nixpkgs/commit/5bec6005dad89b021a158a7935d6870fc7330b0e
   services.chrony.enableMemoryLocking = false; # default to false with grapheneos allocator https://github.com/NixOS/nixpkgs/blob/cad22e7d996aea55ecab064e84834289143e44a0/nixos/modules/services/networking/ntp/chrony.nix#L89
