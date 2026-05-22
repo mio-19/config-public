@@ -60,7 +60,7 @@ with _include;
     "jfs"
     "minix"
     "nilfs2"
-    "ntfs"
+    #"ntfs"
     "omfs"
     "qnx4"
     "qnx6"
