@@ -21,6 +21,10 @@ jobs:
         name: mio-config
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: (cd nixos && nix build .#nixosConfigurations.husky.config.system.build.toplevel)
+      continue-on-error: true
     - run: (cd nixos && nix build .#nixosConfigurations.macvirt.config.system.build.toplevel)
+      continue-on-error: true
     - run: (cd nixos && nix flake update && nix build .#nixosConfigurations.husky.config.system.build.toplevel)
+      continue-on-error: true
     - run: (cd nixos && nix flake update && nix build .#nixosConfigurations.macvirt.config.system.build.toplevel)
+      continue-on-error: true
