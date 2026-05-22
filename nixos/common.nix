@@ -368,18 +368,6 @@ with _include;
   # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501/9
   security.unprivilegedUsernsClone = true;
 
-  # https://saylesss88.github.io/nix/hardening_NixOS.html
-  systemd.coredump.enable = false;
-  # ➡️ Sets the kernel's resource limit (ulimit -c 0)
-  security.pam.loginLimits = [
-    {
-      domain = "*"; # Applies to all users/sessions
-      type = "-"; # Set both soft and hard limits
-      item = "core"; # The soft/hard limit item
-      value = "0"; # Core dumps size is limited to 0 (effectively disabled)
-    }
-  ];
-
   # /nix/store/9m6xh63j8mvragnhra8k7rchwxldcrry-systemd-258.2/share/polkit-1/rules.d/10-systemd-logind-root-ignore-inhibitors.rules.example
   security.polkit.extraConfig = ''
     // SPDX-License-Identifier: MIT-0
@@ -414,8 +402,8 @@ with _include;
     [
       "f /tmp/vscode-skip-server-requirements-check 0644 root root -"
     ]
-  # DETAILS REMOVED
-  ;
+    # DETAILS REMOVED
+;
 
   #services.flatpak.update.onActivation = true; # maybe need this if we always don't use nixos-rebuild switch - https://github.com/gmodena/nix-flatpak/issues/191
   services.flatpak.uninstallUnmanaged = true;

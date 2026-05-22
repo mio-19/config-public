@@ -15,6 +15,20 @@ with _include;
   nix-mineral.preset = "compatibility";
   nix-mineral.extras.system.zram = false;
   nix-mineral.filesystems.enable = false; # conflicts with persistence
+  nix-mineral.settings.debug.coredump = false;
+  /*
+    # https://saylesss88.github.io/nix/hardening_NixOS.html
+    systemd.coredump.enable = false;
+    # ➡️ Sets the kernel's resource limit (ulimit -c 0)
+    security.pam.loginLimits = [
+      {
+        domain = "*"; # Applies to all users/sessions
+        type = "-"; # Set both soft and hard limits
+        item = "core"; # The soft/hard limit item
+        value = "0"; # Core dumps size is limited to 0 (effectively disabled)
+      }
+    ];
+  */
 
   services.openssh.package = lib.mkDefault (hardenedPkg pkgs.openssh);
   #services.chrony.package = (hardenedPkg pkgs.chrony); # conflicts with https://github.com/NixOS/nixpkgs/commit/5bec6005dad89b021a158a7935d6870fc7330b0e
