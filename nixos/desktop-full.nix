@@ -85,7 +85,6 @@ with _include;
       })
       # unfree:
       #parsec-bin
-      progs.discord
       sublime4 # (callPackage ./sublime-text.nix { })
       sublime-merge # (callPackage ./sublime-merge.nix { })
     ])
@@ -127,6 +126,7 @@ with _include;
         (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.affinity-v3.override {
           wine = config.wine64_package;
         })
+        progs.discord
       ])
       ++ (map cleanPkg [
         zotero # segfault with hardenedPkg
@@ -192,7 +192,7 @@ with _include;
       profile = "${pkgs.firejail}/etc/firejail/gnome-clocks.profile";
     };
     # https://github.com/librephoenix/nixos-config/blob/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/default.nix#L21
-    discord = {
+    discord = lib.mkIf pkgs.stdenv.isx86_64 {
       executable = "${hardenedPkg progs.discord}/bin/discord";
       profile = "${pkgs.firejail}/etc/firejail/discord.profile";
     };
