@@ -18,4 +18,5 @@ jobs:
       with:
         name: mio-config
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: cd nixos && nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going
+    - run: (cd nixos && nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going)
+    - run: (cd nixos && nix flake update && nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going)
