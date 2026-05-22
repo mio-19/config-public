@@ -10,6 +10,7 @@ let
   trusted-public-keys = [
     "staging.cachix.org-1:WX63nyFdVdWGn6n59pIYwkcH/AtjJGjvMQFKlI2z00w="
     "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+    "mio-config.cachix.org-1:VM6OZi+PC/ENBDf5ogaArQMgVUvJNvAL5t9ayXZdCIg="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     # DETAILS REMOVED
@@ -41,6 +42,10 @@ in
         }
         {
           url = "https://mio.cachix.org/";
+          priority = 20;
+        }
+        {
+          url = "https://mio-config.cachix.org/";
           priority = 20;
         }
         {
