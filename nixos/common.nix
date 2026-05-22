@@ -402,8 +402,8 @@ with _include;
     [
       "f /tmp/vscode-skip-server-requirements-check 0644 root root -"
     ]
-    # DETAILS REMOVED
-;
+  # DETAILS REMOVED
+  ;
 
   #services.flatpak.update.onActivation = true; # maybe need this if we always don't use nixos-rebuild switch - https://github.com/gmodena/nix-flatpak/issues/191
   services.flatpak.uninstallUnmanaged = true;
