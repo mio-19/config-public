@@ -77,7 +77,7 @@ with _include;
         appName = "findmy";
         desktopName = "Find My";
         icon = pkgs.fetchurl {
-          url = "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Find_My_logo.svg/330px-Find_My_logo.svg.png";
+          url = "https://web.archive.org/web/20260513135036if_/https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Find_My_logo.svg/330px-Find_My_logo.svg.png";
           sha256 = "sha256-CjGEidCQGUNrighZ0jkk3wPy2hoIjQjKQivv9qhqGus=";
         };
         url = "https://www.icloud.com/find/";
