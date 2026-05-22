@@ -58,7 +58,6 @@ with _include;
       ventoy-full-gtk
       nextcloud-client
       #emote # no we already have plasma-emojier with meta+.
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.altus
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.icloud-mail
@@ -103,6 +102,7 @@ with _include;
     )
     ++ lib.optionals pkgs.stdenv.isx86_64 (
       (map hardenedPkg [
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
         inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.cider
         handbrake
         tuxguitar # TODO: maybe try firejail for this
