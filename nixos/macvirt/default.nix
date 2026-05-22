@@ -31,6 +31,7 @@ in
 {
 
   imports = [
+    inputs.disko.nixosModules.disko
     inputs.rosetta-spice.nixosModules.rosetta-spice
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
