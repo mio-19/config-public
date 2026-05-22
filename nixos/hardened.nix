@@ -11,10 +11,9 @@ with _include;
   imports = [
     inputs.nix-mineral.nixosModules.nix-mineral
   ];
-  nix-mineral = {
-    enable = true;
-    preset = "compatibility";
-  };
+  nix-mineral.enable = true;
+  nix-mineral.preset = "compatibility";
+  nix-mineral.extras.system.zram = false;
 
   services.openssh.package = lib.mkDefault (hardenedPkg pkgs.openssh);
   #services.chrony.package = (hardenedPkg pkgs.chrony); # conflicts with https://github.com/NixOS/nixpkgs/commit/5bec6005dad89b021a158a7935d6870fc7330b0e
