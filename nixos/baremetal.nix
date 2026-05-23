@@ -30,7 +30,7 @@ with _include;
   boot.supportedFilesystems = [
     "btrfs"
     "exfat"
-    "ntfs"
+    "ntfs-3g"
   ];
 
   # https://search.nixos.org/packages
