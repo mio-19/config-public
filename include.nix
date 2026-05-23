@@ -161,6 +161,7 @@ rec {
         "py4j"
         # darwin only:
         "bib2gls"
+        "arara" # binaryBytecode
         "swt"
         "zulu-ca-jdk"
         "electron"
