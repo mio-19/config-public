@@ -160,6 +160,7 @@ rec {
         "pyspark"
         "py4j"
         # darwin only:
+        "bib2gls"
         "swt"
         "zulu-ca-jdk"
         "electron"
