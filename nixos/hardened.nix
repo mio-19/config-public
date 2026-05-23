@@ -16,6 +16,7 @@ with _include;
   nix-mineral.extras.system.zram = false;
   nix-mineral.filesystems.enable = false; # conflicts with persistence
   nix-mineral.settings.debug.coredump = false;
+  nix-mineral.settings.entropy.jitterentropy = false; # jitterentropy.service: Main process exited, code=killed, status=31/SYS
   /*
     # https://saylesss88.github.io/nix/hardening_NixOS.html
     systemd.coredump.enable = false;
