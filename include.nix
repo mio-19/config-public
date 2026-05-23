@@ -60,6 +60,7 @@ rec {
       "nvidia-cg-toolkit"
       "claude-code"
       "rpcs3"
+      "nvidia-kernel-modules"
       # darwin only:
       "graalvm-oracle"
       "keka"
