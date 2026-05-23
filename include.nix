@@ -60,6 +60,8 @@ rec {
       "nvidia-cg-toolkit"
       "claude-code"
       "rpcs3"
+      "cursor"
+      "cursor-cli"
       "nvidia-kernel-modules"
       # darwin only:
       "graalvm-oracle"
