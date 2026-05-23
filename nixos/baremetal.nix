@@ -32,6 +32,9 @@ with _include;
     "exfat"
     "ntfs-3g"
   ];
+  boot.blacklistedKernelModules = [
+    "ntfs"
+  ];
 
   # https://search.nixos.org/packages
   environment.systemPackages = with pkgs; [
