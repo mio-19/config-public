@@ -74,7 +74,7 @@ with _include;
   ];
 
   #services.displayManager.gdm.settings.greeter.RememberLastUser = false; # doesn't work qwq
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.wayland.enable = lib.mkDefault true;
   services.displayManager.sddm.enableHidpi = true;
   #services.displayManager.sessionPackages = [ pkgs.kdePackages.plasma-mobile ];
   # https://github.com/leo60228/dotfiles/blob/b797fd05121f77425d971c8d68c510feed980ab6/systems/aftermath/default.nix#L18
