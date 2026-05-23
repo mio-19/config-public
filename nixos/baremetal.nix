@@ -30,9 +30,6 @@ with _include;
   boot.supportedFilesystems = [
     "btrfs"
     "exfat"
-    "ntfs-3g"
-  ];
-  boot.blacklistedKernelModules = [
     "ntfs"
   ];
 
