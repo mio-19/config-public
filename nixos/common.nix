@@ -33,7 +33,7 @@ with _include;
     inputs.mio.legacyPackages."${system}".modules.darling
     ./nixbuild.nix
     ../token.nix
-    #./hardened.nix # does this break sddm?
+    ./hardened.nix # does this break sddm?
   ];
   home-manager.sharedModules = [
     inputs.plasma-manager.homeModules.plasma-manager
