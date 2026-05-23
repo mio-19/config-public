@@ -11,7 +11,7 @@ with _include;
   imports = [
     inputs.nix-mineral.nixosModules.nix-mineral
   ];
-  nix-mineral.enable = true;
+  nix-mineral.enable = lib.mkDefault true;
   nix-mineral.preset = "compatibility";
   nix-mineral.extras.system.zram = false;
   nix-mineral.filesystems.enable = false; # conflicts with persistence
