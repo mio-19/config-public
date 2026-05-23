@@ -195,6 +195,9 @@ rec {
     pkg:
     allowUnfreeNonSourcePredicate pkg
     || builtins.elem (lib.getName pkg) allowed
+    || lib.all (p: p.isSource || p == lib.sourceTypes.binaryBytecode) (
+      lib.toList pkg.meta.sourceProvenance
+    )
     # https://discourse.nixos.org/t/whats-the-use-case-for-allowunfreepredicate-and-friends/30468/6
     || lib.all (p: p.isSource || p == lib.sourceTypes.binaryFirmware) (
       lib.toList pkg.meta.sourceProvenance
