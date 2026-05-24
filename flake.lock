@@ -114,18 +114,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1779481028,
-        "narHash": "sha256-QLGEDVZB6dz9HPambJj3M2s+upQgzMjHBqoHpGrtb4A=",
-        "ref": "refs/heads/main",
-        "rev": "33b3558bc484a5f3de7f4b1f08c6cb6c8a681679",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/lonerOrz/nyx-loner.git"
+        "lastModified": 1779561381,
+        "narHash": "sha256-3MT9qB/i34B5JLTT7Tphjft8BypF6pevULbF0EnG3HQ=",
+        "owner": "lonerOrz",
+        "repo": "nyx-loner",
+        "rev": "57fb142e7609725fe13198d9cc184515412f4cc1",
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/lonerOrz/nyx-loner.git"
+        "owner": "lonerOrz",
+        "repo": "nyx-loner",
+        "type": "github"
       }
     },
     "claude-desktop": {
