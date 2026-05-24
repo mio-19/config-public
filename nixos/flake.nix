@@ -54,7 +54,8 @@
     };
     #jovian.follows = "chaotic/jovian";
     jovian = {
-      url = "git+https://github.com/Jovian-Experiments/Jovian-NixOS.git?shallow=1";
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      #url = "git+https://github.com/Jovian-Experiments/Jovian-NixOS.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic = {
