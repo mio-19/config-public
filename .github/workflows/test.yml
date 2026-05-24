@@ -36,5 +36,5 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: (cd nixos && timeout --signal=KILL 40m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going)
       continue-on-error: true
-    - run: (cd nixos && nix flake update && timeout --signal=KILL 30m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going)
+    - run: (cd nixos && nix flake update && timeout --signal=KILL 20m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going)
       continue-on-error: true
