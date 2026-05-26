@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
   schedule:
-    - cron: '00 8 * * *' # runs daily at 8:00
+    - cron: '55 */6 * * *'
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -13,7 +13,7 @@ jobs:
       uses: mio-19/maximize-build-space@patch-1
       with:
         root-reserve-mb: 512
-        swap-size-mb: 12000
+        swap-size-mb: 18000
         overprovision-lvm: 'true'
         remove-dotnet: 'true'
         remove-android: 'true'
@@ -27,13 +27,14 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
         extra_nix_config: |
           experimental-features = nix-command flakes
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= mio.cachix.org-1:FlupyyLPURqwdRqtPT/LBWKsXY7JKsDkzZQo2K6LeMM= mio-cache.cachix.org-1:ouuIJZ59HIflYjpLW6DRyMc1c+6r3kC/LHuqGUsWigg= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= staging.cachix.org-1:WX63nyFdVdWGn6n59pIYwkcH/AtjJGjvMQFKlI2z00w= niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
           substituters = https://cache.nixos.org/ https://mio.cachix.org/ https://mio-cache.cachix.org/ https://cache.garnix.io https://nix-community.cachix.org/ https://staging.cachix.org/ https://cache.numtide.com
     - uses: cachix/cachix-action@v17
       with:
         name: mio-config
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: (cd nixos && timeout --signal=KILL 30m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going)
+    - run: (cd nixos && timeout --signal=KILL 20m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going --max-jobs 1)
       continue-on-error: true
-    - run: (cd nixos && nix flake update && timeout --signal=KILL 30m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going)
+    - run: (cd nixos && nix flake update && timeout --signal=KILL 20m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going --max-jobs 1)
       continue-on-error: true
