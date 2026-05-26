@@ -51,6 +51,7 @@ with _include;
     ../scx.nix
     ../keepBootedSystemEntry.nix
     ../printing-sharing.nix
+    ../harmonia_lan_only_not_public_ip.nix
   ];
   compile_gram = true;
   hdr_very_bright = true;

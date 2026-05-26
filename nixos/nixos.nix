@@ -19,7 +19,7 @@ in
           (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
-            hash = "sha256-ys6bro8F3fmxc4yvHgB3+LbnrU7yB8c/5RQ+NZMQCEI=";
+            hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
           })
           /*
             (fetchpatch {
