@@ -267,19 +267,6 @@
       }
     },
     "flake-compat_5": {
-      "locked": {
-        "lastModified": 1751685974,
-        "narHash": "sha256-NKw96t+BgHIYzHUjkTK95FqYRVKB8DHpVhefWSz/kTw=",
-        "rev": "549f2762aebeff29a2e5ece7a7dc0f955281a1d1",
-        "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/flake-compat/archive/549f2762aebeff29a2e5ece7a7dc0f955281a1d1.tar.gz?rev=549f2762aebeff29a2e5ece7a7dc0f955281a1d1"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://git.lix.systems/lix-project/flake-compat/archive/main.tar.gz"
-      }
-    },
-    "flake-compat_6": {
       "flake": false,
       "locked": {
         "lastModified": 1767039857,
@@ -655,22 +642,6 @@
         "url": "https://github.com/nix-community/impermanence.git"
       }
     },
-    "import-tree": {
-      "locked": {
-        "lastModified": 1778781969,
-        "narHash": "sha256-Jjuz5CmSkur8KvLDoGa+vylEp+RkQtv4mt/qcMznpH0=",
-        "owner": "vic",
-        "repo": "import-tree",
-        "rev": "d321337efd0f23a9eb14a42adb7b2c29313ab274",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vic",
-        "ref": "main",
-        "repo": "import-tree",
-        "type": "github"
-      }
-    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -707,11 +678,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779525206,
-        "narHash": "sha256-5sr/1CIdf1qu6SCeM6qkiBCuD3s3P8TugUY4JKQ6kUI=",
+        "lastModified": 1779787240,
+        "narHash": "sha256-hqpzAmYzcKvo+i0XCDgDCAV9WzW1a7gzQWGjp8Dfcjg=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "4b81cbddc037e480c2f3c20dee1a6457c6bb99b8",
+        "rev": "976bb49bfc30f716c1e94cef55845e915631a4c6",
         "type": "github"
       },
       "original": {
@@ -797,10 +768,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1779693212,
-        "narHash": "sha256-WUdIp5O0YyoLSu4nqSQtCVzuDJ4LHJhre5dYhAsTwhs=",
+        "lastModified": 1779778026,
+        "narHash": "sha256-KW9xFmWIeaeskq2FLaWozvtmTOaT65nh19HnjsavusM=",
         "ref": "refs/heads/main",
-        "rev": "afcaaaa0bff2f0d1708771694d4bc41273a2238a",
+        "rev": "48118096680f1eabeb5bd8853884d72ff8cabc5f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -947,11 +918,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1779682703,
-        "narHash": "sha256-+89u+znf0/h2ziuXzY4INyCF6AYqcMWD2LkEOJfUtQ0=",
+        "lastModified": 1779768228,
+        "narHash": "sha256-/dRavNAx/Mp67xcQQ3JBIMyf0cLoXqKedafB1+wksAE=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "8358d46120803ea055fe8e3ce5934450d47f5292",
+        "rev": "6e7a8414c0f547a86646eb0b56ebf89e7cc217a2",
         "type": "github"
       },
       "original": {
@@ -1237,11 +1208,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779682708,
-        "narHash": "sha256-aoE8cutHZ2Eebda3dJABGw+NP9s0jOiEb/5nchqixy4=",
+        "lastModified": 1779768227,
+        "narHash": "sha256-SHhLHc98axThWDxCaxUR+SvaHrQdsdPEra17yK8wekM=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "62db28055221a02b7d60750c47c4b54df5afc035",
+        "rev": "e2249de32bc637774f9a1711a7c1b292126a3fa7",
         "type": "github"
       },
       "original": {
@@ -1293,11 +1264,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779726560,
-        "narHash": "sha256-T+Ydp6rj09mkH+4R32qcicxMX5bPHrmaeUJTwdMulhI=",
+        "lastModified": 1779774557,
+        "narHash": "sha256-agBDSo54xQfFjXfM24mWXepgeMGRJ4fEHZx+6BmrgQc=",
         "owner": "nixified-ai",
         "repo": "flake",
-        "rev": "4d0254373c224c31e58720c7cb44d7596d557197",
+        "rev": "3b5a803241f176bdd305add095b3bf955a0ff4ef",
         "type": "github"
       },
       "original": {
@@ -1772,11 +1743,11 @@
         "noctalia-qs": "noctalia-qs"
       },
       "locked": {
-        "lastModified": 1779591140,
-        "narHash": "sha256-G54zkslNueiiYDtg8QbAkPTv0/vfLzdjDsaUljlRQAE=",
+        "lastModified": 1779763713,
+        "narHash": "sha256-as2Vo4PitnWfXezfkQB2H3Rsr/DXJPp4Oe+dE+dZ0Xo=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "052f533186e6ad8e60541760cfe3123f14108c1e",
+        "rev": "272cd91408b5ff6e329e6397eed042fe422069e7",
         "type": "github"
       },
       "original": {
@@ -1818,10 +1789,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1779749610,
-        "narHash": "sha256-CyYPw+ngqA8ObiXQlcEqOIJ2ayusLpn3oRbyej7HI2s=",
+        "lastModified": 1779785452,
+        "narHash": "sha256-vQIy+mJejR9E5MRVNkTGXoRGbRCO74UH/ikfjjGkfsE=",
         "ref": "refs/heads/main",
-        "rev": "61ff40c2765e6657b883536f521870d4ad0489c8",
+        "rev": "08425bf67d4a8f802e105a9269ced406be85d165",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2078,11 +2049,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1779751296,
-        "narHash": "sha256-YotYbeJzYY3b3FjL+0r+dZxgHRzsjy8ewJ+TSuq7Ohw=",
+        "lastModified": 1779787913,
+        "narHash": "sha256-eN/+EtC+pcd+k8W536KGY+j7ZJs+SfBWQZewSZo2qk4=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "b655870c90fdb577f3a003d380bf40948996e28c",
+        "rev": "818574c0f17f35942f556790c437e6c9593fec18",
         "type": "github"
       },
       "original": {
@@ -2250,10 +2221,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1779679233,
-        "narHash": "sha256-qSIAAfK66X6waos6alIYxVze1ZU3C/WPp7NlN4ooP54=",
+        "lastModified": 1779765539,
+        "narHash": "sha256-2QxuD5gJcfCFsnqv54LGEHQKvd+K+DW/ecERwAvuA7w=",
         "ref": "refs/heads/master",
-        "rev": "47ab6c7b3c6a68beac60067490240efa32ae344c",
+        "rev": "09889992e640378f7008c3302b9d4892579df610",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
@@ -2262,28 +2233,6 @@
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
-      }
-    },
-    "rust-overlay_2": {
-      "inputs": {
-        "nixpkgs": [
-          "selector4nix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779592685,
-        "narHash": "sha256-p9d56GezhHRf4QfANxwa1d+fvwShvjB5XUhdIl7WEd0=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "3a58b199e7c83a80b85c28044f808085ba7e941c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "ref": "master",
-        "repo": "rust-overlay",
-        "type": "github"
       }
     },
     "scss-reset": {
@@ -2304,18 +2253,15 @@
     },
     "selector4nix": {
       "inputs": {
-        "flake-compat": "flake-compat_5",
         "flake-parts": "flake-parts_4",
-        "import-tree": "import-tree",
-        "nixpkgs": "nixpkgs_7",
-        "rust-overlay": "rust-overlay_2"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1779725947,
-        "narHash": "sha256-yVAquX4X2ymYRPX2BLdSW7q55cx1Rg3u3fuFDZWG3AI=",
+        "lastModified": 1779785866,
+        "narHash": "sha256-C/hTEXwkKP2FofG1X6nqOW9aF47z4ME0v0O9O7Ut59I=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "56aabab3aced4e40259b22021c1a12140e2ac4c9",
+        "rev": "3463469e31ebf9513600d75e782cfe0fec0c046f",
         "type": "github"
       },
       "original": {
@@ -2554,10 +2500,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1779752607,
-        "narHash": "sha256-16tzbto8KyKO8PZ9AOy7UsBWLNPGWEe1DcSwvTSM8CE=",
+        "lastModified": 1779754603,
+        "narHash": "sha256-pHIgilXJkISxdoA7p3WF7V/vFmWJNfjTOALSLpmTL4Q=",
         "ref": "refs/heads/main",
-        "rev": "ae27dbd5a52fd1ca0caadb1e2f103665383929df",
+        "rev": "e9b8e1d520d7fde5e3ab4aaff68badeeb61fc8d5",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/vicinaehq/vicinae.git"
@@ -2570,7 +2516,7 @@
     },
     "vicinae-extensions": {
       "inputs": {
-        "flake-compat": "flake-compat_6",
+        "flake-compat": "flake-compat_5",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -2630,10 +2576,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1779649538,
-        "narHash": "sha256-k256zgHyqJ/0siFdq5y4GSwJyYKhQnW83N9K8S7OMKo=",
+        "lastModified": 1779781734,
+        "narHash": "sha256-c2FZ7S/rhnCHcwPkc82GOxlCw88HKYBaJkLtMgi72p8=",
         "ref": "refs/heads/main",
-        "rev": "e8fbde26a92a8c078fb1355c9f7c8dba5f7eb9d6",
+        "rev": "ef7c137fea3d0d0624864db7aa1f068eed79b0fb",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
