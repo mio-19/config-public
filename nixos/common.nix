@@ -201,18 +201,18 @@ with _include;
       openclaw
     ];
 
-  i18n.defaultLocale = "en_AU.UTF-8";
+  i18n.defaultLocale = lib.mkDefault "en_AU.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_AU.UTF-8";
-    LC_IDENTIFICATION = "en_AU.UTF-8";
-    LC_MEASUREMENT = "en_AU.UTF-8";
-    LC_MONETARY = "en_AU.UTF-8";
-    LC_NAME = "en_AU.UTF-8";
-    LC_NUMERIC = "en_AU.UTF-8";
-    LC_PAPER = "en_AU.UTF-8";
-    LC_TELEPHONE = "en_AU.UTF-8";
-    LC_TIME = "en_AU.UTF-8";
+    LC_ADDRESS = lib.mkDefault "en_AU.UTF-8";
+    LC_IDENTIFICATION = lib.mkDefault "en_AU.UTF-8";
+    LC_MEASUREMENT = lib.mkDefault "en_AU.UTF-8";
+    LC_MONETARY = lib.mkDefault "en_AU.UTF-8";
+    LC_NAME = lib.mkDefault "en_AU.UTF-8";
+    LC_NUMERIC = lib.mkDefault "en_AU.UTF-8";
+    LC_PAPER = lib.mkDefault "en_AU.UTF-8";
+    LC_TELEPHONE = lib.mkDefault "en_AU.UTF-8";
+    LC_TIME = lib.mkDefault "en_AU.UTF-8";
   };
 
   # https://search.nixos.org/packages
@@ -419,7 +419,7 @@ with _include;
     };
   };
 
-  # DETAILS REMOVED
+  # this fix work for sudo but not ego on razer
   /*
     # https://github.com/NixOS/nixpkgs/issues/483867
     systemd.services."polkit-agent-helper@".serviceConfig = {
