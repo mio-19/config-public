@@ -29,7 +29,7 @@ with _include;
       nur.repos.mio.bifrost
       # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
-      nur.repos.mio.downkyicore # nur.repos.mio.downkyicore
+      downkyicore # nur.repos.mio.downkyicore
       progs.inkscape
       #gg-jj
       kdiskmark
@@ -68,6 +68,7 @@ with _include;
       lmstudio
       # DETAILS REMOVED
       google-chrome # does antigravity only work with google-chrome?
+      code-cursor
     ])
     ++ (map cleanPkg [
       # unfree:
