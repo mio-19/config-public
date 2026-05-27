@@ -149,9 +149,7 @@ with _include;
     "/var/cache".neededForBoot = true;
     "/persistent".neededForBoot = true;
   };
-  networking = {
-    hostName = "ipc"; # Define your hostname.
-  };
+  networking.hostName = "ipc";
 
   networking.firewall.allowedTCPPorts = [ 8080 ]; # temp file share with $ caddy file-server --browse --debug --listen :8080
 
