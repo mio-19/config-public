@@ -4,11 +4,19 @@
   config,
   ...
 }:
+let
+  inherit (pkgs) stdenv;
+in
 {
   options.v4 = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "v4";
+  };
+  options.v2 = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "x86-64-v2 : legacy cpu i5-2410M";
   };
   options.wine64_package = lib.mkOption {
     type = lib.types.package;
@@ -27,17 +35,31 @@
   };
   options.compile_gram = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = stdenv.isLinux && stdenv.isx86_64 && !config.v2;
     description = "compile our custom materialgram&telegram";
   };
   options.mio_openssh_hpn = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = !config.v2;
     description = "use mio hpn patched openssh";
   };
   options.mio_aria2 = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = !config.v2;
     description = "use mio patched aria2";
   };
+  config.assertions = [
+    {
+      assertion = config.v2 -> !config.mio_aria2;
+      message = "no mio aria2 for v2";
+    }
+    {
+      assertion = config.v2 -> !config.mio_openssh_hpn;
+      message = "no mio hpn openssh for v2";
+    }
+    {
+      assertion = config.v2 -> !config.compile_gram;
+      message = "no gram compile for v2";
+    }
+  ];
 }
