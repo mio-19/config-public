@@ -63,6 +63,7 @@ rec {
       "cursor"
       "cursor-cli"
       "nvidia-kernel-modules"
+      "wechat"
       # darwin only:
       "graalvm-oracle"
       "keka"

@@ -9,7 +9,7 @@
 with _include;
 {
   services.scx.enable = true;
-  services.scx.package = pkgs.scx.rustscheds;
+  services.scx.package = lib.mkDefault pkgs.scx.rustscheds;
   # https://www.phoronix.com/news/Meta-SCX-LAVD-Steam-Deck-Server
   # https://github.com/search?q=scx_lavd+language%3ANix&type=code&l=Nix
   services.scx.scheduler = "scx_lavd";

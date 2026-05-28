@@ -335,6 +335,10 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.ndg.inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -349,30 +353,32 @@
       ];
       imports = [ ./nixos.nix ];
       flake = rec {
-        # https://gist.github.com/FlakM/0535b8aa7efec56906c5ab5e32580adf?permalink_comment_id=5167381#gistcomment-5167381
-        apps = {
-          x86_64-linux = {
-            vm-ego = {
-              type = "app";
-              program = "${vms.ego}/bin/run-nixos-vm";
+        /*
+          # https://gist.github.com/FlakM/0535b8aa7efec56906c5ab5e32580adf?permalink_comment_id=5167381#gistcomment-5167381
+          apps = {
+            x86_64-linux = {
+              vm-ego = {
+                type = "app";
+                program = "${vms.ego}/bin/run-nixos-vm";
+              };
             };
           };
-        };
-        # https://gist.github.com/FlakM/0535b8aa7efec56906c5ab5e32580adf?permalink_comment_id=5148581#gistcomment-5148581
-        vms.ego = nixosConfigurations.vm-ego.config.system.build.vm;
-        nixosConfigurations.vm-ego =
-          let
-            nixpkgs = inputs.nixpkgs-2511;
-          in
-          nixpkgs.lib.nixosSystem rec {
-            system = "x86_64-linux";
-            specialArgs = {
-              inherit inputs system nixpkgs;
+          # https://gist.github.com/FlakM/0535b8aa7efec56906c5ab5e32580adf?permalink_comment_id=5148581#gistcomment-5148581
+          vms.ego = nixosConfigurations.vm-ego.config.system.build.vm;
+          nixosConfigurations.vm-ego =
+            let
+              nixpkgs = inputs.nixpkgs-2511;
+            in
+            nixpkgs.lib.nixosSystem rec {
+              system = "x86_64-linux";
+              specialArgs = {
+                inherit inputs system nixpkgs;
+              };
+              modules = [
+                ./vm-ego
+              ];
             };
-            modules = [
-              ./vm-ego
-            ];
-          };
+        */
         # nix-on-droid switch --flake ~/config/nixos
         nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
           modules = [

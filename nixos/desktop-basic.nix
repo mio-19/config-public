@@ -189,9 +189,6 @@ with _include;
       xsettingsd
       (wrapPrio (pkgs.xrdb or pkgs.xorg.xrdb))
     ])
-    ++ [
-      librewolf # progs.librewolf_for_firejail
-    ]
     ++ lib.optionals config.services.displayManager.plasma-login-manager.enable [
       # plasma-login-manager is broken with plasma x11 session.
       # but it is still showing plasma (X11) as default with this?
@@ -290,30 +287,8 @@ with _include;
   programs.firejail = {
     enable = true;
     wrappedBinaries = {
-      # librewolf firejail difficult to fix, still: cannot directly opening downloaded files
-      /*
-        librewolf = {
-          executable = "${progs.librewolf_for_firejail}/bin/librewolf";
-          profile = "${pkgs.firejail}/etc/firejail/librewolf.profile";
-          extraArgs = [
-            #"--dbus-user.talk=org.kde.dolphin.FileManager1"
-            "--dbus-user.talk=org.freedesktop.FileManager1"
-            # Required for U2F USB stick
-            "--ignore=private-dev"
-            # Enable system notifications
-            "--dbus-user.talk=org.freedesktop.Notifications"
-            # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
-            "--dbus-user.talk=org.freedesktop.portal.Desktop"
-            "--ignore=noroot"
-          ];
-        };
-      */
     };
   };
-  environment.etc."firejail/librewolf.local".text = ''
-    whitelist ${"$"}{PICTURES}
-    noblacklist ${"$"}{PICTURES}
-  '';
   # DETAILS REMOVED
   # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
   # also webflasher WebSerial for chromium?

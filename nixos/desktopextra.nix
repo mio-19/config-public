@@ -66,7 +66,7 @@ with _include;
       jetbrains.gateway
       #davinci-resolve
       lmstudio
-      # DETAILS REMOVED
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
       google-chrome # does antigravity only work with google-chrome?
       code-cursor
     ])
