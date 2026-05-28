@@ -57,9 +57,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic = {
-      url = "github:lonerOrz/nyx-loner";
-      #url = "git+https://github.com/lonerOrz/nyx-loner.git?shallow=1";
-      # bad for cache:
+      #url = "github:lonerOrz/nyx-loner";
+      url = "github:chaotic-cx/nyx";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.jovian.follows = "jovian";
       inputs.rust-overlay.follows = "rust-overlay";
