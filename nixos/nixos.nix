@@ -38,6 +38,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/516959.diff";
             hash = "sha256-89CvrHIm9G69EhO+UqCKUk3Wo/qCAPugMz3DaVelVWg=";
           })
+          (fetchpatch {
+            name = "nixos/antigravity: init module";
+            url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
+            hash = "sha256-lIltTsEyk05p84h4Iml/aGHiWivI1YIM3k0u7O4rr6w=";
+          })
           /*
             # unsure
             (fetchpatch {
