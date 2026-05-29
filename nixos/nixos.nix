@@ -33,6 +33,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/517881.diff";
             hash = "sha256-PQoIfuw+GjtN8nHqc/vUEpbrIS+3IUxkxHzx2Ctjolw=";
           })
+          (fetchpatch {
+            name = "lib.modules: slight optimizations to override filtering";
+            url = "https://github.com/NixOS/nixpkgs/pull/517603.diff";
+            hash = "sha256-MhLgQvkKlDGlb1pSI2kcyDuo5gUIclV0mh84N8duKF4=";
+          })
           /*
             (fetchpatch {
               name = "linuxPackages.ntfs: init at 0-unstable-2026-05-03, nixos/ntfs: add option to use new NTFS(NTFSPLUS) module";
