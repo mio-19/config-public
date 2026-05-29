@@ -33,6 +33,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/524488.diff";
             hash = "sha256-lM4v9Py1/weiTFlWMQRpHLYBSIk8DYfo5v2wIMs/Aak=";
           })
+          (fetchpatch {
+            name = "nixos/hardware.printers: add ensureClasses option";
+            url = "https://github.com/NixOS/nixpkgs/pull/524127.diff";
+            hash = "sha256-o0KLkveDnMg3cVLKaEQ1AGF3gSJyiWjysBtZqM+rU7Y=";
+          })
           /*
             # unsure
             (fetchpatch {
