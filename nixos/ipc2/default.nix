@@ -182,6 +182,8 @@ with _include;
     };
   };
 
+  services.printing.stateless
+
   services.lact = {
     enable = true;
   };
