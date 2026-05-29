@@ -23,6 +23,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
             hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
           })
+          (fetchpatch {
+            name = "nixos/hardware/printers: make ensure-printers partOf cups";
+            url = "https://github.com/NixOS/nixpkgs/pull/525012.diff";
+            hash = "sha256-cnGOdoUPZ1EMB4gO/eGu6m9/KRLpPNymLionMPrkM5U=";
+          })
           /*
             # unsure
             (fetchpatch {
