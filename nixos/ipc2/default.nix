@@ -182,7 +182,7 @@ with _include;
     };
   };
 
-  services.printing.stateless
+  services.printing.stateless = true;
 
   services.lact = {
     enable = true;
