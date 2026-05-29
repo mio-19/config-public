@@ -1,11 +1,13 @@
 {
   withSystem,
   inputs,
+  self,
   ...
 }:
 let
   inherit (inputs)
     mobile-nixos
+    deploy-rs
     ;
 in
 {
@@ -20,6 +22,16 @@ in
             name = "grub-module-keep-booted-system-entry-option.patch";
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
             hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
+          })
+          (fetchpatch {
+            name = "lib.options: several small performance cleanups";
+            url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
+            hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
+          })
+          (fetchpatch {
+            name = "lib.modules: small optimizations";
+            url = "https://github.com/NixOS/nixpkgs/pull/517881.diff";
+            hash = "sha256-PQoIfuw+GjtN8nHqc/vUEpbrIS+3IUxkxHzx2Ctjolw=";
           })
           /*
             (fetchpatch {
@@ -66,6 +78,12 @@ in
     };
   flake =
     let
+      the =
+        system:
+        let
+          inputs = withSystem system ({ inputs-patched, ... }: inputs-patched);
+        in
+        inputs;
       nixosSystem =
         { system, ... }@args:
         let
@@ -81,6 +99,27 @@ in
             // (args.specialArgs or { });
           }
         );
+      deployPkgs =
+        let
+          inherit (inputs) nixpkgs deploy-rs;
+          system = "x86_64-linux";
+          # Unmodified nixpkgs
+          pkgs = import nixpkgs { inherit system; };
+          # nixpkgs with deploy-rs overlay but force the nixpkgs package
+          deployPkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              deploy-rs.overlays.default
+              (self: super: {
+                deploy-rs = {
+                  inherit (pkgs) deploy-rs;
+                  lib = super.deploy-rs.lib;
+                };
+              })
+            ];
+          };
+        in
+        deployPkgs;
     in
     {
       # DETAILS REMOVED
