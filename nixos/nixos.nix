@@ -24,11 +24,6 @@ in
             hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
           })
           (fetchpatch {
-            name = "lib.modules: slight optimizations to override filtering";
-            url = "https://github.com/NixOS/nixpkgs/pull/517603.diff";
-            hash = "sha256-MhLgQvkKlDGlb1pSI2kcyDuo5gUIclV0mh84N8duKF4=";
-          })
-          (fetchpatch {
             name = "lib.options: several small performance cleanups";
             url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
             hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
