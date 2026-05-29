@@ -35,9 +35,9 @@ in
           })
           (fetchpatch {
             name = "systemd-boot: add options for entry naming and date format";
-  url = "https://github.com/NixOS/nixpkgs/pull/516959.diff";
-  hash = "sha256-89CvrHIm9G69EhO+UqCKUk3Wo/qCAPugMz3DaVelVWg=";
-})
+            url = "https://github.com/NixOS/nixpkgs/pull/516959.diff";
+            hash = "sha256-89CvrHIm9G69EhO+UqCKUk3Wo/qCAPugMz3DaVelVWg=";
+          })
           /*
             # unsure
             (fetchpatch {
