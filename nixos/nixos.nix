@@ -23,17 +23,21 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
             hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
           })
-          (fetchpatch {
-            name = "lib.options: several small performance cleanups";
-            url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
-            hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
-          })
-          (fetchpatch {
-            name = "lib.modules: small optimizations";
-            url = "https://github.com/NixOS/nixpkgs/pull/517881.diff";
-            hash = "sha256-PQoIfuw+GjtN8nHqc/vUEpbrIS+3IUxkxHzx2Ctjolw=";
-          })
           /*
+            # unsure
+            (fetchpatch {
+              name = "lib.options: several small performance cleanups";
+              url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
+              hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
+            })
+            (fetchpatch {
+              name = "lib.modules: small optimizations";
+              url = "https://github.com/NixOS/nixpkgs/pull/517881.diff";
+              hash = "sha256-PQoIfuw+GjtN8nHqc/vUEpbrIS+3IUxkxHzx2Ctjolw=";
+            })
+          */
+          /*
+            # unsure
             (fetchpatch {
               name = "linuxPackages.ntfs: init at 0-unstable-2026-05-03, nixos/ntfs: add option to use new NTFS(NTFSPLUS) module";
               url = "https://github.com/NixOS/nixpkgs/pull/519075.patch";
