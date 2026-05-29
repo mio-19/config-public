@@ -43,6 +43,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
             hash = "sha256-lIltTsEyk05p84h4Iml/aGHiWivI1YIM3k0u7O4rr6w=";
           })
+          (fetchpatch {
+            name = "doc: add NFS file systems documentation";
+            url = "https://github.com/NixOS/nixpkgs/pull/509169.diff";
+            hash = "sha256-Hg2auaXO47mnKKUrpXqcmrCcuLk9eJ6CqEZsOvDXTrc=";
+          })
           /*
             # unsure
             (fetchpatch {
