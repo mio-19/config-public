@@ -419,6 +419,9 @@ with _include;
     };
   };
 
+  boot.loader.systemd-boot.includeDistroName = false;
+  boot.loader.systemd-boot.entryNamePrefix = "#";
+
   # this fix work for sudo but not ego on razer
   /*
     # https://github.com/NixOS/nixpkgs/issues/483867
