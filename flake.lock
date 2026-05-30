@@ -1449,13 +1449,13 @@
         "nixpak": "nixpak",
         "nixpkgs": [
           "nixos",
-          "nixpkgs-unstable"
+          "nixpkgs-small"
         ],
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-pin3": "nixpkgs-pin3",
-        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-small": "nixpkgs-small",
         "nm2nix": "nm2nix",
         "noctalia": "noctalia",
         "nur": "nur",
@@ -1769,18 +1769,18 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable": {
+    "nixpkgs-small": {
       "locked": {
-        "lastModified": 1779560665,
-        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
+        "lastModified": 1780011192,
+        "narHash": "sha256-luHrZG6I7Mwdt413XoDOYBpp9z1z6X23/5SNktwjM+k=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+        "rev": "3242faf14b7611a62ce0f0071619438a08b65c12",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixos-unstable-small",
         "repo": "nixpkgs",
         "type": "github"
       }
