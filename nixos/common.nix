@@ -79,21 +79,12 @@ with _include;
     (final: prev: {
       #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
       grub2 = final.nur.repos.mio.grub2;
-      #zed-editor = pkgs-pin2.zed-editor;
       #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       darling = inputs.mio.packages."${system}".darling;
       #librewolf = if cudaSupport then prev.librewolf else final.librewolf-bin; # third time only cuda has librewolf cache. did librewolf break again?
       #librewolf = final.librewolf-bin; # no cache
       inherit (pkgs-nocuda) librewolf; # no cache with cuda
       inherit (pkgs-openclaw) openclaw openclawPackages;
-      inherit (pkgs-pin2)
-        openssl_1_1
-        sublime4
-        sublime-merge
-        lutris
-        ;
-      # hash mismatch in fixed-output derivation '/nix/store/7sj663dx4vl5n972s0825n6c3xxsvk7d-source.drv'
-      #inherit (pkgs-pin3) wireshark-cli;
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
