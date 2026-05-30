@@ -29,6 +29,11 @@ in
             hash = "sha256-cnGOdoUPZ1EMB4gO/eGu6m9/KRLpPNymLionMPrkM5U=";
           })
           (fetchpatch {
+            name = "nixos/steam: remove unnecessary bwrap wrapper";
+            url = "https://github.com/NixOS/nixpkgs/pull/524488.diff";
+            hash = "sha256-lM4v9Py1/weiTFlWMQRpHLYBSIk8DYfo5v2wIMs/Aak=";
+          })
+          (fetchpatch {
             name = "systemd-boot: add options for entry naming and date format";
             url = "https://github.com/NixOS/nixpkgs/pull/516959.diff";
             hash = "sha256-89CvrHIm9G69EhO+UqCKUk3Wo/qCAPugMz3DaVelVWg=";
