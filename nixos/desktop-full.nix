@@ -60,7 +60,7 @@ with _include;
       #emote # no we already have plasma-emojier with meta+.
       nur.repos.mio.altus
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.icloud-mail
+      nur.repos.mio.icloud-mail
       obsidian
       #cider-2 # paid
       (nix-webapps-lib.mkChromiumApp {
