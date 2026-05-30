@@ -84,6 +84,7 @@ with _include;
       darling = inputs.mio.packages."${system}".darling;
       #librewolf = if cudaSupport then prev.librewolf else final.librewolf-bin; # third time only cuda has librewolf cache. did librewolf break again?
       #librewolf = final.librewolf-bin; # no cache
+      inherit (pkgs-nocuda) librewolf; # no cache with cuda
       inherit (pkgs-openclaw) openclaw openclawPackages;
       inherit (pkgs-pin2)
         openssl_1_1
