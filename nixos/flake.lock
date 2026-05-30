@@ -716,11 +716,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780037506,
-        "narHash": "sha256-z7lnxUsYex11x73HiRCzRZDYF2OGqnB0QqouMYcHSX4=",
+        "lastModified": 1780129573,
+        "narHash": "sha256-6/S2FvBz+dxEgPfRU7dK+ycLYzRU7L8aN+GjDRyVs/E=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "aee8bab39b309b038c14f216538e6141f28808c6",
+        "rev": "8f97d1dee8c0971b01cd6b17ccf913e8bb70f5d5",
         "type": "github"
       },
       "original": {
@@ -739,11 +739,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1780102864,
-        "narHash": "sha256-OCGIHq5NOglLvVPbUe9ASCHGHOfVjxPdPo+GHL0nOFw=",
+        "lastModified": 1780119579,
+        "narHash": "sha256-EnWR9fQzTfmIkyWD8ynYdAM573x3wzkOzZuMagrEosQ=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "e1d1790509643d37e66496668262b8a553b54b01",
+        "rev": "b8adcd1a8e45e6d84f511c1a3b12998634481204",
         "type": "github"
       },
       "original": {
@@ -806,10 +806,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1780037731,
-        "narHash": "sha256-pc8jFgPQBemHYT70mACLOLJLVvGb4Z9lvmQYLk3Ml8Q=",
+        "lastModified": 1780136723,
+        "narHash": "sha256-D0RbzXO9Kqq39lNHpO2yMnUCvu0vU4EoLHXZLMvn2Gk=",
         "ref": "refs/heads/main",
-        "rev": "1d079abc09b541de39c0e3e606798dba1d07058e",
+        "rev": "2e16fcaee1f2bde057da54fde674b0a2b2ef8f88",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -1302,11 +1302,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780034926,
-        "narHash": "sha256-q9EAWVS+mQgcdF8OtE+512oXxYRhdnBVd6C2mOh/eGM=",
+        "lastModified": 1780133205,
+        "narHash": "sha256-najzYMOKcS/PSP/LKFC+/GQXxpEH16lgKNMPoB0+//c=",
         "owner": "nixified-ai",
         "repo": "flake",
-        "rev": "fd4ce19aeeeb6643c85726020a0590ba680a451e",
+        "rev": "37b72ee5ae1146ab15a19e860b85a541132255d4",
         "type": "github"
       },
       "original": {
@@ -1573,22 +1573,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-pin3": {
-      "locked": {
-        "lastModified": 1777425547,
-        "narHash": "sha256-d57AbflkNfZNoFaZDzssEq1RfPoM9dLtOGI2O+N/68Q=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ebc08544afa77957cc348ba72dc490ec73b87f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ebc08544afa77957cc348ba72dc490ec73b87f68",
-        "type": "github"
-      }
-    },
     "nixpkgs-small": {
       "locked": {
         "lastModified": 1780011192,
@@ -1843,10 +1827,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1780113616,
-        "narHash": "sha256-Rq7aUSvjBwzTc3WpJ7PPM0EZFqXwOW3LL2srG/tkut4=",
+        "lastModified": 1780141321,
+        "narHash": "sha256-/3vb9T3rdMAQy3Vvcmy1XJ+Sh5Tb2SIppcHm/57TUgI=",
         "ref": "refs/heads/main",
-        "rev": "f3fc98526314498281f6ee7d5137fca89b2264b1",
+        "rev": "7f8c385f2da5211ddab1fccc3daf854431ea5452",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2102,11 +2086,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1780047543,
-        "narHash": "sha256-3UWfFhMRj7KzJcGo0AJIlkS8DtHNNJDB+qGNhLTtudk=",
+        "lastModified": 1780122677,
+        "narHash": "sha256-8F/Jv5l69m+UrafWbSiBq+bI0xDx9BMRu14ddf9d7Rg=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "54008c88d7070c241a3ec891f9b7fa7432853239",
+        "rev": "73ed5f89308de9fa9f17dff065cf195fc9ae943c",
         "type": "github"
       },
       "original": {
@@ -2194,7 +2178,6 @@
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-pin2": "nixpkgs-pin2",
-        "nixpkgs-pin3": "nixpkgs-pin3",
         "nixpkgs-small": "nixpkgs-small",
         "nm2nix": "nm2nix",
         "noctalia": "noctalia",
@@ -2663,10 +2646,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1779955179,
-        "narHash": "sha256-cHrbJ8pZrsFWUTJVk7AxWiEg5eiZptPQxtT0YXMIENo=",
+        "lastModified": 1780123543,
+        "narHash": "sha256-vRHmt1N3rPgLJFcSQfHb2c3F7edzVPcyAk6/2QYmO1s=",
         "ref": "refs/heads/main",
-        "rev": "c341e3f6516fb1286d25b99d34b111f93028ae87",
+        "rev": "7e1dae7aa169ad02f18ca11da247008181b2dc7f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"

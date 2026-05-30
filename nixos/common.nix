@@ -93,7 +93,7 @@ with _include;
         lutris
         ;
       # hash mismatch in fixed-output derivation '/nix/store/7sj663dx4vl5n972s0825n6c3xxsvk7d-source.drv'
-      inherit (pkgs-pin3) wireshark-cli;
+      #inherit (pkgs-pin3) wireshark-cli;
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
