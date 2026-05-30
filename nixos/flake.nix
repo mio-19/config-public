@@ -175,8 +175,8 @@
     #};
     razerdaemon = {
       #url = "github:JosuGZ/razer-laptop-control";
-      #url = "git+https://github.com/JosuGZ/razer-laptop-control.git";
-      url = "git+https://github.com/mio-19/razer-laptop-control.git?shallow=1";
+      url = "git+https://github.com/JosuGZ/razer-laptop-control.git";
+      #url = "git+https://github.com/mio-19/razer-laptop-control.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
