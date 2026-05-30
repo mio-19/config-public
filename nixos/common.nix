@@ -83,7 +83,7 @@ with _include;
       #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       darling = inputs.mio.packages."${system}".darling;
       #librewolf = if cudaSupport then prev.librewolf else final.librewolf-bin; # third time only cuda has librewolf cache. did librewolf break again?
-      librewolf = final.librewolf-bin; # no cache
+      #librewolf = final.librewolf-bin; # no cache
       inherit (pkgs-openclaw) openclaw openclawPackages;
       inherit (pkgs-pin2)
         openssl_1_1
