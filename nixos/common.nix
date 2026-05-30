@@ -200,6 +200,7 @@ with _include;
       ventoy-full-gtk
       ventoy-full-qt
       openclaw
+      electron_39
     ];
 
   i18n.defaultLocale = lib.mkDefault "en_AU.UTF-8";
