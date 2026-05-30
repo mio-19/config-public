@@ -191,7 +191,6 @@ with _include;
     [
       "electron-37.10.3"
       "openssl-1.1.1w" # for sublime-text
-      "electron-39.8.10"
     ]
     ++ map (pkg: pkg.name) [
       #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
