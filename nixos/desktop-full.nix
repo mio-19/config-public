@@ -58,7 +58,7 @@ with _include;
       ventoy-full-gtk
       nextcloud-client
       #emote # no we already have plasma-emojier with meta+.
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.altus
+      nur.repos.mio.altus
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.icloud-mail
       obsidian
