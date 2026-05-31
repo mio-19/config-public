@@ -44,7 +44,7 @@ with _include;
     ../devcommand.nix
     ../cuda.nix
     ../games.nix
-    ../games-extra.nix
+    #../games-extra.nix
     ../persistentkde.nix
     #../niri
     #../localai.nix
