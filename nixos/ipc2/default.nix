@@ -38,8 +38,8 @@ with _include;
     ../extra.nix
     ../extra2.nix
     ../desktopextra.nix
-    ../desktop-offline.nix
-    ../sunshine.nix
+    #../desktop-offline.nix
+    #../sunshine.nix
     #../genai.nix # too much time to compile
     ../devcommand.nix
     ../cuda.nix
