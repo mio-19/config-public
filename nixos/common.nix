@@ -414,6 +414,7 @@ with _include;
 
   boot.loader.systemd-boot.includeDistroName = false;
   boot.loader.systemd-boot.entryNamePrefix = "#";
+  boot.loader.systemd-boot.ambiguousDateFormat = false;
 
   # this fix work for sudo but not ego on razer
   /*
