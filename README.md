@@ -1,6 +1,6 @@
 # config-public
 
-what can be public - nixos configuration
+what can be public - nixos and nix-darwin configuration
 
 this configuration is not organized in the best way. I move my focus to other things in my life as long as my configuration is mostly doing its jobs.
 

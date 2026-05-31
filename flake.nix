@@ -6,11 +6,14 @@
     };
 
     nixos.url = "path:./nixos";
+
+    mac.url = "path:./mac";
   };
 
   outputs =
-    { self, nixos, ... }:
+    { nixos, mac, ... }:
     {
       inherit (nixos) nixosConfigurations;
+      inherit (mac) darwinConfigurations;
     };
 }
