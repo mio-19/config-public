@@ -69,17 +69,25 @@ with _include;
       nh
       jadx
       lynx
+      nur.repos.mio.pdf2pptx
+      easyeda2kicad
+      interactive-html-bom
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
     ])
     ++ (map cleanPkg [
       opencode
       codex
       gemini-cli
+      cursor-cli
       #pkgs'.openclaw
       #claude-code
       distrobox
       gcc
       gef
       gdb
+    ])
+    ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+      antigravity-cli
     ]);
   virtualisation.podman.enable = true;
 
