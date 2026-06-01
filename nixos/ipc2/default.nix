@@ -7,7 +7,7 @@
   ...
 }@args:
 let
-  pool = "zta";
+  pool = "ipcv3";
 in
 with _include;
 {
@@ -29,7 +29,7 @@ with _include;
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
     # DETAILS REMOVED
-    ./disk.nix
+    ./disk-v3.nix
     ../persistent.nix
     ../desktop-baremetal-kde.nix
     #../desktop-specialisation.nix
