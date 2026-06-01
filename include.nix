@@ -176,6 +176,7 @@ rec {
         "whisky"
         "stats"
         "libreoffice-bin"
+        "losslesscut"
         # for bootstrapping only:
         "go"
         "cargo-bootstrap"
