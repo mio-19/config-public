@@ -6,7 +6,7 @@
     disk = {
       ipcv3 = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/sda-CHANGE-ME-TO-YOUR-DISK";
         content = {
           type = "gpt";
           partitions = {
