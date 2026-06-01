@@ -588,6 +588,7 @@
         "type": "github"
       }
     },
+<<<<<<< HEAD
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1779975975,
@@ -604,6 +605,8 @@
         "type": "github"
       }
     },
+=======
+>>>>>>> e2269ebd3 (rm stable for mac)
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1780030872,
@@ -721,7 +724,6 @@
         "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-pin6": "nixpkgs-pin6",
         "nixpkgs-pin7": "nixpkgs-pin7",
-        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix"

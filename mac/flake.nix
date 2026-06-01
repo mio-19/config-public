@@ -78,7 +78,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    #nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     #nixpkgs-2505.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     #emacs-overlay = {
     #  url = "github:nix-community/emacs-overlay";
