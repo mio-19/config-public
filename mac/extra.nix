@@ -124,7 +124,7 @@ with _include;
     ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
       oh-my-opencode
       oh-my-codex
-      (lib.hiPrio antigravity) # higher prio than gui app for cli command "antigravity"
+      (lib.hiPrio antigravity-cli) # higher prio than gui app for cli command "antigravity"
     ]);
   homebrew.casks = [
     "cursor"
