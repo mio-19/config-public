@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
   schedule:
-    - cron: '11 */6 * * *'
+    - cron: '11 */12 * * *'
 jobs:
   tests:
     runs-on: macos-15
