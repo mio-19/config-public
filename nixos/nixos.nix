@@ -18,6 +18,7 @@ in
         name = "nixpkgs-patched";
         src = inputs.nixpkgs;
         patches = with pkgs; [
+          ../0001-hide-x86_64DarwinDeprecationWarning.patch
           (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";

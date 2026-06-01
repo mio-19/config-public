@@ -150,6 +150,7 @@
             name = "nixpkgs-patched";
             src = inputs0.nixpkgs.outPath;
             patches = with pkgs0; [
+              ../0001-hide-x86_64DarwinDeprecationWarning.patch
               (fetchpatch {
                 name = "pandora-launcher-unwrapped: fix darwin build";
                 url = "https://github.com/NixOS/nixpkgs/pull/524962.diff";

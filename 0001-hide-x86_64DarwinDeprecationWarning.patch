@@ -1,0 +1,27 @@
+From dfacaff5dc4766737c037359be7caca5fc5f838a Mon Sep 17 00:00:00 2001
+From: Mio <mio@mio19.uk>
+Date: Mon, 1 Jun 2026 20:25:07 +1000
+Subject: [PATCH] hide x86_64DarwinDeprecationWarning
+
+---
+ pkgs/top-level/default.nix | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pkgs/top-level/default.nix b/pkgs/top-level/default.nix
+index 443496f650fb..5c3085cf3e54 100644
+--- a/pkgs/top-level/default.nix
++++ b/pkgs/top-level/default.nix
+@@ -30,8 +30,8 @@ let
+   # there’s nothing we can do about that within the constraints of the
+   # Nix language.
+   x86_64DarwinDeprecationWarning =
+-    pristineLib.warn
+-      "Nixpkgs 26.05 will be the last release to support x86_64-darwin; see https://nixos.org/manual/nixpkgs/unstable/release-notes#x86_64-darwin-26.05"
++    #pristineLib.warn
++    #  "Nixpkgs 26.05 will be the last release to support x86_64-darwin; see https://nixos.org/manual/nixpkgs/unstable/release-notes#x86_64-darwin-26.05"
+       (x: x);
+ 
+   pristineLib = import ../../lib;
+-- 
+2.54.0
+
