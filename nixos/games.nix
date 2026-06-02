@@ -139,6 +139,7 @@ in
     extraPackages =
       with pkgs;
       [
+        pulseaudio # pactl command might be needed
         # https://github.com/kleinercubs/nix-config/blob/332ec781ddf50dda7e167d8451213e368f87491b/nixos/game.nix#L13
         gamescope-wsi
       ]
