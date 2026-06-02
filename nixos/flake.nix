@@ -7,9 +7,9 @@
     #determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*"; # https://docs.determinate.systems/guides/advanced-installation#nixos
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
-    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "nixpkgs-small";
+    #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "nixpkgs-unstable";
     # https://github.com/NixOS/nixpkgs/issues/500198
     #nixpkgs-pin.url = "github:NixOS/nixpkgs/b40629efe5d6ec48dd1efba650c797ddbd39ace0"; # a commit from nixos-unstable
     #nixpkgs-pin2.url = "github:NixOS/nixpkgs/4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9"; # a commit from nixos-unstable
