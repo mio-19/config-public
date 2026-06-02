@@ -19,6 +19,11 @@ in
         src = inputs.nixpkgs;
         patches = with pkgs; [
           (fetchpatch {
+            name = "master backport 1ac3c5dc9969eb532bc5fb22bfedaa4f2b4293c0";
+            url = "https://github.com/NixOS/nixpkgs/commit/1ac3c5dc9969eb532bc5fb22bfedaa4f2b4293c0.diff";
+            hash = "sha256-jh2CyPjYIPn+AtcO7jz6u/iPiLFd46ibZvVEdiK/MxQ=";
+          })
+          (fetchpatch {
             name = "Reinstate boot counting (#447173)";
             url = "https://github.com/NixOS/nixpkgs/commit/ef79cc68463a7f6961edf835307c18cfcdd23462.patch";
             hash = "sha256-JVuym6hQgC2QYlHn0fDVIFo3x8qirNEVzSbzm/DBVSU=";
@@ -51,7 +56,7 @@ in
           (fetchpatch {
             name = "ryzenadj: 0.17.0 -> 0.19.0";
             url = "https://github.com/NixOS/nixpkgs/pull/527120.diff";
-            hash = "sha256-aWjE4UI0qAjOv+5hbYd2eO4xvHtimd15h/zuAK7R2NU=";
+            hash = "sha256-aGZQ8l+i/78muMnxq59zQylEkDTAuTjxkx3INqtET7k=";
           })
           /*
             # unsure
