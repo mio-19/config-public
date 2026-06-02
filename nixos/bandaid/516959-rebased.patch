@@ -1,0 +1,93 @@
+diff --git a/nixos/modules/system/boot/loader/systemd-boot/systemd-boot-builder.py b/nixos/modules/system/boot/loader/systemd-boot/systemd-boot-builder.py
+--- a/nixos/modules/system/boot/loader/systemd-boot/systemd-boot-builder.py
++++ b/nixos/modules/system/boot/loader/systemd-boot/systemd-boot-builder.py
+@@ -40,6 +40,9 @@
+ STORE_DIR = "@storeDir@"
+ BOOT_COUNTING_TRIES = "@bootCountingTries@"
+ BOOT_COUNTING = "@bootCounting@" == "True"
++ENTRY_NAME_PREFIX = "@entryNamePrefix@"
++INCLUDE_DISTRO_NAME = bool("@includeDistroName@")
++AMBIGUOUS_DATE_FORMAT = bool("@ambiguousDateFormat@")
+ 
+ 
+ @dataclass(frozen=True)
+@@ -372,14 +375,25 @@
+ 
+     kernel_params = " ".join([f"init={bootspec.init}"] + bootspec.kernelParams)
+     build_time = int(system_dir(profile, generation, specialisation).stat().st_ctime)
+-    build_date = datetime.datetime.fromtimestamp(build_time).strftime("%F")
++    build_date = datetime.datetime.fromtimestamp(build_time).strftime('%F' if AMBIGUOUS_DATE_FORMAT else '%Y-%b-%d')
++
++    label_prefix = f"{DISTRO_NAME} "
++    display_label = (
++        bootspec.label
++        if INCLUDE_DISTRO_NAME
++        else (
++            bootspec.label[len(label_prefix):]
++            if bootspec.label.startswith(label_prefix)
++            else bootspec.label
++        )
++    )
+ 
+     title = "{name}{profile}{specialisation}".format(
+         name=DISTRO_NAME,
+         profile=" [" + profile + "]" if profile else "",
+         specialisation=" (%s)" % specialisation if specialisation else "",
+     )
+-    description = f"Generation {generation} {bootspec.label}, built on {build_date}"
++    description = f"{ENTRY_NAME_PREFIX}{generation:>3} {display_label}, built on {build_date}"
+     boot_entry = [
+         f"title {title}",
+         f"version {description}",
+diff --git a/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix b/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
+--- a/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
++++ b/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
+@@ -57,8 +57,11 @@
+ 
+       inherit (cfg)
+         consoleMode
++        ambiguousDateFormat
+         graceful
+         editor
++        entryNamePrefix
++        includeDistroName
+         rebootForBitlocker
+         ;
+ 
+@@ -221,6 +224,36 @@
+       '';
+     };
+ 
++    entryNamePrefix = mkOption {
++      default = "Generation ";
++      example = "Gen ";
++      type = types.addCheck types.str (value: stringLength value <= 20);
++
++      description = ''
++        Prefix shown before the generation number in systemd-boot entries,
++        in the `version` field.
++        Must be at most 20 characters.
++      '';
++    };
++
++    includeDistroName = mkOption {
++      default = true;
++      type = types.bool;
++      description = ''
++        Whether to include the distro name prefix (for example `NixOS`) in the
++        bootspec label after the generation number in systemd-boot entries.
++      '';
++    };
++
++    ambiguousDateFormat = mkOption {
++      default = true;
++      type = types.bool;
++      description = ''
++        Use a date format with month abbreviations instead of all-numeric dates
++        to avoid ambiguity when the day is below 13.
++      '';
++    };
++
+     xbootldrMountPoint = mkOption {
+       default = null;
+       type = types.nullOr types.str;

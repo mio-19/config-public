@@ -34,11 +34,10 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/525012.diff";
             hash = "sha256-cnGOdoUPZ1EMB4gO/eGu6m9/KRLpPNymLionMPrkM5U=";
           })
-          (fetchpatch {
-            name = "systemd-boot: add options for entry naming and date format";
-            url = "https://github.com/NixOS/nixpkgs/pull/516959.diff";
-            hash = "sha256-89CvrHIm9G69EhO+UqCKUk3Wo/qCAPugMz3DaVelVWg=";
-          })
+          # systemd-boot: add options for entry naming and date format
+          # https://github.com/NixOS/nixpkgs/pull/516959
+          # manually rebased on top of boot counting commit (ef79cc68)
+          ./bandaid/516959-rebased.patch
           (fetchpatch {
             name = "nixos/antigravity: init module";
             url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
