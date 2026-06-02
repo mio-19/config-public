@@ -223,7 +223,7 @@
     };
     vicinae = {
       #url = "git+https://github.com/vicinaehq/vicinae.git?shallow=1";
-      url = "github:vicinaehq/vicinae/e5607f98c99af28f0c734bb2ee9b79832004733d";
+      url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "flake-utils/systems";
     };
