@@ -18,6 +18,11 @@ in
         name = "nixpkgs-patched";
         src = inputs.nixpkgs;
         patches = with pkgs; [
+          (fetchpatch {
+            name = "Reinstate boot counting (#447173)";
+            url = "https://github.com/NixOS/nixpkgs/commit/ef79cc68463a7f6961edf835307c18cfcdd23462.patch";
+            hash = "sha256-JVuym6hQgC2QYlHn0fDVIFo3x8qirNEVzSbzm/DBVSU=";
+          })
           ../0001-hide-x86_64DarwinDeprecationWarning.patch
           (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
@@ -43,11 +48,6 @@ in
             name = "doc: add NFS file systems documentation";
             url = "https://github.com/NixOS/nixpkgs/pull/509169.diff";
             hash = "sha256-Hg2auaXO47mnKKUrpXqcmrCcuLk9eJ6CqEZsOvDXTrc=";
-          })
-          (fetchpatch {
-            name = "Reinstate boot counting (#447173)";
-            url = "https://github.com/NixOS/nixpkgs/commit/ef79cc68463a7f6961edf835307c18cfcdd23462.patch";
-            hash = "sha256-JVuym6hQgC2QYlHn0fDVIFo3x8qirNEVzSbzm/DBVSU=";
           })
           /*
             # unsure
