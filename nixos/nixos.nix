@@ -51,7 +51,7 @@ in
           (fetchpatch {
             name = "ryzenadj: 0.17.0 -> 0.19.0";
             url = "https://github.com/NixOS/nixpkgs/pull/527120.diff";
-            hash = "sha256-aWjE4UI0qAjOv+5hbYd2eO4xvHtimd15h/zuAK7R2NU=";
+            hash = "sha256-aGZQ8l+i/78muMnxq59zQylEkDTAuTjxkx3INqtET7k=";
           })
           /*
             # unsure
