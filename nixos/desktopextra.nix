@@ -22,6 +22,7 @@ with _include;
     (map hardenedPkg [
       rclone
 
+      carla
       popsicle # alternative to Balena Etcher - https://github.com/NixOS/nixpkgs/issues/371992#issuecomment-2576548039
       musescore-evolution
       nur.repos.mio.musescore-alex
