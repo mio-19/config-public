@@ -46,7 +46,7 @@ with _include;
       fluffychat
       progs.zulip
       normcap
-      libreoffice-fresh
+      (if qtIsPreferred then libreoffice-qt6-fresh else libreoffice-fresh)
       qbittorrent-enhanced
       #bottles
       #kdePackages.sddm-kcm

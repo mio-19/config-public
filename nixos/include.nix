@@ -536,6 +536,8 @@ upper
     osConfig.services.displayManager.sddm.enable
     || osConfig.services.displayManager.plasma-login-manager.enable;
 
+  qtIsPreferred = kdeDMEnabled;
+
   usualDMEnabled =
     osConfig.services.displayManager.sddm.enable
     || osConfig.services.displayManager.plasma-login-manager.enable
