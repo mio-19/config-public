@@ -18,16 +18,7 @@ with _include;
 
     services.printing = {
       enable = true;
-
-      drivers = [
-        pkgs.epson-escpr
-      ];
     };
-
-    hardware.printers = {
-      # DETAILS REMOVED
-    };
-
   };
 
 }

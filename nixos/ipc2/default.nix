@@ -12,6 +12,7 @@ in
 with _include;
 {
   imports = [
+    ./printers.nix
     ../bios.nix
     ../hidpi.nix
     #../betterbird.nix # tired of compiling
@@ -158,7 +159,6 @@ with _include;
 
   # https://search.nixos.org/packages
   environment.systemPackages = with pkgs; [
-    lynx
     config.services.lact.package
     ollama-cuda # OLLAMA_CONTEXT_LENGTH=131072 ollama serve
     #config.programs.corectrl.package
