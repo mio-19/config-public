@@ -12,7 +12,7 @@ in
 with upper;
 upper
 // rec {
-
+  inherit (pkgs) fetchpatch;
   mkNixPak = inputs.nixpak.lib.nixpak {
     inherit (pkgs) lib;
     inherit pkgs;
