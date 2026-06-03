@@ -13,6 +13,7 @@ with _include;
     ./options.nix
     ./tkg.nix
     ./printing.nix
+    ./desktop-office.nix
   ];
 
   home-manager.sharedModules = [
