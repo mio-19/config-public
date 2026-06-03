@@ -1171,11 +1171,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1780438164,
-        "narHash": "sha256-BHSqy7iM7QFFGhv5MMOypTL+EHDVXGWHokXLFMgl+f8=",
+        "lastModified": 1780449489,
+        "narHash": "sha256-UxyWzZhTiciPcpq5iYJg51439egKbytTdt9TZ7/NgwQ=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "f662431f25e8b00a06f8a7a14e4bf5d2e0e801af",
+        "rev": "1410995627b17a8f6f3ad6c4c202c6419e690e2a",
         "type": "github"
       },
       "original": {
@@ -2171,10 +2171,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1780169171,
-        "narHash": "sha256-3HBYDfBgZ+ph52HS6Ks/bMMwuh2uONIT72sZ1CtLE/s=",
+        "lastModified": 1780448629,
+        "narHash": "sha256-gSA/O9ey7QomcxoRtVA5kJI7XToyyDHQK8Mp4gRCH+I=",
         "ref": "refs/heads/main",
-        "rev": "998b2821c30b2938637230916904ceb8757c79e8",
+        "rev": "ac3c9e99c686c6fcec24b563880577818c79ba4a",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NixOS-WSL.git"
@@ -2755,10 +2755,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1780439338,
-        "narHash": "sha256-a66nADUhRg6c91DcCSL83F8on5ENoPAEpB5Zm0eh4ck=",
+        "lastModified": 1780450658,
+        "narHash": "sha256-QEJw8z2gQsBO/0FOl2d5UOpJ+A996URtGLCRrPSaB0w=",
         "ref": "refs/heads/main",
-        "rev": "241993f1f51c4976115e66188bf6f0323f4c3153",
+        "rev": "3e822e8e65d8ccf171be75e9d0af774cb0c7395a",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
