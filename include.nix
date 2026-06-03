@@ -12,6 +12,7 @@ rec {
     builtins.elem (lib.getName pkg) [
       "corefonts"
       "vista-fonts"
+      "bitwig-studio6"
       "steam"
       "steam-unwrapped"
       "nvidia-x11"
