@@ -10,6 +10,7 @@ rec {
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "corefonts"
       "steam"
       "steam-unwrapped"
       "nvidia-x11"
