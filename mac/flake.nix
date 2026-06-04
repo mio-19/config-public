@@ -161,11 +161,14 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/524848.diff";
                 hash = "sha256-bxONbKeTdZ2siw1V8Gwn8H8F9yJmx09GzNuIa+++jC0=";
               })
-              (fetchpatch {
-                name = "supertuxkart: updates for darwin and app experience";
-                url = "https://github.com/NixOS/nixpkgs/pull/520901.diff";
-                hash = "sha256-mtMxithwskTtp0tnBaFBSI3+Q8OuG6xCNEDYILNx/Kw=";
-              })
+              /*
+                # merge conflicts?
+                (fetchpatch {
+                  name = "supertuxkart: updates for darwin and app experience";
+                  url = "https://github.com/NixOS/nixpkgs/pull/520901.diff";
+                  hash = "sha256-mtMxithwskTtp0tnBaFBSI3+Q8OuG6xCNEDYILNx/Kw=";
+                })
+              */
               (fetchpatch {
                 name = "gimp3: fix Darwin build";
                 url = "https://github.com/NixOS/nixpkgs/pull/513484.diff";
