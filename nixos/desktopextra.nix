@@ -60,6 +60,7 @@ with _include;
       nemo
       #qcm
       teams-for-linux
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
       # binaryNativeCode:
       spotube
       waveterm
