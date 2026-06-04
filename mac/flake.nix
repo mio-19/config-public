@@ -169,11 +169,14 @@
                   hash = "sha256-mtMxithwskTtp0tnBaFBSI3+Q8OuG6xCNEDYILNx/Kw=";
                 })
               */
-              (fetchpatch {
-                name = "gimp3: fix Darwin build";
-                url = "https://github.com/NixOS/nixpkgs/pull/513484.diff";
-                hash = "sha256-Y9nqZTtq77SiSSCiqzXEB3+n8MPmDmjjhoB79QpPenc=";
-              })
+              /*
+                # conflicts
+                (fetchpatch {
+                  name = "gimp3: fix Darwin build";
+                  url = "https://github.com/NixOS/nixpkgs/pull/513484.diff";
+                  hash = "sha256-Y9nqZTtq77SiSSCiqzXEB3+n8MPmDmjjhoB79QpPenc=";
+                })
+              */
               (fetchpatch {
                 name = "tuxguitar: fix launch on darwin when app bundle path contains space";
                 url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
