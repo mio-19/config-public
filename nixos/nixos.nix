@@ -61,7 +61,7 @@ in
           (fetchpatch {
             name = "ryzen-smu update";
             url = "https://github.com/NixOS/nixpkgs/pull/527822.patch";
-            hash = "sha256-jD6dLblA1rfhTivwKVGdEvMqeMvfyZtxZYJis9U93Qk=";
+            hash = "sha256-sAPehpIDt6OvCryr5NumMBmvCJ31gh/895TRRkhXol8=";
           })
           /*
             # unsure
