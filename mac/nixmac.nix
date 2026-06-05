@@ -53,7 +53,7 @@
     supertuxkart
   ];
 
-  homebrew.onActivation.cleanup = "uninstall";
+  #homebrew.onActivation.cleanup = "uninstall"; # looks like homebrew updated and this broke..
   homebrew.taps = [ "xpipe-io/tap" ];
   homebrew.casks = [
     "background-music"
