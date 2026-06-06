@@ -68,7 +68,14 @@ with _include;
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "hm-backup-" + (if config.system.configurationRevision != null then config.system.configurationRevision else "unknown");
+  home-manager.backupFileExtension =
+    "hm-backup-"
+    + (
+      if config.system.configurationRevision != null then
+        config.system.configurationRevision
+      else
+        "unknown"
+    );
 
   # https://discourse.nixos.org/t/gdm-background-image-and-theme/12632/10
   nixpkgs.overlays = [
