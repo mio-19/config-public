@@ -102,6 +102,7 @@ with _include;
           })
         ];
       });
+      inherit (pkgs-pin) rpcs3;
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default

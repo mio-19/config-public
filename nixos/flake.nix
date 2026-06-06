@@ -10,8 +10,7 @@
     nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.follows = "nixpkgs-small";
-    # https://github.com/NixOS/nixpkgs/issues/500198
-    #nixpkgs-pin.url = "github:NixOS/nixpkgs/b40629efe5d6ec48dd1efba650c797ddbd39ace0"; # a commit from nixos-unstable
+    nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
     #nixpkgs-pin2.url = "github:NixOS/nixpkgs/4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9"; # a commit from nixos-unstable
     #nixpkgs-pin3.url = "github:NixOS/nixpkgs/ebc08544afa77957cc348ba72dc490ec73b87f68"; # a commit from nixos-unstable
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
