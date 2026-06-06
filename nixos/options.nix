@@ -2,11 +2,13 @@
   lib,
   pkgs,
   config,
+  _include,
   ...
 }:
 let
   inherit (pkgs) stdenv;
 in
+with _include;
 {
   options.v4 = lib.mkOption {
     type = lib.types.bool;
@@ -18,10 +20,8 @@ in
     default = false;
     description = "x86-64-v2 : legacy cpu i5-2410M";
   };
-  options.wine64_package = lib.mkOption {
-    type = lib.types.package;
-    default = pkgs.wineWow64Packages.full;
-    description = "The wine 32/64 package to use.";
+  options.wine64_package = lib.mkPackageOption pkgs [ "wineWow64Packages" "full" ] {
+    extraDescription = "The wine 32/64 package to use.";
   };
   options.hdr_very_bright = lib.mkOption {
     type = lib.types.bool;
@@ -47,6 +47,11 @@ in
     type = lib.types.bool;
     default = !config.v2;
     description = "use mio patched aria2";
+  };
+  options.adhocNetworks = lib.mkOption {
+    type = lib.types.bool;
+    default = boot-to-steam;
+    description = "enable adhoc network connections. but might make network unusable";
   };
   config.assertions = [
     {
