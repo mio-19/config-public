@@ -30,7 +30,7 @@ with _include;
       }
       "/root/.local/share/fish" # "/root/.local/share/fish/fish_history"
     ]
-    ++ lib.optionals boot-to-steam [
+    ++ lib.optionals config.adhocNetworks [
       # for adhoc network connections. but might make network unusable
       "/etc/NetworkManager/system-connections"
       "/var/lib/NetworkManager"
