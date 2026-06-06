@@ -15,6 +15,7 @@ with _include;
 
   imports = [
     ./selector4nix.nix
+    ./sudo-fprint-ssh-bypass.nix
     ./bandaid
     ./ccache.nix
     ./options.nix
