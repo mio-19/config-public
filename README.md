@@ -12,6 +12,10 @@ you can see `DETAILS REMOVED` with what I feel uncomfortable sharing or unsafe t
 --option extra-substituters https://mio-config.cachix.org --option extra-trusted-public-keys mio-config.cachix.org-1:VM6OZi+PC/ENBDf5ogaArQMgVUvJNvAL5t9ayXZdCIg=
 ```
 
+```zsh
+--option substituters 'https://cache.nixos.org/ https://mio-config.cachix.org' --option extra-trusted-public-keys mio-config.cachix.org-1:VM6OZi+PC/ENBDf5ogaArQMgVUvJNvAL5t9ayXZdCIg=
+```
+
 ## common problem - cannot install grub, uefi
 
 then install systemd-boot first, later change to grub if needed
