@@ -114,7 +114,7 @@ in
           outPath = toString nixos-avf-drv;
         };
       mio = (import "${inputs.mio}/flake.nix").outputs (
-        inputs.mio.outputs
+        inputs.mio.inputs
         // {
           self = mio;
           nixpkgs = nixpkgs;
@@ -122,7 +122,7 @@ in
         }
       );
       nur = (import "${inputs.nur}/flake.nix").outputs (
-        inputs.nur.outputs
+        inputs.nur.inputs
         // {
           self = nur;
           nixpkgs = nixpkgs;
