@@ -97,6 +97,4 @@ with _include;
 
   # Partition Manager (KDE)
   programs.partition-manager.enable = true;
-
-  programs.sniffnet.enable = true;
 }

@@ -363,4 +363,6 @@ with _include;
       };
     */
   };
+
+  programs.sniffnet.enable = true;
 }
