@@ -14,8 +14,8 @@
     nixpkgs-pin.url = "github:NixOS/nixpkgs/b86751bc4085f48661017fa226dee99fab6c651b"; # a commit from nixpkgs-unstable
     nixpkgs-pin2.url = "github:NixOS/nixpkgs/b579d443b37c9c5373044201ea77604e37e748c8"; # a commit from nixpkgs-unstable
     # jadx -> /nix/store/gh7qaddgqkiy8baivn385dwiw3zm59k3-duckdb-1.5.1.drv
-    #nixpkgs-pin3.url = "github:NixOS/nixpkgs/8c11f88bb9573a10a7d6bf87161ef08455ac70b9"; # a commit from nixpkgs-unstable
-    #nixpkgs-pin4.url = "github:NixOS/nixpkgs/b86751bc4085f48661017fa226dee99fab6c651b"; # a commit from nixpkgs-unstable
+    nixpkgs-pin3.url = "github:NixOS/nixpkgs/ffa10e26ae11d676b2db836259889f1f571cb14f"; # a commit from nixpkgs-unstable
+    nixpkgs-pin4.url = "github:NixOS/nixpkgs/ffa10e26ae11d676b2db836259889f1f571cb14f"; # a commit from nixpkgs-unstable
     nixpkgs-pin5.url = "github:NixOS/nixpkgs/d99b013d5d1931ad77fe3912ed218170dec5d9a4"; # a commit from nixpkgs-unstable
     nixpkgs-pin6.url = "github:NixOS/nixpkgs/6dedf69f94d03cbe7bdde106f2d4c23ae2a853bf"; # a commit from nixpkgs-unstable
     nixpkgs-pin7.url = "github:NixOS/nixpkgs/4100e830e085863741bc69b156ec4ccd53ab5be0"; # a commit from nixpkgs-unstable
@@ -156,11 +156,6 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/524962.diff";
                 hash = "sha256-uXQkTEfDrwAS8KwesEOl0a4M7KtczJ2Fg6NHzuVCjXw=";
               })
-              (fetchpatch {
-                name = "ios-deploy: fix build";
-                url = "https://github.com/NixOS/nixpkgs/pull/524848.diff";
-                hash = "sha256-bxONbKeTdZ2siw1V8Gwn8H8F9yJmx09GzNuIa+++jC0=";
-              })
               /*
                 # merge conflicts?
                 (fetchpatch {
@@ -277,6 +272,7 @@
         {
           inputs = inputs0 // {
             inherit nixpkgs darwin mio;
+            nixpkgs-unpatched = inputs0.nixpkgs;
           };
           inherit darwin deployPkgs deploy-rs;
           inherit (inputs0) self;
