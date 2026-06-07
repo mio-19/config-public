@@ -69,6 +69,10 @@ in
           priority = 5;
         }
         {
+          url = "https://mirror.sjtu.edu.cn/nix-channels/store";
+          priority = 5;
+        }
+        {
           url = "https://mirrors.ustc.edu.cn/nix-channels/store/";
           priority = 5;
         }
