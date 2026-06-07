@@ -41,6 +41,7 @@ with _include;
       penpot-desktop
       # unfree:
       lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
+      binaryninja-free
     ])
     ++ [
       # breaks with wrapper

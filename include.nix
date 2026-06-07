@@ -10,6 +10,7 @@ rec {
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "binaryninja-free"
       "corefonts"
       "vista-fonts"
       "bitwig-studio6"
