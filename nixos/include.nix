@@ -267,9 +267,9 @@ upper
     nodejs = pkgs.nodejs_latest;
     pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs; };
     antlr = pkgs.antlr.override { jre = program.jre; };
-    librewolf' = pkgs-nocuda.librewolf.override {
-      extraPrefs = librewolf_prefs;
-    };
+    librewolf' = pkgs-nocuda.librewolf.override (old: {
+      extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
+    });
   };
 
   pkgs' = import inputs.nixpkgs {

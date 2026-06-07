@@ -122,9 +122,9 @@ upper
     ppnpm_10 = pkgs.pnpm_10.override { nodejs = nodejs; };
     yarn-berry = pkgs.yarn-berry.override { nodejs = nodejs; };
     antlr = pkgs.antlr.override { jre = program.jre; };
-    librewolf' = pkgs.librewolf.override {
-      extraPrefs = librewolf_prefs;
-    };
+    librewolf' = pkgs.librewolf.override (old: {
+      extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
+    });
   };
   script = {
     upgrade = pkgs.writeShellScriptBin "upgrade" ''
