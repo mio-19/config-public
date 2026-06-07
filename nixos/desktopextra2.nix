@@ -62,7 +62,6 @@ with _include;
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.github-store
       inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
-      ghidra
       #quickemu
       #whatsapp-chat-exporter
       super-productivity
