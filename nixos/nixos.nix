@@ -118,7 +118,7 @@ in
         nixpkgs = nixpkgs;
       });
       nur = (import "${inputs.nur}/flake.nix").outputs (inputs.nur.outputs//{
-        self = nurpkgs;
+        self = nur;
         nixpkgs = nixpkgs;
       });
       inputs-patched = inputs // {
