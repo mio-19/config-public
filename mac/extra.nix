@@ -65,6 +65,7 @@ with _include;
       #easyeda2kicad
       #interactive-html-bom
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
       # unfree:
       gemini-cli
       cursor-cli
