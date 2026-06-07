@@ -213,7 +213,7 @@ rec {
     || lib.hasPrefix "VBoxGuestAdditions_" (lib.getName pkg);
 
   librewolf_prefs = ''
-    # Don't remove data on exit
+    // Don't remove data on exit
     pref("privacy.sanitize.sanitizeOnShutdown", false);
     pref("privacy.clearOnShutdown.history", false);
     pref("privacy.clearOnShutdown.cookies", false);
