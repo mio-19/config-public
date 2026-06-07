@@ -219,7 +219,7 @@ upper
     jdk_headless = jdk;
     scala_3 = pkgs.scala_3.override { jre = jre; };
     nodejs = pkgs.nodejs_latest;
-    pnpm = pkgs.pnpm.override { nodejs = program.nodejs; };
+    pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs; };
     antlr = pkgs.antlr.override { jre = program.jre; };
   };
 
