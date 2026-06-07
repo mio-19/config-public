@@ -113,8 +113,12 @@ in
         // {
           outPath = toString nixos-avf-drv;
         };
+      mio = (import "${inputs.mio}/flake.nix").outputs (inputs.mio.outputs//{
+        self = mio;
+        nixpkgs = nixpkgs;
+      });
       inputs-patched = inputs // {
-        inherit nixpkgs nixos-avf;
+        inherit nixpkgs nixos-avf mio;
       };
     in
     {
