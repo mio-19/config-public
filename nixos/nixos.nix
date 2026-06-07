@@ -18,16 +18,6 @@ in
         name = "nixpkgs-patched";
         src = inputs.nixpkgs;
         patches = with pkgs; [
-          (fetchpatch {
-            name = "master backport 1ac3c5dc9969eb532bc5fb22bfedaa4f2b4293c0";
-            url = "https://github.com/NixOS/nixpkgs/commit/1ac3c5dc9969eb532bc5fb22bfedaa4f2b4293c0.diff";
-            hash = "sha256-jh2CyPjYIPn+AtcO7jz6u/iPiLFd46ibZvVEdiK/MxQ=";
-          })
-          (fetchpatch {
-            name = "Reinstate boot counting (#447173)";
-            url = "https://github.com/NixOS/nixpkgs/commit/ef79cc68463a7f6961edf835307c18cfcdd23462.patch";
-            hash = "sha256-JVuym6hQgC2QYlHn0fDVIFo3x8qirNEVzSbzm/DBVSU=";
-          })
           ../0001-hide-x86_64DarwinDeprecationWarning.patch
           (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
@@ -52,11 +42,6 @@ in
             name = "doc: add NFS file systems documentation";
             url = "https://github.com/NixOS/nixpkgs/pull/509169.diff";
             hash = "sha256-Hg2auaXO47mnKKUrpXqcmrCcuLk9eJ6CqEZsOvDXTrc=";
-          })
-          (fetchpatch {
-            name = "ryzenadj: 0.17.0 -> 0.19.0";
-            url = "https://github.com/NixOS/nixpkgs/pull/527120.diff";
-            hash = "sha256-aGZQ8l+i/78muMnxq59zQylEkDTAuTjxkx3INqtET7k=";
           })
           (fetchpatch {
             name = "ryzen-smu update";
@@ -136,6 +121,7 @@ in
           mio
           nur
           ;
+        nixpkgs-unpatched = inputs.nixpkgs;
       };
     in
     {

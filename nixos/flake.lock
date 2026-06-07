@@ -102,11 +102,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780752588,
-        "narHash": "sha256-mxrb5UhRjopZH0MCW3g/ySqcwWK3A4t4bPmasWMsZLY=",
+        "lastModified": 1780813946,
+        "narHash": "sha256-j6tPAbhdUClluMvGLGAEbxKA3E0IUO9LmFLtPtJKcHU=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "a3f29a66c411acc767a216b54db7ea9058077141",
+        "rev": "bcb2e293f3bfa26e0f17f46b3bdc1ecd4e64e5e7",
         "type": "github"
       },
       "original": {
@@ -787,11 +787,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1780798214,
-        "narHash": "sha256-FSgjp5mA36AWGQye7LO0COizgFI3C7YmxMhVhP6/CNE=",
+        "lastModified": 1780811039,
+        "narHash": "sha256-4IdvJPuLzmpLwBk2iQ1QjKHGi5pt8cvaE5hmkBnr3Xc=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "d03f85ef2700285c0dc4044d265236e881b4a024",
+        "rev": "04df876de28f0684a0d7110444d7f64da5c14d17",
         "type": "github"
       },
       "original": {
@@ -854,10 +854,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1780802678,
-        "narHash": "sha256-5lrQdhHJlSt7qjchUCsB9GkQQM+6ZP/xxuhF79H8MEM=",
+        "lastModified": 1780815729,
+        "narHash": "sha256-/AR6XRno7niTxjYWKD8ez4JSpbO9H7ZSjrvzr1We2o8=",
         "ref": "refs/heads/main",
-        "rev": "c3ec898513160d175e15316688137cbcdb81b6cc",
+        "rev": "4b64b88cd262a8132c3a2d2da30020763be4dee0",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -1067,11 +1067,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780210899,
-        "narHash": "sha256-4axz3OBPTKa6LIkXV8n0lc63MQU+et2CB5DGobEAi6k=",
+        "lastModified": 1780816331,
+        "narHash": "sha256-0BYqs8yKWkOz2Q7+SP18N5E5gmDKSo6LSxIVIa0wWes=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "97df9dc0b7c924344b793a15c1e8e4522ebb854e",
+        "rev": "1a2ea89c917781e88508d9fd2b507f2d2a0e173c",
         "type": "github"
       },
       "original": {
@@ -1638,11 +1638,11 @@
     },
     "nixpkgs-small": {
       "locked": {
-        "lastModified": 1780751787,
-        "narHash": "sha256-nWR7F46SyrLvN8Ot39XJDpVCswekGakXlOD4KsTYKW0=",
+        "lastModified": 1780795668,
+        "narHash": "sha256-RAPmF/rximnsPEVkHxGuLAMekHsQWsFou+Dmqw5PjnQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "00fa9a692bafc08a86061886f888b843bf7fbdb0",
+        "rev": "afdf13dce322e2aec0a57490a45df202367ec2e2",
         "type": "github"
       },
       "original": {
@@ -1906,10 +1906,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1780808079,
-        "narHash": "sha256-npdm5md+Xts1ZgChWV0hgLX3Ouh8AR0bfbZDOjvsG64=",
+        "lastModified": 1780822363,
+        "narHash": "sha256-U14O2/+Qu3UAiBV5T93oJXz3+g9+RGV6Gq+gR8oBcGk=",
         "ref": "refs/heads/main",
-        "rev": "567f375012ae61caf5d46186632f4782a370af6b",
+        "rev": "126c9d9b7edcf27577ad7febf13cf11a1e190418",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2166,11 +2166,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1780747413,
-        "narHash": "sha256-AefxAaUHtEw3T1G1oKHJDAbPuOYYWerLo4XDiL7GHfg=",
+        "lastModified": 1780817397,
+        "narHash": "sha256-UWrOJbYdhua1mjGJnF/yZN47vnaUnfsxl3zN6FmFh1M=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "232b2006c22769dbfb056efe3c6396fc0711739f",
+        "rev": "bc8ade67dee6cd27c96a17126ac7810c6a83af47",
         "type": "github"
       },
       "original": {
@@ -2685,11 +2685,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780793030,
-        "narHash": "sha256-0sbiSfboFg04dVWIo27xchmgLsINslYYuQHHIl9pn0c=",
+        "lastModified": 1780824051,
+        "narHash": "sha256-8tCEqoiZ0dtF6phXnA49S/7cZfXOcMGrGf60nq0b0cg=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "28f39cb5288de43d67d6ba0e6c09776f1e2d4654",
+        "rev": "d9fd7a17544c01b504fb166f9e8afd1d69858844",
         "type": "github"
       },
       "original": {
