@@ -88,6 +88,7 @@ with _include;
       ln -s ${pkgs.coreutils}/bin/timeout $out/bin/timeout
     '')
 
+    nano
     lz4
     nixd
     fd
