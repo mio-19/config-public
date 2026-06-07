@@ -99,26 +99,28 @@ in
           outPath = toString nixos-avf-drv;
         };
       mio =
-        (import "${inputs.mio}/flake.nix").outputs (
-          inputs.mio.inputs
-          // {
+        let
+          inputs' = inputs.mio.inputs // {
             self = mio;
             nixpkgs = nixpkgs;
-          }
-        )
+          };
+        in
+        (import "${inputs.mio}/flake.nix").outputs inputs'
         // {
           outPath = inputs.mio.outPath;
+          inputs = inputs';
         };
       nur =
-        (import "${inputs.nur}/flake.nix").outputs (
-          inputs.nur.inputs
-          // {
+        let
+          inputs' = inputs.nur.inputs // {
             self = nur;
             nixpkgs = nixpkgs;
-          }
-        )
+          };
+        in
+        (import "${inputs.nur}/flake.nix").outputs inputs'
         // {
           outPath = inputs.nur.outPath;
+          inputs = inputs';
         };
       inputs-patched = inputs // {
         inherit
