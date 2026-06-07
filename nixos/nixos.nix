@@ -116,10 +116,12 @@ in
       mio = (import "${inputs.mio}/flake.nix").outputs (inputs.mio.outputs//{
         self = mio;
         nixpkgs = nixpkgs;
+        outPath = inputs.mio.outPath;
       });
       nur = (import "${inputs.nur}/flake.nix").outputs (inputs.nur.outputs//{
         self = nur;
         nixpkgs = nixpkgs;
+        outPath = inputs.nur.outPath;
       });
       inputs-patched = inputs // {
         inherit nixpkgs nixos-avf mio nur;
