@@ -271,10 +271,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
+    /*
+      claude-desktop = {
+        url = "github:k3d3/claude-desktop-linux-flake";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs.flake-utils.follows = "flake-utils";
+      };
+    */
     claude-desktop = {
-      url = "github:k3d3/claude-desktop-linux-flake";
+      url = "github:aaddrick/claude-desktop-debian";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-parts.follows = "flake-parts";
     };
     nix-bwrapper = {
       url = "github:Naxdy/nix-bwrapper";
