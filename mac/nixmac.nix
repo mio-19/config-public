@@ -14,6 +14,7 @@
     ../nixos/nixbuild-always.nix
     ./harmonia_lan_only_not_public_ip.nix
     ./newinstall.nix
+    ./selector4nix.nix
   ];
 
   networking.hostName = "NixMac";

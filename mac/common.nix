@@ -20,7 +20,6 @@ with _include;
     #./lix.nix
     #inputs.stylix.darwinModules.stylix
     ../token.nix
-    ./selector4nix.nix
   ];
 
   nixpkgs.overlays = [
