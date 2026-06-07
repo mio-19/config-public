@@ -117,8 +117,12 @@ in
         self = mio;
         nixpkgs = nixpkgs;
       });
+      nurpkgs = (import "${inputs.nur}/flake.nix").outputs (inputs.nur.outputs//{
+        self = nurpkgs;
+        nixpkgs = nixpkgs;
+      });
       inputs-patched = inputs // {
-        inherit nixpkgs nixos-avf mio;
+        inherit nixpkgs nixos-avf mio nurpkgs;
       };
     in
     {
