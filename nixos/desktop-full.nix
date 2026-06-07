@@ -109,7 +109,7 @@ with _include;
         tuxguitar # TODO: maybe try firejail for this
         #fluidsynth
         #lilypond
-        nur.repos.mio.lmms
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.lmms
         (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.notepad-plus-plus.override {
           wine = config.wine64_package;
         })
