@@ -124,7 +124,7 @@ with _include;
     moonlight-qt
     pear-desktop
     spin
-    librewolf
+    program.librewolf'
     nixfmt
     nixfmt-tree
     #pkgs-95376.blender

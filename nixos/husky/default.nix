@@ -40,7 +40,7 @@ with _include;
     (map hardenedPkg [
     ])
     ++ [
-      librewolf
+      program.librewolf'
     ];
 
   # https://github.com/nix-community/nixos-avf/blob/d0a62c3f64b45a39570fde31a3a490b214bf19ee/avf/default.nix#L330C5-L330C28

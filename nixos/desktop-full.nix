@@ -90,7 +90,7 @@ with _include;
       sublime-merge # (callPackage ./sublime-merge.nix { })
     ])
     ++ (map cleanPkg [
-      librewolf # progs.librewolf_for_firejail
+      progs.librewolf'_for_firejail
       firefox-esr
       (wrapPrio gnome-console)
       # unfree:

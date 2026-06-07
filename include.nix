@@ -211,4 +211,17 @@ rec {
     || lib.hasPrefix "Microsoft." (lib.getName pkg)
     || (lib.hasPrefix "runtime." (lib.getName pkg) && lib.hasInfix "Microsoft." (lib.getName pkg))
     || lib.hasPrefix "VBoxGuestAdditions_" (lib.getName pkg);
+
+  librewolf_prefs = ''
+    # Don't remove data on exit
+    pref("privacy.sanitize.sanitizeOnShutdown", false);
+    pref("privacy.clearOnShutdown.history", false);
+    pref("privacy.clearOnShutdown.cookies", false);
+    pref("privacy.clearOnShutdown.sessions", false);
+    pref("privacy.clearOnShutdown.cache", false);
+    pref("privacy.clearOnShutdown.downloads", false);
+    pref("privacy.clearOnShutdown.formdata", false);
+    pref("privacy.clearOnShutdown.offlineApps", false);
+    pref("privacy.clearOnShutdown.siteSettings", false);
+  '';
 }

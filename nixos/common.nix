@@ -89,9 +89,6 @@ with _include;
       grub2 = final.nur.repos.mio.grub2;
       #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       darling = inputs.mio.packages."${system}".darling;
-      #librewolf = if cudaSupport then prev.librewolf else final.librewolf-bin; # third time only cuda has librewolf cache. did librewolf break again?
-      #librewolf = final.librewolf-bin; # no cache
-      inherit (pkgs-nocuda) librewolf; # no cache with cuda
       inherit (pkgs-openclaw) openclaw openclawPackages;
       xfce4-terminal = prev.xfce4-terminal.overrideAttrs (oldAttrs: {
         patches = (oldAttrs.patches or [ ]) ++ [

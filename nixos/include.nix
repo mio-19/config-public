@@ -194,6 +194,52 @@ upper
         '';
       }
     );
+    librewolf'_for_firejail =
+      if (pkgs.librewolf == pkgs.librewolf-bin) then
+        librewolf'_for_firejail_bin
+      else
+        librewolf'_for_firejail_src;
+    librewolf'_for_firejail_bin = cleanPkg (
+      wrapFirefox librewolf-bin-unwrapped {
+        # from nixpkgs
+        pname = "librewolf-bin";
+        extraPrefsFiles = [
+          "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/librewolf.cfg"
+        ];
+        extraPoliciesFiles = [
+          "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/distribution/extra-policies.json"
+        ];
+        # for firejail:
+        # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
+        # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
+        # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
+        extraPrefs = librewolf_prefs + ''
+          lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
+          lockPref("widget.use-xdg-desktop-portal.location", 1);
+          lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
+          lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
+          lockPref("widget.use-xdg-desktop-portal.settings", 1);
+        '';
+      }
+    );
+    librewolf'_for_firejail_src = cleanPkg (
+      wrapFirefox librewolf-unwrapped {
+        # from nixpkgs
+        inherit (librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
+        libName = "librewolf";
+        # for firejail:
+        # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
+        # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
+        # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
+        extraPrefs = librewolf_prefs + ''
+          lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
+          lockPref("widget.use-xdg-desktop-portal.location", 1);
+          lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
+          lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
+          lockPref("widget.use-xdg-desktop-portal.settings", 1);
+        '';
+      }
+    );
     vscode = pkgs.vscode; # vscode-fhs;
     discord = pkgs.discord.override {
       withVencord = true;
@@ -221,6 +267,9 @@ upper
     nodejs = pkgs.nodejs_latest;
     pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs; };
     antlr = pkgs.antlr.override { jre = program.jre; };
+    librewolf' = pkgs-nocuda.librewolf.override {
+      extraPrefs = librewolf_prefs;
+    };
   };
 
   pkgs' = import inputs.nixpkgs {
