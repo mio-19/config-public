@@ -78,6 +78,8 @@ in
         }
         // {
           outPath = toString nixpkgs-drv;
+          # fpr https://github.com/hercules-ci/flake-parts/blob/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb/modules/perSystem.nix#L113
+          _type = "flake";
         };
       nixos-avf-drv = pkgs.applyPatches {
         name = "nixos-avf-patched";
