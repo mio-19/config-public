@@ -10,6 +10,7 @@ let
   isSudoFprintEnabled = config.security.pam.services.sudo.fprintAuth or false;
 in
 {
+  # BUG: Not Bypassed in tmux in ssh
   # Only evaluate and inject this PAM rule if fprintd is configured for sudo.
   security.pam.services.sudo.rules.auth.skip_fprintd_for_ssh = lib.mkIf isSudoFprintEnabled {
     enable = true;
