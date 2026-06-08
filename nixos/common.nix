@@ -99,7 +99,6 @@ with _include;
           })
         ];
       });
-      inherit (pkgs-pin) rpcs3;
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
@@ -222,6 +221,8 @@ with _include;
     LC_TELEPHONE = lib.mkDefault "en_AU.UTF-8";
     LC_TIME = lib.mkDefault "en_AU.UTF-8";
   };
+
+  networking.firewall.allowedTCPPorts = [ 8080 ]; # temp file share with $ caddy file-server --browse --debug --listen :8080
 
   # https://search.nixos.org/packages
   environment.systemPackages =
