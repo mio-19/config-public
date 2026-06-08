@@ -10,7 +10,6 @@ let
   isSudoFprintEnabled = config.security.pam.services.sudo.fprintAuth or false;
 in
 {
-  # BUG: Not Bypassed in tmux in ssh
   # Only evaluate and inject this PAM rule if fprintd is configured for sudo.
   security.pam.services.sudo.rules.auth.skip_fprintd_for_ssh = lib.mkIf isSudoFprintEnabled {
     enable = true;
@@ -29,26 +28,37 @@ in
     args = [
       "quiet"
       "${pkgs.writeShellScript "pam-sudo-ssh-bypass" ''
-        SESSION_ID=$(${pkgs.systemd}/bin/loginctl session-status | head -n1 | awk '{print $1}')
+        is_remote() {
+          local id=$1
+          # Check if the session ID is valid and not the 'no session' value.
+          [ -n "$id" ] && [ "$id" != "4294967295" ] || return 1
+          # Query systemd-logind for the session's Remote property.
+          [ "$(${pkgs.systemd}/bin/loginctl show-session "$id" -p Remote --value 2>/dev/null)" = "yes" ]
+        }
 
-        if [ -z "$SESSION_ID" ]; then
-          exit 1
-        fi
-
-        # Securely query systemd-logind for the session's Remote property.
-        # The --value flag ensures it only outputs "yes" or "no".
-        REMOTE_STATUS=$(${pkgs.systemd}/bin/loginctl show-session "$SESSION_ID" -p Remote --value 2>/dev/null || true)
-
-        # Evaluate the Remote property output by loginctl.
-        if [ "$REMOTE_STATUS" = "yes" ]; then
-          # The session is definitively established via a remote network protocol.
-          # Exit 0 instructs PAM to trigger success=1, thereby bypassing fprintd.
+        # 1. Try to get the session ID from the current process cgroup.
+        # This is the most reliable for direct login sessions.
+        CGROUP_SESSION=$(${pkgs.systemd}/bin/loginctl session-status 2>/dev/null | head -n1 | awk '{print $1}')
+        if is_remote "$CGROUP_SESSION"; then
           exit 0
-        else
-          # The session is local (e.g., seat0 physical hardware).
-          # Exit 1 instructs PAM to ignore the rule and evaluate fprintd normally.
-          exit 1
         fi
+
+        # 2. Check XDG_SESSION_ID from the environment of the parent process (the shell).
+        # Multiplexers like tmux might not update the cgroup but often preserve this variable.
+        ENV_SESSION_ID=$(grep -z "^XDG_SESSION_ID=" "/proc/$PPID/environ" 2>/dev/null | cut -d= -f2-)
+        if is_remote "$ENV_SESSION_ID"; then
+          exit 0
+        fi
+
+        # 3. Check for explicit SSH indicators in the parent process environment.
+        # This is the fallback for tmux/screen sessions where the session ID might be local
+        # or missing, but the user is interacting via an SSH-forwarded environment.
+        if grep -zqE "^(SSH_CLIENT|SSH_CONNECTION|SSH_TTY)=" "/proc/$PPID/environ" 2>/dev/null; then
+          exit 0
+        fi
+
+        # No remote indicator found for this specific process context.
+        exit 1
       ''}"
     ];
   };
