@@ -14,6 +14,7 @@ with _include;
   _module.args._include = _include;
 
   imports = [
+    ./customize.nix
     ./selector4nix.nix
     ./sudo-fprint-ssh-bypass.nix
     ./bandaid
@@ -150,7 +151,7 @@ with _include;
 
   #stylix = {
   #  enable = true;
-  # DETAILS REMOVED
+  #  image = config.system_background;
   #};
 
   networking = {

@@ -83,7 +83,7 @@ in
   programs.plasma = lib.mkIf osConfig.services.desktopManager.plasma6.enable {
     enable = osConfig.services.desktopManager.plasma6.enable;
     workspace = {
-      # DETAILS REMOVED
+      wallpaper = lib.mkDefault osConfig.system_background;
       enableMiddleClickPaste = false;
     };
     # https://github.com/0xDracula/nixos-config/blob/2ad1447c5e636122e0da2bc7ccaea9438f5c912c/home/plasma.nix#L9C7-L17C7
@@ -116,7 +116,7 @@ in
       timeout = 10;
       autoLock = true;
       lockOnResume = true;
-      # DETAILS REMOVED
+      appearance.wallpaper = lib.mkDefault osConfig.system_background;
     };
     session = {
       sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";

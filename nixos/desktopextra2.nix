@@ -66,7 +66,7 @@ with _include;
       #whatsapp-chat-exporter
       super-productivity
       # unfree:
-      #inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+      inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
     ])
     ++ (map cleanPkg [
       #firefox_nightly

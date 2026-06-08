@@ -5,8 +5,8 @@
   pkgs,
   ...
 }@args:
-rec {
-  # DETAILS REMOVED
+import ./customize.nix args
+// rec {
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [

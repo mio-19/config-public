@@ -53,6 +53,10 @@ with _include;
     default = boot-to-steam;
     description = "enable adhoc network connections. but might make network unusable";
   };
+  options.system_background = lib.mkOption {
+    type = lib.types.either lib.types.package lib.types.path;
+    description = "path to system background image";
+  };
   config.assertions = [
     {
       assertion = config.v2 -> !config.mio_aria2;

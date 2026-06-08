@@ -39,10 +39,7 @@ with _include;
   environment.etc."nixos/lockscreen.jpg".source =
     pkgs.runCommand "lockscreen-jpg" { buildInputs = [ pkgs.imagemagick ]; }
       ''
-        magick convert ${
-          # DETAILS REMOVED
-          ./black.png
-        } $out
+        magick convert ${if config.hdr_very_bright then ./black.png else config.system_background} $out
       '';
 
   programs.localsend.openFirewall = true;
@@ -205,10 +202,7 @@ with _include;
       # https://discourse.nixos.org/t/sddm-background-on-default-theme/46263
       (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
         [General]
-        background=${
-          # DETAILS REMOVED
-          ./black.png
-        }
+        background=${if config.hdr_very_bright then ./black.png else config.system_background}
       '')
     ]
     ++
@@ -259,8 +253,7 @@ with _include;
     Greeter.Wallpaper = {
       "org.kde.image" = {
         General.Image = "file://${
-          # DETAILS REMOVED
-          ./black.png
+          if config.hdr_very_bright then ./black.png else config.system_background
         }";
       };
     };
