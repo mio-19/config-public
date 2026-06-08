@@ -29,26 +29,15 @@ in
     args = [
       "quiet"
       "${pkgs.writeShellScript "pam-sudo-ssh-bypass" ''
-        SESSION_ID=$(${pkgs.systemd}/bin/loginctl session-status | head -n1 | awk '{print $1}')
-
-        if [ -z "$SESSION_ID" ]; then
-          exit 1
-        fi
-
-        # Securely query systemd-logind for the session's Remote property.
-        # The --value flag ensures it only outputs "yes" or "no".
-        REMOTE_STATUS=$(${pkgs.systemd}/bin/loginctl show-session "$SESSION_ID" -p Remote --value 2>/dev/null || true)
-
-        # Evaluate the Remote property output by loginctl.
-        if [ "$REMOTE_STATUS" = "yes" ]; then
-          # The session is definitively established via a remote network protocol.
+        if [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; then
+          # The presence of SSH-related environment variables strongly indicates an SSH session.
           # Exit 0 instructs PAM to trigger success=1, thereby bypassing fprintd.
           exit 0
-        else
-          # The session is local (e.g., seat0 physical hardware).
-          # Exit 1 instructs PAM to ignore the rule and evaluate fprintd normally.
-          exit 1
         fi
+
+        # The session is local (e.g., seat0 physical hardware).
+        # Exit 1 instructs PAM to ignore the rule and evaluate fprintd normally.
+        exit 1
       ''}"
     ];
   };
