@@ -405,16 +405,9 @@ with _include;
 
   security.sudo.execWheelOnly = lib.mkDefault true;
 
-  # https://www.reddit.com/r/NixOS/comments/1cot084/comment/ngqsyg8/
-  systemd.tmpfiles.rules =
-    let
-      # DETAILS REMOVED
-    in
-    [
-      "f /tmp/vscode-skip-server-requirements-check 0644 root root -"
-    ]
-  # DETAILS REMOVED
-  ;
+  systemd.tmpfiles.rules = [
+    "f /tmp/vscode-skip-server-requirements-check 0644 root root -"
+  ];
 
   #services.flatpak.update.onActivation = true; # maybe need this if we always don't use nixos-rebuild switch - https://github.com/gmodena/nix-flatpak/issues/191
   services.flatpak.uninstallUnmanaged = true;
