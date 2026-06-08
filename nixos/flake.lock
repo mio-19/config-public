@@ -1604,6 +1604,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-pin": {
+      "locked": {
+        "lastModified": 1780243769,
+        "narHash": "sha256-x5UQuRsH3MqI0U9afaXSNqzTPSeZlRLvFAav2Ux1pNw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "331800de5053fcebacf6813adb5db9c9dca22a0c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "331800de5053fcebacf6813adb5db9c9dca22a0c",
+        "type": "github"
+      }
+    },
     "nixpkgs-python27": {
       "locked": {
         "lastModified": 1780603710,
@@ -2241,6 +2257,7 @@
         ],
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-2511": "nixpkgs-2511",
+        "nixpkgs-pin": "nixpkgs-pin",
         "nixpkgs-small": "nixpkgs-small",
         "nm2nix": "nm2nix",
         "noctalia": "noctalia",
