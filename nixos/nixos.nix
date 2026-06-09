@@ -219,6 +219,12 @@ in
           #inputs.determinate.nixosModules.default
         ];
       };
+      nixosConfigurations.fw13 = nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./fw13
+        ];
+      };
       # DETAILS REMOVED
     };
 }
