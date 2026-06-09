@@ -17,7 +17,7 @@ with _include;
     inputs.nix-index-database.darwinModules.nix-index
     inputs.mac-app-util.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
-    #./lix.nix
+    ./lix.nix
     #inputs.stylix.darwinModules.stylix
     ../token.nix
     ./nixpkgs-workaround.nix

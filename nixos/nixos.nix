@@ -48,6 +48,16 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/527822.patch";
             hash = "sha256-sAPehpIDt6OvCryr5NumMBmvCJ31gh/895TRRkhXol8=";
           })
+          (fetchpatch {
+            name = "fw-fanctrl: temp is float";
+            url = "https://github.com/NixOS/nixpkgs/pull/529496.patch";
+            hash = "sha256-rgSFzh/eo74r05PY6PSTuiU9CJMgU10iluPwwZJUG/k=";
+          })
+          (fetchpatch {
+            name = "fw-fanctrl: 1.0.4 -> 1.1.0";
+            url = "https://github.com/NixOS/nixpkgs/pull/529725.patch";
+            hash = "sha256-r0Eb3MJy1YbjMeWP4sLU2Tio+AJaX1VMDVL8F1xh5F4=";
+          })
           /*
             # unsure
             (fetchpatch {
