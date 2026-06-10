@@ -21,7 +21,7 @@ with _include;
   hardware.fw-fanctrl = {
     enable = true;
     keepDefaultStrategies = false;
-    config = {
+    settings = {
       defaultStrategy = "chargingstrategy";
       strategyOnDischarging = "dischargingstrategy";
       # https://community.frame.work/t/amd-7840u-fan-issues/69704/2
