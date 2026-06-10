@@ -765,11 +765,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780990365,
-        "narHash": "sha256-LtM0ERL8ISP7ohj5H/dT+wfnKB+6TWXtUSXpe6lVCCg=",
+        "lastModified": 1781074777,
+        "narHash": "sha256-f5TFTQ5QvvbOxHOdXjcy8eFZJkmJ/Z5AD510W/QMb68=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "255a964247cd3bcc68947b675ce270212e98568f",
+        "rev": "69efe39ec172d55790f0c814447f91daff737704",
         "type": "github"
       },
       "original": {
@@ -855,10 +855,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1781015361,
-        "narHash": "sha256-+f+NGg6ziqxGn6mFj+kWQVR0yCjqgcRe5DTWMMzswKs=",
+        "lastModified": 1781084753,
+        "narHash": "sha256-oc6NxZn8hnW/NbHihhKYgR38FdNFOyho4JWz9annwSk=",
         "ref": "refs/heads/main",
-        "rev": "db5300039bb27b757fe0cf1480e4c24e02d64dad",
+        "rev": "0933237653cd509a318745be913681c95c5c5f61",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -1906,10 +1906,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1781071305,
-        "narHash": "sha256-fsv4xvgSNgxhzUVhaqJH8uvsWklnQvrwGYMYxXmMomc=",
+        "lastModified": 1781083560,
+        "narHash": "sha256-K6tsgezE0n6TM65YkU0kUpA3Q0ilklwciTCx2vUfy3U=",
         "ref": "refs/heads/main",
-        "rev": "ace0777779cafa7c9640bb14767a0d4177782376",
+        "rev": "aec3fd342a4e862e1d34c1c78ab608514168348d",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2166,11 +2166,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1781011023,
-        "narHash": "sha256-6FOT/9uNB+qthXPsquV9uG6EUGAK3+qzp9PsrSzhmtg=",
+        "lastModified": 1781083516,
+        "narHash": "sha256-bTdewEmCq8PmmOHEG7MOHbQ2csKhWpZ6xOlSd7Diduo=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "0d64a8509d4fefacefda75be4c8a69031b75ae76",
+        "rev": "0af83120ad9548d1708e66318e29b5f70310e455",
         "type": "github"
       },
       "original": {
