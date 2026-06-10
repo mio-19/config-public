@@ -58,6 +58,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/528908.patch";
             hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
           })
+          (fetchpatch {
+            name = "nixos/wireless: fix for multiple interfaces";
+            url = "https://github.com/NixOS/nixpkgs/pull/530237.patch";
+            hash = "sha256-h67/mDsTnLgljr+FPjt5WVXc6o67CLLzIix1sVopvtI=";
+          })
           /*
             # unsure
             (fetchpatch {
