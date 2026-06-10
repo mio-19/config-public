@@ -12,6 +12,7 @@ in
 with upper;
 upper
 // rec {
+  countryCode = "NZ";
   inherit (pkgs) fetchpatch;
   mkNixPak = inputs.nixpak.lib.nixpak {
     inherit (pkgs) lib;
