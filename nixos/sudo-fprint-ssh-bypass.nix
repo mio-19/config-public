@@ -29,41 +29,10 @@ in
     args = [
       "quiet"
       "${pkgs.writeShellScript "pam-sudo-ssh-bypass" ''
-        export PATH=${
-          lib.makeBinPath [
-            pkgs.coreutils
-            pkgs.gawk
-            pkgs.gnugrep
-            pkgs.tmux
-          ]
-        }:$PATH
-
-        # Get the PID of sudo ($PPID) and then the PID of the shell that called sudo
-        SUDO_PID=$PPID
-        SHELL_PID=$(awk '{print $4}' /proc/$SUDO_PID/stat)
-
-        # Extract environment variables directly from the calling shell
-        # This completely bypasses sudo's aggressive environment stripping
-        SHELL_ENV=$(cat /proc/$SHELL_PID/environ | tr '\0' '\n')
-
-        SSH_CONN=$(echo "$SHELL_ENV" | grep -E '^SSH_CONNECTION=' | cut -d= -f2-)
-        TMUX_VAR=$(echo "$SHELL_ENV" | grep -E '^TMUX=' | cut -d= -f2-)
-
-        if [ -n "$SSH_CONN" ]; then
-          # Direct SSH connection detected in the calling shell
+        if [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; then
+          # The presence of SSH-related environment variables strongly indicates an SSH session.
+          # Exit 0 instructs PAM to trigger success=1, thereby bypassing fprintd.
           exit 0
-        fi
-
-        if [ -n "$TMUX_VAR" ]; then
-          # We are inside tmux. Extract the socket path from the TMUX variable.
-          # TMUX variable format: /tmp/tmux-1000/default,5534,0
-          TMUX_SOCKET=$(echo "$TMUX_VAR" | cut -d, -f1)
-          if [ -S "$TMUX_SOCKET" ]; then
-            # Query the tmux server to see if the session environment has SSH_CONNECTION
-            if tmux -S "$TMUX_SOCKET" show-environment SSH_CONNECTION >/dev/null 2>&1; then
-              exit 0
-            fi
-          fi
         fi
 
         # The session is local (e.g., seat0 physical hardware).
