@@ -28,7 +28,7 @@ with _include;
       # https://community.frame.work/t/fan-hysterersis-issue/4469/4
       # avoid clicking sound : jump from 0 to speed = 15; directly to speed = 38;
       strategies = {
-        "silentsilent" = {
+        "silent" = {
           fanSpeedUpdateFrequency = 7;
           movingAverageInterval = 30;
           speedCurve = [
