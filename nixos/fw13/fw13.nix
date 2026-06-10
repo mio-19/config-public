@@ -20,8 +20,8 @@ with _include;
   # https://github.com/TamtamHero/fw-fanctrl/blob/0cf784fcd0ec908fdb447f0710dd45eba90a5ca0/src/fw_fanctrl/_resources/config.json#L6
   hardware.fw-fanctrl = {
     enable = true;
+    keepDefaultStrategies = false;
     config = {
-      keepDefaultStrategies = false;
       defaultStrategy = "chargingstrategy";
       strategyOnDischarging = "dischargingstrategy";
       # https://community.frame.work/t/amd-7840u-fan-issues/69704/2
