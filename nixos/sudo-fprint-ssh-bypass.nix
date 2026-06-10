@@ -29,30 +29,13 @@ in
     args = [
       "quiet"
       "${pkgs.writeShellScript "pam-sudo-ssh-bypass" ''
-        # Setup logging
-        exec 1>>/tmp/pam_ssh_bypass.log 2>&1
-        echo "--- $(date) ---"
-        echo "PAM_USER=$PAM_USER"
-        echo "PAM_TTY=$PAM_TTY"
-        echo "PPID=$PPID"
-        echo "Environment:"
-        env
-        echo "Process tree for PPID:"
-        ${pkgs.psmisc}/bin/pstree -s $PPID || true
-
         if [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; then
-          echo "SSH variables found natively. Exiting 0."
+          # The presence of SSH-related environment variables strongly indicates an SSH session.
+          # Exit 0 instructs PAM to trigger success=1, thereby bypassing fprintd.
           exit 0
         fi
 
-        # Try to find if sshd is in the process tree of the PAM invocation
-        if ${pkgs.psmisc}/bin/pstree -s $$ | ${pkgs.gnugrep}/bin/grep -q "sshd"; then
-          echo "sshd found in pstree. Exiting 0."
-          exit 0
-        fi
-
-        # The session is local (e.g., seat0 physical hardware) or multiplexer failed to detect.
-        echo "No SSH context detected. Exiting 1."
+        # The session is local (e.g., seat0 physical hardware).
         # Exit 1 instructs PAM to ignore the rule and evaluate fprintd normally.
         exit 1
       ''}"
