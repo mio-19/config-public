@@ -374,7 +374,10 @@ with _include;
   };
 
   # https://github.com/EmergentMind/nix-config/blob/9a9fefd9ab5ebbaf9530dafdb6d45b734606f645/hosts/common/core/nixos.nix#L25
-  security.sudo.extraConfig = "Defaults timestamp_timeout=120";
+  security.sudo.extraConfig = ''
+    Defaults timestamp_timeout=120
+    Defaults env_keep += "SSH_CONNECTION SSH_CLIENT SSH_TTY TMUX"
+  '';
 
   # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501/9
   security.unprivilegedUsernsClone = true;

@@ -35,6 +35,11 @@ in
           exit 0
         fi
 
+        if [ -n "$TMUX" ] && ${pkgs.tmux}/bin/tmux show-environment SSH_CONNECTION >/dev/null 2>&1; then
+          # The session is attached to tmux via SSH
+          exit 0
+        fi
+
         # The session is local (e.g., seat0 physical hardware).
         # Exit 1 instructs PAM to ignore the rule and evaluate fprintd normally.
         exit 1
