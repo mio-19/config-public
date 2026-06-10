@@ -35,20 +35,10 @@ in
           exit 0
         fi
 
-        if [ -n "$TMUX" ] && ${pkgs.tmux}/bin/tmux show-environment SSH_CONNECTION >/dev/null 2>&1; then
-          # The session is attached to tmux via SSH
-          exit 0
-        fi
-
         # The session is local (e.g., seat0 physical hardware).
         # Exit 1 instructs PAM to ignore the rule and evaluate fprintd normally.
         exit 1
       ''}"
     ];
   };
-
-  # Instruct sudo to preserve SSH and TMUX variables so they can be read by the PAM script above
-  security.sudo.extraConfig = lib.mkIf isSudoFprintEnabled ''
-    Defaults env_keep += "SSH_CONNECTION SSH_CLIENT SSH_TTY TMUX"
-  '';
 }
