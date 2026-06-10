@@ -17,7 +17,8 @@
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = lib.mkDefault "hm-backup";
   # Set your time zone.
-  time.timeZone = lib.mkForce "Australia/Canberra";
+  #time.timeZone = lib.mkForce "Pacific/Auckland";
+  services.automatic-timezoned.enable = true;
 
   nix = {
     # https://github.com/KornelJahn/nixos-disko-zfs-test/blob/673ed629a7ef80efd99ad3b1676d9e4c62829c21/hosts/testhost.nix#L37
