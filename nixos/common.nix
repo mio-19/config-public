@@ -456,4 +456,23 @@ with _include;
       mount_recursively = config.security.pam.zfs.mountRecursively;
     };
   };
+
+  hardware.wirelessRegulatoryDatabase = lib.mkIf (
+    config.networking.wireless.enable || config.networking.wireless.iwd.enable
+  ) true;
+  # https://github.com/NixOS/nixpkgs/issues/25378#issuecomment-1097034289
+  # https://github.com/maxhbr/myconfig/blob/766a19abd348fb507d5f2a40bf20d34f937ca58d/hardware/RZ717.nix#L11-L19
+  networking.wireless.extraConfig =
+    lib.mkIf (config.networking.wireless.enable || config.networking.wireless.iwd.enable)
+      ''
+        country=${countryCode}
+      '';
+  boot.extraModprobeConfig =
+    lib.mkIf (config.networking.wireless.enable || config.networking.wireless.iwd.enable)
+      ''
+        options cfg80211 ieee80211_regdom="${countryCode}"
+      '';
+  hardware.wireless.regulatoryDomain = lib.mkIf (
+    config.networking.wireless.enable || config.networking.wireless.iwd.enable
+  ) countryCode;
 }

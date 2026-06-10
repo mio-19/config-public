@@ -53,6 +53,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
             hash = "sha256-fycyXDGD8tcFFZyQyFUgkRCbQPzENS6HcwKFzyRl0p8=";
           })
+          (fetchpatch {
+            name = "nixos/wireless: add support for setting wireless regdom";
+            url = "https://github.com/NixOS/nixpkgs/pull/528908.patch";
+            hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
+          })
           /*
             # unsure
             (fetchpatch {
