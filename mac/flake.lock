@@ -393,11 +393,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781098948,
-        "narHash": "sha256-KkxRqjs7EKQBaEO49JeoHQkm99+sKUBST/cUPyX+ibU=",
+        "lastModified": 1781164534,
+        "narHash": "sha256-uDYvoBWHybVHJXZzJJByexn8/fZ2nI3oa4sksDh/REk=",
         "ref": "refs/heads/main",
-        "rev": "ffd16973de012134a41bc14121020e3267fc8c4f",
-        "revCount": 1809,
+        "rev": "b5baba6938d00792d8de2584b7f9c8d420ff0a87",
+        "revCount": 1812,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -604,6 +604,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-pin7": {
+      "locked": {
+        "lastModified": 1779877693,
+        "narHash": "sha256-NOF9NAREhxr50bbBfVcVOq+ArCMSoe8dP79Pk2uyARk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4100e830e085863741bc69b156ec4ccd53ab5be0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4100e830e085863741bc69b156ec4ccd53ab5be0",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1780930886,
@@ -722,6 +738,7 @@
         "nixpkgs-pin4": "nixpkgs-pin4",
         "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-pin6": "nixpkgs-pin6",
+        "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix",
