@@ -182,25 +182,6 @@ in
     "psmouse"
   ];
 
-  /*
-    # does not work
-    # Gemini: To resolve the "GSM Secret" error
-    hardware.bluetooth = {
-      enable = true;
-      settings = {
-        General = {
-          # Prevent BlueZ from offering or resolving Dial-Up Networking (DUN)
-          Disable = "dun";
-
-          # Note: On some versions of BlueZ, the key is named BlockedProfiles instead:
-          # BlockedProfiles = "dun";
-        };
-      };
-    };
-  */
-
-  # DETAILS REMOVED
-
   # https://github.com/FrameworkComputer/linux-docs/tree/1b1a292be31cf5d0e079a8a95df98b1c52944630/Fingerprint-Wake-Workaround
   # https://community.frame.work/t/fingerprint-sensor-fails-to-resume-after-suspend-on-framework-13-amd-goodix-27c6-609c/79900/5
   systemd.services.fw13-fingerprint-wake-workaround = lib.mkIf fprintWorkaound {
