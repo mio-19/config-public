@@ -34,7 +34,7 @@ with _include;
       #zed-editor = pkgs-stable.zed-editor; # we from time to time don't have binary cache on unstable. but this time: stable no cache
       #nix-output-monitor = inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       inherit (pkgs-openclaw) openclaw openclawPackages;
-      inherit (pkgs-pin) thunderbird-esr;
+      #inherit (pkgs-pin) thunderbird-esr;
       #inherit (pkgs-pin5) zotero;
       inherit (pkgs-pin6) koodo-reader;
       inherit (pkgs-pin7) wrangler;

@@ -11,7 +11,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-pin.url = "github:NixOS/nixpkgs/b86751bc4085f48661017fa226dee99fab6c651b"; # a commit from nixpkgs-unstable
+    #nixpkgs-pin.url = "github:NixOS/nixpkgs/b86751bc4085f48661017fa226dee99fab6c651b"; # a commit from nixpkgs-unstable
     nixpkgs-pin2.url = "github:NixOS/nixpkgs/b579d443b37c9c5373044201ea77604e37e748c8"; # a commit from nixpkgs-unstable
     #nixpkgs-pin3.url = "github:NixOS/nixpkgs/ffa10e26ae11d676b2db836259889f1f571cb14f"; # a commit from nixpkgs-unstable
     #nixpkgs-pin4.url = "github:NixOS/nixpkgs/ffa10e26ae11d676b2db836259889f1f571cb14f"; # a commit from nixpkgs-unstable
