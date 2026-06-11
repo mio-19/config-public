@@ -209,7 +209,7 @@ in
               gnugrep
               gawk
               coreutils
-              systemd
+              config.systemd.package
               util-linux
             ]
           )
