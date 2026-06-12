@@ -11,7 +11,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.follows = "nixpkgs-unstable";
     nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
-    #nixpkgs-pin2.url = "github:NixOS/nixpkgs/4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9"; # a commit from nixos-unstable
+    #nixpkgs-pin2.url = "github:NixOS/nixpkgs/a799d3e3886da994fa307f817a6bc705ae538eeb"; # a commit from nixos-unstable
     #nixpkgs-pin3.url = "github:NixOS/nixpkgs/ebc08544afa77957cc348ba72dc490ec73b87f68"; # a commit from nixos-unstable
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
     nix-vscode-extensions = {
@@ -66,7 +66,8 @@
     #chaotic.url = "git+https://github.com/mio-19/nyx-loner.git";
     flake-utils.url = "github:numtide/flake-utils";
     rust-fp = {
-      url = "git+https://github.com/ChocolateLoverRaj/rust-fp.git?shallow=1";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:ChocolateLoverRaj/rust-fp/2d0b547e8800eea66d06fb52ed946f52cab30e37";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
       inputs.flake-utils.follows = "flake-utils";
@@ -77,7 +78,8 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
     */
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    # pin niche inputs to avoid bad people taking over.
+    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.7.0";
     #pinix = {
     #  url = "git+https://github.com/remi-dupre/pinix.git";
     #  inputs.nixpkgs.follows = "nixpkgs";
@@ -96,11 +98,13 @@
     #  inputs.flake-utils.follows = "flake-utils";
     #};
     grub2-themes = {
-      url = "git+https://github.com/vinceliuice/grub2-themes.git?shallow=1";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:vinceliuice/grub2-themes/80dd04ddf3ba7b284a7b1a5df2b1e95ee2aad606";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nm2nix = {
-      url = "git+https://github.com/Janik-Haag/nm2nix.git?shallow=1";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:Janik-Haag/nm2nix/6d018aaad4093097fd647f867425a15f294e483e";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "git+https://github.com/NixOS/nixos-hardware.git?shallow=1&ref=master";
@@ -146,7 +150,8 @@
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
     rosetta-spice = {
-      url = "github:zhaofengli/rosetta-spice";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:zhaofengli/rosetta-spice/fefbca8a554290e54311c1d5cf7354f318ff1c16";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
@@ -173,14 +178,15 @@
     #  inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     #};
     razerdaemon = {
-      #url = "github:JosuGZ/razer-laptop-control";
-      url = "git+https://github.com/JosuGZ/razer-laptop-control.git";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:JosuGZ/razer-laptop-control/2c224ef0cda712f826056450d89e12c5f7bf3d0d";
       #url = "git+https://github.com/mio-19/razer-laptop-control.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
     stable-diffusion-webui-nix = {
-      url = "github:Janrupf/stable-diffusion-webui-nix/main";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:Janrupf/stable-diffusion-webui-nix/77e5bbc27e72554f0d466ddf0ca1dc602779f9d8";
       #url = "github:mio-19/stable-diffusion-webui-nix/patch-1";
       #inputs.nixpkgs.follows = "nixpkgs";
       # needs python3.11. needs outdated nixpkgs
@@ -210,7 +216,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-style-plymouth = {
-      url = "github:SergioRibera/s4rchiso-plymouth-theme";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:SergioRibera/s4rchiso-plymouth-theme/2f782f4b68ce1c00cef3fde6970d7b4241bb97d4";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
@@ -233,12 +240,13 @@
       inputs.systems.follows = "flake-utils/systems";
     };
     #ucodenix.url = "github:e-tho/ucodenix";
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #noctalia = {
+    #  url = "github:noctalia-dev/noctalia-shell";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     steam-config-nix = {
-      url = "github:different-name/steam-config-nix";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:different-name/steam-config-nix/7b8021b2739733c547e2fe02739e6b8452813aa7";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.systems.follows = "flake-utils/systems";
@@ -267,19 +275,14 @@
       inputs.flake-compat.follows = "flake-compat";
     };
     nix-software-center = {
-      url = "github:snowfallorg/nix-software-center";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:snowfallorg/nix-software-center/181c1c61eab79130879257550dba0b36bd6bb8c9";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
-    /*
-      claude-desktop = {
-        url = "github:k3d3/claude-desktop-linux-flake";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.flake-utils.follows = "flake-utils";
-      };
-    */
     claude-desktop = {
-      url = "github:aaddrick/claude-desktop-debian";
+      # last commit failed to build
+      url = "github:aaddrick/claude-desktop-debian/e85450c90ba38159f89f02bdd0f6c6d7e6bce065";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
