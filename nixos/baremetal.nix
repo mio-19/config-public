@@ -54,7 +54,6 @@ with _include;
   systemd.settings.Manager = {
     DefaultLimitNOFILE = 1048576;
   };
-  systemd.user.extraConfig = "DefaultLimitNOFILE=1048576";
   # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/10
   # conflict with musnix : musnix is 99999 but we want more
   security.pam.loginLimits = [
@@ -75,7 +74,7 @@ with _include;
   boot.tmp.cleanOnBoot = true;
 
   # https://github.com/NixOS/nixpkgs/blob/b103220c1aabc21529a02a8b52106d451d10cef6/nixos/modules/profiles/hardened.nix
-  # DETAILS REMOVED
+  # TODO: some flag cause razer to have no wifi
   /*
     boot.kernelParams = [
       # Enable page allocator randomization
