@@ -63,6 +63,8 @@ with _include;
   security.pam.zfs.homes = "${pool}/nixos/safe/encrypted";
   chaotic.zfs-impermanence-on-shutdown.volume = "${pool}/nixos/local/ephemeral";
 
+  plasma-login-manager_instead = true;
+
   security.allowSimultaneousMultithreading = true;
 
   virtualisation.virtualbox.host.enable = true; # once stuck on boot
