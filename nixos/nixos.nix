@@ -44,11 +44,6 @@ in
             hash = "sha256-Hg2auaXO47mnKKUrpXqcmrCcuLk9eJ6CqEZsOvDXTrc=";
           })
           (fetchpatch {
-            name = "ryzen-smu update";
-            url = "https://github.com/NixOS/nixpkgs/pull/527822.patch";
-            hash = "sha256-sAPehpIDt6OvCryr5NumMBmvCJ31gh/895TRRkhXol8=";
-          })
-          (fetchpatch {
             name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
             url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
             hash = "sha256-fycyXDGD8tcFFZyQyFUgkRCbQPzENS6HcwKFzyRl0p8=";
