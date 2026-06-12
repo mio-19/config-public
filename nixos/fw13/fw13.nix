@@ -29,7 +29,7 @@ in
       strategyOnDischarging = "dischargingstrategy";
       # https://community.frame.work/t/amd-7840u-fan-issues/69704/2
       # https://community.frame.work/t/fan-hysterersis-issue/4469/4
-      # avoid clicking sound : jump from 0 to speed = 26; directly to speed = 36;
+      # avoid clicking sound : jump from 0 to speed = 26; directly to speed = 37;
       strategies = {
         "silent" = {
           fanSpeedUpdateFrequency = 7;
@@ -53,11 +53,11 @@ in
             }
             {
               temp = 58;
-              speed = 36;
+              speed = 37;
             }
             {
               temp = 70;
-              speed = 36;
+              speed = 37;
             }
             {
               temp = 80;
@@ -91,11 +91,11 @@ in
             }
             {
               temp = 48;
-              speed = 36;
+              speed = 37;
             }
             {
               temp = 70;
-              speed = 36;
+              speed = 37;
             }
             {
               temp = 80;
@@ -129,11 +129,11 @@ in
             }
             {
               temp = 45;
-              speed = 36;
+              speed = 37;
             }
             {
               temp = 70;
-              speed = 36;
+              speed = 37;
             }
             {
               temp = 80;
