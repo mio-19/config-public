@@ -266,7 +266,8 @@ upper
     jdk_headless = jdk;
     scala_3 = pkgs.scala_3.override { jre = jre; };
     nodejs = pkgs.nodejs_latest;
-    pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs; };
+    nodejs-slim = pkgs.nodejs-slim_latest;
+    pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs-slim; };
     antlr = pkgs.antlr.override { jre = program.jre; };
     librewolf' = pkgs-nocuda.librewolf.override (old: {
       extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
