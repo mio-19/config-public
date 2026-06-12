@@ -450,18 +450,20 @@ with _include;
 
   # who changed it from nixpkgs 0726a0ecb6d4e08f6adced58726b95db924cef57 to nixpkgs 1c3fe55ad329cbcb28471bb30f05c9827f724c76 - https://github.com/NixOS/nixpkgs/pull/420889
   # zfs pam fix by chatgpt
-  security.pam.services.sddm.rules.auth.zfs_key = {
-    enable = config.security.pam.zfs.enable;
-    # sddm has: auth substack login
-    # Put this immediately after that, in the parent sddm PAM service.
-    order = config.security.pam.services.sddm.rules.auth.login.order + 10;
-    control = "optional";
-    modulePath = "${config.boot.zfs.package}/lib/security/pam_zfs_key.so";
-    settings = {
-      homes = config.security.pam.zfs.homes;
-      mount_recursively = config.security.pam.zfs.mountRecursively;
-    };
-  };
+  security.pam.services.sddm.rules.auth.zfs_key =
+    lib.mkIf config.services.displayManager.sddm.enable
+      {
+        enable = config.security.pam.zfs.enable;
+        # sddm has: auth substack login
+        # Put this immediately after that, in the parent sddm PAM service.
+        order = config.security.pam.services.sddm.rules.auth.login.order + 10;
+        control = "optional";
+        modulePath = "${config.boot.zfs.package}/lib/security/pam_zfs_key.so";
+        settings = {
+          homes = config.security.pam.zfs.homes;
+          mount_recursively = config.security.pam.zfs.mountRecursively;
+        };
+      };
 
   hardware.wirelessRegulatoryDatabase = lib.mkIf (
     config.networking.wireless.enable || config.networking.wireless.iwd.enable
