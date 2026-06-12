@@ -57,6 +57,11 @@ with _include;
     type = lib.types.either lib.types.package lib.types.path;
     description = "path to system background image";
   };
+  options.plasma-login-manager_instead = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "plasma login manager instead of sddm";
+  };
   config.assertions = [
     {
       assertion = config.v2 -> !config.mio_aria2;
