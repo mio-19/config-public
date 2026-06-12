@@ -429,7 +429,7 @@ with _include;
   boot.loader.systemd-boot.bootCounting.enable = true;
 
   # https://github.com/fpletz/flake/blob/b8aadc8b398c00a43ca85f28cf420073b030adad/nixos/modules/hardware/thinkpad-x230.nix#L25-L28
-  boot.blacklistedKernelModules  = [
+  boot.blacklistedKernelModules = [
     "mei_me"
     "mei"
   ];
