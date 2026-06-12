@@ -79,7 +79,8 @@
       };
     */
     # pin niche inputs to avoid bad people taking over.
-    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.7.0";
+    # v0.7.0
+    nix-flatpak.url = "github:gmodena/nix-flatpak/440818969ac2cbd77bfe025e884d0aa528991374";
     #pinix = {
     #  url = "git+https://github.com/remi-dupre/pinix.git";
     #  inputs.nixpkgs.follows = "nixpkgs";
