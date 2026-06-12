@@ -604,16 +604,16 @@
       "locked": {
         "lastModified": 1757136219,
         "narHash": "sha256-tKU+vq34KHu/A2wD7WdgP5A4/RCmSD8hB0TyQAUlixA=",
-        "ref": "refs/heads/master",
+        "owner": "vinceliuice",
+        "repo": "grub2-themes",
         "rev": "80dd04ddf3ba7b284a7b1a5df2b1e95ee2aad606",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/vinceliuice/grub2-themes.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/vinceliuice/grub2-themes.git"
+        "owner": "vinceliuice",
+        "repo": "grub2-themes",
+        "rev": "80dd04ddf3ba7b284a7b1a5df2b1e95ee2aad606",
+        "type": "github"
       }
     },
     "hercules-ci-effects": {
@@ -988,7 +988,7 @@
       },
       "original": {
         "owner": "gmodena",
-        "ref": "latest",
+        "ref": "v0.7.0",
         "repo": "nix-flatpak",
         "type": "github"
       }
@@ -1826,16 +1826,16 @@
       "locked": {
         "lastModified": 1774904352,
         "narHash": "sha256-etI2VY39TIKl+W/MzraxTYE3eaqH9VYThe3YJzydV0E=",
-        "ref": "refs/heads/main",
+        "owner": "Janik-Haag",
+        "repo": "nm2nix",
         "rev": "6d018aaad4093097fd647f867425a15f294e483e",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/Janik-Haag/nm2nix.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/Janik-Haag/nm2nix.git"
+        "owner": "Janik-Haag",
+        "repo": "nm2nix",
+        "rev": "6d018aaad4093097fd647f867425a15f294e483e",
+        "type": "github"
       }
     },
     "nmd": {
@@ -2116,15 +2116,16 @@
       "locked": {
         "lastModified": 1775158737,
         "narHash": "sha256-p8hz8FTmoksMh1qYi6Hy/q6BAN1PQNaQ2b9lzQDA2+k=",
-        "ref": "refs/heads/main",
+        "owner": "JosuGZ",
+        "repo": "razer-laptop-control",
         "rev": "2c224ef0cda712f826056450d89e12c5f7bf3d0d",
-        "revCount": 528,
-        "type": "git",
-        "url": "https://github.com/JosuGZ/razer-laptop-control.git"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://github.com/JosuGZ/razer-laptop-control.git"
+        "owner": "JosuGZ",
+        "repo": "razer-laptop-control",
+        "rev": "2c224ef0cda712f826056450d89e12c5f7bf3d0d",
+        "type": "github"
       }
     },
     "repo": {
@@ -2281,6 +2282,7 @@
       "original": {
         "owner": "zhaofengli",
         "repo": "rosetta-spice",
+        "rev": "fefbca8a554290e54311c1d5cf7354f318ff1c16",
         "type": "github"
       }
     },
@@ -2316,16 +2318,16 @@
       "locked": {
         "lastModified": 1754799087,
         "narHash": "sha256-Mw9dcKChPo5meqqRHUKSO6gSbN4yf+EDzXy5Fxf2srg=",
-        "ref": "refs/heads/main",
+        "owner": "ChocolateLoverRaj",
+        "repo": "rust-fp",
         "rev": "2d0b547e8800eea66d06fb52ed946f52cab30e37",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/ChocolateLoverRaj/rust-fp.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/ChocolateLoverRaj/rust-fp.git"
+        "owner": "ChocolateLoverRaj",
+        "repo": "rust-fp",
+        "rev": "2d0b547e8800eea66d06fb52ed946f52cab30e37",
+        "type": "github"
       }
     },
     "rust-overlay": {
