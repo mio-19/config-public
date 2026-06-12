@@ -1260,8 +1260,7 @@
         "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
-        "selector4nix": "selector4nix",
-        "zsh-patina": "zsh-patina"
+        "selector4nix": "selector4nix"
       },
       "locked": {
         "path": "./mac",
@@ -3848,27 +3847,6 @@
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
-      }
-    },
-    "zsh-patina": {
-      "inputs": {
-        "nixpkgs": [
-          "mac",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780735567,
-        "narHash": "sha256-hE7PFVE7CmLUALHwSfNWhwwXcy9ORiXYd4aP2Mg+c80=",
-        "owner": "michel-kraemer",
-        "repo": "zsh-patina",
-        "rev": "efe6e7593b9b21959996f0eee03b12db988b3e13",
-        "type": "github"
-      },
-      "original": {
-        "owner": "michel-kraemer",
-        "repo": "zsh-patina",
-        "type": "github"
       }
     }
   },
