@@ -24,6 +24,7 @@ with _include;
   environment.systemPackages =
     with pkgs;
     (map hardenedPkg [
+      motrix-next
       xfce4-terminal
       alacritty
       #kdePackages.tokodon
