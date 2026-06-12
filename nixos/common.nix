@@ -428,6 +428,12 @@ with _include;
   boot.loader.systemd-boot.ambiguousDateFormat = true;
   boot.loader.systemd-boot.bootCounting.enable = true;
 
+  # https://github.com/fpletz/flake/blob/b8aadc8b398c00a43ca85f28cf420073b030adad/nixos/modules/hardware/thinkpad-x230.nix#L25-L28
+  boot.initrd.blacklistedKernelModules = [
+    "mei_me"
+    "mei"
+  ];
+
   # this fix work for sudo but not ego on razer
   /*
     # https://github.com/NixOS/nixpkgs/issues/483867
