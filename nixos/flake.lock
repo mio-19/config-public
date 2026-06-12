@@ -1309,6 +1309,7 @@
       "original": {
         "owner": "snowfallorg",
         "repo": "nix-software-center",
+        "rev": "181c1c61eab79130879257550dba0b36bd6bb8c9",
         "type": "github"
       }
     },

@@ -275,7 +275,8 @@
       inputs.flake-compat.follows = "flake-compat";
     };
     nix-software-center = {
-      url = "github:snowfallorg/nix-software-center";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:snowfallorg/nix-software-center/181c1c61eab79130879257550dba0b36bd6bb8c9";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
