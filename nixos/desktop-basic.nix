@@ -248,16 +248,18 @@ with _include;
       hardenedPkg pkgs.kdePackages.kdeconnect-kde
   );
 
-  # https://github.com/ShadowRZ/flakes/commit/f455512b6270c5841a8a533b38bc68cff01b8f65
-  services.displayManager.plasma-login-manager.settings = {
-    Greeter.Wallpaper = {
-      "org.kde.image" = {
-        General.Image = "file://${
-          if config.hdr_very_bright then ./black.png else config.system_background
-        }";
+  /*
+    # https://github.com/ShadowRZ/flakes/commit/f455512b6270c5841a8a533b38bc68cff01b8f65
+    services.displayManager.plasma-login-manager.settings = {
+      Greeter.Wallpaper = {
+        "org.kde.image" = {
+          General.Image = "file://${
+            if config.hdr_very_bright then ./black.png else config.system_background
+          }";
+        };
       };
     };
-  };
+  */
 
   xdg.portal.enable = true; # useful for firejailed telegram launching firejailed librewolf
   xdg.portal.xdgOpenUsePortal = true;
