@@ -101,6 +101,7 @@ with _include;
         ];
       });
       inherit (pkgs-pin) rpcs3;
+      inherit (pkgs-nocuda) freecad; # no binary cache
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
