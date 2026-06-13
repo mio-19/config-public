@@ -2,7 +2,7 @@
   "nodes": {
     "android-nixpkgs": {
       "inputs": {
-        "devshell": "devshell_3",
+        "devshell": "devshell_2",
         "flake-utils": [
           "nixos",
           "repo",
@@ -398,28 +398,6 @@
       "inputs": {
         "nixpkgs": [
           "nixos",
-          "pianotrans",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768818222,
-        "narHash": "sha256-460jc0+CZfyaO8+w8JNtlClB2n4ui1RbHfPTLkpwhU8=",
-        "owner": "numtide",
-        "repo": "devshell",
-        "rev": "255a2b1725a20d060f566e4755dbf571bbbb5f76",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "devshell",
-        "type": "github"
-      }
-    },
-    "devshell_3": {
-      "inputs": {
-        "nixpkgs": [
-          "nixos",
           "repo",
           "android-nixpkgs",
           "nixpkgs"
@@ -439,7 +417,7 @@
         "type": "github"
       }
     },
-    "devshell_4": {
+    "devshell_3": {
       "inputs": {
         "nixpkgs": [
           "nixos",
@@ -2113,7 +2091,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "nm2nix": "nm2nix",
         "nur": "nur_2",
-        "pianotrans": "pianotrans",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "plasma-manager": "plasma-manager",
         "razerdaemon": "razerdaemon",
@@ -2778,7 +2755,7 @@
     },
     "nur-xddxdd": {
       "inputs": {
-        "devshell": "devshell_4",
+        "devshell": "devshell_3",
         "flake-parts": [
           "nixos",
           "repo",
@@ -2896,28 +2873,6 @@
       "original": {
         "owner": "mio-19",
         "repo": "nix-openwrt-imagebuilder",
-        "type": "github"
-      }
-    },
-    "pianotrans": {
-      "inputs": {
-        "devshell": "devshell_2",
-        "nixpkgs": [
-          "nixos",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780317132,
-        "narHash": "sha256-+7G0ZniBHa+Y6bY0qZ2j9kBnhqCGjdrL0xIkfkBa5AE=",
-        "owner": "azuwis",
-        "repo": "pianotrans",
-        "rev": "49d2c2dec1cacaff8be9a4f5694b3aa7f943dbe8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "azuwis",
-        "repo": "pianotrans",
         "type": "github"
       }
     },
