@@ -7,6 +7,9 @@
   ...
 }@args:
 with _include;
+let
+  autotimezone = config.services.automatic-timezoned.enable || config.services.tzupdate.enable;
+in
 {
   environment.persistence."/persistent" = {
     hideMounts = true;
@@ -100,13 +103,13 @@ with _include;
   boot.kernelParams = [ "systemd.machine_id=firmware" ];
 
   # https://github.com/nix-community/impermanence/issues/153#issuecomment-3493914726
-  boot.postBootCommands = lib.mkIf config.services.automatic-timezoned.enable ''
+  boot.postBootCommands = lib.mkIf autotimezone ''
     if test -L /nix/pst/etc/localtime
     then
       ${pkgs.coreutils}/bin/cp -P /nix/pst/etc/localtime /etc/localtime
     fi
   '';
-  systemd.services.persist-tz = lib.mkIf config.services.automatic-timezoned.enable {
+  systemd.services.persist-tz = lib.mkIf autotimezone {
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
@@ -117,7 +120,7 @@ with _include;
       ];
     };
   };
-  systemd.services.persist-tz-shutdown = lib.mkIf config.services.automatic-timezoned.enable {
+  systemd.services.persist-tz-shutdown = lib.mkIf autotimezone {
     # https://github.com/wochap/nix-config/blob/90dd199ee683bb35c0499e3abcd72f022d4921fc/modules/shared/programs/tui/taskwarrior/default.nix#L46-L47
     before = [
       "shutdown.target"
