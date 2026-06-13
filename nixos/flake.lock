@@ -2,7 +2,7 @@
   "nodes": {
     "android-nixpkgs": {
       "inputs": {
-        "devshell": "devshell",
+        "devshell": "devshell_2",
         "flake-utils": [
           "repo",
           "flake-utils"
@@ -165,6 +165,27 @@
     "devshell": {
       "inputs": {
         "nixpkgs": [
+          "pianotrans",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768818222,
+        "narHash": "sha256-460jc0+CZfyaO8+w8JNtlClB2n4ui1RbHfPTLkpwhU8=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "255a2b1725a20d060f566e4755dbf571bbbb5f76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "devshell",
+        "type": "github"
+      }
+    },
+    "devshell_2": {
+      "inputs": {
+        "nixpkgs": [
           "repo",
           "android-nixpkgs",
           "nixpkgs"
@@ -184,7 +205,7 @@
         "type": "github"
       }
     },
-    "devshell_2": {
+    "devshell_3": {
       "inputs": {
         "nixpkgs": [
           "repo",
@@ -1905,7 +1926,7 @@
     },
     "nur-xddxdd": {
       "inputs": {
-        "devshell": "devshell_2",
+        "devshell": "devshell_3",
         "flake-parts": [
           "repo",
           "nix-kernelsu-builder",
@@ -1989,6 +2010,27 @@
       "original": {
         "owner": "mio-19",
         "repo": "nix-openwrt-imagebuilder",
+        "type": "github"
+      }
+    },
+    "pianotrans": {
+      "inputs": {
+        "devshell": "devshell",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780317132,
+        "narHash": "sha256-+7G0ZniBHa+Y6bY0qZ2j9kBnhqCGjdrL0xIkfkBa5AE=",
+        "owner": "azuwis",
+        "repo": "pianotrans",
+        "rev": "49d2c2dec1cacaff8be9a4f5694b3aa7f943dbe8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "azuwis",
+        "repo": "pianotrans",
         "type": "github"
       }
     },
@@ -2245,6 +2287,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nm2nix": "nm2nix",
         "nur": "nur",
+        "pianotrans": "pianotrans",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "plasma-manager": "plasma-manager",
         "razerdaemon": "razerdaemon",

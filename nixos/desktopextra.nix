@@ -62,6 +62,7 @@ with _include;
       #qcm
       teams-for-linux
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
+      inputs.pianotrans.packages.${pkgs.stdenv.hostPlatform.system}.default
       # binaryNativeCode:
       spotube
       waveterm

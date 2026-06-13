@@ -361,6 +361,10 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
     */
+    pianotrans = {
+      url = "github:azuwis/pianotrans";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
