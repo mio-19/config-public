@@ -98,4 +98,44 @@ with _include;
   # https://github.com/systemd/systemd/issues/39438
   # https://www.reddit.com/r/NixOS/comments/1n313lp/change_machine_id_declaratively/
   boot.kernelParams = [ "systemd.machine_id=firmware" ];
+
+  # https://github.com/nix-community/impermanence/issues/153#issuecomment-3493914726
+  boot.postBootCommands = lib.mkIf services.automatic-timezoned.enable ''
+    if test -L /nix/pst/etc/localtime
+    then
+      ${pkgs.coreutils}/bin/cp -P /nix/pst/etc/localtime /etc/localtime
+    fi
+  '';
+  systemd.services.persist-tz = lib.mkIf services.automatic-timezoned.enable {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStop = [
+        "${pkgs.coreutils}/bin/mkdir -p /nix/pst/etc"
+        "${pkgs.coreutils}/bin/cp -P /etc/localtime /nix/pst/etc/localtime"
+      ];
+    };
+  };
+  systemd.services.persist-tz-shutdown = lib.mkIf services.automatic-timezoned.enable {
+  # https://github.com/wochap/nix-config/blob/90dd199ee683bb35c0499e3abcd72f022d4921fc/modules/shared/programs/tui/taskwarrior/default.nix#L46-L47
+    before = [
+      "shutdown.target"
+      "reboot.target"
+      "halt.target"
+    ];
+    wantedBy = [
+      "shutdown.target"
+      "reboot.target"
+      "halt.target"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStop = [
+        "${pkgs.coreutils}/bin/mkdir -p /nix/pst/etc"
+        "${pkgs.coreutils}/bin/cp -P /etc/localtime /nix/pst/etc/localtime"
+      ];
+    };
+  };
 }
