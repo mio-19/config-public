@@ -250,30 +250,33 @@ with _include;
       hardenedPkg pkgs.kdePackages.kdeconnect-kde
   );
 
-  # https://github.com/ShadowRZ/flakes/commit/f455512b6270c5841a8a533b38bc68cff01b8f65
-  # https://github.com/Green-D-683/NixOS_Config/blob/851aa57ec97e98d71e6e117d8b5dfc608ff79e85/nixos/components/general/graphical.nix#L31-L46
-  services.displayManager.plasma-login-manager.settings = {
-    Greeter = {
-      WallpaperPlugin = "org.kde.image";
+  # CANNOT SET WALLPEPER
+  /*
+    # https://github.com/ShadowRZ/flakes/commit/f455512b6270c5841a8a533b38bc68cff01b8f65
+    # https://github.com/Green-D-683/NixOS_Config/blob/851aa57ec97e98d71e6e117d8b5dfc608ff79e85/nixos/components/general/graphical.nix#L31-L46
+    services.displayManager.plasma-login-manager.settings = {
+      Greeter = {
+        WallpaperPlugin = "org.kde.image";
+      };
+
+      # This injects the path to your Nix-store image into the plugin settings
+      "Greeter/Wallpaper/org.kde.image/General" = {
+        Image = "file://${if config.hdr_very_bright then ./black.png else config.system_background}";
+
+        # Options: 0 = Scaled&Cropped, 1 = Tiled, 2 = Stretched, 3 = Centered
+        #FillMode = "0";
+      };
     };
+    # https://github.com/Green-D-683/NixOS_Config/blob/851aa57ec97e98d71e6e117d8b5dfc608ff79e85/nixos/components/general/graphical.nix#L11-L16
+    # https://github.com/HalcyonOmega/nixos/blob/77c28b403f643f6296818181bdda7abd1bab783d/modules/desktop-environments/kde/plasma-manager.nix#L615-L622
+    environment.etc."plasmalogin.conf.d/98-bg.conf".text = ''
+      [Greeter]
+      WallpaperPluginId=org.kde.image
 
-    # This injects the path to your Nix-store image into the plugin settings
-    "Greeter/Wallpaper/org.kde.image/General" = {
-      Image = "file://${if config.hdr_very_bright then ./black.png else config.system_background}";
-
-      # Options: 0 = Scaled&Cropped, 1 = Tiled, 2 = Stretched, 3 = Centered
-      #FillMode = "0";
-    };
-  };
-  # https://github.com/Green-D-683/NixOS_Config/blob/851aa57ec97e98d71e6e117d8b5dfc608ff79e85/nixos/components/general/graphical.nix#L11-L16
-  # https://github.com/HalcyonOmega/nixos/blob/77c28b403f643f6296818181bdda7abd1bab783d/modules/desktop-environments/kde/plasma-manager.nix#L615-L622
-  environment.etc."plasmalogin.conf.d/98-bg.conf".text = ''
-    [Greeter]
-    WallpaperPluginId=org.kde.image
-
-    [Greeter][Wallpaper][org.kde.image][General]
-    Image=file://${if config.hdr_very_bright then ./black.png else config.system_background}
-  '';
+      [Greeter][Wallpaper][org.kde.image][General]
+      Image=file://${if config.hdr_very_bright then ./black.png else config.system_background}
+    '';
+  */
 
   xdg.portal.enable = true; # useful for firejailed telegram launching firejailed librewolf
   xdg.portal.xdgOpenUsePortal = true;
