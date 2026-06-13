@@ -359,4 +359,9 @@ with _include;
 
   # documentation.man.cache.enable = true;
   # documentation.enable = true;
+
+  environment.sessionVariables = {
+    # .kwin_wayland-w[156444]: segfault at 38 ip 00007f50e496c230 sp 00007ffe58283e08 error 4 in libkwin.so.6.6.5
+    KWIN_DRM_NO_DIRECT_SCANOUT = "1";
+  };
 }
