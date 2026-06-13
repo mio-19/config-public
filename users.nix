@@ -11,7 +11,7 @@ let
   ifNoOS = default: f: if osConfig == null then default else f;
 in
 {
-  programs.git.package = null; # use system git, not home-manager's
+  #programs.git.package = null; # use system git, not home-manager's
   programs.ssh = {
     package = null; # use system ssh, not home-manager's
     enable = true;
