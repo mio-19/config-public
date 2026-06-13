@@ -257,9 +257,11 @@ with _include;
       WallpaperPlugin = "org.kde.image";
     };
 
-    # This injects the path to your Nix-store image into the plugin settings
     "Greeter/Wallpaper/org.kde.image/General" = {
-      Image = "file://${if config.hdr_very_bright then ./black.png else config.system_background}";
+      # https://github.com/nix-community/plasma-manager/blob/a524a6160e6df89f7673ba293cf7d78b559eb1a5/modules/kscreenlocker.nix#L251
+      Image = toString (
+        if config.hdr_very_bright then ./black.png else config.system_background
+      );
 
       # Options: 0 = Scaled&Cropped, 1 = Tiled, 2 = Stretched, 3 = Centered
       #FillMode = "0";
