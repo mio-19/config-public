@@ -6,7 +6,6 @@
   ...
 }@args:
 {
-  imports = [ ./nixpkgs-workaround.nix ];
   home-manager.extraSpecialArgs = {
     inherit inputs;
   };

@@ -14,6 +14,7 @@ with _include;
   _module.args._include = _include;
 
   imports = [
+    ./nixpkgs-workaround.nix
     ./customize.nix
     ./selector4nix.nix
     ./sudo-fprint-ssh-bypass.nix
