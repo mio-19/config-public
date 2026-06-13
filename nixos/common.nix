@@ -38,6 +38,11 @@ with _include;
     ../token.nix
     ./hardened.nix # does this break sddm?
   ];
+
+  # Set your time zone.
+  #time.timeZone = lib.mkForce "Pacific/Auckland";
+  services.automatic-timezoned.enable = true;
+
   home-manager.sharedModules = [
     inputs.plasma-manager.homeModules.plasma-manager
     inputs.vscode-server.homeModules.default
