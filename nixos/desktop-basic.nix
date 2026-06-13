@@ -166,6 +166,8 @@ with _include;
   environment.sessionVariables.GOOGLE_DEFAULT_CLIENT_SECRET = "OTJgUOQcT7lO7GsGZq2G4IlT";
   # https://wiki.archlinux.org/title/DaVinci_Resolve
   environment.sessionVariables.QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+  # https://github.com/gvolpe/nix-config/blob/5a13709be967173e1f47c254d705c45c139976fe/home/wm/niri/default.nix#L98
+  environment.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
 
   # https://search.nixos.org/packages
   environment.systemPackages =
