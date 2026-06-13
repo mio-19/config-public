@@ -303,7 +303,7 @@ with _include;
         # Note: some packages are broken with hardenedPkg. Only list those known to work here.
         # https://github.com/NixOS/nixpkgs/blob/74a6c30612152d8b186f55f9c8b998f978afd6eb/nixos/modules/services/desktop-managers/plasma6.nix#L70-L218
         kwalletmanager
-        kwin
+        #kwin # .kwin_wayland-w[156444]: segfault at 38 ip 00007f50e496c230 sp 00007ffe58283e08 error 4 in libkwin.so.6.6.5
         plasma-systemmonitor
         systemsettings
         # optionalPackages
