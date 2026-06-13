@@ -118,7 +118,7 @@ with _include;
     };
   };
   systemd.services.persist-tz-shutdown = lib.mkIf services.automatic-timezoned.enable {
-  # https://github.com/wochap/nix-config/blob/90dd199ee683bb35c0499e3abcd72f022d4921fc/modules/shared/programs/tui/taskwarrior/default.nix#L46-L47
+    # https://github.com/wochap/nix-config/blob/90dd199ee683bb35c0499e3abcd72f022d4921fc/modules/shared/programs/tui/taskwarrior/default.nix#L46-L47
     before = [
       "shutdown.target"
       "reboot.target"
