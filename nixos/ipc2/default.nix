@@ -138,7 +138,7 @@ with _include;
       #theme = "whitesur";
       #icon = "whitesur";
       footer = true;
-      screen = "4k";
+      #screen = "4k";
     };
   };
 
