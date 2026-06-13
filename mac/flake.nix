@@ -157,6 +157,11 @@
             patches = with pkgs0; [
               ../0001-hide-x86_64DarwinDeprecationWarning.patch
               (fetchpatch {
+                name = "PR530469";
+                url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
+                hash = "sha256-1oHDn8THBGTx55uTmQs12nGOdueqqGK4gfstKKqBElM=";
+              })
+              (fetchpatch {
                 name = "pandora-launcher-unwrapped: fix darwin build";
                 url = "https://github.com/NixOS/nixpkgs/pull/524962.diff";
                 hash = "sha256-uXQkTEfDrwAS8KwesEOl0a4M7KtczJ2Fg6NHzuVCjXw=";

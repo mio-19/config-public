@@ -20,6 +20,11 @@ in
         patches = with pkgs; [
           ../0001-hide-x86_64DarwinDeprecationWarning.patch
           (fetchpatch {
+            name = "PR530469";
+            url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
+            hash = "sha256-1oHDn8THBGTx55uTmQs12nGOdueqqGK4gfstKKqBElM=";
+          })
+          (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
             hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
