@@ -200,13 +200,19 @@ with _include;
         ))
       */
     ]
-    ++ lib.optionals (config.services.displayManager.sddm.enable) [
-      # https://discourse.nixos.org/t/sddm-background-on-default-theme/46263
-      (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-        [General]
-        background=${if config.hdr_very_bright then ./black.png else config.system_background}
-      '')
-    ]
+    ++
+      lib.optionals
+        (
+          config.services.displayManager.sddm.enable
+          || config.services.displayManager.plasma-login-manager.enable
+        )
+        [
+          # https://discourse.nixos.org/t/sddm-background-on-default-theme/46263
+          (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+            [General]
+            background=${if config.hdr_very_bright then ./black.png else config.system_background}
+          '')
+        ]
     ++
       lib.optionals
         (builtins.any (s: s.kwallet.enable) (builtins.attrValues config.security.pam.services))
