@@ -119,6 +119,7 @@ import ./customize.nix args
         "${inputs.nixpkgs}/pkgs/by-name/pi/pinta/deps.json"
       ];
       allowed = [
+        "tensorboard"
         "motrix-next"
         "librusty_v8"
         "dotnet-sdk"
