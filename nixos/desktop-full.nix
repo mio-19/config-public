@@ -79,7 +79,7 @@ with _include;
         desktopName = "Find My";
         icon = pkgs.fetchurl {
           url = "https://web.archive.org/web/20260513135036if_/https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Find_My_logo.svg/330px-Find_My_logo.svg.png";
-          sha256 = "sha256-CjGEidCQGUNrighZ0jkk3wPy2hoIjQjKQivv9qhqGus=";
+          sha256 = "sha256-daZyk/2r43YdoasXaeclhJy+f5mkmd58j4IRbUkoEhA=";
         };
         url = "https://www.icloud.com/find/";
         class = "chrome-www.icloud.com__find_-Default";
