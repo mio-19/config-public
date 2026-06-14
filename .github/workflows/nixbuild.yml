@@ -39,7 +39,7 @@ jobs:
           nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
             --eval-store auto \
             --store ssh-ng://nixbuild \
-            --builders "" --max-jobs 2
+            --builders "" 
       - name: Update flake and rebuild NixOS configuration
         continue-on-error: true
         run: |
@@ -49,4 +49,4 @@ jobs:
           nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
             --eval-store auto \
             --store ssh-ng://nixbuild \
-            --builders "" --max-jobs 2
+            --builders "" 
