@@ -39,6 +39,8 @@ with _include;
       flowblade
       imhex
       mousam # always buggy
+      #emote # no we already have plasma-emojier with meta+.
+      nur.repos.mio.altus
       wxhexeditor
       jabref
       penpot-desktop

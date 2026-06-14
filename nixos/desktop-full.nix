@@ -58,8 +58,6 @@ with _include;
       #ventoy-full-qt # qt version looks broken under kde plasma
       ventoy-full-gtk
       nextcloud-client
-      #emote # no we already have plasma-emojier with meta+.
-      nur.repos.mio.altus
       progs.materialgram
       progs.telegram
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
