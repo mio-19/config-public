@@ -15,6 +15,7 @@ with _include;
       yt-dlp
       nur.repos.mio.rocksmith2tab
       nur.repos.mio.mdbook-generate-summary
+      nur.repos.mio.payload-dumper-go
       #(inputs.chester.packages."${pkgs.stdenv.hostPlatform.system}".default)
     ])
     ++ (map cleanPkg [
