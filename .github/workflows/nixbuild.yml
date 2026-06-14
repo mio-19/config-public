@@ -9,7 +9,7 @@ on:
 
 jobs:
   checks:
-    uses: nixbuild/nixbuild-action/.github/workflows/ci-workflow.yml@v24
+    uses: nixbuild/nixbuild-action/.github/workflows/ci-workflow.yml@2de896c95167d5b9529dec0b96f4c01ee04d9624
     secrets:
       nixbuild_token: ${{ secrets.nixbuild_token }}
     with:
