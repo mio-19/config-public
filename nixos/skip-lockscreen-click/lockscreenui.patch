@@ -1,14 +1,5 @@
---- LockScreenUi.qml.orig2	2026-06-14 19:43:03.487146090 +1000
-+++ LockScreenUi.qml	2026-06-14 19:43:03.495146059 +1000
-@@ -107,7 +107,7 @@
-     MouseArea {
-         id: lockScreenRoot
- 
--        property bool uiVisible: false
-+        property bool uiVisible: true
-         property bool seenPositionChange: false
-         property bool blockUI: containsMouse && (mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive)
- 
+--- LockScreenUi.qml
++++ LockScreenUi.qml
 @@ -144,13 +144,13 @@
              }
          }
@@ -34,15 +25,11 @@
                  }
              }
          }
-@@ -194,7 +194,10 @@
+@@ -192,6 +192,7 @@
+             from: 0
+             to: 1
              duration: Kirigami.Units.veryLongDuration * 2
++            onFinished: lockScreenRoot.uiVisible = true;
          }
  
--        Component.onCompleted: launchAnimation.start();
-+        Component.onCompleted: {
-+        launchAnimation.start();
-+        authenticator.startAuthenticating();
-+    }
- 
-         WallpaperFader {
-             anchors.fill: parent
+         Component.onCompleted: launchAnimation.start();

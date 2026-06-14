@@ -68,6 +68,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/531008.diff";
             hash = "sha256-H4NMS9eDsJ1zM6gLQdZtyyBYumjKArrCFDcWeE+IOJQ=";
           })
+          (fetchpatch {
+            name = "mousam: 1.4.2 -> 2.0.2";
+            url = "https://github.com/NixOS/nixpkgs/pull/531624.patch";
+            hash = "sha256-euYP3ROWV0kBKQB2tgSUvFuxldcnRXOpwvGsma5sFwY=";
+          })
           /*
             # unsure
             (fetchpatch {

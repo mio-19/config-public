@@ -1,5 +1,5 @@
---- Main.qml.orig	2026-06-14 19:42:37.401248045 +1000
-+++ Main.qml	2026-06-14 19:42:37.409248014 +1000
+--- Main.qml
++++ Main.qml
 @@ -98,7 +98,7 @@
              onTriggered: {
                  if (!loginScreenRoot.blockUI) {

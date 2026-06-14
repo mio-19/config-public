@@ -22,7 +22,7 @@ with _include;
     ./ccache.nix
     ./options.nix
     ./basic.nix
-    ./skip-lockscreen-click.nix
+    ./skip-lockscreen-click
     #./lix.nix
     #inputs.determinate.nixosModules.default
     "${inputs.nix-flatpak}/modules/nixos.nix"
