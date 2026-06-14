@@ -1,5 +1,5 @@
---- a/sddm-theme/Main.qml
-+++ b/sddm-theme/Main.qml
+--- Main.qml
++++ Main.qml
 @@ -98,7 +98,7 @@
              onTriggered: {
                  if (!loginScreenRoot.blockUI) {
