@@ -41,6 +41,18 @@ with _include;
       wxhexeditor
       jabref
       penpot-desktop
+      reco
+      kdePackages.glaxnimate
+      #qmplay2
+      smplayer
+      easyeffects
+      pixelorama
+      plezy
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.github-store
+      inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
+      #quickemu
+      #whatsapp-chat-exporter
+      super-productivity
       # unfree:
       lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
       binaryninja-free

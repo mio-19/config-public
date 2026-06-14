@@ -33,7 +33,6 @@ with _include;
       #transmission_4-qt
       #(lib.hiPrio transmission_4-gtk)
       libresprite
-      plezy
       famistudio
       audacity
       powertabeditor
@@ -44,14 +43,8 @@ with _include;
       (wrapPrio gnome-software)
       firebird-emu
       octaveFull
-      easyeffects
-      pixelorama
       #kdePackages.merkuro # crashed
       gnome-sound-recorder
-      reco
-      kdePackages.glaxnimate
-      #qmplay2
-      smplayer
       mousam
       (wrapPrio gnome-maps)
       czkawka-full
@@ -60,11 +53,6 @@ with _include;
       freac
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rain
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.github-store
-      inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
-      #quickemu
-      #whatsapp-chat-exporter
-      super-productivity
       # unfree:
       inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
     ])
