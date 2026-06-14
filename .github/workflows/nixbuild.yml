@@ -7,5 +7,6 @@ jobs:
     with:
       filter_builds: '.top_attr == "nixosConfigurations"'
       flake: './nixos'
+      nix_version: '2.31.2'
     secrets:
       nixbuild_token: ${{ secrets.nixbuild_token }}
