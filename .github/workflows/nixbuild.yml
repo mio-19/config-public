@@ -6,6 +6,6 @@ jobs:
     uses: nixbuild/nixbuild-action/.github/workflows/ci-workflow.yml@v24
     with:
       filter_builds: '.top_attr == "nixosConfigurations"'
-      flake: 'nixos'
+      flake: './nixos'
     secrets:
       nixbuild_token: ${{ secrets.nixbuild_token }}
