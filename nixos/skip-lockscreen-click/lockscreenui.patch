@@ -1,5 +1,5 @@
---- LockScreenUi.qml.orig2	2026-06-14 19:43:03.487146090 +1000
-+++ LockScreenUi.qml	2026-06-14 19:43:03.495146059 +1000
+--- LockScreenUi.qml.orig	2026-06-14 19:59:54.288365962 +1000
++++ LockScreenUi.qml	2026-06-14 19:59:54.298365928 +1000
 @@ -107,7 +107,7 @@
      MouseArea {
          id: lockScreenRoot
@@ -46,3 +46,12 @@
  
          WallpaperFader {
              anchors.fill: parent
+@@ -202,7 +205,7 @@
+             source: wallpaper
+             mainStack: mainStack
+             footer: footer
+-            clock: clock
++            clock: clock; visible: false
+             alwaysShowClock: config.alwaysShowClock && !config.hideClockWhenIdle
+         }
+ 

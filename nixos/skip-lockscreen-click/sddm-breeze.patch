@@ -1,6 +1,6 @@
---- Main.qml.orig	2026-06-14 19:42:37.401248045 +1000
-+++ Main.qml	2026-06-14 19:42:37.409248014 +1000
-@@ -98,7 +98,7 @@
+--- Main.qml	2026-06-14 19:59:54.290365955 +1000
++++ Main.qml	2026-06-14 20:00:13.824299501 +1000
+@@ -98,19 +98,11 @@
              onTriggered: {
                  if (!loginScreenRoot.blockUI) {
                      userListComponent.mainPasswordBox.showPassword = false;
@@ -9,3 +9,16 @@
                  }
              }
          }
+-        WallpaperFader {
+-            visible: config.type === "image"
+-            anchors.fill: parent
+-            state: loginScreenRoot.uiVisible ? "on" : "off"
+-            source: wallpaper
+-            mainStack: mainStack
+-            footer: footer
+-            clock: clock
+-        }
++        
+ 
+         DropShadow {
+             id: clockShadow
