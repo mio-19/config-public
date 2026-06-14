@@ -16,14 +16,14 @@ jobs:
       matrix:
         host: [fw13, husky, ipc, macvirt]
     steps:
-      - uses: actions/checkout@v4
-      - uses: nixbuild/nix-quick-install-action@v34
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: nixbuild/nix-quick-install-action@2c9db80fb984ceb1bcaa77cdda3fdf8cfba92035 # v34
         with:
           nix_version: '2.31.2'
           nix_conf: |
             experimental-features = nix-command flakes
             allow-import-from-derivation = true
-      - uses: nixbuild/nixbuild-action@master
+      - uses: nixbuild/nixbuild-action@2de896c95167d5b9529dec0b96f4c01ee04d9624 # master
         with:
           nixbuild_token: ${{ secrets.nixbuild_token }}
       - name: Build NixOS configuration
