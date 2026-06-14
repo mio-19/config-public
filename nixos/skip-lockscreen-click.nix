@@ -15,30 +15,19 @@
       };
     */
 
-    environment.systemPackages = [
-      # SDDM Theme Override (hiPrio forces this file to overlay the original breeze theme)
-      (lib.hiPrio (
-        pkgs.runCommand "sddm-theme-breeze-override" { } ''
-          mkdir -p $out/share/sddm/themes
-          cp -r ${pkgs.kdePackages.plasma-desktop}/share/sddm/themes/breeze $out/share/sddm/themes/breeze
-          chmod -R u+w $out
-
-          # Apply patch to remove WallpaperFader
-          patch $out/share/sddm/themes/breeze/Main.qml < ${./skip-lockscreen-click/sddm-breeze.patch}
-        ''
-      ))
-
-      # Plasma Lockscreen Shield Bypass
-      (lib.hiPrio (
-        pkgs.runCommand "plasma-lockscreen-bypass" { } ''
-          mkdir -p $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen
-          cp ${pkgs.kdePackages.plasma-desktop}/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml
-          chmod +w $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml
-
-          # Apply patch to default uiVisible to true and auto-start authenticator
-          patch $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml < ${./skip-lockscreen-click/lockscreenui.patch}
-        ''
-      ))
+    nixpkgs.overlays = [
+      (final: prev: {
+        kdePackages = prev.kdePackages.overrideScope (
+          kfinal: kprev: {
+            plasma-desktop = kprev.plasma-desktop.overrideAttrs (old: {
+              patches = (old.patches or [ ]) ++ [
+                ./skip-lockscreen-click/lockscreenui.patch
+                ./skip-lockscreen-click/sddm-breeze.patch
+              ];
+            });
+          }
+        );
+      })
     ];
   };
 }

@@ -1,5 +1,5 @@
---- Main.qml	2026-06-14 20:08:29.656629567 +1000
-+++ Main.qml	2026-06-14 20:08:29.664629540 +1000
+--- a/sddm-theme/Main.qml
++++ b/sddm-theme/Main.qml
 @@ -98,7 +98,7 @@
              onTriggered: {
                  if (!loginScreenRoot.blockUI) {
