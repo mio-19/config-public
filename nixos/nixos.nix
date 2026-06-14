@@ -73,6 +73,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/531624.patch";
             hash = "sha256-euYP3ROWV0kBKQB2tgSUvFuxldcnRXOpwvGsma5sFwY=";
           })
+          (fetchpatch {
+            name = "btrfs-heatmap: adopt and touch up a bit";
+            url = "https://github.com/NixOS/nixpkgs/pull/528078.patch";
+            hash = "sha256-Z4sUio2yfsdp4vpgzW6OMYeq09zNODFbdWCHYJgvU8k=";
+          })
           /*
             # unsure
             (fetchpatch {
