@@ -60,6 +60,8 @@ with _include;
       nextcloud-client
       #emote # no we already have plasma-emojier with meta+.
       nur.repos.mio.altus
+      progs.materialgram
+      progs.telegram
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
       nur.repos.mio.icloud-mail
       obsidian
@@ -134,12 +136,6 @@ with _include;
         # https://nixos.wiki/wiki/Steam
         (lib.hiPrio config.programs.steam.package.run) # override the non cleanPkg one
       ])
-    )
-    ++ lib.optionals novirt (
-      map hardenedPkg [
-        progs.materialgram
-        progs.telegram
-      ]
     );
   programs.localsend.package = hardenedPkg pkgs.localsend;
 
