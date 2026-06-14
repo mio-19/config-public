@@ -29,11 +29,13 @@
       ))
 
       # Plasma Lockscreen Shield Bypass
+      # Must copy ALL files — QML resolves relative imports (MainBlock, WallpaperFader, etc.)
+      # from the file's store path, not the symlink location
       (lib.hiPrio (
         pkgs.runCommand "plasma-lockscreen-bypass" { } ''
-          mkdir -p $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen
-          cp ${pkgs.kdePackages.plasma-desktop}/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml
-          chmod +w $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml
+          mkdir -p $out/share/plasma/shells/org.kde.plasma.desktop/contents
+          cp -r ${pkgs.kdePackages.plasma-desktop}/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen
+          chmod -R u+w $out
 
           # Apply patch to disable fadeouts and auto-trigger uiVisible after launch animation
           patch $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml < ${./skip-lockscreen-click/lockscreenui.patch}
