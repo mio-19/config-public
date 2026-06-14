@@ -38,6 +38,7 @@ with _include;
       shotcut
       flowblade
       imhex
+      mousam # always buggy
       wxhexeditor
       jabref
       penpot-desktop

@@ -45,7 +45,6 @@ with _include;
       octaveFull
       #kdePackages.merkuro # crashed
       gnome-sound-recorder
-      mousam
       (wrapPrio gnome-maps)
       czkawka-full
       #(fixTauriPkg gitbutler)
