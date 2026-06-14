@@ -8,32 +8,27 @@ on:
       - main
 
 jobs:
-  checks:
-    uses: nixbuild/nixbuild-action/.github/workflows/ci-workflow.yml@2de896c95167d5b9529dec0b96f4c01ee04d9624
-    secrets:
-      nixbuild_token: ${{ secrets.nixbuild_token }}
-    with:
-      nix_conf: |
-        allow-import-from-derivation = true
-      nix_version: '2.31.2'
-      # All settings are optional, the CI Workflow has usable defaults
-      # The available settings are documented in ./ci-workflow.yml
-
-      # By default the CI Workflow uses flake.nix from the repository root, but
-      # we want it to use our example flake here
-      flake: './nixos'
-
-      # Tweak the label shown for each job. This is done with a jq expression
-      # that produces a string based on the build's fields
-      label_builds: '"\(.attr).\(.system)"'
-
-      # We can filter which attributes to build by configuring a jq expression
-      # producing a boolean based on the build's fields. We use the same
-      # expression that the CI Workflow uses by default here (build everything
-      # in the flake's `checks` attribute).
-      filter_builds: '.top_attr == "nixosConfigurations"'
-
-      # If ignore_build_failures is set to true, the workflow will not be stopped
-      # on build errors, giving us the chance to process the build results in
-      # a dependant job. Defaults to false.
-      ignore_build_failures: true
+  build:
+    name: Build ${{ matrix.host }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [fw13, husky, ipc, macvirt]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nixbuild/nix-quick-install-action@v34
+        with:
+          nix_version: '2.31.2'
+          nix_conf: |
+            experimental-features = nix-command flakes
+            allow-import-from-derivation = true
+      - uses: nixbuild/nixbuild-action@master
+        with:
+          nixbuild_token: ${{ secrets.nixbuild_token }}
+      - name: Build NixOS configuration
+        run: |
+          nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            --eval-store auto \
+            --store ssh-ng://nixbuild \
+            --builders "" --max-jobs 2
