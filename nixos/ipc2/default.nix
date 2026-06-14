@@ -56,6 +56,7 @@ with _include;
   ];
   compile_gram = true;
   hdr_very_bright = true;
+  skip_lockscreen_click = true;
   #hardware.facter.reportPath = ./facter.json; # DETAILS REMOVED
 
   nixpkgs.overlays = [
