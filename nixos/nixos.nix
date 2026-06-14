@@ -83,6 +83,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/527207.patch";
             hash = "sha256-2NUV+c/VkeYVU5Gc/sPmA0AVNtv1ApMbsyCFfRvJAqY=";
           })
+          (fetchpatch {
+            name = "switch-to-configuration-ng: Handle dbus errors & lack of messages";
+            url = "https://github.com/NixOS/nixpkgs/pull/528308.patch";
+            hash = "sha256-n0Czi4Kr3Mutu+cEbadpMp63Bx4A9iwKF7CevOBKccI=";
+          })
           /*
             # unsure
             (fetchpatch {
