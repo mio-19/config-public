@@ -43,6 +43,15 @@ in
     kscreenlocker = {
       # DETAILS REMOVED
     };
+    kscreenlockerrc = {
+      # by gemini:
+      Daemon = {
+        Autolock = true;          # Lock the screen automatically after inactivity 
+        Timeout = 5;              # Idle timeout duration in minutes
+        LockGrace = 0;            # Disable passwordless grace period for immediate security 
+        LockOnResume = true;      # Force lockscreen activation upon suspend-to-RAM wake 
+      };
+    };
   };
 
   programs.ssh = {
