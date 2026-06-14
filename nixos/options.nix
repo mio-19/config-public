@@ -65,7 +65,7 @@ with _include;
   options.skip_lockscreen_click = lib.mkOption {
     type = lib.types.bool;
     default = false;
-    description = "skip click/key press to go to passwordenter/fingerprint screen";
+    description = "[WIP] skip click/key press to go to passwordenter/fingerprint screen";
   };
   config.assertions = [
     {

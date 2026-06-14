@@ -24,7 +24,7 @@
           chmod -R u+w $out
 
           # Apply patch to disable idle fadeout
-          patch $out/share/sddm/themes/breeze/Main.qml < ${./skip-lockscreen-click/sddm-breeze.patch}
+          patch $out/share/sddm/themes/breeze/Main.qml < ${./sddm-breeze.patch}
         ''
       ))
 
@@ -38,7 +38,7 @@
           chmod -R u+w $out
 
           # Apply patch to disable fadeouts and auto-trigger uiVisible after launch animation
-          patch $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml < ${./skip-lockscreen-click/lockscreenui.patch}
+          patch $out/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml < ${./lockscreenui.patch}
         ''
       ))
     ];
