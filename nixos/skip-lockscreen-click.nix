@@ -6,9 +6,8 @@
 }:
 
 {
-  config = lib.mkIf config.skip_lockscreen_click {
+  config = lib.mkIf (config.skip_lockscreen_click && config.services.fprintd.enable) {
     # 1. Enable and configure the system-wide biometric daemon
-    services.fprintd.enable = lib.mkDefault true;
 
     # Enforce concurrent PAM evaluation for kscreenlocker
     security.pam.services.kde-fingerprint = {
