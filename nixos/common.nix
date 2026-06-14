@@ -202,19 +202,16 @@ with _include;
 
   nixpkgs.config.permittedInsecurePackages =
     with pkgs';
-    [
-      "electron-37.10.3"
-      "openssl-1.1.1w" # for sublime-text
-    ]
-    ++ map (pkg: pkg.name) [
-      #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
+    map (pkg: pkg.name) [
       librewolf-bin
       librewolf-bin-unwrapped
+      openclaw
+      electron_39
+      openssl_1_1
+      #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
       ventoy
       ventoy-full-gtk
       ventoy-full-qt
-      openclaw
-      electron_39
     ];
 
   i18n.defaultLocale = lib.mkDefault "en_AU.UTF-8";
