@@ -1,5 +1,5 @@
---- LockScreenUi.qml.orig	2026-06-14 19:32:22.274572496 +1000
-+++ LockScreenUi.qml	2026-06-14 19:32:22.282572463 +1000
+--- LockScreenUi.qml.orig2	2026-06-14 19:43:03.487146090 +1000
++++ LockScreenUi.qml	2026-06-14 19:43:03.495146059 +1000
 @@ -107,7 +107,7 @@
      MouseArea {
          id: lockScreenRoot
@@ -9,6 +9,31 @@
          property bool seenPositionChange: false
          property bool blockUI: containsMouse && (mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive)
  
+@@ -144,13 +144,13 @@
+             }
+         }
+         onExited: {
+-            uiVisible = false;
++             
+         }
+         Keys.onEscapePressed: {
+             // If the escape key is pressed, kscreenlocker will turn off the screen.
+             // We do not want to show the password prompt in this case.
+             if (uiVisible) {
+-                uiVisible = false;
++                 
+                 if (inputPanel.keyboardActive) {
+                     inputPanel.showHide();
+                 }
+@@ -167,7 +167,7 @@
+             onTriggered: {
+                 if (!lockScreenRoot.blockUI) {
+                     mainBlock.mainPasswordBox.showPassword = false;
+-                    lockScreenRoot.uiVisible = false;
++                     
+                 }
+             }
+         }
 @@ -194,7 +194,10 @@
              duration: Kirigami.Units.veryLongDuration * 2
          }

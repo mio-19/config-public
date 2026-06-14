@@ -1,19 +1,11 @@
---- Main.qml	2026-06-14 19:24:14.208514602 +1000
-+++ Main.qml	2026-06-14 19:24:14.212514587 +1000
-@@ -102,15 +102,7 @@
+--- Main.qml.orig	2026-06-14 19:42:37.401248045 +1000
++++ Main.qml	2026-06-14 19:42:37.409248014 +1000
+@@ -98,7 +98,7 @@
+             onTriggered: {
+                 if (!loginScreenRoot.blockUI) {
+                     userListComponent.mainPasswordBox.showPassword = false;
+-                    loginScreenRoot.uiVisible = false;
++                     
                  }
              }
          }
--        WallpaperFader {
--            visible: config.type === "image"
--            anchors.fill: parent
--            state: loginScreenRoot.uiVisible ? "on" : "off"
--            source: wallpaper
--            mainStack: mainStack
--            footer: footer
--            clock: clock
--        }
-+        
- 
-         DropShadow {
-             id: clockShadow
