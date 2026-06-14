@@ -52,7 +52,7 @@ with _include;
       kdePackages.glaxnimate
       #qmplay2
       smplayer
-      #mousam # cannot get weather data
+      mousam
       (wrapPrio gnome-maps)
       czkawka-full
       #(fixTauriPkg gitbutler)
@@ -78,7 +78,7 @@ with _include;
   services.flatpak = {
     enable = true;
     packages = [
-      "io.github.amit9838.mousam"
+      #"io.github.amit9838.mousam" # fonts all broken
       rec {
         appId = "com.fender.studio";
         sha256 = "06a082v083q275ycgj5fkz5n84l2q03hyx8405p6bpkh6nvvhnvw";
