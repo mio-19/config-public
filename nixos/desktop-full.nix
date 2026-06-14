@@ -27,7 +27,6 @@ with _include;
       (wrapPrio gnome-system-monitor)
       trayscale
       chromium
-      wiliwili
       krita
       gimp
       saber
