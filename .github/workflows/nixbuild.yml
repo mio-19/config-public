@@ -30,7 +30,18 @@ jobs:
         with:
           nixbuild_token: ${{ secrets.nixbuild_token }}
       - name: Build NixOS configuration
+        continue-on-error: true
         run: |
+          nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            --eval-store auto \
+            --store ssh-ng://nixbuild \
+            --builders "" --max-jobs 2
+      - name: Update flake and rebuild NixOS configuration
+        continue-on-error: true
+        run: |
+          cd nixos
+          nix flake update
+          cd ..
           nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
             --eval-store auto \
             --store ssh-ng://nixbuild \
