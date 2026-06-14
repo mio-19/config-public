@@ -1,15 +1,6 @@
---- LockScreenUi.qml.orig	2026-06-14 20:08:29.652629581 +1000
-+++ LockScreenUi.qml	2026-06-14 20:08:29.662629547 +1000
-@@ -107,7 +107,7 @@
-     MouseArea {
-         id: lockScreenRoot
- 
--        property bool uiVisible: false
-+        property bool uiVisible: true
-         property bool seenPositionChange: false
-         property bool blockUI: containsMouse && (mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive)
- 
-@@ -144,13 +144,13 @@
+--- LockScreenUi.qml.orig
++++ LockScreenUi.qml
+@@ -143,13 +143,13 @@
              }
          }
          onExited: {
@@ -25,7 +16,7 @@
                  if (inputPanel.keyboardActive) {
                      inputPanel.showHide();
                  }
-@@ -167,7 +167,7 @@
+@@ -166,7 +166,7 @@
              onTriggered: {
                  if (!lockScreenRoot.blockUI) {
                      mainBlock.mainPasswordBox.showPassword = false;
@@ -34,15 +25,11 @@
                  }
              }
          }
-@@ -194,7 +194,10 @@
+@@ -192,6 +192,7 @@
+             from: 0
+             to: 1
              duration: Kirigami.Units.veryLongDuration * 2
++            onFinished: lockScreenRoot.uiVisible = true;
          }
  
--        Component.onCompleted: launchAnimation.start();
-+        Component.onCompleted: {
-+        launchAnimation.start();
-+        authenticator.startAuthenticating();
-+    }
- 
-         WallpaperFader {
-             anchors.fill: parent
+         Component.onCompleted: launchAnimation.start();
