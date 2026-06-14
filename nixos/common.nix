@@ -214,18 +214,18 @@ with _include;
       ventoy-full-qt
     ];
 
-  i18n.defaultLocale = lib.mkDefault "en_AU.UTF-8";
+  i18n.defaultLocale = lib.mkDefault "en_NZ.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = lib.mkDefault "en_AU.UTF-8";
-    LC_IDENTIFICATION = lib.mkDefault "en_AU.UTF-8";
-    LC_MEASUREMENT = lib.mkDefault "en_AU.UTF-8";
-    LC_MONETARY = lib.mkDefault "en_AU.UTF-8";
-    LC_NAME = lib.mkDefault "en_AU.UTF-8";
-    LC_NUMERIC = lib.mkDefault "en_AU.UTF-8";
-    LC_PAPER = lib.mkDefault "en_AU.UTF-8";
-    LC_TELEPHONE = lib.mkDefault "en_AU.UTF-8";
-    LC_TIME = lib.mkDefault "en_AU.UTF-8";
+    LC_ADDRESS = lib.mkDefault "en_NZ.UTF-8";
+    LC_IDENTIFICATION = lib.mkDefault "en_NZ.UTF-8";
+    LC_MEASUREMENT = lib.mkDefault "en_NZ.UTF-8";
+    LC_MONETARY = lib.mkDefault "en_NZ.UTF-8";
+    LC_NAME = lib.mkDefault "en_NZ.UTF-8";
+    LC_NUMERIC = lib.mkDefault "en_NZ.UTF-8";
+    LC_PAPER = lib.mkDefault "en_NZ.UTF-8";
+    LC_TELEPHONE = lib.mkDefault "en_NZ.UTF-8";
+    LC_TIME = lib.mkDefault "en_NZ.UTF-8";
   };
 
   networking.firewall.allowedTCPPorts = [ 8080 ]; # temp file share with $ caddy file-server --browse --debug --listen :8080
