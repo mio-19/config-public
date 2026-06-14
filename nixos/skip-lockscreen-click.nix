@@ -36,7 +36,7 @@
         ExecStart = pkgs.writeShellScript "wake-screen-shield" ''
           # Allow the kernel display interfaces and USB controllers to initialize
           sleep 1.2
-          
+
           # Inject Left Shift (Keycode 42) press (1) and release (0) using ydotool
           # Left Shift is a safe modifier that will not append characters to the password field
           YDOTOOL_SOCKET=/run/ydotoold/socket ${pkgs.ydotool}/bin/ydotool key 42:1 42:0
