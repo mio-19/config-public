@@ -60,7 +60,15 @@ with _include;
     ++ [
       # breaks with wrapper
       nur.repos.mio.android-translation-layer
-    ];
+    ]
+    ++ lib.optionals pkgs.stdenv.isx86_64 (
+      map hardenedPkg [
+        # unfree:
+        (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.line.override {
+          wine = config.wine64_package;
+        })
+      ]
+    );
 
   services.flatpak = {
     enable = true;

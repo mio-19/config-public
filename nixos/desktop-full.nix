@@ -116,9 +116,6 @@ with _include;
         # open source but from binary
         onlyoffice-desktopeditors
         # unfree:
-        (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.line.override {
-          wine = config.wine64_package;
-        })
         inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.adobe-acrobat-reader
         (offloadPkg (
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.insta360-studio.override {
