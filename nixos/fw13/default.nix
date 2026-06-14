@@ -64,6 +64,7 @@ with _include;
   chaotic.zfs-impermanence-on-shutdown.volume = "${pool}/nixos/local/ephemeral";
 
   plasma-login-manager_instead = true;
+  skip_lockscreen_click = true;
 
   security.allowSimultaneousMultithreading = true;
 
