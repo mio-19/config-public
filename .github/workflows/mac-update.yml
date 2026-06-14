@@ -8,59 +8,59 @@ jobs:
   tests:
     runs-on: macos-15
     steps:
-      - name: Inspect Initial Storage State
-        run: |
-          echo "=== RUNNER STORAGE METRICS ==="
-          df -h /
-          echo "=== DETECTING APFS VOLUME TOPOLOGY ==="
-          diskutil list
-          echo "=== DISCOVERED XCODE APP RUNTIMES ==="
-          ls -la /Applications | grep -i "Xcode" || true
+    - name: Inspect Initial Storage State
+      run: |
+        echo "=== RUNNER STORAGE METRICS ==="
+        df -h /
+        echo "=== DETECTING APFS VOLUME TOPOLOGY ==="
+        diskutil list
+        echo "=== DISCOVERED XCODE APP RUNTIMES ==="
+        ls -la /Applications | grep -i "Xcode" || true
 
-      - name: Reclaim Host Disk Space
-        run: |
-          echo "=== TERMINATING CONFLICTING BACKGROUND SERVICES ==="
-          sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist || true
+    - name: Reclaim Host Disk Space
+      run: |
+        echo "=== TERMINATING CONFLICTING BACKGROUND SERVICES ==="
+        sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist || true
 
-          echo "=== DETECTING CURRENT ACTIVE XCODE ENVIRONMENT ==="
-          ACTIVE_XCODE_PATH=$(xcrun xcode-select --print-path)
-          echo "Active Xcode path: ${ACTIVE_XCODE_PATH}"
+        echo "=== DETECTING CURRENT ACTIVE XCODE ENVIRONMENT ==="
+        ACTIVE_XCODE_PATH=$(xcrun xcode-select --print-path)
+        echo "Active Xcode path: ${ACTIVE_XCODE_PATH}"
 
-          echo "=== PURGING INACTIVE XCODE VERSIONS ==="
-          for xcode_app in /Applications/Xcode_*.app; do
-            if [[ "${ACTIVE_XCODE_PATH}" != *"${xcode_app}"* ]]; then
-              echo "Purging inactive installation: ${xcode_app}"
-              sudo rm -rf "${xcode_app}" &
-            fi
-          done
-          wait
+        echo "=== PURGING INACTIVE XCODE VERSIONS ==="
+        for xcode_app in /Applications/Xcode_*.app; do
+          if [[ "${ACTIVE_XCODE_PATH}" != *"${xcode_app}"* ]]; then
+            echo "Purging inactive installation: ${xcode_app}"
+            sudo rm -rf "${xcode_app}" &
+          fi
+        done
+        wait
 
-          echo "=== ERADICATING ANDROID SDK AND COMPILER RUNTIMES ==="
-          sudo rm -rf /Users/runner/Library/Android
-          sudo rm -rf /Users/runner/Library/Developer/Xamarin
-          sudo rm -rf ~/.android
-          sudo rm -rf ~/.gradle
+        echo "=== ERADICATING ANDROID SDK AND COMPILER RUNTIMES ==="
+        sudo rm -rf /Users/runner/Library/Android
+        sudo rm -rf /Users/runner/Library/Developer/Xamarin
+        sudo rm -rf ~/.android
+        sudo rm -rf ~/.gradle
 
-          echo "=== PRUNING SIMULATOR RUNTIMES ==="
-          sudo rm -rf /Library/Developer/CoreSimulator/Profiles/Runtimes/* || true
-          rm -rf ~/Library/Developer/CoreSimulator/Devices/* || true
+        echo "=== PRUNING SIMULATOR RUNTIMES ==="
+        sudo rm -rf /Library/Developer/CoreSimulator/Profiles/Runtimes/* || true
+        rm -rf ~/Library/Developer/CoreSimulator/Devices/* || true
 
-          echo "=== RECLAIMING HOMEBREW STORAGE ==="
-          brew cleanup --prune=all || true
-          rm -rf "$(brew --cache)" || true
+        echo "=== RECLAIMING HOMEBREW STORAGE ==="
+        brew cleanup --prune=all || true
+        rm -rf "$(brew --cache)" || true
 
-          echo "=== REMOVING AUXILIARY TOOL CACHES ==="
-          sudo rm -rf /usr/local/.ghcup
-          sudo rm -rf /usr/local/julia*
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/share/powershell
+        echo "=== REMOVING AUXILIARY TOOL CACHES ==="
+        sudo rm -rf /usr/local/.ghcup
+        sudo rm -rf /usr/local/julia*
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/share/powershell
 
-      - name: Inspect Final Storage State
-        run: |
-          echo "=== POST-CLEANUP STORAGE METRICS ==="
-          df -h /
+    - name: Inspect Final Storage State
+      run: |
+        echo "=== POST-CLEANUP STORAGE METRICS ==="
+        df -h /
 
-      - uses: actions/checkout@v6
+    - uses: actions/checkout@v6
     - uses: cachix/install-nix-action@v31
       with:
         nix_path: nixpkgs=channel:nixos-unstable
