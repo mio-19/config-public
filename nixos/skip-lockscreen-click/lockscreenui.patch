@@ -1,0 +1,11 @@
+--- a/desktoppackage/contents/lockscreen/LockScreenUi.qml	2026-06-14 19:24:14.204514618 +1000
++++ b/desktoppackage/contents/lockscreen/LockScreenUi.qml	2026-06-14 19:24:14.210514594 +1000
+@@ -202,7 +202,7 @@
+             source: wallpaper
+             mainStack: mainStack
+             footer: footer
+-            clock: clock
++            clock: clock; visible: false
+             alwaysShowClock: config.alwaysShowClock && !config.hideClockWhenIdle
+         }
+ 

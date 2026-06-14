@@ -18,14 +18,10 @@
         kdePackages = prev.kdePackages.overrideScope (
           kfinal: kprev: {
             plasma-desktop = kprev.plasma-desktop.overrideAttrs (old: {
-              postPatch = (old.postPatch or "") + ''
-                # Inject 'visible: false' into the WallpaperFader component block of the lockscreen
-                substituteInPlace desktoppackage/contents/lockscreen/LockScreenUi.qml \
-                  --replace-warn "clock: clock" "clock: clock; visible: false"
-
-                # Remove WallpaperFader from SDDM theme breeze
-                sed -i -z '/WallpaperFader {[^}]*}/,''${s///;b};$q1' sddm-theme/Main.qml
-              '';
+              patches = (old.patches or [ ]) ++ [
+                ./skip-lockscreen-click/lockscreenui.patch
+                ./skip-lockscreen-click/sddm-breeze.patch
+              ];
             });
           }
         );
