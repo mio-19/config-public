@@ -15,23 +15,18 @@
       };
     */
 
-    services.displayManager.sddm.theme = "breeze-user";
-
     environment.systemPackages = [
-      # SDDM Theme Override
-      (pkgs.runCommand "sddm-theme-breeze-user" { } ''
-        mkdir -p $out/share/sddm/themes
-        cp -r ${pkgs.kdePackages.plasma-desktop}/share/sddm/themes/breeze $out/share/sddm/themes/breeze-user
-        chmod -R u+w $out
+      # SDDM Theme Override (hiPrio forces this file to overlay the original breeze theme)
+      (lib.hiPrio (
+        pkgs.runCommand "sddm-theme-breeze-override" { } ''
+          mkdir -p $out/share/sddm/themes
+          cp -r ${pkgs.kdePackages.plasma-desktop}/share/sddm/themes/breeze $out/share/sddm/themes/breeze
+          chmod -R u+w $out
 
-        # Apply patch to remove WallpaperFader
-        patch $out/share/sddm/themes/breeze-user/Main.qml < ${./skip-lockscreen-click/sddm-breeze.patch}
-
-        # Rename the theme so SDDM can find it
-        substituteInPlace $out/share/sddm/themes/breeze-user/metadata.desktop \
-          --replace-fail 'Name=Breeze' 'Name=Breeze (user)' \
-          --replace-fail 'Theme-Id=breeze' 'Theme-Id=breeze-user'
-      '')
+          # Apply patch to remove WallpaperFader
+          patch $out/share/sddm/themes/breeze/Main.qml < ${./skip-lockscreen-click/sddm-breeze.patch}
+        ''
+      ))
 
       # Plasma Lockscreen Shield Bypass
       (lib.hiPrio (
