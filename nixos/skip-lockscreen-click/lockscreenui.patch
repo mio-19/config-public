@@ -1,11 +1,23 @@
---- a/desktoppackage/contents/lockscreen/LockScreenUi.qml	2026-06-14 19:24:14.204514618 +1000
-+++ b/desktoppackage/contents/lockscreen/LockScreenUi.qml	2026-06-14 19:24:14.210514594 +1000
-@@ -202,7 +202,7 @@
-             source: wallpaper
-             mainStack: mainStack
-             footer: footer
--            clock: clock
-+            clock: clock; visible: false
-             alwaysShowClock: config.alwaysShowClock && !config.hideClockWhenIdle
+--- LockScreenUi.qml.orig	2026-06-14 19:32:22.274572496 +1000
++++ LockScreenUi.qml	2026-06-14 19:32:22.282572463 +1000
+@@ -107,7 +107,7 @@
+     MouseArea {
+         id: lockScreenRoot
+ 
+-        property bool uiVisible: false
++        property bool uiVisible: true
+         property bool seenPositionChange: false
+         property bool blockUI: containsMouse && (mainStack.depth > 1 || mainBlock.mainPasswordBox.text.length > 0 || inputPanel.keyboardActive)
+ 
+@@ -194,7 +194,10 @@
+             duration: Kirigami.Units.veryLongDuration * 2
          }
  
+-        Component.onCompleted: launchAnimation.start();
++        Component.onCompleted: {
++        launchAnimation.start();
++        authenticator.startAuthenticating();
++    }
+ 
+         WallpaperFader {
+             anchors.fill: parent
