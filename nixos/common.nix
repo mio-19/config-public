@@ -471,4 +471,10 @@ with _include;
   hardware.wireless.regulatoryDomain = lib.mkIf (
     config.networking.wireless.enable || config.networking.wireless.iwd.enable
   ) countryCode;
+
+  powerManagement.powerDownCommands =
+    lib.mkIf (config.services.fprintd.enable && config.services.desktopManager.plasma6.enable)
+      ''
+        ${pkgs.systemd}/bin/systemctl stop fprintd.service 2>/dev/null || true
+      '';
 }
