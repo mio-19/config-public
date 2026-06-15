@@ -28,7 +28,7 @@ with _include;
       #dissent
       heimdall-gui
       koreader
-      #signal-desktop
+      signal-desktop
       #lan-mouse
       #transmission_4-qt
       #(lib.hiPrio transmission_4-gtk)
@@ -45,7 +45,6 @@ with _include;
       octaveFull
       #kdePackages.merkuro # crashed
       gnome-sound-recorder
-      mousam
       (wrapPrio gnome-maps)
       czkawka-full
       #(fixTauriPkg gitbutler)

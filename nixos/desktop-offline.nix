@@ -38,6 +38,10 @@ with _include;
       shotcut
       flowblade
       imhex
+      mousam # always buggy
+      #emote # no we already have plasma-emojier with meta+.
+      nur.repos.mio.altus
+      wiliwili
       wxhexeditor
       jabref
       penpot-desktop
