@@ -46,8 +46,6 @@
     zpool = {
       razer = {
         type = "zpool";
-        # Workaround: cannot import 'razer': I/O error in disko tests
-        options.cachefile = "none";
         rootFsOptions = {
           acltype = "posixacl";
           dnodesize = "auto";
