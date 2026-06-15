@@ -81,7 +81,7 @@ in
           (fetchpatch {
             name = "compsize: adopt and give it some care";
             url = "https://github.com/NixOS/nixpkgs/pull/527207.patch";
-            hash = "sha256-2NUV+c/VkeYVU5Gc/sPmA0AVNtv1ApMbsyCFfRvJAqY=";
+            hash = "sha256-0O2ANsXt72XmdspD2RjxbF24YurJUc1+fjXspFbWjCc=";
           })
           (fetchpatch {
             name = "switch-to-configuration-ng: Handle dbus errors & lack of messages";
