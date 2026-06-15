@@ -28,7 +28,7 @@ with _include;
       #dissent
       heimdall-gui
       koreader
-      #signal-desktop
+      signal-desktop
       #lan-mouse
       #transmission_4-qt
       #(lib.hiPrio transmission_4-gtk)
