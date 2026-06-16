@@ -59,11 +59,7 @@ with _include;
 
   nixpkgs.config.permittedInsecurePackages =
     with pkgs';
-    [
-      "electron-36.9.5" # for joplin-desktop
-      #"jitsi-meet-1.0.8792" # for element-desktop - see https://github.com/NixOS/nixpkgs/pull/426541
-    ]
-    ++ map (pkg: pkg.name) [
+    map (pkg: pkg.name) [
       openclaw
     ];
   nixpkgs.config.allowUnfree = false;
@@ -283,7 +279,7 @@ with _include;
       builder = (
         pkgs.writeScript "beammp-cert-builder" "curl -w %{certs} https://auth.beammp.com/userlogin -k > $out"
       );
-      outputHash = "sha256-P5zS3PQMZhU5zxAhpzEsADytZYzIgIcuxnvcoSZZxhc=";
+      outputHash = "sha256-sB60qscvpKwqLYeAKrdef2Nf9U+F8UDNfniAZ7f8Kno=";
     })
   ];
   # }}}

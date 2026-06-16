@@ -36,11 +36,11 @@ jobs:
       - name: Build NixOS configuration
         continue-on-error: true
         run: |
-          nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --keep-going
+          timeout --signal=KILL 3h nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --keep-going
       - name: Update flake and rebuild NixOS configuration
         continue-on-error: true
         run: |
           cd nixos
           nix flake update
           cd ..
-          nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --keep-going
+          timeout --signal=KILL 1h nix build ./nixos#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --keep-going

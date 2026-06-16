@@ -28,7 +28,7 @@ with _include;
     openssh.authorizedKeys.keys = import ../../sshkeys.nix;
   };
 
-  home-manager.users.user = ../user.nix;
+  home-manager.users.user = ../home-user.nix;
   home-manager.extraSpecialArgs = {
     enable-fcitx = false;
   };

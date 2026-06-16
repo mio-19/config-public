@@ -43,7 +43,7 @@ in
   services.displayManager.sddm.enable = lib.mkDefault true;
   services.displayManager.gdm.enable = lib.mkDefault false;
 
-  home-manager.users.user = ../user.nix;
+  home-manager.users.user = ../home-user.nix;
   home-manager.extraSpecialArgs = {
     enable-fcitx = false;
   };
