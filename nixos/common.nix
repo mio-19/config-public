@@ -474,6 +474,6 @@ with _include;
 
   # https://github.com/NixOS/nixpkgs/issues/432276
   powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
-    ${pkgs.systemd}/bin/systemctl stop fprintd.service 2>/dev/null || true
+    ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
   '';
 }
