@@ -204,6 +204,8 @@ with _include;
   nixpkgs.config.permittedInsecurePackages =
     with pkgs';
     map (pkg: pkg.name) [
+      librewolf
+      librewolf-unwrapped
       librewolf-bin
       librewolf-bin-unwrapped
       openclaw
