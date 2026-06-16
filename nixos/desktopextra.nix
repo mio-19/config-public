@@ -62,10 +62,11 @@ with _include;
       #qcm
       teams-for-linux
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.waveterm
       pkgs-nocuda.pianotrans # no binary cache with cuda
       # binaryNativeCode:
       spotube
-      waveterm
+      #waveterm
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       # unfree:
       (lib.hiPrio pkgs.aseprite) # lib.hiPrio: a file colliding with libresprite
