@@ -283,7 +283,7 @@ with _include;
       builder = (
         pkgs.writeScript "beammp-cert-builder" "curl -w %{certs} https://auth.beammp.com/userlogin -k > $out"
       );
-      outputHash = "sha256-P5zS3PQMZhU5zxAhpzEsADytZYzIgIcuxnvcoSZZxhc=";
+      outputHash = "sha256-sB60qscvpKwqLYeAKrdef2Nf9U+F8UDNfniAZ7f8Kno=";
     })
   ];
   # }}}
