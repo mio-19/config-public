@@ -59,11 +59,6 @@ in
             hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
           })
           (fetchpatch {
-            name = "nixos/wireless: fix for multiple interfaces";
-            url = "https://github.com/NixOS/nixpkgs/pull/530237.patch";
-            hash = "sha256-RWS1izirffbC/FYQpAZxdlnNVh5A9+Qn7t2hM7iJiCc=";
-          })
-          (fetchpatch {
             name = "nixos/systemd-boot: defer boot file garbage collection";
             url = "https://github.com/NixOS/nixpkgs/pull/531008.diff";
             hash = "sha256-H4NMS9eDsJ1zM6gLQdZtyyBYumjKArrCFDcWeE+IOJQ=";
