@@ -62,6 +62,7 @@ with _include;
     map (pkg: pkg.name) [
       openclaw
       librewolf
+      librewolf-unwrapped
     ];
   nixpkgs.config.allowUnfree = false;
   nixpkgs.config.allowNonSource = false;
