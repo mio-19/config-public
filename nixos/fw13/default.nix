@@ -75,7 +75,7 @@ with _include;
   #boot.kernelPackages = pkgs.linuxPackages_cachyos-lts.cachyOverride { mArch = "ZEN4"; }; # recent many freezes. why? ssd problem again? 6.19.x kernel issue? 6.18 (lts) also has same problem!
   #boot.kernelPackages = pkgs.linuxPackages_6_12;
 
-  home-manager.users.user = ../user.nix;
+  home-manager.users.user = ../home-user.nix;
   # DETAILS REMOVED
   home-manager.extraSpecialArgs = {
     enable-fcitx = true;

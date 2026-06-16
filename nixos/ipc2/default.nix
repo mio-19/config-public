@@ -78,7 +78,7 @@ with _include;
 
   security.allowSimultaneousMultithreading = false; # maybe this avoid Machine Check error https://www.reddit.com/r/techsupport/comments/1am75eu/machine_check_errors_on_14700kf_faulty_cpu/?rdt=32949
 
-  home-manager.users.user = ../user.nix;
+  home-manager.users.user = ../home-user.nix;
   # DETAILS REMOVED
   home-manager.extraSpecialArgs = {
     enable-fcitx = true;

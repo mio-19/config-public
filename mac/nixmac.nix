@@ -22,7 +22,7 @@
   home-manager.users.user = (
     { ... }:
     {
-      imports = [ ./uuser.nix ];
+      imports = [ ./home-user.nix ];
       programs.opam.enable = true;
       programs.opam.enableBashIntegration = true;
       programs.opam.enableZshIntegration = true;
