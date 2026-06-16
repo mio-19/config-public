@@ -24,7 +24,7 @@ in
       (lib.hiPrio (offloadPkg nur.repos.mio.minetest580client))
       (offloadPkg (wrapPrio supertuxkart))
       (offloadPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.supertuxkart-evolution)
-      nur.repos.mio.superTux
+      supertux
       the-powder-toy
       ludusavi
       (offloadPkg vdrift)
@@ -94,7 +94,7 @@ in
       profile = "${pkgs.firejail}/etc/firejail/supertuxkart.profile";
     };
     supertux2 = lib.mkIf (!boot-to-steam) {
-      executable = "${cleanPkg pkgs.nur.repos.mio.superTux}/bin/supertux2";
+      executable = "${cleanPkg pkgs.supertux}/bin/supertux2";
       profile = "${pkgs.firejail}/etc/firejail/supertux2.profile";
     };
   };
