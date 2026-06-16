@@ -69,11 +69,6 @@ in
             hash = "sha256-euYP3ROWV0kBKQB2tgSUvFuxldcnRXOpwvGsma5sFwY=";
           })
           (fetchpatch {
-            name = "compsize: adopt and give it some care";
-            url = "https://github.com/NixOS/nixpkgs/pull/527207.patch";
-            hash = "sha256-0O2ANsXt72XmdspD2RjxbF24YurJUc1+fjXspFbWjCc=";
-          })
-          (fetchpatch {
             name = "switch-to-configuration-ng: Handle dbus errors & lack of messages";
             url = "https://github.com/NixOS/nixpkgs/pull/528308.patch";
             hash = "sha256-n0Czi4Kr3Mutu+cEbadpMp63Bx4A9iwKF7CevOBKccI=";
