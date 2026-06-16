@@ -59,11 +59,7 @@ with _include;
 
   nixpkgs.config.permittedInsecurePackages =
     with pkgs';
-    [
-      "electron-36.9.5" # for joplin-desktop
-      #"jitsi-meet-1.0.8792" # for element-desktop - see https://github.com/NixOS/nixpkgs/pull/426541
-    ]
-    ++ map (pkg: pkg.name) [
+    map (pkg: pkg.name) [
       openclaw
     ];
   nixpkgs.config.allowUnfree = false;
