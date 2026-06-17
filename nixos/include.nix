@@ -503,7 +503,7 @@ upper
         pkgs
       else
     */
-    import (nixpkgsPatch inputs.nixpkgs) {
+    import inputs.nixpkgs {
       config = osConfig.nixpkgs.config // {
         cudaSupport = false;
       };
@@ -559,7 +559,7 @@ upper
       inputs.nur.overlays.default
     ];
   };
-  pkgs-openclaw = import (nixpkgsPatch inputs.nixpkgs) {
+  pkgs-openclaw = import inputs.nixpkgs {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -573,7 +573,7 @@ upper
     ];
   };
   # needs qtwebengine-5.15.19, don't compile from source code.
-  pkgs-qtwebengine5 = import (nixpkgsPatch inputs.nixpkgs) {
+  pkgs-qtwebengine5 = import inputs.nixpkgs {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
