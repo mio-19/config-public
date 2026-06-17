@@ -58,6 +58,8 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/528908.patch";
             hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
           })
+          # PR .patch URLs track branch head, so the hash changes when the PR is updated.
+          # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
           (fetchpatch {
             name = "nixos/security/wrappers: avoid linux-headers in closure";
             url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
