@@ -108,7 +108,7 @@ with _include;
         ];
       });
       inherit (pkgs-pin) rpcs3;
-      inherit (pkgs-pin2) ryubing;
+      inherit (pkgs-pin2) ryubing gnome-disk-utility;
       inherit (pkgs-nocuda) freecad; # no binary cache
     })
     inputs.chaotic.overlays.default
