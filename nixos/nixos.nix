@@ -63,7 +63,7 @@ in
           (fetchpatch {
             name = "nixos/security/wrappers: avoid linux-headers in closure";
             url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
-            hash = "sha256-Yeq7RgvCEaQMiqm1CjLGokHtRmZpUwvurL7ZkmPWMsE=";
+            hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
           })
           (fetchpatch {
             name = "nixos/systemd-boot: defer boot file garbage collection";
