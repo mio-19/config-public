@@ -272,6 +272,10 @@ upper
   };
 
   pkgs' = import inputs.nixpkgs {
+    config = osConfig.nixpkgs.config // {
+      cudaSupport = false;
+      rocmSupport = false;
+    };
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [ inputs.nur.overlays.default ];
   };
