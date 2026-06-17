@@ -1,0 +1,19 @@
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  options,
+  ...
+}:
+let
+  isAtLeast2605 = builtins.compareVersions config.home.version.release "26.05" >= 0;
+in
+{
+  config.programs = lib.optionalAttrs (options ? mergiraf) {
+    mergiraf = {
+      enable = true;
+      enableGitIntegration = true;
+    };
+  };
+}
