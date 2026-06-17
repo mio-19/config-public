@@ -95,9 +95,14 @@ with _include;
       # unfree:
       progs.vscode
     ])
-    ++ lib.optionals config.thunderbird_instead (
+    ++ lib.optionals (!config.use_betterbird) (
       map cleanPkg [
         thunderbird-esr
+      ]
+    )
+    ++ lib.optionals config.use_betterbird (
+      map cleanPkg [
+        program.betterbird
       ]
     )
     ++ lib.optionals pkgs.stdenv.isx86_64 (

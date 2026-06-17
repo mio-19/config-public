@@ -272,6 +272,7 @@ upper
     librewolf' = pkgs-nocuda.librewolf.override (old: {
       extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
     });
+    betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
   };
 
   pkgs' = import inputs.nixpkgs {

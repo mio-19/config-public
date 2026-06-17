@@ -28,10 +28,10 @@ with _include;
     default = false;
     description = "if default brightness will result in very bright so dark background must be used in login/bootloader";
   };
-  options.thunderbird_instead = lib.mkOption {
+  options.use_betterbird = lib.mkOption {
     type = lib.types.bool;
-    default = pkgs.stdenv.isx86_64; # didn't cache on aarch64-linux
-    description = "thunderbird instead.";
+    default = pkgs.stdenv.isx86_64;
+    description = "use betterbird instead of thunderbird.";
   };
   options.compile_gram = lib.mkOption {
     type = lib.types.bool;
