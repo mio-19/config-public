@@ -78,6 +78,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/527571.patch";
             hash = "sha256-f122Yd4h3d53bR7Y5FDe9iaApNUkgOd3X4+YguqDxs0=";
           })
+          (fetchpatch {
+            name = "librewolf-bin-unwrapped: 151.0.1-2 -> 151.0.4-1";
+            url = "https://github.com/NixOS/nixpkgs/pull/531055.patch";
+            hash = "sha256-BVszJcxP7uoccGqDFzV5idl8ierDkomz5JmKwAc6lqI=";
+          })
           /*
             # unsure
             (fetchpatch {
