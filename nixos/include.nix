@@ -264,7 +264,7 @@ upper
     pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs-slim; };
     antlr = pkgs.antlr.override { jre = program.jre; };
     librewolf' =
-      (if config.use_librewolf_bin then pkgs.librewolf-bin else pkgs.librewolf).override
+      (if config.use_librewolf_bin then pkgs'.librewolf-bin else pkgs'.librewolf).override
         (old: {
           extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
         });
@@ -272,7 +272,6 @@ upper
   };
 
   pkgs' = import inputs.nixpkgs {
-    config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [ inputs.nur.overlays.default ];
   };
