@@ -106,14 +106,13 @@ in
           */
         ];
       };
-      # what is self - https://discourse.nixos.org/t/who-is-self-in-flake-outputs/31859
       nixpkgs =
         (import "${nixpkgs-drv}/flake.nix").outputs {
           self = nixpkgs;
         }
         // {
           outPath = toString nixpkgs-drv;
-          # fpr https://github.com/hercules-ci/flake-parts/blob/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb/modules/perSystem.nix#L113
+          # for https://github.com/hercules-ci/flake-parts/blob/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb/modules/perSystem.nix#L113
           _type = "flake";
         };
       nixos-avf-drv = pkgs.applyPatches {

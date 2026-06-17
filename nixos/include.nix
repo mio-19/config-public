@@ -442,7 +442,29 @@ upper
 
   cudaSupport = osConfig.nixpkgs.config.cudaSupport or false;
 
-  pkgs-pin = import inputs.nixpkgs-pin {
+  nixpkgsPatch =
+    nixpkgs0:
+    let
+      nixpkgs-drv = pkgs.applyPatches {
+        name = "nixpkgs-patched";
+        src = nixpkgs0;
+        patches = with pkgs; [
+          ../0001-hide-x86_64DarwinDeprecationWarning.patch
+        ];
+      };
+      nixpkgs =
+        (import "${nixpkgs-drv}/flake.nix").outputs {
+          self = nixpkgs;
+        }
+        // {
+          outPath = toString nixpkgs-drv;
+          # for https://github.com/hercules-ci/flake-parts/blob/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb/modules/perSystem.nix#L113
+          _type = "flake";
+        };
+    in
+    nixpkgs;
+
+  pkgs-pin = import (nixpkgsPatch inputs.nixpkgs-pin) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -450,7 +472,7 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-pin2 = import inputs.nixpkgs-pin2 {
+  pkgs-pin2 = import (nixpkgsPatch inputs.nixpkgs-pin2) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -458,7 +480,7 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-pin3 = import inputs.nixpkgs-pin3 {
+  pkgs-pin3 = import (nixpkgsPatch inputs.nixpkgs-pin3) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -466,7 +488,7 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-new = import inputs.nixpkgs-new {
+  pkgs-new = import (nixpkgsPatch inputs.nixpkgs-new) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -481,7 +503,7 @@ upper
         pkgs
       else
     */
-    import inputs.nixpkgs {
+    import (nixpkgsPatch inputs.nixpkgs) {
       config = osConfig.nixpkgs.config // {
         cudaSupport = false;
       };
@@ -494,7 +516,7 @@ upper
     if (!(osConfig.nixpkgs.config.cudaSupport or false)) then
       pkgs-pin
     else
-      import inputs.nixpkgs-pin {
+      import (nixpkgsPatch inputs.nixpkgs-pin) {
         config = osConfig.nixpkgs.config // {
           cudaSupport = false;
         };
@@ -507,7 +529,7 @@ upper
     if (!(osConfig.nixpkgs.config.cudaSupport or false)) then
       pkgs-new
     else
-      import inputs.nixpkgs-new {
+      import (nixpkgsPatch inputs.nixpkgs-new) {
         config = osConfig.nixpkgs.config // {
           cudaSupport = false;
         };
@@ -516,28 +538,28 @@ upper
           inputs.nur.overlays.default
         ];
       };
-  pkgs-small = import inputs.nixpkgs-small {
+  pkgs-small = import (nixpkgsPatch inputs.nixpkgs-small) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
       inputs.nur.overlays.default
     ];
   };
-  pkgs-unstable = import inputs.nixpkgs-unstable {
+  pkgs-unstable = import (nixpkgsPatch inputs.nixpkgs-unstable) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-489506 = import inputs.nixpkgs-489506 {
+  pkgs-489506 = import (nixpkgsPatch inputs.nixpkgs-489506) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
       inputs.nur.overlays.default
     ];
   };
-  pkgs-openclaw = import inputs.nixpkgs {
+  pkgs-openclaw = import (nixpkgsPatch inputs.nixpkgs) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -551,7 +573,7 @@ upper
     ];
   };
   # needs qtwebengine-5.15.19, don't compile from source code.
-  pkgs-qtwebengine5 = import inputs.nixpkgs {
+  pkgs-qtwebengine5 = import (nixpkgsPatch inputs.nixpkgs) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
