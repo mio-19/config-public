@@ -123,7 +123,7 @@ upper
     yarn-berry = pkgs.yarn-berry.override { nodejs = nodejs; };
     antlr = pkgs.antlr.override { jre = program.jre; };
     librewolf' = pkgs.librewolf.override (old: {
-      extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
+      extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
     });
   };
   script = {

@@ -208,7 +208,7 @@ upper
         # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
         # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
         # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
-        extraPrefs = librewolf_prefs + ''
+        extraPrefs = librewolf_customize_prefs + ''
           lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
           lockPref("widget.use-xdg-desktop-portal.location", 1);
           lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
@@ -226,7 +226,7 @@ upper
         # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
         # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
         # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
-        extraPrefs = librewolf_prefs + ''
+        extraPrefs = librewolf_customize_prefs + ''
           lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
           lockPref("widget.use-xdg-desktop-portal.location", 1);
           lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
@@ -266,7 +266,7 @@ upper
     librewolf' =
       (if config.use_librewolf_bin then pkgs.librewolf-bin else pkgs.librewolf).override
         (old: {
-          extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
+          extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
         });
     betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
   };

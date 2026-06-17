@@ -215,7 +215,7 @@ import ./customize.nix args
     || (lib.hasPrefix "runtime." (lib.getName pkg) && lib.hasInfix "Microsoft." (lib.getName pkg))
     || lib.hasPrefix "VBoxGuestAdditions_" (lib.getName pkg);
 
-  librewolf_prefs = ''
+  librewolf_customize_prefs = ''
     // Don't remove data on exit
     pref("privacy.sanitize.sanitizeOnShutdown", false);
     pref("privacy.clearOnShutdown.history", false);
