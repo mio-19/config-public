@@ -33,6 +33,12 @@ with _include;
     default = pkgs.stdenv.isx86_64;
     description = "use betterbird instead of thunderbird.";
   };
+  options.use_librewolf_bin = lib.mkOption {
+    type = lib.types.bool;
+    # used to be  # pkgs.librewolf == pkgs.librewolf-bin
+    default = false; # just about having  binary cache or not
+    description = "use librewolf-bin instead of building from source.";
+  };
   options.compile_gram = lib.mkOption {
     type = lib.types.bool;
     default = stdenv.isLinux && stdenv.isx86_64 && !config.v2;

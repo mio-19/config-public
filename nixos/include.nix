@@ -150,10 +150,7 @@ upper
       }
     );
     librewolf_for_firejail =
-      if (pkgs.librewolf == pkgs.librewolf-bin) then
-        librewolf_for_firejail_bin
-      else
-        librewolf_for_firejail_src;
+      if config.use_librewolf_bin then librewolf_for_firejail_bin else librewolf_for_firejail_src;
     librewolf_for_firejail_bin = cleanPkg (
       wrapFirefox librewolf-bin-unwrapped {
         # from nixpkgs
@@ -196,10 +193,7 @@ upper
       }
     );
     librewolf'_for_firejail =
-      if (pkgs.librewolf == pkgs.librewolf-bin) then
-        librewolf'_for_firejail_bin
-      else
-        librewolf'_for_firejail_src;
+      if config.use_librewolf_bin then librewolf'_for_firejail_bin else librewolf'_for_firejail_src;
     librewolf'_for_firejail_bin = cleanPkg (
       wrapFirefox librewolf-bin-unwrapped {
         # from nixpkgs
@@ -269,9 +263,11 @@ upper
     nodejs-slim = pkgs.nodejs-slim_latest;
     pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs-slim; };
     antlr = pkgs.antlr.override { jre = program.jre; };
-    librewolf' = pkgs-nocuda.librewolf.override (old: {
-      extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
-    });
+    librewolf' =
+      (if config.use_librewolf_bin then pkgs.librewolf-bin else pkgs.librewolf).override
+        (old: {
+          extraPrefs = (old.extraPrefs or "") + librewolf_prefs;
+        });
     betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
   };
 
