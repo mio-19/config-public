@@ -203,7 +203,7 @@ with _include;
   #nixpkgs.config.allowAliases = false;
 
   nixpkgs.config.permittedInsecurePackages =
-    with pkgs';
+    with pkgs;
     map (pkg: pkg.name) [
       librewolf
       librewolf-unwrapped
