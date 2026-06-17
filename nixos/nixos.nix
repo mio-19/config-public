@@ -90,6 +90,11 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/531055.patch";
             hash = "sha256-PoKwdFNSwz3biaKdwUyiyWtpsJb2+tEQ3IpWgE4s8Q4=";
           })
+          (fetchpatch {
+            name = "nixos/sniffnet: install package when enabled";
+            url = "https://github.com/NixOS/nixpkgs/pull/532814.patch";
+            hash = "sha256-Eg/XXjDcAwu8xWf/rti+R1vCNyB8Vt6EVOODIE/ceGE=";
+          })
           /*
             # unsure
             (fetchpatch {
