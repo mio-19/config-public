@@ -298,5 +298,9 @@ in
     }
   '';
 
+  home.file.".config/git/ignore".text = lib.optionalString pkgs.stdenv.isDarwin ''
+    .DS_Store
+  '';
+
   home.stateVersion = lib.mkDefault "25.11";
 }
