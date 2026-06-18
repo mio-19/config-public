@@ -72,6 +72,7 @@ with _include;
       nur.repos.mio.pdf2pptx
       easyeda2kicad
       interactive-html-bom
+      diffoscope
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
     ])
     ++ (map cleanPkg [
