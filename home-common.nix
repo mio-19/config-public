@@ -218,24 +218,26 @@ in
     };
   */
 
-  # https://blog.jetbrains.com/platform/2024/07/wayland-support-preview-in-2024-2/
-  home.file.".config/JetBrains/IntelliJIdea2025.1/idea64.vmoptions" = lib.mkIf pkgs.stdenv.isLinux {
-    text = ''
-      -Dawt.toolkit.name=WLToolkit
-    '';
-  };
-  home.file.".config/JetBrains/IdeaIC2025.1/idea64.vmoptions" = lib.mkIf pkgs.stdenv.isLinux {
-    text = ''
-      -Dawt.toolkit.name=WLToolkit
-    '';
-  };
-  home.file.".config/JetBrains/JetBrainsGateway2025.2/gateway64.vmoptions" =
-    lib.mkIf pkgs.stdenv.isLinux
-      {
-        text = ''
-          -Dawt.toolkit.name=WLToolkit
-        '';
-      };
+  /*
+    # https://blog.jetbrains.com/platform/2024/07/wayland-support-preview-in-2024-2/
+    home.file.".config/JetBrains/IntelliJIdea2025.1/idea64.vmoptions" = lib.mkIf pkgs.stdenv.isLinux {
+      text = ''
+        -Dawt.toolkit.name=WLToolkit
+      '';
+    };
+    home.file.".config/JetBrains/IdeaIC2025.1/idea64.vmoptions" = lib.mkIf pkgs.stdenv.isLinux {
+      text = ''
+        -Dawt.toolkit.name=WLToolkit
+      '';
+    };
+    home.file.".config/JetBrains/JetBrainsGateway2025.2/gateway64.vmoptions" =
+      lib.mkIf pkgs.stdenv.isLinux
+        {
+          text = ''
+            -Dawt.toolkit.name=WLToolkit
+          '';
+        };
+  */
 
   #programs.helix = {
   #  enable = true;
