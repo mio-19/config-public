@@ -38,6 +38,7 @@ with _include;
     lm_sensors
     cryptsetup
     parted
+    dmidecode
   ];
 
   networking = {
