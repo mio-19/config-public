@@ -23,6 +23,9 @@ in
   ];
 
   programs.git = {
+    ignores = lib.optionals pkgs.stdenv.isDarwin [
+      ".DS_Store"
+    ];
     enable = true;
     lfs.enable = true;
     settings = {
@@ -296,10 +299,6 @@ in
         };
       };
     }
-  '';
-
-  home.file.".config/git/ignore".text = lib.optionalString pkgs.stdenv.isDarwin ''
-    .DS_Store
   '';
 
   home.stateVersion = lib.mkDefault "25.11";
