@@ -601,10 +601,6 @@ upper
     );
   is-jovian = osConfig.jovian.steam.enable or false;
 
-  hasAntigravity = builtins.any (
-    p: builtins.match ".*antigravity.*" (lib.getName p) != null
-  ) osConfig.environment.systemPackages;
-
   kdeDMEnabled =
     osConfig.services.displayManager.sddm.enable
     || osConfig.services.displayManager.plasma-login-manager.enable;

@@ -6,7 +6,7 @@
   with-zen-browser ? false,
   osConfig,
   ...
-}:
+}@args:
 let
   commonExtensions =
     with pkgs;
@@ -41,12 +41,7 @@ let
       vscode-extensions.platformio.platformio-vscode-ide
       nix-vscode-extensions.vscode-marketplace.ms-vscode.cpptools # depended by platformio-vscode-ide # not available from nix-vscode-extensions on darwin
     ];
-  hasAntigravity = builtins.any (p: builtins.match ".*antigravity.*" (lib.getName p) != null) (
-    if (pkgs.stdenv.isLinux) then osConfig.environment.systemPackages else [ ]
-  );
-  hasCursor = builtins.any (p: builtins.match ".*cursor.*" (lib.getName p) != null) (
-    if (pkgs.stdenv.isLinux) then osConfig.environment.systemPackages else [ ]
-  );
+  inherit (import ./include.nix args) hasAntigravity hasCursor;
 in
 {
   imports = [ ./home-cli.nix ];
