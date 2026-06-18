@@ -44,6 +44,9 @@ let
   hasAntigravity = builtins.any (p: builtins.match ".*antigravity.*" (lib.getName p) != null) (
     if (pkgs.stdenv.isLinux) then osConfig.environment.systemPackages else [ ]
   );
+  hasCursor = builtins.any (p: builtins.match ".*cursor.*" (lib.getName p) != null) (
+    if (pkgs.stdenv.isLinux) then osConfig.environment.systemPackages else [ ]
+  );
 in
 {
   imports = [ ./home-cli.nix ];
@@ -173,6 +176,16 @@ in
 
     profiles.default = {
       enableExtensionUpdateCheck = false;
+      extensions = with pkgs; commonExtensions;
+      userSettings = config.programs.vscode.profiles.default.userSettings;
+    };
+  };
+  programs.cursor = {
+    enable = hasCursor;
+    package = null;
+
+    profiles.default = {
+      enableUpdateCheck = false;
       extensions = with pkgs; commonExtensions;
       userSettings = config.programs.vscode.profiles.default.userSettings;
     };
