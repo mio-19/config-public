@@ -386,7 +386,7 @@ with _include;
   security.sudo.extraConfig = "Defaults timestamp_timeout=120";
 
   # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501/9
-  security.unprivilegedUsernsClone = true;
+  #security.unprivilegedUsernsClone = true;
 
   # /nix/store/9m6xh63j8mvragnhra8k7rchwxldcrry-systemd-258.2/share/polkit-1/rules.d/10-systemd-logind-root-ignore-inhibitors.rules.example
   security.polkit.extraConfig = ''
