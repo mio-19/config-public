@@ -9,7 +9,7 @@
   specialisation.rc = {
     configuration = {
       system.nixos.tags = [ "rc" ];
-      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-rc;
+      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-rc-gcc;
       boot.zfs.package = lib.mkForce pkgs.zfs_cachyos;
       virtualisation.virtualbox.host.enable = lib.mkForce false;
       /*
