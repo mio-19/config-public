@@ -4,8 +4,47 @@
   pkgs,
   lib,
   with-zen-browser ? false,
+  osConfig,
   ...
 }:
+let
+  commonExtensions =
+    with pkgs;
+    [
+      # also available from nixpkgs vscode-extensions. :
+      #neveruse#nix-vscode-extensions.vscode-marketplace.scalameta.metals
+      nix-vscode-extensions.vscode-marketplace.scala-lang.scala
+      nix-vscode-extensions.vscode-marketplace.haskell.haskell
+      nix-vscode-extensions.vscode-marketplace.justusadam.language-haskell # haskell.haskell really depends on this??
+      nix-vscode-extensions.vscode-marketplace.tomoki1207.pdf
+      #nix-vscode-extensions.vscode-marketplace.bbenoist.nix
+      nix-vscode-extensions.vscode-marketplace.jnoortheen.nix-ide
+      nix-vscode-extensions.vscode-marketplace.myriad-dreamin.tinymist
+      nix-vscode-extensions.vscode-marketplace.chenglou92.rescript-vscode
+      nix-vscode-extensions.vscode-marketplace.banacorn.agda-mode
+      nix-vscode-extensions.vscode-marketplace.davidanson.vscode-markdownlint
+      nix-vscode-extensions.vscode-marketplace.ms-vscode.hexeditor
+      nix-vscode-extensions.vscode-marketplace.rooveterinaryinc.roo-cline
+      # nix-vscode-extensions.vscode-marketplace. only:
+      nix-vscode-extensions.vscode-marketplace.openai.chatgpt
+
+      (
+        if pkgs.stdenv.isAarch64 && pkgs.stdenv.isDarwin then
+          vscode-extensions.eamodio.gitlens # https://github.com/NixOS/nixpkgs/issues/462082
+        else
+          nix-vscode-extensions.vscode-marketplace.eamodio.gitlens
+      )
+    ]
+    ++ lib.optionals (!(pkgs.stdenv.isDarwin)) [
+      # pkgs.stdenv.isx86_64 &&
+      # not supported on x86_64-darwin and aarch64-darwin?
+      vscode-extensions.platformio.platformio-vscode-ide
+      nix-vscode-extensions.vscode-marketplace.ms-vscode.cpptools # depended by platformio-vscode-ide # not available from nix-vscode-extensions on darwin
+    ];
+  hasAntigravity = builtins.any (p: builtins.match ".*antigravity.*" (lib.getName p) != null) (
+    if (pkgs.stdenv.isLinux) then osConfig.environment.systemPackages else [ ]
+  );
+in
 {
   imports = [ ./home-cli.nix ];
   programs.zed-editor = {
@@ -64,7 +103,8 @@
       enableUpdateCheck = false;
       extensions =
         with pkgs;
-        [
+        commonExtensions
+        ++ [
           # sync better if we use from vscode-extensions. instead of nix-vscode-extensions.vscode-marketplace. : they require hardcoded vscode verion cannot new or old by even 1
           vscode-extensions.github.copilot-chat
           vscode-extensions.ms-vscode-remote.vscode-remote-extensionpack
@@ -73,35 +113,6 @@
           vscode-extensions.ms-vscode-remote.remote-ssh-edit
           vscode-extensions.ms-vscode-remote.remote-containers
           vscode-extensions.ms-vscode.remote-explorer
-          # also available from nixpkgs vscode-extensions. :
-          #neveruse#nix-vscode-extensions.vscode-marketplace.scalameta.metals
-          nix-vscode-extensions.vscode-marketplace.scala-lang.scala
-          nix-vscode-extensions.vscode-marketplace.haskell.haskell
-          nix-vscode-extensions.vscode-marketplace.justusadam.language-haskell # haskell.haskell really depends on this??
-          nix-vscode-extensions.vscode-marketplace.tomoki1207.pdf
-          #nix-vscode-extensions.vscode-marketplace.bbenoist.nix
-          nix-vscode-extensions.vscode-marketplace.jnoortheen.nix-ide
-          nix-vscode-extensions.vscode-marketplace.myriad-dreamin.tinymist
-          nix-vscode-extensions.vscode-marketplace.chenglou92.rescript-vscode
-          nix-vscode-extensions.vscode-marketplace.banacorn.agda-mode
-          nix-vscode-extensions.vscode-marketplace.davidanson.vscode-markdownlint
-          nix-vscode-extensions.vscode-marketplace.ms-vscode.hexeditor
-          nix-vscode-extensions.vscode-marketplace.rooveterinaryinc.roo-cline
-          # nix-vscode-extensions.vscode-marketplace. only:
-          nix-vscode-extensions.vscode-marketplace.openai.chatgpt
-
-          (
-            if pkgs.stdenv.isAarch64 && pkgs.stdenv.isDarwin then
-              vscode-extensions.eamodio.gitlens # https://github.com/NixOS/nixpkgs/issues/462082
-            else
-              nix-vscode-extensions.vscode-marketplace.eamodio.gitlens
-          )
-        ]
-        ++ lib.optionals (!(pkgs.stdenv.isDarwin)) [
-          # pkgs.stdenv.isx86_64 &&
-          # not supported on x86_64-darwin and aarch64-darwin?
-          vscode-extensions.platformio.platformio-vscode-ide
-          nix-vscode-extensions.vscode-marketplace.ms-vscode.cpptools # depended by platformio-vscode-ide # not available from nix-vscode-extensions on darwin
         ];
       userSettings = {
         "git.enableSmartCommit" = true;
@@ -154,6 +165,16 @@
           "scminput" = true;
         };
       };
+    };
+  };
+  programs.antigravity = {
+    enable = hasAntigravity;
+    package = null;
+
+    profiles.default = {
+      enableExtensionUpdateCheck = false;
+      extensions = with pkgs; commonExtensions;
+      userSettings = config.programs.vscode.profiles.default.userSettings;
     };
   };
 
