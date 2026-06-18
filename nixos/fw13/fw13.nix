@@ -174,8 +174,8 @@ in
   services.colord.enable = true;
   environment.etc."color/icc/BOE_CQ_NE135FBM_N41_03.icm".source = ./BOE_CQ_______NE135FBM_N41_03.icm;
 
-  programs.ryzen-monitor-ng.enable = (!(builtins.any (tag: tag == "rc") config.system.nixos.tags));
-  hardware.cpu.amd.ryzen-smu.enable = (!(builtins.any (tag: tag == "rc") config.system.nixos.tags));
+  programs.ryzen-monitor-ng.enable = true;
+  hardware.cpu.amd.ryzen-smu.enable = true;
 
   # https://www.reddit.com/r/framework/comments/17d6pjy/comment/k5uup6a/
   boot.blacklistedKernelModules = [
