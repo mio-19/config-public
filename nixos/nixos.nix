@@ -121,6 +121,12 @@ in
             hash = "sha256-/fm1s8WnmZmGZ9pN/qBj/4998cBjShPVTii4qXsLZvE=";
             derivationArgs.allowSubstitutes = false;
           })
+          (fetchpatch {
+            name = "nixos/bash: Reset title bar only for interactive shells";
+            url = "https://github.com/NixOS/nixpkgs/pull/521688.patch";
+            hash = "sha256-sD9sjD+GVoAjMe6gQjJ18Z4pYvWi2xjTdukaQBSm/Ao=";
+            derivationArgs.allowSubstitutes = false;
+          })
           /*
             # unsure
             (fetchpatch {
