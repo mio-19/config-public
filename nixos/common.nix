@@ -14,6 +14,7 @@ with _include;
   _module.args._include = _include;
 
   imports = [
+    ./nix-ld.nix
     ./nixpkgs-workaround.nix
     ./customize.nix
     ./selector4nix.nix
