@@ -16,4 +16,10 @@ in
       enableGitIntegration = true;
     };
   };
+
+  config.services = lib.optionalAttrs (options ? vscode-server) {
+    vscode-server.enable = true;
+    #vscode-server.enableFHS = true;
+    #vscode-server.nodejsPackage = pkgs.nodejs_latest;
+  };
 }
