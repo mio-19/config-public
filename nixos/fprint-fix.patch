@@ -3,7 +3,52 @@ Rebased on libfprint v1.94.10 from wvhulle/libfprint kill-without-clean branch:
 - https://codeberg.org/wvhulle/libfprint/commit/a59e66056e23
 - https://codeberg.org/wvhulle/libfprint/commit/d89514f76e46
 - https://github.com/NixOS/nixpkgs/issues/432276
+Goodix MOC probe uses the same serial retry/fallback pattern (27c6:609c).
 
+diff --git a/libfprint/drivers/goodixmoc/goodix.c b/libfprint/drivers/goodixmoc/goodix.c
+--- a/libfprint/drivers/goodixmoc/goodix.c
++++ b/libfprint/drivers/goodixmoc/goodix.c
+@@ -1357,18 +1357,31 @@ gx_fp_probe (FpDevice *device)
+     }
+   else
+     {
+-      serial = g_usb_device_get_string_descriptor (usb_dev,
+-                                                   g_usb_device_get_serial_number_index (usb_dev),
+-                                                   &error);
++      gint retry;
+ 
+-      if (serial && !g_str_has_suffix (serial, "B0"))
+-        fp_warn ("Device with serial %s not supported", serial);
+-      if (error)
++      for (retry = 0; retry < 3; retry++)
+         {
+-          g_usb_device_release_interface (fpi_device_get_usb_device (FP_DEVICE (device)),
+-                                          0, 0, NULL);
+-          goto err_close;
++          g_clear_error (&error);
++          g_clear_pointer (&serial, g_free);
++          serial = g_usb_device_get_string_descriptor (usb_dev,
++                                                       g_usb_device_get_serial_number_index (usb_dev),
++                                                       &error);
++          if (serial && serial[0] != '\0')
++            break;
++
++          g_usleep (500 * 1000 * (1 << retry));
+         }
++
++      if (serial && !g_str_has_suffix (serial, "B0"))
++        fp_warn ("Device with serial %s not supported", serial);
++    }
++
++  if (!serial || serial[0] == '\0')
++    {
++      fp_warn ("Could not read device serial number, fingerprint matching may fail");
++      g_clear_error (&error);
++      g_clear_pointer (&serial, g_free);
++      serial = g_strdup ("UNKNOWN-SERIAL");
+     }
+   productid = g_usb_device_get_pid (usb_dev);
+   switch (productid)
 diff --git a/libfprint/drivers/synaptics/synaptics.c b/libfprint/drivers/synaptics/synaptics.c
 --- a/libfprint/drivers/synaptics/synaptics.c
 +++ b/libfprint/drivers/synaptics/synaptics.c
