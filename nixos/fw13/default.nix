@@ -71,7 +71,7 @@ with _include;
 
   boot.zfs.package = pkgs.zfs_cachyos;
   #boot.kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; }; # gnugrep-x86_64-unknown-linux-gnu-3.12 failed
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
   #boot.kernelPackages = pkgs.linuxPackages_cachyos-lts.cachyOverride { mArch = "ZEN4"; }; # recent many freezes. why? ssd problem again? 6.19.x kernel issue? 6.18 (lts) also has same problem!
   #boot.kernelPackages = pkgs.linuxPackages_6_12;
 
