@@ -10,5 +10,6 @@
   boot.blacklistedKernelModules = [
     "cls_basic"
     "cls_matchall"
+    "em_meta"
   ];
 }
