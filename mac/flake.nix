@@ -160,6 +160,8 @@
                 name = "musescore-evolution: 3.7.0-unstable-2026-03-03 -> 3.7.0-unstable-2026-06-10";
                 url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
                 hash = "sha256-1oHDn8THBGTx55uTmQs12nGOdueqqGK4gfstKKqBElM=";
+                preferLocalBuild = true;
+                derivationArgs.allowSubstitutes = false;
               })
               /*
                 # merge conflicts?
@@ -167,6 +169,8 @@
                   name = "supertuxkart: updates for darwin and app experience";
                   url = "https://github.com/NixOS/nixpkgs/pull/520901.diff";
                   hash = "sha256-mtMxithwskTtp0tnBaFBSI3+Q8OuG6xCNEDYILNx/Kw=";
+                  preferLocalBuild = true;
+                  derivationArgs.allowSubstitutes = false;
                 })
               */
               /*
@@ -175,22 +179,30 @@
                   name = "gimp3: fix Darwin build";
                   url = "https://github.com/NixOS/nixpkgs/pull/513484.diff";
                   hash = "sha256-Y9nqZTtq77SiSSCiqzXEB3+n8MPmDmjjhoB79QpPenc=";
+                  preferLocalBuild = true;
+                  derivationArgs.allowSubstitutes = false;
                 })
               */
               (fetchpatch {
                 name = "tuxguitar: fix launch on darwin when app bundle path contains space";
                 url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
                 hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
+                preferLocalBuild = true;
+                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "makeBinaryWrapper: fix passthru.extractCmd on darwin";
                 url = "https://github.com/NixOS/nixpkgs/pull/483719.diff";
                 hash = "sha256-7mcSsAboehuksmXeSiP13SFDItZ24icjeyehRZiOg8s=";
+                preferLocalBuild = true;
+                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "librewolf-unwrapped: 151.0.2-1 -> 152.0-1";
                 url = "https://github.com/NixOS/nixpkgs/pull/527571.patch";
                 hash = "sha256-f122Yd4h3d53bR7Y5FDe9iaApNUkgOd3X4+YguqDxs0=";
+                preferLocalBuild = true;
+                derivationArgs.allowSubstitutes = false;
               })
               /*
                 # unsure
@@ -198,6 +210,8 @@
                   name = "lib.options: several small performance cleanups";
                   url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
                   hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
+                  preferLocalBuild = true;
+                  derivationArgs.allowSubstitutes = false;
                 })
               */
               # TODO: check https://github.com/NixOS/nixpkgs/pull/507766 vscode-with-extensions: respect macos package bundle's CFBundleExecutable value when generating the wrapper
@@ -206,22 +220,30 @@
                 name = "libfyaml: fixed building issues";
                 url = "https://github.com/NixOS/nixpkgs/pull/515614.patch";
                 hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
+                preferLocalBuild = true;
+                derivationArgs.allowSubstitutes = false;
               })
               /*
                   (fetchpatch {
                     name = "64gram: fix darwin build with Qt 6.11";
                     url = "https://github.com/NixOS/nixpkgs/pull/520733.diff";
                     hash = "sha256-NfKYs4lC4xrtnLlqjShvkLVKERShGczWg7kqKut95oM=";
+                    preferLocalBuild = true;
+                    derivationArgs.allowSubstitutes = false;
                   })
                   (fetchpatch {
                     name = "keepassxc: fix pcsc for darwin";
                     url = "https://github.com/NixOS/nixpkgs/pull/520328.diff";
                     hash = "sha256-amWCahSLE6Lvru9R3IesKr1no5Gc+kd+XyBuKGc/j3Q=";
+                    preferLocalBuild = true;
+                    derivationArgs.allowSubstitutes = false;
                   })
                 (fetchpatch {
                   name = "remmina: fix missing sidebar icons on macOS";
                   url = "https://github.com/NixOS/nixpkgs/pull/514651.patch";
                   hash = "sha256-T5mr9fzVAyH4SZOpP4wv3TliGBEKdLQI8jwafJuLbKU=";
+                  preferLocalBuild = true;
+                  derivationArgs.allowSubstitutes = false;
                 })
               */
             ];

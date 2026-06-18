@@ -23,16 +23,22 @@ in
             name = "musescore-evolution: 3.7.0-unstable-2026-03-03 -> 3.7.0-unstable-2026-06-10";
             url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
             hash = "sha256-1oHDn8THBGTx55uTmQs12nGOdueqqGK4gfstKKqBElM=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
             hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "nixos/hardware/printers: make ensure-printers partOf cups";
             url = "https://github.com/NixOS/nixpkgs/pull/525012.diff";
             hash = "sha256-cnGOdoUPZ1EMB4gO/eGu6m9/KRLpPNymLionMPrkM5U=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           # systemd-boot: add options for entry naming and date format
           # https://github.com/NixOS/nixpkgs/pull/516959
@@ -42,21 +48,29 @@ in
             name = "nixos/antigravity: init module";
             url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
             hash = "sha256-lIltTsEyk05p84h4Iml/aGHiWivI1YIM3k0u7O4rr6w=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "doc: add NFS file systems documentation";
             url = "https://github.com/NixOS/nixpkgs/pull/509169.diff";
             hash = "sha256-Hg2auaXO47mnKKUrpXqcmrCcuLk9eJ6CqEZsOvDXTrc=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
             url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
             hash = "sha256-fycyXDGD8tcFFZyQyFUgkRCbQPzENS6HcwKFzyRl0p8=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "nixos/wireless: add support for setting wireless regdom";
             url = "https://github.com/NixOS/nixpkgs/pull/528908.patch";
             hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           # PR .patch URLs track branch head, so the hash changes when the PR is updated.
           # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
@@ -64,36 +78,50 @@ in
             name = "nixos/security/wrappers: avoid linux-headers in closure";
             url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
             hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "nixos/systemd-boot: defer boot file garbage collection";
             url = "https://github.com/NixOS/nixpkgs/pull/531008.diff";
             hash = "sha256-H4NMS9eDsJ1zM6gLQdZtyyBYumjKArrCFDcWeE+IOJQ=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "mousam: 1.4.2 -> 2.0.2";
             url = "https://github.com/NixOS/nixpkgs/pull/531624.patch";
             hash = "sha256-euYP3ROWV0kBKQB2tgSUvFuxldcnRXOpwvGsma5sFwY=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "switch-to-configuration-ng: Handle dbus errors & lack of messages";
             url = "https://github.com/NixOS/nixpkgs/pull/528308.patch";
             hash = "sha256-n0Czi4Kr3Mutu+cEbadpMp63Bx4A9iwKF7CevOBKccI=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "librewolf-unwrapped: 151.0.2-1 -> 152.0-1";
             url = "https://github.com/NixOS/nixpkgs/pull/527571.patch";
             hash = "sha256-f122Yd4h3d53bR7Y5FDe9iaApNUkgOd3X4+YguqDxs0=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "librewolf-bin-unwrapped: 151.0.1-2 -> 152.0-1";
             url = "https://github.com/NixOS/nixpkgs/pull/531055.patch";
             hash = "sha256-PoKwdFNSwz3biaKdwUyiyWtpsJb2+tEQ3IpWgE4s8Q4=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
             name = "nixos/sniffnet: install package when enabled";
             url = "https://github.com/NixOS/nixpkgs/pull/532814.patch";
             hash = "sha256-Eg/XXjDcAwu8xWf/rti+R1vCNyB8Vt6EVOODIE/ceGE=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
           /*
             # unsure
@@ -101,11 +129,15 @@ in
               name = "lib.options: several small performance cleanups";
               url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
               hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
+              preferLocalBuild = true;
+              derivationArgs.allowSubstitutes = false;
             })
             (fetchpatch {
               name = "lib.modules: small optimizations";
               url = "https://github.com/NixOS/nixpkgs/pull/517881.diff";
               hash = "sha256-PQoIfuw+GjtN8nHqc/vUEpbrIS+3IUxkxHzx2Ctjolw=";
+              preferLocalBuild = true;
+              derivationArgs.allowSubstitutes = false;
             })
           */
           /*
@@ -114,6 +146,8 @@ in
               name = "linuxPackages.ntfs: init at 0-unstable-2026-05-03, nixos/ntfs: add option to use new NTFS(NTFSPLUS) module";
               url = "https://github.com/NixOS/nixpkgs/pull/519075.patch";
               hash = "sha256-E6ZRUd3nXN6AxNzUt1MC3jE1AVL7py/tnLUkd7UgN+o=";
+              preferLocalBuild = true;
+              derivationArgs.allowSubstitutes = false;
             })
           */
         ];
@@ -135,6 +169,8 @@ in
             name = "Get rid of deprecation warnings on nixos-unstable";
             url = "https://github.com/nix-community/nixos-avf/pull/39.patch";
             hash = "sha256-PGd0Bk+tgkXXWAcUyJg7f+XREvMo84/tdGWk2auAgM0=";
+            preferLocalBuild = true;
+            derivationArgs.allowSubstitutes = false;
           })
         ];
       };
