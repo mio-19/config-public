@@ -19,6 +19,7 @@ with _include;
     ./customize.nix
     ./selector4nix.nix
     ./sudo-fprint-ssh-bypass.nix
+    ./fprint-fix.nix
     ./bandaid
     ./ccache.nix
     ./options.nix

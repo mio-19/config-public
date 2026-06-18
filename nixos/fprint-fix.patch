@@ -1,0 +1,69 @@
+Rebased on libfprint v1.94.10 from wvhulle/libfprint kill-without-clean branch:
+- https://codeberg.org/wvhulle/libfprint/commit/1a27f17253ec604eb73074befca316b9aba79699
+- https://codeberg.org/wvhulle/libfprint/commit/a59e66056e23
+- https://codeberg.org/wvhulle/libfprint/commit/d89514f76e46
+- https://github.com/NixOS/nixpkgs/issues/432276
+
+diff --git a/libfprint/drivers/synaptics/synaptics.c b/libfprint/drivers/synaptics/synaptics.c
+--- a/libfprint/drivers/synaptics/synaptics.c
++++ b/libfprint/drivers/synaptics/synaptics.c
+@@ -1211,11 +1211,33 @@ prob_msg_cb (FpiDeviceSynaptics *self,
+     }
+ 
+   if (g_strcmp0 (g_getenv ("FP_DEVICE_EMULATION"), "1") == 0)
+-    serial = g_strdup ("emulated-device");
++    {
++      serial = g_strdup ("emulated-device");
++    }
+   else
+-    serial = g_usb_device_get_string_descriptor (usb_dev,
+-                                                 g_usb_device_get_serial_number_index (usb_dev),
+-                                                 &err);
++    {
++      gint retry;
++
++      for (retry = 0; retry < 3; retry++)
++        {
++          g_clear_error (&err);
++          g_clear_pointer (&serial, g_free);
++          serial = g_usb_device_get_string_descriptor (usb_dev,
++                                                       g_usb_device_get_serial_number_index (usb_dev),
++                                                       &err);
++          if (serial && serial[0] != '\0')
++            break;
++
++          g_usleep (500 * 1000 * (1 << retry));
++        }
++    }
++
++  if (!serial || serial[0] == '\0')
++    {
++      fp_warn ("Could not read device serial number, fingerprint matching may fail");
++      g_clear_pointer (&serial, g_free);
++      serial = g_strdup ("UNKNOWN-SERIAL");
++    }
+ 
+   /* BMKT_OPERATION_DENIED is returned if the sensor is already initialized */
+   if (resp->result == BMKT_SUCCESS || resp->result == BMKT_OPERATION_DENIED)
+diff --git a/libfprint/fpi-device.c b/libfprint/fpi-device.c
+--- a/libfprint/fpi-device.c
++++ b/libfprint/fpi-device.c
+@@ -1140,6 +1140,18 @@ fpi_device_probe_complete (FpDevice    *device,
+           priv->device_id = g_strdup (device_id);
+           g_object_notify (G_OBJECT (device), "device-id");
+         }
++      else if (priv->type == FP_DEVICE_TYPE_USB && priv->usb_device)
++        {
++          g_clear_pointer (&priv->device_id, g_free);
++          priv->device_id = g_strdup_printf ("%04x:%04x:%d:%d",
++                                             g_usb_device_get_vid (priv->usb_device),
++                                             g_usb_device_get_pid (priv->usb_device),
++                                             g_usb_device_get_bus (priv->usb_device),
++                                             g_usb_device_get_port_number (priv->usb_device));
++          fp_dbg ("Driver did not provide device_id, using USB topology fallback: %s",
++                  priv->device_id);
++          g_object_notify (G_OBJECT (device), "device-id");
++        }
+       if (device_name)
+         {
+           g_clear_pointer (&priv->device_name, g_free);
