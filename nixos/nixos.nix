@@ -127,6 +127,12 @@ in
             hash = "sha256-sD9sjD+GVoAjMe6gQjJ18Z4pYvWi2xjTdukaQBSm/Ao=";
             derivationArgs.allowSubstitutes = false;
           })
+          (fetchpatch {
+            name = "nixos/fwupd: add enableGrubHook option";
+            url = "https://github.com/NixOS/nixpkgs/pull/521378.patch";
+            hash = "sha256-gzu5MAWLnzqaDafJx4Yc0gc7OmQqsTRxA0N/9lotdbI=";
+            derivationArgs.allowSubstitutes = false;
+          })
           /*
             # unsure
             (fetchpatch {
