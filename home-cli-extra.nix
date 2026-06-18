@@ -19,7 +19,7 @@ in
   };
 
   config.services = lib.optionalAttrs (options ? vscode-server) {
-    vscode-server.enable = !osConfig.nix-ld.enable;
+    vscode-server.enable = !osConfig.programs.nix-ld.enable;
     #vscode-server.enableFHS = true;
     #vscode-server.nodejsPackage = pkgs.nodejs_latest;
   };
