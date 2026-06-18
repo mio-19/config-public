@@ -72,7 +72,7 @@ with _include;
 
   #boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.kernelPackages = pkgs.linuxPackages_cachyos-gcc.cachyOverride {
-    cachyVars = pkgs.linuxPackages_cachyos-lto.kernel.cachyConfig.cachyVars // {
+    cachyVars = pkgs.linuxPackages_cachyos-gcc.kernel.cachyConfig.cachyVars // {
       "_processor_opt" = "GENERIC_V3";
     };
   };
