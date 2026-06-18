@@ -109,6 +109,12 @@ in
             hash = "sha256-Eg/XXjDcAwu8xWf/rti+R1vCNyB8Vt6EVOODIE/ceGE=";
             derivationArgs.allowSubstitutes = false;
           })
+          (fetchpatch {
+            name = "nixos/nix-remote-build: permit non-integer speed factors";
+            url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
+            hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";
+            derivationArgs.allowSubstitutes = false;
+          })
           /*
             # unsure
             (fetchpatch {
