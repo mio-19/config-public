@@ -14,7 +14,7 @@ with _include;
   _module.args._include = _include;
 
   imports = [
-    ./nix-ld.nix
+    ./nix-ld.nix # for fork of vscode remote dev
     ./nixpkgs-workaround.nix
     ./customize.nix
     ./selector4nix.nix
