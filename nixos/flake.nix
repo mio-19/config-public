@@ -10,7 +10,8 @@
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     # IS IT NECESSARY TO DO SO MUCH JUST TO GET KDE PLASMA EARLY
     nixpkgs-small.url = "github:NixOS/nixpkgs/d4fea6b6bfce7b55c6df36fb973205b89d7fe761"; # a commit from nixos-unstable-small
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.follows = "chaotic/nixpkgs";
     nixpkgs.follows = "nixpkgs-small";
     nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
     nixpkgs-pin2.url = "github:NixOS/nixpkgs/9ae611a455b90cf061d8f332b977e387bda8e1ca"; # a commit from nixos-unstable
@@ -60,7 +61,7 @@
     chaotic = {
       #url = "github:lonerOrz/nyx-loner";
       url = "github:chaotic-cx/nyx";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
       inputs.jovian.follows = "jovian";
       inputs.rust-overlay.follows = "rust-overlay";
       inputs.home-manager.follows = "home-manager";
