@@ -49,7 +49,7 @@ with _include;
     ../scx.nix
     ../emulated-arm.nix
     ../harmonia_lan_only_not_public_ip.nix
-    ../rc.nix
+    #../rc.nix
   ];
   nixpkgs.overlays = [
     #inputs.chaotic-pin.overlays.default # try older kernel
