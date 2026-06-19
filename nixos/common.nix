@@ -114,7 +114,7 @@ with _include;
       inherit (pkgs-pin2) ryubing gnome-disk-utility;
       inherit (pkgs-nocuda) freecad; # no binary cache
       inherit (pkgs-unstable) chromium; # no binary cache
-      inherit (pkgs-pin3) pianotrans;
+      inherit (pkgs-pin3) pianotrans nixtamal;
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
