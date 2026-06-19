@@ -38,7 +38,7 @@ jobs:
       continue-on-error: true
     - run: (cd nixos && timeout --signal=KILL 5m nix build .#nixosConfigurations.fw13.config.system.build.toplevel --keep-going --max-jobs 1 --option core 1)
       continue-on-error: true
-    - run: (cd nixos && nix flake update && timeout --signal=KILL 5m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going --max-jobs 1 --option core 1)
+    - run: (cd nixos && nix flake update && timeout --signal=KILL 1m nix build .#nixosConfigurations.ipc.config.system.build.toplevel --keep-going --max-jobs 1 --option core 1)
       continue-on-error: true
-    - run: (cd nixos && nix flake update && timeout --signal=KILL 5m nix build .#nixosConfigurations.fw13.config.system.build.toplevel --keep-going --max-jobs 1 --option core 1)
+    - run: (cd nixos && nix flake update && timeout --signal=KILL 1m nix build .#nixosConfigurations.fw13.config.system.build.toplevel --keep-going --max-jobs 1 --option core 1)
       continue-on-error: true
