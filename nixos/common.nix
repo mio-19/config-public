@@ -115,10 +115,6 @@ with _include;
       #inherit (pkgs-nocuda) freecad; # no binary cache
       inherit (pkgs-unstable)
         chromium
-        zed-editor
-        ollama
-        ollama-cuda
-        freecad
         ; # no binary cache
       inherit (pkgs-pin3) pianotrans nixtamal;
     })
