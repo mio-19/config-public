@@ -92,24 +92,6 @@ in
             derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
-            name = "librewolf-unwrapped: 151.0.2-1 -> 152.0-1";
-            url = "https://github.com/NixOS/nixpkgs/pull/527571.patch";
-            hash = "sha256-f122Yd4h3d53bR7Y5FDe9iaApNUkgOd3X4+YguqDxs0=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
-            name = "librewolf-bin-unwrapped: 151.0.1-2 -> 152.0-1";
-            url = "https://github.com/NixOS/nixpkgs/pull/531055.patch";
-            hash = "sha256-PoKwdFNSwz3biaKdwUyiyWtpsJb2+tEQ3IpWgE4s8Q4=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
-            name = "nixos/sniffnet: install package when enabled";
-            url = "https://github.com/NixOS/nixpkgs/pull/532814.patch";
-            hash = "sha256-Eg/XXjDcAwu8xWf/rti+R1vCNyB8Vt6EVOODIE/ceGE=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
             name = "nixos/nix-remote-build: permit non-integer speed factors";
             url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
             hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";

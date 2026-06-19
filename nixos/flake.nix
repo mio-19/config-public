@@ -7,12 +7,12 @@
     #determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*"; # https://docs.determinate.systems/guides/advanced-installation#nixos
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
-    #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.follows = "nixpkgs-small";
     nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
     nixpkgs-pin2.url = "github:NixOS/nixpkgs/9ae611a455b90cf061d8f332b977e387bda8e1ca"; # a commit from nixos-unstable
-    #nixpkgs-pin3.url = "github:NixOS/nixpkgs/ebc08544afa77957cc348ba72dc490ec73b87f68"; # a commit from nixos-unstable
+    nixpkgs-pin3.url = "github:NixOS/nixpkgs/567a49d1913ce81ac6e9582e3553dd90a955875f"; # a commit from nixos-unstable
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
