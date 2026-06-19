@@ -67,7 +67,7 @@ with _include;
 
   security.allowSimultaneousMultithreading = true;
 
-  virtualisation.virtualbox.host.enable = true; # once stuck on boot
+  #virtualisation.virtualbox.host.enable = true; # once stuck on boot
 
   boot.zfs.package = pkgs.zfs_cachyos;
   #boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; }; # gnugrep-x86_64-unknown-linux-gnu-3.12 failed

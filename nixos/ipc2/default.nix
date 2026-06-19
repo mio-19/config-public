@@ -68,7 +68,7 @@ with _include;
   chaotic.zfs-impermanence-on-shutdown.volume = "${pool}/nixos/local/ephemeral";
 
   virtualisation.vmware.host.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
 
   #boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-gcc.cachyOverride {
