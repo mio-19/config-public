@@ -16,6 +16,19 @@ jobs:
       matrix:
         host: [fw13, husky, ipc, macvirt]
     steps:
+    - name: Maximize build space
+      if: runner.os == 'Linux'
+      uses: mio-19/maximize-build-space@fc881a613ad2a34aca9c9624518214ebc21dfc0c # v10
+      with:
+        root-reserve-mb: 1024
+        swap-size-mb: 18000
+        overprovision-lvm: 'true'
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+        remove-codeql: 'true'
+        remove-docker-images: 'true'
+        build-mount-path: /nix
       - uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
       - uses: nixbuild/nix-quick-install-action@2c9db80fb984ceb1bcaa77cdda3fdf8cfba92035 # v34
         with:
