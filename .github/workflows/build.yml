@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Maximize build space
       if: runner.os == 'Linux'
-      uses: mio-19/maximize-build-space@fc881a613ad2a34aca9c9624518214ebc21dfc0c # v10
+      uses: mio-19/maximize-build-space@751b517c9f4fa92ff0da312d413d6abf01ff5ed3 # patch-1
       with:
         root-reserve-mb: 1024
         swap-size-mb: 18000
