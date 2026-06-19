@@ -71,12 +71,12 @@ with _include;
   virtualisation.virtualbox.host.enable = true;
 
   #boot.kernelPackages = pkgs.linuxPackages_6_12;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-gcc.cachyOverride {
+  boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-gcc.cachyOverride {
     cachyVars = pkgs.linuxPackages_cachyos-gcc.kernel.cachyConfig.cachyVars // {
       "_processor_opt" = "GENERIC_V3";
     };
   };
-  #boot.kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "GENERIC_V3"; };
+  #boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-lto.cachyOverride { mArch = "GENERIC_V3"; };
   boot.zfs.package = pkgs.zfs_cachyos;
   #boot.kernelPackages = pkgs.nur.repos.mio.lib.zfs-latestCompatibleLinuxPackages;
 

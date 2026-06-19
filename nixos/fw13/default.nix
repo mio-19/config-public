@@ -70,13 +70,13 @@ with _include;
   virtualisation.virtualbox.host.enable = true; # once stuck on boot
 
   boot.zfs.package = pkgs.zfs_cachyos;
-  #boot.kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; }; # gnugrep-x86_64-unknown-linux-gnu-3.12 failed
-  boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {
+  #boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; }; # gnugrep-x86_64-unknown-linux-gnu-3.12 failed
+  boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos.cachyOverride {
     cachyVars = pkgs.linuxPackages_cachyos.kernel.cachyConfig.cachyVars // {
       "_processor_opt" = "ZEN4";
     };
   };
-  #boot.kernelPackages = pkgs.linuxPackages_cachyos-lts.cachyOverride { mArch = "ZEN4"; }; # recent many freezes. why? ssd problem again? 6.19.x kernel issue? 6.18 (lts) also has same problem!
+  #boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-lts.cachyOverride { mArch = "ZEN4"; }; # recent many freezes. why? ssd problem again? 6.19.x kernel issue? 6.18 (lts) also has same problem!
   #boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   home-manager.sharedModules = [
