@@ -112,7 +112,6 @@ with _include;
       });
       inherit (pkgs-pin) rpcs3;
       inherit (pkgs-pin2) ryubing gnome-disk-utility;
-      #inherit (pkgs-nocuda) freecad; # no binary cache
       # no binary cache:
       inherit (pkgs-unstable)
         chromium
@@ -120,6 +119,7 @@ with _include;
         ollama
         ollama-cuda
         ;
+      inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
       inherit (pkgs-pin3) pianotrans nixtamal;
     })
     inputs.chaotic.overlays.default
