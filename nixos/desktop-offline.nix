@@ -80,6 +80,7 @@ with _include;
       "cn.lceda.LCEDAPro"
       "app.organicmaps.desktop"
       "io.github.rinigus.PureMaps" # difficult to use
+      "com.google.EarthPro"
       # followings are built from source by flathub:
       "com.giadamusic.Giada" # Home folder read/write access!
     ];
