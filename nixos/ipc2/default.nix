@@ -127,8 +127,8 @@ with _include;
     # https://discourse.nixos.org/t/question-about-grub-and-nodev/37867
     grub.device = "nodev";
     # https://www.reddit.com/r/NixOS/comments/klahwf/comment/kt10tt8
-    #grub.default = "saved";
-    grub.default = "'Windows Boot Manager'";
+    grub.default = "saved";
+    #grub.default = "'Windows Boot Manager'";
     grub.efiSupport = true;
     efi.canTouchEfiVariables = true;
     # https://discourse.nixos.org/t/change-grub-resolution/18273/5
