@@ -24,6 +24,7 @@ with _include;
   environment.systemPackages =
     with pkgs;
     (map hardenedPkg [
+      giada
       motrix-next
       xfce4-terminal
       alacritty
@@ -80,8 +81,9 @@ with _include;
       "cn.lceda.LCEDAPro"
       "app.organicmaps.desktop"
       "io.github.rinigus.PureMaps" # difficult to use
+      "com.google.EarthPro"
       # followings are built from source by flathub:
-      "com.giadamusic.Giada" # Home folder read/write access!
+      #"com.giadamusic.Giada" # Home folder read/write access!
     ];
   };
 

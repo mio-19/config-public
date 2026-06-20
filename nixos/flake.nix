@@ -9,7 +9,7 @@
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     # IS IT NECESSARY TO DO SO MUCH JUST TO GET KDE PLASMA EARLY
-    nixpkgs-small.url = "github:NixOS/nixpkgs/d4fea6b6bfce7b55c6df36fb973205b89d7fe761"; # a commit from nixos-unstable-small
+    nixpkgs-small.url = "github:NixOS/nixpkgs/c8c0b904d406666a948a59d6f52bb44059bc9c24"; # a commit from nixos-unstable-small
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.follows = "chaotic/nixpkgs";
     nixpkgs.follows = "nixpkgs-small";
@@ -188,11 +188,9 @@
     };
     stable-diffusion-webui-nix = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:Janrupf/stable-diffusion-webui-nix/77e5bbc27e72554f0d466ddf0ca1dc602779f9d8";
+      url = "github:Janrupf/stable-diffusion-webui-nix/034b3e961f9c22a62e97b8c7f5d4698b318c23f8";
       #url = "github:mio-19/stable-diffusion-webui-nix/patch-1";
       #inputs.nixpkgs.follows = "nixpkgs";
-      # needs python3.11. needs outdated nixpkgs
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs/3ca49aa290e92b6a885e8c0045033fe2538a4977"; # a commit from nixos-unstable-small
       inputs.flake-utils.follows = "flake-utils";
     };
     nixified-ai = {
@@ -307,6 +305,7 @@
       url = "github:fufexan/nix-gaming";
       inputs.flake-parts.follows = "flake-parts";
       inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-compat.follows = "flake-compat";
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     nix-webapps = {
@@ -351,7 +350,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     globalprotect-openconnect = {
-      url = "github:yuezk/GlobalProtect-openconnect";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:yuezk/GlobalProtect-openconnect/fe55d11fc49bf30341ddc3ac8784b7f49be3ae9c";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";

@@ -120,7 +120,7 @@ with _include;
         ollama-cuda
         ;
       inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
-      inherit (pkgs-pin3) pianotrans nixtamal;
+      inherit (pkgs-pin3') pianotrans nixtamal;
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
