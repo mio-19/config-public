@@ -62,8 +62,6 @@
       #url = "github:lonerOrz/nyx-loner";
       url = "github:chaotic-cx/nyx";
       #inputs.nixpkgs.follows = "nixpkgs";
-      inputs.jovian.follows = "jovian";
-      inputs.rust-overlay.follows = "rust-overlay";
       inputs.home-manager.follows = "home-manager";
     };
     #chaotic.url = "git+https://github.com/mio-19/nyx-loner.git";
