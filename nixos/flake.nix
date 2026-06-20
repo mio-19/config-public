@@ -188,11 +188,9 @@
     };
     stable-diffusion-webui-nix = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:Janrupf/stable-diffusion-webui-nix/77e5bbc27e72554f0d466ddf0ca1dc602779f9d8";
+      url = "github:Janrupf/stable-diffusion-webui-nix/034b3e961f9c22a62e97b8c7f5d4698b318c23f8";
       #url = "github:mio-19/stable-diffusion-webui-nix/patch-1";
       #inputs.nixpkgs.follows = "nixpkgs";
-      # needs python3.11. needs outdated nixpkgs
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs/3ca49aa290e92b6a885e8c0045033fe2538a4977"; # a commit from nixos-unstable-small
       inputs.flake-utils.follows = "flake-utils";
     };
     nixified-ai = {
