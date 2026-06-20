@@ -9,7 +9,7 @@
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     # IS IT NECESSARY TO DO SO MUCH JUST TO GET KDE PLASMA EARLY
-    nixpkgs-small.url = "github:NixOS/nixpkgs/d4fea6b6bfce7b55c6df36fb973205b89d7fe761"; # a commit from nixos-unstable-small
+    nixpkgs-small.url = "github:NixOS/nixpkgs/c8c0b904d406666a948a59d6f52bb44059bc9c24"; # a commit from nixos-unstable-small
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.follows = "chaotic/nixpkgs";
     nixpkgs.follows = "nixpkgs-small";
