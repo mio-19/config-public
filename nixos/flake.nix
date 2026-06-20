@@ -307,6 +307,7 @@
       url = "github:fufexan/nix-gaming";
       inputs.flake-parts.follows = "flake-parts";
       inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-compat.follows = "flake-compat";
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     nix-webapps = {
@@ -351,7 +352,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     globalprotect-openconnect = {
-      url = "github:yuezk/GlobalProtect-openconnect";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:yuezk/GlobalProtect-openconnect/fe55d11fc49bf30341ddc3ac8784b7f49be3ae9c";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
