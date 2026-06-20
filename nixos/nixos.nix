@@ -115,6 +115,12 @@ in
             hash = "sha256-gzu5MAWLnzqaDafJx4Yc0gc7OmQqsTRxA0N/9lotdbI=";
             derivationArgs.allowSubstitutes = false;
           })
+          # https://github.com/NixOS/nixpkgs/issues/442117
+          (fetchpatch {
+            name = "Add deny fprintd PAM auth for su/sudo without tty";
+            url = "https://github.com/joshperry/nixpkgs/commit/e256ef2283759082941ddb6dd422b7d885378db4.patch";
+            hash = "sha256-WeKRwcAvQNhcRAjLtjX+kYX8Mp59TYBjrTQqh7znEkU=";
+          })
           /*
             # unsure
             (fetchpatch {
