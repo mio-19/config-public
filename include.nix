@@ -11,6 +11,7 @@ import ./customize.nix args
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "aapt"
       "binaryninja-free"
       "corefonts"
       "vista-fonts"
