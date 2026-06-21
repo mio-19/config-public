@@ -12,6 +12,10 @@
     ./packet_edit_meme.nix
   ];
 
+    boot.kernelParams = [
+      "init_on_free=1"
+    ];
+
   # https://git.kernel.org/torvalds/c/31e62c2ebbfd
   boot.kernel.sysctl."kernel.yama.ptrace_scope" =
     assert builtins.elem "yama" config.security.lsm;
