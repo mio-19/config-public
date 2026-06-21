@@ -86,12 +86,6 @@ in
             derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
-            name = "switch-to-configuration-ng: Handle dbus errors & lack of messages";
-            url = "https://github.com/NixOS/nixpkgs/pull/528308.patch";
-            hash = "sha256-n0Czi4Kr3Mutu+cEbadpMp63Bx4A9iwKF7CevOBKccI=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
             name = "nixos/nix-remote-build: permit non-integer speed factors";
             url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
             hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";
