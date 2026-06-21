@@ -115,6 +115,24 @@ in
             hash = "sha256-gzu5MAWLnzqaDafJx4Yc0gc7OmQqsTRxA0N/9lotdbI=";
             derivationArgs.allowSubstitutes = false;
           })
+          (fetchpatch {
+            name = "nixos/uki: use config systemd package";
+            url = "https://github.com/NixOS/nixpkgs/pull/530536.patch";
+            hash = "sha256-WzI6D89uVn73NZ7PcQBq/RZbZuepIC+4ilWxg61Y5zM=";
+            derivationArgs.allowSubstitutes = false;
+          })
+          (fetchpatch {
+            name = "nixos/tailscale: order tailscaled after network-online.target";
+            url = "https://github.com/NixOS/nixpkgs/pull/529035.patch";
+            hash = "sha256-ejSZR/46qHycDVwbVV4UjESICT2CTBbJ4J51hasgRs4=";
+            derivationArgs.allowSubstitutes = false;
+          })
+          (fetchpatch {
+            name = "onlyoffice-desktopeditors: 9.1.0 -> 9.4.0";
+            url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
+            hash = "sha256-KDoNbXwwZoz6guOzK4I3bK4shYL+8Mb9YE3TK+819jI=";
+            derivationArgs.allowSubstitutes = false;
+          })
           # https://github.com/NixOS/nixpkgs/issues/442117
           (fetchpatch {
             name = "Add deny fprintd PAM auth for su/sudo without tty";
