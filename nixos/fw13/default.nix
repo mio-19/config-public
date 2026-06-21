@@ -42,7 +42,7 @@ with _include;
     ../extra.nix
     ../desktopextra.nix
     ../desktop-offline.nix
-    ../genai.nix # maybe too much time to compile
+    #../genai.nix # too much time to compile
     ../devcommand.nix
     ../persistentkde.nix
     #../niri
