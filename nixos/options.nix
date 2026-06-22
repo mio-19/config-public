@@ -91,7 +91,7 @@ with _include;
     [
       "big-parallel"
     ]
-    ++ lib.optionals (config.microarch == "v3") [
+    ++ lib.optionals atleastV3 [
       "gccarch-x86-64-v3"
     ]
     ++ lib.optionals atleastV4 [
