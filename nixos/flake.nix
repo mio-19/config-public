@@ -8,7 +8,7 @@
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs-small.url = "github:NixOS/nixpkgs/1745eb556759f12578e02d8a45e782a7b5924e2b"; # a commit from nixos-unstable-small
+    nixpkgs-small.url = "github:NixOS/nixpkgs/e96d96376b17a27b83a184c8c481c13c98db7961"; # a commit from nixos-unstable-small
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.follows = "chaotic/nixpkgs";
     nixpkgs.follows = "nixpkgs-small";
