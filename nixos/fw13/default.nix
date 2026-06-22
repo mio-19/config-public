@@ -27,7 +27,6 @@ with _include;
     ../careless.nix
     ../boot.nix
     #../xrdp.nix
-    ../v3.nix
     #../v3opt.nix # needs too many time to compile
     #../wheel-nopasswd.nix
     #../safe.nix
@@ -54,7 +53,7 @@ with _include;
   nixpkgs.overlays = [
     #inputs.chaotic-pin.overlays.default # try older kernel
   ];
-  v4 = true;
+  microarch = "v4";
   compile_gram = true;
   # DETAILS REMOVED # hardware.facter.reportPath = ./facter.json;
 

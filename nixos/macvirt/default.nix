@@ -125,6 +125,7 @@ in
     pkgs.linuxPackagesFor
       inputs.nixos-apple-silicon.packages.${pkgs.stdenv.hostPlatform.system}.linux-asahi
   );
+  hardware.deviceTree.enable = false;
   boot.kernelParams = [
     "nohibernate" # Current rollback command will break hibernate
   ];

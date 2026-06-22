@@ -21,7 +21,6 @@ with _include;
     ../privacy.nix
     ../careless.nix
     ../boot.nix
-    ../v3.nix
     #../v3opt.nix # needs too many time to compile
     ../wheel-nopasswd.nix
     #../safe.nix
