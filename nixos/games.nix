@@ -133,7 +133,7 @@ in
       pkgs.nur.repos.mio.proton-ge-custom
       #pkgs.luxtorpeda
     ]
-    ++ lib.optionals (config.microarch == "v4") [
+    ++ lib.optionals atleastV4 [
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
     ];
     extraPackages =

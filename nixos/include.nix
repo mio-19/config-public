@@ -624,4 +624,14 @@ upper
     || osConfig.services.displayManager.gdm.enable
     || osConfig.services.xserver.displayManager.lightdm.enable
     || osConfig.services.xserver.enable;
+
+  atleastV3 = lib.elem osConfig.microarch [
+    "v3"
+    "v4"
+    "zen4"
+  ];
+  atleastV4 = lib.elem osConfig.microarch [
+    "v4"
+    "zen4"
+  ];
 }

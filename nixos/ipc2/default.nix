@@ -25,6 +25,7 @@ with _include;
     ../wheel-nopasswd.nix
     #../safe.nix
     ../zfs.nix
+    ../cachy_kernel.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
@@ -68,19 +69,6 @@ with _include;
 
   virtualisation.vmware.host.enable = true;
   #virtualisation.virtualbox.host.enable = true;
-
-  #boot.kernelPackages = pkgs.linuxPackages_6_12;
-  boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-gcc;
-  /*
-    boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-gcc.cachyOverride {
-      cachyVars = pkgs.linuxPackages_cachyos-gcc.kernel.cachyConfig.cachyVars // {
-        "_processor_opt" = "GENERIC_V3";
-      };
-    };
-  */
-  #boot.kernelPackages = pkgs-unstable.linuxPackages_cachyos-lto.cachyOverride { mArch = "GENERIC_V3"; };
-  boot.zfs.package = pkgs.zfs_cachyos;
-  #boot.kernelPackages = pkgs.nur.repos.mio.lib.zfs-latestCompatibleLinuxPackages;
 
   security.allowSimultaneousMultithreading = false; # maybe this avoid Machine Check error https://www.reddit.com/r/techsupport/comments/1am75eu/machine_check_errors_on_14700kf_faulty_cpu/?rdt=32949
 
