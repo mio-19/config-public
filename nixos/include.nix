@@ -298,6 +298,7 @@ upper
           git pull --no-edit https://github.com/mio-19/config-public.git
           if [ -d  ~/Documents/config-public ]; then
             cd ~/Documents/config-public/nixos
+            git config pull.rebase false
             git pull --no-edit
             nix flake update
             git add flake.lock
@@ -324,6 +325,7 @@ upper
         git pull --no-edit https://github.com/mio-19/config-public.git
         if [ -d  ~/Documents/config-public ]; then
           cd ~/Documents/config-public/nixos
+          git config pull.rebase false
           git pull --no-edit
           nix flake update
           git add flake.lock
