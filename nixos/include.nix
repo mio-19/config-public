@@ -308,7 +308,7 @@ upper
           cd ~/Documents/config/nixos
           git config pull.rebase false
           sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-          ${pkgs.coreutils}/bin/timeout --foreground 15s git pull || true
+          git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull || true
           ${cmd "switch"}
         ''
       );
@@ -317,7 +317,7 @@ upper
         cd ~/Documents/config/nixos
         git config pull.rebase false
         sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-        ${pkgs.coreutils}/bin/timeout --foreground 15s git pull || true
+        git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull || true
         ${cmd "boot"}
       '';
       upboot = pkgs.writeShellScriptBin "upboot" ''
