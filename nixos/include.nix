@@ -305,6 +305,7 @@ upper
             git push
             cd ~/Documents/config/nixos
             git pull --no-edit https://github.com/mio-19/config-public.git
+            git push &
           else
             nix flake update
             git add flake.lock
@@ -330,6 +331,7 @@ upper
           git push
           cd ~/Documents/config/nixos
           git pull --no-edit https://github.com/mio-19/config-public.git
+          git push &
         else
           nix flake update
           git add flake.lock
