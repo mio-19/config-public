@@ -282,33 +282,73 @@ upper
 
   script =
     let
+      # env NIX_REMOTE=daemon -> workaround for https://github.com/NixOS/nixpkgs/issues/220990
       cmd = action: ''
         sudo ${config.systemd.package}/bin/systemd-inhibit env NIX_REMOTE=daemon ${lib.getExe pkgs.nixos-rebuild-ng} ${action} --flake . --log-format internal-json -v "$@" |& ${pkgs.nix-output-monitor}/bin/nom --json
       '';
     in
     {
-      # env NIX_REMOTE=daemon -> workaround for https://github.com/NixOS/nixpkgs/issues/220990
       upgrade = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
         pkgs.writeShellScriptBin "upgrade" ''
           set -e
           cd ~/Documents/config/nixos
           git config pull.rebase false
           sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-          git pull
-          nix flake update
-          git add flake.lock
-          git commit -m "nixos: lockup" || true
+          git pull --no-edit
+          git pull --no-edit https://github.com/mio-19/config-public.git
+          if [ -d  ~/Documents/config-public ]; then
+            cd ~/Documents/config-public/nixos
+            git config pull.rebase false
+            git pull --no-edit
+            nix flake update
+            git add flake.lock
+            git commit -m "nixos: lockup" || true
+            git push
+            cd ~/Documents/config/nixos
+            git pull --no-edit https://github.com/mio-19/config-public.git
+          else
+            nix flake update
+            git add flake.lock
+            git commit -m "nixos: lockup" || true
+          fi
           git push &
           ${cmd "switch"}
         ''
       );
+      upboot = pkgs.writeShellScriptBin "upboot" ''
+        set -e
+        cd ~/Documents/config/nixos
+        git config pull.rebase false
+        sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
+        git pull --no-edit
+        git pull --no-edit https://github.com/mio-19/config-public.git
+        if [ -d  ~/Documents/config-public ]; then
+          cd ~/Documents/config-public/nixos
+          git config pull.rebase false
+          git pull --no-edit
+          nix flake update
+          git add flake.lock
+          git commit -m "nixos: lockup" || true
+          git push
+          cd ~/Documents/config/nixos
+          git pull --no-edit https://github.com/mio-19/config-public.git
+        else
+          nix flake update
+          git add flake.lock
+          git commit -m "nixos: lockup" || true
+        fi
+        git push &
+        ${cmd "boot"}
+      '';
       switch = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
         pkgs.writeShellScriptBin "swit" ''
           set -e
           cd ~/Documents/config/nixos
           git config pull.rebase false
           sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-          ${pkgs.coreutils}/bin/timeout --foreground 15s git pull || true
+          git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit || true
+          git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit https://github.com/mio-19/config-public.git || true
+          git push &
           ${cmd "switch"}
         ''
       );
@@ -317,18 +357,8 @@ upper
         cd ~/Documents/config/nixos
         git config pull.rebase false
         sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-        ${pkgs.coreutils}/bin/timeout --foreground 15s git pull || true
-        ${cmd "boot"}
-      '';
-      upboot = pkgs.writeShellScriptBin "upboot" ''
-        set -e
-        cd ~/Documents/config/nixos
-        git config pull.rebase false
-        sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-        git pull
-        nix flake update
-        git add flake.lock
-        git commit -m "nixos: lockup" || true
+        git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit || true
+        git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit https://github.com/mio-19/config-public.git || true
         git push &
         ${cmd "boot"}
       '';
@@ -488,6 +518,17 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
+  pkgs-pin3' = import (nixpkgsPatch inputs.nixpkgs-pin3) {
+    config = osConfig.nixpkgs.config // {
+      cudaSupport = false;
+      rocmSupport = false;
+    };
+    system = pkgs.stdenv.hostPlatform.system;
+    overlays = [
+      inputs.nur.overlays.default
+      inputs.chaotic.overlays.default
+    ];
+  };
   pkgs-new = import (nixpkgsPatch inputs.nixpkgs-new) {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
@@ -613,4 +654,14 @@ upper
     || osConfig.services.displayManager.gdm.enable
     || osConfig.services.xserver.displayManager.lightdm.enable
     || osConfig.services.xserver.enable;
+
+  atleastV3 = lib.elem osConfig.microarch [
+    "v3"
+    "v4"
+    "zen4"
+  ];
+  atleastV4 = lib.elem osConfig.microarch [
+    "v4"
+    "zen4"
+  ];
 }

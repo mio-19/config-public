@@ -10,15 +10,15 @@ let
 in
 with _include;
 {
-  options.v4 = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "v4";
-  };
-  options.v2 = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "x86-64-v2 : legacy cpu i5-2410M";
+  options.microarch = lib.mkOption {
+    type = lib.types.enum [
+      "v2"
+      "v3"
+      "v4"
+      "zen4"
+    ];
+    default = "v3";
+    description = "x86-64 microarchitecture level (v2: legacy e.g. i5-2410M)";
   };
   options.wine64_package = lib.mkPackageOption pkgs [ "wineWow64Packages" "full" ] {
     extraDescription = "The wine 32/64 package to use.";
@@ -41,17 +41,17 @@ with _include;
   };
   options.compile_gram = lib.mkOption {
     type = lib.types.bool;
-    default = stdenv.isLinux && stdenv.isx86_64 && !config.v2;
+    default = stdenv.isLinux && stdenv.isx86_64 && atleastV3;
     description = "compile our custom materialgram&telegram";
   };
   options.mio_openssh_hpn = lib.mkOption {
     type = lib.types.bool;
-    default = !config.v2;
+    default = atleastV3;
     description = "use mio hpn patched openssh";
   };
   options.mio_aria2 = lib.mkOption {
     type = lib.types.bool;
-    default = !config.v2;
+    default = atleastV3;
     description = "use mio patched aria2";
   };
   options.adhocNetworks = lib.mkOption {
@@ -75,16 +75,27 @@ with _include;
   };
   config.assertions = [
     {
-      assertion = config.v2 -> !config.mio_aria2;
+      assertion = atleastV3 || !config.mio_aria2;
       message = "no mio aria2 for v2";
     }
     {
-      assertion = config.v2 -> !config.mio_openssh_hpn;
+      assertion = atleastV3 || !config.mio_openssh_hpn;
       message = "no mio hpn openssh for v2";
     }
     {
-      assertion = config.v2 -> !config.compile_gram;
+      assertion = atleastV3 || !config.compile_gram;
       message = "no gram compile for v2";
     }
   ];
+  config.nix.settings.system-features = lib.mkIf stdenv.isx86_64 (
+    [
+      "big-parallel"
+    ]
+    ++ lib.optionals atleastV3 [
+      "gccarch-x86-64-v3"
+    ]
+    ++ lib.optionals atleastV4 [
+      "gccarch-x86-64-v4"
+    ]
+  );
 }

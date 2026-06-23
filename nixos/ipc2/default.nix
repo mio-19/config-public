@@ -21,11 +21,11 @@ with _include;
     ../privacy.nix
     ../careless.nix
     ../boot.nix
-    ../v3.nix
     #../v3opt.nix # needs too many time to compile
     ../wheel-nopasswd.nix
     #../safe.nix
     ../zfs.nix
+    ../cachy_kernel.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
@@ -68,17 +68,7 @@ with _include;
   chaotic.zfs-impermanence-on-shutdown.volume = "${pool}/nixos/local/ephemeral";
 
   virtualisation.vmware.host.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-
-  #boot.kernelPackages = pkgs.linuxPackages_6_12;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-gcc.cachyOverride {
-    cachyVars = pkgs.linuxPackages_cachyos-gcc.kernel.cachyConfig.cachyVars // {
-      "_processor_opt" = "GENERIC_V3";
-    };
-  };
-  #boot.kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "GENERIC_V3"; };
-  boot.zfs.package = pkgs.zfs_cachyos;
-  #boot.kernelPackages = pkgs.nur.repos.mio.lib.zfs-latestCompatibleLinuxPackages;
+  #virtualisation.virtualbox.host.enable = true;
 
   security.allowSimultaneousMultithreading = false; # maybe this avoid Machine Check error https://www.reddit.com/r/techsupport/comments/1am75eu/machine_check_errors_on_14700kf_faulty_cpu/?rdt=32949
 
@@ -127,8 +117,8 @@ with _include;
     # https://discourse.nixos.org/t/question-about-grub-and-nodev/37867
     grub.device = "nodev";
     # https://www.reddit.com/r/NixOS/comments/klahwf/comment/kt10tt8
-    #grub.default = "saved";
-    grub.default = "'Windows Boot Manager'";
+    grub.default = "saved";
+    #grub.default = "'Windows Boot Manager'";
     grub.efiSupport = true;
     efi.canTouchEfiVariables = true;
     # https://discourse.nixos.org/t/change-grub-resolution/18273/5

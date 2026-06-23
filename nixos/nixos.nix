@@ -86,30 +86,6 @@ in
             derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
-            name = "switch-to-configuration-ng: Handle dbus errors & lack of messages";
-            url = "https://github.com/NixOS/nixpkgs/pull/528308.patch";
-            hash = "sha256-n0Czi4Kr3Mutu+cEbadpMp63Bx4A9iwKF7CevOBKccI=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
-            name = "librewolf-unwrapped: 151.0.2-1 -> 152.0-1";
-            url = "https://github.com/NixOS/nixpkgs/pull/527571.patch";
-            hash = "sha256-f122Yd4h3d53bR7Y5FDe9iaApNUkgOd3X4+YguqDxs0=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
-            name = "librewolf-bin-unwrapped: 151.0.1-2 -> 152.0-1";
-            url = "https://github.com/NixOS/nixpkgs/pull/531055.patch";
-            hash = "sha256-PoKwdFNSwz3biaKdwUyiyWtpsJb2+tEQ3IpWgE4s8Q4=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
-            name = "nixos/sniffnet: install package when enabled";
-            url = "https://github.com/NixOS/nixpkgs/pull/532814.patch";
-            hash = "sha256-Eg/XXjDcAwu8xWf/rti+R1vCNyB8Vt6EVOODIE/ceGE=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
             name = "nixos/nix-remote-build: permit non-integer speed factors";
             url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
             hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";
@@ -132,6 +108,30 @@ in
             url = "https://github.com/NixOS/nixpkgs/pull/521378.patch";
             hash = "sha256-gzu5MAWLnzqaDafJx4Yc0gc7OmQqsTRxA0N/9lotdbI=";
             derivationArgs.allowSubstitutes = false;
+          })
+          (fetchpatch {
+            name = "nixos/uki: use config systemd package";
+            url = "https://github.com/NixOS/nixpkgs/pull/530536.patch";
+            hash = "sha256-WzI6D89uVn73NZ7PcQBq/RZbZuepIC+4ilWxg61Y5zM=";
+            derivationArgs.allowSubstitutes = false;
+          })
+          (fetchpatch {
+            name = "nixos/tailscale: order tailscaled after network-online.target";
+            url = "https://github.com/NixOS/nixpkgs/pull/529035.patch";
+            hash = "sha256-ejSZR/46qHycDVwbVV4UjESICT2CTBbJ4J51hasgRs4=";
+            derivationArgs.allowSubstitutes = false;
+          })
+          (fetchpatch {
+            name = "onlyoffice-desktopeditors: 9.1.0 -> 9.4.0";
+            url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
+            hash = "sha256-KDoNbXwwZoz6guOzK4I3bK4shYL+8Mb9YE3TK+819jI=";
+            derivationArgs.allowSubstitutes = false;
+          })
+          # https://github.com/NixOS/nixpkgs/issues/442117
+          (fetchpatch {
+            name = "Add deny fprintd PAM auth for su/sudo without tty";
+            url = "https://github.com/joshperry/nixpkgs/commit/e256ef2283759082941ddb6dd422b7d885378db4.patch";
+            hash = "sha256-WeKRwcAvQNhcRAjLtjX+kYX8Mp59TYBjrTQqh7znEkU=";
           })
           /*
             # unsure

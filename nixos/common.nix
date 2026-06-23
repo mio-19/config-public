@@ -112,7 +112,15 @@ with _include;
       });
       inherit (pkgs-pin) rpcs3;
       inherit (pkgs-pin2) ryubing gnome-disk-utility;
-      inherit (pkgs-nocuda) freecad; # no binary cache
+      # no binary cache:
+      inherit (pkgs-unstable)
+        chromium
+        zed-editor
+        ollama
+        ollama-cuda
+        ;
+      inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
+      inherit (pkgs-pin3') pianotrans nixtamal;
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
@@ -332,6 +340,26 @@ with _include;
   programs.fuse.enable = true;
   programs.fuse.userAllowOther = true;
 
+  # Workaround for captive-browser unsupported flags
+  # https://github.com/NixOS/nixpkgs/issues/533452#issuecomment-4762493257
+  programs.captive-browser.browser =
+    let
+      newBrowserArgs =
+        chromium:
+        lib.concatStringsSep " " [
+          ''env XDG_CONFIG_HOME="$PREV_CONFIG_HOME"''
+          "${chromium}/bin/chromium"
+          "--user-data-dir=\${XDG_DATA_HOME:-$HOME/.local/share}/chromium-captive"
+          ''--proxy-server="socks5://$PROXY"''
+          "--no-first-run"
+          "--new-window"
+          "--incognito"
+          "-no-default-browser-check"
+          "http://cache.nixos.org/"
+        ];
+    in
+    newBrowserArgs pkgs.chromium;
+
   # https://zhuanlan.zhihu.com/p/671801498
   fonts = {
     packages = with pkgs; [
@@ -482,9 +510,7 @@ with _include;
   powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
     ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
   '';
-  /*
-    powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
-      ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
-    '';
-  */
+  powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
+    ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
+  '';
 }

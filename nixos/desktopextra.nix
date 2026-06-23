@@ -63,7 +63,7 @@ with _include;
       teams-for-linux
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.waveterm
-      pkgs-nocuda.pianotrans # no binary cache with cuda
+      pianotrans
       # binaryNativeCode:
       spotube
       #waveterm

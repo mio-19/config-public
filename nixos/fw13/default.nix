@@ -27,11 +27,11 @@ with _include;
     ../careless.nix
     ../boot.nix
     #../xrdp.nix
-    ../v3.nix
     #../v3opt.nix # needs too many time to compile
     #../wheel-nopasswd.nix
     #../safe.nix
     ../zfs.nix
+    ../cachy_kernel.nix
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     ./disk.nix
     ../persistent.nix
@@ -49,12 +49,12 @@ with _include;
     ../scx.nix
     ../emulated-arm.nix
     ../harmonia_lan_only_not_public_ip.nix
-    ../rc.nix
+    #../rc.nix
   ];
   nixpkgs.overlays = [
     #inputs.chaotic-pin.overlays.default # try older kernel
   ];
-  v4 = true;
+  microarch = "zen4";
   compile_gram = true;
   # DETAILS REMOVED # hardware.facter.reportPath = ./facter.json;
 
@@ -67,17 +67,7 @@ with _include;
 
   security.allowSimultaneousMultithreading = true;
 
-  virtualisation.virtualbox.host.enable = true; # once stuck on boot
-
-  boot.zfs.package = pkgs.zfs_cachyos;
-  #boot.kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; }; # gnugrep-x86_64-unknown-linux-gnu-3.12 failed
-  boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {
-    cachyVars = pkgs.linuxPackages_cachyos.kernel.cachyConfig.cachyVars // {
-      "_processor_opt" = "ZEN4";
-    };
-  };
-  #boot.kernelPackages = pkgs.linuxPackages_cachyos-lts.cachyOverride { mArch = "ZEN4"; }; # recent many freezes. why? ssd problem again? 6.19.x kernel issue? 6.18 (lts) also has same problem!
-  #boot.kernelPackages = pkgs.linuxPackages_6_12;
+  #virtualisation.virtualbox.host.enable = true; # once stuck on boot
 
   home-manager.sharedModules = [
     ./sleeping.nix

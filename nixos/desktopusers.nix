@@ -17,7 +17,7 @@ in
   ];
 
   # https://docs.vicinae.com/nixos
-  services.vicinae = {
+  programs.vicinae = {
     enable = osConfig.services.desktopManager.plasma6.enable;
     package = pkgs.vicinae;
     systemd = {

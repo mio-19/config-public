@@ -8,11 +8,13 @@
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs-small.url = "github:NixOS/nixpkgs/8dc49b8b206a683d1f6605e0fd993c0f5d49c98d"; # a commit from nixos-unstable-small
+    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.follows = "chaotic/nixpkgs";
+    nixpkgs.follows = "nixpkgs-small";
     nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
     nixpkgs-pin2.url = "github:NixOS/nixpkgs/9ae611a455b90cf061d8f332b977e387bda8e1ca"; # a commit from nixos-unstable
-    #nixpkgs-pin3.url = "github:NixOS/nixpkgs/ebc08544afa77957cc348ba72dc490ec73b87f68"; # a commit from nixos-unstable
+    nixpkgs-pin3.url = "github:NixOS/nixpkgs/567a49d1913ce81ac6e9582e3553dd90a955875f"; # a commit from nixos-unstable
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
@@ -58,9 +60,7 @@
     chaotic = {
       #url = "github:lonerOrz/nyx-loner";
       url = "github:chaotic-cx/nyx";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.jovian.follows = "jovian";
-      inputs.rust-overlay.follows = "rust-overlay";
+      #inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
     #chaotic.url = "git+https://github.com/mio-19/nyx-loner.git";
@@ -187,11 +187,9 @@
     };
     stable-diffusion-webui-nix = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:Janrupf/stable-diffusion-webui-nix/77e5bbc27e72554f0d466ddf0ca1dc602779f9d8";
+      url = "github:Janrupf/stable-diffusion-webui-nix/034b3e961f9c22a62e97b8c7f5d4698b318c23f8";
       #url = "github:mio-19/stable-diffusion-webui-nix/patch-1";
       #inputs.nixpkgs.follows = "nixpkgs";
-      # needs python3.11. needs outdated nixpkgs
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs/3ca49aa290e92b6a885e8c0045033fe2538a4977"; # a commit from nixos-unstable-small
       inputs.flake-utils.follows = "flake-utils";
     };
     nixified-ai = {
@@ -306,6 +304,7 @@
       url = "github:fufexan/nix-gaming";
       inputs.flake-parts.follows = "flake-parts";
       inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-compat.follows = "flake-compat";
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     nix-webapps = {
@@ -350,7 +349,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     globalprotect-openconnect = {
-      url = "github:yuezk/GlobalProtect-openconnect";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:yuezk/GlobalProtect-openconnect/fe55d11fc49bf30341ddc3ac8784b7f49be3ae9c";
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
