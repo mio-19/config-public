@@ -282,12 +282,12 @@ upper
 
   script =
     let
+      # env NIX_REMOTE=daemon -> workaround for https://github.com/NixOS/nixpkgs/issues/220990
       cmd = action: ''
         sudo ${config.systemd.package}/bin/systemd-inhibit env NIX_REMOTE=daemon ${lib.getExe pkgs.nixos-rebuild-ng} ${action} --flake . --log-format internal-json -v "$@" |& ${pkgs.nix-output-monitor}/bin/nom --json
       '';
     in
     {
-      # env NIX_REMOTE=daemon -> workaround for https://github.com/NixOS/nixpkgs/issues/220990
       upgrade = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
         pkgs.writeShellScriptBin "upgrade" ''
           set -e
