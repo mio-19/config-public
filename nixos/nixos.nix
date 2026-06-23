@@ -127,11 +127,6 @@ in
             hash = "sha256-KDoNbXwwZoz6guOzK4I3bK4shYL+8Mb9YE3TK+819jI=";
             derivationArgs.allowSubstitutes = false;
           })
-          (fetchpatch {
-            name = "davinci-resolve: 20.3.3 -> 21.0";
-            url = "https://github.com/NixOS/nixpkgs/pull/527765.patch";
-            hash = "sha256-GoJlqFRuZeA2Xy1sBgLRG7G3/R8SyHDAHEeyUGpwuCY=";
-          })
           # https://github.com/NixOS/nixpkgs/issues/442117
           (fetchpatch {
             name = "Add deny fprintd PAM auth for su/sudo without tty";
