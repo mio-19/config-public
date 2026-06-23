@@ -8,9 +8,6 @@
   ...
 }@args:
 with _include;
-let
-  fprintWorkaound = false; # seem to make things actually worse
-in
 {
   # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
   imports = [
@@ -181,70 +178,4 @@ in
   boot.blacklistedKernelModules = [
     "psmouse"
   ];
-
-  # https://github.com/FrameworkComputer/linux-docs/tree/1b1a292be31cf5d0e079a8a95df98b1c52944630/Fingerprint-Wake-Workaround
-  # https://community.frame.work/t/fingerprint-sensor-fails-to-resume-after-suspend-on-framework-13-amd-goodix-27c6-609c/79900/5
-  systemd.services.fw13-fingerprint-wake-workaround = lib.mkIf fprintWorkaound {
-    description = "Restore fingerprint reader after system resume";
-    after = [
-      "suspend.target"
-      "hibernate.target"
-      "hybrid-sleep.target"
-      "suspend-then-hibernate.target"
-    ];
-    wantedBy = [
-      "suspend.target"
-      "hibernate.target"
-      "hybrid-sleep.target"
-      "suspend-then-hibernate.target"
-    ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.writeShellScript "fw13-fingerprint-wake-workaround" ''
-        export PATH=${
-          lib.makeBinPath (
-            with pkgs;
-            [
-              usbutils
-              gnugrep
-              gawk
-              coreutils
-              config.systemd.package
-              util-linux
-            ]
-          )
-        }:$PATH
-
-        FPRINT_DEVICE=$(lsusb | grep -E "Goodix.*Fingerprint|27c6:609c" | head -1)
-        if [ -z "$FPRINT_DEVICE" ]; then exit 0; fi
-
-        FPRINT_ID=$(echo "$FPRINT_DEVICE" | grep -oP 'ID \K[0-9a-f]{4}:[0-9a-f]{4}')
-        BUS_RAW=$(echo "$FPRINT_DEVICE" | awk '{print $2}')
-        BUS=$((10#$BUS_RAW))
-
-        USB_DEVICE_PATH="/sys/bus/usb/devices/usb$BUS"
-        USB_PATH=$(readlink -f "$USB_DEVICE_PATH")
-        PCI_FUNC=$(echo "$USB_PATH" | grep -oP '[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\.[0-9]' | tail -1)
-
-        PCI_DEVICE_PATH="/sys/bus/pci/devices/$PCI_FUNC"
-        DRIVER_LINK="$PCI_DEVICE_PATH/driver"
-        DRIVER_NAME=$(basename "$(readlink -f "$DRIVER_LINK")")
-        DRIVER_PATH="/sys/bus/pci/drivers/$DRIVER_NAME"
-
-        logger -t fp-rebind "Checking fingerprint reader after wake"
-        sleep 2
-
-        if ! lsusb -d "$FPRINT_ID" >/dev/null 2>&1; then
-          logger -t fp-rebind "Fingerprint missing, resetting controller $PCI_FUNC"
-          echo "$PCI_FUNC" >"$DRIVER_PATH/unbind" 2>/dev/null || true
-          sleep 1
-          echo "$PCI_FUNC" >"$DRIVER_PATH/bind" 2>/dev/null || true
-          sleep 2
-          systemctl try-restart fprintd.service
-        else
-          logger -t fp-rebind "Reader present, no action needed"
-        fi
-      ''}";
-    };
-  };
 }
