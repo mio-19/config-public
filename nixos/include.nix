@@ -306,13 +306,12 @@ upper
             git push
             cd ~/Documents/config/nixos
             git pull --no-edit https://github.com/mio-19/config-public.git
-            git push &
           else
             nix flake update
             git add flake.lock
             git commit -m "nixos: lockup" || true
-            git push &
           fi
+          git push &
           ${cmd "switch"}
         ''
       );
@@ -333,13 +332,12 @@ upper
           git push
           cd ~/Documents/config/nixos
           git pull --no-edit https://github.com/mio-19/config-public.git
-          git push &
         else
           nix flake update
           git add flake.lock
           git commit -m "nixos: lockup" || true
-          git push &
         fi
+        git push &
         ${cmd "boot"}
       '';
       switch = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
