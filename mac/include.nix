@@ -132,7 +132,7 @@ upper
       cd ~/Documents/config/mac
       ${lib.getExe program.git} config pull.rebase false
       sudo true
-      ${lib.getExe program.git} pull
+      ${lib.getExe program.git} pull --no-edit
       ${lib.getExe config.nix.package} flake update
       ${lib.getExe program.git} add flake.lock
       ${lib.getExe program.git} commit -m "mac: lockup" || true
@@ -145,7 +145,7 @@ upper
       cd ~/Documents/config/mac
       ${lib.getExe program.git} config pull.rebase false
       sudo true
-      ${lib.getExe program.git} -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull || true
+      ${lib.getExe program.git} -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit || true
       sudo nice -n 20 darwin-rebuild switch --flake ~/Documents/config/mac --print-build-logs "$@" |& ${lib.getExe pkgs.nix-output-monitor}
     '';
   };

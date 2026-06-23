@@ -294,7 +294,7 @@ upper
           cd ~/Documents/config/nixos
           git config pull.rebase false
           sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-          git pull
+          git pull --no-edit
           nix flake update
           git add flake.lock
           git commit -m "nixos: lockup" || true
@@ -308,7 +308,7 @@ upper
           cd ~/Documents/config/nixos
           git config pull.rebase false
           sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-          git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull || true
+          git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit || true
           ${cmd "switch"}
         ''
       );
@@ -317,7 +317,7 @@ upper
         cd ~/Documents/config/nixos
         git config pull.rebase false
         sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-        git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull || true
+        git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit || true
         ${cmd "boot"}
       '';
       upboot = pkgs.writeShellScriptBin "upboot" ''
@@ -325,7 +325,7 @@ upper
         cd ~/Documents/config/nixos
         git config pull.rebase false
         sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-        git pull
+        git pull --no-edit
         nix flake update
         git add flake.lock
         git commit -m "nixos: lockup" || true
