@@ -133,7 +133,6 @@ upper
       ${lib.getExe program.git} config pull.rebase false
       sudo true
       ${lib.getExe program.git} pull --no-edit
-      ${lib.getExe program.git} pull --no-edit https://github.com/mio-19/config-public.git
       if [ -d ~/Documents/config-public ]; then
         cd ~/Documents/config-public/mac
         ${lib.getExe program.git} config pull.rebase false
@@ -145,6 +144,7 @@ upper
         cd ~/Documents/config/mac
         ${lib.getExe program.git} pull --no-edit https://github.com/mio-19/config-public.git
       else
+        ${lib.getExe program.git} pull --no-edit https://github.com/mio-19/config-public.git
         ${lib.getExe config.nix.package} flake update
         ${lib.getExe program.git} add flake.lock
         ${lib.getExe program.git} commit -m "mac: lockup" || true
