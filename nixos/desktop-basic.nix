@@ -160,6 +160,8 @@ with _include;
 
   # https://nixos.wiki/wiki/Chromium
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # https://github.com/search?q=GTK_USE_PORTAL+language%3ANix+&type=code
+  environment.sessionVariables.GTK_USE_PORTAL = 1;
   # https://wiki.archlinux.org/title/Chromium
   # https://gist.github.com/foutrelis/14e339596b89813aa9c37fd1b4e5d9d5
   environment.sessionVariables.GOOGLE_DEFAULT_CLIENT_ID = "77185425430.apps.googleusercontent.com";
