@@ -150,12 +150,12 @@
         let
           pkgs0 = import inputs0.nixpkgs {
             inherit system;
+            config.allowDeprecatedx86_64Darwin = true;
           };
           nixpkgs-drv = pkgs0.applyPatches {
             name = "nixpkgs-patched";
             src = inputs0.nixpkgs.outPath;
             patches = with pkgs0; [
-              ../0001-hide-x86_64DarwinDeprecationWarning.patch
               (fetchpatch {
                 name = "musescore-evolution: 3.7.0-unstable-2026-03-03 -> 3.7.0-unstable-2026-06-10";
                 url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
@@ -247,7 +247,10 @@
             // {
               outPath = inputs0.darwin.outPath;
             };
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowDeprecatedx86_64Darwin = true;
+          };
           deploy-rs =
             (import "${inputs0.deploy-rs}/flake.nix").outputs (
               inputs0.deploy-rs.inputs
@@ -262,6 +265,7 @@
           # nixpkgs with deploy-rs overlay but force the nixpkgs package
           deployPkgs = import nixpkgs {
             inherit system;
+            config.allowDeprecatedx86_64Darwin = true;
             overlays = [
               deploy-rs.overlays.default
               (self: super: {

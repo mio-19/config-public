@@ -212,6 +212,7 @@ with _include;
   nixpkgs.config.allowNonSource = false;
   nixpkgs.config.allowNonSourcePredicate = allowNonSourcePredicate;
   #nixpkgs.config.allowAliases = false;
+  nixpkgs.config.allowDeprecatedx86_64Darwin = true; # hide deprecation warning. we aleady know.
 
   nixpkgs.config.permittedInsecurePackages =
     with pkgs;

@@ -479,7 +479,6 @@ upper
         name = "nixpkgs-patched";
         src = nixpkgs0;
         patches = with pkgs; [
-          ../0001-hide-x86_64DarwinDeprecationWarning.patch
         ];
       };
       nixpkgs =

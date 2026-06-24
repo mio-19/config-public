@@ -18,7 +18,6 @@ in
         name = "nixpkgs-patched";
         src = inputs.nixpkgs;
         patches = with pkgs; [
-          ../0001-hide-x86_64DarwinDeprecationWarning.patch
           (fetchpatch {
             name = "musescore-evolution: 3.7.0-unstable-2026-03-03 -> 3.7.0-unstable-2026-06-10";
             url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
