@@ -313,6 +313,5 @@
           ];
         };
       darwinConfigurations.NixMac-2 = self.darwinConfigurations."NixMac";
-      # DETAILS REMOVED
     };
 }
