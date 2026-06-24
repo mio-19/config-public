@@ -2455,11 +2455,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1781872264,
-        "narHash": "sha256-y64QNFgDiOWvqFZqWGiQuhyN6HLCIXbD0ZhtytWKXIE=",
+        "lastModified": 1782291407,
+        "narHash": "sha256-yuVXPzbaudYkGA3Vud+L2fFy6onF703MkAUgBVYrcK8=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "6bccc31ba620ce495912afd62107ae4ce58a73f2",
+        "rev": "1f37035a2fd01e8ae3a69a4bc432d7d3d2b4cb8c",
         "type": "github"
       },
       "original": {
