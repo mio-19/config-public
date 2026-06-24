@@ -219,6 +219,7 @@ in
           nur
           ;
         nixpkgs-unpatched = inputs.nixpkgs;
+        nixpkgs-patched = nixpkgs;
       };
     in
     {
