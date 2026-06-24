@@ -295,7 +295,6 @@ upper
           git config pull.rebase false
           sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
           git pull --no-edit
-          git pull --no-edit https://github.com/mio-19/config-public.git
           if [ -d  ~/Documents/config-public ]; then
             cd ~/Documents/config-public/nixos
             git config pull.rebase false
@@ -307,6 +306,7 @@ upper
             cd ~/Documents/config/nixos
             git pull --no-edit https://github.com/mio-19/config-public.git
           else
+            git pull --no-edit https://github.com/mio-19/config-public.git
             nix flake update
             git add flake.lock
             git commit -m "nixos: lockup" || true
@@ -321,7 +321,6 @@ upper
         git config pull.rebase false
         sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
         git pull --no-edit
-        git pull --no-edit https://github.com/mio-19/config-public.git
         if [ -d  ~/Documents/config-public ]; then
           cd ~/Documents/config-public/nixos
           git config pull.rebase false
@@ -333,6 +332,7 @@ upper
           cd ~/Documents/config/nixos
           git pull --no-edit https://github.com/mio-19/config-public.git
         else
+          git pull --no-edit https://github.com/mio-19/config-public.git
           nix flake update
           git add flake.lock
           git commit -m "nixos: lockup" || true
