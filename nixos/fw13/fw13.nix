@@ -29,44 +29,6 @@ with _include;
         strategyOnDischarging = "discharging-workaround";
       */
       strategies = {
-        "silent" = {
-          fanSpeedUpdateFrequency = 7;
-          movingAverageInterval = 30;
-          speedCurve = [
-            {
-              temp = 0;
-              speed = 0;
-            }
-            {
-              temp = 39.99;
-              speed = 0;
-            }
-            {
-              temp = 40;
-              speed = 10;
-            }
-            {
-              temp = 57.99;
-              speed = 10;
-            }
-            {
-              temp = 58;
-              speed = 39;
-            }
-            {
-              temp = 70;
-              speed = 39;
-            }
-            {
-              temp = 80;
-              speed = 50;
-            }
-            {
-              temp = 90;
-              speed = 100;
-            }
-          ];
-        };
         "discharging-smooth" = {
           fanSpeedUpdateFrequency = 7;
           movingAverageInterval = 30;
@@ -130,6 +92,44 @@ with _include;
         # https://community.frame.work/t/amd-7840u-fan-issues/69704/2
         # https://community.frame.work/t/fan-hysterersis-issue/4469/4
         # workaround: avoid clicking sound : jump from 0 to speed = 10; directly to speed = 39;
+        "silent-workaround" = {
+          fanSpeedUpdateFrequency = 7;
+          movingAverageInterval = 30;
+          speedCurve = [
+            {
+              temp = 0;
+              speed = 0;
+            }
+            {
+              temp = 39.99;
+              speed = 0;
+            }
+            {
+              temp = 40;
+              speed = 10;
+            }
+            {
+              temp = 57.99;
+              speed = 10;
+            }
+            {
+              temp = 58;
+              speed = 39;
+            }
+            {
+              temp = 70;
+              speed = 39;
+            }
+            {
+              temp = 80;
+              speed = 50;
+            }
+            {
+              temp = 90;
+              speed = 100;
+            }
+          ];
+        };
         "discharging-workaround" = {
           fanSpeedUpdateFrequency = 7;
           movingAverageInterval = 30;
