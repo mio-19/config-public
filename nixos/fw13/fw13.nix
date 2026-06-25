@@ -81,11 +81,11 @@ with _include;
             }
             {
               temp = 48;
-              speed = 39;
+              speed = 25;
             }
             {
               temp = 70;
-              speed = 39;
+              speed = 40;
             }
             {
               temp = 80;
@@ -111,11 +111,11 @@ with _include;
             }
             {
               temp = 47;
-              speed = 39;
+              speed = 25;
             }
             {
               temp = 70;
-              speed = 39;
+              speed = 40;
             }
             {
               temp = 80;
