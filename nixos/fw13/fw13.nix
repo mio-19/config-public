@@ -22,11 +22,8 @@ with _include;
     enable = true;
     keepDefaultStrategies = false;
     settings = {
-      defaultStrategy = "chargingstrategy";
-      strategyOnDischarging = "dischargingstrategy";
-      # https://community.frame.work/t/amd-7840u-fan-issues/69704/2
-      # https://community.frame.work/t/fan-hysterersis-issue/4469/4
-      # avoid clicking sound : jump from 0 to speed = 10; directly to speed = 39;
+      defaultStrategy = "charging-workaround";
+      strategyOnDischarging = "discharging-workaround";
       strategies = {
         "silent" = {
           fanSpeedUpdateFrequency = 7;
@@ -66,7 +63,10 @@ with _include;
             }
           ];
         };
-        "dischargingstrategy" = {
+        # https://community.frame.work/t/amd-7840u-fan-issues/69704/2
+        # https://community.frame.work/t/fan-hysterersis-issue/4469/4
+        # workaround: avoid clicking sound : jump from 0 to speed = 10; directly to speed = 39;
+        "discharging-workaround" = {
           fanSpeedUpdateFrequency = 7;
           movingAverageInterval = 30;
           speedCurve = [
@@ -104,7 +104,7 @@ with _include;
             }
           ];
         };
-        "chargingstrategy" = {
+        "charging-workaround" = {
           fanSpeedUpdateFrequency = 7;
           movingAverageInterval = 30;
           speedCurve = [
