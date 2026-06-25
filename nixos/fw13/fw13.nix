@@ -22,8 +22,12 @@ with _include;
     enable = true;
     keepDefaultStrategies = false;
     settings = {
-      defaultStrategy = "charging-workaround";
-      strategyOnDischarging = "discharging-workaround";
+      defaultStrategy = "charging-smooth";
+      strategyOnDischarging = "discharging-smooth";
+      /*
+        defaultStrategy = "charging-workaround";
+        strategyOnDischarging = "discharging-workaround";
+      */
       strategies = {
         "silent" = {
           fanSpeedUpdateFrequency = 7;
@@ -47,6 +51,66 @@ with _include;
             }
             {
               temp = 58;
+              speed = 39;
+            }
+            {
+              temp = 70;
+              speed = 39;
+            }
+            {
+              temp = 80;
+              speed = 50;
+            }
+            {
+              temp = 90;
+              speed = 100;
+            }
+          ];
+        };
+        "discharging-smooth" = {
+          fanSpeedUpdateFrequency = 7;
+          movingAverageInterval = 30;
+          speedCurve = [
+            {
+              temp = 0;
+              speed = 0;
+            }
+            {
+              temp = 40;
+              speed = 10;
+            }
+            {
+              temp = 48;
+              speed = 39;
+            }
+            {
+              temp = 70;
+              speed = 39;
+            }
+            {
+              temp = 80;
+              speed = 50;
+            }
+            {
+              temp = 90;
+              speed = 100;
+            }
+          ];
+        };
+        "charging-smooth" = {
+          fanSpeedUpdateFrequency = 7;
+          movingAverageInterval = 30;
+          speedCurve = [
+            {
+              temp = 0;
+              speed = 0;
+            }
+            {
+              temp = 40;
+              speed = 10;
+            }
+            {
+              temp = 47;
               speed = 39;
             }
             {
