@@ -72,7 +72,7 @@ with _include;
           movingAverageInterval = 30;
           speedCurve = [
             {
-              temp = 0;
+              temp = 20;
               speed = 0;
             }
             {
@@ -102,7 +102,7 @@ with _include;
           movingAverageInterval = 30;
           speedCurve = [
             {
-              temp = 0;
+              temp = 20;
               speed = 0;
             }
             {
