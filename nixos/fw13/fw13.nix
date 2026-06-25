@@ -121,11 +121,11 @@ with _include;
               speed = 10;
             }
             {
-              temp = 44.99;
+              temp = 46.99;
               speed = 10;
             }
             {
-              temp = 45;
+              temp = 47;
               speed = 39;
             }
             {
