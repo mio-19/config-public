@@ -34,7 +34,7 @@ with _include;
           movingAverageInterval = 30;
           speedCurve = [
             {
-              temp = 20;
+              temp = 30;
               speed = 0;
             }
             {
@@ -64,7 +64,7 @@ with _include;
           movingAverageInterval = 30;
           speedCurve = [
             {
-              temp = 20;
+              temp = 30;
               speed = 0;
             }
             {
