@@ -524,6 +524,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-pin3": {
+      "locked": {
+        "lastModified": 1782118813,
+        "narHash": "sha256-BnbXO5s5EhV89lLXMAGCzPdEN5a6vNqvMk71obeTEUw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b3c092d3c36d91e2f61f3dfb39a159f180a56659",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b3c092d3c36d91e2f61f3dfb39a159f180a56659",
+        "type": "github"
+      }
+    },
     "nixpkgs-pin6": {
       "locked": {
         "lastModified": 1779414690,
@@ -669,6 +685,7 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-pin2": "nixpkgs-pin2",
+        "nixpkgs-pin3": "nixpkgs-pin3",
         "nixpkgs-pin6": "nixpkgs-pin6",
         "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",

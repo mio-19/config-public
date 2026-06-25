@@ -76,7 +76,7 @@ with _include;
       imhex
       luanti-client
       nur.repos.mio.minetest591client
-      nur.repos.mio.telegram-desktop
+      pkgs-pin3.nur.repos.mio.telegram-desktop
       nur.repos.mio.materialgram
       nur.repos.mio.beammp-launcher
       downkyicore
