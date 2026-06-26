@@ -19,12 +19,6 @@ in
         src = inputs.nixpkgs;
         patches = with pkgs; [
           (fetchpatch {
-            name = "musescore-evolution: 3.7.0-unstable-2026-03-03 -> 3.7.0-unstable-2026-06-10";
-            url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
-            hash = "sha256-1oHDn8THBGTx55uTmQs12nGOdueqqGK4gfstKKqBElM=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
             url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
             hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
@@ -106,12 +100,6 @@ in
             name = "nixos/fwupd: add enableGrubHook option";
             url = "https://github.com/NixOS/nixpkgs/pull/521378.patch";
             hash = "sha256-gzu5MAWLnzqaDafJx4Yc0gc7OmQqsTRxA0N/9lotdbI=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
-            name = "nixos/uki: use config systemd package";
-            url = "https://github.com/NixOS/nixpkgs/pull/530536.patch";
-            hash = "sha256-WzI6D89uVn73NZ7PcQBq/RZbZuepIC+4ilWxg61Y5zM=";
             derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {

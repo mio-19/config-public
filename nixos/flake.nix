@@ -8,10 +8,10 @@
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs-small.url = "github:NixOS/nixpkgs/8dc49b8b206a683d1f6605e0fd993c0f5d49c98d"; # a commit from nixos-unstable-small
+    #nixpkgs-small.url = "github:NixOS/nixpkgs/8dc49b8b206a683d1f6605e0fd993c0f5d49c98d"; # a commit from nixos-unstable-small
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/58528b66f0a6d8776c77167abafbccd6d0fa147c"; # https://hydra.nixos.org/job/nixos/unstable/tested#tabs-constituents
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.follows = "chaotic/nixpkgs";
-    nixpkgs.follows = "nixpkgs-small";
+    nixpkgs.follows = "nixpkgs-unstable";
     nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
     nixpkgs-pin2.url = "github:NixOS/nixpkgs/9ae611a455b90cf061d8f332b977e387bda8e1ca"; # a commit from nixos-unstable
     nixpkgs-pin3.url = "github:NixOS/nixpkgs/567a49d1913ce81ac6e9582e3553dd90a955875f"; # a commit from nixos-unstable

@@ -1686,19 +1686,19 @@
         "type": "github"
       }
     },
-    "nixpkgs-small": {
+    "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1782145344,
-        "narHash": "sha256-8cz8/2hWTYdsPcpqWXa/IAkyjw1xBv3tx2UPNzkpe3c=",
+        "lastModified": 1782414098,
+        "narHash": "sha256-f8PjC53KmgzdmKB85tqV629kr5o+wu/CST59Haj5fb4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8dc49b8b206a683d1f6605e0fd993c0f5d49c98d",
+        "rev": "58528b66f0a6d8776c77167abafbccd6d0fa147c",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8dc49b8b206a683d1f6605e0fd993c0f5d49c98d",
+        "rev": "58528b66f0a6d8776c77167abafbccd6d0fa147c",
         "type": "github"
       }
     },
@@ -2293,18 +2293,14 @@
         "nixos-wsl": "nixos-wsl",
         "nixpak": "nixpak",
         "nixpkgs": [
-          "nixpkgs-small"
+          "nixpkgs-unstable"
         ],
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-pin": "nixpkgs-pin",
         "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-pin3": "nixpkgs-pin3",
-        "nixpkgs-small": "nixpkgs-small",
-        "nixpkgs-unstable": [
-          "chaotic",
-          "nixpkgs"
-        ],
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "nm2nix": "nm2nix",
         "nur": "nur",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
