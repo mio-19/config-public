@@ -493,7 +493,7 @@ upper
     in
     nixpkgs;
 
-  pkgs-pin = import (nixpkgsPatch inputs.nixpkgs-pin) {
+  pkgs-pin = import inputs.nixpkgs-pin {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -501,7 +501,7 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-pin2 = import (nixpkgsPatch inputs.nixpkgs-pin2) {
+  pkgs-pin2 = import inputs.nixpkgs-pin2 {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -509,7 +509,7 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-pin3 = import (nixpkgsPatch inputs.nixpkgs-pin3) {
+  pkgs-pin3 = import inputs.nixpkgs-pin3 {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -517,7 +517,7 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-pin3' = import (nixpkgsPatch inputs.nixpkgs-pin3) {
+  pkgs-pin3' = import inputs.nixpkgs-pin3 {
     config = osConfig.nixpkgs.config // {
       cudaSupport = false;
       rocmSupport = false;
@@ -528,7 +528,7 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-new = import (nixpkgsPatch inputs.nixpkgs-new) {
+  pkgs-new = import inputs.nixpkgs-new {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
@@ -556,7 +556,7 @@ upper
     if (!(osConfig.nixpkgs.config.cudaSupport or false)) then
       pkgs-pin
     else
-      import (nixpkgsPatch inputs.nixpkgs-pin) {
+      import inputs.nixpkgs-pin {
         config = osConfig.nixpkgs.config // {
           cudaSupport = false;
         };
@@ -569,7 +569,7 @@ upper
     if (!(osConfig.nixpkgs.config.cudaSupport or false)) then
       pkgs-new
     else
-      import (nixpkgsPatch inputs.nixpkgs-new) {
+      import inputs.nixpkgs-new {
         config = osConfig.nixpkgs.config // {
           cudaSupport = false;
         };
@@ -578,21 +578,21 @@ upper
           inputs.nur.overlays.default
         ];
       };
-  pkgs-small = import (nixpkgsPatch inputs.nixpkgs-small) {
+  pkgs-small = import inputs.nixpkgs-small {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
       inputs.nur.overlays.default
     ];
   };
-  pkgs-unstable = import (nixpkgsPatch inputs.nixpkgs-unstable) {
+  pkgs-unstable = import inputs.nixpkgs-unstable {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-489506 = import (nixpkgsPatch inputs.nixpkgs-489506) {
+  pkgs-489506 = import inputs.nixpkgs-489506 {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
