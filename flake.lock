@@ -2000,6 +2000,7 @@
       "original": {
         "owner": "TLATER",
         "repo": "nix-webapps",
+        "rev": "1bb9ee8e3f428575c1c6898ae7af8d96416d696a",
         "type": "github"
       }
     },
@@ -2282,6 +2283,7 @@
       "original": {
         "owner": "nixpak",
         "repo": "nixpak",
+        "rev": "be97295fa81fe743b9753449143dd4931e51d63c",
         "type": "github"
       }
     },
