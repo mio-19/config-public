@@ -48,8 +48,9 @@ in
           })
           (fetchpatch {
             name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
-            url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
-            hash = "sha256-fycyXDGD8tcFFZyQyFUgkRCbQPzENS6HcwKFzyRl0p8=";
+            #url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
+            url = "https://github.com/mio-19/nixpkgs/pull/1.diff";
+            hash = "sha256-8ja+DroRYUPww/Z6IjQuN2oWEGUHTk4H2j8Nze62V1o=";
             derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
