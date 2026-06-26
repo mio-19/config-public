@@ -41,7 +41,7 @@ with _include;
       imhex
       mousam # always buggy
       #emote # no we already have plasma-emojier with meta+.
-      nur.repos.mio.altus
+      pkgs-pin4.nur.repos.mio.altus
       wiliwili
       wxhexeditor
       jabref
