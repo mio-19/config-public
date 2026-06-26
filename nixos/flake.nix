@@ -295,7 +295,8 @@
       inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
     };
     nixpak = {
-      url = "github:nixpak/nixpak";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:nixpak/nixpak/be97295fa81fe743b9753449143dd4931e51d63c";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.hercules-ci-effects.follows = "hercules-ci-effects";
@@ -309,7 +310,8 @@
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     nix-webapps = {
-      url = "github:TLATER/nix-webapps";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:TLATER/nix-webapps/1bb9ee8e3f428575c1c6898ae7af8d96416d696a";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "flake-utils/systems";
@@ -339,7 +341,7 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-mineral = {
-      url = "github:cynicsketch/nix-mineral/";
+      url = "github:cynicsketch/nix-mineral";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
