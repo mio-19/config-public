@@ -359,12 +359,6 @@
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
     };
     mio-betterbird.url = "github:mio-19/nurpkgs/42db0171f07527f8bc61d0c0cc9b5de99c0d974c";
-    /*
-      zsh-patina = {
-        url = "github:michel-kraemer/zsh-patina";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-    */
   };
 
   outputs =
