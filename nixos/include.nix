@@ -528,6 +528,14 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
+  pkgs-pin4 = import inputs.nixpkgs-pin4 {
+    config = osConfig.nixpkgs.config;
+    system = pkgs.stdenv.hostPlatform.system;
+    overlays = [
+      inputs.nur.overlays.default
+      inputs.chaotic.overlays.default
+    ];
+  };
   pkgs-new = import inputs.nixpkgs-new {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;

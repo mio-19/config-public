@@ -112,12 +112,8 @@ with _include;
       });
       inherit (pkgs-pin) rpcs3;
       inherit (pkgs-pin2) ryubing gnome-disk-utility;
-      # no binary cache:
-      inherit (pkgs-unstable)
-        chromium
-        zed-editor
-        ollama
-        ollama-cuda
+      inherit (pkgs-pin4)
+        diffoscope
         ;
       inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
       inherit (pkgs-pin3') pianotrans nixtamal;
