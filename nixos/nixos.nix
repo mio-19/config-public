@@ -17,6 +17,8 @@ in
       nixpkgs-drv = pkgs.applyPatches {
         name = "nixpkgs-patched";
         src = inputs.nixpkgs;
+        # PR .patch URLs track branch head, so the hash changes when the PR is updated.
+        # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
         patches = with pkgs; [
           (fetchpatch {
             name = "grub-module-keep-booted-system-entry-option.patch";
@@ -59,8 +61,6 @@ in
             hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
             derivationArgs.allowSubstitutes = false;
           })
-          # PR .patch URLs track branch head, so the hash changes when the PR is updated.
-          # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
           (fetchpatch {
             name = "nixos/security/wrappers: avoid linux-headers in closure";
             url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
