@@ -2756,16 +2756,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1762937574,
+        "lastModified": 1770124655,
         "narHash": "sha256-yHmd2B13EtBUPLJ+x0EaBwNkQr9LTne1arLVxT6hSnY=",
-        "owner": "Hyffer",
+        "owner": "nix-community",
         "repo": "nixos-vscode-server",
-        "rev": "e0b256ec239c5fdc6b9dd6eed554d4f96856d3fb",
+        "rev": "92ce71c3ba5a94f854e02d57b14af4997ab54ef0",
         "type": "github"
       },
       "original": {
-        "owner": "Hyffer",
-        "ref": "fix-vsce-sign",
+        "owner": "nix-community",
         "repo": "nixos-vscode-server",
         "type": "github"
       }

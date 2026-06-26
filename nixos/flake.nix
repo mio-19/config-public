@@ -117,9 +117,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     vscode-server = {
-      #url = "git+https://github.com/nix-community/nixos-vscode-server.git";
-      # https://github.com/nix-community/nixos-vscode-server/issues/90
-      url = "github:Hyffer/nixos-vscode-server/fix-vsce-sign";
+      url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
