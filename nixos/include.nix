@@ -51,7 +51,10 @@ upper
   novirt = (!osConfig.services.qemuGuest.enable);
   progs = with pkgs; rec {
     telegram =
-      if config.compile_gram then pkgs.nur.repos.mio.telegram-desktop else pkgs.telegram-desktop;
+      if config.compile_gram then
+        pkgs-pin4.nur.repos.mio.telegram-desktop
+      else
+        pkgs-pin4.telegram-desktop;
     materialgram = if config.compile_gram then pkgs.nur.repos.mio.materialgram else pkgs.materialgram;
     mcpelauncher-ui-qt = pkgs.mcpelauncher-ui-qt;
     # cannot get bwrapper to work with mcpe login page
