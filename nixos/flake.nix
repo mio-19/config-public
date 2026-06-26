@@ -172,7 +172,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    #nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     #emacs-overlay = {
     #  url = "github:nix-community/emacs-overlay";
     #  inputs.nixpkgs.follows = "nixpkgs";
