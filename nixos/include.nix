@@ -592,6 +592,13 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
+  pkgs-chaotic = import inputs.chaotic.inputs.nixpkgs {
+    config = osConfig.nixpkgs.config;
+    system = pkgs.stdenv.hostPlatform.system;
+    overlays = [
+      inputs.chaotic.overlays.default
+    ];
+  };
   pkgs-489506 = import inputs.nixpkgs-489506 {
     config = osConfig.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;

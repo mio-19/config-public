@@ -9,17 +9,17 @@ with _include;
 let
   cachyKernel =
     if config.virtualisation.vmware.host.enable then
-      pkgs-unstable.linuxPackages_cachyos-gcc
+      pkgs-chaotic.linuxPackages_cachyos-gcc
     else if
       config.microarch == "zen4" && !config.workaround_i_dont_know_kernel_nvidia_refer_problem
     then
-      pkgs-unstable.linuxPackages_cachyos.cachyOverride {
+      pkgs-chaotic.linuxPackages_cachyos.cachyOverride {
         cachyVars = pkgs.linuxPackages_cachyos.kernel.cachyConfig.cachyVars // {
           "_processor_opt" = "ZEN4";
         };
       }
     else
-      pkgs-unstable.linuxPackages_cachyos;
+      pkgs-chaotic.linuxPackages_cachyos;
 in
 {
   options = {
