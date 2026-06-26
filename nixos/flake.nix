@@ -280,13 +280,14 @@
       inputs.utils.follows = "flake-utils";
     };
     claude-desktop = {
-      # last commit failed to build
-      url = "github:aaddrick/claude-desktop-debian/e85450c90ba38159f89f02bdd0f6c6d7e6bce065";
+      # pin slop to avoid many rebuilds
+      url = "github:aaddrick/claude-desktop-debian/8c9a45ca02300019379193075638d6c560437f26";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     nix-bwrapper = {
-      url = "github:Naxdy/nix-bwrapper";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:Naxdy/nix-bwrapper/ad48298ec8f582b2362fea1765973c163c3d038a";
       inputs.nixpkgs.follows = "nixpkgs";
       #inputs.treefmt-nix.follows = "llm-agents/treefmt-nix";
       inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
