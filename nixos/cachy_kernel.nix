@@ -13,11 +13,14 @@ let
     else if
       config.microarch == "zen4" && !config.workaround_i_dont_know_kernel_nvidia_refer_problem
     then
-      pkgs-chaotic.linuxPackages_cachyos.cachyOverride {
-        cachyVars = pkgs.linuxPackages_cachyos.kernel.cachyConfig.cachyVars // {
-          "_processor_opt" = "ZEN4";
-        };
-      }
+      /*
+        pkgs-chaotic.linuxPackages_cachyos.cachyOverride {
+          cachyVars = pkgs.linuxPackages_cachyos.kernel.cachyConfig.cachyVars // {
+            "_processor_opt" = "ZEN4";
+          };
+        }
+      */
+      pkgs-chaotic.linuxPackages_cachyos-lto-znver4
     else
       pkgs-chaotic.linuxPackages_cachyos;
 in
