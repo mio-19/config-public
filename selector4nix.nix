@@ -28,6 +28,7 @@ in
       network.nar_info_timeout_secs = 30;
       network.nar_timeout_secs = 30;
       network.tolerance_msecs = 10000;
+      network.max_concurrent_requests = 99;
       substituters = [
         {
           # https://www.nyx.chaotic.cx
