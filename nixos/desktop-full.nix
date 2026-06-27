@@ -85,7 +85,7 @@ with _include;
       })
       # unfree:
       #parsec-bin
-      sublime4 # (callPackage ./sublime-text.nix { })
+      sublime4-dev # sublime4 broken, need -dev # (callPackage ./sublime-text.nix { })
       sublime-merge # (callPackage ./sublime-merge.nix { })
     ])
     ++ (map cleanPkg [
