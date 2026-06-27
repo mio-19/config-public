@@ -111,7 +111,6 @@ with _include;
         ];
       });
       inherit (pkgs-pin) rpcs3;
-      inherit (pkgs-pin2) ryubing gnome-disk-utility;
       inherit (pkgs-pin4)
         diffoscope
         ;
