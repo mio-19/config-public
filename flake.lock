@@ -2080,7 +2080,6 @@
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-pin": "nixpkgs-pin",
-        "nixpkgs-pin3": "nixpkgs-pin3_2",
         "nixpkgs-pin4": "nixpkgs-pin4",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "nm2nix": "nm2nix",
@@ -2406,22 +2405,6 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "b3c092d3c36d91e2f61f3dfb39a159f180a56659",
-        "type": "github"
-      }
-    },
-    "nixpkgs-pin3_2": {
-      "locked": {
-        "lastModified": 1781577229,
-        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
         "type": "github"
       }
     },
