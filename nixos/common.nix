@@ -114,8 +114,7 @@ with _include;
       inherit (pkgs-pin4)
         diffoscope
         ;
-      inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
-      inherit (pkgs-pin3') pianotrans nixtamal;
+      inherit (pkgs') freecad pianotrans; # no binary cache with cuda and no binary cache with rocm
     })
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
