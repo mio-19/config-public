@@ -264,7 +264,7 @@ upper
     scala_3 = pkgs.scala_3.override { jre = jre; };
     nodejs = pkgs.nodejs_latest;
     nodejs-slim = pkgs.nodejs-slim_latest;
-    pnpm = pkgs.pnpm.override { nodejs-slim = program.nodejs-slim_latest; };
+    pnpm = pkgs.pnpm.override { inherit nodejs-slim; };
     antlr = pkgs.antlr.override { jre = program.jre; };
     librewolf' =
       (if config.use_librewolf_bin then pkgs'.librewolf-bin else pkgs'.librewolf).override
