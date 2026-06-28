@@ -63,6 +63,7 @@ with _include;
       openclaw
       librewolf
       librewolf-unwrapped
+      pnpm_9
     ];
   nixpkgs.config.allowUnfree = false;
   nixpkgs.config.allowNonSource = false;
