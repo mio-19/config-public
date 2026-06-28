@@ -39,7 +39,7 @@ with _include;
       inherit (pkgs-pin6) koodo-reader;
       inherit (pkgs-pin7) wrangler;
       #inherit (pkgs-pin3) ollama;
-      #inherit (pkgs-pin4) agda;
+      inherit (pkgs-pin4) yt-dlp;
     })
   ];
   home-manager.sharedModules = [
