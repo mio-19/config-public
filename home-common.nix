@@ -15,7 +15,7 @@ let
       #neveruse#nix-vscode-extensions.vscode-marketplace.scalameta.metals
       nix-vscode-extensions.vscode-marketplace.scala-lang.scala
       nix-vscode-extensions.vscode-marketplace.haskell.haskell
-      nix-vscode-extensions.vscode-marketplace.justusadam.language-haskell # haskell.haskell really depends on this??
+      vscode-extensions.justusadam.language-haskell # haskell.haskell really depends on this??
       nix-vscode-extensions.vscode-marketplace.tomoki1207.pdf
       #nix-vscode-extensions.vscode-marketplace.bbenoist.nix
       nix-vscode-extensions.vscode-marketplace.jnoortheen.nix-ide
