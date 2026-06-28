@@ -157,12 +157,6 @@
             name = "nixpkgs-patched";
             src = inputs0.nixpkgs.outPath;
             patches = with pkgs0; [
-              (fetchpatch {
-                name = "musescore-evolution: 3.7.0-unstable-2026-03-03 -> 3.7.0-unstable-2026-06-10";
-                url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
-                hash = "sha256-1oHDn8THBGTx55uTmQs12nGOdueqqGK4gfstKKqBElM=";
-                derivationArgs.allowSubstitutes = false;
-              })
               /*
                 # merge conflicts?
                 (fetchpatch {
