@@ -397,6 +397,7 @@ upper
       "docker"
       "corectrl"
       "wireshark"
+      "wireguard"
     ];
   /*
     evalValue =
