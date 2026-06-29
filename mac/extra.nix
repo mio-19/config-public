@@ -71,6 +71,7 @@ with _include;
       gemini-cli
       cursor-cli
 
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
       joplin-desktop
       #qdiskinfo # needs more patches
       #kdiskmark # needs more patches
