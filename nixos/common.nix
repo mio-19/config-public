@@ -35,8 +35,9 @@ with _include;
     inputs.impermanence.nixosModules.impermanence
     inputs.nixpkgs.nixosModules.notDetected
     #inputs.stylix.nixosModules.stylix
-    inputs.nur.legacyPackages."${system}".repos.mio.modules.zfs-impermanence-on-shutdown
+    inputs.chaotic.nixosModules.zfs-impermanence-on-shutdown # inputs.nur.legacyPackages."${system}".repos.mio.modules.zfs-impermanence-on-shutdown
     inputs.mio.legacyPackages."${system}".modules.darling
+    inputs.mio.legacyPackages."${system}".modules.wireguird
     ./nixbuild.nix
     ../token.nix
     ./hardened.nix # does this break sddm?
