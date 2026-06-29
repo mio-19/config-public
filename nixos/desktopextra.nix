@@ -32,7 +32,7 @@ with _include;
       jetbrains.idea-oss
       nur.repos.mio.bifrost
       # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
+      #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
       downkyicore # nur.repos.mio.downkyicore
       progs.inkscape
       #gg-jj
