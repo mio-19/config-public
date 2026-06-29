@@ -50,7 +50,6 @@
   environment.systemPackages = with pkgs; [
     #fdroidserver
     #sdkmanager # IT IS INSTALLING LINUX BINARY ON THE MAC
-    wrangler
     supertuxkart
   ];
 

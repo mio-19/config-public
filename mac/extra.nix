@@ -43,6 +43,7 @@ with _include;
       # unfree:
       p7zip-rar
 
+      wrangler
       (ammonite.override { jre = program.jre; })
       (sbt.override { jre = program.jre; })
       program.nodejs
