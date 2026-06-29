@@ -8,8 +8,8 @@
     # https://github.com/NixOS/nixpkgs/pull/449689
     #nixpkgs-staging.url = "github:NixOS/nixpkgs/staging";
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
-    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/e1c1b84752fb"; # https://hydra.nixos.org/job/nixpkgs/unstable/unstable#tabs-constituents
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/e1c1b84752fb"; # https://hydra.nixos.org/job/nixpkgs/unstable/unstable#tabs-constituents
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/master";
     #nixpkgs-pin.url = "github:NixOS/nixpkgs/b86751bc4085f48661017fa226dee99fab6c651b"; # a commit from nixpkgs-unstable
