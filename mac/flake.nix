@@ -43,28 +43,6 @@
         inputs.home-manager.follows = "home-manager";
       };
     */
-    ## https://wiki.lix.systems/books/lix-contributors/page/running-lix-main
-    #lix = {
-    #  url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
-    #  flake = false;
-    #};
-    #lix-module = {
-    #  url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #  inputs.lix.follows = "lix";
-    #};
-
-    /*
-        lix-module = {
-          #url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
-          #url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
-          # https://git.lix.systems/lix-project/nixos-module/pulls/105/files
-          url = "https://git.lix.systems/lix-project/nixos-module/archive/separate-darwin-modules.tar.gz";
-          inputs.nixpkgs.follows = "nixpkgs";
-          inputs.flake-utils.follows = "flake-utils";
-        };
-    */
-
     #  --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
     #chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     #chaotic.url = "github:chaotic-cx/nyx/main";
