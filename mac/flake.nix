@@ -165,6 +165,12 @@
                 hash = "sha256-Z/m4UqkHsCm5iLyE65g9XVL+xMSgWCNZwPECmGcT3Vc=";
                 derivationArgs.allowSubstitutes = false;
               })
+              (fetchpatch {
+                name = "trayscale: add macOS application bundle";
+                url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
+                hash = "sha256-DP2+sr5DQtslEjJMfSueNfmpMeRAPdmfUW8dDnq9SYk=";
+                derivationArgs.allowSubstitutes = false;
+              })
               /*
                 # unsure
                 (fetchpatch {

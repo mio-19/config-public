@@ -133,7 +133,7 @@ with _include;
     localsend
     #element-desktop # use element-desktop from homebrew then as nixpkgs's one broken - https://github.com/NixOS/nixpkgs/issues/485589
     zotero
-    inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".trayscale
+    trayscale # inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".trayscale
     qbittorrent-enhanced
     #firefox_nightly
     famistudio
