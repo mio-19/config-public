@@ -162,7 +162,7 @@
               (fetchpatch {
                 name = "koodo-reader: fix darwin build";
                 url = "https://github.com/NixOS/nixpkgs/pull/536592.diff";
-                hash = "sha256-YHqXT4F6KyOztnGYmM9bYV5cP5RZvzU1UhDPywaPeBs=";
+                hash = "sha256-Z/m4UqkHsCm5iLyE65g9XVL+xMSgWCNZwPECmGcT3Vc=";
                 derivationArgs.allowSubstitutes = false;
               })
               /*
