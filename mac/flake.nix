@@ -3,8 +3,6 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    # for blender https://github.com/NixOS/nixpkgs/pull/415996
-    #nixpkgs-95376.url = "github:NixOS/nixpkgs/953761feedba201cb0c56aabab19b5b5b3c6b412";
     # https://github.com/NixOS/nixpkgs/pull/449689
     #nixpkgs-staging.url = "github:NixOS/nixpkgs/staging";
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";

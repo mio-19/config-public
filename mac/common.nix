@@ -126,7 +126,7 @@ with _include;
     program.librewolf'
     nixfmt
     nixfmt-tree
-    #pkgs-95376.blender
+
     rectangle
     zed-editor
     firebird-emu

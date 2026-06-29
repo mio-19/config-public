@@ -88,6 +88,7 @@ with _include;
       # Good Linux GUI packages:
       pympress
       jadx
+      blender
       #gnome-calculator
       #gnome-text-editor
       #remmina
@@ -181,7 +182,6 @@ with _include;
     "kdenlive"
     "krita"
     "gimp"
-    "blender"
     "freecad"
     "inkscape"
   ];
