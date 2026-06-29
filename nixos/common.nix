@@ -99,7 +99,7 @@ with _include;
       #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
       grub2 = final.nur.repos.mio.grub2;
       #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
-      darling = inputs.mio.packages."${system}".darling;
+      inherit (inputs.mio.packages."${system}") wireguird darling;
       inherit (pkgs-openclaw) openclaw openclawPackages;
       xfce4-terminal = prev.xfce4-terminal.overrideAttrs (oldAttrs: {
         patches = (oldAttrs.patches or [ ]) ++ [
