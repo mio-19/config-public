@@ -34,7 +34,7 @@ with _include;
       #nix-output-monitor = inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       inherit (pkgs-openclaw) openclaw openclawPackages;
       #inherit (pkgs-pin5) zotero;
-      inherit (pkgs-pin6) koodo-reader;
+      #inherit (pkgs-pin6) koodo-reader;
       inherit (pkgs-pin7) wrangler;
       #inherit (pkgs-pin3) ollama;
       inherit (pkgs-pin4) yt-dlp;
