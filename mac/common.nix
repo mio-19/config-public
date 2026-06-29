@@ -39,7 +39,7 @@ with _include;
       inherit (pkgs-pin6) koodo-reader;
       inherit (pkgs-pin7) wrangler;
       #inherit (pkgs-pin3) ollama;
-      #inherit (pkgs-pin4) agda;
+      inherit (pkgs-pin4) yt-dlp;
     })
   ];
   home-manager.sharedModules = [
@@ -63,6 +63,7 @@ with _include;
       openclaw
       librewolf
       librewolf-unwrapped
+      pnpm_9
     ];
   nixpkgs.config.allowUnfree = false;
   nixpkgs.config.allowNonSource = false;
@@ -89,6 +90,7 @@ with _include;
       ln -s ${pkgs.coreutils}/bin/timeout $out/bin/timeout
     '')
 
+    nixtamal
     nano
     lz4
     nixd
@@ -287,9 +289,9 @@ with _include;
   # }}}
 
   fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
+    pkgs-pin4.noto-fonts
+    pkgs-pin4.noto-fonts-cjk-sans
+    pkgs-pin4.noto-fonts-color-emoji
     nerd-fonts.noto
     source-code-pro
     nerd-fonts.sauce-code-pro

@@ -9,12 +9,13 @@
     #nixpkgs-staging.url = "github:NixOS/nixpkgs/staging";
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/e1c1b84752fb"; # https://hydra.nixos.org/job/nixpkgs/unstable/unstable#tabs-constituents
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/master";
     #nixpkgs-pin.url = "github:NixOS/nixpkgs/b86751bc4085f48661017fa226dee99fab6c651b"; # a commit from nixpkgs-unstable
     nixpkgs-pin2.url = "github:NixOS/nixpkgs/b579d443b37c9c5373044201ea77604e37e748c8"; # a commit from nixpkgs-unstable
     nixpkgs-pin3.url = "github:NixOS/nixpkgs/b3c092d3c36d91e2f61f3dfb39a159f180a56659"; # a commit from nixpkgs-unstable
-    #nixpkgs-pin4.url = "github:NixOS/nixpkgs/ffa10e26ae11d676b2db836259889f1f571cb14f"; # a commit from nixpkgs-unstable
+    nixpkgs-pin4.url = "github:NixOS/nixpkgs/b3c092d3c36d91e2f61f3dfb39a159f180a56659"; # a commit from nixpkgs-unstable
     #nixpkgs-pin5.url = "github:NixOS/nixpkgs/d99b013d5d1931ad77fe3912ed218170dec5d9a4"; # a commit from nixpkgs-unstable
     nixpkgs-pin6.url = "github:NixOS/nixpkgs/6dedf69f94d03cbe7bdde106f2d4c23ae2a853bf"; # a commit from nixpkgs-unstable
     nixpkgs-pin7.url = "github:NixOS/nixpkgs/4100e830e085863741bc69b156ec4ccd53ab5be0"; # a commit from nixpkgs-unstable
@@ -156,12 +157,6 @@
             name = "nixpkgs-patched";
             src = inputs0.nixpkgs.outPath;
             patches = with pkgs0; [
-              (fetchpatch {
-                name = "musescore-evolution: 3.7.0-unstable-2026-03-03 -> 3.7.0-unstable-2026-06-10";
-                url = "https://github.com/NixOS/nixpkgs/pull/530469.patch";
-                hash = "sha256-1oHDn8THBGTx55uTmQs12nGOdueqqGK4gfstKKqBElM=";
-                derivationArgs.allowSubstitutes = false;
-              })
               /*
                 # merge conflicts?
                 (fetchpatch {

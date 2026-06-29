@@ -386,5 +386,13 @@ with _include;
     xdg-desktop-portal-gtk
   ];
 
+  qt = lib.mkIf kdeDMEnabled {
+    # https://github.com/olafkfreund/nixos-template/blob/19b47e0faa2229224f5daf37fdea944fdc5d9b3b/home/profiles/kde.nix#L34-L38
+    enable = true;
+    # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/config/qt.nix
+    platformTheme = "kde";
+    style = "breeze";
+  };
+
   # TODO: solve https://discussion.fedoraproject.org/t/correct-way-to-theme-kde-apps-on-gnome/133996
 }
