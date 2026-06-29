@@ -288,9 +288,9 @@ with _include;
   # }}}
 
   fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
+    pkgs-pin4.noto-fonts
+    pkgs-pin4.noto-fonts-cjk-sans
+    pkgs-pin4.noto-fonts-color-emoji
     nerd-fonts.noto
     source-code-pro
     nerd-fonts.sauce-code-pro
