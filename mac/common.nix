@@ -35,7 +35,7 @@ with _include;
       inherit (pkgs-openclaw) openclaw openclawPackages;
       #inherit (pkgs-pin5) zotero;
       #inherit (pkgs-pin6) koodo-reader;
-      inherit (pkgs-pin7) wrangler;
+      #inherit (pkgs-pin7) wrangler;
       #inherit (pkgs-pin3) ollama;
       inherit (pkgs-pin4) yt-dlp;
       inherit (pkgs-pin4) thunderbird-esr zed-editor; # no binary cache
