@@ -22,12 +22,12 @@ with _include;
     enable = true;
     keepDefaultStrategies = false;
     settings = {
-      defaultStrategy = "charging-smooth";
-      strategyOnDischarging = "discharging-smooth";
       /*
-        defaultStrategy = "charging-workaround";
-        strategyOnDischarging = "discharging-workaround";
+        defaultStrategy = "charging-smooth";
+        strategyOnDischarging = "discharging-smooth";
       */
+      defaultStrategy = "charging-workaround";
+      strategyOnDischarging = "discharging-workaround";
       strategies = {
         "discharging-smooth" = {
           fanSpeedUpdateFrequency = 7;
