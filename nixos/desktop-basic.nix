@@ -110,7 +110,7 @@ with _include;
   services.gnome.games.enable = false;
   environment.gnome.excludePackages = with pkgs; [
     # https://github.com/mwlaboratories/phoneputer/blob/13070a74737bd184f4814c056571862f80036c5b/configuration.nix#L36C51-L47C35
-    baobab # disk usage analyzer
+    baobab # Disk Usage Analyzer
     cheese # photo booth
     eog # image viewer
     epiphany # web browser

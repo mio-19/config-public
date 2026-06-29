@@ -94,7 +94,7 @@ with _include;
       #remmina
       #evince
       #baobab
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
       thunderbird-esr
       #adwaita-icon-theme
       #hicolor-icon-theme
