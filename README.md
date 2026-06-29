@@ -18,7 +18,7 @@ you can see `DETAILS REMOVED` with what I feel uncomfortable sharing or unsafe t
 
 ## LLM policy
 
-Headache. Use LLM for boring, no-brain tasks.
+Headache. Use LLM for boring, no-brain tasks. LLM pushed living cost higher? I cannot opt out of the higher living cost by opting out of LLM myself.
 
 ## common problem - cannot install grub, uefi
 
