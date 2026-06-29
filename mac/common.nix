@@ -131,7 +131,7 @@ with _include;
     zed-editor
     firebird-emu
     localsend
-    #element-desktop # use element-desktop from homebrew then as nixpkgs's one broken - https://github.com/NixOS/nixpkgs/issues/485589
+    element-desktop
     zotero
     trayscale # inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".trayscale
     qbittorrent-enhanced
@@ -221,7 +221,7 @@ with _include;
   homebrew.casks = [
     "iterm2"
     "google-chrome"
-    "element"
+    #"element"
   ];
   homebrew.brews = [
     #"openjdk@11"
