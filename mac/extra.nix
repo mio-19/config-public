@@ -92,7 +92,7 @@ with _include;
       #gnome-calculator
       #gnome-text-editor
       #remmina
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
+      #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
       thunderbird-esr
       #adwaita-icon-theme
