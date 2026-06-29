@@ -159,6 +159,12 @@
                 hash = "sha256-7mcSsAboehuksmXeSiP13SFDItZ24icjeyehRZiOg8s=";
                 derivationArgs.allowSubstitutes = false;
               })
+              (fetchpatch {
+                name = "pull 536592";
+                url = "https://github.com/NixOS/nixpkgs/pull/536592.diff";
+                hash = "sha256-YHqXT4F6KyOztnGYmM9bYV5cP5RZvzU1UhDPywaPeBs=";
+                derivationArgs.allowSubstitutes = false;
+              })
               /*
                 # unsure
                 (fetchpatch {
