@@ -287,6 +287,7 @@
           inputs = inputs0 // {
             inherit nixpkgs darwin mio;
             nixpkgs-unpatched = inputs0.nixpkgs;
+            nixpkgs-patched = nixpkgs;
           };
           inherit darwin deployPkgs deploy-rs;
           inherit (inputs0) self;
