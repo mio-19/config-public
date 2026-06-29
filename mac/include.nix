@@ -117,7 +117,7 @@ upper
     jre = jdk;
     jdk_headless = jdk;
     git = (pkgs.git.override { openssh = openssh; });
-    pnpm = pkgs.pnpm.override { nodejs-slim = pkgs.nodejs-slim_latest; };
+    pnpm = pkgs.pnpm.override { nodejs-slim = pkgs-pin4.nodejs-slim_latest; };
     pnpm_9 = pkgs.pnpm_9.override { nodejs = nodejs; };
     ppnpm_10 = pkgs.pnpm_10.override { nodejs = nodejs; };
     yarn-berry = pkgs.yarn-berry.override { nodejs = nodejs; };
