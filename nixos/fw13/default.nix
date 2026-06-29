@@ -67,6 +67,8 @@ with _include;
 
   security.allowSimultaneousMultithreading = true;
 
+  programs.wireguird.enable = true;
+
   #virtualisation.virtualbox.host.enable = true; # once stuck on boot
 
   home-manager.sharedModules = [
