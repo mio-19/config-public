@@ -90,6 +90,7 @@ with _include;
       ln -s ${pkgs.coreutils}/bin/timeout $out/bin/timeout
     '')
 
+    nixtamal
     nano
     lz4
     nixd

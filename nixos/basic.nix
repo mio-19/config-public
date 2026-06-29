@@ -28,6 +28,7 @@
 
   # https://search.nixos.org/packages
   environment.systemPackages = with pkgs; [
+    nixtamal
   ];
   nix = {
     settings = {
