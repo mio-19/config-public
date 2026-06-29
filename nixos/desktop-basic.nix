@@ -389,7 +389,8 @@ with _include;
   qt = lib.mkIf kdeDMEnabled {
     # https://github.com/olafkfreund/nixos-template/blob/19b47e0faa2229224f5daf37fdea944fdc5d9b3b/home/profiles/kde.nix#L34-L38
     enable = true;
-    platformTheme = "kde6";
+    # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/config/qt.nix
+    platformTheme = "kde";
     style = "breeze";
   };
 
