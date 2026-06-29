@@ -93,6 +93,7 @@ with _include;
       #remmina
       #evince
       #baobab
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab
       thunderbird-esr
       #adwaita-icon-theme
       #hicolor-icon-theme
@@ -196,15 +197,15 @@ with _include;
   homebrew.masApps = {
     Meshtastic = 1586432531;
   };
+  /*
+    system.activationScripts.extraActivation.text = lib.optionalString mac-app-util-enabled ''
 
-  system.activationScripts.extraActivation.text = lib.optionalString mac-app-util-enabled ''
+      fromDir="/Applications"
+      mkdir -p "$fromDir"
 
-    fromDir="/Applications"
-    mkdir -p "$fromDir"
-
-    ${inputs.mac-app-util.packages.${pkgs.stdenv.system}.default}/bin/mac-app-util mktrampoline \
-      "${pkgs.baobab}/bin/baobab" \
-      "$fromDir/Baobab.app"
-  '';
-
+      ${inputs.mac-app-util.packages.${pkgs.stdenv.system}.default}/bin/mac-app-util mktrampoline \
+        "${pkgs.baobab}/bin/baobab" \
+        "$fromDir/Baobab.app"
+    '';
+  */
 }
