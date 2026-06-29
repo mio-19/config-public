@@ -122,7 +122,7 @@ with _include;
     ++ lib.optionals pkgs.stdenv.isAarch64 [
       # unsupported on x86_64 macOS:
       tuxguitar
-      ryubing # command only no application launcher
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.ryubing
     ]
     ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
       oh-my-opencode
