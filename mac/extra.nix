@@ -93,7 +93,6 @@ with _include;
       #gnome-text-editor
       #remmina
       #evince
-      #baobab
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
       thunderbird-esr
       #adwaita-icon-theme
