@@ -31,15 +31,14 @@ with _include;
     inputs.nix-vscode-extensions.overlays.default
     (final: prev: {
       #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
-      #zed-editor = pkgs-stable.zed-editor; # we from time to time don't have binary cache on unstable. but this time: stable no cache
       #nix-output-monitor = inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       inherit (pkgs-openclaw) openclaw openclawPackages;
-      #inherit (pkgs-pin) thunderbird-esr;
       #inherit (pkgs-pin5) zotero;
       inherit (pkgs-pin6) koodo-reader;
       inherit (pkgs-pin7) wrangler;
       #inherit (pkgs-pin3) ollama;
       inherit (pkgs-pin4) yt-dlp;
+      inherit (pkgs-pin4) thunderbird-esr zed-editor; # no binary cache
     })
   ];
   home-manager.sharedModules = [
