@@ -24,6 +24,7 @@ with _include;
   environment.systemPackages =
     with pkgs;
     (map hardenedPkg [
+      cpu-x
       giada
       motrix-next
       xfce4-terminal
