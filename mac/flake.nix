@@ -178,6 +178,7 @@
                 name = "vscode-with-extensions: respect macos package bundle's CFBundleExecutable value when generating the wrapper";
                 url = "https://github.com/NixOS/nixpkgs/pull/507766.patch";
                 hash = "sha256-aL8a0Q0nGtioTKmdmZGh9BUWE8pMxc/e0DjcbVFqh6Y=";
+                derivationArgs.allowSubstitutes = false;
               })
               # related to appstream : https://github.com/NixOS/nixpkgs/issues/514566
               (fetchpatch {
