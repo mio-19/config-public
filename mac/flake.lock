@@ -154,6 +154,7 @@
       "original": {
         "owner": "nix-giant",
         "repo": "nix-darwin-emacs",
+        "rev": "59ab9eb4433da6da81561c0d1cd79e5dfbe71cfc",
         "type": "github"
       }
     },
