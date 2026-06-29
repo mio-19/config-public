@@ -27,9 +27,11 @@
   };
 
   # https://search.nixos.org/packages
-  environment.systemPackages = with pkgs; [
-    nixtamal
-  ];
+  environment.systemPackages =
+    with pkgs;
+    lib.optionals (pkgs ? nixtamal) [
+      nixtamal
+    ];
   nix = {
     settings = {
       substituters = [
