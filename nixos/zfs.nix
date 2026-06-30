@@ -57,19 +57,21 @@ in
     snapshot = lib.mkDefault "blank";
     #volume = "${pool}/nixos/local/ephemeral";
   };
-  # for dedup and share
-  config.systemd.services."zfs-mount-a" = {
-    description = "ZFS mount -a at boot";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "local-fs.target" ];
+  /*
+    # for dedup and share
+    config.systemd.services."zfs-mount-a" = {
+      description = "ZFS mount -a at boot";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "local-fs.target" ];
 
-    # Run once and stay 'active' after exit
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.zfs}/bin/zfs mount -a";
-      RemainAfterExit = true;
+      # Run once and stay 'active' after exit
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.zfs}/bin/zfs mount -a";
+        RemainAfterExit = true;
+      };
     };
-  };
+  */
   config.services.zfs = {
     trim.enable = true;
   };
