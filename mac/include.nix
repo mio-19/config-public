@@ -111,6 +111,7 @@ upper
   };
   program = rec {
     nodejs = pkgs.nodejs_latest;
+    nodejs-slim = pkgs.nodejs-slim_latest;
     #nodejs = pkgs.graalvmPackages.graalnodejs // { python = pkgs.python3; };
     openssh = lib.hiPrio pkgs.nur.repos.mio.openssh_hpn;
     jdk = pkgs.jdk25; # pkgs.graalvmPackages.graalvm-oracle; # pkgs.graalvmPackages.graalvm-ce; # graalvm-ce is binaryNativeCode
