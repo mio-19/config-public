@@ -76,12 +76,6 @@ in
             derivationArgs.allowSubstitutes = false;
           })
           (fetchpatch {
-            name = "mousam: 1.4.2 -> 2.0.2";
-            url = "https://github.com/NixOS/nixpkgs/pull/531624.patch";
-            hash = "sha256-euYP3ROWV0kBKQB2tgSUvFuxldcnRXOpwvGsma5sFwY=";
-            derivationArgs.allowSubstitutes = false;
-          })
-          (fetchpatch {
             name = "nixos/nix-remote-build: permit non-integer speed factors";
             url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
             hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";
