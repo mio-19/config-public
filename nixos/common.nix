@@ -95,20 +95,26 @@ with _include;
     #inputs.android-nixpkgs.overlays.default
     inputs.nix-vscode-extensions.overlays.default
     #inputs.emacs-overlay.overlays.package
-    (final: prev: {
-      #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
-      #grub2 = final.nur.repos.mio.grub2;
-      #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
-      inherit (inputs.mio.packages."${system}") wireguird darling grub2;
-      sniffnet = inputs.mio.packages."${system}".sniffnet-patched;
-      xfce4-terminal = inputs.mio.packages."${system}".xfce4-terminal-patched;
-      inherit (pkgs-openclaw) openclaw openclawPackages;
-      inherit (pkgs-pin) rpcs3;
-      inherit (pkgs-pin4)
-        diffoscope
-        ;
-      inherit (pkgs') freecad pianotrans; # no binary cache with cuda and no binary cache with rocm
-    })
+    (
+      final: prev:
+      let
+        mio = inputs.mio.packages."${system}";
+      in
+      {
+        #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
+        #grub2 = final.nur.repos.mio.grub2;
+        #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
+        inherit (mio) wireguird darling grub2;
+        sniffnet = mio.sniffnet-patched;
+        xfce4-terminal = mio.xfce4-terminal-patched;
+        inherit (pkgs-openclaw) openclaw openclawPackages;
+        inherit (pkgs-pin) rpcs3;
+        inherit (pkgs-pin4)
+          diffoscope
+          ;
+        inherit (pkgs') freecad pianotrans; # no binary cache with cuda and no binary cache with rocm
+      }
+    )
     inputs.chaotic.overlays.default
     inputs.mac-style-plymouth.overlays.default
     inputs.nix-bwrapper.overlays.default
