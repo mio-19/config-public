@@ -1248,8 +1248,6 @@
         "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-pin3": "nixpkgs-pin3",
         "nixpkgs-pin4": "nixpkgs-pin4",
-        "nixpkgs-pin6": "nixpkgs-pin6",
-        "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix"
@@ -2439,38 +2437,6 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "8dc49b8b206a683d1f6605e0fd993c0f5d49c98d",
-        "type": "github"
-      }
-    },
-    "nixpkgs-pin6": {
-      "locked": {
-        "lastModified": 1779414690,
-        "narHash": "sha256-gOTcX/9MZVMUE0Xvb4IEcv+0TQJkZFNEnL757ljU360=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "6dedf69f94d03cbe7bdde106f2d4c23ae2a853bf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "6dedf69f94d03cbe7bdde106f2d4c23ae2a853bf",
-        "type": "github"
-      }
-    },
-    "nixpkgs-pin7": {
-      "locked": {
-        "lastModified": 1779877693,
-        "narHash": "sha256-NOF9NAREhxr50bbBfVcVOq+ArCMSoe8dP79Pk2uyARk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4100e830e085863741bc69b156ec4ccd53ab5be0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4100e830e085863741bc69b156ec4ccd53ab5be0",
         "type": "github"
       }
     },
