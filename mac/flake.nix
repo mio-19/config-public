@@ -160,12 +160,6 @@
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
-                name = "koodo-reader: fix darwin build";
-                url = "https://github.com/NixOS/nixpkgs/pull/536592.diff";
-                hash = "sha256-Z/m4UqkHsCm5iLyE65g9XVL+xMSgWCNZwPECmGcT3Vc=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
                 name = "trayscale: add macOS application bundle";
                 url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
                 hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
