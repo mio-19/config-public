@@ -104,9 +104,10 @@ with _include;
         #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
         #grub2 = final.nur.repos.mio.grub2;
         #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
-        inherit (mio) wireguird darling grub2;
+        inherit (mio) wireguird darling;
         sniffnet = mio.sniffnet-patched;
         xfce4-terminal = mio.xfce4-terminal-patched;
+        grub2 = mio.grub2-patched;
         inherit (pkgs-openclaw) openclaw openclawPackages;
         inherit (pkgs-pin) rpcs3;
         inherit (pkgs-pin4)
