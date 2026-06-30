@@ -23,13 +23,8 @@ with _include;
       rclone
 
       ghidra
-      qpwgraph
-      carla
-      popsicle # alternative to Balena Etcher - https://github.com/NixOS/nixpkgs/issues/371992#issuecomment-2576548039
       musescore-evolution
       nur.repos.mio.musescore-alex
-      jellyfin-desktop
-      jetbrains.idea-oss
       nur.repos.mio.bifrost
       # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
       #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
@@ -48,17 +43,7 @@ with _include;
       freecad
       #openscad
       blender
-      okteta
-      dune3d
-      lingot
-      gmetronome
-      #piliplus # bluescreen
-      millisecond
-      audacious
-      splayer
-      netease-cloud-music-gtk
-      notepad-next
-      nemo
+      #nemo
       #qcm
       teams-for-linux
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop

@@ -24,6 +24,21 @@ with _include;
   environment.systemPackages =
     with pkgs;
     (map hardenedPkg [
+      okteta
+      dune3d
+      lingot
+      gmetronome
+      #piliplus # bluescreen
+      millisecond
+      audacious
+      splayer
+      netease-cloud-music-gtk
+      notepad-next
+      qpwgraph
+      carla
+      popsicle # alternative to Balena Etcher - https://github.com/NixOS/nixpkgs/issues/371992#issuecomment-2576548039
+      jellyfin-desktop
+      jetbrains.idea-oss
       cpu-x
       giada
       motrix-next
