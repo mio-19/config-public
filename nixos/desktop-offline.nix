@@ -74,11 +74,17 @@ with _include;
       inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
       #quickemu
       #whatsapp-chat-exporter
+      #wlvncc
+      #gpt4all
+      #figma-linux
+      #scribus # can edit pdf? - https://www.reddit.com/r/opensource/comments/1bu1gdi/adobe_acrobat_foss_alternative_to_end_all/
+      #xournalpp # can draw on pdf? - https://www.reddit.com/r/opensource/comments/1bu1gdi/adobe_acrobat_foss_alternative_to_end_all/
       super-productivity
       # unfree:
       lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
       binaryninja-free
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
+      bitwig-studio
     ])
     ++ [
       # breaks with wrapper
