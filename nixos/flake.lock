@@ -94,11 +94,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1782799368,
-        "narHash": "sha256-4pjbnPLalsaiwma9Hl1cA1yXoDS8a7AMF0JbQYQUy7g=",
+        "lastModified": 1782816716,
+        "narHash": "sha256-WR1kP/Gt+lhYE8CeWavRSSLFRQnFZEmNKcjC0FkPu+o=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "08fbb002b665bb34bc9ecc51aeae6dd14f2daa76",
+        "rev": "5aa9cbe8448ddf399f89e3bb012d078c171f5457",
         "type": "github"
       },
       "original": {
@@ -1925,10 +1925,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1782815723,
-        "narHash": "sha256-upCaTCZk9I92dn2G3vQSh1RM5rdKdPfcN/Y9g804Vo0=",
+        "lastModified": 1782822263,
+        "narHash": "sha256-NZCfssgT+v10n2gpIVoKmC8tO0Q0iafoIKDKtWmJZlg=",
         "ref": "refs/heads/main",
-        "rev": "aa0649af74ea2f21f57afde2e51c0a166933bd67",
+        "rev": "e06ae4180b346944dbea22f35b8814e461b618d6",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2186,11 +2186,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1782792778,
-        "narHash": "sha256-9HB+kfY1LnGLBzePf3UXVCgaqsqnXuGYd9KC47vWyVI=",
+        "lastModified": 1782819529,
+        "narHash": "sha256-gWkdMpW8Esnow+ROGro4CFnH6y3WmO5hvt9lvwT2Ujc=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "8c40b9879a0bc59acf011832fcae47f228d3614f",
+        "rev": "82e5a3221d7e6c4d4172df151b310ca3b0527625",
         "type": "github"
       },
       "original": {
@@ -2220,11 +2220,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782736509,
-        "narHash": "sha256-Zr1cHOdg8aaPCMiLkDu0GEpCinaBp1ogRfbS1kb6qKA=",
+        "lastModified": 1782817808,
+        "narHash": "sha256-JGi/O61Izxum4/F3qAUcBlvD/6hNQFpznqKg089Q2HM=",
         "owner": "mio-19",
         "repo": "robotnix",
-        "rev": "c80ffcf8336ee83bbee33cfa8f403a115d6f774c",
+        "rev": "44a3feb48064941f5aa12cd72593b55a1029600d",
         "type": "github"
       },
       "original": {
@@ -2700,11 +2700,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782258187,
-        "narHash": "sha256-JUv1Hf0P0B3k/c8/PyaqMQn+1VOSPJrB7EP3Us8fyFo=",
+        "lastModified": 1782818352,
+        "narHash": "sha256-oZ3dnpF8VQXLxRRfT9NBVRAUMJsKWiobPxqAAuGplnc=",
         "owner": "vicinaehq",
         "repo": "extensions",
-        "rev": "27d2b04f9ce48bdc69c29cd25d91d854fc8a835f",
+        "rev": "47da7fa4e75ed4cf17b5f444d9cd8e10be213b5c",
         "type": "github"
       },
       "original": {
