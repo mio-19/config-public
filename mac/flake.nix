@@ -168,7 +168,7 @@
               (fetchpatch {
                 name = "trayscale: add macOS application bundle";
                 url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
-                hash = "sha256-DP2+sr5DQtslEjJMfSueNfmpMeRAPdmfUW8dDnq9SYk=";
+                hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
                 derivationArgs.allowSubstitutes = false;
               })
               /*
