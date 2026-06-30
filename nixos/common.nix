@@ -101,17 +101,8 @@ with _include;
       #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       inherit (inputs.mio.packages."${system}") wireguird darling grub2;
       sniffnet = inputs.mio.packages."${system}".sniffnet-patched;
+      xfce4-terminal = inputs.mio.packages."${system}".xfce4-terminal-patched;
       inherit (pkgs-openclaw) openclaw openclawPackages;
-      xfce4-terminal = prev.xfce4-terminal.overrideAttrs (oldAttrs: {
-        patches = (oldAttrs.patches or [ ]) ++ [
-          (fetchpatch {
-            name = "Add Set Title to the tab context menu";
-            url = "https://github.com/realrossmanngroup/xfce4-terminal/commit/621cbdbb70f3f5b37efb98bea08e7c6bdd6c38ce.patch";
-            hash = "sha256-6BD8f5e0AX8bmo988norEtc1bWQ57Z6tKVeMVEu/U1Y=";
-            derivationArgs.allowSubstitutes = false;
-          })
-        ];
-      });
       inherit (pkgs-pin) rpcs3;
       inherit (pkgs-pin4)
         diffoscope
