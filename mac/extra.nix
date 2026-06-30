@@ -132,6 +132,7 @@ with _include;
       (lib.hiPrio antigravity-cli) # higher prio than gui app for cli command "antigravity"
     ]);
   homebrew.casks = [
+    "racket"
     "cursor"
     "mullvad-vpn"
     "66HEX/frame/frame" # https://github.com/66HEX/frame
