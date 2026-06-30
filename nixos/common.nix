@@ -219,6 +219,7 @@ with _include;
       openclaw
       electron_39
       openssl_1_1
+      pnpm_10
       #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
       ventoy
       ventoy-full-gtk
