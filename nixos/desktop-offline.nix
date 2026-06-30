@@ -97,7 +97,8 @@ with _include;
           wine = config.wine64_package;
         })
       ]
-    );
+    )
+    ++ [ papirus-icon-theme ];
 
   services.flatpak = {
     enable = true;

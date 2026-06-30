@@ -59,8 +59,7 @@ with _include;
       #firefox_nightly
       # binaryNativeCode:
       tor-browser # need non flatpak version for the sandbox - https://github.com/flathub/org.torproject.torbrowser-launcher/issues/67
-    ])
-    ++ [ papirus-icon-theme ];
+    ]);
 
   services.flatpak = {
     enable = true;
