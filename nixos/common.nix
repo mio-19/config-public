@@ -100,6 +100,7 @@ with _include;
       #grub2 = final.nur.repos.mio.grub2;
       #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
       inherit (inputs.mio.packages."${system}") wireguird darling grub2;
+      sniffnet = inputs.mio.packages."${system}".sniffnet-patched;
       inherit (pkgs-openclaw) openclaw openclawPackages;
       xfce4-terminal = prev.xfce4-terminal.overrideAttrs (oldAttrs: {
         patches = (oldAttrs.patches or [ ]) ++ [
