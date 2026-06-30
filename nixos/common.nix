@@ -507,7 +507,9 @@ with _include;
   powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
     ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
   '';
-  powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
-    ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
-  '';
+  /*
+    powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
+      ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
+    '';
+  */
 }
