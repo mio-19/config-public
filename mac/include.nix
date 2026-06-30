@@ -119,7 +119,6 @@ upper
     git = (pkgs.git.override { openssh = openssh; });
     pnpm = pkgs.pnpm; # .override { nodejs-slim = pkgs-pin4.nodejs-slim_latest; };
     pnpm_9 = pkgs.pnpm_9.override { nodejs = nodejs; };
-    ppnpm_10 = pkgs.pnpm_10.override { nodejs = nodejs; };
     yarn-berry = pkgs.yarn-berry.override { nodejs = nodejs; };
     antlr = pkgs.antlr.override { jre = program.jre; };
     librewolf' = pkgs.librewolf.override (old: {
