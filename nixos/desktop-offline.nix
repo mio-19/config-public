@@ -1,4 +1,5 @@
 # collect packages that mostly never use. maybe useful if there is a possible situation of offline
+# packages that got used zero times belong here
 {
   config,
   inputs,
@@ -77,6 +78,7 @@ with _include;
       # unfree:
       lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
       binaryninja-free
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
     ])
     ++ [
       # breaks with wrapper
@@ -103,4 +105,14 @@ with _include;
     ];
   };
 
+  programs.firejail.enable = true;
+  programs.firejail.wrappedBinaries = with pkgs; {
+    # no network with bilibili.profile?
+    /*
+      bilibili = {
+        executable = "${hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili}/bin/bilibili";
+        profile = ./bilibili.profile;
+      };
+    */
+  };
 }

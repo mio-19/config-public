@@ -58,7 +58,6 @@ with _include;
       jetbrains.gateway
       #davinci-resolve
       lmstudio
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
       google-chrome # does antigravity only work with google-chrome?
       code-cursor
       bitwig-studio
@@ -110,13 +109,6 @@ with _include;
       executable = "${hardenedPkg progs.inkscape}/bin/inkscape";
       profile = "${pkgs.firejail}/etc/firejail/inkscape.profile";
     };
-    # no network with bilibili.profile?
-    /*
-      bilibili = {
-        executable = "${hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili}/bin/bilibili";
-        profile = ./bilibili.profile;
-      };
-    */
   };
 
   # cloudflare-warp could cause problems when mobile devices want to access public wifi login page.
