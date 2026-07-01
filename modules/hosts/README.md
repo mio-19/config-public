@@ -1,5 +1,7 @@
-# Public Den hosts
+# Den hosts
 
-Host directories under `modules/hosts/<name>/` are synced to [config-public](https://github.com/mio-19/config-public).
+Host directories under `modules/hosts/<name>/` use Den's import-tree layout (`_nixos/`, `_homeManager/`).
 
-Private hosts (e.g. `lenovo`) live only in the private config repo.
+This repo is the public tree: hosts listed here are public. The private `config` repo may contain additional hosts under `modules/hosts/` — infer private-only paths by diffing against this tree; do not maintain a separate list in either repo.
+
+Per-host Den aspects live in `modules/<hostname>.nix` when needed (e.g. `modules/fw13.nix`, `modules/ipc.nix`).

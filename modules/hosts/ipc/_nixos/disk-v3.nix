@@ -1,4 +1,4 @@
-# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount  ~/Documents/config/nixos/ipc2/disk-v3.nix
+# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ~/Documents/config-public/modules/hosts/ipc/_nixos/disk-v3.nix
 # NOTE: CONSIDER --root-mountpoint IF THE SYSTEM HAS SOMETHING UNDER /mnt
 { lib, ... }:
 {

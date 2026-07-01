@@ -13,46 +13,46 @@ with _include;
 {
   imports = [
     ./printers.nix
-    ../../bios-den.nix
-    ../hidpi.nix
-    #../betterbird.nix # tired of compiling
-    ../keep.nix
-    ../music.nix
-    ../privacy.nix
-    ../careless.nix
-    ../boot.nix
-    #../v3opt.nix # needs too many time to compile
-    ../wheel-nopasswd.nix
-    #../safe.nix
-    ../zfs.nix
-    ../cachy_kernel.nix
+    ../../../../bios-den.nix
+    ../../../../nixos/hidpi.nix
+    #../../../../nixos/betterbird.nix # tired of compiling
+    ../../../../nixos/keep.nix
+    ../../../../nixos/music.nix
+    ../../../../nixos/privacy.nix
+    ../../../../nixos/careless.nix
+    ../../../../nixos/boot.nix
+    #../../../../nixos/v3opt.nix # needs too many time to compile
+    ../../../../nixos/wheel-nopasswd.nix
+    #../../../../nixos/safe.nix
+    ../../../../nixos/zfs.nix
+    ../../../../nixos/cachy_kernel.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
     # DETAILS REMOVED
     ./disk-v3.nix
-    ../persistent.nix
-    ../desktop-baremetal-kde.nix
-    #../desktop-specialisation.nix
-    ../zswap.nix
-    ../alwaysonsys.nix
-    ../extra.nix
-    ../extra2.nix
-    ../desktopextra.nix
-    #../desktop-offline.nix
-    #../sunshine.nix
-    #../genai.nix # too much time to compile
-    ../devcommand.nix
-    ../cuda.nix
-    ../games.nix
-    #../games-extra.nix
-    ../persistentkde.nix
-    #../niri
-    #../localai.nix
-    ../scx.nix
-    ../keepBootedSystemEntry.nix
-    ../printing-sharing.nix
-    ../harmonia_lan_only_not_public_ip.nix
+    ../../../../nixos/persistent.nix
+    ../../../../nixos/desktop-baremetal-kde.nix
+    #../../../../nixos/desktop-specialisation.nix
+    ../../../../nixos/zswap.nix
+    ../../../../nixos/alwaysonsys.nix
+    ../../../../nixos/extra.nix
+    ../../../../nixos/extra2.nix
+    ../../../../nixos/desktopextra.nix
+    #../../../../nixos/desktop-offline.nix
+    #../../../../nixos/sunshine.nix
+    #../../../../nixos/genai.nix # too much time to compile
+    ../../../../nixos/devcommand.nix
+    ../../../../nixos/cuda.nix
+    ../../../../nixos/games.nix
+    #../../../../nixos/games-extra.nix
+    ../../../../nixos/persistentkde.nix
+    #../../../../nixos/niri
+    #../../../../nixos/localai.nix
+    ../../../../nixos/scx.nix
+    ../../../../nixos/keepBootedSystemEntry.nix
+    ../../../../nixos/printing-sharing.nix
+    ../../../../nixos/harmonia_lan_only_not_public_ip.nix
   ];
   compile_gram = true;
   hdr_very_bright = true;
@@ -72,12 +72,6 @@ with _include;
 
   security.allowSimultaneousMultithreading = false; # maybe this avoid Machine Check error https://www.reddit.com/r/techsupport/comments/1am75eu/machine_check_errors_on_14700kf_faulty_cpu/?rdt=32949
 
-  home-manager.users.user = ../home-user.nix;
-  # DETAILS REMOVED
-  home-manager.extraSpecialArgs = {
-    enable-fcitx = true;
-  };
-
   boot.kernel.sysctl = {
     "vm.swappiness" = lib.mkForce 1;
   };
@@ -86,7 +80,7 @@ with _include;
   users.users.root = {
     shell = pkgs.fish;
     hashedPasswordFile = "/persistent/etc/pass-user-user";
-    openssh.authorizedKeys.keys = (import ../../sshkeys.nix);
+    openssh.authorizedKeys.keys = (import ../../../../sshkeys.nix);
   };
   # DETAILS REMOVED
   users.users.user = {
@@ -95,7 +89,7 @@ with _include;
     isNormalUser = true;
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true; # https://github.com/nix-community/home-manager/issues/108#issuecomment-2569823607
-    openssh.authorizedKeys.keys = import ../../sshkeys.nix;
+    openssh.authorizedKeys.keys = import ../../../../sshkeys.nix;
     extraGroups = extraAdminGroups;
   };
   # DETAILS REMOVED
@@ -127,7 +121,7 @@ with _include;
     grub2-theme = {
       enable = true;
       # DETAILS REMOVED
-      splashImage = ../black.png;
+      splashImage = ../../../../nixos/black.png;
       theme = "stylish";
       #theme = "whitesur";
       #icon = "whitesur";
@@ -144,7 +138,6 @@ with _include;
     "/var/cache".neededForBoot = true;
     "/persistent".neededForBoot = true;
   };
-  networking.hostName = "ipc";
 
   networking.firewall.allowedTCPPorts = [ 8080 ]; # temp file share with $ caddy file-server --browse --debug --listen :8080
 

@@ -254,7 +254,7 @@ in
         in
         deployPkgs;
       den = import ../den-config.nix { inherit inputs; };
-      inherit (den.hosts.x86_64-linux) fw13;
+      inherit (den.hosts.x86_64-linux) fw13 ipc;
     in
     {
       # DETAILS REMOVED
@@ -275,12 +275,7 @@ in
       nixosConfigurations.ipc = nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./ipc2
-          #./nixremote.nix
-          #./desktop-specialisation.nix
-          #./netbird.nix
-          #./rc.nix
-          #inputs.determinate.nixosModules.default
+          ipc.mainModule
         ];
       };
       nixosConfigurations.fw13 = nixosSystem {
