@@ -12,72 +12,69 @@ with _include;
   # https://search.nixos.org/packages
   environment.systemPackages =
     with pkgs;
-    (map hardenedPkg [
-      wgcf
-      fdroidcl
-      (sbt.override { jre = program.jre; })
-      mill
-      program.scala_3
-      (maven.override { jdk_headless = program.jdk_headless; })
-      (ammonite.override { jre = program.jre; })
-      program.jdk
-      agda
-      lean4
-      yarn-berry
-      update-nix-fetchgit
-      jujutsu
-      nvfetcher
-      #git-repo
-      pmbootstrap
-      #clang
-      gnumake
-      texliveFull
-      cachix
-      poppler-utils
-      markdownlint-cli
-      cargo
-      rustc
-      qpdf # decrypt pdf
-      #julia # https://github.com/NixOS/nixpkgs/issues/475534
-      baidupcs-go
-      nurl
-      nix-init
-      nixd
-      mediainfo
-      img2pdf
-      vulnix
-      jq
-      s-tui
-      eza
-      #bat
-      rustscan
-      ffmpeg-full
-      #onefetch
-      #fresh-editor
-      nixpkgs-reviewFull
-      nix-update
-      gh
-      #code2prompt
-      yazi
-      nix-tree
-      matugen
-      polarity
-      diffnav
-      haskell-language-server
-      ghc
-      btop
-      program.antlr
-      nh
-      herdr
-      jadx
-      lynx
-      nur.repos.mio.pdf2pptx
-      easyeda2kicad
-      interactive-html-bom
-      diffoscope
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
-    ])
+    (map hardenedPkg (
+      import ../extra-common.nix { inherit pkgs; }
+      ++ [
+        wgcf
+        fdroidcl
+        (sbt.override { jre = program.jre; })
+        mill
+        program.scala_3
+        (maven.override { jdk_headless = program.jdk_headless; })
+        (ammonite.override { jre = program.jre; })
+        program.jdk
+        agda
+        lean4
+        yarn-berry
+        update-nix-fetchgit
+        jujutsu
+        nvfetcher
+        #git-repo
+        pmbootstrap
+        #clang
+        gnumake
+        texliveFull
+        poppler-utils
+        markdownlint-cli
+        cargo
+        rustc
+        qpdf # decrypt pdf
+        #julia # https://github.com/NixOS/nixpkgs/issues/475534
+        baidupcs-go
+        nix-init
+        nixd
+        mediainfo
+        img2pdf
+        vulnix
+        jq
+        s-tui
+        eza
+        #bat
+        rustscan
+        ffmpeg-full
+        #onefetch
+        #fresh-editor
+        nixpkgs-reviewFull
+        nix-update
+        gh
+        #code2prompt
+        yazi
+        nix-tree
+        matugen
+        polarity
+        diffnav
+        haskell-language-server
+        ghc
+        btop
+        program.antlr
+        nur.repos.mio.pdf2pptx
+        easyeda2kicad
+        interactive-html-bom
+        diffoscope
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
+      ]
+    ))
     ++ (map cleanPkg [
       opencode
       codex
