@@ -46,6 +46,7 @@ with _include;
       wrangler
       (ammonite.override { jre = program.jre; })
       (sbt.override { jre = program.jre; })
+      mill
       program.nodejs
       program.jdk
       program.pnpm

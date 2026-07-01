@@ -16,6 +16,7 @@ with _include;
       wgcf
       fdroidcl
       (sbt.override { jre = program.jre; })
+      mill
       program.scala_3
       (maven.override { jdk_headless = program.jdk_headless; })
       (ammonite.override { jre = program.jre; })
