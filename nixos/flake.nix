@@ -358,6 +358,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
     };
+    import-tree.url = "github:denful/import-tree";
+    den.url = "github:denful/den";
     mio-betterbird.url = "github:mio-19/nurpkgs/20876484d4e71203aaa00519e11ca8b1a4a80861";
   };
 

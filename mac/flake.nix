@@ -113,6 +113,8 @@
       # has cache on garnix
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    import-tree.url = "github:denful/import-tree";
+    den.url = "github:denful/den";
   };
 
   outputs =
