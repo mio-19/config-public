@@ -33,7 +33,6 @@ with _include;
         #clang
         gnumake
         texliveFull
-        cachix
         poppler-utils
         markdownlint-cli
         cargo
@@ -67,8 +66,6 @@ with _include;
         ghc
         btop
         program.antlr
-        jadx
-        lynx
         nur.repos.mio.pdf2pptx
         easyeda2kicad
         interactive-html-bom

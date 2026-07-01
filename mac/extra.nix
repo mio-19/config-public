@@ -89,7 +89,6 @@ with _include;
       #mousecape
       # Good Linux GUI packages:
       pympress
-      jadx
       blender
       #gnome-calculator
       #gnome-text-editor
