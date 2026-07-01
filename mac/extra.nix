@@ -17,7 +17,8 @@ with _include;
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     with pkgs;
-    [
+    import ../extra-common.nix { inherit pkgs; }
+    ++ [
       #(inputs.chester.packages."${pkgs.stdenv.hostPlatform.system}".default)
 
       markdownlint-cli
@@ -35,8 +36,6 @@ with _include;
       ollama
       rustscan
       #onefetch
-      nurl
-      nh
       unixtools.watch
       cargo
       rustc
@@ -69,7 +68,6 @@ with _include;
       #interactive-html-bom
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
-      herdr
       # unfree:
       cursor-cli
 
