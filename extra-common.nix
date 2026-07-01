@@ -1,7 +1,7 @@
 { pkgs, ... }: with pkgs;
 [
   lynx
-  herdr
+  #herdr
   nh
   nurl
   jadx
