@@ -15,40 +15,40 @@ with _include;
   imports = [
     # DETAILS REMOVED
     ./fw13.nix
-    ../../bios-den.nix
+    ../../../../bios-den.nix
     #../desktop-specialisation-cosmic.nix
-    ../hidpi.nix
+    ../../../../nixos/hidpi.nix
     #../desktop-specialisation-pantheon.nix # broken: lightdm didn't show up
     #../betterbird.nix # tired of compiling
     #../secure.nix
-    ../keep.nix
-    ../music.nix
-    ../privacy.nix
-    ../careless.nix
-    ../boot.nix
+    ../../../../nixos/keep.nix
+    ../../../../nixos/music.nix
+    ../../../../nixos/privacy.nix
+    ../../../../nixos/careless.nix
+    ../../../../nixos/boot.nix
     #../xrdp.nix
     #../v3opt.nix # needs too many time to compile
     #../wheel-nopasswd.nix
     #../safe.nix
-    ../zfs.nix
-    ../cachy_kernel.nix
+    ../../../../nixos/zfs.nix
+    ../../../../nixos/cachy_kernel.nix
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     ./disk.nix
-    ../persistent.nix
-    ../desktop-baremetal-kde.nix
-    ../zswap.nix
-    ../games.nix
-    ../games-extra.nix
-    ../extra.nix
-    ../desktopextra.nix
-    ../desktop-offline.nix
+    ../../../../nixos/persistent.nix
+    ../../../../nixos/desktop-baremetal-kde.nix
+    ../../../../nixos/zswap.nix
+    ../../../../nixos/games.nix
+    ../../../../nixos/games-extra.nix
+    ../../../../nixos/extra.nix
+    ../../../../nixos/desktopextra.nix
+    ../../../../nixos/desktop-offline.nix
     #../genai.nix # too much time to compile
-    ../devcommand.nix
-    ../persistentkde.nix
+    ../../../../nixos/devcommand.nix
+    ../../../../nixos/persistentkde.nix
     #../niri
-    ../scx.nix
-    ../emulated-arm.nix
-    ../harmonia_lan_only_not_public_ip.nix
+    ../../../../nixos/scx.nix
+    ../../../../nixos/emulated-arm.nix
+    ../../../../nixos/harmonia_lan_only_not_public_ip.nix
     #../rc.nix
   ];
   nixpkgs.overlays = [
@@ -72,13 +72,9 @@ with _include;
   #virtualisation.virtualbox.host.enable = true; # once stuck on boot
 
   home-manager.sharedModules = [
-    ./sleeping.nix
+    ../_homeManager/sleeping.nix
   ];
-  home-manager.users.user = ../home-user.nix;
   # DETAILS REMOVED
-  home-manager.extraSpecialArgs = {
-    enable-fcitx = true;
-  };
 
   boot.kernel.sysctl = {
     "vm.swappiness" = lib.mkForce 1;
@@ -88,7 +84,7 @@ with _include;
   users.users.root = {
     shell = pkgs.fish;
     hashedPasswordFile = "/persistent/etc/pass-user-user";
-    openssh.authorizedKeys.keys = (import ../../sshkeys.nix);
+    openssh.authorizedKeys.keys = (import ../../../../sshkeys.nix);
   };
   # DETAILS REMOVED
   users.users.user = {
@@ -97,7 +93,7 @@ with _include;
     isNormalUser = true;
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true; # https://github.com/nix-community/home-manager/issues/108#issuecomment-2569823607
-    openssh.authorizedKeys.keys = import ../../sshkeys.nix;
+    openssh.authorizedKeys.keys = import ../../../../sshkeys.nix;
     extraGroups = extraAdminGroups;
   };
   # DETAILS REMOVED
@@ -123,7 +119,7 @@ with _include;
     grub2-theme = {
       enable = true;
       #splashImage = config.system_background; # unable to see menu clearly with this image
-      splashImage = ../black.png;
+      splashImage = ../../../../nixos/black.png;
       theme = "stylish";
       #theme = "whitesur";
       #icon = "whitesur";

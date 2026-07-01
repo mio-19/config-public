@@ -9,7 +9,8 @@
 {
   nixpkgs.overlays = [
     (final: prev: {
-      ghidra = final.nur.repos.mio.ghidra;
+      # Use mio's pinned ghidra for HiDPI; avoid recursion with NUR overrides.
+      ghidra = inputs.mio.packages.${final.stdenv.hostPlatform.system}.ghidra;
     })
   ];
   # https://github.com/AvaloniaUI/Avalonia/issues/9390#issuecomment-2382126451

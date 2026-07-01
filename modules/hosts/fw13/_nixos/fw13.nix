@@ -12,7 +12,7 @@ with _include;
   # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
   imports = [
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
-    ../rocm.nix
+    ../../../../nixos/rocm.nix
   ];
   services.power-profiles-daemon.enable = true;
 

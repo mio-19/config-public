@@ -1,4 +1,4 @@
-# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount  ~/Documents/config/nixos/fw13/disk.nix
+# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount  ~/Documents/config/modules/hosts/fw13/_nixos/disk.nix
 # NOTE: CONSIDER --root-mountpoint IF THE SYSTEM HAS SOMETHING UNDER /mnt
 { lib, ... }:
 {

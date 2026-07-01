@@ -16,12 +16,19 @@ config-public is a **sanitized** public repo. Private details are redacted as `#
 - Keep every existing `# DETAILS REMOVED` comment and placeholder in config-public files.
 - Apply **minimal diffs**: e.g. change `../bios.nix` → `../../bios-den.nix` on the public copy, not by copying private `nixos/fw13/default.nix`.
 - Rebuild shared aspect modules (e.g. `modules/nixos-common.nix`) from **config-public’s** `nixos/common.nix`, not from private `config`.
+- **Always verify the public tree compiles:** Before committing and pushing to `config-public`, you MUST successfully run `nix eval --show-trace ".#nixosConfigurations.<host>.config.system.build.toplevel"` (or equivalent) in `config-public` to catch broken import paths or missing redactions.
 - Before push: `git diff` host files — should be import-path (or similarly tiny) changes only; no new user blocks, `sshkeys`, disk paths, or `facter.json` paths.
 - Private-only (do not sync): `modules/hosts/lenovo/`, `modules/hosts.nix`, `modules/lenovo.nix`, `nixos/apc/`, `nixos/wsl.nix`, etc.
 
 **If private details were pushed to config-public**
 
 - Reset to last safe commit, re-apply sanitized changes only, `git push --force` to rewrite history.
+
+**Pulling from config-public to private config**
+
+The private `config` repository acts as a downstream fork of `config-public`.
+When pulling changes from `config-public` into `config`, you will often encounter merge conflicts in files that contain `# DETAILS REMOVED` in the public repository but hold real secrets in the private repository.
+**Always resolve these conflicts by keeping the private (`HEAD`) version (`git checkout --ours <file>`) to ensure secrets are preserved!**
 
 ## Den & import-tree behavior
 

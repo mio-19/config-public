@@ -254,6 +254,8 @@ in
           };
         in
         deployPkgs;
+      den = import ../den-config.nix { inherit inputs; };
+      inherit (den.hosts.x86_64-linux) fw13;
     in
     {
       # DETAILS REMOVED
@@ -285,7 +287,7 @@ in
       nixosConfigurations.fw13 = nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./fw13
+          fw13.mainModule
         ];
       };
       # DETAILS REMOVED
