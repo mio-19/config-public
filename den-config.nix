@@ -1,5 +1,9 @@
 # Evaluate Den config once; import from nixos/nixos.nix and mac flake.
-{ inputs, system ? "x86_64-linux", ... }:
+{
+  inputs,
+  system ? "x86_64-linux",
+  ...
+}:
 let
   denEval = (import inputs.nixpkgs { inherit system; }).lib.evalModules {
     modules = [

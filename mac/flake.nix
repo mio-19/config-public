@@ -285,7 +285,12 @@
             nixpkgs-unpatched = inputs0.nixpkgs;
             nixpkgs-patched = nixpkgs;
           };
-          inherit darwin deployPkgs deploy-rs system;
+          inherit
+            darwin
+            deployPkgs
+            deploy-rs
+            system
+            ;
           inherit (inputs0) self;
         }
       );
