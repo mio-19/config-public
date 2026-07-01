@@ -79,7 +79,6 @@ with _include;
     ++ (map cleanPkg [
       opencode
       codex
-      gemini-cli
       cursor-cli
       #pkgs'.openclaw
       #claude-code

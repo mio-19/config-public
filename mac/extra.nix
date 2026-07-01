@@ -70,7 +70,6 @@ with _include;
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
       # unfree:
-      gemini-cli
       cursor-cli
 
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
