@@ -25,6 +25,7 @@ with _include;
       nur.repos.mio.aria2
       nur.repos.mio.aria2-wrapped
       nur.repos.mio.pdf2pptx
+      python314Packages.pdf2docx
       uv
       gh
       codex
@@ -112,7 +113,7 @@ with _include;
       #waveterm
       #aerospace
       # unfree:
-      zoom-us
+      #zoom-us # recording scrren permission problems. use homebrew version then
       jetbrains-toolbox
       jetbrains.idea
       #jetbrains.clion
@@ -133,6 +134,9 @@ with _include;
       (lib.hiPrio antigravity-cli) # higher prio than gui app for cli command "antigravity"
     ]);
   homebrew.casks = [
+    "inmusic-software-center"
+    "native-access"
+    "zoom"
     "racket"
     "cursor"
     "mullvad-vpn"
@@ -193,7 +197,6 @@ with _include;
     "nohajc/anylinuxfs/anylinuxfs"
   ];
   homebrew.taps = [
-    "filosottile/musl-cross" # dependencies of anylinuxfs right?
     "nohajc/anylinuxfs"
     "66HEX/frame"
   ];
