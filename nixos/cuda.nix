@@ -1,4 +1,4 @@
-# when importing this file, please put it at the last one after common.nix
+# when importing this file, please put it at the last one after nixos-base-den.nix
 {
   config,
   inputs,

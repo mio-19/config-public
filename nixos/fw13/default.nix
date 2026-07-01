@@ -15,7 +15,7 @@ with _include;
   imports = [
     # DETAILS REMOVED
     ./fw13.nix
-    ../bios.nix
+    ../../bios-den.nix
     #../desktop-specialisation-cosmic.nix
     ../hidpi.nix
     #../desktop-specialisation-pantheon.nix # broken: lightdm didn't show up

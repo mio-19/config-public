@@ -10,7 +10,7 @@ with _include;
 {
   imports = [
     ../keep.nix
-    ../common.nix
+    ../../nixos-base-den.nix
     ../stockhm.nix
     ../extra.nix
     inputs.nixos-avf.nixosModules.avf

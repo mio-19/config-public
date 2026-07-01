@@ -34,7 +34,7 @@ in
     inputs.disko.nixosModules.disko
     inputs.rosetta-spice.nixosModules.rosetta-spice
     inputs.home-manager.nixosModules.home-manager
-    ../common.nix
+    ../../nixos-base-den.nix
     ./disk.nix
     ../desktop-full.nix
     ../persistent.nix

@@ -1,30 +1,24 @@
-{
-  config,
-  inputs,
-  lib,
-  pkgs,
-  system,
-  ...
-}@args:
-let
-  _include = (args._include or import ./include.nix args);
-in
-with _include;
+{ den, ... }: {
+  den.aspects.nixos-common = {
+    nixos = args@{ config, inputs, lib, pkgs, system, ... }:
+    let
+      _include = (args._include or import ../nixos/include.nix args);
+    in
+    with _include;
 {
   _module.args._include = _include;
 
   imports = [
-    ./nix-ld.nix # for fork of vscode remote dev
-    ./nixpkgs-workaround.nix
-    ./customize.nix
-    ../selector4nix-den.nix
-    ./sudo-fprint-ssh-bypass.nix
-    ./fprint-fix.nix
-    ./bandaid
-    ./ccache.nix
-    ./options.nix
-    ./basic.nix
-    ./skip-lockscreen-click
+    ../nixos/nix-ld.nix # for fork of vscode remote dev
+    ../nixos/nixpkgs-workaround.nix
+    ../nixos/customize.nix
+    ../nixos/sudo-fprint-ssh-bypass.nix
+    ../nixos/fprint-fix.nix
+    ../nixos/bandaid
+    ../nixos/ccache.nix
+    ../nixos/options.nix
+    ../nixos/basic.nix
+    ../nixos/skip-lockscreen-click
     #./lix.nix
     #inputs.determinate.nixosModules.default
     "${inputs.nix-flatpak}/modules/nixos.nix"
@@ -38,9 +32,9 @@ with _include;
     inputs.chaotic.nixosModules.zfs-impermanence-on-shutdown # inputs.nur.legacyPackages."${system}".repos.mio.modules.zfs-impermanence-on-shutdown
     inputs.mio.legacyPackages."${system}".modules.darling
     inputs.mio.legacyPackages."${system}".modules.wireguird
-    ./nixbuild.nix
+    ../nixos/nixbuild.nix
     ../token.nix
-    ./hardened.nix # does this break sddm?
+    ../nixos/hardened.nix # does this break sddm?
   ];
 
   # Set your time zone.
@@ -64,7 +58,7 @@ with _include;
         ...
       }@args:
       let
-        _include = (args._include or import ./include.nix args);
+        _include = (args._include or import ../nixos/include.nix args);
       in
       {
         _module.args._include = _include;
@@ -511,4 +505,8 @@ with _include;
       ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
     '';
   */
+  };
+  };
+
+  den.default.includes = [ den.aspects.nixos-common ];
 }

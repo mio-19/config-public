@@ -12,7 +12,7 @@ with _include;
     ./keepBootedSystemEntry.nix
     inputs.grub2-themes.nixosModules.default
     ./wifi.nix
-    ./common.nix
+    ../nixos-base-den.nix
     ./stockhm.nix
     inputs.disko.nixosModules.disko
   ];

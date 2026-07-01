@@ -13,7 +13,7 @@ with _include;
 {
   imports = [
     ./printers.nix
-    ../bios.nix
+    ../../bios-den.nix
     ../hidpi.nix
     #../betterbird.nix # tired of compiling
     ../keep.nix
