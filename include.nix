@@ -121,6 +121,7 @@ import ./customize.nix args
         "${inputs.nixpkgs}/pkgs/by-name/pi/pinta/deps.json"
       ];
       allowed = [
+        "mill"
         "tensorboard"
         "motrix-next"
         "librusty_v8"
