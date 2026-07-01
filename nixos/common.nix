@@ -17,7 +17,7 @@ with _include;
     ./nix-ld.nix # for fork of vscode remote dev
     ./nixpkgs-workaround.nix
     ./customize.nix
-    ./selector4nix.nix
+    ../selector4nix-den.nix
     ./sudo-fprint-ssh-bypass.nix
     ./fprint-fix.nix
     ./bandaid
