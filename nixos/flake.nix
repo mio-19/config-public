@@ -358,7 +358,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
     };
-    mio-betterbird.url = "github:mio-19/nurpkgs/42db0171f07527f8bc61d0c0cc9b5de99c0d974c";
+    mio-betterbird.url = "github:mio-19/nurpkgs/20876484d4e71203aaa00519e11ca8b1a4a80861";
   };
 
   outputs =
