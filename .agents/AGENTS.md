@@ -22,3 +22,11 @@ config-public is a **sanitized** public repo. Private details are redacted as `#
 **If private details were pushed to config-public**
 
 - Reset to last safe commit, re-apply sanitized changes only, `git push --force` to rewrite history.
+
+## Den & import-tree behavior
+
+- **Auto-import behavior**: The `import-tree.provides.host` battery in Den automatically scans host directories (`modules/hosts/<hostname>`) for folders starting with `_` and maps them to a class. For example, `_nixos` maps to `host.nixos.imports` and `_homeManager` maps to `host.homeManager.imports`.
+- **`_nixos` semantics**: Because `host.nixos` applies directly to the NixOS system configuration, anything placed in `_nixos/` automatically becomes a host-wide NixOS module.
+- **`_homeManager` semantics**: By design, `_homeManager` under a host is intended for **host-wide** Home-Manager configuration. However, due to a breaking change in Den, host-level `homeManager` scopes are **inert** and will not propagate to individual users. Therefore, placing user configurations (like `user.nix` or `zdmin.nix`) in `hosts/<hostname>/_homeManager` is incorrect—it evaluates them at the host scope silently (or causes evaluation errors with missing arguments like `enable-fcitx`), but fails to actually apply the configuration to the user.
+- **Directories without `_`**: If you rename a directory to not start with `_` (e.g. `.hm_users` or `users`), it escapes the `import-tree.provides.host` battery. However, the main `import-tree` scanning `modules/` ONLY ignores paths containing `/_`. Therefore, `.hm_users` will NOT be exempted and will be mistakenly parsed as `den.aspects...".hm_users"`. To truly avoid unwanted magic, either inline configurations directly, move them entirely outside `modules/`, or leave them in `_homeManager` knowing the host-level scope is inert.
+- **Home-manager configs for users**: When routing user-specific Home Manager configurations for a host (e.g. in `lenovo.nix` or `fw13.nix`), do **not** use `provides.<username>.homeManager.imports` (especially `provides.user` which silently fails due to shadowing the `user` context variable). Instead, always route through the `provides.to-users` block. You can inline the config directly, or use `lib.optional (user.name == "name") [ ... ]` to selectively apply imports.
