@@ -68,6 +68,7 @@ with _include;
       btop
       program.antlr
       nh
+      herdr
       jadx
       lynx
       nur.repos.mio.pdf2pptx

@@ -69,6 +69,7 @@ with _include;
       #interactive-html-bom
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
+      herdr
       # unfree:
       cursor-cli
 
