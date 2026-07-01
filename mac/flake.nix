@@ -285,7 +285,7 @@
             nixpkgs-unpatched = inputs0.nixpkgs;
             nixpkgs-patched = nixpkgs;
           };
-          inherit darwin deployPkgs deploy-rs;
+          inherit darwin deployPkgs deploy-rs system;
           inherit (inputs0) self;
         }
       );
@@ -296,7 +296,7 @@
         with the "aarch64-darwin";
         darwin.lib.darwinSystem {
           specialArgs = {
-            inherit inputs;
+            inherit inputs system;
           };
           modules = [
             ./nixmac.nix
