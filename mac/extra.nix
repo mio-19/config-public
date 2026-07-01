@@ -43,7 +43,6 @@ with _include;
       # unfree:
       p7zip-rar
 
-      wrangler
       (ammonite.override { jre = program.jre; })
       (sbt.override { jre = program.jre; })
       mill
@@ -63,7 +62,6 @@ with _include;
       llvmPackages.bintools # provides readelf that gef needs
       program.antlr
       yt-dlp
-      btop
       #easyeda2kicad
       #interactive-html-bom
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester

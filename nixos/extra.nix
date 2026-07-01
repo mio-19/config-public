@@ -65,7 +65,6 @@ with _include;
         diffnav
         haskell-language-server
         ghc
-        btop
         program.antlr
         nur.repos.mio.pdf2pptx
         easyeda2kicad

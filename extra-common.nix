@@ -6,4 +6,6 @@
   nurl
   jadx
   cachix
+  wrangler
+  btop
 ]
