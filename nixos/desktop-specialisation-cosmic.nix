@@ -6,7 +6,7 @@
   ...
 }@args:
 {
-  imports = [ ./desktop-basic.nix ];
+  imports = [ ../desktop-basic-den.nix ];
   specialisation.cosmic.configuration =
     lib.mkIf (!config.services.displayManager.cosmic-greeter.enable)
       {

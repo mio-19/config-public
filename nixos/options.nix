@@ -2,13 +2,13 @@
   lib,
   pkgs,
   config,
-  _include,
   ...
-}:
+}@args:
 let
   inherit (pkgs) stdenv;
+  _include' = args._include or (import ./include.nix args);
+  inc = _include'.scopeFor config;
 in
-with _include;
 {
   options.microarch = lib.mkOption {
     type = lib.types.enum [
@@ -41,22 +41,22 @@ with _include;
   };
   options.compile_gram = lib.mkOption {
     type = lib.types.bool;
-    default = stdenv.isLinux && stdenv.isx86_64 && atleastV3;
+    default = stdenv.isLinux && stdenv.isx86_64 && inc.atleastV3;
     description = "compile our custom materialgram&telegram";
   };
   options.mio_openssh_hpn = lib.mkOption {
     type = lib.types.bool;
-    default = atleastV3;
+    default = inc.atleastV3;
     description = "use mio hpn patched openssh";
   };
   options.mio_aria2 = lib.mkOption {
     type = lib.types.bool;
-    default = atleastV3;
+    default = inc.atleastV3;
     description = "use mio patched aria2";
   };
   options.adhocNetworks = lib.mkOption {
     type = lib.types.bool;
-    default = boot-to-steam;
+    default = _include'.boot-to-steam;
     description = "enable adhoc network connections. but might make network unusable";
   };
   options.system_background = lib.mkOption {
@@ -75,15 +75,15 @@ with _include;
   };
   config.assertions = [
     {
-      assertion = atleastV3 || !config.mio_aria2;
+      assertion = inc.atleastV3 || !config.mio_aria2;
       message = "no mio aria2 for v2";
     }
     {
-      assertion = atleastV3 || !config.mio_openssh_hpn;
+      assertion = inc.atleastV3 || !config.mio_openssh_hpn;
       message = "no mio hpn openssh for v2";
     }
     {
-      assertion = atleastV3 || !config.compile_gram;
+      assertion = inc.atleastV3 || !config.compile_gram;
       message = "no gram compile for v2";
     }
   ];
@@ -91,10 +91,10 @@ with _include;
     [
       "big-parallel"
     ]
-    ++ lib.optionals atleastV3 [
+    ++ lib.optionals inc.atleastV3 [
       "gccarch-x86-64-v3"
     ]
-    ++ lib.optionals atleastV4 [
+    ++ lib.optionals inc.atleastV4 [
       "gccarch-x86-64-v4"
     ]
   );

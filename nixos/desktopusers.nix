@@ -4,10 +4,12 @@
   pkgs,
   lib,
   osConfig,
-  _include,
   ...
 }@args:
-with _include;
+let
+  _include = args._include or (import ./include.nix args);
+in
+with (_include.scopeFor osConfig);
 let
   # DETAILS REMOVED
 in

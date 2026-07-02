@@ -231,10 +231,14 @@ import ./customize.nix args
     pref("privacy.clearOnShutdown.siteSettings", false);
   '';
 
-  hasAntigravity = builtins.any (
-    p: builtins.match ".*antigravity.*" (lib.getName p) != null
-  ) osConfig.environment.systemPackages;
-  hasCursor = builtins.any (
-    p: builtins.match ".*cursor.*" (lib.getName p) != null
-  ) osConfig.environment.systemPackages;
+  hasAntigravityFor =
+    cfg:
+    builtins.any (
+      p: builtins.match ".*antigravity.*" (lib.getName p) != null
+    ) cfg.environment.systemPackages;
+  hasCursorFor =
+    cfg:
+    builtins.any (
+      p: builtins.match ".*cursor.*" (lib.getName p) != null
+    ) cfg.environment.systemPackages;
 }

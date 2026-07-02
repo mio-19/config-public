@@ -41,7 +41,7 @@ let
       vscode-extensions.platformio.platformio-vscode-ide
       nix-vscode-extensions.vscode-marketplace.ms-vscode.cpptools # depended by platformio-vscode-ide # not available from nix-vscode-extensions on darwin
     ];
-  inherit (import ./include.nix args) hasAntigravity hasCursor;
+  inherit (import ./include.nix args) hasAntigravityFor hasCursorFor;
 in
 {
   imports = [ ./home-cli.nix ];
@@ -166,7 +166,7 @@ in
     };
   };
   programs.antigravity = {
-    enable = hasAntigravity;
+    enable = hasAntigravityFor osConfig;
     package = null;
 
     profiles.default = {
@@ -176,7 +176,7 @@ in
     };
   };
   programs.cursor = {
-    enable = hasCursor;
+    enable = hasCursorFor osConfig;
     package = null;
 
     profiles.default = {

@@ -9,7 +9,7 @@
 with _include;
 {
   imports = [
-    ./desktop-basic.nix
+    ../desktop-basic-den.nix
     ./options.nix
     ./tkg.nix
     ./printing.nix
