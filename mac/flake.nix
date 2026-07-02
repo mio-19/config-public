@@ -88,11 +88,6 @@
     #  url = "github:cpick/nix-rosetta-builder";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
-    chester = {
-      url = "git+https://codeberg.org/chester-lang/chester.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
     mio = {
       url = "git+https://github.com/mio-19/nurpkgs.git";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -156,7 +156,6 @@ let
             ;
         }
         ++ [
-          #(inputs.chester.packages."${pkgs.stdenv.hostPlatform.system}".default)
           nur.repos.mio.mdbook-generate-summary
           python314Packages.pdf2docx
           uv

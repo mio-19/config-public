@@ -58,31 +58,6 @@
         "type": "github"
       }
     },
-    "chester": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "sbt-derivation": "sbt-derivation",
-        "typelevel-nix": "typelevel-nix"
-      },
-      "locked": {
-        "lastModified": 1774920472,
-        "narHash": "sha256-I3c42uaVang9oHNvw5Kz5l5fv6yRAhDRfbqwGnGufBc=",
-        "ref": "refs/heads/main",
-        "rev": "3e982f94d98db376d86edec316245d93373b4b08",
-        "revCount": 252,
-        "type": "git",
-        "url": "https://codeberg.org/chester-lang/chester.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://codeberg.org/chester-lang/chester.git"
-      }
-    },
     "cl-nix-lite": {
       "inputs": {
         "flake-parts": [
@@ -192,28 +167,6 @@
       "original": {
         "owner": "serokell",
         "repo": "deploy-rs",
-        "type": "github"
-      }
-    },
-    "devshell": {
-      "inputs": {
-        "nixpkgs": [
-          "chester",
-          "typelevel-nix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768818222,
-        "narHash": "sha256-460jc0+CZfyaO8+w8JNtlClB2n4ui1RbHfPTLkpwhU8=",
-        "owner": "numtide",
-        "repo": "devshell",
-        "rev": "255a2b1725a20d060f566e4755dbf571bbbb5f76",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "devshell",
         "type": "github"
       }
     },
@@ -681,7 +634,6 @@
     },
     "root": {
       "inputs": {
-        "chester": "chester",
         "darwin": "darwin",
         "darwin-emacs": "darwin-emacs",
         "den": "den",
@@ -704,31 +656,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix"
-      }
-    },
-    "sbt-derivation": {
-      "inputs": {
-        "flake-utils": [
-          "chester",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "chester",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1698464090,
-        "narHash": "sha256-Pnej7WZIPomYWg8f/CZ65sfW85IfIUjYhphMMg7/LT0=",
-        "owner": "zaninime",
-        "repo": "sbt-derivation",
-        "rev": "6762cf2c31de50efd9ff905cbcc87239995a4ef9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zaninime",
-        "repo": "sbt-derivation",
-        "type": "github"
       }
     },
     "selector4nix": {
@@ -864,32 +791,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "typelevel-nix": {
-      "inputs": {
-        "devshell": "devshell",
-        "flake-utils": [
-          "chester",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "chester",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770140665,
-        "narHash": "sha256-LyHl0nBXYt/4o/dNGKX/Tq8wiwUjrMUB+6P17Zw43zY=",
-        "owner": "typelevel",
-        "repo": "typelevel-nix",
-        "rev": "6b773e537c93115bd51901943b2be78a3919b4b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "typelevel",
-        "repo": "typelevel-nix",
         "type": "github"
       }
     },

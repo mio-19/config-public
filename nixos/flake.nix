@@ -203,13 +203,6 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    /*
-      chester = {
-        url = "git+https://codeberg.org/chester-lang/chester.git?shallow=1";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.flake-utils.follows = "flake-utils";
-      };
-    */
     mio = {
       url = "git+https://github.com/mio-19/nurpkgs.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";

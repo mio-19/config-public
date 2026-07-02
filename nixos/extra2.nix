@@ -16,7 +16,6 @@ with _include;
       nur.repos.mio.rocksmith2tab
       nur.repos.mio.mdbook-generate-summary
       inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".payload-dumper-go
-      #(inputs.chester.packages."${pkgs.stdenv.hostPlatform.system}".default)
     ])
     ++ (map cleanPkg [
       github-copilot-cli
