@@ -40,6 +40,7 @@ with _include;
       #inherit (pkgs-pin3) ollama;
       inherit (pkgs-pin4) yt-dlp;
       inherit (pkgs-pin4) thunderbird-esr zed-editor; # no binary cache
+      inherit (pkgs-pin5) musescore-evolution;
     })
   ];
   home-manager.sharedModules = [
