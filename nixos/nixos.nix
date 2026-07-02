@@ -253,24 +253,11 @@ in
           };
         in
         deployPkgs;
-      den = import ../den-config.nix { inherit inputs; };
-      inherit (den.hosts.x86_64-linux) fw13 ipc;
+      denFor = system: import ../den-config.nix { inherit inputs system; };
+      denX86 = denFor "x86_64-linux";
+      inherit (denX86.hosts.x86_64-linux) fw13 ipc;
     in
     {
-      # DETAILS REMOVED
-      # Terminal app
-      nixosConfigurations.husky = nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          ./husky
-        ];
-      };
-      nixosConfigurations.macvirt = nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          ./macvirt
-        ];
-      };
       # DETAILS REMOVED
       nixosConfigurations.ipc = nixosSystem {
         system = "x86_64-linux";

@@ -55,7 +55,15 @@
           inputs.zen-browser.homeModules.default
           #inputs.android-nixpkgs.hmModule
           ../users.nix
-          inputs.vicinae.homeManagerModules.default
+        ]
+        ++ lib.optional config.vicinaeHm.enable inputs.vicinae.homeManagerModules.default
+        ++ [
+          (
+            { lib, ... }:
+            {
+              home.stateVersion = lib.mkDefault "25.11";
+            }
+          )
           (
             {
               inputs,

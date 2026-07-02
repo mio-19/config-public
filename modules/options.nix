@@ -120,6 +120,11 @@ in
             default = false;
             description = "[WIP] skip click/key press to go to passwordenter/fingerprint screen";
           };
+          vicinaeHm.enable = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Include vicinae in home-manager.sharedModules (off for home-manager-7074 / WSL).";
+          };
         };
 
         config = (base.config or { }) // {

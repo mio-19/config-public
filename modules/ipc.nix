@@ -1,10 +1,5 @@
-{ den, lib, ... }: {
-  den.hosts.x86_64-linux.ipc = {
-    hostName = "ipc";
-    users.user.classes = [ "homeManager" ];
-    # DETAILS REMOVED
-  };
-
+{ den, lib, ... }:
+{
   den.aspects.ipc = {
     includes = [ den.batteries.hostname ];
 

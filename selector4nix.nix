@@ -6,7 +6,9 @@
   ...
 }:
 let
-  # DETAILS REMOVED
+  inherit (pkgs) stdenv;
+  x86_64-linux = stdenv.isLinux && stdenv.isx86_64;
+  hostName = config.networking.hostName;
   trusted-public-keys = [
     "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
     "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
@@ -19,6 +21,24 @@ let
     "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     # DETAILS REMOVED
   ];
+  local-location = {
+    "fw13" = "aotearoa";
+    "ipc" = "ng";
+  };
+  attrsFor =
+    that:
+    if local-location.${hostName} == local-location.${that} then
+      {
+        priority = 1;
+        nar_info_timeout_secs = 30;
+        nar_timeout_secs = 30;
+      }
+    else
+      {
+        priority = 50;
+        nar_info_timeout_secs = 5;
+        nar_timeout_secs = 5;
+      };
 in
 {
   services.selector4nix = {

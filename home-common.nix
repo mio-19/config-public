@@ -41,10 +41,14 @@ let
       vscode-extensions.platformio.platformio-vscode-ide
       nix-vscode-extensions.vscode-marketplace.ms-vscode.cpptools # depended by platformio-vscode-ide # not available from nix-vscode-extensions on darwin
     ];
-  inherit (import ./include.nix args) hasAntigravityFor hasCursorFor;
 in
 {
-  imports = [ ./home-cli.nix ];
+  _module.args.commonExtensions = commonExtensions;
+  imports = [
+    ./home-cli.nix
+    ./home-antigravity.nix
+    ./home-cursor.nix
+  ];
   programs.zed-editor = {
     enable = true;
     package = lib.mkDefault null;
@@ -165,27 +169,6 @@ in
       };
     };
   };
-  programs.antigravity = {
-    enable = hasAntigravityFor osConfig;
-    package = null;
-
-    profiles.default = {
-      enableExtensionUpdateCheck = false;
-      extensions = with pkgs; commonExtensions;
-      userSettings = config.programs.vscode.profiles.default.userSettings;
-    };
-  };
-  programs.cursor = {
-    enable = hasCursorFor osConfig;
-    package = null;
-
-    profiles.default = {
-      enableUpdateCheck = false;
-      extensions = with pkgs; commonExtensions;
-      userSettings = config.programs.vscode.profiles.default.userSettings;
-    };
-  };
-
   #programs.librewolf = {
   #  enable = true;
   #  package = null;
