@@ -51,6 +51,21 @@ let
       progs =
         upper.progs
         // (with pkgs; rec {
+          openssh =
+            if config.mio_openssh_hpn then
+              lib.hiPrio (pkgs.nur.repos.mio.openssh_hpn)
+            else
+              lib.hiPrio pkgs.openssh_hpn;
+          git = pkgs.git.override { openssh = openssh; };
+          scala_3 = pkgs.scala_3.override { jre = jre; };
+          pnpm = pkgs.pnpm.override { inherit nodejs-slim; };
+          librewolf' =
+            (if config.use_librewolf_bin then pkgs'.librewolf-bin else pkgs'.librewolf).override
+              (old: {
+                extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
+              });
+          betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
+
           telegram =
             if config.compile_gram then
               pkgs-pin4.nur.repos.mio.telegram-desktop
