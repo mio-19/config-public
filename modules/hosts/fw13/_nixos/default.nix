@@ -84,7 +84,6 @@ with _include;
   users.users.root = {
     shell = pkgs.fish;
     hashedPasswordFile = "/persistent/etc/pass-user-user";
-    openssh.authorizedKeys.keys = (import ../../../../sshkeys.nix);
   };
   # DETAILS REMOVED
   users.users.user = {
@@ -93,7 +92,6 @@ with _include;
     isNormalUser = true;
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true; # https://github.com/nix-community/home-manager/issues/108#issuecomment-2569823607
-    openssh.authorizedKeys.keys = import ../../../../sshkeys.nix;
     extraGroups = extraAdminGroups;
   };
   # DETAILS REMOVED
