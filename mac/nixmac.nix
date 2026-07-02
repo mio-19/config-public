@@ -33,14 +33,12 @@
   users.users.user = {
     name = "user";
     home = "/Users/user";
-    openssh.authorizedKeys.keys = import ../sshkeys.nix;
     uid = 501;
   };
   # DETAILS REMOVED
   users.users.root = {
     home = "/var/root";
     shell = "/bin/zsh";
-    openssh.authorizedKeys.keys = import ../sshkeys.nix;
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;

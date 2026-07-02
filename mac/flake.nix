@@ -294,11 +294,16 @@
       # DETAILS REMOVED
       darwinConfigurations."NixMac" =
         with the "aarch64-darwin";
+        let
+          den = import ../den-config.nix { inherit inputs system; };
+          inherit (den.hosts.aarch64-darwin) NixMac;
+        in
         darwin.lib.darwinSystem {
           specialArgs = {
             inherit inputs system;
           };
           modules = [
+            NixMac.mainModule
             ./nixmac.nix
             #./builder-uninstall.nix
             #./builder-firstinstall.nix

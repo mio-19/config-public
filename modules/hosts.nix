@@ -12,4 +12,10 @@
     users.user.classes = [ "homeManager" ];
     # DETAILS REMOVED
   };
+
+  den.hosts.aarch64-darwin.NixMac = {
+    hostName = "NixMac";
+    users.user.classes = [ "homeManager" ];
+    # DETAILS REMOVED
+  };
 }
