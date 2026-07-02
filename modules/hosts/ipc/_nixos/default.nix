@@ -36,7 +36,7 @@ with _include;
     #../../../../nixos/desktop-specialisation.nix
     ../../../../nixos/zswap.nix
     ../../../../nixos/alwaysonsys.nix
-    ../../../../nixos/extra.nix
+    ../../../../extra-den.nix
     ../../../../nixos/extra2.nix
     ../../../../nixos/desktopextra.nix
     #../../../../nixos/desktop-offline.nix

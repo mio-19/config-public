@@ -9,7 +9,7 @@
 {
   imports = [
     ./common.nix
-    ./extra.nix
+    ../extra-den.nix
     ../nixos/nixbuild.nix
     ../nixos/nixbuild-always.nix
     ./harmonia_lan_only_not_public_ip.nix

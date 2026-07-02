@@ -39,7 +39,7 @@ with _include;
     ../../../../nixos/zswap.nix
     ../../../../nixos/games.nix
     ../../../../nixos/games-extra.nix
-    ../../../../nixos/extra.nix
+    ../../../../extra-den.nix
     ../../../../nixos/desktopextra.nix
     ../../../../nixos/desktop-offline.nix
     #../genai.nix # too much time to compile

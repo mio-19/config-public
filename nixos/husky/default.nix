@@ -12,7 +12,7 @@ with _include;
     ../keep.nix
     ../../nixos-base-den.nix
     ../stockhm.nix
-    ../extra.nix
+    ../../extra-den.nix
     inputs.nixos-avf.nixosModules.avf
   ];
   # https://github.com/nix-community/nixos-avf/blob/d0a62c3f64b45a39570fde31a3a490b214bf19ee/initial/default.nix#L35
