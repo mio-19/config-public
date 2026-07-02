@@ -51,19 +51,8 @@ let
       progs =
         upper.progs
         // (with pkgs; rec {
-          openssh =
-            if config.mio_openssh_hpn then
-              lib.hiPrio (pkgs.nur.repos.mio.openssh_hpn)
-            else
-              lib.hiPrio pkgs.openssh_hpn;
-          git = pkgs.git.override { openssh = openssh; };
           scala_3 = pkgs.scala_3.override { jre = jre; };
           pnpm = pkgs.pnpm.override { inherit nodejs-slim; };
-          librewolf' =
-            (if config.use_librewolf_bin then pkgs'.librewolf-bin else pkgs'.librewolf).override
-              (old: {
-                extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
-              });
           betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
 
           telegram =
@@ -652,6 +641,8 @@ let
         );
       is-jovian = osConfig.jovian.steam.enable or false;
 
+      # Pass the caller's config/osConfig — avoids recursion when a module both
+      # sets display-manager options and reads kdeDMEnabled in the same merge.
       kdeDMEnabledFor =
         cfg:
         cfg.services.displayManager.sddm.enable || cfg.services.displayManager.plasma-login-manager.enable;

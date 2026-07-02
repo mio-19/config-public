@@ -10,7 +10,6 @@ with _include;
 {
   imports = [
     ../desktop-basic-den.nix
-    ./options.nix
     ./tkg.nix
     ./printing.nix
     ./desktop-office.nix

@@ -6,7 +6,23 @@
   osConfig ? config,
   ...
 }@args:
-import ./customize.nix args
+let
+  customize = import ./customize.nix args;
+  nixpkgsConfig = osConfig.nixpkgs.config or config.nixpkgs.config or { };
+  librewolfPkgs =
+    if pkgs.stdenv.isLinux then
+      import inputs.nixpkgs {
+        config = nixpkgsConfig // {
+          cudaSupport = false;
+          rocmSupport = false;
+        };
+        system = pkgs.stdenv.hostPlatform.system;
+        overlays = [ inputs.nur.overlays.default ];
+      }
+    else
+      pkgs;
+in
+customize
 // rec {
   allowUnfreeNonSourcePredicate =
     pkg:
@@ -247,6 +263,18 @@ import ./customize.nix args
     yarn-berry = pkgs.yarn-berry.override { nodejs = nodejs; };
 
     antlr = pkgs.antlr.override { jre = jre; };
+
+    openssh =
+      if config.mio_openssh_hpn then
+        lib.hiPrio (pkgs.nur.repos.mio.openssh_hpn)
+      else
+        lib.hiPrio pkgs.openssh_hpn;
+    git = pkgs.git.override { inherit openssh; };
+    librewolf' =
+      (if config.use_librewolf_bin then librewolfPkgs.librewolf-bin else librewolfPkgs.librewolf).override
+        (old: {
+          extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
+        });
   };
 
   hasAntigravityFor =

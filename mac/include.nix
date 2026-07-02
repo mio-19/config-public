@@ -11,13 +11,6 @@ in
 with upper;
 upper
 // rec {
-  progs = upper.progs // {
-    openssh = lib.hiPrio pkgs.nur.repos.mio.openssh_hpn;
-    git = pkgs.git.override { openssh = progs.openssh; };
-    librewolf' = pkgs.librewolf.override (old: {
-      extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
-    });
-  };
   pkgs-stable = import inputs.nixpkgs-stable {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;

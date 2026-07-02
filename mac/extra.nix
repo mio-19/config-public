@@ -23,8 +23,6 @@ with _include;
 
       markdownlint-cli
       nur.repos.mio.mdbook-generate-summary
-      nur.repos.mio.aria2
-      nur.repos.mio.aria2-wrapped
       nur.repos.mio.pdf2pptx
       python314Packages.pdf2docx
       uv
@@ -117,6 +115,13 @@ with _include;
       antigravity
       github-copilot-cli
       #code-cursor # in app updater, better with cask.
+    ]
+    ++ lib.optionals config.mio_aria2 [
+      nur.repos.mio.aria2
+      nur.repos.mio.aria2-wrapped
+    ]
+    ++ lib.optionals (!config.mio_aria2) [
+      aria2
     ]
     ++ lib.optionals pkgs.stdenv.isAarch64 [
       # unsupported on x86_64 macOS:

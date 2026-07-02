@@ -18,13 +18,13 @@
 
         imports = [
           ../nixos/nix-ld.nix # for fork of vscode remote dev
+          ../options-den.nix
           ../nixos/nixpkgs-workaround.nix
           ../nixos/customize.nix
           ../nixos/sudo-fprint-ssh-bypass.nix
           ../nixos/fprint-fix.nix
           ../nixos/bandaid
           ../nixos/ccache.nix
-          ../nixos/options.nix
           ../nixos/basic.nix
           ../nixos/skip-lockscreen-click
           #./lix.nix

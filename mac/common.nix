@@ -13,6 +13,7 @@ with _include;
   _module.args._include = _include;
 
   imports = [
+    ../options-den.nix
     ./modules
     inputs.nix-index-database.darwinModules.nix-index
     inputs.mac-app-util.darwinModules.default
