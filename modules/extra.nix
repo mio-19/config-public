@@ -1,6 +1,9 @@
 { den, ... }:
 let
-  commonCli =
+  # Common CLI tools, split by packaging intent:
+  # - nixos: hardenedPkg vs cleanPkg
+  # - darwin: no wrapping needed, so just concatenate
+  commonCliHardened =
     {
       pkgs,
       progs,
@@ -19,8 +22,6 @@ let
       btop
       markdownlint-cli
       gh
-      codex
-      opencode
       rustscan
       cargo
       rustc
@@ -32,6 +33,16 @@ let
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
     ];
+
+  commonCliClean =
+    { pkgs, ... }:
+    with pkgs;
+    [
+      codex
+      opencode
+    ];
+
+  commonCliDarwin = args: commonCliHardened args ++ commonCliClean args;
 
   nixosExtra =
     {
@@ -49,7 +60,7 @@ let
       environment.systemPackages =
         with pkgs;
         (map hardenedPkg (
-          commonCli {
+          commonCliHardened {
             inherit
               pkgs
               progs
@@ -106,13 +117,16 @@ let
             diffoscope
           ]
         ))
-        ++ (map cleanPkg [
-          cursor-cli
-          #pkgs'.openclaw
-          #claude-code
-          distrobox
-          gcc
-        ])
+        ++ (map cleanPkg (
+          commonCliClean { inherit pkgs; }
+          ++ [
+            cursor-cli
+            #pkgs'.openclaw
+            #claude-code
+            distrobox
+            gcc
+          ]
+        ))
         ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
           antigravity-cli
         ]);
@@ -148,7 +162,7 @@ let
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         with pkgs;
-        commonCli {
+        commonCliDarwin {
           inherit
             pkgs
             progs
