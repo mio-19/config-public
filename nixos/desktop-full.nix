@@ -89,7 +89,7 @@ with _include;
       sublime-merge # (callPackage ./sublime-merge.nix { })
     ])
     ++ (map cleanPkg [
-      program.librewolf' # progs.librewolf'_for_firejail
+      progs.librewolf' # progs.librewolf'_for_firejail
       firefox-esr
       (wrapPrio gnome-console)
       # unfree:
@@ -102,7 +102,7 @@ with _include;
     )
     ++ lib.optionals config.use_betterbird (
       map cleanPkg [
-        program.betterbird
+        progs.betterbird
       ]
     )
     ++ lib.optionals pkgs.stdenv.isx86_64 (

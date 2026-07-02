@@ -247,8 +247,8 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
-            program.git
-            program.openssh
+            progs.git
+            progs.openssh
             #nix-output-monitor
 
             curl
@@ -310,8 +310,8 @@
           ++ (map cleanPkg [
             ego
             #  they might execute some binary that doesn't like the grapheneos malloc
-            program.nodejs
-            program.pnpm
+            progs.nodejs
+            progs.pnpm
           ])
           ++ lib.optionals config.services.desktopManager.plasma6.enable (
             with pkgs.kdePackages;

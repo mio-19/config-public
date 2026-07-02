@@ -123,7 +123,7 @@ with _include;
     moonlight-qt
     pear-desktop
     spin
-    program.librewolf'
+    progs.librewolf'
     nixfmt
     nixfmt-tree
 

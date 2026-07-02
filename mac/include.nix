@@ -109,58 +109,41 @@ upper
       inputs.nur.overlays.default
     ];
   };
-  program = rec {
-    nodejs = pkgs.nodejs_latest;
-    nodejs-slim = pkgs.nodejs-slim_latest;
-    #nodejs = pkgs.graalvmPackages.graalnodejs // { python = pkgs.python3; };
-    openssh = lib.hiPrio pkgs.nur.repos.mio.openssh_hpn;
-    jdk = pkgs.jdk25; # pkgs.graalvmPackages.graalvm-oracle; # pkgs.graalvmPackages.graalvm-ce; # graalvm-ce is binaryNativeCode
-    jre = jdk;
-    jdk_headless = jdk;
-    git = (pkgs.git.override { openssh = openssh; });
-    pnpm = pkgs.pnpm; # .override { nodejs-slim = pkgs-pin4.nodejs-slim_latest; };
-    pnpm_9 = pkgs.pnpm_9.override { nodejs = nodejs; };
-    yarn-berry = pkgs.yarn-berry.override { nodejs = nodejs; };
-    antlr = pkgs.antlr.override { jre = program.jre; };
-    librewolf' = pkgs.librewolf.override (old: {
-      extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
-    });
-  };
   script = {
     upgrade = pkgs.writeShellScriptBin "upgrade" ''
       set -e
       cd ~/Documents/config/mac
-      ${lib.getExe program.git} config pull.rebase false
+      ${lib.getExe progs.git} config pull.rebase false
       sudo true
-      ${lib.getExe program.git} pull --no-edit
+      ${lib.getExe progs.git} pull --no-edit
       if [ -d ~/Documents/config-public ]; then
         cd ~/Documents/config-public/mac
-        ${lib.getExe program.git} config pull.rebase false
-        ${lib.getExe program.git} pull --no-edit
+        ${lib.getExe progs.git} config pull.rebase false
+        ${lib.getExe progs.git} pull --no-edit
         ${lib.getExe config.nix.package} flake update
-        ${lib.getExe program.git} add flake.lock
-        ${lib.getExe program.git} commit -m "mac: lockup" || true
-        ${lib.getExe program.git} push
+        ${lib.getExe progs.git} add flake.lock
+        ${lib.getExe progs.git} commit -m "mac: lockup" || true
+        ${lib.getExe progs.git} push
         cd ~/Documents/config/mac
-        ${lib.getExe program.git} pull --no-edit https://github.com/mio-19/config-public.git
+        ${lib.getExe progs.git} pull --no-edit https://github.com/mio-19/config-public.git
       else
-        ${lib.getExe program.git} pull --no-edit https://github.com/mio-19/config-public.git
+        ${lib.getExe progs.git} pull --no-edit https://github.com/mio-19/config-public.git
         ${lib.getExe config.nix.package} flake update
-        ${lib.getExe program.git} add flake.lock
-        ${lib.getExe program.git} commit -m "mac: lockup" || true
+        ${lib.getExe progs.git} add flake.lock
+        ${lib.getExe progs.git} commit -m "mac: lockup" || true
       fi
-      ${lib.getExe program.git} push &
+      ${lib.getExe progs.git} push &
       sudo nice -n 20 darwin-rebuild switch --flake ~/Documents/config/mac --print-build-logs "$@" |& ${lib.getExe pkgs.nix-output-monitor}
       brew upgrade; brew cu -af; brew cleanup --prune=all
     '';
     switch = pkgs.writeShellScriptBin "swit" ''
       set -e
       cd ~/Documents/config/mac
-      ${lib.getExe program.git} config pull.rebase false
+      ${lib.getExe progs.git} config pull.rebase false
       sudo true
-      ${lib.getExe program.git} -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit || true
-      ${lib.getExe program.git} -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit https://github.com/mio-19/config-public.git || true
-      ${lib.getExe program.git} push &
+      ${lib.getExe progs.git} -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit || true
+      ${lib.getExe progs.git} -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit https://github.com/mio-19/config-public.git || true
+      ${lib.getExe progs.git} push &
       sudo nice -n 20 darwin-rebuild switch --flake ~/Documents/config/mac --print-build-logs "$@" |& ${lib.getExe pkgs.nix-output-monitor}
     '';
   };

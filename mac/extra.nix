@@ -43,13 +43,13 @@ with _include;
       # unfree:
       p7zip-rar
 
-      (ammonite.override { jre = program.jre; })
-      (sbt.override { jre = program.jre; })
+      (ammonite.override { jre = progs.jre; })
+      (sbt.override { jre = progs.jre; })
       mill
-      program.nodejs
-      program.jdk
-      program.pnpm
-      program.yarn-berry
+      progs.nodejs
+      progs.jdk
+      progs.pnpm
+      progs.yarn-berry
       emacs-31
       agda
       lean4
@@ -60,7 +60,7 @@ with _include;
       gef
       gdb
       llvmPackages.bintools # provides readelf that gef needs
-      program.antlr
+      progs.antlr
       yt-dlp
       #easyeda2kicad
       #interactive-html-bom

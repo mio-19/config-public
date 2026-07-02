@@ -48,230 +48,210 @@ let
               };
           }).config.env;
       novirt = (!osConfig.services.qemuGuest.enable);
-      progs = with pkgs; rec {
-        telegram =
-          if config.compile_gram then
-            pkgs-pin4.nur.repos.mio.telegram-desktop
-          else
-            pkgs-pin4.telegram-desktop;
-        materialgram = if config.compile_gram then pkgs.nur.repos.mio.materialgram else pkgs.materialgram;
-        mcpelauncher-ui-qt = pkgs.mcpelauncher-ui-qt;
-        # cannot get bwrapper to work with mcpe login page
-        mcpelauncher-ui-qt_failedAttempt1 = mkBwrapper {
-          mounts = {
-            read = [ "/etc/fonts" ];
-            readWrite = [
-            ];
-          };
-          app = {
-            package = pkgs.mcpelauncher-ui-qt;
-            runScript = "mcpelauncher-ui-qt";
-          };
-          flatpak.manifestFile = pkgs.fetchurl {
-            url = "https://github.com/flathub/io.mrarm.mcpelauncher/raw/refs/heads/master/io.mrarm.mcpelauncher.json";
-            hash = "sha256-GvR9+DafntPD6eV+gq3ElXQ4gnETF4aUGkWTVlOJ2H8=";
-          };
-        };
-        # login doesn't save, but otherwise works fine
-        mcpelauncher-ui-qt_slightlyfailed = mioPak (
-          { sloth, ... }:
-          {
-            app.package = pkgs.mcpelauncher-ui-qt;
-            dbus.enable = true;
-            dbus.policies = {
-              "org.freedesktop.portal.Desktop" = "talk";
-              "org.freedesktop.portal.Documents" = "talk";
-              "org.freedesktop.portal.Settings" = "talk";
-              "org.freedesktop.DBus" = "talk";
-              "ca.desrt.dconf" = "talk";
-              "org.gnome.Mutter.IdleMonitor" = "talk"; # harmless if absent
-            };
-            flatpak.appId = "io.mrarm.mcpelauncher";
-            bubblewrap = {
-              network = true;
-
-              bind.ro = [
-                "/etc"
-                "/sys"
-              ];
-              bind.rw = [
-                (sloth.concat' sloth.homeDir "/.local/share/mcpelauncher")
-                (sloth.concat' sloth.homeDir "/.cache/mcpelauncher-webview")
-                (sloth.env "XDG_RUNTIME_DIR")
-                "/run"
+      progs =
+        upper.progs
+        // (with pkgs; rec {
+          telegram =
+            if config.compile_gram then
+              pkgs-pin4.nur.repos.mio.telegram-desktop
+            else
+              pkgs-pin4.telegram-desktop;
+          materialgram = if config.compile_gram then pkgs.nur.repos.mio.materialgram else pkgs.materialgram;
+          mcpelauncher-ui-qt = pkgs.mcpelauncher-ui-qt;
+          # cannot get bwrapper to work with mcpe login page
+          mcpelauncher-ui-qt_failedAttempt1 = mkBwrapper {
+            mounts = {
+              read = [ "/etc/fonts" ];
+              readWrite = [
               ];
             };
-          }
-        );
-        # mostly working but scenery broken!
-        flightgear_failedAttempt1 = mkBwrapper {
-          app = {
-            package = pkgs.flightgear;
-            runScript = "fgfs";
+            app = {
+              package = pkgs.mcpelauncher-ui-qt;
+              runScript = "mcpelauncher-ui-qt";
+            };
+            flatpak.manifestFile = pkgs.fetchurl {
+              url = "https://github.com/flathub/io.mrarm.mcpelauncher/raw/refs/heads/master/io.mrarm.mcpelauncher.json";
+              hash = "sha256-GvR9+DafntPD6eV+gq3ElXQ4gnETF4aUGkWTVlOJ2H8=";
+            };
           };
-          flatpak.manifestFile =
-            let
-              yaml = pkgs.fetchurl {
-                url = "https://github.com/flathub/org.flightgear.FlightGear/raw/refs/heads/master/org.flightgear.FlightGear.yaml";
-                hash = "sha256-xsbjEftN0Kf7igK7ddfLCJPgT2IChbLA4Qdk9z9M4cE=";
+          # login doesn't save, but otherwise works fine
+          mcpelauncher-ui-qt_slightlyfailed = mioPak (
+            { sloth, ... }:
+            {
+              app.package = pkgs.mcpelauncher-ui-qt;
+              dbus.enable = true;
+              dbus.policies = {
+                "org.freedesktop.portal.Desktop" = "talk";
+                "org.freedesktop.portal.Documents" = "talk";
+                "org.freedesktop.portal.Settings" = "talk";
+                "org.freedesktop.DBus" = "talk";
+                "ca.desrt.dconf" = "talk";
+                "org.gnome.Mutter.IdleMonitor" = "talk"; # harmless if absent
               };
-            in
-            # https://discourse.nixos.org/t/how-to-convert-yaml-nix-object/23755/2
-            # https://github.com/cdepillabout/stacklock2nix/blob/65a34bec929e7b0e50fdf4606d933b13b47e2f17/nix/build-support/stacklock2nix/read-yaml.nix
-            runCommand "from-yaml" {
-              nativeBuildInputs = [ remarshal ];
-            } "remarshal -if yaml -i \"${yaml}\" -of json -o \"$out\"";
-        };
-        zulip = mioPak (
-          { sloth, ... }:
-          {
-            app.package = hardenedPkg pkgs.zulip;
-            dbus.enable = true;
-            dbus.policies = {
-              "org.freedesktop.portal.Desktop" = "talk";
-              "org.freedesktop.portal.Documents" = "talk";
-              "org.freedesktop.portal.Settings" = "talk";
-              "org.freedesktop.DBus" = "talk";
-              "ca.desrt.dconf" = "talk";
-              #"org.freedesktop.Notifications" = "talk"; # TODO: tray icon still not fixed
-            };
-            flatpak.appId = "org.zulip.Zulip";
-            bubblewrap = {
-              network = true;
+              flatpak.appId = "io.mrarm.mcpelauncher";
+              bubblewrap = {
+                network = true;
 
-              bind.ro = [
-                "/etc"
-                "/sys"
-              ];
-              bind.rw = [
-                (sloth.concat' sloth.homeDir "/.config/Zulip")
-                (sloth.env "XDG_RUNTIME_DIR")
-                "/run"
-              ];
-            };
-          }
-        );
-        librewolf_for_firejail =
-          if config.use_librewolf_bin then librewolf_for_firejail_bin else librewolf_for_firejail_src;
-        librewolf_for_firejail_bin = cleanPkg (
-          wrapFirefox librewolf-bin-unwrapped {
-            # from nixpkgs
-            pname = "librewolf-bin";
-            extraPrefsFiles = [
-              "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/librewolf.cfg"
-            ];
-            extraPoliciesFiles = [
-              "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/distribution/extra-policies.json"
-            ];
-            # for firejail:
-            # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
-            # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
-            # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
-            extraPrefs = ''
-              lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
-              lockPref("widget.use-xdg-desktop-portal.location", 1);
-              lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
-              lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
-              lockPref("widget.use-xdg-desktop-portal.settings", 1);
-            '';
-          }
-        );
-        librewolf_for_firejail_src = cleanPkg (
-          wrapFirefox librewolf-unwrapped {
-            # from nixpkgs
-            inherit (librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
-            libName = "librewolf";
-            # for firejail:
-            # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
-            # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
-            # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
-            extraPrefs = ''
-              lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
-              lockPref("widget.use-xdg-desktop-portal.location", 1);
-              lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
-              lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
-              lockPref("widget.use-xdg-desktop-portal.settings", 1);
-            '';
-          }
-        );
-        librewolf'_for_firejail =
-          if config.use_librewolf_bin then librewolf'_for_firejail_bin else librewolf'_for_firejail_src;
-        librewolf'_for_firejail_bin = cleanPkg (
-          wrapFirefox librewolf-bin-unwrapped {
-            # from nixpkgs
-            pname = "librewolf-bin";
-            extraPrefsFiles = [
-              "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/librewolf.cfg"
-            ];
-            extraPoliciesFiles = [
-              "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/distribution/extra-policies.json"
-            ];
-            # for firejail:
-            # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
-            # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
-            # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
-            extraPrefs = librewolf_customize_prefs + ''
-              lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
-              lockPref("widget.use-xdg-desktop-portal.location", 1);
-              lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
-              lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
-              lockPref("widget.use-xdg-desktop-portal.settings", 1);
-            '';
-          }
-        );
-        librewolf'_for_firejail_src = cleanPkg (
-          wrapFirefox librewolf-unwrapped {
-            # from nixpkgs
-            inherit (librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
-            libName = "librewolf";
-            # for firejail:
-            # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
-            # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
-            # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
-            extraPrefs = librewolf_customize_prefs + ''
-              lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
-              lockPref("widget.use-xdg-desktop-portal.location", 1);
-              lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
-              lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
-              lockPref("widget.use-xdg-desktop-portal.settings", 1);
-            '';
-          }
-        );
-        vscode = pkgs.vscode; # vscode-fhs;
-        discord = pkgs.discord.override {
-          withVencord = true;
-          withOpenASAR = true;
-        };
-        inkscape =
-          # https://github.com/Chaddai/nixpkgs/blob/f73d4f0ad010966973bc81f51705cef63683c2f2/doc/packages/inkscape.section.md?plain=1#L18
-          (
-            inkscape-with-extensions.override {
-              inkscapeExtensions = with pkgs.inkscape-extensions; [ inkstitch ];
+                bind.ro = [
+                  "/etc"
+                  "/sys"
+                ];
+                bind.rw = [
+                  (sloth.concat' sloth.homeDir "/.local/share/mcpelauncher")
+                  (sloth.concat' sloth.homeDir "/.cache/mcpelauncher-webview")
+                  (sloth.env "XDG_RUNTIME_DIR")
+                  "/run"
+                ];
+              };
             }
           );
-      };
-      program = rec {
-        openssh =
-          if config.mio_openssh_hpn then
-            lib.hiPrio (pkgs.nur.repos.mio.openssh_hpn)
-          else
-            lib.hiPrio pkgs.openssh_hpn;
-        git = (pkgs.git.override { openssh = program.openssh; });
-        jdk = pkgs.jdk25; # pkgs.graalvmPackages.graalvm-ce; # pkgs.graalvmPackages.graalvm-oracle;  # graalvm-ce is binaryNativeCode
-        jre = jdk;
-        jdk_headless = jdk;
-        scala_3 = pkgs.scala_3.override { jre = jre; };
-        nodejs = pkgs.nodejs_latest;
-        nodejs-slim = pkgs.nodejs-slim_latest;
-        pnpm = pkgs.pnpm.override { inherit nodejs-slim; };
-        antlr = pkgs.antlr.override { jre = program.jre; };
-        librewolf' =
-          (if config.use_librewolf_bin then pkgs'.librewolf-bin else pkgs'.librewolf).override
-            (old: {
-              extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
-            });
-        betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
-      };
+          # mostly working but scenery broken!
+          flightgear_failedAttempt1 = mkBwrapper {
+            app = {
+              package = pkgs.flightgear;
+              runScript = "fgfs";
+            };
+            flatpak.manifestFile =
+              let
+                yaml = pkgs.fetchurl {
+                  url = "https://github.com/flathub/org.flightgear.FlightGear/raw/refs/heads/master/org.flightgear.FlightGear.yaml";
+                  hash = "sha256-xsbjEftN0Kf7igK7ddfLCJPgT2IChbLA4Qdk9z9M4cE=";
+                };
+              in
+              # https://discourse.nixos.org/t/how-to-convert-yaml-nix-object/23755/2
+              # https://github.com/cdepillabout/stacklock2nix/blob/65a34bec929e7b0e50fdf4606d933b13b47e2f17/nix/build-support/stacklock2nix/read-yaml.nix
+              runCommand "from-yaml" {
+                nativeBuildInputs = [ remarshal ];
+              } "remarshal -if yaml -i \"${yaml}\" -of json -o \"$out\"";
+          };
+          zulip = mioPak (
+            { sloth, ... }:
+            {
+              app.package = hardenedPkg pkgs.zulip;
+              dbus.enable = true;
+              dbus.policies = {
+                "org.freedesktop.portal.Desktop" = "talk";
+                "org.freedesktop.portal.Documents" = "talk";
+                "org.freedesktop.portal.Settings" = "talk";
+                "org.freedesktop.DBus" = "talk";
+                "ca.desrt.dconf" = "talk";
+                #"org.freedesktop.Notifications" = "talk"; # TODO: tray icon still not fixed
+              };
+              flatpak.appId = "org.zulip.Zulip";
+              bubblewrap = {
+                network = true;
+
+                bind.ro = [
+                  "/etc"
+                  "/sys"
+                ];
+                bind.rw = [
+                  (sloth.concat' sloth.homeDir "/.config/Zulip")
+                  (sloth.env "XDG_RUNTIME_DIR")
+                  "/run"
+                ];
+              };
+            }
+          );
+          librewolf_for_firejail =
+            if config.use_librewolf_bin then librewolf_for_firejail_bin else librewolf_for_firejail_src;
+          librewolf_for_firejail_bin = cleanPkg (
+            wrapFirefox librewolf-bin-unwrapped {
+              # from nixpkgs
+              pname = "librewolf-bin";
+              extraPrefsFiles = [
+                "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/librewolf.cfg"
+              ];
+              extraPoliciesFiles = [
+                "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/distribution/extra-policies.json"
+              ];
+              # for firejail:
+              # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
+              # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
+              # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
+              extraPrefs = ''
+                lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
+                lockPref("widget.use-xdg-desktop-portal.location", 1);
+                lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
+                lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
+                lockPref("widget.use-xdg-desktop-portal.settings", 1);
+              '';
+            }
+          );
+          librewolf_for_firejail_src = cleanPkg (
+            wrapFirefox librewolf-unwrapped {
+              # from nixpkgs
+              inherit (librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
+              libName = "librewolf";
+              # for firejail:
+              # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
+              # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
+              # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
+              extraPrefs = ''
+                lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
+                lockPref("widget.use-xdg-desktop-portal.location", 1);
+                lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
+                lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
+                lockPref("widget.use-xdg-desktop-portal.settings", 1);
+              '';
+            }
+          );
+          librewolf'_for_firejail =
+            if config.use_librewolf_bin then librewolf'_for_firejail_bin else librewolf'_for_firejail_src;
+          librewolf'_for_firejail_bin = cleanPkg (
+            wrapFirefox librewolf-bin-unwrapped {
+              # from nixpkgs
+              pname = "librewolf-bin";
+              extraPrefsFiles = [
+                "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/librewolf.cfg"
+              ];
+              extraPoliciesFiles = [
+                "${librewolf-bin-unwrapped}/lib/librewolf-bin-${librewolf-bin-unwrapped.version}/distribution/extra-policies.json"
+              ];
+              # for firejail:
+              # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
+              # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
+              # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
+              extraPrefs = librewolf_customize_prefs + ''
+                lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
+                lockPref("widget.use-xdg-desktop-portal.location", 1);
+                lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
+                lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
+                lockPref("widget.use-xdg-desktop-portal.settings", 1);
+              '';
+            }
+          );
+          librewolf'_for_firejail_src = cleanPkg (
+            wrapFirefox librewolf-unwrapped {
+              # from nixpkgs
+              inherit (librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
+              libName = "librewolf";
+              # for firejail:
+              # https://forum.manjaro.org/t/browsers-like-firefox-require-xdg-desktop-portal-package-to-use-os-default-file-manager/106933
+              # keep file picker in firejail - more obvious what file cannot be picked - bug that picker with portal can still only pick files in firejail.
+              # lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
+              extraPrefs = librewolf_customize_prefs + ''
+                lockPref("widget.use-xdg-desktop-portal.file-picker", 2);
+                lockPref("widget.use-xdg-desktop-portal.location", 1);
+                lockPref("widget.use-xdg-desktop-portal.mime-handler", 1);
+                lockPref("widget.use-xdg-desktop-portal.open-uri", 1);
+                lockPref("widget.use-xdg-desktop-portal.settings", 1);
+              '';
+            }
+          );
+          vscode = pkgs.vscode; # vscode-fhs;
+          discord = pkgs.discord.override {
+            withVencord = true;
+            withOpenASAR = true;
+          };
+          inkscape =
+            # https://github.com/Chaddai/nixpkgs/blob/f73d4f0ad010966973bc81f51705cef63683c2f2/doc/packages/inkscape.section.md?plain=1#L18
+            (
+              inkscape-with-extensions.override {
+                inkscapeExtensions = with pkgs.inkscape-extensions; [ inkstitch ];
+              }
+            );
+        });
 
       pkgs' = import inputs.nixpkgs {
         config = osConfig.nixpkgs.config // {

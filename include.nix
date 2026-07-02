@@ -231,6 +231,45 @@ import ./customize.nix args
     pref("privacy.clearOnShutdown.siteSettings", false);
   '';
 
+  # Shared toolchain packages used across NixOS + nix-darwin configs.
+  #
+  # NixOS and macOS-specific include files may extend/override this attrset.
+  progs = rec {
+    nodejs = pkgs.nodejs_latest;
+    nodejs-slim = pkgs.nodejs-slim_latest;
+
+    # Prefer HPN OpenSSH when configured (NixOS option exists); otherwise keep a sane default.
+    openssh =
+      let
+        useHpn = (config.mio_openssh_hpn or false);
+        opensshHpn = pkgs.nur.repos.mio.openssh_hpn or pkgs.openssh_hpn;
+      in
+      lib.hiPrio (if useHpn then opensshHpn else (pkgs.openssh_hpn or pkgs.openssh));
+
+    git = pkgs.git.override { openssh = openssh; };
+
+    jdk = pkgs.jdk25;
+    jre = jdk;
+    jdk_headless = jdk;
+
+    pnpm = pkgs.pnpm;
+    pnpm_9 = pkgs.pnpm_9.override { nodejs = nodejs; };
+    yarn-berry = pkgs.yarn-berry.override { nodejs = nodejs; };
+
+    antlr = pkgs.antlr.override { jre = jre; };
+
+    librewolf' = (pkgs.librewolf or pkgs.librewolf-bin).override (old: {
+      extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
+    });
+
+    betterbird =
+      lib.optionalAttrs pkgs.stdenv.isLinux
+        {
+          betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
+        }
+        .betterbird or null;
+  };
+
   hasAntigravityFor =
     cfg:
     builtins.any (

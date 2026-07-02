@@ -8,7 +8,7 @@
 }@args:
 with _include;
 {
-  programs.java.package = hardenedPkg program.jdk;
+  programs.java.package = hardenedPkg progs.jdk;
   # https://search.nixos.org/packages
   environment.systemPackages =
     with pkgs;
@@ -17,12 +17,12 @@ with _include;
       ++ [
         wgcf
         fdroidcl
-        (sbt.override { jre = program.jre; })
+        (sbt.override { jre = progs.jre; })
         mill
-        program.scala_3
-        (maven.override { jdk_headless = program.jdk_headless; })
-        (ammonite.override { jre = program.jre; })
-        program.jdk
+        (pkgs.scala_3.override { jre = progs.jre; })
+        (maven.override { jdk_headless = progs.jdk_headless; })
+        (ammonite.override { jre = progs.jre; })
+        progs.jdk
         agda
         lean4
         yarn-berry
@@ -65,7 +65,7 @@ with _include;
         diffnav
         haskell-language-server
         ghc
-        program.antlr
+        progs.antlr
         nur.repos.mio.pdf2pptx
         easyeda2kicad
         interactive-html-bom
