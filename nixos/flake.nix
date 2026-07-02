@@ -233,7 +233,7 @@
       inputs.systems.follows = "flake-utils/systems";
     };
     vicinae-extensions = {
-      url = "github:vicinaehq/extensions";
+      url = "github:vicinaehq/extensions/47da7fa4e75ed4cf17b5f444d9cd8e10be213b5c";
       inputs.vicinae.follows = "vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "flake-utils/systems";
