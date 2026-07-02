@@ -1,5 +1,38 @@
 { den, ... }:
 let
+  commonCli =
+    {
+      pkgs,
+      progs,
+      inputs,
+      ...
+    }:
+    with pkgs;
+    [
+      lynx
+      #herdr
+      nh
+      nurl
+      jadx
+      cachix
+      wrangler
+      btop
+      markdownlint-cli
+      gh
+      codex
+      opencode
+      rustscan
+      cargo
+      rustc
+      diffnav
+      gef
+      gdb
+      progs.antlr
+      nur.repos.mio.pdf2pptx
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
+    ];
+
   nixosExtra =
     {
       config,
@@ -16,7 +49,13 @@ let
       environment.systemPackages =
         with pkgs;
         (map hardenedPkg (
-          import ../extra-common.nix { inherit pkgs; }
+          commonCli {
+            inherit
+              pkgs
+              progs
+              inputs
+              ;
+          }
           ++ [
             wgcf
             fdroidcl
@@ -38,9 +77,6 @@ let
             gnumake
             texliveFull
             poppler-utils
-            markdownlint-cli
-            cargo
-            rustc
             qpdf # decrypt pdf
             #julia # https://github.com/NixOS/nixpkgs/issues/475534
             baidupcs-go
@@ -53,40 +89,29 @@ let
             s-tui
             eza
             #bat
-            rustscan
             ffmpeg-full
             #onefetch
             #fresh-editor
             nixpkgs-reviewFull
             nix-update
-            gh
             #code2prompt
             yazi
             nix-tree
             matugen
             polarity
-            diffnav
             haskell-language-server
             ghc
-            progs.antlr
-            nur.repos.mio.pdf2pptx
             easyeda2kicad
             interactive-html-bom
             diffoscope
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
           ]
         ))
         ++ (map cleanPkg [
-          opencode
-          codex
           cursor-cli
           #pkgs'.openclaw
           #claude-code
           distrobox
           gcc
-          gef
-          gdb
         ])
         ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
           antigravity-cli
@@ -123,26 +148,23 @@ let
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         with pkgs;
-        import ../extra-common.nix { inherit pkgs; }
+        commonCli {
+          inherit
+            pkgs
+            progs
+            inputs
+            ;
+        }
         ++ [
           #(inputs.chester.packages."${pkgs.stdenv.hostPlatform.system}".default)
-
-          markdownlint-cli
           nur.repos.mio.mdbook-generate-summary
-          nur.repos.mio.pdf2pptx
           python314Packages.pdf2docx
           uv
-          gh
-          codex
           #pkgs'.openclaw
-          opencode
           claude-code
           ollama
-          rustscan
           #onefetch
           unixtools.watch
-          cargo
-          rustc
           opam
           # unfree:
           p7zip-rar
@@ -160,16 +182,10 @@ let
           #isabelle # cli only; use brew cask then
           nixpkgs-review
           nix-update
-          diffnav
-          gef
-          gdb
           llvmPackages.bintools # provides readelf that gef needs
-          progs.antlr
           yt-dlp
           #easyeda2kicad
           #interactive-html-bom
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
           # unfree:
           cursor-cli
 
