@@ -127,9 +127,9 @@ let
             gcc
           ]
         ))
-        ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+        ++ [
           antigravity-cli
-        ]);
+        ];
       virtualisation.podman.enable = true;
 
       # https://discourse.nixosstag.fcio.net/t/how-to-fix-cursor-size/2938/8
@@ -266,8 +266,10 @@ let
         ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
           oh-my-opencode
           oh-my-codex
+        ])
+        ++ [
           (lib.hiPrio antigravity-cli) # higher prio than gui app for cli command "antigravity"
-        ]);
+        ];
 
       homebrew.casks = [
         "inmusic-software-center"

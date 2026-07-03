@@ -85,9 +85,9 @@ with _include;
       gef
       gdb
     ])
-    ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+    ++ [
       antigravity-cli
-    ]);
+    ];
   virtualisation.podman.enable = true;
 
   # https://discourse.nixosstag.fcio.net/t/how-to-fix-cursor-size/2938/8

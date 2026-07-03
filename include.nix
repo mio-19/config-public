@@ -47,6 +47,7 @@ customize
       "lmstudio"
       "android-studio-stable"
       "antigravity"
+      "antigravity-cli"
       "nvidia-settings"
       "vscode-extension-ms-vscode-cpptools"
       "vscode-extension-github-copilot"
