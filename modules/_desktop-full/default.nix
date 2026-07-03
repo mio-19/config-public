@@ -3,16 +3,18 @@
   inputs,
   lib,
   pkgs,
-  _include,
   ...
 }@args:
+let
+  _include = args._include or (import ../../nixos/include.nix args);
+in
 with _include;
 {
   imports = [
-    (import ../aspect.nix "desktop-basic")
-    ./tkg.nix
-    ./printing.nix
-    ./desktop-office.nix
+    (import ../../aspect.nix "desktop-basic")
+    ../../nixos/tkg.nix
+    ../../nixos/printing.nix
+    ../../nixos/desktop-office.nix
   ];
 
   home-manager.sharedModules = [
@@ -236,7 +238,7 @@ with _include;
     # test on filesystem permission: for example /run/wrappers/bin/firejail '--whitelist=/run/pipewire' '--profile=/nix/store/sfnvg7fpq26ckdb7dl1bxr7j366ii84c-source/nixos/wiliwili.profile' -- $(readlink /run/current-system/sw/bin/ls) Pictures
     wiliwili = lib.mkIf (!boot-to-steam) {
       executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
-      profile = ./wiliwili.profile;
+      profile = ../../nixos/wiliwili.profile;
     };
     Telegram = lib.mkIf novirt {
       executable = "${hardenedPkg progs.telegram}/bin/Telegram";
@@ -249,7 +251,7 @@ with _include;
     };
     materialgram = lib.mkIf novirt {
       executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
-      profile = ./materialgram.profile;
+      profile = ../../nixos/materialgram.profile;
       extraArgs = [
         # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
         "--dbus-user.talk=org.freedesktop.portal.Desktop"

@@ -8,7 +8,7 @@
 {
   imports = [
     ../../nixos/baremetal.nix
-    ../../nixos/desktop-full.nix
+    (import ../../aspect.nix "desktop-full")
   ];
   services.displayManager.sddm.enable = false;
   services.displayManager.plasma-login-manager.enable = false;
