@@ -2,6 +2,9 @@
 { den, ... }: {
   den.aspects.desktop-baremetal-kde-basic = {
     description = "Bare-metal KDE baseline with SDDM or plasma-login-manager";
+    includes = [
+      den.aspects.baremetal
+    ];
     nixos =
       args@{
         config,

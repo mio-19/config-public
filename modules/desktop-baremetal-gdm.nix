@@ -2,6 +2,9 @@
 { den, ... }: {
   den.aspects.desktop-baremetal-gdm = {
     description = "Bare-metal desktop with GDM and full desktop packages";
+    includes = [
+      den.aspects.baremetal
+    ];
     nixos =
       args@{
         config,

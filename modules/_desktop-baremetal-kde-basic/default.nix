@@ -7,7 +7,6 @@
 }@args:
 {
   imports = [
-    ../../nixos/baremetal.nix
     (import ../../aspect.nix "desktop-basic")
   ];
   services.displayManager.plasma-login-manager.enable = config.plasma-login-manager_instead;

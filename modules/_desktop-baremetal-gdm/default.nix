@@ -7,7 +7,6 @@
 }@args:
 {
   imports = [
-    ../../nixos/baremetal.nix
     (import ../../aspect.nix "desktop-full")
   ];
   services.displayManager.sddm.enable = false;
