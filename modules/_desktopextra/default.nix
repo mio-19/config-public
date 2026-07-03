@@ -9,6 +9,10 @@ let
   _include = args._include or (import ../../nixos/include.nix args);
 in
 with _include;
+let
+  # cross-platform apps shared with the darwin `extra` aspect (see desktopextra darwin branch)
+  sharedApps = import ./shared-apps.nix { inherit pkgs inputs; };
+in
 {
   imports = [
     ../../nixos/games.nix
@@ -24,13 +28,9 @@ with _include;
     (map hardenedPkg [
       rclone
 
-      ghidra
-      musescore-evolution
-      nur.repos.mio.musescore-alex
       nur.repos.mio.bifrost
       # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
       #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
-      downkyicore # nur.repos.mio.downkyicore
       progs.inkscape
       #gg-jj
       kdiskmark
@@ -39,11 +39,9 @@ with _include;
       obs-studio
       freecad
       #openscad
-      blender
       #nemo
       #qcm
       teams-for-linux
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.waveterm
       pianotrans
       # binaryNativeCode:
@@ -52,7 +50,6 @@ with _include;
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       # unfree:
       (lib.hiPrio pkgs.aseprite) # lib.hiPrio: a file colliding with libresprite
-      jetbrains.gateway
       #davinci-resolve
       lmstudio
       google-chrome # does antigravity only work with google-chrome?
@@ -72,7 +69,8 @@ with _include;
           exec "${lib.getExe (hardenedPkg pkgs.dune3d)}" "$@"
         ''
       ))
-    ];
+    ]
+    ++ (map hardenedPkg sharedApps.hardened);
 
   #programs.throne.enable = true;
   #programs.throne.tunMode.enable = true;

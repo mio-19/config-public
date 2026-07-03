@@ -153,6 +153,10 @@ let
     }@args:
     with _include;
     {
+      imports = [
+        (import ../aspect.nix "desktopextra") # cross-platform desktop apps shared with NixOS desktopextra
+      ];
+
       # disable emacs to work around https://github.com/hraban/mac-app-util/issues/43
       #home-manager.sharedModules = [
       #  ../extradeusers.nix
@@ -202,7 +206,6 @@ let
           # unfree:
           cursor-cli
 
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
           joplin-desktop
           #qdiskinfo # needs more patches
           #kdiskmark # needs more patches
@@ -212,15 +215,10 @@ let
           pkgs-pin3.nur.repos.mio.telegram-desktop
           nur.repos.mio.materialgram
           nur.repos.mio.beammp-launcher
-          downkyicore
-          musescore-evolution
-          nur.repos.mio.musescore-alex
           #thonny
-          ghidra
           #mousecape
           # Good Linux GUI packages:
           pympress
-          blender
           #gnome-calculator
           #gnome-text-editor
           #remmina
@@ -245,7 +243,6 @@ let
           jetbrains-toolbox
           jetbrains.idea
           #jetbrains.clion
-          jetbrains.gateway
           obsidian
           antigravity
           github-copilot-cli
