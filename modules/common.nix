@@ -510,10 +510,12 @@
           config.networking.wireless.enable || config.networking.wireless.iwd.enable
         ) countryCode;
 
-        # https://github.com/NixOS/nixpkgs/issues/432276
-        powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
-          ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
-        '';
+        /*
+          # https://github.com/NixOS/nixpkgs/issues/432276
+          powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
+            ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
+          '';
+        */
         /*
           powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
             ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
