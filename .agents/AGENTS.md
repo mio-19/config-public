@@ -15,7 +15,7 @@ config-public is a **sanitized** public repo. Private details are redacted as `#
 - Sync only paths that belong in public (shared modules, den aspects, import-line updates on public hosts).
 - Keep every existing `# DETAILS REMOVED` comment and placeholder in config-public files.
 - Apply **minimal diffs**: e.g. change `../bios.nix` → `../../bios-den.nix` on the public copy, not by copying private `nixos/fw13/default.nix`.
-- Rebuild shared aspect modules (e.g. `modules/nixos-common.nix`) from **config-public’s** `nixos/common.nix`, not from private `config`.
+- Rebuild shared aspect modules (e.g. `modules/common.nix`) from **config-public’s** `nixos/common.nix`, not from private `config`.
 - **Always verify the public tree compiles:** Before committing and pushing to `config-public`, you MUST successfully run `nix eval --show-trace ".#nixosConfigurations.<host>.config.system.build.toplevel"` (or equivalent) in `config-public` to catch broken import paths or missing redactions.
 - Before push: `git diff` host files — should be import-path (or similarly tiny) changes only; no new user blocks, `sshkeys`, disk paths, or `facter.json` paths.
 - **Public vs private paths:** do not maintain a hand-written private-only list. Compare `config` to `../config-public`: if a path is absent from config-public, treat it as private and do not sync it; if it exists there, keep it sanitized and in sync.

@@ -2,7 +2,7 @@
 { inputs, system, ... }:
 {
   imports = [
-    ./nixos-common-den.nix
+    ./common-den.nix
     ./selector4nix-den.nix
   ];
 }

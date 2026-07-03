@@ -1,4 +1,4 @@
-# Den aspect entrypoint: shared NixOS base config (den.aspects.nixos-common).
+# Den aspect entrypoint: shared base config (den.aspects.common).
 # Use `system` from specialArgs, not `pkgs` — accessing pkgs here runs during imports and causes infinite recursion.
 { inputs, system, ... }:
 let
@@ -12,6 +12,6 @@ let
 in
 {
   imports = [
-    (denConfig.config.den.lib.aspects.resolve "nixos" denConfig.config.den.aspects.nixos-common)
+    (denConfig.config.den.lib.aspects.resolve "nixos" denConfig.config.den.aspects.common)
   ];
 }

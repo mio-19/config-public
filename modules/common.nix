@@ -1,5 +1,6 @@
 { den, ... }: {
-  den.aspects.nixos-common = {
+  den.aspects.common = {
+    description = "Shared base configuration for NixOS and nix-darwin";
     nixos =
       args@{
         config,
@@ -522,7 +523,19 @@
           '';
         */
       };
+    darwin =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        _include = args._include or import ../mac/include.nix args;
+      in
+      import ../mac/common.nix (args // { inherit _include; });
   };
 
-  den.default.includes = [ den.aspects.nixos-common ];
+  den.default.includes = [ den.aspects.common ];
 }

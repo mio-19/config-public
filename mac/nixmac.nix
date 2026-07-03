@@ -8,7 +8,6 @@
 }:
 {
   imports = [
-    ./common.nix
     ../extra-den.nix
     ../nixos/nixbuild.nix
     ../nixos/nixbuild-always.nix
