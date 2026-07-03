@@ -32,7 +32,7 @@ with _include;
     # DETAILS REMOVED
     ./disk-v3.nix
     (import ../../../../aspect.nix "desktop-baremetal-kde")
-    #../../../../nixos/desktop-specialisation.nix
+    #(import ../../../../aspect.nix "desktop-specialisation")
     ../../../../nixos/zswap.nix
     ../../../../nixos/alwaysonsys.nix
     (import ../../../../aspect.nix "extra")
