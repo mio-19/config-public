@@ -5,6 +5,7 @@
       den.aspects.options
       den.aspects.fprint-fix
       den.aspects.nix-ld
+      den.aspects.nixpkgs-workaround
     ];
     nixos =
       args@{
@@ -24,7 +25,6 @@
 
         imports = [
           (import ../aspect.nix "basic")
-          ../nixos/nixpkgs-workaround.nix
           ../nixos/customize.nix
           ../nixos/sudo-fprint-ssh-bypass.nix
           ../nixos/ccache.nix
@@ -548,7 +548,6 @@
           #./lix.nix
           #inputs.stylix.darwinModules.stylix
           ../token.nix
-          ../mac/nixpkgs-workaround.nix
         ];
 
         nixpkgs.overlays = [
