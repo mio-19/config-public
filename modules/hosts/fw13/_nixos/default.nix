@@ -26,7 +26,7 @@ with _include;
     ../../../../nixos/music.nix
     ../../../../nixos/privacy.nix
     ../../../../nixos/careless.nix
-    ../../../../nixos/boot.nix
+    (import ../../../../aspect.nix "boot")
     #../xrdp.nix
     #../v3opt.nix # needs too many time to compile
     #../wheel-nopasswd.nix
