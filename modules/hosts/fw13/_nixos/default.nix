@@ -47,7 +47,7 @@ with _include;
     ../../../../nixos/persistentkde.nix
     #../niri
     ../../../../nixos/scx.nix
-    ../../../../nixos/emulated-arm.nix
+    (import ../../../../aspect.nix "emulated-arm")
     ../../../../nixos/harmonia_lan_only_not_public_ip.nix
     #../rc.nix
   ];
