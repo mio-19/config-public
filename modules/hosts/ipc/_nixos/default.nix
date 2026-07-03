@@ -37,7 +37,7 @@ with _include;
     ../../../../nixos/alwaysonsys.nix
     (import ../../../../aspect.nix "extra")
     ../../../../nixos/extra2.nix
-    ../../../../nixos/desktopextra.nix
+    (import ../../../../aspect.nix "desktopextra")
     #../../../../nixos/desktop-offline.nix
     #../../../../nixos/sunshine.nix
     #../../../../nixos/genai.nix # too much time to compile

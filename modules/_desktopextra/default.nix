@@ -3,17 +3,19 @@
   inputs,
   lib,
   pkgs,
-  _include,
   ...
 }@args:
+let
+  _include = args._include or (import ../../nixos/include.nix args);
+in
 with _include;
 {
   imports = [
-    ./games.nix
+    ../../nixos/games.nix
   ];
 
   home-manager.sharedModules = [
-    ../extradeusers.nix
+    ../../extradeusers.nix
   ];
 
   # https://search.nixos.org/packages

@@ -39,7 +39,7 @@ with _include;
     ../../../../nixos/games.nix
     ../../../../nixos/games-extra.nix
     (import ../../../../aspect.nix "extra")
-    ../../../../nixos/desktopextra.nix
+    (import ../../../../aspect.nix "desktopextra")
     ../../../../nixos/desktop-offline.nix
     #../genai.nix # too much time to compile
     ../../../../nixos/devcommand.nix
