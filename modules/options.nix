@@ -11,16 +11,14 @@ let
     let
       inherit (pkgs) stdenv;
       nixosInclude = if isDarwin then null else (args._include or (import ../nixos/include.nix args));
-      microarchDefault = if stdenv.isAarch64 then "v4" else "v3";
-      microarchValue = if isDarwin then null else (config.microarch or microarchDefault);
       inc =
         if isDarwin then
-          {
-            # microarch doesn't exist for darwin; assume mio-patched variants are acceptable.
-            atleastV3 = true;
-            atleastV4 = true;
-          }
+          null
         else
+          let
+            microarchDefault = if stdenv.isAarch64 then "v4" else "v3";
+            microarchValue = config.microarch or microarchDefault;
+          in
           nixosInclude.scopeFor (config // { microarch = microarchValue; });
     in
     {
@@ -63,7 +61,7 @@ let
             "v4"
             "zen4"
           ];
-          default = microarchDefault;
+          default = if stdenv.isAarch64 then "v4" else "v3";
           description = "x86-64 microarchitecture level (v2: legacy e.g. i5-2410M)";
         };
         wine64_package = lib.mkPackageOption pkgs [ "wineWow64Packages" "full" ] {
@@ -96,7 +94,7 @@ let
         };
       };
 
-      config = {
+      config = lib.optionalAttrs (!isDarwin) {
         assertions = [
           {
             assertion = inc.atleastV3 || !config.mio_aria2;
@@ -106,8 +104,6 @@ let
             assertion = inc.atleastV3 || !config.mio_openssh_hpn;
             message = "no mio hpn openssh for v2";
           }
-        ]
-        ++ lib.optionals (!isDarwin) [
           {
             assertion = inc.atleastV3 || !config.compile_gram;
             message = "no gram compile for v2";
