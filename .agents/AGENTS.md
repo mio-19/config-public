@@ -4,19 +4,20 @@
 - Use the `nurl` command to get the hash for fetchers (like `fetchpatch`).
 - When editing or moving files, keep existing comments in place. Do not drop explanatory comments, links, or commented-out config unless the user asks. If a path changes, update the comment path — do not delete the comment.
 
-## Syncing to config-public (`../config-public`)
+## Syncing private `config` and `config-public`
 
 config-public is a **sanitized** public repo. Private details are redacted as `# DETAILS REMOVED` (see `README.md`).
 
-**Never** `cp` whole files from private `config` into `config-public`, especially host `default.nix` files — that replaces redactions with real users, keys, disks, hostnames, tailscale, etc.
+**Never** `cp` whole files from private `config` into `config-public`, especially host `_nixos/default.nix` files — that replaces redactions with real users, keys, disks, hostnames, tailscale, etc.
 
 **Do**
 
 - Sync only paths that belong in public (shared modules, den aspects, import-line updates on public hosts).
 - Keep every existing `# DETAILS REMOVED` comment and placeholder in config-public files.
-- Apply **minimal diffs**: e.g. change `../bios.nix` → `../../bios-den.nix` on the public copy, not by copying private `nixos/fw13/default.nix`.
-- Rebuild shared aspect modules (e.g. `modules/common.nix`) from **config-public’s** `nixos/common.nix`, not from private `config`.
+- Apply **minimal diffs**: e.g. change an import to `bios-den.nix` on the public copy of `modules/hosts/fw13/_nixos/default.nix`, not by copying the private host file wholesale.
+- Keep `modules/common.nix` (`den.aspects.common`) structurally in sync between repos: same aspect shape and imports, with `# DETAILS REMOVED` preserved in config-public. Do not copy private-only paths or full private files into config-public.
 - **Always verify the public tree compiles:** Before committing and pushing to `config-public`, you MUST successfully run `nix eval --show-trace ".#nixosConfigurations.<host>.config.system.build.toplevel"` (or equivalent) in `config-public` to catch broken import paths or missing redactions.
+- **Redaction safety check (mandatory):** Before *any* `config-public` push, review the full `git diff` and ensure every `# DETAILS REMOVED` placeholder in touched files is still present (not replaced with real content), and no new private details were introduced. If a placeholder was overwritten, reset to the last safe commit and re-apply sanitized diffs only.
 - Before push: `git diff` host files — should be import-path (or similarly tiny) changes only; no new user blocks, `sshkeys`, disk paths, or `facter.json` paths.
 - **Public vs private paths:** do not maintain a hand-written private-only list. Compare `config` to `../config-public`: if a path is absent from config-public, treat it as private and do not sync it; if it exists there, keep it sanitized and in sync.
 
@@ -26,7 +27,7 @@ config-public is a **sanitized** public repo. Private details are redacted as `#
 
 **Pulling from config-public to private config**
 
-The private `config` repository acts as a downstream fork of `config-public`.
+The private `config` repo regularly merges `config-public/main` to stay aligned on shared modules.
 When pulling changes from `config-public` into `config`, you will often encounter merge conflicts in files that contain `# DETAILS REMOVED` in the public repository but hold real secrets in the private repository.
 **Always resolve these conflicts by keeping the private (`HEAD`) version (`git checkout --ours <file>`) to ensure secrets are preserved!**
 
