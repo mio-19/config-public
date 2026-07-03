@@ -41,7 +41,7 @@ with _include;
     #(import ../../../../aspect.nix "desktop-offline")
     #../../../../nixos/sunshine.nix
     #../../../../nixos/genai.nix # too much time to compile
-    ../../../../nixos/devcommand.nix
+    (import ../../../../aspect.nix "devcommand")
     (import ../../../../aspect.nix "cuda")
     ../../../../nixos/games.nix
     #../../../../nixos/games-extra.nix

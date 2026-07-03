@@ -43,7 +43,7 @@ with _include;
     (import ../../../../aspect.nix "desktopextra")
     (import ../../../../aspect.nix "desktop-offline")
     #../genai.nix # too much time to compile
-    ../../../../nixos/devcommand.nix
+    (import ../../../../aspect.nix "devcommand")
     ../../../../nixos/persistentkde.nix
     #../niri
     ../../../../nixos/scx.nix
