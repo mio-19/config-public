@@ -31,7 +31,6 @@ with _include;
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
     # DETAILS REMOVED
     ./disk-v3.nix
-    ../../../../nixos/persistent.nix
     ../../../../nixos/desktop-baremetal-kde.nix
     #../../../../nixos/desktop-specialisation.nix
     ../../../../nixos/zswap.nix

@@ -34,7 +34,6 @@ with _include;
     ../../../../nixos/cachy_kernel.nix
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     ./disk.nix
-    ../../../../nixos/persistent.nix
     ../../../../nixos/desktop-baremetal-kde.nix
     ../../../../nixos/zswap.nix
     ../../../../nixos/games.nix

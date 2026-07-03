@@ -1,7 +1,10 @@
 { den, lib, ... }:
 {
   den.aspects.ipc = {
-    includes = [ den.batteries.hostname ];
+    includes = [
+      den.batteries.hostname
+      den.aspects.persistent
+    ];
 
     provides.to-users =
       { user, ... }:
