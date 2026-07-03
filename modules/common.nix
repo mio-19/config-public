@@ -42,7 +42,7 @@
           inputs.chaotic.nixosModules.zfs-impermanence-on-shutdown # inputs.nur.legacyPackages."${system}".repos.mio.modules.zfs-impermanence-on-shutdown
           inputs.mio.legacyPackages."${system}".modules.darling
           inputs.mio.legacyPackages."${system}".modules.wireguird
-          ../nixos/nixbuild.nix
+          (import ../aspect.nix "nixbuild")
           ../token.nix
           ../nixos/hardened.nix # does this break sddm?
         ];
