@@ -5,6 +5,5 @@
   den.default.includes = [
     den.aspects.sshkeys
     den.aspects.bandaid
-    den.aspects.basic
   ];
 }

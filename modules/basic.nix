@@ -1,7 +1,7 @@
-# Shared NixOS baseline: HM defaults, nix registry, cachix substituters (den.aspects.basic).
+# Shared baseline: HM defaults, nix registry, cachix substituters (den.aspects.basic).
 { den, ... }: {
   den.aspects.basic = {
-    description = "Shared NixOS baseline: HM defaults, nix registry, and cachix substituters";
+    description = "Shared baseline: HM defaults, nix registry, and cachix substituters";
     nixos =
       args@{
         config,
@@ -11,6 +11,15 @@
         system,
         ...
       }:
-      import ./_basic/default.nix args;
+      import ./_basic/nixos.nix args;
+    darwin =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      import ./_basic/darwin.nix args;
   };
 }

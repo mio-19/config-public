@@ -2,9 +2,8 @@
   config,
   inputs,
   lib,
-  pkgs,
   ...
-}@args:
+}:
 {
   home-manager.extraSpecialArgs = {
     inherit inputs;
@@ -24,15 +23,6 @@
     registry = lib.mapAttrs (_: v: { flake = v; }) (lib.removeAttrs inputs [ "nixpkgs" ]);
     # Map registries to channels (useful when using legacy commands)
     nixPath = lib.mapAttrsToList (n: v: "${n}=${v.to.path}") config.nix.registry;
-  };
-
-  # https://search.nixos.org/packages
-  environment.systemPackages =
-    with pkgs;
-    lib.optionals (pkgs ? nixtamal) [
-      nixtamal
-    ];
-  nix = {
     settings = {
       substituters = [
         "https://mio.cachix.org/"

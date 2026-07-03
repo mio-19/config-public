@@ -20,6 +20,7 @@
         imports = [
           ../nixos/nix-ld.nix # for fork of vscode remote dev
           ../options-den.nix
+          ../basic-den.nix
           ../nixos/nixpkgs-workaround.nix
           ../nixos/customize.nix
           ../nixos/sudo-fprint-ssh-bypass.nix
@@ -86,8 +87,6 @@
             }
           )
         ];
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
         home-manager.backupFileExtension =
           "hm-backup-"
           + (
@@ -538,6 +537,7 @@
 
         imports = [
           ../options-den.nix
+          ../basic-den.nix
           ../mac/modules
           inputs.nix-index-database.darwinModules.nix-index
           inputs.mac-app-util.darwinModules.default
@@ -568,17 +568,12 @@
           })
         ];
         home-manager.sharedModules = [
-          inputs.nix-index-database.homeModules.nix-index
           #inputs.chaotic.homeManagerModules.default
           #inputs.zen-browser.homeModules.default
           ../mac/users.nix
           inputs.mac-app-util.homeManagerModules.default
           ../users.nix
         ];
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "hm-backup";
-        home-manager.extraSpecialArgs = { inherit inputs; };
 
         services.mac-app-util.enable = mac-app-util-enabled;
 
@@ -683,58 +678,6 @@
 
           # DETAILS REMOVED
         ];
-        nix = {
-          #daemonIOLowPriority = true;
-          #daemonProcessType = "Background";
-          gc = {
-            automatic = true;
-            # https://nixos.wiki/wiki/Storage_optimization
-            interval = {
-              Weekday = 0;
-              Hour = 0;
-              Minute = 0;
-            };
-            options = "--delete-older-than 30d";
-          };
-          optimise = {
-            automatic = true;
-          };
-          settings = {
-            experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
-            substituters = [
-              #"https://chaotic-nyx.cachix.org/"
-              "https://mio.cachix.org/"
-              "https://mio-cache.cachix.org/"
-              #"https://staging.cachix.org/"
-              #"https://cache.garnix.io"
-              #"https://nix-community.cachix.org"
-              "https://cache.numtide.com" # https://github.com/numtide/llm-agents.nix
-            ];
-            trusted-public-keys = [
-              #"chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-              "mio.cachix.org-1:FlupyyLPURqwdRqtPT/LBWKsXY7JKsDkzZQo2K6LeMM="
-              "mio-cache.cachix.org-1:ouuIJZ59HIflYjpLW6DRyMc1c+6r3kC/LHuqGUsWigg="
-              #"staging.cachix.org-1:WX63nyFdVdWGn6n59pIYwkcH/AtjJGjvMQFKlI2z00w="
-              #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-              #"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-              "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-            ];
-          };
-          # https://github.com/KornelJahn/nixos-disko-zfs-test/blob/673ed629a7ef80efd99ad3b1676d9e4c62829c21/hosts/testhost.nix#L37
-          # Credits: Misterio77
-          # https://raw.githubusercontent.com/Misterio77/nix-config/e227d8ac2234792138753a0153f3e00aec154c39/hosts/common/global/nix.nix
-          # Add each flake input as a registry
-          registry = lib.mapAttrs (_: v: { flake = v; }) (lib.removeAttrs inputs [ "nixpkgs" ]);
-          # Map registries to channels (useful when using legacy commands)
-          nixPath = lib.mapAttrsToList (n: v: "${n}=${v.to.path}") config.nix.registry;
-          extraOptions = ''
-            trusted-users = @admin root
-          '';
-        };
-
         environment.shells = [
           pkgs.bashInteractive
           pkgs.zsh
