@@ -575,7 +575,7 @@
           #inputs.zen-browser.homeModules.default
           ../mac/users.nix
           inputs.mac-app-util.homeManagerModules.default
-          .../mac/users.nix
+          ../users.nix
         ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
