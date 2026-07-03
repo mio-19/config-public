@@ -1,0 +1,161 @@
+{ den, ... }: {
+  den.aspects.nix-ld = {
+    description = "nix-ld libraries for vscode remote dev and similar FHS needs";
+    nixos =
+      { pkgs, ... }:
+      {
+        # https://nixos.wiki/wiki/Games
+        # for Intellij IDEA remote development? and BeamNG?
+        programs.nix-ld = {
+          enable = true;
+          libraries = with pkgs; [
+            # https://github.com/zsedem/nixos-configuration/blob/18e01a1991769a9141354363dcbe5a419f044481/commons/nix-ld.nix#L4
+            SDL
+            SDL2
+            SDL2_image
+            SDL2_mixer
+            SDL2_ttf
+            SDL_image
+            SDL_mixer
+            SDL_ttf
+            alsa-lib
+            at-spi2-atk
+            at-spi2-core
+            atk
+            bzip2
+            cairo
+            cups
+            curlWithGnuTls
+            dbus
+            dbus-glib
+            desktop-file-utils
+            e2fsprogs
+            expat
+            flac
+            fontconfig
+            freeglut
+            freetype
+            fribidi
+            fuse
+            fuse3
+            gdk-pixbuf
+            glew_1_10
+            glib
+            gmp
+            gst_all_1.gst-plugins-base
+            gst_all_1.gst-plugins-ugly
+            gst_all_1.gstreamer
+            gtk2
+            harfbuzz
+            icu
+            keyutils.lib
+            libGL
+            libGLU
+            libappindicator-gtk2
+            libcaca
+            libcanberra
+            libcap
+            libclang.lib
+            libdbusmenu
+            libdrm
+            libgcrypt
+            libgpg-error
+            libidn
+            libjack2
+            libjpeg
+            libmikmod
+            libogg
+            libpng12
+            libpulseaudio
+            librsvg
+            libsamplerate
+            libthai
+            libtheora
+            libtiff
+            libudev0-shim
+            libusb1
+            libuuid
+            libvdpau
+            libvorbis
+            libvpx
+            libxcrypt-legacy
+            libxkbcommon
+            libxml2
+            mesa
+            nspr
+            nss
+            openssl
+            p11-kit
+            pango
+            pixman
+            python3
+            speex
+            stdenv.cc.cc
+            onetbb
+            udev
+            vulkan-loader
+            wayland
+            libICE
+            libSM
+            libx11
+            libxscrnsaver
+            libxcomposite
+            libxcursor
+            libxdamage
+            libxext
+            libxfixes
+            libxft
+            libxi
+            libxinerama
+            libxmu
+            libxrandr
+            libxrender
+            libxt
+            libxtst
+            libxxf86vm
+            libpciaccess
+            libxcb
+            xcbutil
+            xcbutilimage
+            xcbutilkeysyms
+            xcbutilrenderutil
+            xcbutilwm
+            xkeyboard-config
+            xz
+            zlib
+            # https://github.com/wuX4an/.dotfiles/blob/cb37f6b6a240f483d2b8de2ad2fe567a01a81e00/README.md?plain=1#L139
+            libx11
+            libxext
+            libxinerama
+            libxrandr
+            libxcursor
+            libxrender
+            alsa-lib
+            libpulseaudio
+            libGL
+            SDL2
+            libxkbcommon
+            libxi
+            # https://github.com/yjpark/dotnix/blob/43fe7babf9e6c1a6693a8f11459c70e844f82ab6/nixos/services/dev/nix-ld.nix#L6
+            #stdenv.cc.cc
+            zlib
+            fuse3
+            icu
+            zlib
+            nss
+            openssl
+            curl
+            expat
+            # https://github.com/acuteaura/universe/blob/14b1311a2669948b6290bce9a848cf636ef8f857/systems/_modules/base.nix#L42
+            icu
+            libgcc
+            libz
+            stdenv.cc.cc.lib
+            libxcb
+            zlib
+            libgbm
+          ];
+        };
+      };
+  };
+}

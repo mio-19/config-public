@@ -4,6 +4,7 @@
     includes = [
       den.aspects.options
       den.aspects.fprint-fix
+      den.aspects.nix-ld
     ];
     nixos =
       args@{
@@ -22,7 +23,6 @@
         _module.args._include = _include;
 
         imports = [
-          ../nixos/nix-ld.nix # for fork of vscode remote dev
           (import ../aspect.nix "basic")
           ../nixos/nixpkgs-workaround.nix
           ../nixos/customize.nix
