@@ -4,12 +4,14 @@
   den.hosts.x86_64-linux.fw13 = {
     hostName = "fw13";
     users.user.classes = [ "homeManager" ];
+    users.user.nixosZshUser.enable = true;
     # DETAILS REMOVED
   };
 
   den.hosts.x86_64-linux.ipc = {
     hostName = "ipc";
     users.user.classes = [ "homeManager" ];
+    users.user.nixosZshUser.enable = true;
     # DETAILS REMOVED
   };
 

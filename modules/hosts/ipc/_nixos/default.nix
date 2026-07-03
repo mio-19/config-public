@@ -86,8 +86,6 @@ with _include;
     hashedPasswordFile = "/persistent/etc/pass-user-user";
     uid = 1001;
     isNormalUser = true;
-    shell = pkgs.zsh;
-    ignoreShellProgramCheck = true; # https://github.com/nix-community/home-manager/issues/108#issuecomment-2569823607
     extraGroups = extraAdminGroups;
   };
   # DETAILS REMOVED
