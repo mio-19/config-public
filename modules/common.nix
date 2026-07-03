@@ -1,6 +1,9 @@
 { den, ... }: {
   den.aspects.common = {
     description = "Shared base configuration for NixOS and nix-darwin";
+    includes = [
+      den.aspects.fprint-fix
+    ];
     nixos =
       args@{
         config,
@@ -24,7 +27,6 @@
           ../nixos/nixpkgs-workaround.nix
           ../nixos/customize.nix
           ../nixos/sudo-fprint-ssh-bypass.nix
-          ../nixos/fprint-fix.nix
           ../nixos/ccache.nix
           ../nixos/skip-lockscreen-click
           #./lix.nix
