@@ -32,7 +32,7 @@ with _include;
       */
       strategies = {
         "discharging-smooth" = {
-          fanSpeedUpdateFrequency = 14;
+          fanSpeedUpdateFrequency = 10;
           movingAverageInterval = 30;
           speedCurve = [
             {
@@ -62,7 +62,7 @@ with _include;
           ];
         };
         "charging-smooth" = {
-          fanSpeedUpdateFrequency = 14;
+          fanSpeedUpdateFrequency = 10;
           movingAverageInterval = 30;
           speedCurve = [
             {
