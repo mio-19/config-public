@@ -2,6 +2,7 @@
   den.aspects.common = {
     description = "Shared base configuration for NixOS and nix-darwin";
     includes = [
+      den.aspects.options
       den.aspects.fprint-fix
     ];
     nixos =
@@ -22,7 +23,6 @@
 
         imports = [
           ../nixos/nix-ld.nix # for fork of vscode remote dev
-          (import ../aspect.nix "options")
           (import ../aspect.nix "basic")
           ../nixos/nixpkgs-workaround.nix
           ../nixos/customize.nix
@@ -540,7 +540,6 @@
         _module.args._include = _include;
 
         imports = [
-          (import ../aspect.nix "options")
           (import ../aspect.nix "basic")
           ../mac/modules
           inputs.nix-index-database.darwinModules.nix-index
