@@ -19,7 +19,8 @@ with _include;
   # https://github.com/Svenum/holynix/blob/2a3d096b74bbbcf0a166ee58507846fb2f5ba8c3/systems/x86_64-linux/Yon/hardware.nix#L76
   # https://github.com/TamtamHero/fw-fanctrl/blob/0cf784fcd0ec908fdb447f0710dd45eba90a5ca0/src/fw_fanctrl/_resources/config.json#L6
   hardware.fw-fanctrl = {
-    enable = true;
+    #enable = true;
+    enable = false;
     keepDefaultStrategies = false;
     settings = {
 
