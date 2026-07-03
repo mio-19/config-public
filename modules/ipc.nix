@@ -2,6 +2,7 @@
 {
   den.aspects.ipc = {
     includes = [
+      den.aspects.common
       den.batteries.hostname
       den.aspects.persistent
     ];

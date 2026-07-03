@@ -128,6 +128,4 @@ in
     nixos = mkOptions false;
     darwin = mkOptions true;
   };
-
-  den.default.includes = [ den.aspects.options ];
 }

@@ -813,5 +813,4 @@
       };
   };
 
-  den.default.includes = [ den.aspects.common ];
 }
