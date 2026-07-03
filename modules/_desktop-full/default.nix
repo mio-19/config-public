@@ -9,6 +9,10 @@ let
   _include = args._include or (import ../../nixos/include.nix args);
 in
 with _include;
+let
+  # cross-platform apps shared with the darwin system config (see aspect darwin branch)
+  sharedApps = import ./shared-apps.nix { inherit pkgs progs; };
+in
 {
   imports = [
     (import ../../aspect.nix "desktop-basic")
@@ -26,12 +30,10 @@ with _include;
     (map hardenedPkg [
       (wrapPrio gnome-calculator)
       (wrapPrio gnome-system-monitor)
-      trayscale
       chromium
       krita
       gimp
       saber
-      localsend
       gparted
       mpv # https://gist.github.com/arch1t3cht/b5b9552633567fa7658deee5aec60453/
       mediainfo-gui
@@ -41,14 +43,11 @@ with _include;
       bitwarden-desktop
       joplin-desktop
       prusa-slicer
-      pear-desktop
       #ytmdesktop # no: this one cannot block ad
-      element-desktop
       fluffychat
       progs.zulip
       normcap
       (if qtIsPreferred then libreoffice-qt6-fresh else libreoffice-fresh)
-      qbittorrent-enhanced
       #bottles
       #kdePackages.sddm-kcm
       remmina
@@ -90,7 +89,6 @@ with _include;
       sublime-merge # (callPackage ./sublime-merge.nix { })
     ])
     ++ (map cleanPkg [
-      progs.librewolf' # progs.librewolf'_for_firejail
       firefox-esr
       (wrapPrio gnome-console)
       # unfree:
@@ -133,13 +131,15 @@ with _include;
         progs.discord
       ])
       ++ (map cleanPkg [
-        zotero # segfault with hardenedPkg
         zed-editor-fhs
 
         # https://nixos.wiki/wiki/Steam
         (lib.hiPrio config.programs.steam.package.run) # override the non cleanPkg one
       ])
-    );
+    )
+    ++ (map hardenedPkg sharedApps.hardened)
+    ++ (map cleanPkg sharedApps.clean)
+    ++ lib.optionals pkgs.stdenv.isx86_64 (map cleanPkg sharedApps.cleanX86);
   programs.localsend.package = hardenedPkg pkgs.localsend;
 
   programs.firejail.enable = true;

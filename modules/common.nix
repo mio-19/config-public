@@ -542,6 +542,7 @@
         imports = [
           (import ../aspect.nix "basic")
           ../mac/modules
+          (import ../aspect.nix "desktop-full") # cross-platform desktop apps shared with NixOS
           inputs.nix-index-database.darwinModules.nix-index
           inputs.mac-app-util.darwinModules.default
           inputs.home-manager.darwinModules.home-manager
@@ -644,20 +645,16 @@
           nix-output-monitor
 
           moonlight-qt
-          pear-desktop
           spin
-          progs.librewolf'
           nixfmt
           nixfmt-tree
 
           rectangle
           zed-editor
           firebird-emu
-          localsend
-          element-desktop
-          zotero
-          trayscale # inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".trayscale
-          qbittorrent-enhanced
+          # pear-desktop, progs.librewolf', localsend, element-desktop, zotero,
+          # trayscale, qbittorrent-enhanced now come from den.aspects.desktop-full
+          # (modules/_desktop-full/shared-apps.nix)
           #firefox_nightly
           famistudio
           octaveFull
