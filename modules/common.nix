@@ -6,6 +6,8 @@
       den.aspects.fprint-fix
       den.aspects.nix-ld
       den.aspects.nixpkgs-workaround
+      den.aspects.customize
+      den.aspects.ccache
     ];
     nixos =
       args@{
@@ -25,9 +27,7 @@
 
         imports = [
           (import ../aspect.nix "basic")
-          ../nixos/customize.nix
           ../nixos/sudo-fprint-ssh-bypass.nix
-          ../nixos/ccache.nix
           ../nixos/skip-lockscreen-click
           #./lix.nix
           #inputs.determinate.nixosModules.default

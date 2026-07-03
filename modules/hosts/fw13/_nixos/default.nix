@@ -25,14 +25,14 @@ with _include;
     ../../../../nixos/keep.nix
     ../../../../nixos/music.nix
     ../../../../nixos/privacy.nix
-    ../../../../nixos/careless.nix
+    (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
     #../xrdp.nix
     #../v3opt.nix # needs too many time to compile
     #../wheel-nopasswd.nix
     #../safe.nix
     ../../../../nixos/zfs.nix
-    ../../../../nixos/cachy_kernel.nix
+    (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     ./disk.nix
     (import ../../../../aspect.nix "desktop-baremetal-kde")

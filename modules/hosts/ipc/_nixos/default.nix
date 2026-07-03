@@ -19,13 +19,13 @@ with _include;
     ../../../../nixos/keep.nix
     ../../../../nixos/music.nix
     ../../../../nixos/privacy.nix
-    ../../../../nixos/careless.nix
+    (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
     #../../../../nixos/v3opt.nix # needs too many time to compile
     ../../../../nixos/wheel-nopasswd.nix
     #../../../../nixos/safe.nix
     ../../../../nixos/zfs.nix
-    ../../../../nixos/cachy_kernel.nix
+    (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
