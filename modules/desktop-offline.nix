@@ -1,6 +1,9 @@
 { den, ... }: {
   den.aspects.desktop-offline = {
     description = "Rarely-used offline desktop packages and flatpaks";
+    includes = [
+      den.aspects.desktopextra2
+    ];
     nixos =
       args@{
         config,
@@ -14,10 +17,6 @@
       in
       with _include;
       {
-        imports = [
-          ../nixos/desktopextra2.nix
-        ];
-
         boot.supportedFilesystems = [
           "apfs"
         ]
