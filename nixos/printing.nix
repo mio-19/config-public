@@ -3,9 +3,11 @@
   inputs,
   lib,
   pkgs,
-  _include,
   ...
 }@args:
+let
+  _include = args._include or import ./include.nix args;
+in
 with _include;
 {
   # https://wiki.nixos.org/wiki/Printing

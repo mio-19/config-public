@@ -4,16 +4,17 @@
   lib,
   pkgs,
   system,
-  _include,
   ...
 }@args:
 let
+  _include = args._include or import ../../../../nixos/include.nix args;
   pool = "razer";
 in
 with _include;
 {
   imports = [
     # DETAILS REMOVED
+    ../../../../nixos-base-den.nix
     ./fw13.nix
     (import ../../../../aspect.nix "bios")
     #../desktop-specialisation-cosmic.nix
@@ -40,7 +41,7 @@ with _include;
     ../../../../nixos/games-extra.nix
     (import ../../../../aspect.nix "extra")
     (import ../../../../aspect.nix "desktopextra")
-    ../../../../nixos/desktop-offline.nix
+    (import ../../../../aspect.nix "desktop-offline")
     #../genai.nix # too much time to compile
     ../../../../nixos/devcommand.nix
     ../../../../nixos/persistentkde.nix
