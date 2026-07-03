@@ -14,7 +14,7 @@ with _include;
     (import ../../aspect.nix "desktop-basic")
     ../../nixos/tkg.nix
     ../../nixos/printing.nix
-    ../../nixos/desktop-office.nix
+    (import ../../aspect.nix "desktop-office")
   ];
 
   home-manager.sharedModules = [
