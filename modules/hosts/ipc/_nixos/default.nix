@@ -13,7 +13,7 @@ with _include;
 {
   imports = [
     ./printers.nix
-    ../../../../bios-den.nix
+    (import ../../../../aspect.nix "bios")
     ../../../../nixos/hidpi.nix
     #../../../../nixos/betterbird.nix # tired of compiling
     ../../../../nixos/keep.nix
@@ -31,11 +31,11 @@ with _include;
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
     # DETAILS REMOVED
     ./disk-v3.nix
-    ../../../../nixos/desktop-baremetal-kde.nix
+    (import ../../../../aspect.nix "desktop-baremetal-kde")
     #../../../../nixos/desktop-specialisation.nix
     ../../../../nixos/zswap.nix
     ../../../../nixos/alwaysonsys.nix
-    ../../../../extra-den.nix
+    (import ../../../../aspect.nix "extra")
     ../../../../nixos/extra2.nix
     ../../../../nixos/desktopextra.nix
     #../../../../nixos/desktop-offline.nix

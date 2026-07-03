@@ -8,12 +8,12 @@
 }:
 {
   imports = [
-    ../extra-den.nix
+    (import ../aspect.nix "extra")
     ../nixos/nixbuild.nix
     ../nixos/nixbuild-always.nix
     ./harmonia_lan_only_not_public_ip.nix
     #./newinstall.nix
-    ../selector4nix-den.nix
+    (import ../aspect.nix "selector4nix")
   ];
 
   networking.hostName = "NixMac";

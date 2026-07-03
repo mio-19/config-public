@@ -19,8 +19,8 @@
 
         imports = [
           ../nixos/nix-ld.nix # for fork of vscode remote dev
-          ../options-den.nix
-          ../basic-den.nix
+          (import ../aspect.nix "options")
+          (import ../aspect.nix "basic")
           ../nixos/nixpkgs-workaround.nix
           ../nixos/customize.nix
           ../nixos/sudo-fprint-ssh-bypass.nix
@@ -538,8 +538,8 @@
         _module.args._include = _include;
 
         imports = [
-          ../options-den.nix
-          ../basic-den.nix
+          (import ../aspect.nix "options")
+          (import ../aspect.nix "basic")
           ../mac/modules
           inputs.nix-index-database.darwinModules.nix-index
           inputs.mac-app-util.darwinModules.default

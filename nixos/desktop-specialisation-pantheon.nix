@@ -6,7 +6,7 @@
   ...
 }@args:
 {
-  imports = [ ../desktop-basic-den.nix ];
+  imports = [ (import ../aspect.nix "desktop-basic") ];
   specialisation.pantheon.configuration =
     lib.mkIf (!config.services.xserver.displayManager.lightdm.enable)
       {

@@ -2,7 +2,7 @@
 { inputs, system, ... }:
 {
   imports = [
-    ./common-den.nix
-    ./selector4nix-den.nix
+    (import ./aspect.nix "common")
+    (import ./aspect.nix "selector4nix")
   ];
 }

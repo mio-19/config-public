@@ -8,7 +8,7 @@
 }@args:
 with _include;
 {
-  imports = [ ../desktop-basic-den.nix ];
+  imports = [ (import ../aspect.nix "desktop-basic") ];
   specialisation.kde = lib.mkIf (!kdeDMEnabled) {
     configuration = {
       system.nixos.tags = [ "kde" ];

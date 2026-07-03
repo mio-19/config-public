@@ -15,7 +15,7 @@ with _include;
   imports = [
     # DETAILS REMOVED
     ./fw13.nix
-    ../../../../bios-den.nix
+    (import ../../../../aspect.nix "bios")
     #../desktop-specialisation-cosmic.nix
     ../../../../nixos/hidpi.nix
     #../desktop-specialisation-pantheon.nix # broken: lightdm didn't show up
@@ -34,11 +34,11 @@ with _include;
     ../../../../nixos/cachy_kernel.nix
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     ./disk.nix
-    ../../../../nixos/desktop-baremetal-kde.nix
+    (import ../../../../aspect.nix "desktop-baremetal-kde")
     ../../../../nixos/zswap.nix
     ../../../../nixos/games.nix
     ../../../../nixos/games-extra.nix
-    ../../../../extra-den.nix
+    (import ../../../../aspect.nix "extra")
     ../../../../nixos/desktopextra.nix
     ../../../../nixos/desktop-offline.nix
     #../genai.nix # too much time to compile

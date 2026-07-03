@@ -9,7 +9,7 @@
 with _include;
 {
   imports = [
-    ../desktop-basic-den.nix
+    (import ../aspect.nix "desktop-basic")
     ./tkg.nix
     ./printing.nix
     ./desktop-office.nix

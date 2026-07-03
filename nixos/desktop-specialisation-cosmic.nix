@@ -6,7 +6,7 @@
   ...
 }@args:
 {
-  imports = [ ../desktop-basic-den.nix ];
+  imports = [ (import ../aspect.nix "desktop-basic") ];
   specialisation.cosmic.configuration =
     lib.mkIf (!config.services.displayManager.cosmic-greeter.enable)
       {

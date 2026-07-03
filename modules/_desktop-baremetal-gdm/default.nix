@@ -7,8 +7,8 @@
 }@args:
 {
   imports = [
-    ./baremetal.nix
-    ./desktop-full.nix
+    ../../nixos/baremetal.nix
+    ../../nixos/desktop-full.nix
   ];
   services.displayManager.sddm.enable = false;
   services.displayManager.plasma-login-manager.enable = false;
