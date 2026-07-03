@@ -25,7 +25,6 @@
           ../nixos/sudo-fprint-ssh-bypass.nix
           ../nixos/fprint-fix.nix
           ../nixos/ccache.nix
-          ../nixos/basic.nix
           ../nixos/skip-lockscreen-click
           #./lix.nix
           #inputs.determinate.nixosModules.default
