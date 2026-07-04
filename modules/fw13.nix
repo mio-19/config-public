@@ -42,7 +42,14 @@
       {
         homeManager._module.args.enable-fcitx = true;
         homeManager.home.stateVersion = lib.mkDefault "25.11";
-        homeManager.imports = lib.optional (user.name == "user") ../nixos/home-user.nix;
+        homeManager.programs.plasma = {
+          enable = true;
+          powerdevil.AC = {
+            powerButtonAction = lib.mkForce "sleep";
+            autoSuspend.action = lib.mkForce "sleep";
+            whenLaptopLidClosed = lib.mkForce "sleep";
+          };
+        };
         # DETAILS REMOVED
       };
   };
