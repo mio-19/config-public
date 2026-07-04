@@ -25,6 +25,7 @@
             experimental-features = [
               "nix-command"
               "flakes"
+              "blake3-hashes"
             ];
           };
         };
