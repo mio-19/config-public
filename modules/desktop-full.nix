@@ -240,6 +240,16 @@ in
               executable = "${hardenedPkg pkgs.bitwarden-desktop}/bin/bitwarden";
               profile = "${pkgs.firejail}/etc/firejail/bitwarden.profile";
             };
+            zulip = {
+              executable = "${hardenedPkg pkgs.zulip}/bin/zulip";
+              profile = ../nixos/zulip.profile;
+              extraArgs = [
+                # https://github.com/netblue30/firejail/issues/6681#issuecomment-2725161673
+                "--ignore=private-dev"
+                "--ignore=apparmor"
+                "--apparmor-replace"
+              ];
+            };
             # https://github.com/legendofmiracles/dotnix/blob/ea678c780a1944e32c94ded1b58ce3a28be553d9/hosts/pain/configuration.nix#L110
             # disable firejail for chromium if we want to use webflasher WebSerial
             # disable firajail as it might break Antigravity? https://antigravity.google/docs/browser NO: antigravity's integration still doesn't work even without firejail
