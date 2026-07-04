@@ -8,10 +8,10 @@
 }:
 {
   imports = [
-    (import ../aspect.nix "extra")
-    (import ../aspect.nix "harmonia_lan_only_not_public_ip")
-    #./newinstall.nix
-    (import ../aspect.nix "selector4nix")
+    (import ../../../../aspect.nix "extra")
+    (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
+    #../../../../mac/newinstall.nix
+    (import ../../../../aspect.nix "selector4nix")
   ];
 
   networking.hostName = "NixMac";
@@ -19,14 +19,18 @@
   home-manager.users.user = (
     { ... }:
     {
-      imports = [ ./home-user.nix ];
+      imports = [ ../../../../mac/home-user.nix ];
       programs.opam.enable = true;
       programs.opam.enableBashIntegration = true;
       programs.opam.enableZshIntegration = true;
       programs.opam.enableFishIntegration = true;
     }
   );
-  home-manager.users.chester = ./chesteruser.nix;
+  home-manager.users.chester = ../../../../mac/chesteruser.nix;
+  users.users.chester = {
+    name = "chester";
+    home = "/Users/chester";
+  };
   # DETAILS REMOVED
   users.users.user = {
     name = "user";

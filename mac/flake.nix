@@ -2,6 +2,9 @@
   description = "Mio's darwin configuration";
 
   inputs = {
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
     flake-utils.url = "github:numtide/flake-utils";
     # https://github.com/NixOS/nixpkgs/pull/449689
     #nixpkgs-staging.url = "github:NixOS/nixpkgs/staging";
@@ -106,8 +109,17 @@
   };
 
   outputs =
-    inputs0@{ self, ... }:
-    let
+    inputs0@{ self, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inputs = inputs0; } {
+      systems = [
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      imports = [
+        inputs0.den.flakeModule
+      ];
+      flake =
+        let
       the = (
         system:
         let
@@ -302,11 +314,11 @@
           };
           modules = [
             NixMac.mainModule
-            ./nixmac.nix
             #./builder-uninstall.nix
             #./builder-firstinstall.nix
           ];
         };
       darwinConfigurations.NixMac-2 = self.darwinConfigurations."NixMac";
     };
+  };
 }
