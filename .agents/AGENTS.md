@@ -10,6 +10,8 @@ config-public is a **sanitized** public repo. Private details are redacted as `#
 
 **Never** `cp` whole files from private `config` into `config-public`, especially host `_nixos/default.nix` files — that replaces redactions with real users, keys, disks, hostnames, tailscale, etc.
 
+**If the two repos are out of sync for a reason *other* than `# DETAILS REMOVED` redactions:** stop immediately. Do not guess which side is correct or silently pick one. Ask the user which version to use, then make **both** repos match that chosen version (preserving each file's `# DETAILS REMOVED` placeholders in `config-public`).
+
 **Do**
 
 - Sync only paths that belong in public (shared modules, den aspects, import-line updates on public hosts).
