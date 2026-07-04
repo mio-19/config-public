@@ -113,7 +113,7 @@
 
   outputs =
     inputs0@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inputs = inputs0; } {
+    flake-parts.lib.mkFlake { inputs = inputs0; } ({ withSystem, ... }: {
       systems = [
         "x86_64-darwin"
         "aarch64-darwin"
@@ -121,10 +121,7 @@
       imports = [
         inputs0.den.flakeModule
       ];
-      flake =
-        let
-      the = (
-        system:
+      perSystem = { system, pkgs, config, lib, ... }:
         let
           pkgs0 = import inputs0.nixpkgs {
             inherit system;
@@ -134,24 +131,6 @@
             name = "nixpkgs-patched";
             src = inputs0.nixpkgs.outPath;
             patches = with pkgs0; [
-              /*
-                # merge conflicts?
-                (fetchpatch {
-                  name = "supertuxkart: updates for darwin and app experience";
-                  url = "https://github.com/NixOS/nixpkgs/pull/520901.diff";
-                  hash = "sha256-mtMxithwskTtp0tnBaFBSI3+Q8OuG6xCNEDYILNx/Kw=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-              */
-              /*
-                # conflicts
-                (fetchpatch {
-                  name = "gimp3: fix Darwin build";
-                  url = "https://github.com/NixOS/nixpkgs/pull/513484.diff";
-                  hash = "sha256-Y9nqZTtq77SiSSCiqzXEB3+n8MPmDmjjhoB79QpPenc=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-              */
               (fetchpatch {
                 name = "tuxguitar: fix launch on darwin when app bundle path contains space";
                 url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
@@ -175,15 +154,6 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/534884.patch";
                 hash = "sha256-Lt43nR05fVXsFekFxVQPg8r6Y3AD5JiQpCAbDH6BPkw=";
               })
-              /*
-                # unsure
-                (fetchpatch {
-                  name = "lib.options: several small performance cleanups";
-                  url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
-                  hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-              */
               (fetchpatch {
                 name = "baobab: add desktopToDarwinBundle override";
                 url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
@@ -201,36 +171,14 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/536602.diff";
                 hash = "sha256-nVyL5C11GnB9p8ABGL0whGfzj+Gq5aMvsUfl0dG/3Ss=";
               })
-              # related to appstream : https://github.com/NixOS/nixpkgs/issues/514566
               (fetchpatch {
                 name = "libfyaml: fixed building issues";
                 url = "https://github.com/NixOS/nixpkgs/pull/515614.patch";
                 hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
                 derivationArgs.allowSubstitutes = false;
               })
-              /*
-                  (fetchpatch {
-                    name = "64gram: fix darwin build with Qt 6.11";
-                    url = "https://github.com/NixOS/nixpkgs/pull/520733.diff";
-                    hash = "sha256-NfKYs4lC4xrtnLlqjShvkLVKERShGczWg7kqKut95oM=";
-                    derivationArgs.allowSubstitutes = false;
-                  })
-                  (fetchpatch {
-                    name = "keepassxc: fix pcsc for darwin";
-                    url = "https://github.com/NixOS/nixpkgs/pull/520328.diff";
-                    hash = "sha256-amWCahSLE6Lvru9R3IesKr1no5Gc+kd+XyBuKGc/j3Q=";
-                    derivationArgs.allowSubstitutes = false;
-                  })
-                (fetchpatch {
-                  name = "remmina: fix missing sidebar icons on macOS";
-                  url = "https://github.com/NixOS/nixpkgs/pull/514651.patch";
-                  hash = "sha256-T5mr9fzVAyH4SZOpP4wv3TliGBEKdLQI8jwafJuLbKU=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-              */
             ];
           };
-          # what is self - https://discourse.nixos.org/t/who-is-self-in-flake-outputs/31859
           nixpkgs =
             (import "${nixpkgs-drv}/flake.nix").outputs {
               self = nixpkgs;
@@ -238,6 +186,21 @@
             // {
               outPath = toString nixpkgs-drv;
             };
+        in
+        {
+          _module.args.pkgs = import nixpkgs {
+            inherit system;
+            config.allowDeprecatedx86_64Darwin = true;
+          };
+          packages.nixpkgs-patched = nixpkgs;
+        };
+
+      flake =
+        let
+      the = (
+        system: withSystem system ({ config, pkgs, ... }:
+        let
+          nixpkgs = config.packages.nixpkgs-patched;
           darwin =
             (import "${inputs0.darwin}/flake.nix").outputs {
               inherit nixpkgs;
@@ -301,6 +264,7 @@
             ;
           inherit (inputs0) self;
         }
+        )
       );
     in
     {
@@ -323,5 +287,5 @@
         };
       darwinConfigurations.NixMac-2 = self.darwinConfigurations."NixMac";
     };
-  };
+  });
 }
