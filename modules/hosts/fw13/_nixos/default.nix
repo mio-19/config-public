@@ -30,7 +30,7 @@ with _include;
     #(import ../../../../aspect.nix "xrdp")
     #../v3opt.nix # needs too many time to compile
     #(import ../../../../aspect.nix "wheel-nopasswd")
-    #../safe.nix
+    #(import ../../../../aspect.nix "safe")
     (import ../../../../aspect.nix "zfs")
     (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -46,7 +46,7 @@ with _include;
     (import ../../../../aspect.nix "devcommand")
     ../../../../nixos/persistentkde.nix
     #../niri
-    ../../../../nixos/scx.nix
+    (import ../../../../aspect.nix "scx")
     (import ../../../../aspect.nix "emulated-arm")
     (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
     #(import ../../../../aspect.nix "rc")

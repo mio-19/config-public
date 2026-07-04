@@ -44,7 +44,7 @@ in
       {
         imports = [
           (import ../aspect.nix "desktop-basic")
-          ../nixos/tkg.nix
+          (import ../aspect.nix "tkg")
           (import ../aspect.nix "printing")
           (import ../aspect.nix "desktop-office")
         ];

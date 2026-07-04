@@ -23,7 +23,7 @@ with _include;
     (import ../../../../aspect.nix "boot")
     #../../../../nixos/v3opt.nix # needs too many time to compile
     (import ../../../../aspect.nix "wheel-nopasswd")
-    #../../../../nixos/safe.nix
+    #(import ../../../../aspect.nix "safe")
     (import ../../../../aspect.nix "zfs")
     (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
@@ -39,7 +39,7 @@ with _include;
     (import ../../../../aspect.nix "extra2")
     (import ../../../../aspect.nix "desktopextra")
     #(import ../../../../aspect.nix "desktop-offline")
-    #../../../../nixos/sunshine.nix
+    #(import ../../../../aspect.nix "sunshine")
     #(import ../../../../aspect.nix "genai") # too much time to compile
     (import ../../../../aspect.nix "devcommand")
     (import ../../../../aspect.nix "cuda")
@@ -48,7 +48,7 @@ with _include;
     ../../../../nixos/persistentkde.nix
     #../../../../nixos/niri
     #../../../../nixos/localai.nix
-    ../../../../nixos/scx.nix
+    (import ../../../../aspect.nix "scx")
     (import ../../../../aspect.nix "printing-sharing")
     (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
   ];
