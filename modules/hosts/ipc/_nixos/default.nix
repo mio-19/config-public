@@ -12,45 +12,16 @@ in
 with _include;
 {
   imports = [
+    # Feature aspects: den.aspects.ipc.includes (modules/ipc.nix)
     ./printers.nix
-    (import ../../../../aspect.nix "bios")
-    (import ../../../../aspect.nix "hidpi")
     #../../../../nixos/betterbird.nix # tired of compiling
-    (import ../../../../aspect.nix "keep")
-    (import ../../../../aspect.nix "music")
-    (import ../../../../aspect.nix "privacy")
-    (import ../../../../aspect.nix "careless")
-    (import ../../../../aspect.nix "boot")
-    #(import ../../../../aspect.nix "v3opt") # needs too many time to compile
-    (import ../../../../aspect.nix "wheel-nopasswd")
-    #(import ../../../../aspect.nix "safe")
-    (import ../../../../aspect.nix "zfs")
-    (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #inputs.nixos-hardware.nixosModules.common-gpu-nvidia-sync # prime is only for igpu+dgpu, right?
     # DETAILS REMOVED
     ./disk-v3.nix
-    (import ../../../../aspect.nix "desktop-baremetal-kde")
-    #(import ../../../../aspect.nix "desktop-specialisation")
-    (import ../../../../aspect.nix "zswap")
-    (import ../../../../aspect.nix "alwayson")
-    (import ../../../../aspect.nix "extra")
-    (import ../../../../aspect.nix "extra2")
-    (import ../../../../aspect.nix "desktopextra")
-    #(import ../../../../aspect.nix "desktop-offline")
-    #(import ../../../../aspect.nix "sunshine")
-    #(import ../../../../aspect.nix "genai") # too much time to compile
-    (import ../../../../aspect.nix "devcommand")
-    (import ../../../../aspect.nix "cuda")
-    (import ../../../../aspect.nix "games")
-    #(import ../../../../aspect.nix "games-extra")
-    (import ../../../../aspect.nix "persistentkde")
     #../../../../nixos/niri
     #../../../../nixos/localai.nix
-    (import ../../../../aspect.nix "scx")
-    (import ../../../../aspect.nix "printing-sharing")
-    (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
   ];
   compile_gram = true;
   hdr_very_bright = true;
