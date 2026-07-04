@@ -10,6 +10,7 @@
       den.aspects.customize
       den.aspects.ccache
       den.aspects.auto-allocate-uids
+      den.aspects.sudo-fprint-ssh-bypass
     ];
     os =
       args@{
@@ -49,7 +50,6 @@
         _module.args._include = _include;
 
         imports = [
-          ../nixos/sudo-fprint-ssh-bypass.nix
           ../nixos/skip-lockscreen-click
           #./lix.nix
           #inputs.determinate.nixosModules.default
