@@ -7,6 +7,9 @@
 #
 # Resolves the aspect for nixos or darwin from `system`. When the aspect defines
 # a homeManager branch, merges its imports into home-manager.sharedModules.
+#
+# Den is evaluated via den-config.nix so this shares one evalModules result with
+# nixos/nixos.nix and mac/flake.nix (import memoization by canonical path).
 aspect:
 {
   inputs,
@@ -16,26 +19,18 @@ aspect:
 }:
 let
   class = if lib.hasSuffix "darwin" system then "darwin" else "nixos";
-  denConfig = (import inputs.nixpkgs { inherit system; }).lib.evalModules {
-    modules = [
-      (inputs.import-tree ./modules)
-      inputs.den.flakeOutputs.flake
-    ];
-    specialArgs.inputs = inputs;
-  };
-
-  resolvedAspect =
-    if builtins.isString aspect then denConfig.config.den.aspects.${aspect} else aspect;
-
+  den = import ./den-config.nix { inherit inputs system; };
+  inherit (den.lib) aspects;
+  resolvedAspect = if builtins.isString aspect then den.aspects.${aspect} else aspect;
   homeManagerImports =
     if class == "nixos" && resolvedAspect ? homeManager then
-      (denConfig.config.den.lib.aspects.resolveImports "homeManager" resolvedAspect).imports
+      (aspects.resolveImports "homeManager" resolvedAspect).imports
     else
       [ ];
 in
 {
   imports = [
-    (denConfig.config.den.lib.aspects.resolve class resolvedAspect)
+    (aspects.resolve class resolvedAspect)
   ];
 }
 // lib.optionalAttrs (homeManagerImports != [ ]) {
