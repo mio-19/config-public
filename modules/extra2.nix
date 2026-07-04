@@ -25,7 +25,6 @@
             inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".payload-dumper-go
           ])
           ++ (map cleanPkg [
-            github-copilot-cli
           ])
           ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
             #oh-my-codex

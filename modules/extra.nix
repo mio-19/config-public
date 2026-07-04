@@ -40,6 +40,7 @@ let
     [
       codex
       opencode
+      github-copilot-cli
     ];
 
   commonCliDarwin = args: commonCliHardened args ++ commonCliClean args;
@@ -243,7 +244,6 @@ let
           #jetbrains.clion
           obsidian
           antigravity
-          github-copilot-cli
           #code-cursor # in app updater, better with cask.
         ]
         ++ lib.optionals config.mio_aria2 [
