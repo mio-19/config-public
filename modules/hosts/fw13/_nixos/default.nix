@@ -23,7 +23,7 @@ with _include;
     #../betterbird.nix # tired of compiling
     #../secure.nix
     ../../../../nixos/keep.nix
-    ../../../../nixos/music.nix
+    (import ../../../../aspect.nix "music")
     ../../../../nixos/privacy.nix
     (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")

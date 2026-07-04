@@ -17,7 +17,7 @@ with _include;
     ../../../../nixos/hidpi.nix
     #../../../../nixos/betterbird.nix # tired of compiling
     ../../../../nixos/keep.nix
-    ../../../../nixos/music.nix
+    (import ../../../../aspect.nix "music")
     ../../../../nixos/privacy.nix
     (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
