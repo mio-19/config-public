@@ -12,6 +12,7 @@
       den.aspects.auto-allocate-uids
       den.aspects.sudo-fprint-ssh-bypass
       den.aspects.harmonia
+      den.aspects.token
     ];
     os =
       args@{
@@ -66,7 +67,6 @@
           inputs.mio.legacyPackages."${system}".modules.darling
           inputs.mio.legacyPackages."${system}".modules.wireguird
           (import ../aspect.nix "nixbuild")
-          ../token.nix
           ../nixos/hardened.nix # does this break sddm?
         ];
 
@@ -569,7 +569,6 @@
           inputs.home-manager.darwinModules.home-manager
           #./lix.nix
           #inputs.stylix.darwinModules.stylix
-          ../token.nix
         ];
 
         nixpkgs.overlays = [
