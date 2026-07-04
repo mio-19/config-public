@@ -6,9 +6,22 @@
       { lib, ... }:
       {
         nix.settings = {
-          nrBuildUsers = lib.mkForce 0;
-          experimental-features = lib.mkAfter [ "auto-allocate-uids" ];
+          experimental-features = [ "auto-allocate-uids" ];
           auto-allocate-uids = true;
+        };
+      };
+    nixos =
+      { lib, ... }:
+      {
+        nix.settings = {
+          nrBuildUsers = lib.mkForce 0;
+        };
+      };
+    darwin =
+      { lib, ... }:
+      {
+        nix.settings = {
+          nrBuildUsers = lib.mkForce 1;
         };
       };
   };
