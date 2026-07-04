@@ -37,7 +37,7 @@ with _include;
     ./disk.nix
     (import ../../../../aspect.nix "desktop-baremetal-kde")
     ../../../../nixos/zswap.nix
-    ../../../../nixos/games.nix
+    (import ../../../../aspect.nix "games")
     ../../../../nixos/games-extra.nix
     (import ../../../../aspect.nix "extra")
     (import ../../../../aspect.nix "desktopextra")

@@ -43,7 +43,7 @@ with _include;
     #../../../../nixos/genai.nix # too much time to compile
     (import ../../../../aspect.nix "devcommand")
     (import ../../../../aspect.nix "cuda")
-    ../../../../nixos/games.nix
+    (import ../../../../aspect.nix "games")
     #../../../../nixos/games-extra.nix
     ../../../../nixos/persistentkde.nix
     #../../../../nixos/niri

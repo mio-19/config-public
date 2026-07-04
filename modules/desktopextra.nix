@@ -34,7 +34,7 @@ in
       with _include;
       {
         imports = [
-          ../nixos/games.nix
+          (import ../aspect.nix "games")
         ];
 
         home-manager.sharedModules = [
