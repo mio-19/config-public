@@ -26,6 +26,7 @@
               "nix-command"
               "flakes"
               "blake3-hashes"
+              "no-url-literals"
             ];
           };
         };
