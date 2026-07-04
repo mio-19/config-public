@@ -1,4 +1,0 @@
-{ ... }:
-{
-  imports = [ ./harmonia.nix ];
-}

@@ -11,6 +11,7 @@
       den.aspects.ccache
       den.aspects.auto-allocate-uids
       den.aspects.sudo-fprint-ssh-bypass
+      den.aspects.harmonia
     ];
     os =
       args@{
@@ -562,7 +563,6 @@
         _module.args._include = _include;
 
         imports = [
-          ../mac/modules
           (import ../aspect.nix "desktop-full") # cross-platform desktop apps shared with NixOS
           inputs.nix-index-database.darwinModules.nix-index
           inputs.mac-app-util.darwinModules.default
