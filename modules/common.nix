@@ -13,6 +13,7 @@
       den.aspects.sudo-fprint-ssh-bypass
       den.aspects.harmonia
       den.aspects.token
+      den.aspects.hardened
     ];
     os =
       args@{
@@ -67,7 +68,6 @@
           inputs.mio.legacyPackages."${system}".modules.darling
           inputs.mio.legacyPackages."${system}".modules.wireguird
           (import ../aspect.nix "nixbuild")
-          ../nixos/hardened.nix # does this break sddm?
         ];
 
         boot.loader.grub.keepBootedSystemEntry = true;

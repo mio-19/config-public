@@ -16,7 +16,7 @@ with _include;
     (import ../../../../aspect.nix "bios")
     (import ../../../../aspect.nix "hidpi")
     #../../../../nixos/betterbird.nix # tired of compiling
-    ../../../../nixos/keep.nix
+    (import ../../../../aspect.nix "keep")
     (import ../../../../aspect.nix "music")
     (import ../../../../aspect.nix "privacy")
     (import ../../../../aspect.nix "careless")
@@ -36,15 +36,15 @@ with _include;
     (import ../../../../aspect.nix "zswap")
     (import ../../../../aspect.nix "alwayson")
     (import ../../../../aspect.nix "extra")
-    ../../../../nixos/extra2.nix
+    (import ../../../../aspect.nix "extra2")
     (import ../../../../aspect.nix "desktopextra")
     #(import ../../../../aspect.nix "desktop-offline")
     #../../../../nixos/sunshine.nix
-    #../../../../nixos/genai.nix # too much time to compile
+    #(import ../../../../aspect.nix "genai") # too much time to compile
     (import ../../../../aspect.nix "devcommand")
     (import ../../../../aspect.nix "cuda")
     (import ../../../../aspect.nix "games")
-    #../../../../nixos/games-extra.nix
+    #(import ../../../../aspect.nix "games-extra")
     ../../../../nixos/persistentkde.nix
     #../../../../nixos/niri
     #../../../../nixos/localai.nix

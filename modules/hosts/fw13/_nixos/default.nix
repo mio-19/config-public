@@ -22,7 +22,7 @@ with _include;
     #(import ../../../../aspect.nix "desktop-specialisation-pantheon") # broken: lightdm didn't show up
     #../betterbird.nix # tired of compiling
     #../secure.nix
-    ../../../../nixos/keep.nix
+    (import ../../../../aspect.nix "keep")
     (import ../../../../aspect.nix "music")
     (import ../../../../aspect.nix "privacy")
     (import ../../../../aspect.nix "careless")
@@ -38,11 +38,11 @@ with _include;
     (import ../../../../aspect.nix "desktop-baremetal-kde")
     (import ../../../../aspect.nix "zswap")
     (import ../../../../aspect.nix "games")
-    ../../../../nixos/games-extra.nix
+    (import ../../../../aspect.nix "games-extra")
     (import ../../../../aspect.nix "extra")
     (import ../../../../aspect.nix "desktopextra")
     (import ../../../../aspect.nix "desktop-offline")
-    #../genai.nix # too much time to compile
+    #(import ../../../../aspect.nix "genai") # too much time to compile
     (import ../../../../aspect.nix "devcommand")
     ../../../../nixos/persistentkde.nix
     #../niri

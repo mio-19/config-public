@@ -17,7 +17,7 @@
       {
         imports = [
           inputs.nix-snapd.nixosModules.default
-          ../nixos/extra2.nix
+          (import ../aspect.nix "extra2")
         ];
         services.snap.enable = true;
         # sudo snap install icloud-for-linux
