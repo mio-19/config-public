@@ -24,7 +24,7 @@ with _include;
     #../secure.nix
     ../../../../nixos/keep.nix
     (import ../../../../aspect.nix "music")
-    ../../../../nixos/privacy.nix
+    (import ../../../../aspect.nix "privacy")
     (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
     #../xrdp.nix
@@ -49,7 +49,7 @@ with _include;
     ../../../../nixos/scx.nix
     (import ../../../../aspect.nix "emulated-arm")
     (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
-    #../rc.nix
+    #(import ../../../../aspect.nix "rc")
   ];
   nixpkgs.overlays = [
     #inputs.chaotic-pin.overlays.default # try older kernel
