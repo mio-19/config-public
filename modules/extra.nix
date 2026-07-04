@@ -269,6 +269,7 @@ let
         ];
 
       homebrew.casks = [
+        "sublime-merge"
         "inmusic-software-center"
         "native-access"
         "zoom"
