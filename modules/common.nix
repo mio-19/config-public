@@ -2,10 +2,10 @@
   den.aspects.common = {
     description = "Shared base configuration for NixOS and nix-darwin";
     includes = [
+      den.aspects.basic
       den.aspects.options
       den.aspects.fprint-fix
       den.aspects.nix-ld
-      den.aspects.auto-allocate-uids
       den.aspects.nixpkgs-workaround
       den.aspects.customize
       den.aspects.ccache
@@ -48,7 +48,7 @@
         _module.args._include = _include;
 
         imports = [
-          (import ../aspect.nix "basic")
+          (import ../aspect.nix "auto-allocate-uids")
           ../nixos/sudo-fprint-ssh-bypass.nix
           ../nixos/skip-lockscreen-click
           #./lix.nix
@@ -560,7 +560,6 @@
         _module.args._include = _include;
 
         imports = [
-          (import ../aspect.nix "basic")
           ../mac/modules
           (import ../aspect.nix "desktop-full") # cross-platform desktop apps shared with NixOS
           inputs.nix-index-database.darwinModules.nix-index
