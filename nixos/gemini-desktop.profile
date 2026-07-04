@@ -25,7 +25,12 @@ whitelist ${HOME}/.config/Gemini Desktop
 whitelist ${HOME}/.local/share/gemini-desktop
 
 private-etc @tls-ca
-private-bin bash,cut,echo,egrep,electron,electron[0-9],electron[0-9][0-9],gemini-desktop,grep,head,sed,sh,tr,xdg-mime,xdg-open,zsh
+
+# NixOS: private-bin cannot resolve xdg-open from the store; use system paths instead.
+ignore noroot
+whitelist /run/current-system
+whitelist /run/wrappers
+ignore private-bin
 
 include electron-common.profile
 

@@ -18,13 +18,19 @@ mkdir ${HOME}/.config/Zulip
 whitelist ${HOME}/.config/Zulip
 
 private-etc @tls-ca
-private-bin bash,cut,echo,egrep,electron,electron[0-9],electron[0-9][0-9],grep,head,locale,sed,sh,tr,xdg-mime,xdg-open,zulip,zsh
+
+# NixOS: private-bin cannot resolve xdg-open from the store; use system paths instead.
+ignore noroot
+whitelist /run/current-system
+whitelist /run/wrappers
+ignore private-bin
 
 include electron-common.profile
 
 dbus-user filter
 dbus-user.talk org.freedesktop.portal.Desktop
 dbus-user.talk org.freedesktop.portal.Documents
+dbus-user.talk org.freedesktop.portal.OpenURI
 dbus-user.talk org.freedesktop.portal.Settings
 dbus-user.talk org.freedesktop.DBus
 dbus-user.talk ca.desrt.dconf
