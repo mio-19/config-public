@@ -124,6 +124,16 @@ in
             executable = "${hardenedPkg progs.inkscape}/bin/inkscape";
             profile = "${pkgs.firejail}/etc/firejail/inkscape.profile";
           };
+          gemini-desktop = {
+            executable = "${
+              hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gemini-desktop
+            }/bin/gemini-desktop";
+            profile = ../nixos/gemini-desktop.profile;
+            extraArgs = [
+              # https://github.com/netblue30/firejail/issues/6681#issuecomment-2725161673
+              "--ignore=private-dev"
+            ];
+          };
         };
 
         # cloudflare-warp could cause problems when mobile devices want to access public wifi login page.
