@@ -128,7 +128,9 @@
       inputs.flake-compat.follows = "flake-compat";
     };
     nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/master";
+      #url = "github:nix-community/nix-on-droid/master";
+      # https://github.com/nix-community/nix-on-droid/pull/505
+      url = "github:petm5/nix-on-droid/76c08d529dad383d182eecc0ccf2d48121f48faf";
       inputs.nixpkgs.follows = "nixpkgs-2511";
       inputs.nixpkgs-docs.follows = "nix-on-droid/nixpkgs";
       inputs.nixpkgs-for-bootstrap.follows = "nix-on-droid/nixpkgs";
