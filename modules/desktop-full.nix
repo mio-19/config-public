@@ -258,7 +258,7 @@ in
               executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
               profile = ../nixos/wiliwili.profile;
             };
-            Telegram = lib.mkIf novirt {
+            Telegram = {
               executable = "${hardenedPkg progs.telegram}/bin/Telegram";
               profile = "${pkgs.firejail}/etc/firejail/Telegram.profile";
               extraArgs = [
@@ -267,7 +267,7 @@ in
                 "--ignore=noroot"
               ];
             };
-            materialgram = lib.mkIf novirt {
+            materialgram = {
               executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
               profile = ../nixos/materialgram.profile;
               extraArgs = [
