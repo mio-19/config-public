@@ -33,6 +33,11 @@ let
           default = pkgs.stdenv.isx86_64;
           description = "use betterbird instead of thunderbird.";
         };
+        gemini_zh = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "gemini-desktop zh";
+        };
         system_background = lib.mkOption {
           type = lib.types.either lib.types.package lib.types.path;
           description = "path to system background image";
