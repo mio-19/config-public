@@ -19,6 +19,10 @@ in
 {
   den.aspects.desktopextra = {
     description = "Extra desktop packages, firejail wrappers, and wireshark";
+    includes = [
+      den.aspects.gemini-desktop
+      den.aspects.games
+    ];
     nixos =
       args@{
         config,
@@ -32,10 +36,6 @@ in
       in
       with _include;
       {
-        imports = [
-          (import ../aspect.nix "games")
-          (import ../aspect.nix "gemini-desktop")
-        ];
 
         home-manager.sharedModules = [
           ../extradeusers.nix
@@ -141,9 +141,6 @@ in
     darwin =
       { inputs, pkgs, ... }:
       {
-        imports = [
-          (import ../aspect.nix "gemini-desktop")
-        ];
         environment.systemPackages = sharedApps { inherit pkgs inputs; };
       };
   };
