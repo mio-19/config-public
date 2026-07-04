@@ -21,7 +21,7 @@ with _include;
     (import ../../../../aspect.nix "privacy")
     (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
-    #../../../../nixos/v3opt.nix # needs too many time to compile
+    #(import ../../../../aspect.nix "v3opt") # needs too many time to compile
     (import ../../../../aspect.nix "wheel-nopasswd")
     #(import ../../../../aspect.nix "safe")
     (import ../../../../aspect.nix "zfs")
@@ -45,7 +45,7 @@ with _include;
     (import ../../../../aspect.nix "cuda")
     (import ../../../../aspect.nix "games")
     #(import ../../../../aspect.nix "games-extra")
-    ../../../../nixos/persistentkde.nix
+    (import ../../../../aspect.nix "persistentkde")
     #../../../../nixos/niri
     #../../../../nixos/localai.nix
     (import ../../../../aspect.nix "scx")

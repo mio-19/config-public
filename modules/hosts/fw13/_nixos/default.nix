@@ -28,7 +28,7 @@ with _include;
     (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
     #(import ../../../../aspect.nix "xrdp")
-    #../v3opt.nix # needs too many time to compile
+    #(import ../../../../aspect.nix "v3opt") # needs too many time to compile
     #(import ../../../../aspect.nix "wheel-nopasswd")
     #(import ../../../../aspect.nix "safe")
     (import ../../../../aspect.nix "zfs")
@@ -44,7 +44,7 @@ with _include;
     (import ../../../../aspect.nix "desktop-offline")
     #(import ../../../../aspect.nix "genai") # too much time to compile
     (import ../../../../aspect.nix "devcommand")
-    ../../../../nixos/persistentkde.nix
+    (import ../../../../aspect.nix "persistentkde")
     #../niri
     (import ../../../../aspect.nix "scx")
     (import ../../../../aspect.nix "emulated-arm")
