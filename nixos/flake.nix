@@ -378,6 +378,11 @@
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
             patches = with pkgs; [
               (fetchpatch {
+                name = "captive-browser: 0-unstable-2021-08-01 -> 0-unstable-2025-11-05";
+                url = "https://github.com/NixOS/nixpkgs/pull/538118.patch";
+                hash = "sha256-gHHuUitBfcwU83ejQcDmfRIq+ZcPRz15JiIYJokG7JQ=";
+              })
+              (fetchpatch {
                 name = "grub-module-keep-booted-system-entry-option.patch";
                 url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
                 hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
