@@ -9,6 +9,7 @@
       den.aspects.nixpkgs-workaround
       den.aspects.customize
       den.aspects.ccache
+      den.aspects.auto-allocate-uids
     ];
     os =
       args@{
@@ -26,7 +27,6 @@
               "nix-command"
               "flakes"
               "blake3-hashes"
-              "no-url-literals"
             ];
           };
         };
@@ -48,7 +48,6 @@
         _module.args._include = _include;
 
         imports = [
-          (import ../aspect.nix "auto-allocate-uids")
           ../nixos/sudo-fprint-ssh-bypass.nix
           ../nixos/skip-lockscreen-click
           #./lix.nix
