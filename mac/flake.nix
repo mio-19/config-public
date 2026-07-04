@@ -155,6 +155,11 @@
                 hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
                 derivationArgs.allowSubstitutes = false;
               })
+              (fetchpatch {
+                name = "github-copilot-cli: 1.0.26 -> 1.0.65";
+                url = "https://github.com/NixOS/nixpkgs/pull/534884.patch";
+                hash = "sha256-Lt43nR05fVXsFekFxVQPg8r6Y3AD5JiQpCAbDH6BPkw=";
+              })
               /*
                 # unsure
                 (fetchpatch {
