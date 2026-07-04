@@ -9,7 +9,7 @@
 {
   imports = [
     (import ../aspect.nix "extra")
-    ./harmonia_lan_only_not_public_ip.nix
+    (import ../aspect.nix "harmonia_lan_only_not_public_ip")
     #./newinstall.nix
     (import ../aspect.nix "selector4nix")
   ];

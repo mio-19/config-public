@@ -48,7 +48,7 @@ with _include;
     #../niri
     ../../../../nixos/scx.nix
     (import ../../../../aspect.nix "emulated-arm")
-    ../../../../nixos/harmonia_lan_only_not_public_ip.nix
+    (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
     #../rc.nix
   ];
   nixpkgs.overlays = [

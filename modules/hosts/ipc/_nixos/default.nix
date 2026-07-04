@@ -50,7 +50,7 @@ with _include;
     #../../../../nixos/localai.nix
     ../../../../nixos/scx.nix
     ../../../../nixos/printing-sharing.nix
-    ../../../../nixos/harmonia_lan_only_not_public_ip.nix
+    (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
   ];
   compile_gram = true;
   hdr_very_bright = true;
