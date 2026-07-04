@@ -40,6 +40,11 @@ in
       with _include;
       let
         apps = sharedApps { inherit pkgs progs; };
+        apps' = apps // {
+          clean = [
+            (if config.librewolf_firejail then progs.librewolf'_for_firejail else progs.librewolf')
+          ];
+        };
       in
       {
         imports = [
@@ -165,15 +170,114 @@ in
               (lib.hiPrio config.programs.steam.package.run) # override the non cleanPkg one
             ])
           )
-          ++ (map hardenedPkg apps.hardened)
-          ++ (map cleanPkg apps.clean)
-          ++ lib.optionals pkgs.stdenv.isx86_64 (map cleanPkg apps.cleanX86);
+          ++ (map hardenedPkg apps'.hardened)
+          ++ (map cleanPkg apps'.clean)
+          ++ lib.optionals pkgs.stdenv.isx86_64 (map cleanPkg apps'.cleanX86);
         programs.localsend.package = hardenedPkg pkgs.localsend;
 
         programs.firejail.enable = true;
-        programs.firejail.wrappedBinaries = with pkgs; {
-          # librewolf firejail difficult to fix, still: cannot directly opening downloaded files
-          /*
+        programs.firejail.wrappedBinaries =
+          with pkgs;
+          {
+            # librewolf firejail difficult to fix, still: cannot directly opening downloaded files
+            # firejail for wine apps is still wip
+            /*
+              notepad-plus-plus = {
+                executable = "${
+                  hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.notepad-plus-plus
+                }/bin/notepad-plus-plus";
+                profile = "${
+                  inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+                }/etc/firejail/notepad-plus-plus.profile";
+              };
+            */
+            obsidian = {
+              executable = "${hardenedPkg obsidian}/bin/obsidian";
+              profile = "${pkgs.firejail}/etc/firejail/obsidian.profile";
+            };
+            remmina = {
+              executable = "${hardenedPkg remmina}/bin/remmina";
+              profile = "${pkgs.firejail}/etc/firejail/remmina.profile";
+            };
+            # recently fluffychat broken with firejail
+            /*
+              fluffychat = {
+                executable = "${hardenedPkg fluffychat}/bin/fluffychat";
+                profile = "${pkgs.firejail}/etc/firejail/fluffychat.profile";
+              };
+            */
+            # element-desktop: kwallet keyring broken with firejail
+            /*
+              element-desktop = {
+                executable = "${hardenedPkg element-desktop}/bin/element-desktop";
+                profile = "${pkgs.firejail}/etc/firejail/element-desktop.profile";
+              };
+            */
+            qbittorrent = {
+              executable = "${hardenedPkg qbittorrent-enhanced}/bin/qbittorrent";
+              profile = "${pkgs.firejail}/etc/firejail/qbittorrent.profile";
+            };
+            gnome-calculator = {
+              executable = "${hardenedPkg gnome-calculator}/bin/gnome-calculator";
+              profile = "${pkgs.firejail}/etc/firejail/gnome-calculator.profile";
+            };
+            gnome-clocks = {
+              executable = "${hardenedPkg gnome-clocks}/bin/gnome-clocks";
+              profile = "${pkgs.firejail}/etc/firejail/gnome-clocks.profile";
+            };
+            # https://github.com/librephoenix/nixos-config/blob/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/default.nix#L21
+            discord = lib.mkIf pkgs.stdenv.isx86_64 {
+              executable = "${hardenedPkg progs.discord}/bin/discord";
+              profile = "${pkgs.firejail}/etc/firejail/discord.profile";
+            };
+            /*
+              ytmdesktop = {
+                executable = "${hardenedPkg pkgs.ytmdesktop}/bin/ytmdesktop";
+                profile = "${pkgs.firejail}/etc/firejail/ytmdesktop.profile";
+              };
+            */
+            bitwarden-desktop = {
+              executable = "${hardenedPkg pkgs.bitwarden-desktop}/bin/bitwarden";
+              profile = "${pkgs.firejail}/etc/firejail/bitwarden.profile";
+            };
+            # https://github.com/legendofmiracles/dotnix/blob/ea678c780a1944e32c94ded1b58ce3a28be553d9/hosts/pain/configuration.nix#L110
+            # disable firejail for chromium if we want to use webflasher WebSerial
+            # disable firajail as it might break Antigravity? https://antigravity.google/docs/browser NO: antigravity's integration still doesn't work even without firejail
+            chromium = lib.mkIf (!boot-to-steam) {
+              executable = "${hardenedPkg pkgs.chromium}/bin/chromium";
+              profile = "${pkgs.firejail}/etc/firejail/chromium.profile";
+              extraArgs = [
+                # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
+                # also webflasher WebSerial
+                "--ignore=private-dev"
+                "--ignore=nogroups" # dialout group for serial devices
+              ];
+            };
+            # test on filesystem permission: for example /run/wrappers/bin/firejail '--whitelist=/run/pipewire' '--profile=/nix/store/sfnvg7fpq26ckdb7dl1bxr7j366ii84c-source/nixos/wiliwili.profile' -- $(readlink /run/current-system/sw/bin/ls) Pictures
+            wiliwili = lib.mkIf (!boot-to-steam) {
+              executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
+              profile = ../nixos/wiliwili.profile;
+            };
+            Telegram = lib.mkIf novirt {
+              executable = "${hardenedPkg progs.telegram}/bin/Telegram";
+              profile = "${pkgs.firejail}/etc/firejail/Telegram.profile";
+              extraArgs = [
+                # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                "--ignore=noroot"
+              ];
+            };
+            materialgram = lib.mkIf novirt {
+              executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
+              profile = ../nixos/materialgram.profile;
+              extraArgs = [
+                # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                "--ignore=noroot"
+              ];
+            };
+          }
+          // lib.optionalAttrs config.librewolf_firejail {
             librewolf = {
               executable = "${progs.librewolf_for_firejail}/bin/librewolf";
               profile = "${pkgs.firejail}/etc/firejail/librewolf.profile";
@@ -189,108 +293,13 @@ in
                 "--ignore=noroot"
               ];
             };
-          */
-          # firejail for wine apps is still wip
-          /*
-            notepad-plus-plus = {
-              executable = "${
-                hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.notepad-plus-plus
-              }/bin/notepad-plus-plus";
-              profile = "${
-                inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
-              }/etc/firejail/notepad-plus-plus.profile";
-            };
-          */
-          obsidian = {
-            executable = "${hardenedPkg obsidian}/bin/obsidian";
-            profile = "${pkgs.firejail}/etc/firejail/obsidian.profile";
           };
-          remmina = {
-            executable = "${hardenedPkg remmina}/bin/remmina";
-            profile = "${pkgs.firejail}/etc/firejail/remmina.profile";
-          };
-          # recently fluffychat broken with firejail
-          /*
-            fluffychat = {
-              executable = "${hardenedPkg fluffychat}/bin/fluffychat";
-              profile = "${pkgs.firejail}/etc/firejail/fluffychat.profile";
-            };
-          */
-          # element-desktop: kwallet keyring broken with firejail
-          /*
-            element-desktop = {
-              executable = "${hardenedPkg element-desktop}/bin/element-desktop";
-              profile = "${pkgs.firejail}/etc/firejail/element-desktop.profile";
-            };
-          */
-          qbittorrent = {
-            executable = "${hardenedPkg qbittorrent-enhanced}/bin/qbittorrent";
-            profile = "${pkgs.firejail}/etc/firejail/qbittorrent.profile";
-          };
-          gnome-calculator = {
-            executable = "${hardenedPkg gnome-calculator}/bin/gnome-calculator";
-            profile = "${pkgs.firejail}/etc/firejail/gnome-calculator.profile";
-          };
-          gnome-clocks = {
-            executable = "${hardenedPkg gnome-clocks}/bin/gnome-clocks";
-            profile = "${pkgs.firejail}/etc/firejail/gnome-clocks.profile";
-          };
-          # https://github.com/librephoenix/nixos-config/blob/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/default.nix#L21
-          discord = lib.mkIf pkgs.stdenv.isx86_64 {
-            executable = "${hardenedPkg progs.discord}/bin/discord";
-            profile = "${pkgs.firejail}/etc/firejail/discord.profile";
-          };
-          /*
-            ytmdesktop = {
-              executable = "${hardenedPkg pkgs.ytmdesktop}/bin/ytmdesktop";
-              profile = "${pkgs.firejail}/etc/firejail/ytmdesktop.profile";
-            };
-          */
-          bitwarden-desktop = {
-            executable = "${hardenedPkg pkgs.bitwarden-desktop}/bin/bitwarden";
-            profile = "${pkgs.firejail}/etc/firejail/bitwarden.profile";
-          };
-          # https://github.com/legendofmiracles/dotnix/blob/ea678c780a1944e32c94ded1b58ce3a28be553d9/hosts/pain/configuration.nix#L110
-          # disable firejail for chromium if we want to use webflasher WebSerial
-          # disable firajail as it might break Antigravity? https://antigravity.google/docs/browser NO: antigravity's integration still doesn't work even without firejail
-          chromium = lib.mkIf (!boot-to-steam) {
-            executable = "${hardenedPkg pkgs.chromium}/bin/chromium";
-            profile = "${pkgs.firejail}/etc/firejail/chromium.profile";
-            extraArgs = [
-              # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
-              # also webflasher WebSerial
-              "--ignore=private-dev"
-              "--ignore=nogroups" # dialout group for serial devices
-            ];
-          };
-          # test on filesystem permission: for example /run/wrappers/bin/firejail '--whitelist=/run/pipewire' '--profile=/nix/store/sfnvg7fpq26ckdb7dl1bxr7j366ii84c-source/nixos/wiliwili.profile' -- $(readlink /run/current-system/sw/bin/ls) Pictures
-          wiliwili = lib.mkIf (!boot-to-steam) {
-            executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
-            profile = ../nixos/wiliwili.profile;
-          };
-          Telegram = lib.mkIf novirt {
-            executable = "${hardenedPkg progs.telegram}/bin/Telegram";
-            profile = "${pkgs.firejail}/etc/firejail/Telegram.profile";
-            extraArgs = [
-              # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
-              "--dbus-user.talk=org.freedesktop.portal.Desktop"
-              "--ignore=noroot"
-            ];
-          };
-          materialgram = lib.mkIf novirt {
-            executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
-            profile = ../nixos/materialgram.profile;
-            extraArgs = [
-              # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
-              "--dbus-user.talk=org.freedesktop.portal.Desktop"
-              "--ignore=noroot"
-            ];
-          };
+        environment.etc."firejail/librewolf.local" = lib.mkIf config.librewolf_firejail {
+          text = ''
+            whitelist ${"$"}{PICTURES}
+            noblacklist ${"$"}{PICTURES}
+          '';
         };
-        environment.etc."firejail/librewolf.local".text = ''
-          whitelist ${"$"}{PICTURES}
-          noblacklist ${"$"}{PICTURES}
-        '';
         # for opening web links:
         environment.etc."firejail/materialgram.local".text = ''
           dbus-user.talk org.freedesktop.portal.Desktop

@@ -42,6 +42,11 @@ let
           default = if isDarwin then false else !pkgs.stdenv.isx86_64;
           description = "use librewolf-bin instead of building from source.";
         };
+        librewolf_firejail = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "wrap librewolf with firejail.";
+        };
         mio_openssh_hpn = lib.mkOption {
           type = lib.types.bool;
           default = if isDarwin then false else inc.atleastV3;
