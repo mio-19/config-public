@@ -52,6 +52,7 @@
       #url = "github:mio-19/NUR";
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     darwin-emacs = {
       # pin to avoid frequent updates and building emacs
@@ -70,7 +71,7 @@
       url = "github:hraban/mac-app-util";
       inputs.nixpkgs.follows = "nixpkgs-pin2";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.cl-nix-lite.inputs.flake-parts.follows = "nur/flake-parts";
+      inputs.cl-nix-lite.inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.inputs.nixpkgs.follows = "mac-app-util/nixpkgs";
       inputs.cl-nix-lite.inputs.nixpkgs.follows = "mac-app-util/nixpkgs";
       inputs.cl-nix-lite.inputs.treefmt-nix.follows = "mac-app-util/treefmt-nix";
@@ -80,6 +81,7 @@
       url = "github:numtide/llm-agents.nix";
       #inputs.nixpkgs.follows = "nixpkgs"; # no overide to have binary cache.
       inputs.blueprint.inputs.systems.follows = "flake-utils/systems";
+      inputs.flake-parts.follows = "flake-parts";
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -103,6 +105,7 @@
       url = "github:StarryReverie/selector4nix";
       # has cache on garnix
       #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     import-tree.url = "github:denful/import-tree";
     den.url = "github:denful/den";
