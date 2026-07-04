@@ -16,7 +16,7 @@
       {
         imports = [
           inputs.grub2-themes.nixosModules.default
-          ../nixos/wifi.nix
+          (import ../aspect.nix "wifi")
           ../nixos-base-den.nix
           ../nixos/stockhm.nix
           inputs.disko.nixosModules.disko

@@ -27,16 +27,16 @@ with _include;
     (import ../../../../aspect.nix "privacy")
     (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
-    #../xrdp.nix
+    #(import ../../../../aspect.nix "xrdp")
     #../v3opt.nix # needs too many time to compile
-    #../wheel-nopasswd.nix
+    #(import ../../../../aspect.nix "wheel-nopasswd")
     #../safe.nix
-    ../../../../nixos/zfs.nix
+    (import ../../../../aspect.nix "zfs")
     (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     ./disk.nix
     (import ../../../../aspect.nix "desktop-baremetal-kde")
-    ../../../../nixos/zswap.nix
+    (import ../../../../aspect.nix "zswap")
     (import ../../../../aspect.nix "games")
     ../../../../nixos/games-extra.nix
     (import ../../../../aspect.nix "extra")

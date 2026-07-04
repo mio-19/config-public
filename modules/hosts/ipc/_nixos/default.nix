@@ -22,9 +22,9 @@ with _include;
     (import ../../../../aspect.nix "careless")
     (import ../../../../aspect.nix "boot")
     #../../../../nixos/v3opt.nix # needs too many time to compile
-    ../../../../nixos/wheel-nopasswd.nix
+    (import ../../../../aspect.nix "wheel-nopasswd")
     #../../../../nixos/safe.nix
-    ../../../../nixos/zfs.nix
+    (import ../../../../aspect.nix "zfs")
     (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -33,7 +33,7 @@ with _include;
     ./disk-v3.nix
     (import ../../../../aspect.nix "desktop-baremetal-kde")
     #(import ../../../../aspect.nix "desktop-specialisation")
-    ../../../../nixos/zswap.nix
+    (import ../../../../aspect.nix "zswap")
     (import ../../../../aspect.nix "alwayson")
     (import ../../../../aspect.nix "extra")
     ../../../../nixos/extra2.nix
