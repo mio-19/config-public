@@ -69,6 +69,8 @@
           ../nixos/hardened.nix # does this break sddm?
         ];
 
+        boot.loader.grub.keepBootedSystemEntry = true;
+
         # Set your time zone.
         #time.timeZone = lib.mkForce "Pacific/Auckland";
         services.automatic-timezoned.enable = true;

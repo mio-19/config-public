@@ -307,7 +307,14 @@
           wrappedBinaries = {
           };
         };
-        # DETAILS REMOVED
+        environment.etc."firejail/globals.local".text = ''
+          whitelist /run/pipewire
+          whitelist /run/opengl-driver
+          whitelist /run/opengl-driver-32
+          whitelist /run/pulse
+          blacklist /D
+          blacklist /.root
+        '';
         # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
         # also webflasher WebSerial for chromium?
         environment.etc."firejail/firejail.config".text = ''

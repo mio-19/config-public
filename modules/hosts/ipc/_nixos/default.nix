@@ -49,7 +49,6 @@ with _include;
     #../../../../nixos/niri
     #../../../../nixos/localai.nix
     ../../../../nixos/scx.nix
-    ../../../../nixos/keepBootedSystemEntry.nix
     ../../../../nixos/printing-sharing.nix
     ../../../../nixos/harmonia_lan_only_not_public_ip.nix
   ];

@@ -15,7 +15,6 @@
       with _include;
       {
         imports = [
-          ../nixos/keepBootedSystemEntry.nix
           inputs.grub2-themes.nixosModules.default
           ../nixos/wifi.nix
           ../nixos-base-den.nix
