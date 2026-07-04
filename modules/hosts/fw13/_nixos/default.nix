@@ -14,42 +14,13 @@ with _include;
 {
   imports = [
     # DETAILS REMOVED
-    ../../../../nixos-base-den.nix
+    # Feature aspects: den.aspects.fw13.includes (modules/fw13.nix)
     ./fw13.nix
-    (import ../../../../aspect.nix "bios")
-    #(import ../../../../aspect.nix "desktop-specialisation-cosmic")
-    (import ../../../../aspect.nix "hidpi")
-    #(import ../../../../aspect.nix "desktop-specialisation-pantheon") # broken: lightdm didn't show up
-    #../betterbird.nix # tired of compiling
-    #../secure.nix
-    (import ../../../../aspect.nix "keep")
-    (import ../../../../aspect.nix "music")
-    (import ../../../../aspect.nix "privacy")
-    (import ../../../../aspect.nix "careless")
-    (import ../../../../aspect.nix "boot")
-    #(import ../../../../aspect.nix "xrdp")
-    #(import ../../../../aspect.nix "v3opt") # needs too many time to compile
-    #(import ../../../../aspect.nix "wheel-nopasswd")
-    #(import ../../../../aspect.nix "safe")
-    (import ../../../../aspect.nix "zfs")
-    (import ../../../../aspect.nix "cachy_kernel")
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     ./disk.nix
-    (import ../../../../aspect.nix "desktop-baremetal-kde")
-    (import ../../../../aspect.nix "zswap")
-    (import ../../../../aspect.nix "games")
-    (import ../../../../aspect.nix "games-extra")
-    (import ../../../../aspect.nix "extra")
-    (import ../../../../aspect.nix "desktopextra")
-    (import ../../../../aspect.nix "desktop-offline")
-    #(import ../../../../aspect.nix "genai") # too much time to compile
-    (import ../../../../aspect.nix "devcommand")
-    (import ../../../../aspect.nix "persistentkde")
+    #../betterbird.nix # tired of compiling
+    #../secure.nix
     #../niri
-    (import ../../../../aspect.nix "scx")
-    (import ../../../../aspect.nix "emulated-arm")
-    (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
-    #(import ../../../../aspect.nix "rc")
   ];
   nixpkgs.overlays = [
     #inputs.chaotic-pin.overlays.default # try older kernel
