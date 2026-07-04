@@ -21,7 +21,6 @@
       { lib, ... }:
       {
         nix.settings = {
-          nrBuildUsers = lib.mkForce 2;
         };
       };
   };
