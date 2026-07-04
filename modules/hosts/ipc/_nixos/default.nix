@@ -34,7 +34,7 @@ with _include;
     (import ../../../../aspect.nix "desktop-baremetal-kde")
     #(import ../../../../aspect.nix "desktop-specialisation")
     ../../../../nixos/zswap.nix
-    ../../../../nixos/alwaysonsys.nix
+    (import ../../../../aspect.nix "alwayson")
     (import ../../../../aspect.nix "extra")
     ../../../../nixos/extra2.nix
     (import ../../../../aspect.nix "desktopextra")
