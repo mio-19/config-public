@@ -5,5 +5,8 @@
       den.aspects.nixbuild
       den.aspects.nixbuild-always
     ];
+    provides.to-users = { ... }: {
+      homeManager._module.args.enable-fcitx = false;
+    };
   };
 }

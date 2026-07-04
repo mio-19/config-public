@@ -26,6 +26,7 @@
       programs.opam.enableFishIntegration = true;
     }
   );
+  home-manager.users.chester = ./chesteruser.nix;
   # DETAILS REMOVED
   users.users.user = {
     name = "user";

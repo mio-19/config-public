@@ -30,9 +30,13 @@ let
       gdb
       progs.antlr
       nur.repos.mio.pdf2pptx
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
-    ];
+    ]
+    ++ lib.optional (
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? forester
+    ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
+    ++ lib.optional (
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
+    ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli;
 
   commonCliClean =
     { pkgs, ... }:
@@ -256,8 +260,10 @@ let
         ++ lib.optionals pkgs.stdenv.isAarch64 [
           # unsupported on x86_64 macOS:
           tuxguitar
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.ryubing
         ]
+        ++ lib.optional (
+          pkgs.stdenv.isAarch64 && inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? ryubing
+        ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.ryubing
         ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
           oh-my-opencode
           oh-my-codex
