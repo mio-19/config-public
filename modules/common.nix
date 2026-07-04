@@ -142,7 +142,6 @@
               inherit (mio) wireguird darling grub2;
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
-              inherit (pkgs-openclaw) openclaw openclawPackages;
               inherit (pkgs-pin) rpcs3;
               inherit (pkgs-pin4)
                 diffoscope
@@ -245,7 +244,6 @@
             librewolf-unwrapped
             librewolf-bin
             librewolf-bin-unwrapped
-            openclaw
             electron_39
             openssl_1_1
             pnpm_9
@@ -580,7 +578,6 @@
           (final: prev: {
             #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
             #nix-output-monitor = inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
-            inherit (pkgs-openclaw) openclaw openclawPackages;
             #inherit (pkgs-pin5) zotero;
             #inherit (pkgs-pin6) koodo-reader;
             #inherit (pkgs-pin7) wrangler;
@@ -603,7 +600,6 @@
         nixpkgs.config.permittedInsecurePackages =
           with pkgs';
           map (pkg: pkg.name) [
-            openclaw
             librewolf
             librewolf-unwrapped
             pnpm_9

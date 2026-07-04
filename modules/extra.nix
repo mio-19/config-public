@@ -121,7 +121,6 @@ let
           commonCliClean { inherit pkgs; }
           ++ [
             cursor-cli
-            #pkgs'.openclaw
             #claude-code
             distrobox
             gcc
@@ -177,7 +176,6 @@ let
           nur.repos.mio.mdbook-generate-summary
           python314Packages.pdf2docx
           uv
-          #pkgs'.openclaw
           claude-code
           ollama
           #onefetch

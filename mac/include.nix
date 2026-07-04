@@ -83,12 +83,9 @@ upper
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
   };
-  pkgs-openclaw = import inputs.nixpkgs {
+  pkgs''' = import inputs.nixpkgs-pin2 {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
-    overlays = [
-      inputs.nix-openclaw.overlays.default
-    ];
   };
 
   octaveGui = pkgs.writeShellScriptBin "octave" ''

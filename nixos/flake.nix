@@ -317,13 +317,6 @@
       url = "github:mobile-nixos/mobile-nixos";
       flake = false; # We import it directly, not as a flake
     };
-    nix-openclaw = {
-      url = "github:openclaw/nix-openclaw";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nix-steipete-tools.inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-avf = {
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs";

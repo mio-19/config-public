@@ -599,13 +599,6 @@ let
           inputs.nur.overlays.default
         ];
       };
-      pkgs-openclaw = import inputs.nixpkgs {
-        config = osConfig.nixpkgs.config;
-        system = pkgs.stdenv.hostPlatform.system;
-        overlays = [
-          inputs.nix-openclaw.overlays.default
-        ];
-      };
       pkgs-2505 = import inputs.nixpkgs-2505 {
         config = osConfig.nixpkgs.config;
         system = pkgs.stdenv.hostPlatform.system;
