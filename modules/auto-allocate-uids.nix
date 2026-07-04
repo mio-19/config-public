@@ -7,21 +7,22 @@
       {
         nix.settings = {
           experimental-features = [ "auto-allocate-uids" ];
-          auto-allocate-uids = true;
         };
       };
     nixos =
       { lib, ... }:
       {
         nix.settings = {
-          nrBuildUsers = lib.mkForce 0;
+          auto-allocate-uids = true;
         };
       };
     darwin =
       { lib, ... }:
       {
-        nix.settings = {
-        };
+        # workaround for https://github.com/nix-darwin/nix-darwin/issues/1816
+        nix.extraOptions = ''
+          auto-allocate-uids = true
+        '';
       };
   };
 }
