@@ -18,7 +18,7 @@ with _include;
     ./fw13.nix
     (import ../../../../aspect.nix "bios")
     #(import ../../../../aspect.nix "desktop-specialisation-cosmic")
-    ../../../../nixos/hidpi.nix
+    (import ../../../../aspect.nix "hidpi")
     #(import ../../../../aspect.nix "desktop-specialisation-pantheon") # broken: lightdm didn't show up
     #../betterbird.nix # tired of compiling
     #../secure.nix

@@ -14,7 +14,7 @@ with _include;
   imports = [
     ./printers.nix
     (import ../../../../aspect.nix "bios")
-    ../../../../nixos/hidpi.nix
+    (import ../../../../aspect.nix "hidpi")
     #../../../../nixos/betterbird.nix # tired of compiling
     ../../../../nixos/keep.nix
     (import ../../../../aspect.nix "music")
