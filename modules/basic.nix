@@ -98,10 +98,6 @@ in
           optimise = {
             automatic = true;
           };
-          settings.experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
           extraOptions = ''
             trusted-users = @admin root
           '';

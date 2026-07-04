@@ -9,6 +9,25 @@
       den.aspects.customize
       den.aspects.ccache
     ];
+    os =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        system,
+        ...
+      }:
+      {
+        nix = {
+          settings = {
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+          };
+        };
+      };
     nixos =
       args@{
         config,
@@ -194,10 +213,6 @@
             allowed-users = [ "@users" ];
             #lazy-trees = true;
             auto-optimise-store = true;
-            experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
             trusted-users = [
               # "root" # root is already trusted by default
               "@wheel"
