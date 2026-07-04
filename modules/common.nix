@@ -23,7 +23,7 @@
       {
         nix = {
           settings = {
-            lint-url-literals = false;
+            lint-url-literals = "fatal";
             experimental-features = [
               "nix-command"
               "flakes"
