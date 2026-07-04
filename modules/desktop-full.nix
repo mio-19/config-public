@@ -3,7 +3,7 @@
 let
   # cross-platform apps shared between the NixOS desktop-full body and the darwin
   # common branch (modules/common.nix). Defined once so both stay in sync: NixOS
-  # wraps them with firejail (hardenedPkg/cleanPkg) and gates x86_64-only ones,
+  # applies hardenedPkg/cleanPkg and gates x86_64-only ones,
   # darwin installs them plain/unconditional.
   sharedApps =
     { pkgs, progs }:

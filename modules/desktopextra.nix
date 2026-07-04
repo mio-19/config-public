@@ -3,7 +3,7 @@
 let
   # cross-platform apps shared between the NixOS desktopextra body and the darwin
   # `extra` aspect (modules/extra.nix darwinExtra). Defined once so both stay in
-  # sync: NixOS wraps them with firejail (hardenedPkg), darwin installs them plain.
+  # sync: NixOS applies hardenedPkg, darwin installs them plain.
   sharedApps =
     { pkgs, inputs }:
     with pkgs;
