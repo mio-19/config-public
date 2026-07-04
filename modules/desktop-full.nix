@@ -246,8 +246,6 @@ in
               extraArgs = [
                 # https://github.com/netblue30/firejail/issues/6681#issuecomment-2725161673
                 "--ignore=private-dev"
-                "--ignore=apparmor"
-                "--apparmor-replace"
               ];
             };
             # https://github.com/legendofmiracles/dotnix/blob/ea678c780a1944e32c94ded1b58ce3a28be553d9/hosts/pain/configuration.nix#L110

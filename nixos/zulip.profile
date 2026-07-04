@@ -1,50 +1,26 @@
-# Firejail profile for zulip (NixOS-friendly; upstream + netfilter/dbus fixes)
+# Firejail profile for zulip (NixOS-friendly; Electron-based)
 # Persistent local customizations
 include zulip.local
 # Persistent global definitions
 include globals.local
 
-ignore noexec /tmp
+# Must come before include electron-common.profile (sets dbus-user none / netfilter).
+ignore noinput
+ignore dbus-user none
+ignore dbus-system none
 ignore netfilter
+ignore noexec /tmp
+ignore apparmor
 
 noblacklist ${HOME}/.config/Zulip
 
-include disable-common.inc
-include disable-devel.inc
-include disable-exec.inc
-include disable-interpreters.inc
-include disable-programs.inc
-include disable-shell.inc
-include disable-xdg.inc
-
 mkdir ${HOME}/.config/Zulip
 whitelist ${HOME}/.config/Zulip
-whitelist ${DOWNLOADS}
-include whitelist-common.inc
-include whitelist-var-common.inc
 
-apparmor
-caps.drop all
-no3d
-nodvd
-nogroups
-noinput
-nonewprivs
-noroot
-notv
-nou2f
-novideo
-protocol unix,inet,inet6
-seccomp
-
-disable-mnt
-private-bin locale,zulip
-private-cache
-private-dev
 private-etc @tls-ca
-private-tmp
+private-bin bash,cut,echo,egrep,electron,electron[0-9],electron[0-9][0-9],grep,head,locale,sed,sh,tr,xdg-mime,xdg-open,zulip,zsh
 
-restrict-namespaces
+include electron-common.profile
 
 dbus-user filter
 dbus-user.talk org.freedesktop.portal.Desktop
