@@ -345,26 +345,27 @@
 
         programs.fuse.enable = true;
         programs.fuse.userAllowOther = true;
+
         /*
-                # Workaround for captive-browser unsupported flags
-                # https://github.com/NixOS/nixpkgs/issues/533452#issuecomment-4762493257
-                programs.captive-browser.browser =
-                  let
-                    newBrowserArgs =
-                      chromium:
-                      lib.concatStringsSep " " [
-                        ''env XDG_CONFIG_HOME="$PREV_CONFIG_HOME"''
-                        "${chromium}/bin/chromium"
-                        "--user-data-dir=\${XDG_DATA_HOME:-$HOME/.local/share}/chromium-captive"
-                        ''--proxy-server="socks5://$PROXY"''
-                        "--no-first-run"
-                        "--new-window"
-                        "--incognito"
-                        "-no-default-browser-check"
-                        "http://cache.nixos.org/"
-                      ];
-                  in
-                  newBrowserArgs pkgs.chromium;
+          # Workaround for captive-browser unsupported flags
+          # https://github.com/NixOS/nixpkgs/issues/533452#issuecomment-4762493257
+          programs.captive-browser.browser =
+            let
+              newBrowserArgs =
+                chromium:
+                lib.concatStringsSep " " [
+                  ''env XDG_CONFIG_HOME="$PREV_CONFIG_HOME"''
+                  "${chromium}/bin/chromium"
+                  "--user-data-dir=\${XDG_DATA_HOME:-$HOME/.local/share}/chromium-captive"
+                  ''--proxy-server="socks5://$PROXY"''
+                  "--no-first-run"
+                  "--new-window"
+                  "--incognito"
+                  "-no-default-browser-check"
+                  "http://cache.nixos.org/"
+                ];
+            in
+            newBrowserArgs pkgs.chromium;
         */
 
         # https://zhuanlan.zhihu.com/p/671801498
