@@ -25,8 +25,6 @@
         ...
       }:
       {
-        environment.sessionVariables.SEM_NO_TELEMETRY = "1"; # sem: disable anonymous usage telemetry
-
         nix = {
           settings = {
             lint-url-literals = "fatal";
