@@ -553,7 +553,7 @@
             if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs.nixpkgs then
               let
                 inputs' = input.inputs // {
-                  nixpkgs = nixpkgs;
+                  inherit nixpkgs;
                   self = patched-input;
                 };
                 patched-input = (import "${input.outPath}/flake.nix").outputs inputs' // {
