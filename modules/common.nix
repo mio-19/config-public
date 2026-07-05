@@ -589,7 +589,10 @@
           ../users.nix
         ];
 
-        #nix.settings.allowed-users = [ "@staff" "@daemon" ]; # break. is it becaused of auto-allocated-uids? or?
+        nix.settings.allowed-users = [
+          "@staff"
+          "@nixbld"
+        ];
 
         services.mac-app-util.enable = mac-app-util-enabled;
 
