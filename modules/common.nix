@@ -142,10 +142,8 @@
               inherit (mio) wireguird darling grub2;
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
-              inherit (pkgs-pin) rpcs3;
-              inherit (pkgs-pin4)
-                diffoscope
-                ;
+              # inherit (pkgs-pin) rpcs3;
+              # diffoscope unpinned
               inherit (pkgs') freecad pianotrans; # no binary cache with cuda and no binary cache with rocm
             }
           )
