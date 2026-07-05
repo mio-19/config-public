@@ -58,10 +58,12 @@
         nix = {
           settings = {
             auto-optimise-store = true;
-            lint-url-literals = "fatal";
+            lint-url-literals = lib.mkIf (!config.lix_instead) "fatal";
             experimental-features = [
               "nix-command"
               "flakes"
+            ]
+            ++ lib.optionals (!config.lix_instead) [
               "blake3-hashes"
             ];
           };
