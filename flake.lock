@@ -1214,7 +1214,6 @@
         ],
         "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-pin3": "nixpkgs-pin3",
-        "nixpkgs-pin4": "nixpkgs-pin4",
         "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
@@ -1954,7 +1953,7 @@
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-pin": "nixpkgs-pin",
-        "nixpkgs-pin4": "nixpkgs-pin4_2",
+        "nixpkgs-pin4": "nixpkgs-pin4",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "nm2nix": "nm2nix",
         "nur": "nur_2",
@@ -2301,22 +2300,6 @@
       }
     },
     "nixpkgs-pin4": {
-      "locked": {
-        "lastModified": 1782118813,
-        "narHash": "sha256-BnbXO5s5EhV89lLXMAGCzPdEN5a6vNqvMk71obeTEUw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b3c092d3c36d91e2f61f3dfb39a159f180a56659",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b3c092d3c36d91e2f61f3dfb39a159f180a56659",
-        "type": "github"
-      }
-    },
-    "nixpkgs-pin4_2": {
       "locked": {
         "lastModified": 1782145344,
         "narHash": "sha256-8cz8/2hWTYdsPcpqWXa/IAkyjw1xBv3tx2UPNzkpe3c=",
