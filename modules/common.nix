@@ -25,6 +25,19 @@
         ...
       }:
       {
+        nixpkgs.config.permittedInsecurePackages =
+          with pkgs;
+          map (pkg: pkg.name) [
+            electron_39
+            openssl_1_1
+            pnpm_9
+            pnpm_10_29_2
+            #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
+            ventoy
+            ventoy-full-gtk
+            ventoy-full-qt
+          ];
+
         nix = {
           settings = {
             lint-url-literals = "fatal";
@@ -233,19 +246,6 @@
         nixpkgs.config.allowNonSourcePredicate = allowNonSourcePredicate;
         #nixpkgs.config.allowAliases = false;
         nixpkgs.config.allowDeprecatedx86_64Darwin = true; # hide deprecation warning. we aleady know.
-
-        nixpkgs.config.permittedInsecurePackages =
-          with pkgs;
-          map (pkg: pkg.name) [
-            electron_39
-            openssl_1_1
-            pnpm_9
-            pnpm_10_29_2
-            #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
-            ventoy
-            ventoy-full-gtk
-            ventoy-full-qt
-          ];
 
         i18n.defaultLocale = lib.mkDefault "en_NZ.UTF-8";
 
@@ -588,11 +588,6 @@
 
         services.mac-app-util.enable = mac-app-util-enabled;
 
-        nixpkgs.config.permittedInsecurePackages =
-          with pkgs';
-          map (pkg: pkg.name) [
-            pnpm_9
-          ];
         nixpkgs.config.allowUnfree = false;
         nixpkgs.config.allowNonSource = false;
         nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
