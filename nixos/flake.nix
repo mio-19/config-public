@@ -552,6 +552,7 @@
                     // {
                       outPath = input.outPath;
                       inputs = inputs';
+                      inherit (input) sourceInfo;
                     };
                 in
                 patched-input
