@@ -4,7 +4,7 @@
     includes = [
       den.aspects.basic
       den.aspects.options
-      den.aspects.fprint-fix
+      #den.aspects.fprint-fix # not sure about the patch
       den.aspects.nix-ld
       den.aspects.nixpkgs-workaround
       den.aspects.customize
