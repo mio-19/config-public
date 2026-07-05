@@ -586,6 +586,8 @@
           ../users.nix
         ];
 
+        nix.settings.allowed-users = [ "@staff" ];
+
         services.mac-app-util.enable = mac-app-util-enabled;
 
         nixpkgs.config.allowUnfree = false;
