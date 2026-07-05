@@ -146,11 +146,6 @@
                 # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
                 # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
                 (fetchpatch {
-                  name = "maven: provide default plugins per Maven version to buildMavenPackage";
-                  url = "https://github.com/NixOS/nixpkgs/pull/527061.patch";
-                  hash = "sha256-9J4T7fKFqh8FZh0cO8pRmPoMVsabJNKMNDQvNQd1WXY=";
-                })
-                (fetchpatch {
                   name = "tuxguitar: fix launch on darwin when app bundle path contains space";
                   url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
                   hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
@@ -196,6 +191,11 @@
                   url = "https://github.com/NixOS/nixpkgs/pull/515614.patch";
                   hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
                   derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
+                  name = "maven: provide default plugins per Maven version to buildMavenPackage";
+                  url = "https://github.com/NixOS/nixpkgs/pull/527061.patch";
+                  hash = "sha256-9J4T7fKFqh8FZh0cO8pRmPoMVsabJNKMNDQvNQd1WXY=";
                 })
               ];
             };
