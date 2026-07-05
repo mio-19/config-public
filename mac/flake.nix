@@ -236,7 +236,7 @@
                     darwin =
                       let
                         inputs' = (
-                          inputs0
+                          inputs0.darwin.inputs
                           // {
                             inherit nixpkgs;
                             self = darwin;
