@@ -35,7 +35,7 @@ let
             # https://garnix.io/docs/caching - https://t.me/nixos_zhcn/728695 # garnix sometimes often 504 Gateway Time-out. to avoid waiting on this garnix, supply `--offline` to nix commands.
             #"https://cache.garnix.io"
             #"https://nix-community.cachix.org"
-            "https://cache.numtide.com" # https://github.com/numtide/llm-agents.nix
+            #"https://cache.numtide.com" # https://github.com/numtide/llm-agents.nix
           ];
           trusted-public-keys = [
             "mio.cachix.org-1:FlupyyLPURqwdRqtPT/LBWKsXY7JKsDkzZQo2K6LeMM="

@@ -11,14 +11,14 @@ let
   hostName = config.networking.hostName;
   trusted-public-keys = [
     "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
-    "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+    #"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     "staging.cachix.org-1:WX63nyFdVdWGn6n59pIYwkcH/AtjJGjvMQFKlI2z00w="
     "mio-cache.cachix.org-1:ouuIJZ59HIflYjpLW6DRyMc1c+6r3kC/LHuqGUsWigg="
     "mio-config.cachix.org-1:VM6OZi+PC/ENBDf5ogaArQMgVUvJNvAL5t9ayXZdCIg="
     "mio.cachix.org-1:FlupyyLPURqwdRqtPT/LBWKsXY7JKsDkzZQo2K6LeMM="
-    "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    #"niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     # DETAILS REMOVED
   ];
   local-location = {
@@ -56,10 +56,12 @@ in
           url = "https://nyx-cache.chaotic.cx/";
           priority = 40;
         }
-        {
-          url = "https://nix-gaming.cachix.org";
-          priority = 40;
-        }
+        /*
+          {
+            url = "https://nix-gaming.cachix.org";
+            priority = 40;
+          }
+        */
         {
           url = "https://nix-community.cachix.org";
           priority = 40;
@@ -107,11 +109,13 @@ in
           url = "https://hetzner-cache.numtide.com";
           priority = 5;
         }
-        {
-          # https://github.com/numtide/llm-agents.nix
-          url = "https://cache.numtide.com";
-          priority = 40;
-        }
+        /*
+          {
+            # https://github.com/numtide/llm-agents.nix
+            url = "https://cache.numtide.com";
+            priority = 40;
+          }
+        */
         # DETAILS REMOVED
       ];
     };

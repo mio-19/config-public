@@ -84,7 +84,6 @@ upper
     system = pkgs.stdenv.hostPlatform.system;
   };
 
-
   octaveGui = pkgs.writeShellScriptBin "octave" ''
     exec "${pkgs.octaveFull}/bin/octave" --gui "$@"
   '';

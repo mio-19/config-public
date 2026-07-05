@@ -537,11 +537,7 @@
           inputs-patched =
             builtins.mapAttrs (
               name: input:
-              if
-                input ? inputs
-                && input.inputs ? nixpkgs
-                && input.inputs.nixpkgs == inputs.nixpkgs
-              then
+              if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs.nixpkgs then
                 let
                   inputs' = input.inputs // {
                     nixpkgs = nixpkgs;
