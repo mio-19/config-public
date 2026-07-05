@@ -191,6 +191,7 @@
                   name = "wrangler: fix build on darwin";
                   url = "https://github.com/NixOS/nixpkgs/pull/536602.diff";
                   hash = "sha256-nVyL5C11GnB9p8ABGL0whGfzj+Gq5aMvsUfl0dG/3Ss=";
+                  derivationArgs.allowSubstitutes = false;
                 })
               ];
             };
