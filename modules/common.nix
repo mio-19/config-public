@@ -237,10 +237,6 @@
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
           map (pkg: pkg.name) [
-            librewolf
-            librewolf-unwrapped
-            librewolf-bin
-            librewolf-bin-unwrapped
             electron_39
             openssl_1_1
             pnpm_9
@@ -595,8 +591,6 @@
         nixpkgs.config.permittedInsecurePackages =
           with pkgs';
           map (pkg: pkg.name) [
-            librewolf
-            librewolf-unwrapped
             pnpm_9
           ];
         nixpkgs.config.allowUnfree = false;
