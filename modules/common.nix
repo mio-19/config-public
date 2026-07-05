@@ -27,6 +27,9 @@
       }:
       with _include;
       {
+        programs.fish.enable = true;
+        programs.fish.useBabelfish = true;
+
         system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
         nixpkgs.config.allowUnfree = false;
@@ -424,9 +427,6 @@
         # https://github.com/nix-community/home-manager/blob/9e3a33c0bcbc25619e540b9dfea372282f8a9740/modules/programs/zsh/default.nix#L166
         #environment.pathsToLink = [ "/share/zsh" ];
 
-        programs.fish.enable = true;
-        programs.fish.useBabelfish = true;
-
         # documentation.enable = lib.mkDefault false;
         # https://discourse.nixos.org/t/solve-slow-man-cache-the-content-addressed-way-but-not-ca-derivation/58463/2
         # documentation.man.cache.enable = lib.mkDefault false;
@@ -722,7 +722,6 @@
           enableGlobalCompInit = false;
           enableBashCompletion = false;
         };
-        programs.fish.enable = true;
 
         environment.extraInit =
           if pkgs.stdenv.isx86_64 then
