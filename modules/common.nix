@@ -9,7 +9,7 @@
       den.aspects.nixpkgs-workaround
       den.aspects.customize
       den.aspects.ccache
-      den.aspects.auto-allocate-uids
+      #den.aspects.auto-allocate-uids # conflicts with ccache?
       den.aspects.sudo-fprint-ssh-bypass
       den.aspects.harmonia
       den.aspects.token
