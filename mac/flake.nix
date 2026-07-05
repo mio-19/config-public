@@ -193,6 +193,7 @@
             }
             // {
               outPath = toString nixpkgs-drv;
+              _type = "flake";
             };
         in
         {
@@ -209,29 +210,25 @@
         system: withSystem system ({ config, pkgs, ... }:
         let
           nixpkgs = config.packages.nixpkgs-patched;
-          darwin =
-            (import "${inputs0.darwin}/flake.nix").outputs {
-              inherit nixpkgs;
-              self = darwin;
-            }
-            // {
-              outPath = inputs0.darwin.outPath;
-            };
+          inputs-patched = builtins.mapAttrs (name: input:
+            if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs0.nixpkgs then
+              let
+                inputs' = input.inputs // {
+                  inherit nixpkgs;
+                };
+                patched-input = (import "${input.outPath}/flake.nix").outputs (inputs' // { self = patched-input; }) // {
+                  outPath = input.outPath;
+                  inputs = inputs';
+                };
+              in patched-input
+            else input
+          ) inputs0;
+          inherit (inputs-patched) darwin deploy-rs mio;
+
           pkgs = import nixpkgs {
             inherit system;
             config.allowDeprecatedx86_64Darwin = true;
           };
-          deploy-rs =
-            (import "${inputs0.deploy-rs}/flake.nix").outputs (
-              inputs0.deploy-rs.inputs
-              // {
-                self = deploy-rs;
-                inherit nixpkgs;
-              }
-            )
-            // {
-              outPath = inputs0.deploy-rs.outPath;
-            };
           # nixpkgs with deploy-rs overlay but force the nixpkgs package
           deployPkgs = import nixpkgs {
             inherit system;
@@ -246,21 +243,10 @@
               })
             ];
           };
-          mio =
-            (import "${inputs0.mio}/flake.nix").outputs (
-              inputs0.mio.inputs
-              // {
-                self = mio;
-                inherit nixpkgs;
-              }
-            )
-            // {
-              outPath = inputs0.mio.outPath;
-            };
         in
         {
-          inputs = inputs0 // {
-            inherit nixpkgs darwin mio;
+          inputs = inputs-patched // {
+            inherit nixpkgs;
             nixpkgs-unpatched = inputs0.nixpkgs;
             nixpkgs-patched = nixpkgs;
           };
