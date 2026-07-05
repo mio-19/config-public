@@ -131,8 +131,13 @@
             name = "nixpkgs-patched";
             src = inputs0.nixpkgs.outPath;
             patches = with pkgs0; [
+              # possible to consider patches
               # supertuxkart: updates for darwin and app experience - https://github.com/NixOS/nixpkgs/pull/520901.diff
               # gimp3: fix Darwin build - https://github.com/NixOS/nixpkgs/pull/513484.diff
+              # lib.options: several small performance cleanups - https://github.com/NixOS/nixpkgs/pull/517802.diff
+              # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
+              # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
+              # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
               (fetchpatch {
                 name = "tuxguitar: fix launch on darwin when app bundle path contains space";
                 url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
@@ -156,7 +161,6 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/534884.patch";
                 hash = "sha256-Lt43nR05fVXsFekFxVQPg8r6Y3AD5JiQpCAbDH6BPkw=";
               })
-              # lib.options: several small performance cleanups - https://github.com/NixOS/nixpkgs/pull/517802.diff
               (fetchpatch {
                 name = "baobab: add desktopToDarwinBundle override";
                 url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
@@ -181,9 +185,6 @@
                 hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
                 derivationArgs.allowSubstitutes = false;
               })
-              # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
-              # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
-              # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
             ];
           };
           nixpkgs =
