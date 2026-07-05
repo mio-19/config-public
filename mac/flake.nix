@@ -103,8 +103,7 @@
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
-      # has cache on garnix
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     import-tree.url = "github:denful/import-tree";
