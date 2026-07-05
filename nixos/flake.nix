@@ -372,6 +372,11 @@
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
             patches = with pkgs; [
               (fetchpatch {
+                name = "maven: provide default plugins per Maven version to buildMavenPackage";
+                url = "https://github.com/NixOS/nixpkgs/pull/527061.patch";
+                hash = "sha256-9J4T7fKFqh8FZh0cO8pRmPoMVsabJNKMNDQvNQd1WXY=";
+              })
+              (fetchpatch {
                 name = "nixos/firefox: make variant librewolf";
                 url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
                 hash = "sha256-YC9rR2EwYFMzu9QPI6fqaydn4juFDU5bNI0VyGcTX3k=";
