@@ -220,6 +220,28 @@
                 { config, pkgs, ... }:
                 let
                   nixpkgs = config.packages.nixpkgs-patched;
+                  pkgs = import nixpkgs {
+                    inherit system;
+                    config.allowDeprecatedx86_64Darwin = true;
+                  };
+
+                  darwin-drv = pkgs.applyPatches {
+                    name = "darwin-patched";
+                    src = inputs0.darwin.outPath;
+                    patches = [
+                      (pkgs.fetchpatch {
+                        name = "manualHTML: adopt to nixos/nixpkgs#537810";
+                        url = "https://github.com/nix-darwin/nix-darwin/pull/1818.diff";
+                        hash = "sha256-P4wMOG9jwLkU5TZEntP1FacFuH23mOlLQ+rKdbr64AQ=";
+                      })
+                    ];
+                  };
+                  inputs1 = inputs0 // {
+                    darwin = inputs0.darwin // {
+                      outPath = toString darwin-drv;
+                    };
+                  };
+
                   inputs-patched = builtins.mapAttrs (
                     name: input:
                     if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs0.nixpkgs then
@@ -238,13 +260,8 @@
                       patched-input
                     else
                       input
-                  ) inputs0;
+                  ) inputs1;
                   inherit (inputs-patched) darwin deploy-rs mio;
-
-                  pkgs = import nixpkgs {
-                    inherit system;
-                    config.allowDeprecatedx86_64Darwin = true;
-                  };
                   # nixpkgs with deploy-rs overlay but force the nixpkgs package
                   deployPkgs = import nixpkgs {
                     inherit system;
