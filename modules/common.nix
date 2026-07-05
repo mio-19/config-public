@@ -39,6 +39,9 @@
         #nixpkgs.config.allowAliases = false;
         nixpkgs.config.allowDeprecatedx86_64Darwin = true; # hide deprecation warning. we aleady know.
 
+        nixpkgs.config.problems.handlers = {
+          "sublimetext4".removal = "ignore";
+        };
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
           map (pkg: pkg.name) [
