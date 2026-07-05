@@ -26,7 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
+      #url = "github:nix-darwin/nix-darwin/master";
+      url = "github:stepbrobd/nix-darwin/320cbf535b80ffde6c1dbe2f80e29c791e84f494";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #pinix = {
