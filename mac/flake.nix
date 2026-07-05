@@ -205,10 +205,6 @@
               };
           in
           {
-            _module.args.pkgs = import nixpkgs {
-              inherit system;
-              config.allowDeprecatedx86_64Darwin = true;
-            };
             packages.nixpkgs-patched = nixpkgs;
           };
 
