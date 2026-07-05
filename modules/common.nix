@@ -589,7 +589,7 @@
           ../users.nix
         ];
 
-        nix.settings.allowed-users = [ "@staff" ];
+        #nix.settings.allowed-users = [ "@staff" "@wheel" ];
 
         services.mac-app-util.enable = mac-app-util-enabled;
 
