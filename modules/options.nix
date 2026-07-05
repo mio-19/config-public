@@ -62,6 +62,11 @@ let
           default = if isDarwin then true else inc.atleastV3;
           description = "use mio patched aria2";
         };
+        compile_gram = lib.mkOption {
+          type = lib.types.bool;
+          default = if stdenv.isDarwin then true else stdenv.isx86_64 && inc.atleastV3;
+          description = "compile our custom materialgram&telegram";
+        };
       }
       // lib.optionalAttrs (!isDarwin) {
         microarch = lib.mkOption {
@@ -76,11 +81,6 @@ let
         };
         wine64_package = lib.mkPackageOption pkgs [ "wineWow64Packages" "full" ] {
           extraDescription = "The wine 32/64 package to use.";
-        };
-        compile_gram = lib.mkOption {
-          type = lib.types.bool;
-          default = stdenv.isLinux && stdenv.isx86_64 && inc.atleastV3;
-          description = "compile our custom materialgram&telegram";
         };
         adhocNetworks = lib.mkOption {
           type = lib.types.bool;

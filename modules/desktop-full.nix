@@ -14,6 +14,8 @@ let
         pear-desktop
         element-desktop
         qbittorrent-enhanced
+        progs.telegram
+        progs.materialgram
       ];
       clean = [
         progs.librewolf' # progs.librewolf'_for_firejail
@@ -90,8 +92,6 @@ in
             #ventoy-full-qt # qt version looks broken under kde plasma
             ventoy-full-gtk
             nextcloud-client
-            progs.materialgram
-            progs.telegram
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
             nur.repos.mio.icloud-mail
             obsidian
