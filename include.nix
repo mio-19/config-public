@@ -277,15 +277,8 @@ customize
           extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
         });
     telegram =
-      if config.compile_gram then
-        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.telegram-desktop
-      else
-        pkgs.telegram-desktop;
-    materialgram =
-      if config.compile_gram then
-        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.materialgram
-      else
-        pkgs.materialgram;
+      if config.compile_gram then pkgs.nur.repos.mio.telegram-desktop else pkgs.telegram-desktop;
+    materialgram = if config.compile_gram then pkgs.nur.repos.mio.materialgram else pkgs.materialgram;
   };
 
   hasAntigravityFor =
