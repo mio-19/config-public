@@ -372,6 +372,11 @@
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
             patches = with pkgs; [
               (fetchpatch {
+                name = "nixos/firefox: make variant librewolf";
+                url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
+                hash = "sha256-YC9rR2EwYFMzu9QPI6fqaydn4juFDU5bNI0VyGcTX3k=";
+              })
+              (fetchpatch {
                 name = "captive-browser: 0-unstable-2021-08-01 -> 0-unstable-2025-11-05";
                 url = "https://github.com/NixOS/nixpkgs/pull/538118.patch";
                 hash = "sha256-gHHuUitBfcwU83ejQcDmfRIq+ZcPRz15JiIYJokG7JQ=";
