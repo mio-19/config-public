@@ -554,14 +554,13 @@
               let
                 inputs' = input.inputs // {
                   nixpkgs = nixpkgs;
+                  self = patched-input;
                 };
-                patched-input =
-                  (import "${input.outPath}/flake.nix").outputs (inputs' // { self = patched-input; })
-                  // {
-                    outPath = input.outPath;
-                    inputs = inputs';
-                    inherit (input) sourceInfo;
-                  };
+                patched-input = (import "${input.outPath}/flake.nix").outputs inputs' // {
+                  outPath = input.outPath;
+                  inputs = inputs';
+                  inherit (input) sourceInfo;
+                };
               in
               patched-input
             else
