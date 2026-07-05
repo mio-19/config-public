@@ -72,13 +72,6 @@ upper
     overlays = [
     ];
   };
-  pkgs-489506 = import inputs.nixpkgs-489506 {
-    config = config.nixpkgs.config;
-    system = pkgs.stdenv.hostPlatform.system;
-    overlays = [
-      inputs.nur.overlays.default
-    ];
-  };
   pkgs''' = import inputs.nixpkgs-pin2 {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
