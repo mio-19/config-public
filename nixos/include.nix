@@ -54,10 +54,6 @@ let
           scala_3 = pkgs.scala_3.override { jre = jre; };
           pnpm = pkgs.pnpm.override { inherit nodejs-slim; };
           betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
-
-          telegram =
-            if config.compile_gram then pkgs.nur.repos.mio.telegram-desktop else pkgs.telegram-desktop;
-          materialgram = if config.compile_gram then pkgs.nur.repos.mio.materialgram else pkgs.materialgram;
           mcpelauncher-ui-qt = pkgs.mcpelauncher-ui-qt;
           # cannot get bwrapper to work with mcpe login page
           mcpelauncher-ui-qt_failedAttempt1 = mkBwrapper {
