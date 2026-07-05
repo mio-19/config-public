@@ -25,6 +25,8 @@
         ...
       }:
       {
+        system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
+
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
           map (pkg: pkg.name) [
@@ -176,7 +178,6 @@
 
         hardware.enableRedistributableFirmware = true;
 
-        system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
         # https://github.com/oxalica/nixos-config/blob/03e0de362290bbfae8615192cdfc03f903f5f583/flake.nix#L78-L85
         # https://github.com/dramforever/config/blob/63be844019b7ca675ea587da3b3ff0248158d9fc/flake.nix#L24-L28
         system.nixos.label =
@@ -803,9 +804,6 @@
           # Allow touch to click
           trackpad.Clicking = true;
         };
-
-        # Set Git commit hash for darwin-version.
-        system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
         # https://github.com/EmergentMind/nix-config/blob/9a9fefd9ab5ebbaf9530dafdb6d45b734606f645/hosts/common/core/nixos.nix#L25
         security.sudo.extraConfig = "Defaults timestamp_timeout=120";
