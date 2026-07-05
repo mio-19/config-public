@@ -143,7 +143,6 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               # inherit (pkgs-pin) rpcs3;
-              # diffoscope unpinned
               inherit (pkgs') freecad pianotrans; # no binary cache with cuda and no binary cache with rocm
             }
           )
