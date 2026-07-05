@@ -192,11 +192,6 @@
                   hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
                   derivationArgs.allowSubstitutes = false;
                 })
-                (fetchpatch {
-                  name = "maven: provide default plugins per Maven version to buildMavenPackage";
-                  url = "https://github.com/NixOS/nixpkgs/pull/527061.patch";
-                  hash = "sha256-9J4T7fKFqh8FZh0cO8pRmPoMVsabJNKMNDQvNQd1WXY=";
-                })
               ];
             };
             nixpkgs =
