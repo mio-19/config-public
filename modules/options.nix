@@ -67,6 +67,11 @@ let
           default = if stdenv.isDarwin then true else stdenv.isx86_64 && inc.atleastV3;
           description = "compile our custom materialgram&telegram";
         };
+        lix_instead = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "use lix instead of nix";
+        };
       }
       // lib.optionalAttrs (!isDarwin) {
         microarch = lib.mkOption {
