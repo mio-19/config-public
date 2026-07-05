@@ -582,7 +582,6 @@
             #inherit (pkgs-pin6) koodo-reader;
             #inherit (pkgs-pin7) wrangler;
             #inherit (pkgs-pin3) ollama;
-            inherit (pkgs-pin4) yt-dlp;
             inherit (pkgs-pin4) thunderbird-esr zed-editor; # no binary cache
             inherit (pkgs-pin5) musescore-evolution;
           })
@@ -772,9 +771,9 @@
         # }}}
 
         fonts.packages = with pkgs; [
-          pkgs-pin4.noto-fonts
-          pkgs-pin4.noto-fonts-cjk-sans
-          pkgs-pin4.noto-fonts-color-emoji
+          noto-fonts
+          noto-fonts-cjk-sans
+          noto-fonts-color-emoji
           nerd-fonts.noto
           source-code-pro
           nerd-fonts.sauce-code-pro
