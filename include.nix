@@ -277,7 +277,15 @@ customize
           extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
         });
     telegram =
-      if config.compile_gram then pkgs.nur.repos.mio.telegram-desktop else pkgs.telegram-desktop;
+      if config.compile_gram then
+        (
+          if pkgs.stdenv.isDarwin then
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.telegram-desktop_682_patched
+          else
+            pkgs.nur.repos.mio.telegram-desktop
+        )
+      else
+        pkgs.telegram-desktop;
     materialgram = if config.compile_gram then pkgs.nur.repos.mio.materialgram else pkgs.materialgram;
   };
 
