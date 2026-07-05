@@ -22,10 +22,19 @@
         lib,
         pkgs,
         system,
+        _include,
         ...
       }:
+      with _include;
       {
         system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
+
+        nixpkgs.config.allowUnfree = false;
+        nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
+        nixpkgs.config.allowNonSource = false;
+        nixpkgs.config.allowNonSourcePredicate = allowNonSourcePredicate;
+        #nixpkgs.config.allowAliases = false;
+        nixpkgs.config.allowDeprecatedx86_64Darwin = true; # hide deprecation warning. we aleady know.
 
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
@@ -240,13 +249,6 @@
           #  eval-cores = 0 # Evaluate across all cores
           #'';
         };
-
-        nixpkgs.config.allowUnfree = false;
-        nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
-        nixpkgs.config.allowNonSource = false;
-        nixpkgs.config.allowNonSourcePredicate = allowNonSourcePredicate;
-        #nixpkgs.config.allowAliases = false;
-        nixpkgs.config.allowDeprecatedx86_64Darwin = true; # hide deprecation warning. we aleady know.
 
         i18n.defaultLocale = lib.mkDefault "en_NZ.UTF-8";
 
@@ -590,12 +592,6 @@
         nix.settings.allowed-users = [ "@staff" ];
 
         services.mac-app-util.enable = mac-app-util-enabled;
-
-        nixpkgs.config.allowUnfree = false;
-        nixpkgs.config.allowNonSource = false;
-        nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
-        nixpkgs.config.allowNonSourcePredicate = allowNonSourcePredicate;
-        nixpkgs.config.allowDeprecatedx86_64Darwin = true; # hide deprecation warning. we aleady know.
 
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
