@@ -279,7 +279,7 @@ customize
     telegram =
       if config.compile_gram then
         (
-          if pkgs.stdenv.isDarwin then
+          if (false && pkgs.stdenv.isDarwin) then
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.telegram-desktop_682_patched
           else
             pkgs.nur.repos.mio.telegram-desktop
