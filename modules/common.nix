@@ -56,6 +56,7 @@
           ];
 
         nix = {
+          package = lib.mkIf config.lix_instead pkgs.lixPackageSets.latest.lix;
           settings = {
             auto-optimise-store = true;
             lint-url-literals = lib.mkIf (!config.lix_instead) "fatal";
