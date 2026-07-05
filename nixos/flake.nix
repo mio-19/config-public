@@ -543,31 +543,30 @@
             // {
               outPath = toString nixos-avf-drv;
             };
-          inputs-patched =
-            builtins.mapAttrs (
-              name: input:
-              if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs.nixpkgs then
-                let
-                  inputs' = input.inputs // {
-                    nixpkgs = nixpkgs;
+          inputs1 = inputs // {
+            nixpkgs-unpatched = inputs.nixpkgs;
+            nixpkgs-patched = nixpkgs;
+            inherit nixpkgs nixos-avf;
+          };
+          inputs-patched = builtins.mapAttrs (
+            name: input:
+            if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs.nixpkgs then
+              let
+                inputs' = input.inputs // {
+                  nixpkgs = nixpkgs;
+                };
+                patched-input =
+                  (import "${input.outPath}/flake.nix").outputs (inputs' // { self = patched-input; })
+                  // {
+                    outPath = input.outPath;
+                    inputs = inputs';
+                    inherit (input) sourceInfo;
                   };
-                  patched-input =
-                    (import "${input.outPath}/flake.nix").outputs (inputs' // { self = patched-input; })
-                    // {
-                      outPath = input.outPath;
-                      inputs = inputs';
-                      inherit (input) sourceInfo;
-                    };
-                in
-                patched-input
-              else
-                input
-            ) inputs
-            // {
-              nixpkgs-unpatched = inputs.nixpkgs;
-              nixpkgs-patched = nixpkgs;
-              inherit nixpkgs nixos-avf;
-            };
+              in
+              patched-input
+            else
+              input
+          ) inputs1;
         in
         {
           _module.args.inputs-patched = inputs-patched;
