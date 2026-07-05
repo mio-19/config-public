@@ -113,173 +113,189 @@
 
   outputs =
     inputs0@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inputs = inputs0; } ({ withSystem, ... }: {
-      systems = [
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
-      imports = [
-        inputs0.den.flakeModule
-      ];
-      perSystem = { system, pkgs, config, lib, ... }:
-        let
-          pkgs0 = import inputs0.nixpkgs {
-            inherit system;
-            config.allowDeprecatedx86_64Darwin = true;
-          };
-          nixpkgs-drv = pkgs0.applyPatches {
-            name = "nixpkgs-patched";
-            src = inputs0.nixpkgs.outPath;
-            patches = with pkgs0; [
-              # possible to consider patches
-              # supertuxkart: updates for darwin and app experience - https://github.com/NixOS/nixpkgs/pull/520901.diff
-              # gimp3: fix Darwin build - https://github.com/NixOS/nixpkgs/pull/513484.diff
-              # lib.options: several small performance cleanups - https://github.com/NixOS/nixpkgs/pull/517802.diff
-              # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
-              # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
-              # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
-              (fetchpatch {
-                name = "tuxguitar: fix launch on darwin when app bundle path contains space";
-                url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
-                hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
-                name = "makeBinaryWrapper: fix passthru.extractCmd on darwin";
-                url = "https://github.com/NixOS/nixpkgs/pull/483719.diff";
-                hash = "sha256-7mcSsAboehuksmXeSiP13SFDItZ24icjeyehRZiOg8s=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
-                name = "trayscale: add macOS application bundle";
-                url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
-                hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
-                name = "github-copilot-cli: 1.0.26 -> 1.0.65";
-                url = "https://github.com/NixOS/nixpkgs/pull/534884.patch";
-                hash = "sha256-Lt43nR05fVXsFekFxVQPg8r6Y3AD5JiQpCAbDH6BPkw=";
-              })
-              (fetchpatch {
-                name = "baobab: add desktopToDarwinBundle override";
-                url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
-                hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
-                name = "vscode-with-extensions: respect macos package bundle's CFBundleExecutable value when generating the wrapper";
-                url = "https://github.com/NixOS/nixpkgs/pull/507766.patch";
-                hash = "sha256-aL8a0Q0nGtioTKmdmZGh9BUWE8pMxc/e0DjcbVFqh6Y=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
-                name = "wrangler: fix build on darwin";
-                url = "https://github.com/NixOS/nixpkgs/pull/536602.diff";
-                hash = "sha256-nVyL5C11GnB9p8ABGL0whGfzj+Gq5aMvsUfl0dG/3Ss=";
-              })
-              # related to appstream : https://github.com/NixOS/nixpkgs/issues/514566
-              (fetchpatch {
-                name = "libfyaml: fixed building issues";
-                url = "https://github.com/NixOS/nixpkgs/pull/515614.patch";
-                hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
-                derivationArgs.allowSubstitutes = false;
-              })
-            ];
-          };
-          nixpkgs =
-            (import "${nixpkgs-drv}/flake.nix").outputs {
-              self = nixpkgs;
-            }
-            // {
-              outPath = toString nixpkgs-drv;
-              _type = "flake";
+    flake-parts.lib.mkFlake { inputs = inputs0; } (
+      { withSystem, ... }: {
+        systems = [
+          "x86_64-darwin"
+          "aarch64-darwin"
+        ];
+        imports = [
+          inputs0.den.flakeModule
+        ];
+        perSystem =
+          {
+            system,
+            pkgs,
+            config,
+            lib,
+            ...
+          }:
+          let
+            pkgs0 = import inputs0.nixpkgs {
+              inherit system;
+              config.allowDeprecatedx86_64Darwin = true;
             };
-        in
-        {
-          _module.args.pkgs = import nixpkgs {
-            inherit system;
-            config.allowDeprecatedx86_64Darwin = true;
+            nixpkgs-drv = pkgs0.applyPatches {
+              name = "nixpkgs-patched";
+              src = inputs0.nixpkgs.outPath;
+              patches = with pkgs0; [
+                # possible to consider patches
+                # supertuxkart: updates for darwin and app experience - https://github.com/NixOS/nixpkgs/pull/520901.diff
+                # gimp3: fix Darwin build - https://github.com/NixOS/nixpkgs/pull/513484.diff
+                # lib.options: several small performance cleanups - https://github.com/NixOS/nixpkgs/pull/517802.diff
+                # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
+                # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
+                # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
+                (fetchpatch {
+                  name = "tuxguitar: fix launch on darwin when app bundle path contains space";
+                  url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
+                  hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
+                  name = "makeBinaryWrapper: fix passthru.extractCmd on darwin";
+                  url = "https://github.com/NixOS/nixpkgs/pull/483719.diff";
+                  hash = "sha256-7mcSsAboehuksmXeSiP13SFDItZ24icjeyehRZiOg8s=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
+                  name = "trayscale: add macOS application bundle";
+                  url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
+                  hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
+                  name = "github-copilot-cli: 1.0.26 -> 1.0.65";
+                  url = "https://github.com/NixOS/nixpkgs/pull/534884.patch";
+                  hash = "sha256-Lt43nR05fVXsFekFxVQPg8r6Y3AD5JiQpCAbDH6BPkw=";
+                })
+                (fetchpatch {
+                  name = "baobab: add desktopToDarwinBundle override";
+                  url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
+                  hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
+                  name = "vscode-with-extensions: respect macos package bundle's CFBundleExecutable value when generating the wrapper";
+                  url = "https://github.com/NixOS/nixpkgs/pull/507766.patch";
+                  hash = "sha256-aL8a0Q0nGtioTKmdmZGh9BUWE8pMxc/e0DjcbVFqh6Y=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
+                  name = "wrangler: fix build on darwin";
+                  url = "https://github.com/NixOS/nixpkgs/pull/536602.diff";
+                  hash = "sha256-nVyL5C11GnB9p8ABGL0whGfzj+Gq5aMvsUfl0dG/3Ss=";
+                })
+                # related to appstream : https://github.com/NixOS/nixpkgs/issues/514566
+                (fetchpatch {
+                  name = "libfyaml: fixed building issues";
+                  url = "https://github.com/NixOS/nixpkgs/pull/515614.patch";
+                  hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+              ];
+            };
+            nixpkgs =
+              (import "${nixpkgs-drv}/flake.nix").outputs {
+                self = nixpkgs;
+              }
+              // {
+                outPath = toString nixpkgs-drv;
+                _type = "flake";
+              };
+          in
+          {
+            _module.args.pkgs = import nixpkgs {
+              inherit system;
+              config.allowDeprecatedx86_64Darwin = true;
+            };
+            packages.nixpkgs-patched = nixpkgs;
           };
-          packages.nixpkgs-patched = nixpkgs;
-        };
 
-      flake =
-        let
-      the = (
-        system: withSystem system ({ config, pkgs, ... }:
-        let
-          nixpkgs = config.packages.nixpkgs-patched;
-          inputs-patched = builtins.mapAttrs (name: input:
-            if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs0.nixpkgs then
+        flake =
+          let
+            the = (
+              system:
+              withSystem system (
+                { config, pkgs, ... }:
+                let
+                  nixpkgs = config.packages.nixpkgs-patched;
+                  inputs-patched = builtins.mapAttrs (
+                    name: input:
+                    if input ? inputs && input.inputs ? nixpkgs && input.inputs.nixpkgs == inputs0.nixpkgs then
+                      let
+                        inputs' = input.inputs // {
+                          inherit nixpkgs;
+                        };
+                        patched-input =
+                          (import "${input.outPath}/flake.nix").outputs (inputs' // { self = patched-input; })
+                          // {
+                            outPath = input.outPath;
+                            inputs = inputs';
+                          };
+                      in
+                      patched-input
+                    else
+                      input
+                  ) inputs0;
+                  inherit (inputs-patched) darwin deploy-rs mio;
+
+                  pkgs = import nixpkgs {
+                    inherit system;
+                    config.allowDeprecatedx86_64Darwin = true;
+                  };
+                  # nixpkgs with deploy-rs overlay but force the nixpkgs package
+                  deployPkgs = import nixpkgs {
+                    inherit system;
+                    config.allowDeprecatedx86_64Darwin = true;
+                    overlays = [
+                      deploy-rs.overlays.default
+                      (self: super: {
+                        deploy-rs = {
+                          inherit (pkgs) deploy-rs;
+                          lib = super.deploy-rs.lib;
+                        };
+                      })
+                    ];
+                  };
+                in
+                {
+                  inputs = inputs-patched // {
+                    inherit nixpkgs;
+                    nixpkgs-unpatched = inputs0.nixpkgs;
+                    nixpkgs-patched = nixpkgs;
+                  };
+                  inherit
+                    darwin
+                    deployPkgs
+                    deploy-rs
+                    system
+                    ;
+                  inherit (inputs0) self;
+                }
+              )
+            );
+          in
+          {
+            # DETAILS REMOVED
+            darwinConfigurations."NixMac" =
+              with the "aarch64-darwin";
               let
-                inputs' = input.inputs // {
-                  inherit nixpkgs;
+                den = import ../den-config.nix { inherit inputs system; };
+                inherit (den.hosts.aarch64-darwin) NixMac;
+              in
+              darwin.lib.darwinSystem {
+                specialArgs = {
+                  inherit inputs system;
                 };
-                patched-input = (import "${input.outPath}/flake.nix").outputs (inputs' // { self = patched-input; }) // {
-                  outPath = input.outPath;
-                  inputs = inputs';
-                };
-              in patched-input
-            else input
-          ) inputs0;
-          inherit (inputs-patched) darwin deploy-rs mio;
-
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowDeprecatedx86_64Darwin = true;
+                modules = [
+                  NixMac.mainModule
+                  #./builder-uninstall.nix
+                  #./builder-firstinstall.nix
+                ];
+              };
+            darwinConfigurations.NixMac-2 = self.darwinConfigurations."NixMac";
           };
-          # nixpkgs with deploy-rs overlay but force the nixpkgs package
-          deployPkgs = import nixpkgs {
-            inherit system;
-            config.allowDeprecatedx86_64Darwin = true;
-            overlays = [
-              deploy-rs.overlays.default
-              (self: super: {
-                deploy-rs = {
-                  inherit (pkgs) deploy-rs;
-                  lib = super.deploy-rs.lib;
-                };
-              })
-            ];
-          };
-        in
-        {
-          inputs = inputs-patched // {
-            inherit nixpkgs;
-            nixpkgs-unpatched = inputs0.nixpkgs;
-            nixpkgs-patched = nixpkgs;
-          };
-          inherit
-            darwin
-            deployPkgs
-            deploy-rs
-            system
-            ;
-          inherit (inputs0) self;
-        }
-        )
-      );
-    in
-    {
-      # DETAILS REMOVED
-      darwinConfigurations."NixMac" =
-        with the "aarch64-darwin";
-        let
-          den = import ../den-config.nix { inherit inputs system; };
-          inherit (den.hosts.aarch64-darwin) NixMac;
-        in
-        darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit inputs system;
-          };
-          modules = [
-            NixMac.mainModule
-            #./builder-uninstall.nix
-            #./builder-firstinstall.nix
-          ];
-        };
-      darwinConfigurations.NixMac-2 = self.darwinConfigurations."NixMac";
-    };
-  });
+      }
+    );
 }
