@@ -14,7 +14,6 @@ let
         pear-desktop
         element-desktop
         qbittorrent-enhanced
-        progs.telegram
         progs.materialgram
       ];
       clean = [
@@ -26,8 +25,62 @@ let
     };
 in
 {
+  den.aspects.telegram = {
+    description = "Telegram";
+    darwin =
+      args@{ pkgs, ... }:
+      let
+        _include = args._include or import ../mac/include.nix args;
+      in
+      with _include;
+      {
+        environment.systemPackages = [
+          progs.telegram
+        ];
+      };
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        _include = args._include or (import ../nixos/include.nix args);
+      in
+      with _include;
+      {
+        environment.systemPackages = with pkgs; [
+          (hardenedPkg progs.telegram)
+        ];
+
+        programs.firejail.enable = true;
+        programs.firejail.wrappedBinaries = {
+          Telegram = {
+            executable = "${hardenedPkg progs.telegram}/bin/Telegram";
+            profile = "${pkgs.firejail}/etc/firejail/Telegram.profile";
+            extraArgs = [
+              # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+              "--dbus-user.talk=org.freedesktop.portal.Desktop"
+              "--ignore=noroot"
+            ];
+          };
+        };
+        # for opening web links:
+        environment.etc."firejail/Telegram.local".text = ''
+          dbus-user.talk org.freedesktop.portal.Desktop
+          dbus-user.talk org.freedesktop.portal.OpenURI
+          ignore noroot
+          whitelist /run/current-system
+          whitelist /run/wrappers
+          ignore private-bin
+        '';
+      };
+  };
   den.aspects.desktop-full = {
     description = "Full desktop packages, firejail, flatpak, and chromium";
+    includes = [ den.aspects.telegram ];
     nixos =
       args@{
         config,
@@ -266,15 +319,6 @@ in
               executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
               profile = ../nixos/wiliwili.profile;
             };
-            Telegram = {
-              executable = "${hardenedPkg progs.telegram}/bin/Telegram";
-              profile = "${pkgs.firejail}/etc/firejail/Telegram.profile";
-              extraArgs = [
-                # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
-                "--dbus-user.talk=org.freedesktop.portal.Desktop"
-                "--ignore=noroot"
-              ];
-            };
             materialgram = {
               executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
               profile = ../nixos/materialgram.profile;
@@ -310,14 +354,6 @@ in
         };
         # for opening web links:
         environment.etc."firejail/materialgram.local".text = ''
-          dbus-user.talk org.freedesktop.portal.Desktop
-          dbus-user.talk org.freedesktop.portal.OpenURI
-          ignore noroot
-          whitelist /run/current-system
-          whitelist /run/wrappers
-          ignore private-bin
-        '';
-        environment.etc."firejail/Telegram.local".text = ''
           dbus-user.talk org.freedesktop.portal.Desktop
           dbus-user.talk org.freedesktop.portal.OpenURI
           ignore noroot

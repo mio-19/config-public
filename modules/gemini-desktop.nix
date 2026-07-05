@@ -31,6 +31,7 @@
           (hardenedPkg gemini-desktop)
         ];
 
+        programs.firejail.enable = true;
         programs.firejail.wrappedBinaries = {
           gemini-desktop = {
             executable = "${hardenedPkg gemini-desktop}/bin/gemini-desktop";
