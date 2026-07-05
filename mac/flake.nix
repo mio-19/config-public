@@ -232,10 +232,22 @@
                       })
                     ];
                   };
-                  inputs1 = inputs0 // {
-                    darwin = inputs0.darwin // {
-                      outPath = toString darwin-drv;
-                    };
+                  inputs1 = inputs0 // rec {
+                    darwin =
+                      let
+                        inputs' = (
+                          inputs0
+                          // {
+                            inherit nixpkgs;
+                            self = darwin;
+                          }
+                        );
+                      in
+                      (import "${darwin-drv}/flake.nix").outputs inputs'
+                      // {
+                        inherit (inputs0.darwin) outPath sourceInfo;
+                        inputs = inputs';
+                      };
                   };
 
                   inputs-patched = builtins.mapAttrs (
