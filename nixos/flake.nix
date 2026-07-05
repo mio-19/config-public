@@ -535,66 +535,34 @@
             // {
               outPath = toString nixos-avf-drv;
             };
-          mio =
-            let
-              inputs' = inputs.mio.inputs // {
-                self = mio;
-                nixpkgs = nixpkgs;
-              };
-            in
-            (import "${inputs.mio}/flake.nix").outputs inputs'
+          inputs-patched =
+            builtins.mapAttrs (
+              name: input:
+              if
+                input ? inputs
+                && input.inputs ? nixpkgs
+                && input.inputs.nixpkgs == inputs.nixpkgs
+              then
+                let
+                  inputs' = input.inputs // {
+                    nixpkgs = nixpkgs;
+                  };
+                  patched-input =
+                    (import "${input.outPath}/flake.nix").outputs (inputs' // { self = patched-input; })
+                    // {
+                      outPath = input.outPath;
+                      inputs = inputs';
+                    };
+                in
+                patched-input
+              else
+                input
+            ) inputs
             // {
-              outPath = inputs.mio.outPath;
-              inputs = inputs';
+              nixpkgs-unpatched = inputs.nixpkgs;
+              nixpkgs-patched = nixpkgs;
+              inherit nixpkgs nixos-avf;
             };
-          nur =
-            let
-              inputs' = inputs.nur.inputs // {
-                self = nur;
-                nixpkgs = nixpkgs;
-              };
-            in
-            (import "${inputs.nur}/flake.nix").outputs inputs'
-            // {
-              outPath = inputs.nur.outPath;
-              inputs = inputs';
-            };
-          nix-gaming =
-            let
-              inputs' = inputs.nix-gaming.inputs // {
-                self = nix-gaming;
-                nixpkgs = nixpkgs;
-              };
-            in
-            (import "${inputs.nix-gaming}/flake.nix").outputs inputs'
-            // {
-              outPath = inputs.nix-gaming.outPath;
-              inputs = inputs';
-            };
-          llm-agents =
-            let
-              inputs' = inputs.llm-agents.inputs // {
-                self = llm-agents;
-                nixpkgs = nixpkgs;
-              };
-            in
-            (import "${inputs.llm-agents}/flake.nix").outputs inputs'
-            // {
-              outPath = inputs.llm-agents.outPath;
-              inputs = inputs';
-            };
-          inputs-patched = inputs // {
-            inherit
-              nixpkgs
-              nixos-avf
-              mio
-              nur
-              nix-gaming
-              llm-agents
-              ;
-            nixpkgs-unpatched = inputs.nixpkgs;
-            nixpkgs-patched = nixpkgs;
-          };
         in
         {
           _module.args.inputs-patched = inputs-patched;
