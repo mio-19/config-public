@@ -582,7 +582,6 @@
             #inherit (pkgs-pin6) koodo-reader;
             #inherit (pkgs-pin7) wrangler;
             #inherit (pkgs-pin3) ollama;
-            inherit (pkgs-pin4) thunderbird-esr zed-editor; # no binary cache
             inherit (pkgs-pin5) musescore-evolution;
           })
         ];
