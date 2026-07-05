@@ -245,7 +245,8 @@
                       in
                       (import "${darwin-drv}/flake.nix").outputs inputs'
                       // {
-                        inherit (inputs0.darwin) outPath sourceInfo;
+                        inherit (inputs0.darwin) sourceInfo;
+                        inherit (darwin-drv) outPath;
                         inputs = inputs';
                       };
                   };
