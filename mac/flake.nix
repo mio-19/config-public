@@ -271,7 +271,7 @@
                     else
                       input
                   ) inputs1;
-                  inherit (inputs-patched) darwin deploy-rs mio;
+                  inherit (inputs-patched) darwin deploy-rs;
                   # nixpkgs with deploy-rs overlay but force the nixpkgs package
                   deployPkgs = import nixpkgs {
                     inherit system;
