@@ -589,10 +589,13 @@
           ../users.nix
         ];
 
-        nix.settings.allowed-users = [
-          "@staff"
-          "@nixbld"
-        ];
+        # TODO: breaks activation. how to set it correctly?
+        /*
+          nix.settings.allowed-users = [
+            "@staff"
+            "@nixbld"
+          ];
+        */
 
         services.mac-app-util.enable = mac-app-util-enabled;
 
