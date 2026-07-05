@@ -25,7 +25,7 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update only top-level flake.lock
-        run: nix flake lock --update-input nixos
+        run: rm -f flake.lock; nix flake lock
 
       - name: Commit only top-level flake.lock
         uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
