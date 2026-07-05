@@ -248,6 +248,7 @@
                         inherit (inputs0.darwin) sourceInfo;
                         inherit (darwin-drv) outPath;
                         inputs = inputs';
+                        _type = "flake";
                       };
                   };
 
@@ -263,6 +264,7 @@
                           outPath = input.outPath;
                           inputs = inputs';
                           inherit (input) sourceInfo;
+                          _type = "flake";
                         };
                       in
                       patched-input
