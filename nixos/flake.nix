@@ -371,20 +371,19 @@
             # PR .patch URLs track branch head, so the hash changes when the PR is updated.
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
             patches = with pkgs; [
-              (fetchpatch {
-                name = "maven: provide default plugins per Maven version to buildMavenPackage";
-                url = "https://github.com/NixOS/nixpkgs/pull/527061.patch";
-                hash = "sha256-9J4T7fKFqh8FZh0cO8pRmPoMVsabJNKMNDQvNQd1WXY=";
-              })
+              # to consider:
+              # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               (fetchpatch {
                 name = "nixos/firefox: make variant librewolf";
                 url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
                 hash = "sha256-YC9rR2EwYFMzu9QPI6fqaydn4juFDU5bNI0VyGcTX3k=";
+                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "captive-browser: 0-unstable-2021-08-01 -> 0-unstable-2025-11-05";
                 url = "https://github.com/NixOS/nixpkgs/pull/538118.patch";
                 hash = "sha256-gHHuUitBfcwU83ejQcDmfRIq+ZcPRz15JiIYJokG7JQ=";
+                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "grub-module-keep-booted-system-entry-option.patch";
