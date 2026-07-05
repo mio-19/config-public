@@ -332,11 +332,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783247034,
-        "narHash": "sha256-DUZ2Clm3BV8pUM4gcrtawqZ9RaDWcxghZmFKMgNUFDY=",
+        "lastModified": 1783237682,
+        "narHash": "sha256-owfDbC+ghBmnS3RydDKbJFNXIB9VcRWr+qePaSrWtGU=",
         "ref": "refs/heads/main",
-        "rev": "3dcfbeefd62f09a114cce14753424ee98b35c597",
-        "revCount": 1979,
+        "rev": "44195521680deefde0231a9bd379cee0eebbead8",
+        "revCount": 1978,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -487,11 +487,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783247446,
-        "narHash": "sha256-W8q8xWh38QYb7cKy6v39LSOcZLrGAUXJb2/kZgz4ZH4=",
+        "lastModified": 1783246128,
+        "narHash": "sha256-x++896JTq28QPP12ibxEsAZTv5wrdpIu07wKIT4jOC0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3928fe35321661db98a870b4c6258ec683f832b5",
+        "rev": "ddced5e17a2adef9db4a710a8cb4c1c534e7b54a",
         "type": "github"
       },
       "original": {
