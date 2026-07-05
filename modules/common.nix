@@ -42,6 +42,7 @@
 
         nix = {
           settings = {
+            auto-optimise-store = true;
             lint-url-literals = "fatal";
             experimental-features = [
               "nix-command"
@@ -228,7 +229,6 @@
             # https://github.com/NixOS/nixpkgs/blob/b103220c1aabc21529a02a8b52106d451d10cef6/nixos/modules/profiles/hardened.nix#L38C1-L40C1
             allowed-users = [ "@users" ];
             #lazy-trees = true;
-            auto-optimise-store = true;
             trusted-users = [
               # "root" # root is already trusted by default
               "@wheel"
