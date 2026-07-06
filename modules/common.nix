@@ -618,12 +618,6 @@
           #gzip
           #gnused
 
-          # Only timeout from coreutils (no man pages available in nixpkgs coreutils)
-          (pkgs.runCommand "timeout-only" { } ''
-            mkdir -p $out/bin
-            ln -s ${pkgs.coreutils}/bin/timeout $out/bin/timeout
-          '')
-
           nixtamal
           nano
           lz4
@@ -655,6 +649,7 @@
           fresh-editor
           nix-output-monitor
           (singleBinary "top" procps)
+          (singleBinary "timeout" coreutils)
 
           moonlight-qt
           spin
