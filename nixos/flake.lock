@@ -1938,6 +1938,7 @@
       "original": {
         "owner": "drupol",
         "repo": "pkgs-by-name-for-flake-parts",
+        "rev": "7ba1cd4a9a72c9c6c272018a63f090f2c912a171",
         "type": "github"
       }
     },

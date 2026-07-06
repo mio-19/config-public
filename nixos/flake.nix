@@ -304,7 +304,8 @@
       inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
       inputs.flake-compat.follows = "flake-compat";
     };
-    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+    # pin niche inputs to avoid bad people taking over.
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts/7ba1cd4a9a72c9c6c272018a63f090f2c912a171";
     nix-webapps = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:TLATER/nix-webapps/1bb9ee8e3f428575c1c6898ae7af8d96416d696a";
