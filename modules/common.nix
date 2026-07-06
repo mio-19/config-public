@@ -626,7 +626,7 @@
           cachix
           fresh-editor
           nix-output-monitor
-          (singleBinary "top" uutils-procps)
+          #(singleBinary "top" uutils-procps)
           (singleBinary "timeout" coreutils)
 
           moonlight-qt
