@@ -228,7 +228,6 @@ in
             map cleanPkg (
               apps'.cleanX86
               ++ [
-
                 zotero # segfault with hardenedPkg on NixOS
               ]
             )
