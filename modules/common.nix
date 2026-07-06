@@ -584,7 +584,7 @@
             #inherit (pkgs-pin6) koodo-reader;
             #inherit (pkgs-pin7) wrangler;
             #inherit (pkgs-pin3) ollama;
-            inherit (pkgs-pin5) musescore-evolution;
+            #inherit (pkgs-pin5) musescore-evolution;
           })
         ];
         home-manager.sharedModules = [
