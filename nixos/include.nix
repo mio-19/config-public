@@ -285,6 +285,7 @@ let
                 cd ~/Documents/config/nixos
                 git pull --no-edit https://github.com/mio-19/config-public.git
               else
+                echo "[WARNING] ~/Documents/config-public does not exist" >&2
                 git pull --no-edit https://github.com/mio-19/config-public.git
                 nix flake update
                 git add flake.lock
@@ -311,6 +312,7 @@ let
               cd ~/Documents/config/nixos
               git pull --no-edit https://github.com/mio-19/config-public.git
             else
+              echo "[WARNING] ~/Documents/config-public does not exist" >&2
               git pull --no-edit https://github.com/mio-19/config-public.git
               nix flake update
               git add flake.lock
