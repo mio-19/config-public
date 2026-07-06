@@ -377,7 +377,7 @@
               (fetchurl {
                 name = "flyline: init at 1.3.0";
                 url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
-                hash = "sha256-B9Qr380jgOnipXKz6mKn2975kCG1qUQ6ptQHNwXRpIM=";
+                hash = "sha256-OGXTfxxKG2qwsslVzCzmMNu/+sGgpCLcfoVjndvdAss=";
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
