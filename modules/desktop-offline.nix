@@ -61,7 +61,7 @@
             imhex
             mousam # always buggy
             #emote # no we already have plasma-emojier with meta+.
-            pkgs-pin4.nur.repos.mio.altus
+            nur.repos.mio.altus
             wiliwili
             wxhexeditor
             jabref
