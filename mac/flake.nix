@@ -148,9 +148,16 @@
                 # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
                 # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
                 (fetchpatch {
+                  name = "uutils-procps: fix for darwin";
+                  url = "https://github.com/NixOS/nixpkgs/pull/538839.patch";
+                  hash = "sha256-JqiXx+I2c1Gdet60UmorRlLIghteEVXmMZBVyjGYLmA=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
                   name = "musescore-evolution: fix darwin build";
                   url = "https://github.com/NixOS/nixpkgs/pull/538827.patch";
                   hash = "sha256-q3V+g9BB1y9U3kp2HbwYa0XD/sH5zRPfBc0xwNM7WpY=";
+                  derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
                   name = "tuxguitar: fix launch on darwin when app bundle path contains space";
