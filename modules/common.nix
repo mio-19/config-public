@@ -654,6 +654,7 @@
           cachix
           fresh-editor
           nix-output-monitor
+          (singleBinary "top" procps)
 
           moonlight-qt
           spin
