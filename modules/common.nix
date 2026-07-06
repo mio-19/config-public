@@ -558,11 +558,7 @@
           (final: prev: {
             #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
             #nix-output-monitor = inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
-            #inherit (pkgs-pin5) zotero;
-            #inherit (pkgs-pin6) koodo-reader;
-            #inherit (pkgs-pin7) wrangler;
-            #inherit (pkgs-pin3) ollama;
-            #inherit (pkgs-pin5) musescore-evolution;
+            inherit (pkgs-stable) zotero;
           })
         ];
         home-manager.sharedModules = [

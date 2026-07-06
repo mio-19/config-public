@@ -432,6 +432,19 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1783284305,
+        "narHash": "sha256-lYEGIm7OhJn6nc9IQlf3DhdC/WheovXK+m2fW3Gjsq8=",
+        "rev": "846e84d25c3d00c71a4ff8ffedbf08572eb7aebb",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/26.05-darwin/nixpkgs-darwin-26.05pre1008604.846e84d25c3d/nixexprs.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://nixos.org/channels/nixpkgs-26.05-darwin/nixexprs.tar.xz"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1783247743,
@@ -487,6 +500,7 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-pin2": "nixpkgs-pin2",
+        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix"
