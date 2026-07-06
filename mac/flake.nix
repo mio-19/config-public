@@ -196,12 +196,6 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
-                  name = "wrangler: fix build on darwin";
-                  url = "https://github.com/NixOS/nixpkgs/pull/536602.diff";
-                  hash = "sha256-nVyL5C11GnB9p8ABGL0whGfzj+Gq5aMvsUfl0dG/3Ss=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-                (fetchpatch {
                   name = "vscode-with-extensions: respect macos package bundle's CFBundleExecutable value when generating the wrapper";
                   url = "https://github.com/NixOS/nixpkgs/pull/507766.patch";
                   hash = "sha256-aL8a0Q0nGtioTKmdmZGh9BUWE8pMxc/e0DjcbVFqh6Y=";
