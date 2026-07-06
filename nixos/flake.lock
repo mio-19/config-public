@@ -2575,17 +2575,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1782818352,
-        "narHash": "sha256-oZ3dnpF8VQXLxRRfT9NBVRAUMJsKWiobPxqAAuGplnc=",
+        "lastModified": 1783009133,
+        "narHash": "sha256-Non+frT3WG0TN60zCq63m8+d7yNmCCMaI363kZaDmPM=",
         "owner": "vicinaehq",
         "repo": "extensions",
-        "rev": "47da7fa4e75ed4cf17b5f444d9cd8e10be213b5c",
+        "rev": "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f",
         "type": "github"
       },
       "original": {
         "owner": "vicinaehq",
         "repo": "extensions",
-        "rev": "47da7fa4e75ed4cf17b5f444d9cd8e10be213b5c",
         "type": "github"
       }
     },
