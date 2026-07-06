@@ -301,7 +301,7 @@ customize
       p: builtins.match ".*cursor.*" (lib.getName p) != null
     ) cfg.environment.systemPackages;
 
-  # https://github.com/NixOS/nixpkgs/blob/d407951447dcd00442e97087bf374aad70c04cea/pkgs/top-level/unixtools.nix#L31-L70
+  # based on https://github.com/NixOS/nixpkgs/blob/d407951447dcd00442e97087bf374aad70c04cea/pkgs/top-level/unixtools.nix#L31-L70 singleBinary
   singleBinary =
     let
       inherit (pkgs) stdenv runCommand;
@@ -311,9 +311,8 @@ customize
         platforms
         ;
     in
-    cmd: providers:
+    cmd: provider:
     let
-      provider = providers.${stdenv.hostPlatform.parsed.kernel.name} or providers.linux;
       bin = "${getBin provider}/bin/${cmd}";
       manDir = "${getOutput "man" provider}/share/man";
     in
