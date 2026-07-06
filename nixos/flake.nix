@@ -374,6 +374,12 @@
             patches = with pkgs; [
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
+              (fetchurl {
+                name = "flyline: init at 1.3.0";
+                url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
+                hash = "sha256-B9Qr380jgOnipXKz6mKn2975kCG1qUQ6ptQHNwXRpIM=";
+                derivationArgs.allowSubstitutes = false;
+              })
               (fetchpatch {
                 name = "nixos/firefox: make variant librewolf";
                 url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
