@@ -26,6 +26,7 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+            rustdesk-flutter
             isabelle
             (fixTauriPkg rclone-ui)
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rclone-browser
