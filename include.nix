@@ -300,4 +300,51 @@ customize
     builtins.any (
       p: builtins.match ".*cursor.*" (lib.getName p) != null
     ) cfg.environment.systemPackages;
+
+  # https://github.com/NixOS/nixpkgs/blob/d407951447dcd00442e97087bf374aad70c04cea/pkgs/top-level/unixtools.nix#L31-L70
+  singleBinary =
+    let
+      inherit (pkgs) stdenv runCommand;
+      inherit (lib)
+        getBin
+        getOutput
+        platforms
+        ;
+    in
+    cmd: providers:
+    let
+      provider = providers.${stdenv.hostPlatform.parsed.kernel.name} or providers.linux;
+      bin = "${getBin provider}/bin/${cmd}";
+      manDir = "${getOutput "man" provider}/share/man";
+    in
+    runCommand "${cmd}-${provider.name}"
+      {
+        meta = {
+          mainProgram = cmd;
+          priority = 10;
+          platforms = platforms.${stdenv.hostPlatform.parsed.kernel.name} or platforms.all;
+        };
+        inherit (provider) version pname;
+        passthru = {
+          inherit provider;
+        };
+        preferLocalBuild = true;
+      }
+      ''
+        if ! [ -x ${bin} ]; then
+          echo Cannot find command ${cmd}
+          exit 1
+        fi
+
+        mkdir -p $out/bin
+        ln -s ${bin} $out/bin/${cmd}
+
+        if [ -d ${manDir} ]; then
+          manpages=($(cd ${manDir} ; find . -name '${cmd}*'))
+          for manpage in "''${manpages[@]}"; do
+            mkdir -p $out/share/man/$(dirname $manpage)
+            ln -s ${manDir}/$manpage $out/share/man/$manpage
+          done
+        fi
+      '';
 }
