@@ -20,7 +20,6 @@ let
         progs.librewolf' # progs.librewolf'_for_firejail
       ];
       cleanX86 = with pkgs; [
-        zotero # segfault with hardenedPkg on NixOS
       ];
     };
 in
@@ -225,7 +224,15 @@ in
           )
           ++ (map hardenedPkg apps'.hardened)
           ++ (map cleanPkg apps'.clean)
-          ++ lib.optionals pkgs.stdenv.isx86_64 (map cleanPkg apps'.cleanX86);
+          ++ lib.optionals pkgs.stdenv.isx86_64 (
+            map cleanPkg (
+              apps'.cleanX86
+              ++ [
+
+                zotero # segfault with hardenedPkg on NixOS
+              ]
+            )
+          );
         programs.localsend.package = hardenedPkg pkgs.localsend;
 
         programs.firejail.enable = true;
@@ -460,6 +467,8 @@ in
       in
       {
         environment.systemPackages = apps.hardened ++ apps.clean ++ apps.cleanX86;
+        # version from nixpkgs does not work
+        homebrew.casks = [ "zotero" ];
       };
   };
 }
