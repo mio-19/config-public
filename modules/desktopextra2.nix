@@ -62,6 +62,7 @@
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
             # unfree:
             inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
+            bambu-studio
           ])
           ++ (map cleanPkg [
             #firefox_nightly
