@@ -27,6 +27,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "bambu-studio"
       "aapt"
       "binaryninja-free"
       "corefonts"
