@@ -9,6 +9,7 @@
     # https://github.com/NixOS/nixpkgs/pull/449689
     #nixpkgs-staging.url = "github:NixOS/nixpkgs/staging";
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-stable.url = "https://nixos.org/channels/nixpkgs-26.05-darwin/nixexprs.tar.xz"; # for /etc/nix/registry.json
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-unstable.url = "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz";
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/e1c1b84752fb"; # https://hydra.nixos.org/job/nixpkgs/unstable/unstable#tabs-constituents
@@ -60,7 +61,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    #nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     #nixpkgs-2505.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     #emacs-overlay = {
     #  url = "github:nix-community/emacs-overlay";

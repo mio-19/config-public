@@ -10,6 +10,7 @@
     nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/8dc49b8b206a683d1f6605e0fd993c0f5d49c98d"; # a commit from nixos-unstable-small
+    nixpkgs-stable.url = "https://nixos.org/channels/nixos-26.05/nixexprs.tar.xz"; # for /etc/nix/registry.json
     nixpkgs-unstable.url = "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz";
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/58528b66f0a6d8776c77167abafbccd6d0fa147c"; # https://hydra.nixos.org/job/nixos/unstable/tested#tabs-constituents
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
