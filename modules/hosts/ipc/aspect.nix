@@ -19,7 +19,7 @@
       den.aspects.cachy_kernel
       den.aspects.desktop-baremetal-kde
       #(den.aspects.desktop-specialisation)
-      den.aspects.zswap
+      den.aspects.zram
       den.aspects.alwayson
       den.aspects.extra
       den.aspects.extra2

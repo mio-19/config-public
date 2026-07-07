@@ -15,4 +15,19 @@
         ];
       };
   };
+  den.aspects.zram = {
+    description = "zram kernel params";
+    nixos =
+      { config, ... }:
+      {
+        zramSwap.enable = true;
+
+        assertions = [
+          {
+            assertion = !(builtins.elem "zswap.enabled=1" config.boot.kernelParams);
+            message = "zramSwap is enabled, but zswap is enabled in boot.kernelParams. Using both simultaneously causes redundant compression.";
+          }
+        ];
+      };
+  };
 }
