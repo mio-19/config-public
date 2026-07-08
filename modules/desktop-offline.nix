@@ -28,6 +28,7 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+            jan
             okteta
             dune3d
             lingot
