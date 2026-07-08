@@ -326,7 +326,7 @@ let
         "kicad"
         "kdenlive"
         "krita"
-        # "gimp" # seems broken?
+        "gimp"
         "freecad"
         "inkscape"
       ];
