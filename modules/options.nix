@@ -92,6 +92,11 @@ let
           default = config.services.power-profiles-daemon.enable;
           description = "p";
         };
+        persistent_kde = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "p";
+        };
         adhocNetworks = lib.mkOption {
           type = lib.types.bool;
           default = nixosInclude.boot-to-steam;

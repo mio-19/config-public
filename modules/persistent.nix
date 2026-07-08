@@ -63,9 +63,15 @@
           ++ lib.optionals config.virtualisation.docker.enable [
             "/var/lib/docker"
           ]
-          ++ lib.optionals config.services.displayManager.sddm.enable [
-            #"/var/lib/sddm/.cache" # maybe faster boot time?
+          ++ lib.optionals (config.persistent_kde && config.services.displayManager.sddm.enable) [
+            "/var/lib/sddm"
           ]
+          ++
+            lib.optionals (config.persistent_kde && config.services.displayManager.plasma-login-manager.enable)
+              [
+                # https://github.com/NixOS/nixpkgs/pull/479797#issuecomment-3786469834
+                "/var/lib/plasmalogin"
+              ]
           ++ lib.optionals config.persistent_power-profiles-daemon [
             "/var/lib/power-profiles-daemon"
           ]
@@ -90,16 +96,20 @@
           ++ lib.optionals (config.services.ollama.enable) [
             config.services.ollama.home
           ];
-          files = [
-            # also see https://github.com/zincentimeter/nix-conf/blob/7f6b378da1c4e4bfbc6532b65d9344e27c432770/system/persist/system.nix#L139
-            "/etc/adjtime"
-            #"/etc/machine-id" # let's use systemd.machine_id=firmware instead # https://github.com/nix-community/preservation/issues/6
-            #"/etc/zfs/zpool.cache"
-            "/etc/ssh/ssh_host_rsa_key"
-            "/etc/ssh/ssh_host_rsa_key.pub"
-            "/etc/ssh/ssh_host_ed25519_key"
-            "/etc/ssh/ssh_host_ed25519_key.pub"
-          ];
+          files =
+            lib.optionals (config.persistent_kde && config.services.displayManager.sddm.enable) [
+              #"/var/lib/sddm/state.conf" # last login user for sddm
+            ]
+            ++ [
+              # also see https://github.com/zincentimeter/nix-conf/blob/7f6b378da1c4e4bfbc6532b65d9344e27c432770/system/persist/system.nix#L139
+              "/etc/adjtime"
+              #"/etc/machine-id" # let's use systemd.machine_id=firmware instead # https://github.com/nix-community/preservation/issues/6
+              #"/etc/zfs/zpool.cache"
+              "/etc/ssh/ssh_host_rsa_key"
+              "/etc/ssh/ssh_host_rsa_key.pub"
+              "/etc/ssh/ssh_host_ed25519_key"
+              "/etc/ssh/ssh_host_ed25519_key.pub"
+            ];
         };
 
         # https://github.com/systemd/systemd/issues/39438

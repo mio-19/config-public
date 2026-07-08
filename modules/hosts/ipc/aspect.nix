@@ -31,7 +31,6 @@
       den.aspects.cuda
       den.aspects.games
       #(den.aspects.games-extra)
-      den.aspects.persistentkde
       den.aspects.scx
       den.aspects.printing-sharing
       den.aspects.harmonia_lan_only_not_public_ip

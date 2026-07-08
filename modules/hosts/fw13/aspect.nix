@@ -30,7 +30,6 @@
       den.aspects.desktop-offline
       #(den.aspects.genai) # too much time to compile
       den.aspects.devcommand
-      den.aspects.persistentkde
       den.aspects.scx
       den.aspects.emulated-arm
       den.aspects.harmonia_lan_only_not_public_ip
