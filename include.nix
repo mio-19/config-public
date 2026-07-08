@@ -139,6 +139,7 @@ customize
         "${inputs.nixpkgs}/pkgs/by-name/pi/pinta/deps.json"
       ];
       allowed = [
+        "Jan"
         "mill"
         "tensorboard"
         "motrix-next"
