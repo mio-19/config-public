@@ -87,16 +87,6 @@ let
         wine64_package = lib.mkPackageOption pkgs [ "wineWow64Packages" "full" ] {
           extraDescription = "The wine 32/64 package to use.";
         };
-        persistent_power-profiles-daemon = lib.mkOption {
-          type = lib.types.bool;
-          default = config.services.power-profiles-daemon.enable;
-          description = "p";
-        };
-        persistent_kde = lib.mkOption {
-          type = lib.types.bool;
-          default = true;
-          description = "p";
-        };
         adhocNetworks = lib.mkOption {
           type = lib.types.bool;
           default = nixosInclude.boot-to-steam;
