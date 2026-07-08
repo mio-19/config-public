@@ -94,11 +94,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1783490200,
-        "narHash": "sha256-snk7CAm4/6ieijPtzT9p8NPARonN/o/vI6Gp42MJGqI=",
+        "lastModified": 1783518728,
+        "narHash": "sha256-1bsu5QvYGE4uyeAKmvU2B3/NpibZtX1sqFMfjdjY0tg=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "c43907441beac3a568ab5cb9113f35d56764e4a4",
+        "rev": "fc42e1f9ac04681807b5a1817a64bd23da11657b",
         "type": "github"
       },
       "original": {
@@ -631,10 +631,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783479733,
-        "narHash": "sha256-d/JatqgG+Pmo+IuCTZfnrEAPWU3fdha48GQeXuFO+bE=",
+        "lastModified": 1783525612,
+        "narHash": "sha256-OEFYdbtG6Qy04KGteknnrx15Uo2XXkYVuUvBvFNEn+Q=",
         "ref": "master",
-        "rev": "cee3f0e7fec85d80c149c7afc29926747f7bd3c2",
+        "rev": "1aac8895fea6fcabc6a0184c63a80fb2f99fd208",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager.git"
@@ -790,11 +790,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1783492272,
-        "narHash": "sha256-4APwmEAAxW6MQAJgblXemdd0U5TkUa0w77/LpsPP8Po=",
+        "lastModified": 1783541475,
+        "narHash": "sha256-o0KHDxBBOrz0LQS+ZfBfOJk7GCli8gsHIizrmuyDlRk=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "e0319c8c10dffb2dc564417ce49baba49b149b33",
+        "rev": "4af50be28097549f83081362c0d0bd5d9e16736a",
         "type": "github"
       },
       "original": {
@@ -858,10 +858,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783501717,
-        "narHash": "sha256-QezTHl/5e9k4YOofWLQuT4PBBp1bABS4zVs9uHAKYoI=",
+        "lastModified": 1783506753,
+        "narHash": "sha256-aM4tRColQkyMALD8ire0sLMAVBNCcuYTQ+Cs55LhlYY=",
         "ref": "refs/heads/main",
-        "rev": "0bc613a5dd6a2102a450485ebcb51330303a588d",
+        "rev": "5848e7fb8c9e5b10cca17341e5c3e234ee781400",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -1172,11 +1172,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783307699,
-        "narHash": "sha256-/nIA82c6GX01Q7HKOCr6LHLzht4daKUK05x0azNeQt0=",
+        "lastModified": 1783545391,
+        "narHash": "sha256-GRYKAzbO64XEZGVpQEoHTq6eYJSB+yiIXCb/9zy4uck=",
         "owner": "cynicsketch",
         "repo": "nix-mineral",
-        "rev": "3393a517a85993fa843d3f28eccf81faade82a96",
+        "rev": "0b9fbe92b6a3fe95c57f218932862cea3b6a8cf4",
         "type": "github"
       },
       "original": {
@@ -1355,11 +1355,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1783459840,
-        "narHash": "sha256-ukamDz+9oqtPEGKeUOxlSzUhxmZBv/u73LQ+RZThJbg=",
+        "lastModified": 1783507948,
+        "narHash": "sha256-cd/ODqUKpaWhHPyElSKtEMkqsxL+Nv9QZnY70ls0JYs=",
         "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "16143c4b8989e86f830aea98e7fbbb258be177a1",
+        "rev": "f92da7c2525ff41ae861034cb63fbf9aaea1dac4",
         "type": "github"
       },
       "original": {
@@ -1820,10 +1820,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783501991,
-        "narHash": "sha256-q9AtCDNitNT/O6I9QimIzSpperufwCSlpqS3LwDaIKE=",
+        "lastModified": 1783547334,
+        "narHash": "sha256-UIJHelTPYCpBI/vU+WBgcH3bOOz3ePgj+uLvgXFqHk4=",
         "ref": "refs/heads/main",
-        "rev": "6499999138e8d685e24fa4327158feb8c1eefb39",
+        "rev": "218005e804d799399de165d64d98ea5d53af88f9",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -1949,10 +1949,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783455223,
-        "narHash": "sha256-FnUhS+B9gnLDmy51uAupFq4ewiQPXh5vZbyKhcWz3mU=",
+        "lastModified": 1783534709,
+        "narHash": "sha256-XyWsinAFbRgA+p6oAJ5ejdT43aCmepNpKGkU7UKEMps=",
         "ref": "refs/heads/trunk",
-        "rev": "1663116ddd23ba7150c2deb3c05ddeb30904bb1f",
+        "rev": "a8c78043e8d8601a41c140ce4e2758121bf947e7",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/plasma-manager.git"
@@ -2305,11 +2305,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783172102,
-        "narHash": "sha256-vr4MslGuIQPOLqmbQOn/qq9+dg8H2txPOp8lC9ZtkRw=",
+        "lastModified": 1783524518,
+        "narHash": "sha256-m3ZPCTFYECf9YseXn90cEyuEQvv2shsdMlyTlvyjm4k=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "cabcba3736742db4a986a769d99e5a4811a477ca",
+        "rev": "bf155366bfd70eeadca9d6a6c4b8c728e23f7048",
         "type": "github"
       },
       "original": {
@@ -2545,11 +2545,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783456697,
-        "narHash": "sha256-SJP1CkpkGxsuJZQKxaDPLZMUT1HZmyxqR42nCIHfPLM=",
+        "lastModified": 1783508811,
+        "narHash": "sha256-NXSdWTM19oz9Xzsh7Yup6y/z8g+VIk2cK5JIqcVNu2w=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "b96d953b74c1e1a250d3282f3857c9935aeca3f2",
+        "rev": "f8ba9ab22132c0f358b99d057ffa5307ed8845c4",
         "type": "github"
       },
       "original": {
