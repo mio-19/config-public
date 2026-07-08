@@ -66,7 +66,7 @@
           ++ lib.optionals config.services.displayManager.sddm.enable [
             #"/var/lib/sddm/.cache" # maybe faster boot time?
           ]
-          ++ lib.optionals config.services.power-profiles-daemon.enable [
+          ++ lib.optionals config.persistent_power-profiles-daemon [
             "/var/lib/power-profiles-daemon"
           ]
           ++ lib.optionals config.services.chrony.enable [
