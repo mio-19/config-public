@@ -65,7 +65,6 @@
         ],
         "systems": [
           "nixos",
-          "flake-utils",
           "systems"
         ]
       },
@@ -731,7 +730,10 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_7"
+        "systems": [
+          "nixos",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1731533236,
@@ -749,7 +751,7 @@
     },
     "flake-utils_3": {
       "inputs": {
-        "systems": "systems_9"
+        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1152,7 +1154,7 @@
           "nixos",
           "nixpkgs"
         ],
-        "systems": "systems_8",
+        "systems": "systems_7",
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
@@ -1832,7 +1834,6 @@
         ],
         "systems": [
           "nixos",
-          "flake-utils",
           "systems"
         ]
       },
@@ -1942,6 +1943,7 @@
         "selector4nix": "selector4nix_2",
         "stable-diffusion-webui-nix": "stable-diffusion-webui-nix",
         "steam-config-nix": "steam-config-nix",
+        "systems": "systems_9",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
         "vscode-server": "vscode-server",
@@ -3099,7 +3101,6 @@
         ],
         "systems": [
           "nixos",
-          "flake-utils",
           "systems"
         ]
       },
@@ -3240,16 +3241,16 @@
     },
     "systems_9": {
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "lastModified": 1776166891,
+        "narHash": "sha256-bI8yrEGjrohR5hkQox7UrxDH7XqrYMwI8SL/LrJ1+S8=",
         "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "repo": "triplet",
+        "rev": "6de7bc09397911ce03636afbcf6118745ab2cda0",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default",
+        "repo": "triplet",
         "type": "github"
       }
     },
@@ -3406,7 +3407,6 @@
         ],
         "systems": [
           "nixos",
-          "flake-utils",
           "systems"
         ]
       },
@@ -3433,7 +3433,6 @@
         ],
         "systems": [
           "nixos",
-          "flake-utils",
           "systems"
         ],
         "vicinae": [
