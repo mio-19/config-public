@@ -25,6 +25,31 @@ upper
     ];
   };
 
+  nixpkgs-pin3' =
+    let
+      nixpkgs-drv = pkgs.applyPatches {
+        name = "nixpkgs-patched";
+        src = inputs.nixpkgs-pin3;
+        patches = with pkgs; [
+          (fetchpatch {
+            name = "musescore-evolution: fix darwin build";
+            url = "https://github.com/NixOS/nixpkgs/pull/538827.patch";
+            hash = "sha256-q3V+g9BB1y9U3kp2HbwYa0XD/sH5zRPfBc0xwNM7WpY=";
+            derivationArgs.allowSubstitutes = false;
+          })
+        ];
+      };
+      nixpkgs =
+        (import "${nixpkgs-drv}/flake.nix").outputs {
+          self = nixpkgs;
+        }
+        // {
+          outPath = toString nixpkgs-drv;
+          _type = "flake";
+        };
+    in
+    nixpkgs;
+
   pkgs-pin = import inputs.nixpkgs-pin {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
@@ -39,7 +64,7 @@ upper
       inputs.nur.overlays.default
     ];
   };
-  pkgs-pin3 = import inputs.nixpkgs-pin3 {
+  pkgs-pin3 = import nixpkgs-pin3' {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
