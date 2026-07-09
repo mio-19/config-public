@@ -40,6 +40,8 @@ with _include;
 
   programs.wireguird.enable = true;
 
+  persistent_power-profiles-daemon = false;
+
   #virtualisation.virtualbox.host.enable = true; # once stuck on boot
 
   home-manager.sharedModules = [
