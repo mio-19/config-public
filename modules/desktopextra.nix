@@ -139,11 +139,15 @@ in
     # (sharedApps above). The firejail/wireshark and other Linux-only bits stay in
     # the nixos branch.
     darwin =
-      { inputs, pkgs, ... }:
+      { inputs, pkgs, ... }@args:
+      let
+        _include = args._include or import ../mac/include.nix args;
+      in
+      with _include;
       {
         environment.systemPackages = sharedApps { inherit pkgs inputs; } ++ [
-          pkgs.nur.repos.mio.musescore-alex
-          pkgs.musescore-evolution
+          pkgs-pin3.nur.repos.mio.musescore-alex
+          pkgs-pin3.musescore-evolution
         ];
       };
   };
