@@ -93,11 +93,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1783572878,
-        "narHash": "sha256-WUeKw18yksd4qErQjGtoUfZPu1Gfed3Q26a9Mu/+B5c=",
+        "lastModified": 1783573666,
+        "narHash": "sha256-/In60GDdyL4y8VvsbYCGsPOFy4KQseL0xhUOPslACvI=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "7b754bf5a27fda97e3d7fe798eef90eec4791de6",
+        "rev": "7c8933877f89bea73caf2ed421cff584b50620fb",
         "type": "github"
       },
       "original": {
@@ -859,10 +859,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783571277,
-        "narHash": "sha256-YnszRkzN1QRn1zpV4oUFnp6QDc69Q0htI8V2TYZ45lE=",
+        "lastModified": 1783575573,
+        "narHash": "sha256-XnRcHh1tmIZCW7eP3tGO3GcYLAlhonSiTeLDv91meGA=",
         "ref": "refs/heads/main",
-        "rev": "0c5e7f79f85a25bbdb5f7ceb0fae3c6a67fa0c5e",
+        "rev": "a2a7fba0a57418089f6bbd69e744c9392c7e8a80",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -1334,11 +1334,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783447016,
-        "narHash": "sha256-aRmuxRBi3/p9AdGMIxeU9hV0k3MBos7x1IPvurQfvZc=",
+        "lastModified": 1783573766,
+        "narHash": "sha256-BrDJuIYt+vDXihCsvxs52MDD7a5+IZgA2F8qLeNJQ0g=",
         "owner": "nixified-ai",
         "repo": "flake",
-        "rev": "feab957537f3bf67aa92d0f67268135e0cb8078d",
+        "rev": "5af1c09e8adea4cbb3bc62e59ba4378257f7ff08",
         "type": "github"
       },
       "original": {
@@ -1823,10 +1823,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783571798,
-        "narHash": "sha256-h62W7LeNbtNDAgLFfGPjbWk2b/nv12eS4uUf3maZAqE=",
+        "lastModified": 1783575687,
+        "narHash": "sha256-bh9bZsQ0HhvbUynE90XSbVmYOSRExVY7/IcYrLYW+HM=",
         "ref": "refs/heads/main",
-        "rev": "aa834a44b920fb8f7eb1aa6f1879dea409e70509",
+        "rev": "3e2bf5fe8eaf5687ddf20840f16cecfdbea27d45",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -1952,10 +1952,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783534709,
-        "narHash": "sha256-XyWsinAFbRgA+p6oAJ5ejdT43aCmepNpKGkU7UKEMps=",
+        "lastModified": 1783574839,
+        "narHash": "sha256-ICof1tV4/9XheBLBGf7dhMhfMq4dOs1zwTHrr7zGFlA=",
         "ref": "refs/heads/trunk",
-        "rev": "a8c78043e8d8601a41c140ce4e2758121bf947e7",
+        "rev": "c551f0687658e4bb699cfff6015436ad7ee57a0d",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/plasma-manager.git"
