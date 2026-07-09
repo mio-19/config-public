@@ -10,7 +10,7 @@ let
     [
       downkyicore # nur.repos.mio.downkyicore
       musescore-evolution
-      nur.repos.mio.musescore-alex
+      pkgs-pin2.nur.repos.mio.musescore-alex
       ghidra
       blender
       jetbrains.gateway
