@@ -45,6 +45,8 @@ with _include;
     "vm.swappiness" = lib.mkForce 1;
   };
 
+  persistent_kde = false;
+
   users.mutableUsers = false;
   users.users.root = {
     shell = pkgs.fish;
