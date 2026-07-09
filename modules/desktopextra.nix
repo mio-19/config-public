@@ -59,7 +59,7 @@ in
             #nemo
             #qcm
             teams-for-linux
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.waveterm
+            pkgs-pin2.nur.repos.mio.waveterm
             pianotrans
             # binaryNativeCode:
             spotube
