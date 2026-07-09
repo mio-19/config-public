@@ -68,7 +68,11 @@
       inputs.home-manager.follows = "home-manager";
     };
     #chaotic.url = "git+https://github.com/mio-19/nyx-loner.git";
-    flake-utils.url = "github:numtide/flake-utils";
+    systems.url = "github:nix-systems/triplet";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
     rust-fp = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:ChocolateLoverRaj/rust-fp/2d0b547e8800eea66d06fb52ed946f52cab30e37";
@@ -226,13 +230,13 @@
       #url = "git+https://github.com/vicinaehq/vicinae.git?shallow=1";
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "flake-utils/systems";
+      inputs.systems.follows = "systems";
     };
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
       inputs.vicinae.follows = "vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "flake-utils/systems";
+      inputs.systems.follows = "systems";
     };
     #ucodenix.url = "github:e-tho/ucodenix";
     #noctalia = {
@@ -244,12 +248,12 @@
       url = "github:different-name/steam-config-nix/7b8021b2739733c547e2fe02739e6b8452813aa7";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.systems.follows = "flake-utils/systems";
+      inputs.systems.follows = "systems";
     };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.blueprint.inputs.systems.follows = "flake-utils/systems";
+      inputs.blueprint.inputs.systems.follows = "systems";
     };
     /*
       nurl = {
@@ -312,7 +316,7 @@
       url = "github:TLATER/nix-webapps/1bb9ee8e3f428575c1c6898ae7af8d96416d696a";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "flake-utils/systems";
+      inputs.systems.follows = "systems";
       inputs.pkgs-by-name-for-flake-parts.follows = "pkgs-by-name-for-flake-parts";
     };
     # https://github.com/mwlaboratories/phoneputer/blob/13070a74737bd184f4814c056571862f80036c5b/flake.nix#L11
