@@ -140,9 +140,9 @@ with _include;
   ]);
 
   # https://discourse.nixos.org/t/globalprotect-vpn/24014/5
-  networking.networkmanager.plugins = with pkgs; [
-    networkmanager-openconnect
-  ];
+  #networking.networkmanager.plugins = with pkgs; [
+  #  networkmanager-openconnect
+  #];
 
   #services.blueman.enable = true;
   hardware.bluetooth = {
