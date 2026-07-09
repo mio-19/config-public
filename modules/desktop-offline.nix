@@ -92,7 +92,7 @@
           ])
           ++ [
             # breaks with wrapper
-            nur.repos.mio.android-translation-layer
+            android-translation-layer
           ]
           ++ lib.optionals pkgs.stdenv.isx86_64 (
             map hardenedPkg [
