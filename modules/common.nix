@@ -553,6 +553,7 @@
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
+            inherit (pkgs-pin3) starship;
           })
         ];
         home-manager.sharedModules = [
