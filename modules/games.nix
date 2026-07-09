@@ -135,13 +135,13 @@
           dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
           localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
           extraCompatPackages = [
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v3
+            pkgs-chaotic.proton-cachyos_x86_64_v3
             pkgs.steam-play-none
-            pkgs.nur.repos.mio.proton-ge-custom
+            pkgs-chaotic.proton-ge-custom
             #pkgs.luxtorpeda
           ]
           ++ lib.optionals atleastV4 [
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
+            pkgs-chaotic.proton-cachyos_x86_64_v4
           ];
           extraPackages =
             with pkgs;
