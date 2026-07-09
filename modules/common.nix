@@ -170,7 +170,6 @@
               mio = inputs.mio.packages."${system}";
             in
             {
-              #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
               #grub2 = final.nur.repos.mio.grub2;
               inherit (mio) wireguird darling grub2;
               sniffnet = mio.sniffnet-patched;
