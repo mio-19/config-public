@@ -11,8 +11,8 @@
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
     nixpkgs-stable.url = "https://nixos.org/channels/nixpkgs-26.05-darwin/nixexprs.tar.xz"; # for /etc/nix/registry.json
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz";
-    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/e1c1b84752fb"; # https://hydra.nixos.org/job/nixpkgs/unstable/unstable#tabs-constituents
+    #nixpkgs-unstable.url = "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/767b0d3ec98a143ad9ed7dfc0d5553510ac27133"; # https://hydra.nixos.org/job/nixpkgs/unstable/unstable#tabs-constituents
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/master";
     #nixpkgs-pin.url = "github:NixOS/nixpkgs/b86751bc4085f48661017fa226dee99fab6c651b"; # a commit from nixpkgs-unstable
