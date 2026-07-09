@@ -172,14 +172,12 @@
             {
               #nur = pkgs'.nur; # this is more pure than applying inputs.nur.overlays.default on nixpkgs directly
               #grub2 = final.nur.repos.mio.grub2;
-              #nix-output-monitor = inputs.mio.packages."${system}".nix-output-monitor; # final.nur.repos.mio.nix-output-monitor;
               inherit (mio) wireguird darling grub2;
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
-              # inherit (pkgs-pin) rpcs3;
               inherit (pkgs') pianotrans; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs-pin2') freecad;
-              inherit (pkgs-pin2) f3d;
+              inherit (pkgs-pin2) f3d handbrake;
             }
           )
           inputs.chaotic.overlays.default
