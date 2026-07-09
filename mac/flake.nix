@@ -163,13 +163,6 @@
                   hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
                   derivationArgs.allowSubstitutes = false;
                 })
-                # related to appstream : https://github.com/NixOS/nixpkgs/issues/514566
-                (fetchpatch {
-                  name = "libfyaml: fixed building issues";
-                  url = "https://github.com/NixOS/nixpkgs/pull/515614.patch";
-                  hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
-                  derivationArgs.allowSubstitutes = false;
-                })
                 (fetchpatch {
                   name = "makeBinaryWrapper: fix passthru.extractCmd on darwin";
                   url = "https://github.com/NixOS/nixpkgs/pull/483719.diff";
