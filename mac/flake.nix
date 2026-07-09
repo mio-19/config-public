@@ -132,7 +132,7 @@
           let
             pkgs0 = import inputs0.nixpkgs {
               inherit system;
-              config.allowDeprecatedx86_64Darwin = true;
+              config.allowDeprecatedx86_64Darwin = "force";
             };
             nixpkgs-drv = pkgs0.applyPatches {
               name = "nixpkgs-patched";
@@ -219,7 +219,7 @@
           {
             _module.args.pkgs = import nixpkgs {
               inherit system;
-              config.allowDeprecatedx86_64Darwin = true;
+              config.allowDeprecatedx86_64Darwin = "force";
             };
             packages.nixpkgs-patched = nixpkgs;
           };
@@ -255,12 +255,12 @@
 
                   pkgs = import nixpkgs {
                     inherit system;
-                    config.allowDeprecatedx86_64Darwin = true;
+                    config.allowDeprecatedx86_64Darwin = "force";
                   };
                   # nixpkgs with deploy-rs overlay but force the nixpkgs package
                   deployPkgs = import nixpkgs {
                     inherit system;
-                    config.allowDeprecatedx86_64Darwin = true;
+                    config.allowDeprecatedx86_64Darwin = "force";
                     overlays = [
                       deploy-rs.overlays.default
                       (self: super: {
