@@ -152,12 +152,6 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
-                  name = "uutils-procps: fix for darwin";
-                  url = "https://github.com/NixOS/nixpkgs/pull/538839.patch";
-                  hash = "sha256-JqiXx+I2c1Gdet60UmorRlLIghteEVXmMZBVyjGYLmA=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-                (fetchpatch {
                   name = "musescore-evolution: fix darwin build";
                   url = "https://github.com/NixOS/nixpkgs/pull/538827.patch";
                   hash = "sha256-q3V+g9BB1y9U3kp2HbwYa0XD/sH5zRPfBc0xwNM7WpY=";
