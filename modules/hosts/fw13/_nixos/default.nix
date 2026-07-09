@@ -135,8 +135,8 @@ with _include;
     webcamoid # smooth and user friendly gui
     ollama
     #pkgs-qtwebengine5.globalprotect-openconnect # does not work
-    openconnect
-    inputs.globalprotect-openconnect.packages.${pkgs.stdenv.hostPlatform.system}.default
+    #openconnect
+    #inputs.globalprotect-openconnect.packages.${pkgs.stdenv.hostPlatform.system}.default
   ]);
 
   # https://discourse.nixos.org/t/globalprotect-vpn/24014/5
