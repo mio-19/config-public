@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        host: [fw13, husky, ipc, macvirt]
+        host: [fw13, husky, ipc, macvirt, deck]
     steps:
       - name: Maximize build space
         if: runner.os == 'Linux'

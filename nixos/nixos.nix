@@ -57,7 +57,7 @@ in
         deployPkgs;
       denFor = system: import ../den-config.nix { inherit inputs system; };
       denX86 = denFor "x86_64-linux";
-      inherit (denX86.hosts.x86_64-linux) fw13 ipc;
+      inherit (denX86.hosts.x86_64-linux) fw13 ipc deck;
     in
     {
       # DETAILS REMOVED
@@ -71,6 +71,12 @@ in
         system = "x86_64-linux";
         modules = [
           fw13.mainModule
+        ];
+      };
+      nixosConfigurations.deck = nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          deck.mainModule
         ];
       };
       # DETAILS REMOVED
