@@ -73,3 +73,7 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: (cd mac && nix build .#darwinConfigurations.NixMac.system --keep-going)
       continue-on-error: true
+    - run: (cd mac && nix flake update && nix build .#darwinConfigurations.NixMac.system --keep-going)
+      continue-on-error: true
+    - run: (cd mac && nix flake update --override-input nixpkgs-unstable github:nixos/nixpkgs/master && nix build .#darwinConfigurations.NixMac.system --keep-going)
+      continue-on-error: true
