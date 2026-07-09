@@ -264,7 +264,7 @@ let
         ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.ryubing
         ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
           oh-my-opencode
-          oh-my-codex
+          #oh-my-codex # no binary cache
         ])
         ++ [
           (lib.hiPrio antigravity-cli) # higher prio than gui app for cli command "antigravity"
