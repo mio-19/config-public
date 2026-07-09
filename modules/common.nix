@@ -177,7 +177,9 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               # inherit (pkgs-pin) rpcs3;
-              inherit (pkgs') freecad pianotrans; # no binary cache with cuda and no binary cache with rocm
+              inherit (pkgs') pianotrans; # no binary cache with cuda and no binary cache with rocm
+              inherit (pkgs-pin2') freecad;
+              inherit (pkgs-pin2) f3d;
             }
           )
           inputs.chaotic.overlays.default
