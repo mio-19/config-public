@@ -139,9 +139,6 @@
             pkgs.steam-play-none
             pkgs-chaotic.proton-ge-custom
             #pkgs.luxtorpeda
-          ]
-          ++ lib.optionals atleastV4 [
-            pkgs-chaotic.proton-cachyos_x86_64_v4
           ];
           extraPackages =
             with pkgs;
