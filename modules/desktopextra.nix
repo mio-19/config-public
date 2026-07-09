@@ -9,7 +9,6 @@ let
     with pkgs;
     [
       downkyicore # nur.repos.mio.downkyicore
-      musescore-evolution
       ghidra
       blender
       jetbrains.gateway
@@ -66,6 +65,7 @@ in
             spotube
             #waveterm
             pkgs-pin2.nur.repos.mio.musescore-alex
+            pkgs-pin2.musescore-evolution
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
             # unfree:
             (lib.hiPrio pkgs.aseprite) # lib.hiPrio: a file colliding with libresprite
@@ -143,6 +143,7 @@ in
       {
         environment.systemPackages = sharedApps { inherit pkgs inputs; } ++ [
           pkgs.nur.repos.mio.musescore-alex
+          pkgs.musescore-evolution
         ];
       };
   };
