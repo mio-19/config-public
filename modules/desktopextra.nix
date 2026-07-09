@@ -101,11 +101,11 @@ in
         programs.firejail.enable = true;
         programs.firejail.wrappedBinaries = with pkgs; {
           mscore = {
-            executable = "${hardenedPkg nur.repos.mio.musescore-alex}/bin/mscore";
+            executable = "${hardenedPkg pkgs-pin2.nur.repos.mio.musescore-alex}/bin/mscore";
             profile = "${pkgs.firejail}/etc/firejail/musescore.profile";
           };
           mscore-evo = {
-            executable = "${hardenedPkg musescore-evolution}/bin/mscore-evo";
+            executable = "${hardenedPkg pkgs-pin2.musescore-evolution}/bin/mscore-evo";
             profile = "${pkgs.firejail}/etc/firejail/musescore.profile";
           };
           xournalpp = {
