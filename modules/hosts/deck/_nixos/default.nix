@@ -12,9 +12,9 @@ let
   compatPaths = lib.makeSearchPathOutput "steamcompattool" "" (
     with pkgs;
     [
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v3
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
-      nur.repos.mio.proton-ge-custom
+      pkgs-chaotic.proton-cachyos_x86_64_v3
+      pkgs-chaotic.proton-cachyos_x86_64_v4
+      pkgs-chaotic.proton-ge-custom
       steam-play-none
     ]
   );
