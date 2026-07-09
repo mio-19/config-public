@@ -20,7 +20,7 @@
           with pkgs;
           (map cleanPkg [
             (offloadPkg rpcs3)
-            (offloadPkg nur.repos.mio.eden)
+            (offloadPkg eden)
             #(offloadPkg citron-emu) # citron-emu was discontinued in february 2026
             retroarch-full
             #alienarena # hash mismatch
