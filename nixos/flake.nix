@@ -336,6 +336,7 @@
     repo = {
       url = "github:mio-19/repo";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.flake-compat.follows = "flake-compat";
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
