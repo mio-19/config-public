@@ -54,7 +54,7 @@ let
         };
         mio_openssh_hpn = lib.mkOption {
           type = lib.types.bool;
-          default = if (isDarwin || !stdenv.isx86_64) then false else inc.atleastV3;
+          default = if (isDarwin || !stdenv.isx86_64) then true else inc.atleastV3;
           description = "use mio v3 patched openssh";
         };
         mio_aria2 = lib.mkOption {
