@@ -554,7 +554,7 @@
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
             inherit (pkgs-pin3) starship octaveFull jadx imhex;
-            inherit (pkgs-pin3) codex zed-editor; # no binary cache
+            inherit (pkgs-pin3) codex zed-editor librewolf; # no binary cache
           })
         ];
         home-manager.sharedModules = [
