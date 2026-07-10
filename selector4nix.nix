@@ -21,24 +21,7 @@ let
     #"niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     # DETAILS REMOVED
   ];
-  local-location = {
-    "fw13" = "aotearoa";
-    "ipc" = "ng";
-  };
-  attrsFor =
-    that:
-    if local-location.${hostName} == local-location.${that} then
-      {
-        priority = 1;
-        nar_info_timeout_secs = 30;
-        nar_timeout_secs = 30;
-      }
-    else
-      {
-        priority = 50;
-        nar_info_timeout_secs = 5;
-        nar_timeout_secs = 5;
-      };
+  # DETAILS REMOVED
 in
 {
   services.selector4nix = {
