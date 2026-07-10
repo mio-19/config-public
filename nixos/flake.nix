@@ -474,7 +474,7 @@
               (fetchpatch {
                 name = "nixos/tailscale: order tailscaled after network-online.target";
                 url = "https://github.com/NixOS/nixpkgs/pull/529035.patch";
-                hash = "sha256-ejSZR/46qHycDVwbVV4UjESICT2CTBbJ4J51hasgRs4=";
+                hash = "sha256-JJ3VrEbsWm4Qq1uTRbPtzLKkly5vxOmEZU/fw+DzcZo=";
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
