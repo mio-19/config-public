@@ -41,6 +41,9 @@
 
         fonts = {
           packages = [
+            corefonts
+            vista-fonts
+            vista-fonts-chs
             # https://github.com/Lyndeno/apple-fonts.nix/blob/master/flake.nix
             inputs.apple-fonts.packages."${system}".sf-pro
             inputs.apple-fonts.packages."${system}".sf-compact

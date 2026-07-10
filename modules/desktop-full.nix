@@ -103,7 +103,6 @@ in
           (import ../aspect.nix "desktop-basic")
           (import ../aspect.nix "tkg")
           (import ../aspect.nix "printing")
-          (import ../aspect.nix "desktop-office")
         ];
 
         home-manager.sharedModules = [
