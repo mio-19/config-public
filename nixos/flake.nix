@@ -492,7 +492,7 @@
               (fetchpatch {
                 name = "onlyoffice-desktopeditors: 9.1.0 -> 9.4.0";
                 url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
-                hash = "sha256-KDoNbXwwZoz6guOzK4I3bK4shYL+8Mb9YE3TK+819jI=";
+                hash = "sha256-FgZ4u8NB0fwLqDfHDHtGvNqYaNO/OEJIBuV7tHjX8p0=";
                 derivationArgs.allowSubstitutes = false;
               })
               # https://github.com/NixOS/nixpkgs/issues/442117
