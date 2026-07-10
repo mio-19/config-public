@@ -56,7 +56,7 @@
             ++ lib.optionals config.ridiculous_fonts [
               google-fonts
               # https://github.com/brsvh/chinese-fonts-overlay/blob/main/flake.nix
-              inputs.chinese-fonts-overlay.packages."${system}".windows-fonts
+              #inputs.chinese-fonts-overlay.packages."${system}".windows-fonts # https://github.com/NixOS/nixpkgs/pull/526315#issuecomment-4934542559
             ];
         };
 
