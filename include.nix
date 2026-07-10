@@ -27,6 +27,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "vista-fonts-cht"
       "bambu-studio"
       "aapt"
       "binaryninja-free"
@@ -139,6 +140,7 @@ customize
         "${inputs.nixpkgs}/pkgs/by-name/pi/pinta/deps.json"
       ];
       allowed = [
+        "google-fonts"
         "Jan"
         "mill"
         "tensorboard"
