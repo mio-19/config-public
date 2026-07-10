@@ -553,6 +553,7 @@
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
+            # failed to build:
             inherit (pkgs-pin3)
               starship
               octaveFull
@@ -560,6 +561,9 @@
               imhex
               rectangle
               moonlight-qt
+              # likely failed to build:
+              qbittorrent-enhanced
+              blender
               ;
             inherit (pkgs-pin3) codex zed-editor librewolf; # no binary cache
           })
