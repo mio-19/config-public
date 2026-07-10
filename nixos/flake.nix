@@ -372,6 +372,11 @@
       url = "github:brsvh/chinese-fonts-overlay/da90d47fa1a6f8fbfcc5795bc9351c98142f37ea";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # pin niche inputs to avoid bad people taking over.
+    apple-fonts = {
+      url = "github:Lyndeno/apple-fonts.nix/ce044f6829c6b3ccde9624116577ba2c173ca49d";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
