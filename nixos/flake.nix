@@ -501,7 +501,7 @@
               (fetchpatch {
                 name = "ONLYOFFICE DesktopEditors: updates";
                 url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
-                hash = "sha256-FgZ4u8NB0fwLqDfHDHtGvNqYaNO/OEJIBuV7tHjX8p0=";
+                hash = "sha256-sIByggHgklk3j1StTFq8mdo4rqx8Mv/ASVo9TgsW6hc=";
                 derivationArgs.allowSubstitutes = false;
               })
               # https://github.com/NixOS/nixpkgs/issues/442117
