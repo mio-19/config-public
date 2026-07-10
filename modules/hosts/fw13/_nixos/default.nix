@@ -172,6 +172,8 @@ with _include;
     enable32Bit = true;
   };
 
+  ridiculous_fonts = true;
+
   #services.guix.enable = true;
 
   # https://github.com/search?q=programs.captive-browser.enable&type=code

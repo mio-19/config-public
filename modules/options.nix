@@ -72,6 +72,11 @@ let
           default = false;
           description = "use lix instead of nix";
         };
+        ridiculous_fonts = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "enable ridiculous fonts (too big to download and need many disk space)";
+        };
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux

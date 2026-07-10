@@ -40,20 +40,24 @@
         nixpkgs.config.allowDeprecatedx86_64Darwin = "force"; # hide deprecation warning. we aleady know.
 
         fonts = {
-          packages = with pkgs; [
-            corefonts
-            vista-fonts
-            vista-fonts-cht
-            vista-fonts-chs
-            google-fonts
-            # https://github.com/Lyndeno/apple-fonts.nix/blob/master/flake.nix
-            inputs.apple-fonts.packages."${system}".sf-pro
-            inputs.apple-fonts.packages."${system}".sf-compact
-            inputs.apple-fonts.packages."${system}".sf-mono
-            inputs.apple-fonts.packages."${system}".ny
-            # https://github.com/brsvh/chinese-fonts-overlay/blob/main/flake.nix
-            inputs.chinese-fonts-overlay.packages."${system}".windows-fonts
-          ];
+          packages =
+            with pkgs;
+            [
+              corefonts
+              vista-fonts
+              vista-fonts-cht
+              vista-fonts-chs
+              # https://github.com/Lyndeno/apple-fonts.nix/blob/master/flake.nix
+              inputs.apple-fonts.packages."${system}".sf-pro
+              inputs.apple-fonts.packages."${system}".sf-compact
+              inputs.apple-fonts.packages."${system}".sf-mono
+              inputs.apple-fonts.packages."${system}".ny
+            ]
+            ++ lib.optionals config.ridiculous_fonts [
+              google-fonts
+              # https://github.com/brsvh/chinese-fonts-overlay/blob/main/flake.nix
+              inputs.chinese-fonts-overlay.packages."${system}".windows-fonts
+            ];
         };
 
         nixpkgs.config.problems.handlers = {
