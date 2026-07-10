@@ -117,16 +117,16 @@ let
       config = lib.optionalAttrs (!isDarwin) {
         assertions = [
           {
-            assertion = inc.atleastV3 || !config.mio_aria2;
-            message = "no mio aria2 for v2";
+            assertion = (config.mio_aria2 && pkgs.stdenv.isx86_64) -> inc.atleastV3;
+            message = "on x86_64, no mio aria2 for v2";
           }
           {
-            assertion = inc.atleastV3 || !config.mio_openssh_hpn;
-            message = "no mio hpn openssh for v2";
+            assertion = (config.mio_openssh_hpn && pkgs.stdenv.isx86_64) -> inc.atleastV3;
+            message = "on x86_64, no mio hpn openssh for v2";
           }
           {
-            assertion = inc.atleastV3 || !config.compile_gram;
-            message = "no gram compile for v2";
+            assertion = (config.compile_gram && pkgs.stdenv.isx86_64) -> inc.atleastV3;
+            message = "on x86_64, no gram compile for v2";
           }
         ];
         nix.settings.system-features =
