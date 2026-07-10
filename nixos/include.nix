@@ -265,80 +265,67 @@ let
           cmd = action: ''
             sudo ${config.systemd.package}/bin/systemd-inhibit env NIX_REMOTE=daemon ${lib.getExe pkgs.nixos-rebuild-ng} ${action} --flake . --log-format internal-json -v "$@" |& ${pkgs.nix-output-monitor}/bin/nom --json
           '';
-        in
-        {
-          upgrade = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
-            pkgs.writeShellScriptBin "upgrade" ''
-              set -e
-              cd ~/Documents/config/nixos
-              git config pull.rebase false
-              sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-              git pull --no-edit
-              if [ -d  ~/Documents/config-public ]; then
-                cd ~/Documents/config-public/nixos
-                git config pull.rebase false
-                git pull --no-edit
-                nix flake update
-                git add flake.lock
-                git commit -m "nixos: lockup" || true
-                git push
-                cd ~/Documents/config/nixos
-                git pull --no-edit https://github.com/mio-19/config-public.git
-              else
-                echo "[WARNING] ~/Documents/config-public does not exist" >&2
-                git pull --no-edit https://github.com/mio-19/config-public.git
-                nix flake update
-                git add flake.lock
-                git commit -m "nixos: lockup" || true
-              fi
-              git push &
-              ${cmd "switch"}
-            ''
-          );
-          upboot = pkgs.writeShellScriptBin "upboot" ''
+          upCmd = ''
             set -e
-            cd ~/Documents/config/nixos
+            if [ -d ~/Documents/config/nixos ]; then
+              cd ~/Documents/config/nixos
+            else
+              cd /Users/*/Documents/config/nixos
+            fi
             git config pull.rebase false
             sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
             git pull --no-edit
-            if [ -d  ~/Documents/config-public ]; then
-              cd ~/Documents/config-public/nixos
+            if [ -d ../../config-public ]; then
+              cd ../../config-public/nixos
               git config pull.rebase false
               git pull --no-edit
               nix flake update
               git add flake.lock
               git commit -m "nixos: lockup" || true
               git push
-              cd ~/Documents/config/nixos
+              cd ../../config/nixos
               git pull --no-edit https://github.com/mio-19/config-public.git
             else
-              echo "[WARNING] ~/Documents/config-public does not exist" >&2
+              echo "[WARNING] ../../config-public does not exist" >&2
               git pull --no-edit https://github.com/mio-19/config-public.git
               nix flake update
               git add flake.lock
               git commit -m "nixos: lockup" || true
             fi
             git push &
-            ${cmd "boot"}
           '';
-          switch = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
-            pkgs.writeShellScriptBin "swit" ''
-              set -e
-              cd ~/Documents/config/nixos
-              git config pull.rebase false
-              sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
-              (git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit && git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit https://github.com/mio-19/config-public.git) || true
-              git push &
-              ${cmd "switch"}
-            ''
-          );
-          boot = pkgs.writeShellScriptBin "boot" ''
+          fetchCmd = ''
             set -e
-            cd ~/Documents/config/nixos
+            if [ -d ~/Documents/config/nixos ]; then
+              cd ~/Documents/config/nixos
+            else
+              cd /Users/*/Documents/config/nixos
+            fi
             git config pull.rebase false
             sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
             (git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit && git -c http.lowSpeedLimit=10000 -c http.lowSpeedTime=10 -c core.sshCommand="ssh -o ConnectTimeout=15" pull --no-edit https://github.com/mio-19/config-public.git) || true
             git push &
+          '';
+        in
+        {
+          upgrade = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
+            pkgs.writeShellScriptBin "upgrade" ''
+              ${upCmd}
+              ${cmd "switch"}
+            ''
+          );
+          upboot = pkgs.writeShellScriptBin "upboot" ''
+            ${upCmd}
+            ${cmd "boot"}
+          '';
+          switch = lib.mkIf (config.system.nixos.tags == [ ] && !config.system.etc.overlay.enable) (
+            pkgs.writeShellScriptBin "swit" ''
+              ${fetchCmd}
+              ${cmd "switch"}
+            ''
+          );
+          boot = pkgs.writeShellScriptBin "boot" ''
+            ${fetchCmd}
             ${cmd "boot"}
           '';
         };
