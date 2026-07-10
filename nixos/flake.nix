@@ -254,6 +254,7 @@
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.blueprint.inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
     };
     /*
       nurl = {
@@ -332,7 +333,10 @@
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    repo.url = "github:mio-19/repo";
+    repo = {
+      url = "github:mio-19/repo";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
       inputs.nixpkgs.follows = "nixpkgs";
