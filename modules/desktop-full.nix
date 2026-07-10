@@ -9,7 +9,6 @@ let
     { pkgs, progs }:
     {
       hardened = with pkgs; [
-        trayscale
         localsend
         pear-desktop
         element-desktop
@@ -115,6 +114,7 @@ in
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+            trayscale
             (wrapPrio gnome-calculator)
             (wrapPrio gnome-system-monitor)
             chromium
@@ -464,8 +464,15 @@ in
           inherit (_include) progs;
         };
       in
+      with _include;
       {
-        environment.systemPackages = apps.hardened ++ apps.clean ++ apps.cleanX86;
+        environment.systemPackages =
+          apps.hardened
+          ++ apps.clean
+          ++ apps.cleanX86
+          ++ [
+            pkgs-pin3.trayscale
+          ];
         # version from nixpkgs does not work
         homebrew.casks = [ "zotero" ];
       };

@@ -43,6 +43,12 @@ upper
             hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
             derivationArgs.allowSubstitutes = false;
           })
+          (fetchpatch {
+            name = "trayscale: add macOS application bundle";
+            url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
+            hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
+            derivationArgs.allowSubstitutes = false;
+          })
           # related to appstream : https://github.com/NixOS/nixpkgs/issues/514566
           (fetchpatch {
             name = "libfyaml: fixed building issues";
