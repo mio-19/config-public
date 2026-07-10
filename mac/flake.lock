@@ -114,6 +114,27 @@
         "type": "github"
       }
     },
+    "chinese-fonts-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783394282,
+        "narHash": "sha256-aHKHSvTLProiVzyMKOo+nbRff9Ts3dTX9PpxlYcc084=",
+        "owner": "brsvh",
+        "repo": "chinese-fonts-overlay",
+        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "brsvh",
+        "repo": "chinese-fonts-overlay",
+        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "type": "github"
+      }
+    },
     "ci": {
       "inputs": {
         "blueprint": "blueprint",
@@ -590,6 +611,7 @@
     "root": {
       "inputs": {
         "apple-fonts": "apple-fonts",
+        "chinese-fonts-overlay": "chinese-fonts-overlay",
         "darwin": "darwin",
         "darwin-emacs": "darwin-emacs",
         "den": "den",

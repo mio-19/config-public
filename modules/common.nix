@@ -41,10 +41,13 @@
 
         fonts = {
           packages = [
+            # https://github.com/Lyndeno/apple-fonts.nix/blob/master/flake.nix
             inputs.apple-fonts.packages."${system}".sf-pro
             inputs.apple-fonts.packages."${system}".sf-compact
             inputs.apple-fonts.packages."${system}".sf-mono
             inputs.apple-fonts.packages."${system}".ny
+            # https://github.com/brsvh/chinese-fonts-overlay/blob/main/flake.nix
+            inputs.chinese-fonts-overlay.packages."${system}".windows-fonts
           ];
         };
 
