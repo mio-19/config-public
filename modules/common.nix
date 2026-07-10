@@ -558,6 +558,7 @@
               octaveFull
               jadx
               imhex
+              rectangle
               ;
             inherit (pkgs-pin3) codex zed-editor librewolf; # no binary cache
           })
