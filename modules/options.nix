@@ -74,6 +74,11 @@ let
         };
       }
       // lib.optionalAttrs (!isDarwin) {
+        enable_big-parallel = lib.mkOption {
+          type = lib.types.bool;
+          default = nixosInclude.novirt;
+          description = "enable big-parallel";
+        };
         microarch = lib.mkOption {
           type = lib.types.enum [
             "v2"
@@ -124,17 +129,18 @@ let
             message = "no gram compile for v2";
           }
         ];
-        nix.settings.system-features = lib.mkIf stdenv.isx86_64 (
-          [
+        nix.settings.system-features =
+          lib.optionals config.enable_big-parallel [
             "big-parallel"
           ]
-          ++ lib.optionals inc.atleastV3 [
-            "gccarch-x86-64-v3"
-          ]
-          ++ lib.optionals inc.atleastV4 [
-            "gccarch-x86-64-v4"
-          ]
-        );
+          ++ lib.optionals stdenv.isx86_64 (
+            lib.optionals inc.atleastV3 [
+              "gccarch-x86-64-v3"
+            ]
+            ++ lib.optionals inc.atleastV4 [
+              "gccarch-x86-64-v4"
+            ]
+          );
       };
     };
 in

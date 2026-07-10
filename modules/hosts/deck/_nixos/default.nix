@@ -26,6 +26,7 @@ in
   ];
   # DETAILS REMOVED # hardware.facter.reportPath = ./facter.json;
   microarch = "v4";
+  enable_big-parallel = false;
 
   zfs_arc_max_mib = 8192;
   security.pam.zfs.enable = true;
