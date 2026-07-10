@@ -54,13 +54,13 @@ let
         };
         mio_openssh_hpn = lib.mkOption {
           type = lib.types.bool;
-          default = if isDarwin then false else inc.atleastV3;
-          description = "use mio hpn patched openssh";
+          default = if (isDarwin || !stdenv.isx86_64) then false else inc.atleastV3;
+          description = "use mio v3 patched openssh";
         };
         mio_aria2 = lib.mkOption {
           type = lib.types.bool;
-          default = if isDarwin then true else inc.atleastV3;
-          description = "use mio patched aria2";
+          default = if (isDarwin || !stdenv.isx86_64) then true else inc.atleastV3;
+          description = "use mio v3 patched aria2";
         };
         compile_gram = lib.mkOption {
           type = lib.types.bool;

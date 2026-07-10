@@ -647,9 +647,10 @@ let
         || cfg.services.xserver.displayManager.lightdm.enable
         || cfg.services.xserver.enable;
 
-      microarchFor = cfg: lib.attrByPath [ "microarch" ] "v4" cfg;
+      microarchFor = cfg: cfg.microarch;
       atleastV3For =
         cfg:
+        assert pkgs.stdenv.isx86_64;
         lib.elem (microarchFor cfg) [
           "v3"
           "v4"
@@ -657,6 +658,7 @@ let
         ];
       atleastV4For =
         cfg:
+        assert pkgs.stdenv.isx86_64;
         lib.elem (microarchFor cfg) [
           "v4"
           "zen4"
