@@ -222,8 +222,7 @@
             ]
           );
 
-        programs.ssh.package =
-          if config.mio_openssh_hpn then pkgs.nur.repos.mio.openssh_hpn else pkgs.openssh_hpn;
+        programs.ssh.package = progs.openssh;
 
         services.gnome.gnome-remote-desktop.enable = !config.services.pulseaudio.enable; # doesn't work with pulseaudio
 
