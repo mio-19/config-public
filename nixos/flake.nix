@@ -490,7 +490,7 @@
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
-                name = "onlyoffice-desktopeditors: 9.1.0 -> 9.4.0";
+                name = "ONLYOFFICE DesktopEditors: updates";
                 url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
                 hash = "sha256-FgZ4u8NB0fwLqDfHDHtGvNqYaNO/OEJIBuV7tHjX8p0=";
                 derivationArgs.allowSubstitutes = false;
