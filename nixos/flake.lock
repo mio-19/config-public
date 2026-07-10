@@ -149,11 +149,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1783663553,
-        "narHash": "sha256-6spilWhESyw31CyDfA7ISq9zArkdKfGEV9Hwjxs/N68=",
+        "lastModified": 1783685646,
+        "narHash": "sha256-EgsY7dJl8jE+L6B2CFyUc+mGXUyb92xEPwqqkwvEXX0=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "318ffbf46e6f8b2c60760680ce360ec526a61ecd",
+        "rev": "bb52c6c8936353a03000929d37146bc636f4673f",
         "type": "github"
       },
       "original": {
@@ -678,10 +678,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783618078,
-        "narHash": "sha256-F43DGcBoIO8xOZFAfodg3jy0VghB9NGdb6xbTYAIx1A=",
+        "lastModified": 1783711151,
+        "narHash": "sha256-232L3Nku2nLch/TQHsJEIhiZJKr+VTehnVUs1NZ0SNc=",
         "ref": "master",
-        "rev": "144f4e36d0186195037da9fce80a727108978070",
+        "rev": "f938277527aa084929261879d50d9832b9eab6d3",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager.git"
@@ -840,11 +840,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1783656972,
-        "narHash": "sha256-M30foxi+2JXQ8KEIeWIKpB2uVpDYOw0XGI/gOaTb38I=",
+        "lastModified": 1783713893,
+        "narHash": "sha256-Jfe98zxuyIRit1pEVcF7R4QCon5u2OmxpHv5c1vwAnY=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "d17493b6a6d08cc1846a17175df67cd603c80c7d",
+        "rev": "cdd2b21be54e644e1f450492cf71e4180bd90401",
         "type": "github"
       },
       "original": {
@@ -908,10 +908,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783644404,
-        "narHash": "sha256-1KEtAA3fTJeYDDPw3Xg84c+V/u9/dCQBZLkNCS/JjsI=",
+        "lastModified": 1783670599,
+        "narHash": "sha256-Ggnx8/UQiQxvKvkbvYlKCgWaFEMhc4G8J6d6vIevCl8=",
         "ref": "refs/heads/main",
-        "rev": "87da7a3d8ca8218d0996d1a9ffa6f643b9c82dda",
+        "rev": "9dddda884301d9a5d148b3c9b139bf721a68a9d7",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -1390,11 +1390,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1783507948,
-        "narHash": "sha256-cd/ODqUKpaWhHPyElSKtEMkqsxL+Nv9QZnY70ls0JYs=",
+        "lastModified": 1783669315,
+        "narHash": "sha256-DjIkyK48jWUxYCCoTDS9L5PgGg6/RFRSRXW2dSFpJg8=",
         "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "f92da7c2525ff41ae861034cb63fbf9aaea1dac4",
+        "rev": "9e46a0edd8a6d96538d146a4bb4477e7fae8b1a0",
         "type": "github"
       },
       "original": {
@@ -1481,10 +1481,10 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1783582157,
-        "narHash": "sha256-EteIu2AVVbxzkBnBKjrbdknbpjxBkWTMNg02rXj4mgU=",
+        "lastModified": 1783692676,
+        "narHash": "sha256-6FXlRphexzMo3HpoN0NxEl7uQoE8llWeNJrD8NMA/CY=",
         "ref": "master",
-        "rev": "968980fba2c290b5529025636474eae8457b854c",
+        "rev": "4471c6a218fe813ad4838c400866c8845d3eba6b",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/NixOS/nixos-hardware.git"
@@ -1610,6 +1610,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-libxml2": {
+      "locked": {
+        "lastModified": 1751274312,
+        "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "50ab793786d9de88ee30ec4e4c24fb4236fc2674",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-pin": {
       "locked": {
         "lastModified": 1780243769,
@@ -1654,11 +1670,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1783389287,
-        "narHash": "sha256-R5cxRkQCq5wIM91F9OkIEgu8YoSGjlMeTjYl9o4gpKw=",
-        "rev": "0ad6f47ea4fe188f4bc8f0380f93ae8523337c6c",
+        "lastModified": 1783549019,
+        "narHash": "sha256-e9ftz5SvuCS13Y+YyZhvq5n1kmno01PhwU6M8KTBulE=",
+        "rev": "74cc63f702f7d60a557e152a57b40fb1fd0f72ac",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.4364.0ad6f47ea4fe/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.4494.74cc63f702f7/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -1784,6 +1800,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_9": {
+      "locked": {
+        "lastModified": 1778869304,
+        "narHash": "sha256-30sZNZoA1cqF5JNO9fVX+wgiQYjB7HJqqJ4ztCDeBZE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d233902339c02a9c334e7e593de68855ad26c4cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nm2nix": {
       "inputs": {
         "nixpkgs": [
@@ -1853,10 +1885,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783668702,
-        "narHash": "sha256-+bET5zaYH9xPoCbZ5rBJIqPNlhdRZOk/bGjtTy3S0EA=",
+        "lastModified": 1783720629,
+        "narHash": "sha256-OYw74BQBF4rBQgNWnUr/ocYgP/wHpFEX2q+aX/AbRnI=",
         "ref": "refs/heads/main",
-        "rev": "3c2446269772864840d630683a04ed624efc2c87",
+        "rev": "ec38d029471432cc31b30e2dd181be93fec34825",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2454,6 +2486,25 @@
         "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
       }
     },
+    "soulver-cpp": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_9",
+        "nixpkgs-libxml2": "nixpkgs-libxml2"
+      },
+      "locked": {
+        "lastModified": 1783621734,
+        "narHash": "sha256-YBFO+aurlz2y2hTRN1Kl0RjX6JzHn0mYBmt4zb436Yg=",
+        "owner": "vicinaehq",
+        "repo": "soulver-cpp",
+        "rev": "00e926e2bd03118638c88981f6a67bfa107210c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vicinaehq",
+        "repo": "soulver-cpp",
+        "type": "github"
+      }
+    },
     "squish-find-the-brains": {
       "inputs": {
         "flake-utils": [
@@ -2674,16 +2725,17 @@
         "nixpkgs": [
           "nixpkgs"
         ],
+        "soulver-cpp": "soulver-cpp",
         "systems": [
           "systems"
         ]
       },
       "locked": {
-        "lastModified": 1783639275,
-        "narHash": "sha256-qFDb6I9w9F/KfRVHmwezykv7y/Tb8BjJQD2v5AxlEfU=",
+        "lastModified": 1783692878,
+        "narHash": "sha256-YaMKUruOCHjglolDnt2HE+JPcCeRm1qiQfwtmgrl9oE=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "81d9a9b50b19d1b90ed682d5fd24a192e56c1b4b",
+        "rev": "001b8283205d6475c10d6cd85389a1cce113d92a",
         "type": "github"
       },
       "original": {
@@ -2752,10 +2804,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783598313,
-        "narHash": "sha256-LAz4EAdT56VSCSF0oFJNjpIYFVmWW81nM5+3Ieocx5I=",
+        "lastModified": 1783668941,
+        "narHash": "sha256-KFnepHImqltAzpJZ8sh8i3qzC1NRVNQX3WBVoD5oBRM=",
         "ref": "refs/heads/main",
-        "rev": "175926c1007114b9d0f8465f23a7d7ce9b26fe33",
+        "rev": "71e156423dae9496d7fd9e89029a1a82516fb9d8",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
