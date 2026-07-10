@@ -281,15 +281,23 @@ customize
     telegram =
       if config.compile_gram then
         (
-          if (false && pkgs.stdenv.isDarwin) then
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.telegram-desktop_682_patched
+          if pkgs.stdenv.isDarwin then
+            (import ./mac/include.nix args).pkgs-pin3.nur.repos.mio.telegram-desktop_patched
           else
             pkgs.nur.repos.mio.telegram-desktop_patched
         )
       else
         pkgs.telegram-desktop;
     materialgram =
-      if config.compile_gram then pkgs.nur.repos.mio.materialgram_patched else pkgs.materialgram;
+      if config.compile_gram then
+        (
+          if pkgs.stdenv.isDarwin then
+            (import ./mac/include.nix args).pkgs-pin3.nur.repos.mio.materialgram_patched
+          else
+            pkgs.nur.repos.mio.materialgram_patched
+        )
+      else
+        pkgs.materialgram;
   };
 
   hasAntigravityFor =
