@@ -179,6 +179,28 @@
         "type": "github"
       }
     },
+    "chinese-fonts-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixos",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783394282,
+        "narHash": "sha256-aHKHSvTLProiVzyMKOo+nbRff9Ts3dTX9PpxlYcc084=",
+        "owner": "brsvh",
+        "repo": "chinese-fonts-overlay",
+        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "brsvh",
+        "repo": "chinese-fonts-overlay",
+        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "type": "github"
+      }
+    },
     "cl-nix-lite": {
       "inputs": {
         "flake-parts": [
@@ -312,6 +334,7 @@
       "original": {
         "owner": "denful",
         "repo": "den",
+        "rev": "1614f6f8ed435c5bb257408bf91fd662f9aac43e",
         "type": "github"
       }
     },
@@ -918,6 +941,7 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "hercules-ci-effects",
+        "rev": "86c7c78a840b44b1a0a5cbc7e9baa0154c0d0f3f",
         "type": "github"
       }
     },
@@ -1064,6 +1088,7 @@
       "original": {
         "owner": "denful",
         "repo": "import-tree",
+        "rev": "d321337efd0f23a9eb14a42adb7b2c29313ab274",
         "type": "github"
       }
     },
@@ -1348,22 +1373,6 @@
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
-      }
-    },
-    "mobile-nixos": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1783452618,
-        "narHash": "sha256-uJKeH1QrCiT9xvpFMSUzUAb06Tm1eSAwAQ/okiNkmlw=",
-        "owner": "mobile-nixos",
-        "repo": "mobile-nixos",
-        "rev": "458448d147d32329da66e6fbd746521924a5eee3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mobile-nixos",
-        "repo": "mobile-nixos",
-        "type": "github"
       }
     },
     "mvn2nix": {
@@ -1680,6 +1689,7 @@
       "original": {
         "owner": "cynicsketch",
         "repo": "nix-mineral",
+        "rev": "16c219cdf9c7349591e4570779092d86c9bfbaec",
         "type": "github"
       }
     },
@@ -1747,6 +1757,7 @@
       "original": {
         "owner": "nix-community",
         "repo": "nix-snapd",
+        "rev": "f7694a0e26d890e285137e1b726b1b44038805c4",
         "type": "github"
       }
     },
@@ -1885,6 +1896,7 @@
     "nixos": {
       "inputs": {
         "chaotic": "chaotic",
+        "chinese-fonts-overlay": "chinese-fonts-overlay",
         "claude-desktop": "claude-desktop",
         "den": "den_2",
         "deploy-rs": "deploy-rs_2",
@@ -1906,7 +1918,6 @@
         "mac-style-plymouth-b": "mac-style-plymouth-b",
         "mio": "mio_2",
         "mio-betterbird": "mio-betterbird",
-        "mobile-nixos": "mobile-nixos",
         "nix-bwrapper": "nix-bwrapper",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
