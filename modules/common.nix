@@ -627,6 +627,7 @@
           #gzip
           #gnused
 
+          curl
           nixtamal
           nano
           lz4
