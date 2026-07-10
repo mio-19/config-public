@@ -74,6 +74,12 @@ let
         };
       }
       // lib.optionalAttrs (!isDarwin) {
+        # Linux
+        config_impure = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "allow impure config";
+        };
         enable_big-parallel = lib.mkOption {
           type = lib.types.bool;
           default = nixosInclude.novirt;
