@@ -214,7 +214,7 @@ let
           #kdiskmark # needs more patches
           imhex
           luanti-client
-          nur.repos.mio.minetest591client
+          pkgs-pin3.nur.repos.mio.minetest591client
           nur.repos.mio.beammp-launcher
           #thonny
           #mousecape
