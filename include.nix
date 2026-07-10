@@ -28,6 +28,7 @@ customize
     pkg:
     builtins.elem (lib.getName pkg) [
       "vista-fonts-cht"
+      "vista-fonts-chs"
       "bambu-studio"
       "aapt"
       "binaryninja-free"
