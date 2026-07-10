@@ -583,6 +583,7 @@
               imhex
               rectangle
               moonlight-qt
+              supertuxkart
               # likely failed to build:
               qbittorrent-enhanced
               blender
