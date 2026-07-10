@@ -40,7 +40,7 @@
         nixpkgs.config.allowDeprecatedx86_64Darwin = "force"; # hide deprecation warning. we aleady know.
 
         fonts = {
-          packages = [
+          packages = with pkgs; [
             corefonts
             vista-fonts
             vista-fonts-cht
