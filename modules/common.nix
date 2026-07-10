@@ -192,7 +192,7 @@
             && !boot-to-steam;
         };
 
-        boot.zfs.forceImportRoot = true; # It is highly recommended to set it to `false`, the new default from 26.11 on, to reduce the risk of data loss. Alternatively, you can silence this warning by explicitly setting it to `true`.
+        boot.zfs.forceImportRoot = false; # It is highly recommended to set it to `false`, the new default from 26.11 on, to reduce the risk of data loss. Alternatively, you can silence this warning by explicitly setting it to `true`.
 
         security.rtkit.enable = config.services.pipewire.enable || config.services.pulseaudio.enable;
         services.pulseaudio.support32Bit = config.services.pulseaudio.enable && pkgs.stdenv.isx86_64;
