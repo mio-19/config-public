@@ -301,12 +301,6 @@
         */
         security.apparmor.enable = true; # maybe this break waydroid?
         services.dbus.apparmor = lib.mkDefault "enabled"; # maybe this break waydroid?
-        # https://wiki.nixos.org/wiki/Firejail
-        programs.firejail = {
-          enable = true;
-          wrappedBinaries = {
-          };
-        };
         environment.etc."firejail/globals.local".text = ''
           whitelist /run/pipewire
           whitelist /run/opengl-driver

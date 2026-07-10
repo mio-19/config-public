@@ -53,7 +53,6 @@ in
           (hardenedPkg progs.telegram)
         ];
 
-        programs.firejail.enable = true;
         programs.firejail.wrappedBinaries = {
           Telegram = {
             executable = "${hardenedPkg progs.telegram}/bin/Telegram";
@@ -234,7 +233,6 @@ in
           );
         programs.localsend.package = hardenedPkg pkgs.localsend;
 
-        programs.firejail.enable = true;
         programs.firejail.wrappedBinaries =
           with pkgs;
           {
@@ -310,7 +308,7 @@ in
             # https://github.com/legendofmiracles/dotnix/blob/ea678c780a1944e32c94ded1b58ce3a28be553d9/hosts/pain/configuration.nix#L110
             # disable firejail for chromium if we want to use webflasher WebSerial
             # disable firajail as it might break Antigravity? https://antigravity.google/docs/browser NO: antigravity's integration still doesn't work even without firejail
-            chromium = lib.mkIf (!boot-to-steam) {
+            chromium = {
               executable = "${hardenedPkg pkgs.chromium}/bin/chromium";
               profile = "${pkgs.firejail}/etc/firejail/chromium.profile";
               extraArgs = [
@@ -321,7 +319,7 @@ in
               ];
             };
             # test on filesystem permission: for example /run/wrappers/bin/firejail '--whitelist=/run/pipewire' '--profile=/nix/store/sfnvg7fpq26ckdb7dl1bxr7j366ii84c-source/nixos/wiliwili.profile' -- $(readlink /run/current-system/sw/bin/ls) Pictures
-            wiliwili = lib.mkIf (!boot-to-steam) {
+            wiliwili = {
               executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
               profile = ../nixos/wiliwili.profile;
             };

@@ -98,7 +98,6 @@ in
 
         programs.zoom-us.enable = true;
 
-        programs.firejail.enable = true;
         programs.firejail.wrappedBinaries = with pkgs; {
           mscore = {
             executable = "${hardenedPkg pkgs-pin2.nur.repos.mio.musescore-alex}/bin/mscore";

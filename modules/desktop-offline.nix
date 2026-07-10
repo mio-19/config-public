@@ -116,7 +116,6 @@
           ];
         };
 
-        programs.firejail.enable = true;
         programs.firejail.wrappedBinaries = with pkgs; {
           # no network with bilibili.profile?
           /*

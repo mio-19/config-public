@@ -67,10 +67,9 @@
           );
 
         # https://github.com/librephoenix/nixos-config/blob/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/default.nix#L24
-        programs.firejail.enable = true;
         programs.firejail.wrappedBinaries = {
           # cannot launch from steam if sandboxed
-          prismlauncher = lib.mkIf (!boot-to-steam) {
+          prismlauncher = {
             executable = "${cleanPkg (offloadPkg pkgs.prismlauncher)}/bin/prismlauncher";
             # https://github.com/librephoenix/nixos-config/raw/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/profiles/prismlauncher.profile
             profile = ../nixos/prismlauncher.profile;
@@ -82,25 +81,25 @@
               profile = "${pkgs.firejail}/etc/firejail/lutris.profile";
             };
           */
-          luanti = lib.mkIf (!boot-to-steam) {
+          luanti = {
             executable = "${cleanPkg (offloadPkg pkgs.luanti-client)}/bin/luanti";
             profile = "${pkgs.firejail}/etc/firejail/minetest.profile";
           };
-          minetest = lib.mkIf (!boot-to-steam) {
+          minetest = {
             executable = "${cleanPkg (offloadPkg pkgs.nur.repos.mio.minetest580client)}/bin/minetest";
             profile = "${pkgs.firejail}/etc/firejail/minetest.profile";
           };
-          supertuxkart = lib.mkIf (!boot-to-steam) {
+          supertuxkart = {
             executable = "${cleanPkg (offloadPkg pkgs.supertuxkart)}/bin/supertuxkart";
             profile = "${pkgs.firejail}/etc/firejail/supertuxkart.profile";
           };
-          supertuxkart-evolution = lib.mkIf (!boot-to-steam) {
+          supertuxkart-evolution = {
             executable = "${
               cleanPkg (offloadPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.supertuxkart-evolution)
             }/bin/supertuxkart-evolution";
             profile = "${pkgs.firejail}/etc/firejail/supertuxkart.profile";
           };
-          supertux2 = lib.mkIf (!boot-to-steam) {
+          supertux2 = {
             executable = "${cleanPkg pkgs.supertux}/bin/supertux2";
             profile = "${pkgs.firejail}/etc/firejail/supertux2.profile";
           };

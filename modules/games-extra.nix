@@ -58,14 +58,13 @@
           ];
         };
 
-        programs.firejail.enable = true;
         programs.firejail.wrappedBinaries = with pkgs; {
           # https://github.com/RigsOfRods/rigs-of-rods/issues/3134
-          RoR = lib.mkIf (!boot-to-steam) {
+          RoR = {
             executable = "${cleanPkg (offloadPkg rigsofrods-bin)}/bin/RoR";
             profile = ../nixos/rigsofrods.profile;
           };
-          RunRoR = lib.mkIf (!boot-to-steam) {
+          RunRoR = {
             executable = "${cleanPkg (offloadPkg rigsofrods-bin)}/bin/RunRoR";
             profile = ../nixos/rigsofrods.profile;
           };
