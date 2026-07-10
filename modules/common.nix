@@ -559,6 +559,7 @@
               jadx
               imhex
               rectangle
+              moonlight-qt
               ;
             inherit (pkgs-pin3) codex zed-editor librewolf; # no binary cache
           })
