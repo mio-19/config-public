@@ -39,6 +39,15 @@
         #nixpkgs.config.allowAliases = false;
         nixpkgs.config.allowDeprecatedx86_64Darwin = "force"; # hide deprecation warning. we aleady know.
 
+        fonts = {
+          packages = [
+            inputs.apple-fonts.packages."${system}".sf-pro
+            inputs.apple-fonts.packages."${system}".sf-compact
+            inputs.apple-fonts.packages."${system}".sf-mono
+            inputs.apple-fonts.packages."${system}".ny
+          ];
+        };
+
         nixpkgs.config.problems.handlers = {
           "sublimetext4".removal = "ignore";
         };
