@@ -553,7 +553,7 @@
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
-            inherit (pkgs-pin3) starship octaveFull;
+            inherit (pkgs-pin3) starship octaveFull jadx;
             inherit (pkgs-pin3) codex zed-editor; # no binary cache
           })
         ];
