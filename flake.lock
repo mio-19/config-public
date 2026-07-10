@@ -300,6 +300,28 @@
     "chinese-fonts-overlay": {
       "inputs": {
         "nixpkgs": [
+          "mac",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783394282,
+        "narHash": "sha256-aHKHSvTLProiVzyMKOo+nbRff9Ts3dTX9PpxlYcc084=",
+        "owner": "brsvh",
+        "repo": "chinese-fonts-overlay",
+        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "brsvh",
+        "repo": "chinese-fonts-overlay",
+        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "type": "github"
+      }
+    },
+    "chinese-fonts-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
           "nixos",
           "nixpkgs"
         ]
@@ -1310,6 +1332,7 @@
     "mac": {
       "inputs": {
         "apple-fonts": "apple-fonts",
+        "chinese-fonts-overlay": "chinese-fonts-overlay",
         "darwin": "darwin",
         "darwin-emacs": "darwin-emacs",
         "den": "den",
@@ -2009,7 +2032,7 @@
       "inputs": {
         "apple-fonts": "apple-fonts_2",
         "chaotic": "chaotic",
-        "chinese-fonts-overlay": "chinese-fonts-overlay",
+        "chinese-fonts-overlay": "chinese-fonts-overlay_2",
         "claude-desktop": "claude-desktop",
         "den": "den_2",
         "deploy-rs": "deploy-rs_2",
