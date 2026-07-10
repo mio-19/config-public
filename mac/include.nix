@@ -37,6 +37,19 @@ upper
             hash = "sha256-q3V+g9BB1y9U3kp2HbwYa0XD/sH5zRPfBc0xwNM7WpY=";
             derivationArgs.allowSubstitutes = false;
           })
+          (fetchpatch {
+            name = "baobab: add desktopToDarwinBundle override";
+            url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
+            hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
+            derivationArgs.allowSubstitutes = false;
+          })
+          # related to appstream : https://github.com/NixOS/nixpkgs/issues/514566
+          (fetchpatch {
+            name = "libfyaml: fixed building issues";
+            url = "https://github.com/NixOS/nixpkgs/pull/515614.patch";
+            hash = "sha256-lPg+NKhTJVCDLuuDaKF9o7evPxjcGxD9Gh/M1X3yqag=";
+            derivationArgs.allowSubstitutes = false;
+          })
         ];
       };
       nixpkgs =
