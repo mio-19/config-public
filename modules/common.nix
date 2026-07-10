@@ -554,7 +554,7 @@
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
             inherit (pkgs-pin3) starship;
-            inherit (pkgs-pin3) codex; # no binary cache
+            inherit (pkgs-pin3) codex zed-editor; # no binary cache
           })
         ];
         home-manager.sharedModules = [
