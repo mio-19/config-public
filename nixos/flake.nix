@@ -206,7 +206,8 @@
       inputs.hercules-ci-effects.follows = "hercules-ci-effects";
     };
     hercules-ci-effects = {
-      url = "github:hercules-ci/hercules-ci-effects";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:hercules-ci/hercules-ci-effects/86c7c78a840b44b1a0a5cbc7e9baa0154c0d0f3f";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -227,7 +228,6 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     vicinae = {
-      #url = "git+https://github.com/vicinaehq/vicinae.git?shallow=1";
       url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
@@ -268,7 +268,8 @@
       };
     */
     nix-snapd = {
-      url = "github:nix-community/nix-snapd";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:nix-community/nix-snapd/f7694a0e26d890e285137e1b726b1b44038805c4";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
@@ -319,12 +320,14 @@
       inputs.systems.follows = "systems";
       inputs.pkgs-by-name-for-flake-parts.follows = "pkgs-by-name-for-flake-parts";
     };
-    # https://github.com/mwlaboratories/phoneputer/blob/13070a74737bd184f4814c056571862f80036c5b/flake.nix#L11
-    # Mobile-NixOS repository - provides mobile-specific modules and device support
-    mobile-nixos = {
-      url = "github:mobile-nixos/mobile-nixos";
-      flake = false; # We import it directly, not as a flake
-    };
+    /*
+      # https://github.com/mwlaboratories/phoneputer/blob/13070a74737bd184f4814c056571862f80036c5b/flake.nix#L11
+      # Mobile-NixOS repository - provides mobile-specific modules and device support
+      mobile-nixos = {
+        url = "github:mobile-nixos/mobile-nixos";
+        flake = false; # We import it directly, not as a flake
+      };
+    */
     nixos-avf = {
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -335,7 +338,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-mineral = {
-      url = "github:cynicsketch/nix-mineral";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:cynicsketch/nix-mineral/16c219cdf9c7349591e4570779092d86c9bfbaec";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
@@ -352,9 +356,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
     };
-    import-tree.url = "github:denful/import-tree";
-    den.url = "github:denful/den";
+    # pin niche inputs to avoid bad people taking over.
+    import-tree.url = "github:denful/import-tree/d321337efd0f23a9eb14a42adb7b2c29313ab274";
+    # pin niche inputs to avoid bad people taking over.
+    den.url = "github:denful/den/1614f6f8ed435c5bb257408bf91fd662f9aac43e";
+    # pin to avoid rebuild
     mio-betterbird.url = "github:mio-19/nurpkgs/20876484d4e71203aaa00519e11ca8b1a4a80861";
+    # pin niche inputs to avoid bad people taking over.
+    chinese-fonts-overlay = {
+      url = "github:brsvh/chinese-fonts-overlay/da90d47fa1a6f8fbfcc5795bc9351c98142f37ea";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
