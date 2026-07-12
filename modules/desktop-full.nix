@@ -174,9 +174,9 @@ in
           ++ (map cleanPkg [
             firefox-esr
             (wrapPrio gnome-console)
+            (if config.use_betterbird then progs.betterbird else thunderbird-esr)
             # unfree:
             progs.vscode
-            (if config.use_betterbird then progs.betterbird else thunderbird-esr)
           ])
           ++ lib.optionals pkgs.stdenv.isx86_64 (
             (map hardenedPkg [
