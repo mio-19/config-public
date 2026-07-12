@@ -72,7 +72,6 @@ let
             "nix"
             "nix_git"
             "lix"
-            "zen4"
           ];
           default = "nix_git";
           description = "use ?";
