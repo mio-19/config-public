@@ -73,7 +73,7 @@ let
             "nix_git"
             "lix"
           ];
-          default = "nix_git";
+          default = "nix";
           description = "use ?";
         };
         ridiculous_fonts = lib.mkOption {
