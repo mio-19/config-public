@@ -21,7 +21,7 @@
             (
               if config.workaround_i_dont_know_kernel_nvidia_refer_problem then
                 pkgs-chaotic.linuxPackages_cachyos
-              else if workaround_i_dont_know_nvidia_refer_problem_workaround_b then
+              else if config.workaround_i_dont_know_nvidia_refer_problem_workaround_b then
                 pkgs.linuxPackages_cachyos-lto-znver4
               else
                 pkgs-chaotic.linuxPackages_cachyos-lto-znver4
