@@ -67,10 +67,15 @@ let
           default = if stdenv.isDarwin then true else stdenv.isx86_64 && inc.atleastV3;
           description = "compile our custom materialgram&telegram";
         };
-        lix_instead = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "use lix instead of nix";
+        use_this_ix = lib.mkOption {
+          type = lib.types.enum [
+            "nix"
+            "nix_git"
+            "lix"
+            "zen4"
+          ];
+          default = "nix_git";
+          description = "use ?";
         };
         ridiculous_fonts = lib.mkOption {
           type = lib.types.bool;

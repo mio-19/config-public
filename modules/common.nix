@@ -30,8 +30,6 @@
         programs.fish.enable = true;
         programs.fish.useBabelfish = true;
 
-        nix.package = pkgs-chaotic.nix_git;
-
         system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
         nixpkgs.config.allowUnfree = false;
@@ -79,15 +77,22 @@
           ];
 
         nix = {
-          package = lib.mkIf config.lix_instead pkgs.lixPackageSets.latest.lix;
+          package =
+            if config.use_this_ix == "lix" then
+              pkgs.lixPackageSets.latest.lix
+            else if config.use_this_ix == "nix_git" then
+              pkgs-chaotic.nix_git
+            else
+              assert config.use_this_ix == "nix";
+              pkgs.nix;
           settings = {
             auto-optimise-store = true;
-            lint-url-literals = lib.mkIf (!config.lix_instead) "fatal";
+            lint-url-literals = lib.mkIf (config.use_this_ix != "lix") "fatal";
             experimental-features = [
               "nix-command"
               "flakes"
             ]
-            ++ lib.optionals (!config.lix_instead) [
+            ++ lib.optionals (config.use_this_ix != "lix") [
               "blake3-hashes"
             ];
           };
