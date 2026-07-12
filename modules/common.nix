@@ -585,7 +585,7 @@
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
-            # failed to build:
+            # failed to build (https://github.com/NixOS/nixpkgs/pull/536365):
             inherit (pkgs-pin3)
               octaveFull
               jadx
