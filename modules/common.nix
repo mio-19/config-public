@@ -125,7 +125,9 @@
           (import ../aspect.nix "nixbuild")
         ];
 
-        system.extraDependencies = builtins.attrValues inputs; # for config.nix.registry
+        system.extraDependencies = map (input: input.flake or input.to.path) (
+          builtins.attrValues config.nix.registry
+        );
 
         boot.loader.grub.keepBootedSystemEntry = true;
 
