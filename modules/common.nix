@@ -125,7 +125,7 @@
           (import ../aspect.nix "nixbuild")
         ];
 
-        system.extraDependencies = map (input: input.flake or input.to.path) (
+        system.extraDependencies = map (input: input.to.path or input.flake) (
           builtins.attrValues config.nix.registry
         );
 
