@@ -156,6 +156,11 @@
                 # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
                 # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
                 (fetchpatch {
+                  name = "telegram-desktop: work around ld64 hardening issue";
+                  url = "https://github.com/NixOS/nixpkgs/pull/540982.patch";
+                  hash = "sha256-cHx6sMEL83J8VsxvE4cXyQfxdSK2rN/fbkjDKnMIg5I=";
+                })
+                (fetchpatch {
                   name = "types.path.check: Avoid derivation instantiation";
                   url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                   hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";

@@ -285,7 +285,7 @@ customize
       if config.compile_gram then
         (
           if pkgs.stdenv.isDarwin then
-            (import ./mac/include.nix args).pkgs-pin3.nur.repos.mio.telegram-desktop_patched
+            pkgs.nur.repos.mio.telegram-desktop_patched
           else
             pkgs.nur.repos.mio.telegram-desktop_patched
         )
@@ -295,7 +295,7 @@ customize
       if config.compile_gram then
         (
           if pkgs.stdenv.isDarwin then
-            (import ./mac/include.nix args).pkgs-pin3.nur.repos.mio.materialgram_patched
+            pkgs.nur.repos.mio.materialgram_patched
           else
             pkgs.nur.repos.mio.materialgram_patched
         )
