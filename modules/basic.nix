@@ -26,8 +26,12 @@
           # Credits: Misterio77
           # https://raw.githubusercontent.com/Misterio77/nix-config/e227d8ac2234792138753a0153f3e00aec154c39/hosts/common/global/nix.nix
           # Add each flake input as a registry
-          # TODO: How to prevent them from being GC'd?
-          registry = lib.mapAttrs (_: v: { flake = v; }) (lib.removeAttrs inputs [ "nixpkgs" ]);
+          registry = lib.mapAttrs (_: v: { flake = v; }) (
+            lib.removeAttrs inputs [
+              "nixpkgs"
+              "self"
+            ]
+          );
           # Map registries to channels (useful when using legacy commands)
           nixPath = lib.mapAttrsToList (n: v: "${n}=${v.to.path}") config.nix.registry;
           settings = {
