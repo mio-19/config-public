@@ -401,6 +401,11 @@
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               # nixos/firefox: make variant librewolf https://github.com/NixOS/nixpkgs/pull/467398
+              (fetchpatch {
+                name = "types.path.check: Avoid derivation instantiation";
+                url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
+                hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
+              })
               (fetchurl {
                 name = "flyline: init at 1.3.0";
                 url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
