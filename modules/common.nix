@@ -125,6 +125,7 @@
           (import ../aspect.nix "nixbuild")
         ];
 
+        # TODO: this for nix-darwin
         system.extraDependencies = map (input: input.to.path or input.flake) (
           builtins.attrValues config.nix.registry
         );
