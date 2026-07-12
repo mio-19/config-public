@@ -20,4 +20,16 @@
     users.user.classes = [ "homeManager" ];
     # DETAILS REMOVED
   };
+
+  den.hosts.aarch64-linux.husky = {
+    hostName = "husky";
+    users.user.classes = [ "homeManager" ];
+    users.user.nixosZshUser.enable = true;
+  };
+
+  den.hosts.aarch64-linux.macvirt = {
+    hostName = "macvirt";
+    users.user.classes = [ "homeManager" ];
+    users.user.nixosZshUser.enable = true;
+  };
 }

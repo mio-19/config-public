@@ -57,7 +57,9 @@ in
         deployPkgs;
       denFor = system: import ../den-config.nix { inherit inputs system; };
       denX86 = denFor "x86_64-linux";
+      denA64 = denFor "aarch64-linux";
       inherit (denX86.hosts.x86_64-linux) fw13 ipc deck;
+      inherit (denA64.hosts.aarch64-linux) husky macvirt;
     in
     {
       # DETAILS REMOVED
@@ -77,6 +79,18 @@ in
         system = "x86_64-linux";
         modules = [
           deck.mainModule
+        ];
+      };
+      nixosConfigurations.husky = nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          husky.mainModule
+        ];
+      };
+      nixosConfigurations.macvirt = nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          macvirt.mainModule
         ];
       };
       # DETAILS REMOVED
