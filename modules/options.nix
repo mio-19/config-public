@@ -73,7 +73,7 @@ let
             "nix_git"
             "lix"
           ];
-          default = "nix";
+          default = if stdenv.isDarwin then "nix" else "nix_git";
           description = "use ?";
         };
         ridiculous_fonts = lib.mkOption {
