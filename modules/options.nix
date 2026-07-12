@@ -85,6 +85,11 @@ let
           default = false;
           description = "allow impure config";
         };
+        workaround_i_dont_know_nvidia_refer_problem_workaround_b = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "I don't know why it does not or does work";
+        };
         enable_big-parallel = lib.mkOption {
           type = lib.types.bool;
           default = nixosInclude.novirt;
