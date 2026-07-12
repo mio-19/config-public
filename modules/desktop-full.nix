@@ -176,17 +176,8 @@ in
             (wrapPrio gnome-console)
             # unfree:
             progs.vscode
+            (if config.use_betterbird then progs.betterbird else thunderbird-esr)
           ])
-          ++ lib.optionals (!config.use_betterbird) (
-            map cleanPkg [
-              thunderbird-esr
-            ]
-          )
-          ++ lib.optionals config.use_betterbird (
-            map cleanPkg [
-              progs.betterbird
-            ]
-          )
           ++ lib.optionals pkgs.stdenv.isx86_64 (
             (map hardenedPkg [
               inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
@@ -332,6 +323,22 @@ in
               ];
             };
           }
+          // (
+            if config.use_betterbird then
+              {
+                betterbird = {
+                  executable = "${cleanPkg progs.betterbird}/bin/betterbird";
+                  profile = "${pkgs.firejail}/etc/firejail/betterbird.profile";
+                };
+              }
+            else
+              {
+                thunderbird = {
+                  executable = "${cleanPkg thunderbird-esr}/bin/thunderbird";
+                  profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
+                };
+              }
+          )
           // lib.optionalAttrs config.librewolf_firejail {
             librewolf = {
               executable = "${progs.librewolf_for_firejail}/bin/librewolf";
