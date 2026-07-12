@@ -30,6 +30,8 @@
         programs.fish.enable = true;
         programs.fish.useBabelfish = true;
 
+        nix.package = pkgs-chaotic.nix_git;
+
         system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
         nixpkgs.config.allowUnfree = false;

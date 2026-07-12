@@ -69,6 +69,13 @@ upper
     in
     nixpkgs;
 
+  pkgs-chaotic = import inputs.chaotic.inputs.nixpkgs {
+    config = config.nixpkgs.config;
+    system = pkgs.stdenv.hostPlatform.system;
+    overlays = [
+      inputs.chaotic.overlays.default
+    ];
+  };
   pkgs-pin = import inputs.nixpkgs-pin {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;

@@ -47,8 +47,12 @@
       };
     */
     #  --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-    #chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    #chaotic.url = "github:chaotic-cx/nyx/main";
+    chaotic = {
+      #url = "github:lonerOrz/nyx-loner";
+      url = "github:chaotic-cx/nyx";
+      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     nur = {
       #url = "github:mio-19/NUR";
       url = "github:nix-community/NUR";
