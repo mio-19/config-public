@@ -125,6 +125,8 @@
           (import ../aspect.nix "nixbuild")
         ];
 
+        system.extraDependencies = builtins.attrValues inputs; # for config.nix.registry
+
         boot.loader.grub.keepBootedSystemEntry = true;
 
         # Set your time zone.
