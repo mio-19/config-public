@@ -328,7 +328,7 @@ in
               {
                 betterbird = {
                   executable = "${cleanPkg progs.betterbird}/bin/betterbird";
-                  profile = "${pkgs.firejail}/etc/firejail/betterbird.profile";
+                  profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
                 };
               }
             else
