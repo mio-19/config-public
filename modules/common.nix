@@ -587,7 +587,6 @@
           (final: prev: {
             # failed to build:
             inherit (pkgs-pin3)
-              starship
               octaveFull
               jadx
               imhex
