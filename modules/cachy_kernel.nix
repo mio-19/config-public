@@ -26,7 +26,6 @@
               else
                 pkgs-chaotic.linuxPackages_cachyos-lto-znver4
             )
-              pkgs-chaotic.linuxPackages_cachyos-lto-znver4
           else
             pkgs-chaotic.linuxPackages_cachyos;
       in
