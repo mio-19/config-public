@@ -125,7 +125,6 @@
           (import ../aspect.nix "nixbuild")
         ];
 
-        # TODO: this for nix-darwin
         system.extraDependencies = map (input: input.to.path or input.flake) (
           builtins.attrValues config.nix.registry
         );
@@ -577,6 +576,19 @@
           #./lix.nix
           #inputs.stylix.darwinModules.stylix
         ];
+
+        /*
+          environment.systemPackages = [
+            (pkgs.linkFarm "system-flake-inputs" (
+              lib.mapAttrs (name: input: input.to.path or input.flake) config.nix.registry
+            ))
+          ];
+        */
+        # To make the inputs available and signal GC to keep them.
+        environment.etc = lib.mapAttrs' (name: input: {
+          name = "nix/inputs/${name}";
+          value.source = input.to.path or input.flake;
+        }) config.nix.registry;
 
         nixpkgs.overlays = [
           #inputs.chaotic.overlays.cache-friendly
