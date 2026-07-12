@@ -597,7 +597,7 @@
               qbittorrent-enhanced
               blender
               ;
-            inherit (pkgs-pin3) codex zed-editor librewolf; # no binary cache
+            inherit (pkgs-pin3) codex zed-editor; # no binary cache
           })
         ];
         home-manager.sharedModules = [
