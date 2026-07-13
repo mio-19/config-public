@@ -332,6 +332,7 @@ in
                   extraArgs = [
                     # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
                     "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                    "--ignore=noroot"
                   ];
                 };
               }
@@ -343,6 +344,7 @@ in
                   extraArgs = [
                     # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
                     "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                    "--ignore=noroot"
                   ];
                 };
               }
