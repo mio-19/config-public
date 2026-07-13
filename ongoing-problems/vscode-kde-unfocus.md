@@ -25,3 +25,15 @@ Based on web and nixpkgs issue searches, this is a known issue with Electron app
 
 3. **Check NixOS Ozone Wayland Flags**:
    - If `NIXOS_OZONE_WL="1"` is set globally, it forces Electron apps to use Wayland natively, which triggers this bug. You could try removing it or overriding it for VSCode specifically to fall back to XWayland.
+
+### Fractional Scaling & Electron Updates
+If fractional scaling is required, the XWayland (X11) workaround will result in blurry fonts or incorrect UI scaling, meaning Wayland is mandatory. 
+
+Unfortunately, recent Electron version bumps inside VSCode (and other Electron apps like Discord) have introduced regressions with the `xdg-activation` protocol that Wayland uses to negotiate focus stealing. Because Wayland intentionally prevents windows from stealing focus for security reasons, applications have to request focus in a very specific way. Recent Electron updates seem to break this handshake with KDE (KWin), causing the window to think it has lost focus while the OS doesn't allow it to regain it.
+
+To troubleshoot on native Wayland, you can try explicitly tweaking the ozone platform flags, though there is no silver bullet until Electron patches this upstream:
+```bash
+code --ozone-platform-hint=auto
+# or 
+code --ozone-platform=wayland --enable-features=WaylandWindowDecorations
+```
