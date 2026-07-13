@@ -329,6 +329,10 @@ in
                 betterbird = {
                   executable = "${cleanPkg progs.betterbird}/bin/betterbird";
                   profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
+                  extraArgs = [
+                    # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                    "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                  ];
                 };
               }
             else
@@ -336,6 +340,10 @@ in
                 thunderbird = {
                   executable = "${cleanPkg thunderbird-esr}/bin/thunderbird";
                   profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
+                  extraArgs = [
+                    # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                    "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                  ];
                 };
               }
           )
