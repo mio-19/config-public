@@ -59,11 +59,10 @@ in
             #nemo
             #qcm
             teams-for-linux
-            pkgs-pin2.nur.repos.mio.waveterm
+            nur.repos.mio.waveterm
             pianotrans
             # binaryNativeCode:
             spotube
-            #waveterm
             nur.repos.mio.musescore-alex
             pkgs-pin2.musescore-evolution
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
