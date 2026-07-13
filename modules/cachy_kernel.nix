@@ -15,7 +15,10 @@
       with _include;
       let
         cachyKernel =
-          if config.virtualisation.vmware.host.enable then
+          if
+            config.virtualisation.vmware.host.enable
+            || builtins.elem "bcachefs" config.boot.supportedFilesystems
+          then
             pkgs-chaotic.linuxPackages_cachyos-gcc
           else if config.microarch == "zen4" then
             (
