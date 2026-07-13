@@ -64,7 +64,7 @@ in
             # binaryNativeCode:
             spotube
             #waveterm
-            pkgs-pin2.nur.repos.mio.musescore-alex
+            nur.repos.mio.musescore-alex
             pkgs-pin2.musescore-evolution
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
             # unfree:
@@ -100,7 +100,7 @@ in
 
         programs.firejail.wrappedBinaries = with pkgs; {
           mscore = {
-            executable = "${hardenedPkg pkgs-pin2.nur.repos.mio.musescore-alex}/bin/mscore";
+            executable = "${hardenedPkg nur.repos.mio.musescore-alex}/bin/mscore";
             profile = "${pkgs.firejail}/etc/firejail/musescore.profile";
           };
           mscore-evo = {
