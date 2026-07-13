@@ -61,10 +61,10 @@ in
             teams-for-linux
             nur.repos.mio.waveterm
             pianotrans
-            # binaryNativeCode:
-            spotube
             nur.repos.mio.musescore-alex
             pkgs-pin2.musescore-evolution
+            # binaryNativeCode:
+            spotube
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
             # unfree:
             (lib.hiPrio pkgs.aseprite) # lib.hiPrio: a file colliding with libresprite
