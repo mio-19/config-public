@@ -17,7 +17,7 @@
         cachyKernel =
           if
             config.virtualisation.vmware.host.enable
-            || builtins.elem "bcachefs" config.boot.supportedFilesystems
+            || builtins.hasAttr "bcachefs" config.boot.supportedFilesystems
           then
             pkgs-chaotic.linuxPackages_cachyos-gcc
           else if config.microarch == "zen4" then
