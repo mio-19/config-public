@@ -210,7 +210,6 @@ let
           cursor-cli
 
           joplin-desktop
-          mailspring
           #qdiskinfo # needs more patches
           #kdiskmark # needs more patches
           imhex
