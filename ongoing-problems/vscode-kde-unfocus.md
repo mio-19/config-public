@@ -39,5 +39,5 @@ code --ozone-platform=wayland --enable-features=WaylandWindowDecorations
 ```
 
 ### Upstream Bug Tracking
-- **Electron (Root Cause):** [Issue #32857: [Feature Request]: Support Wayland window activation (`xdg-activation-v1`)](https://github.com/electron/electron/issues/32857)
-- **VS Code (Downstream Effect):** [Issue #202720: VSCode under Wayland loses focus intermittently](https://github.com/microsoft/vscode/issues/202720)
+- **Electron (Root Cause):** [Issue #30912: [Feature Request]: Implement support for xdg_activation_v1 Wayland protocol](https://github.com/electron/electron/issues/30912)
+- **VS Code (Downstream Effect):** [Issue #290068: Window won't focus under native Wayland](https://github.com/microsoft/vscode/issues/290068)
