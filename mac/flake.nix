@@ -201,9 +201,10 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
-                  name = "github-copilot-cli: 1.0.26 -> 1.0.65";
-                  url = "https://github.com/NixOS/nixpkgs/pull/534884.patch";
-                  hash = "sha256-Lt43nR05fVXsFekFxVQPg8r6Y3AD5JiQpCAbDH6BPkw=";
+                  name = "github-copilot-cli: 1.0.26 -> 1.0.70";
+                  url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
+                  hash = "sha256-6U6qYZ0WD/GNkWvLUpchTCHRNUm0VYSorE8oi9aK9LE=";
+                  derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
                   name = "baobab: add desktopToDarwinBundle override";
