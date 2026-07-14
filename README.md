@@ -7,6 +7,7 @@ this configuration is not organized in the best way. I move my focus to other th
 this is shared for debugging purposes
 
 you can see `DETAILS REMOVED` with what I feel uncomfortable sharing or unsafe to share.
+If a file starts with `# THIS IS A STUB`, it means that the whole file has been recreated for `config-public`.
 
 ```zsh
 --option extra-substituters https://mio-config.cachix.org --option extra-trusted-public-keys mio-config.cachix.org-1:VM6OZi+PC/ENBDf5ogaArQMgVUvJNvAL5t9ayXZdCIg=

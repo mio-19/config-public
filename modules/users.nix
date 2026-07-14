@@ -1,3 +1,4 @@
+# THIS IS A STUB
 {
   den.aspects.user = {
     homeManager =
