@@ -178,6 +178,7 @@ let
             ;
         }
         ++ [
+          mdbook
           nur.repos.mio.mdbook-generate-summary
           python314Packages.pdf2docx
           uv
