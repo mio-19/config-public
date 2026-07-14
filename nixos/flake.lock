@@ -125,11 +125,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1783970937,
-        "narHash": "sha256-eLKbJByrH2JyphEkAbfRiS0PTcg4mLBRTJCwNqTlowg=",
+        "lastModified": 1783991537,
+        "narHash": "sha256-JlDoAb/0NycqEfuo8DK5aPMKteS+DJOe5mHLx7qQlKA=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "6e5938efe238d7dad5ef2fbcd827812f77690396",
+        "rev": "a8241f1d2328bca87063d4f2b0ddd05a2e664391",
         "type": "github"
       },
       "original": {
@@ -815,11 +815,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1783971616,
-        "narHash": "sha256-f/f+NTM1lznl1nlOAvT993nk9F8aNlV2e3C+ZgT7oGI=",
+        "lastModified": 1783984346,
+        "narHash": "sha256-Y+OzASjAU+9ni5VqYcIIn24PncAaPAm4afKE/+V/DCs=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "b856cf96288ee9b1490aff75c5d05d37d408e96c",
+        "rev": "9f3a69970a0a908e04db853537a284bb885bd55b",
         "type": "github"
       },
       "original": {
@@ -883,10 +883,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783975762,
-        "narHash": "sha256-WxnfqFfpskMtR5J0SnA1QoYIEQG/Rsb+TFZv4P9dq2M=",
+        "lastModified": 1783982034,
+        "narHash": "sha256-oU/Is6Ht1tbbqlPZ9eaW6kmY+PkFGiNlRo3nqgpjiPE=",
         "ref": "refs/heads/main",
-        "rev": "d5b7c565a11153f4075c272c9dc3efb9f8bce0b5",
+        "rev": "20512f1d111d9816c05ec3c76950bc0a2ca7c450",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
@@ -1844,10 +1844,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783977676,
-        "narHash": "sha256-7uPcpsL3NDCyYI5aQKFo+5M58nZtIS+fZbFUxXtcxQM=",
+        "lastModified": 1783997370,
+        "narHash": "sha256-95XLo9Q8bsxgqnG3JFdOoO6mwdNb3nEEmcM26X4yHrA=",
         "ref": "refs/heads/main",
-        "rev": "83027404d72588b416a092e6b38a3825a36cbfa7",
+        "rev": "7ab9ebc5d13d12cb2fdd7b6fd2c36dacc31bca64",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2096,11 +2096,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1783933414,
-        "narHash": "sha256-fqGTLOvZsQYrhbO5MYDekVKp+oFMoMsf+boFCWdBZ+E=",
+        "lastModified": 1783988747,
+        "narHash": "sha256-7JhAKDEqv0OZHO7sPTG/xV9JKZ1xR/riM8HvxBXQdz4=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "234ed9376afde21e6ae73a681bd2f519e6b1d73e",
+        "rev": "0c5f7027452dc39f0e34b8ce21a595c417d56105",
         "type": "github"
       },
       "original": {
@@ -2762,10 +2762,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1783977212,
-        "narHash": "sha256-i79saHO2CT3sqwFwrMHV7bVfl8gmsTUyfhOAeETlty4=",
+        "lastModified": 1783982026,
+        "narHash": "sha256-tFP35Y/BDWkDwFVoCab0gN00yKjGJU/IWpVxl68tGEI=",
         "ref": "refs/heads/main",
-        "rev": "0a6e53493a2c8c4c507940f70acc2578939451c9",
+        "rev": "8cbde27feab69507f13a41a01ee45c2b632a8f43",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
