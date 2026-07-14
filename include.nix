@@ -134,7 +134,7 @@ customize
         "${inputs.nixpkgs}/pkgs/by-name/ry/ryubing/deps.json"
         "${
           inputs.nur.legacyPackages."${pkgs.stdenv.hostPlatform.system}".repo-sources.mio
-        }/by-name/downkyicore/deps.json"
+        }/by-name/do/downkyicore/deps.json"
         "${inputs.nixpkgs}/pkgs/by-name/ms/msbuild/deps.json"
         "${inputs.nixpkgs}/pkgs/by-name/ro/roslyn/deps.json"
         "${inputs.nixpkgs}/pkgs/by-name/ce/celeste64/deps.json"
