@@ -2,6 +2,8 @@
 
 what can be public - nixos and nix-darwin configuration
 
+What is a configuration? A configuration is a collection of workarounds and things that happened to work but I don't know why
+
 this configuration is not organized in the best way. I move my focus to other things in my life as long as my configuration is mostly doing its jobs.
 
 this is shared for debugging purposes
