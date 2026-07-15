@@ -118,10 +118,6 @@ in
             gimp
             saber
             gparted
-            mpv # https://gist.github.com/arch1t3cht/b5b9552633567fa7658deee5aec60453/
-            mediainfo-gui
-            mkvtoolnix
-            #haruna
             vlc
             bitwarden-desktop
             joplin-desktop
@@ -141,9 +137,8 @@ in
             ventoy-full-gtk
             nextcloud-client
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
             nur.repos.mio.icloud-mail
-            obsidian
-            #cider-2 # paid
             (nix-webapps-lib.mkChromiumApp {
               appName = "chatgpt";
               desktopName = "ChatGPT";
@@ -165,6 +160,8 @@ in
               class = "chrome-www.icloud.com__find_-Default";
             })
             # unfree:
+            obsidian
+            #cider-2 # paid
             #parsec-bin
             sublime4-dev # sublime4 broken, need -dev # (callPackage ./sublime-text.nix { })
             sublime-merge # (callPackage ./sublime-merge.nix { })

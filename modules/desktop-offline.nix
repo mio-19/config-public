@@ -28,6 +28,10 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+            mpv # https://gist.github.com/arch1t3cht/b5b9552633567fa7658deee5aec60453/
+            mediainfo-gui
+            mkvtoolnix
+            #haruna
             jan
             okteta
             dune3d
