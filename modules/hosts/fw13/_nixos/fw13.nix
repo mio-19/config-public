@@ -220,6 +220,7 @@ in
   environment.systemPackages =
     with pkgs;
     (map hardenedPkg [
+      amdgpu_top
       ryzenadj
       kdePackages.kamoso
     ]);
