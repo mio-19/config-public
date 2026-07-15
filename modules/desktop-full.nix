@@ -23,6 +23,61 @@ let
     };
 in
 {
+  den.aspects.thunderbird = {
+    description = "thunderbird";
+    darwin =
+      args@{ pkgs, _include, ... }:
+      with _include;
+      {
+        environment.systemPackages = [
+          pkgs.thunderbird-esr
+        ];
+      };
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        _include,
+        ...
+      }:
+      with _include;
+      {
+        environment.systemPackages =
+          with pkgs;
+          (map cleanPkg [
+            (if config.use_betterbird then progs.betterbird else thunderbird-esr)
+          ]);
+        programs.firejail.wrappedBinaries = (
+          if config.use_betterbird then
+            {
+              betterbird = {
+                executable = "${cleanPkg progs.betterbird}/bin/betterbird";
+                profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
+                extraArgs = [
+                  # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                  "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                  "--ignore=noroot"
+                ];
+              };
+            }
+          else
+            {
+              thunderbird = {
+                executable = "${cleanPkg thunderbird-esr}/bin/thunderbird";
+                profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
+                extraArgs = [
+                  # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                  "--dbus-user.talk=org.freedesktop.portal.Desktop"
+                  "--ignore=noroot"
+                ];
+              };
+            }
+        );
+
+      };
+  };
   den.aspects.telegram = {
     description = "Telegram";
     darwin =
@@ -79,6 +134,7 @@ in
     description = "Full desktop packages, firejail, flatpak, and chromium";
     includes = [
       den.aspects.telegram
+      den.aspects.thunderbird
       den.aspects.desktop-basic
       den.aspects.tkg
       den.aspects.printing
@@ -169,7 +225,6 @@ in
           ++ (map cleanPkg [
             firefox-esr
             (wrapPrio gnome-console)
-            (if config.use_betterbird then progs.betterbird else thunderbird-esr)
             # unfree:
             progs.vscode
           ])
@@ -318,32 +373,6 @@ in
               ];
             };
           }
-          // (
-            if config.use_betterbird then
-              {
-                betterbird = {
-                  executable = "${cleanPkg progs.betterbird}/bin/betterbird";
-                  profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
-                  extraArgs = [
-                    # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
-                    "--dbus-user.talk=org.freedesktop.portal.Desktop"
-                    "--ignore=noroot"
-                  ];
-                };
-              }
-            else
-              {
-                thunderbird = {
-                  executable = "${cleanPkg thunderbird-esr}/bin/thunderbird";
-                  profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
-                  extraArgs = [
-                    # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
-                    "--dbus-user.talk=org.freedesktop.portal.Desktop"
-                    "--ignore=noroot"
-                  ];
-                };
-              }
-          )
           // lib.optionalAttrs config.librewolf_firejail {
             librewolf = {
               executable = "${progs.librewolf_for_firejail}/bin/librewolf";

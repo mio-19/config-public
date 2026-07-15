@@ -226,7 +226,6 @@ let
           #remmina
           #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
           pkgs-pin3.baobab # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
-          thunderbird-esr
           #adwaita-icon-theme
           #hicolor-icon-theme
           #gsettings-desktop-schemas
