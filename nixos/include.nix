@@ -263,7 +263,7 @@ let
         let
           # env NIX_REMOTE=daemon -> workaround for https://github.com/NixOS/nixpkgs/issues/220990
           cmd = action: ''
-            sudo ${config.systemd.package}/bin/systemd-inhibit env NIX_REMOTE=daemon ${lib.getExe pkgs.nixos-rebuild-ng} ${action} --flake . --log-format internal-json -v ${lib.optionalString config.config_impure "--impure "}"$@" |& ${pkgs.nix-output-monitor}/bin/nom --json
+            sudo ${config.systemd.package}/bin/systemd-inhibit env NIX_REMOTE=daemon ${lib.getExe pkgs.nixos-rebuild-ng} ${action} --flake . --log-format internal-json -v --fallback ${lib.optionalString config.config_impure "--impure "}"$@" |& ${pkgs.nix-output-monitor}/bin/nom --json
           '';
           upCmd = ''
             set -e
