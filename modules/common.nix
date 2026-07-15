@@ -712,7 +712,7 @@
           raycast
           #teams#doesn't work
           vscode
-          discord
+          #discord # discord wants auto update; it does not work with nix.
           #google-chrome # Out of date, because the updater (pkgs/by-name/go/google-chrome/update.sh) has stopped working, and there does not seem to be another way to get stable URLs to particular Chrome versions.
 
           # DETAILS REMOVED
@@ -727,6 +727,7 @@
         homebrew.global.autoUpdate = false;
         homebrew.caskArgs.language = "en-US";
         homebrew.casks = [
+          "discord"
           "iterm2"
           "google-chrome"
           #"element"
