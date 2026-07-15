@@ -77,7 +77,13 @@ in
   };
   den.aspects.desktop-full = {
     description = "Full desktop packages, firejail, flatpak, and chromium";
-    includes = [ den.aspects.telegram ];
+    includes = [
+      den.aspects.telegram
+      den.aspects.desktop-basic
+      den.aspects.tkg
+      den.aspects.printing
+      den.aspects.scan
+    ];
     nixos =
       args@{
         config,
@@ -99,15 +105,6 @@ in
         };
       in
       {
-        imports = [
-          (import ../aspect.nix "desktop-basic")
-          (import ../aspect.nix "tkg")
-          (import ../aspect.nix "printing")
-        ];
-
-        home-manager.sharedModules = [
-        ];
-
         # https://search.nixos.org/packages
         environment.systemPackages =
           with pkgs;

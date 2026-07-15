@@ -2,7 +2,6 @@
 {
   den.aspects.fw13 = {
     includes = [
-      den.aspects.scan
       den.aspects.common
       den.batteries.hostname
       den.aspects.persistent
