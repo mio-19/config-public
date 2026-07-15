@@ -349,8 +349,10 @@ let
         "pulse-access"
         "realtime"
         "dialout" # for serial ports
-        "input" # for bongocat
+        #"input" # for bongocat
         "vboxusers"
+        "scanner"
+        "lp"
       ];
       commonAdminGroups = commonGroups ++ [
         "wheel"
