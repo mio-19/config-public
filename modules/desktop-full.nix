@@ -109,6 +109,7 @@ in
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+            simple-scan
             trayscale
             (wrapPrio gnome-calculator)
             (wrapPrio gnome-system-monitor)

@@ -28,7 +28,6 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
-            simple-scan
             jan
             okteta
             dune3d
