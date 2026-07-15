@@ -726,12 +726,6 @@
         #homebrew.caskArgs.no_quarantine = true; # Error: Calling the `--[no-]quarantine` switch is disabled! There is no replacement.
         homebrew.global.autoUpdate = false;
         homebrew.caskArgs.language = "en-US";
-        homebrew.casks = [
-          "discord"
-          "iterm2"
-          "google-chrome"
-          #"element"
-        ];
         homebrew.brews = [
           #"openjdk@11"
           "mas"

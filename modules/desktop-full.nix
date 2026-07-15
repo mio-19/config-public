@@ -511,8 +511,13 @@ in
           ++ [
             pkgs-pin3.trayscale
           ];
-        # version from nixpkgs does not work
-        homebrew.casks = [ "zotero" ];
+        homebrew.casks = [
+          "zotero" # version from nixpkgs does not work
+          "discord"
+          "iterm2"
+          "google-chrome"
+          #"element"
+        ];
       };
   };
 }
