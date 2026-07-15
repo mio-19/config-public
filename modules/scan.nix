@@ -16,6 +16,10 @@
       {
         # https://nixos.wiki/wiki/Scanners
         hardware.sane.enable = true; # enables support for SANE scanners
+        hardware.sane.extraBackends = [ pkgs.sane-airscan ];
+        services.udev.packages = [ pkgs.sane-airscan ];
+        hardware.sane.disabledDefaultBackends = [ "escl" ];
+        services.ipp-usb.enable = true;
       };
   };
 }
