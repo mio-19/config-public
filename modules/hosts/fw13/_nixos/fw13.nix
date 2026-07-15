@@ -8,6 +8,9 @@
   ...
 }@args:
 with _include;
+let
+  fan_workaround = false;
+in
 {
   # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
   imports = [
@@ -23,13 +26,9 @@ with _include;
     keepDefaultStrategies = false;
     settings = {
 
-      defaultStrategy = "charging-smooth";
-      strategyOnDischarging = "discharging-smooth";
+      defaultStrategy = if fan_workaround then "charging-workaround" else "charging-smooth";
+      strategyOnDischarging = if fan_workaround then "discharging-workaround" else "discharging-smooth";
 
-      /*
-        defaultStrategy = "charging-workaround";
-        strategyOnDischarging = "discharging-workaround";
-      */
       strategies = {
         "discharging-smooth" = {
           fanSpeedUpdateFrequency = 10;
