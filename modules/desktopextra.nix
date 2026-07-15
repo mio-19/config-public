@@ -61,7 +61,7 @@ in
             teams-for-linux
             nur.repos.mio.waveterm
             pianotrans
-            pkgs-small.nur.repos.mio.musescore-alex
+            nur.repos.mio.musescore-alex
             pkgs-pin2.musescore-evolution
             # binaryNativeCode:
             spotube
@@ -99,7 +99,7 @@ in
 
         programs.firejail.wrappedBinaries = with pkgs; {
           mscore = {
-            executable = "${hardenedPkg pkgs-small.nur.repos.mio.musescore-alex}/bin/mscore";
+            executable = "${hardenedPkg nur.repos.mio.musescore-alex}/bin/mscore";
             profile = "${pkgs.firejail}/etc/firejail/musescore.profile";
           };
           mscore-evo = {
