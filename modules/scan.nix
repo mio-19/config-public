@@ -21,7 +21,7 @@
         hardware.sane.disabledDefaultBackends = [ "escl" ];
         services.ipp-usb.enable = true;
         services.avahi.enable = true;
-        services.avahi.nssmdns = true;
+        services.avahi.nssmdns4 = true;
       };
   };
 }
