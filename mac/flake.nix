@@ -158,7 +158,12 @@
                 # lib.options: several small performance cleanups - https://github.com/NixOS/nixpkgs/pull/517802.diff
                 # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
                 # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
-                # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
+                (fetchpatch {
+                  name = "remmina: fix missing sidebar icons on macOS";
+                  url = "https://github.com/NixOS/nixpkgs/pull/514651.diff";
+                  hash = "sha256-T5mr9fzVAyH4SZOpP4wv3TliGBEKdLQI8jwafJuLbKU=";
+                  derivationArgs.allowSubstitutes = false;
+                })
                 (fetchpatch {
                   name = "types.path.check: Avoid derivation instantiation";
                   url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
