@@ -1,5 +1,5 @@
 # Full desktop packages and apps (den.aspects.desktop-full).
-{ den, ... }:
+{ den, inputs, ... }:
 let
   # cross-platform apps shared between the NixOS desktop-full body and the darwin
   # common branch (modules/common.nix). Defined once so both stay in sync: NixOS
@@ -9,6 +9,7 @@ let
     { pkgs, progs }:
     {
       hardened = with pkgs; [
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
         localsend
         pear-desktop
         element-desktop
@@ -193,7 +194,6 @@ in
             ventoy-full-gtk
             nextcloud-client
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
             nur.repos.mio.icloud-mail
             (nix-webapps-lib.mkChromiumApp {
               appName = "chatgpt";
