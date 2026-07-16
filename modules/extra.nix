@@ -223,7 +223,7 @@ let
           pympress
           #gnome-calculator
           #gnome-text-editor
-          #remmina
+          remmina
           #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
           pkgs-pin3.baobab # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
           #adwaita-icon-theme
