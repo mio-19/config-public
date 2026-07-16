@@ -82,6 +82,8 @@
               pkgs.lixPackageSets.latest.lix
             else if config.use_this_ix == "nix_git" then
               pkgs-chaotic.nix_git
+            else if config.use_this_ix == "nix_latest" then
+              pkgs.nixVersions.latest
             else
               assert config.use_this_ix == "nix";
               pkgs.nix;

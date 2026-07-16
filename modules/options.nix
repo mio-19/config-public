@@ -71,9 +71,10 @@ let
           type = lib.types.enum [
             "nix"
             "nix_git"
+            "nix_latest"
             "lix"
           ];
-          default = if stdenv.isDarwin then "nix" else "nix_git";
+          default = if stdenv.isDarwin then "nix_latest" else "nix_git";
           description = "use ?";
         };
         ridiculous_fonts = lib.mkOption {
