@@ -210,7 +210,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mio = {
-      url = "git+https://github.com/mio-19/nurpkgs.git?shallow=1";
+      url = "github:mio-19/nurpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-style-plymouth = {

@@ -901,18 +901,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1784331802,
-        "narHash": "sha256-udZy2lxZVchR3oKF7UsP1+zXt9HI19LS9PxlRne6j8g=",
-        "ref": "refs/heads/main",
-        "rev": "96520718c7ae6e3660e71b579d7582d601f73a7c",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/mio-19/nurpkgs.git"
+        "lastModified": 1784331966,
+        "narHash": "sha256-rVqzJwoAEAeTPSrUA3J4yGtZNzEm57Ub4d9FlyZV9V0=",
+        "owner": "mio-19",
+        "repo": "nurpkgs",
+        "rev": "581f4b02d094a0dbeb7338d14d9195b46dd4a98e",
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/mio-19/nurpkgs.git"
+        "owner": "mio-19",
+        "repo": "nurpkgs",
+        "type": "github"
       }
     },
     "mio-betterbird": {
