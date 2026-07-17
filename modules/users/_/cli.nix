@@ -16,8 +16,8 @@ let
   # doesn't have binary cache on x86_64-darwin
   enable-shell-gpt = (!x86_64-darwin);
   enable-zsh-patina =
-    pkgs ? zsh-patina || inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? zsh-patina;
-  zsh-patina = pkgs.zsh-patina or inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zsh-patina;
+    inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? zsh-patina || pkgs ? zsh-patina;
+  zsh-patina = inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zsh-patina or pkgs.zsh-patina;
   enable-zsh-sage = false;
   enable-flyline = pkgs ? flyline;
 in
