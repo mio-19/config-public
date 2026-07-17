@@ -15,7 +15,7 @@ let
   x86_64-darwin = (pkgs.stdenv.isx86_64 && pkgs.stdenv.isDarwin);
   # doesn't have binary cache on x86_64-darwin
   enable-shell-gpt = (!x86_64-darwin);
-  enable-zsh-patina = inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? zsh-patina;
+  enable-zsh-patina = pkgs ? zsh-patina;
   enable-zsh-sage = false;
   enable-flyline = pkgs ? flyline;
 in
@@ -158,10 +158,7 @@ in
           name = "zsh-patina";
           src = pkgs.runCommand "zsh-patina" { } ''
             mkdir -p $out/share/zsh-patina
-            echo 'eval "$(${
-              # inputs.zsh-patina.packages.${pkgs.stdenv.hostPlatform.system}.default
-              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zsh-patina
-            }/bin/zsh-patina activate)"' > $out/share/zsh-patina/zsh-patina.plugin.zsh
+            echo 'eval "$(${pkgs.zsh-patina}/bin/zsh-patina activate)"' > $out/share/zsh-patina/zsh-patina.plugin.zsh
           '';
           file = "share/zsh-patina/zsh-patina.plugin.zsh";
         }

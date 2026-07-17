@@ -160,6 +160,12 @@
                 # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
                 # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
                 (fetchpatch {
+                  name = "zsh-patina: init at 1.7.0";
+                  url = "https://github.com/NixOS/nixpkgs/pull/530825.diff";
+                  hash = "sha256-yCzY0zAhY0BSr8qzO9t9ntHKgSvHW62J//qSKTV7X1A=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
                   name = "types.path.check: Avoid derivation instantiation";
                   url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                   hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";

@@ -403,6 +403,12 @@
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               # nixos/firefox: make variant librewolf https://github.com/NixOS/nixpkgs/pull/467398
               (fetchpatch {
+                name = "zsh-patina: init at 1.7.0";
+                url = "https://github.com/NixOS/nixpkgs/pull/530825.diff";
+                hash = "sha256-yCzY0zAhY0BSr8qzO9t9ntHKgSvHW62J//qSKTV7X1A=";
+                derivationArgs.allowSubstitutes = false;
+              })
+              (fetchpatch {
                 name = "types.path.check: Avoid derivation instantiation";
                 url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                 hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
