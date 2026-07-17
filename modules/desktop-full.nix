@@ -11,7 +11,7 @@ let
       hardened = with pkgs; [
         inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
         localsend
-        pear-desktop
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_pathed # pear-desktop
         element-desktop
         qbittorrent-enhanced
         progs.materialgram
