@@ -9,7 +9,7 @@ let
     { pkgs, progs }:
     {
       hardened = with pkgs; [
-        #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
         localsend
         inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
         element-desktop
