@@ -134,9 +134,11 @@
           (import ../aspect.nix "nixbuild")
         ];
 
-        system.extraDependencies = map (input: input.to.path or input.flake) (
-          builtins.attrValues config.nix.registry
-        );
+        system.extraDependencies =
+          (map (input: input.to.path or input.flake) (builtins.attrValues config.nix.registry))
+          ++ lib.optionals programs.firejail.enable (
+            lib.mapAttrsToList (name: value: value.profile) config.programs.firejail.wrappedBinaries
+          );
 
         boot.loader.grub.keepBootedSystemEntry = true;
 
