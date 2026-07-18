@@ -437,12 +437,6 @@
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
-                name = "doc: add NFS file systems documentation";
-                url = "https://github.com/NixOS/nixpkgs/pull/509169.diff";
-                hash = "sha256-Ype5eT/l8LJFw6XrdvNqb0erhLJFWSYzEiKRAq0kjtc=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
                 name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
                 url = "https://github.com/NixOS/nixpkgs/pull/526318.patch";
                 hash = "sha256-nAx/qqnbV4lAVBVKxifSoPOj9S/HJ7jW88Ve4y+Yu50=";
