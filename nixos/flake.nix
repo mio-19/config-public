@@ -445,7 +445,7 @@
               (fetchpatch {
                 name = "doc: add NFS file systems documentation";
                 url = "https://github.com/NixOS/nixpkgs/pull/509169.diff";
-                hash = "sha256-Hg2auaXO47mnKKUrpXqcmrCcuLk9eJ6CqEZsOvDXTrc=";
+                hash = "sha256-Ype5eT/l8LJFw6XrdvNqb0erhLJFWSYzEiKRAq0kjtc=";
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
