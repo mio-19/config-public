@@ -136,7 +136,7 @@
 
         system.extraDependencies =
           (map (input: input.to.path or input.flake) (builtins.attrValues config.nix.registry))
-          ++ lib.optionals programs.firejail.enable (
+          ++ lib.optionals config.programs.firejail.enable (
             lib.mapAttrsToList (name: value: value.profile) config.programs.firejail.wrappedBinaries
           );
 
