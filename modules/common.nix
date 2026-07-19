@@ -413,33 +413,49 @@
 
         # https://zhuanlan.zhihu.com/p/671801498
         fonts = {
-          packages = with pkgs; [
-            #nerd-fonts.ubuntu-mono
-            #nerd-fonts.jetbrains-mono
-            #noto-fonts
-            #nerd-fonts.noto
-            noto-fonts-cjk-sans
-            noto-fonts-cjk-serif
-            noto-fonts-color-emoji
-            nerd-fonts.fira-code
-            #nerd-fonts.sauce-code-pro
-            #source-code-pro
-            # flatpak com.baidu.NetDisk https://tieba.baidu.com/p/8889052162 https://github.com/qier222/YesPlayMusic/issues/2121
-            source-han-sans
-            #source-han-mono
-            source-han-serif
-            wqy_zenhei
-            wqy_microhei
-          ];
+          packages =
+            with pkgs;
+            [
+              #nerd-fonts.ubuntu-mono
+              #nerd-fonts.jetbrains-mono
+              #noto-fonts
+              #nerd-fonts.noto
+              nerd-fonts.fira-code
+              #nerd-fonts.sauce-code-pro
+              #source-code-pro
+              # flatpak com.baidu.NetDisk https://tieba.baidu.com/p/8889052162 https://github.com/qier222/YesPlayMusic/issues/2121
+              source-han-sans
+              #source-han-mono
+              source-han-serif
+              wqy_zenhei
+              wqy_microhei
+            ]
+            ++ lib.optionals config.fonts_noto [
+              noto-fonts-cjk-sans
+              noto-fonts-cjk-serif
+              noto-fonts-color-emoji
+            ];
           fontconfig = {
             antialias = true;
             hinting.enable = true;
-            defaultFonts = {
-              emoji = [ "Noto Color Emoji" ];
-              monospace = [ "FiraCode Nerd Font" ];
-              sansSerif = [ "Noto Sans CJK SC" ];
-              serif = [ "Noto Serif CJK SC" ];
-            };
+            defaultFonts =
+              if config.fonts_noto then
+                {
+                  emoji = [ "Noto Color Emoji" ];
+                  monospace = [ "FiraCode Nerd Font" ];
+                  sansSerif = [ "Noto Sans CJK SC" ];
+                  serif = [ "Noto Serif CJK SC" ];
+                }
+              else
+                {
+                  emoji = [ "SF Pro" ];
+                  monospace = [
+                    "SF Mono"
+                    "FiraCode Nerd Font"
+                  ];
+                  sansSerif = [ "SF Pro" ];
+                  serif = [ "New York" ];
+                };
           };
         };
 

@@ -85,6 +85,11 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
+        fonts_noto = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "use noto";
+        };
         config_impure = lib.mkOption {
           type = lib.types.bool;
           default = false;
