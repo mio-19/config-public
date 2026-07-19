@@ -410,7 +410,7 @@ let
                 rm -fr "$out/share/dbus-1/services"/*
                 cp --force --dereference --recursive "${pkg}/share/dbus-1/services/"* "$out/share/dbus-1/services/"
                 substituteInPlace $out/share/dbus-1/services/*.service \
-                  --replace ${pkg}/bin $out/bin
+                  --replace-quiet ${pkg}/bin $out/bin
               fi
             '';
           }
