@@ -76,6 +76,15 @@ in
               };
             }
         );
+        # for opening web links (same as Telegram/materialgram):
+        environment.etc."firejail/thunderbird.local".text = ''
+          dbus-user.talk org.freedesktop.portal.Desktop
+          dbus-user.talk org.freedesktop.portal.OpenURI
+          ignore noroot
+          whitelist /run/current-system
+          whitelist /run/wrappers
+          ignore private-bin
+        '';
 
       };
   };
