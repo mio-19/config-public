@@ -287,8 +287,8 @@ customize
     telegram =
       if config.compile_gram then
         (
-          if pkgs.stdenv.isDarwin then
-            pkgs.nur.repos.mio.telegram-desktop_patched
+          if pkgs.stdenv.isLinux then
+            (import ./nixos/include.nix args).pkgs-small.nur.repos.mio.telegram-desktop_patched
           else
             pkgs.nur.repos.mio.telegram-desktop_patched
         )
