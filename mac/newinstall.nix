@@ -7,7 +7,7 @@
 }:
 {
 
-  # THEY ARE CAUSING mas to STUCK EVERY TIME; so only check for newinstall then
+  # THEY ARE CAUSING mas to STUCK EVERY TIME; so only check for newinstall then. WHY DO THEY GET REINSTALLED EVERYTIME DURING ACTIVATION
   homebrew.masApps = {
     Saber = 1671523739;
     "Ice Cubes" = 6444915884;
