@@ -17,5 +17,6 @@
     Xcode = 497799835;
     # only mac app store version supports browser integration
     Bitwarden = 1352778147;
+    Amphetamine = 937984704;
   };
 }

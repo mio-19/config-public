@@ -760,9 +760,6 @@
             restart_service = "changed";
           }
         ];
-        homebrew.masApps = {
-          Amphetamine = 937984704;
-        };
         homebrew.taps = [
           "Dr-Emann/homebrew-tap"
           "buo/homebrew-cask-upgrade"
