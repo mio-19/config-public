@@ -90,6 +90,11 @@ let
           default = false;
           description = "use noto";
         };
+        fonts_evil_c = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "fonts for evil c";
+        };
         config_impure = lib.mkOption {
           type = lib.types.bool;
           default = false;

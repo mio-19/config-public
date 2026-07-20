@@ -424,6 +424,8 @@
               nerd-fonts.fira-code
               #nerd-fonts.sauce-code-pro
               #source-code-pro
+            ]
+            ++ lib.optionals config.fonts_evil_c [
               # flatpak com.baidu.NetDisk https://tieba.baidu.com/p/8889052162 https://github.com/qier222/YesPlayMusic/issues/2121
               source-han-sans
               #source-han-mono
