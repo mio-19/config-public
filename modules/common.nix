@@ -416,6 +416,7 @@
           packages =
             with pkgs;
             [
+              noto-fonts-color-emoji
               #nerd-fonts.ubuntu-mono
               #nerd-fonts.jetbrains-mono
               #noto-fonts
@@ -433,7 +434,6 @@
             ++ lib.optionals config.fonts_noto [
               noto-fonts-cjk-sans
               noto-fonts-cjk-serif
-              noto-fonts-color-emoji
             ];
           fontconfig = {
             antialias = true;
@@ -448,7 +448,10 @@
                 }
               else
                 {
-                  emoji = [ "SF Pro" ];
+                  emoji = [
+                    "SF Pro"
+                    "Noto Color Emoji"
+                  ];
                   monospace = [
                     "SF Mono"
                     "FiraCode Nerd Font"
