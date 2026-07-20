@@ -18,5 +18,6 @@
     # only mac app store version supports browser integration
     Bitwarden = 1352778147;
     Amphetamine = 937984704;
+    Meshtastic = 1586432531;
   };
 }

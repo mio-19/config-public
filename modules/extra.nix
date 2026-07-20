@@ -338,9 +338,6 @@ let
         "nohajc/anylinuxfs"
         "66HEX/frame"
       ];
-      homebrew.masApps = {
-        Meshtastic = 1586432531;
-      };
     };
 in
 {
