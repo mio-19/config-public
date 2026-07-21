@@ -919,17 +919,17 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1784632911,
-        "narHash": "sha256-hIuKWaIRRpBfuM6NivIn0brXZjyndQJgdaXceIT28MU=",
+        "lastModified": 1784633363,
+        "narHash": "sha256-IQdvkjBpgknKzBCI6K5JAxvNdsMzcrZq7wRvwQ6LN/M=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "2447af35e029a0af92c9acdfdbc96a3eb3ed28db",
+        "rev": "8ca3f4c423000cbeae108137552d82f1ee99a2ea",
         "type": "github"
       },
       "original": {
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "2447af35e029a0af92c9acdfdbc96a3eb3ed28db",
+        "rev": "8ca3f4c423000cbeae108137552d82f1ee99a2ea",
         "type": "github"
       }
     },
