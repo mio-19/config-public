@@ -364,7 +364,7 @@
     # pin niche inputs to avoid bad people taking over.
     den.url = "github:denful/den/1614f6f8ed435c5bb257408bf91fd662f9aac43e";
     # pin to avoid rebuild
-    mio-betterbird.url = "github:mio-19/nurpkgs/20876484d4e71203aaa00519e11ca8b1a4a80861";
+    mio-betterbird.url = "github:mio-19/nurpkgs/c73dca50";
     chinese-fonts-overlay = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:brsvh/chinese-fonts-overlay/da90d47fa1a6f8fbfcc5795bc9351c98142f37ea";
