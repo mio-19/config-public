@@ -58,39 +58,40 @@ let
           # inside the thunderbird sandbox.
           withMailXdgOpenHandlers =
             pkg: distDir:
-            pkgs.runCommand "${pkg.pname}-xdg-open-handlers"
-              {
-                inherit (pkg) meta;
-              }
-              ''
-                cp -ra ${pkg} $out
-                cat > $out/lib/${distDir}/distribution/policies.json <<EOF
-                {
-                  "policies": {
-                    "Handlers": {
-                      "schemes": {
-                        "http": {
-                          "action": "useHelperApp",
-                          "ask": false,
-                          "handlers": [{
-                            "name": "xdg-open",
-                            "path": "${pkgs.xdg-utils}/bin/xdg-open"
-                          }]
-                        },
-                        "https": {
-                          "action": "useHelperApp",
-                          "ask": false,
-                          "handlers": [{
-                            "name": "xdg-open",
-                            "path": "${pkgs.xdg-utils}/bin/xdg-open"
-                          }]
-                        }
+            let
+              policies = (pkgs.formats.json { }).generate "mail-client-policies" {
+                policies.Handlers.schemes = {
+                  http = {
+                    action = "useHelperApp";
+                    ask = false;
+                    handlers = [
+                      {
+                        name = "xdg-open";
+                        path = "${pkgs.xdg-utils}/bin/xdg-open";
                       }
-                    }
-                  }
-                }
-                EOF
+                    ];
+                  };
+                  https = {
+                    action = "useHelperApp";
+                    ask = false;
+                    handlers = [
+                      {
+                        name = "xdg-open";
+                        path = "${pkgs.xdg-utils}/bin/xdg-open";
+                      }
+                    ];
+                  };
+                };
+              };
+            in
+            pkgs.symlinkJoin {
+              name = "${pkg.pname}-xdg-open-handlers";
+              paths = [ pkg ];
+              postBuild = ''
+                rm -f $out/lib/${distDir}/distribution/policies.json
+                ln -s ${policies} $out/lib/${distDir}/distribution/policies.json
               '';
+            };
           betterbird =
             withMailXdgOpenHandlers inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird
               "betterbird";
