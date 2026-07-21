@@ -48,7 +48,7 @@ in
         environment.systemPackages =
           with pkgs;
           (map cleanPkg [
-            (if config.use_betterbird then progs.betterbird else thunderbird-esr)
+            (if config.use_betterbird then progs.betterbird else progs.thunderbird-esr')
           ]);
         programs.firejail.wrappedBinaries = (
           if config.use_betterbird then
@@ -66,7 +66,7 @@ in
           else
             {
               thunderbird = {
-                executable = "${cleanPkg thunderbird-esr}/bin/thunderbird";
+                executable = "${cleanPkg progs.thunderbird-esr'}/bin/thunderbird";
                 profile = "${pkgs.firejail}/etc/firejail/thunderbird.profile";
                 extraArgs = [
                   # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
@@ -77,8 +77,8 @@ in
             }
         );
         # Open http(s) via xdg-open + portal (same as Telegram/materialgram).
-        # This requires that Betterbird/Thunderbird use xdg-open for http(s)
-        # and that this sandbox can execute xdg-open and talk to the portal.
+        # policies.json sets Handlers to xdg-open; firejail must allow the script
+        # and portal dbus so the browser starts outside this sandbox.
         environment.etc."firejail/thunderbird.local".text = ''
           include allow-bin-sh.inc
           noblacklist ${"$"}{PATH}/xdg-open

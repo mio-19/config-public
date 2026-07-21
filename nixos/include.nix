@@ -53,7 +53,48 @@ let
         // (with pkgs; rec {
           scala_3 = pkgs.scala_3.override { jre = jre; };
           pnpm = pkgs.pnpm.override { inherit nodejs-slim; };
-          betterbird = inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird;
+          # Route http(s) links through xdg-open so firejailed mail clients use the
+          # desktop portal (same path as Telegram) instead of spawning the browser
+          # inside the thunderbird sandbox.
+          withMailXdgOpenHandlers =
+            pkg: distDir:
+            pkgs.runCommand "${pkg.pname}-xdg-open-handlers"
+              {
+                inherit (pkg) meta;
+              }
+              ''
+                cp -ra ${pkg} $out
+                cat > $out/lib/${distDir}/distribution/policies.json <<EOF
+                {
+                  "policies": {
+                    "Handlers": {
+                      "schemes": {
+                        "http": {
+                          "action": "useHelperApp",
+                          "ask": false,
+                          "handlers": [{
+                            "name": "xdg-open",
+                            "path": "${pkgs.xdg-utils}/bin/xdg-open"
+                          }]
+                        },
+                        "https": {
+                          "action": "useHelperApp",
+                          "ask": false,
+                          "handlers": [{
+                            "name": "xdg-open",
+                            "path": "${pkgs.xdg-utils}/bin/xdg-open"
+                          }]
+                        }
+                      }
+                    }
+                  }
+                }
+                EOF
+              '';
+          betterbird =
+            withMailXdgOpenHandlers inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird
+              "betterbird";
+          thunderbird-esr' = withMailXdgOpenHandlers pkgs.thunderbird-esr "thunderbird";
           mcpelauncher-ui-qt = pkgs.mcpelauncher-ui-qt;
           # cannot get bwrapper to work with mcpe login page
           mcpelauncher-ui-qt_failedAttempt1 = mkBwrapper {
