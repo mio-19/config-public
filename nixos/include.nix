@@ -53,49 +53,42 @@ let
         // (with pkgs; rec {
           scala_3 = pkgs.scala_3.override { jre = jre; };
           pnpm = pkgs.pnpm.override { inherit nodejs-slim; };
-          # Route http(s) links through xdg-open so firejailed mail clients use the
-          # desktop portal (same path as Telegram) instead of spawning the browser
-          # inside the thunderbird sandbox.
-          withMailXdgOpenHandlers =
-            pkg: distDir:
-            let
-              policies = (pkgs.formats.json { }).generate "mail-client-policies" {
-                policies.Handlers.schemes = {
-                  http = {
-                    action = "useHelperApp";
-                    ask = false;
-                    handlers = [
-                      {
-                        name = "xdg-open";
-                        path = "${pkgs.xdg-utils}/bin/xdg-open";
-                      }
-                    ];
-                  };
-                  https = {
-                    action = "useHelperApp";
-                    ask = false;
-                    handlers = [
-                      {
-                        name = "xdg-open";
-                        path = "${pkgs.xdg-utils}/bin/xdg-open";
-                      }
-                    ];
-                  };
+          # wrapThunderbird → wrapFirefox extraPolicies (nixpkgs-native; see
+          # pkgs/applications/networking/browsers/firefox/wrapper.nix).
+          mailXdgOpenHandlers = {
+            Handlers = {
+              schemes = {
+                http = {
+                  action = "useHelperApp";
+                  ask = false;
+                  handlers = [
+                    {
+                      name = "xdg-open";
+                      path = "${pkgs.xdg-utils}/bin/xdg-open";
+                    }
+                  ];
+                };
+                https = {
+                  action = "useHelperApp";
+                  ask = false;
+                  handlers = [
+                    {
+                      name = "xdg-open";
+                      path = "${pkgs.xdg-utils}/bin/xdg-open";
+                    }
+                  ];
                 };
               };
-            in
-            pkgs.symlinkJoin {
-              name = "${pkg.pname}-xdg-open-handlers";
-              paths = [ pkg ];
-              postBuild = ''
-                rm -f $out/lib/${distDir}/distribution/policies.json
-                ln -s ${policies} $out/lib/${distDir}/distribution/policies.json
-              '';
             };
+          };
           betterbird =
-            withMailXdgOpenHandlers inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird
-              "betterbird";
-          thunderbird-esr' = withMailXdgOpenHandlers pkgs.thunderbird-esr "thunderbird";
+            (inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird).override
+              {
+                extraPolicies = mailXdgOpenHandlers;
+              };
+          thunderbird-esr' = pkgs.thunderbird-esr.override {
+            extraPolicies = mailXdgOpenHandlers;
+          };
           mcpelauncher-ui-qt = pkgs.mcpelauncher-ui-qt;
           # cannot get bwrapper to work with mcpe login page
           mcpelauncher-ui-qt_failedAttempt1 = mkBwrapper {
