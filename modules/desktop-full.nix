@@ -76,8 +76,12 @@ in
               };
             }
         );
-        # for opening web links (same as Telegram/materialgram):
+        # Open http(s) via xdg-open + portal (same as Telegram/materialgram).
+        # This requires that Betterbird/Thunderbird use xdg-open for http(s)
+        # and that this sandbox can execute xdg-open and talk to the portal.
         environment.etc."firejail/thunderbird.local".text = ''
+          include allow-bin-sh.inc
+          noblacklist ${"$"}{PATH}/xdg-open
           dbus-user.talk org.freedesktop.portal.Desktop
           dbus-user.talk org.freedesktop.portal.OpenURI
           ignore noroot
