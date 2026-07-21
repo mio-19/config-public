@@ -643,6 +643,7 @@
               ;
             inherit (pkgs-pin3) zed-editor; # no binary cache
             inherit (pkgs-pin7) vscode; # build failed
+            inherit (pkgs-pin6) nixtamal; # build failed
           })
         ];
         home-manager.sharedModules = [
