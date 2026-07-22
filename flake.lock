@@ -254,11 +254,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1784694990,
-        "narHash": "sha256-5W6DJoG24rw8Hx5T4zkD4T0s/MuoqkdeLk1es1896jk=",
+        "lastModified": 1784695750,
+        "narHash": "sha256-s2XySHsycI1xwPdYxbxD0cujjQt1MIsU2PJ8PjqQbqo=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "98dd2cca8ae3934687130d2ae9d21da7f495bad0",
+        "rev": "24ce855c51a0c78bc338232acdfec8d853be7cfb",
         "type": "github"
       },
       "original": {
@@ -2017,11 +2017,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784484525,
-        "narHash": "sha256-q8wz0jtXoZn+5M1PuH87vAoVlUfZcoXKT3DEN4w1Ke4=",
+        "lastModified": 1784696172,
+        "narHash": "sha256-yjUNFvSNeMdtKfoC1MKkEnBTy844aQda8zzYfkScieA=",
         "owner": "nixified-ai",
         "repo": "flake",
-        "rev": "6c9b4747f786dbff801a27bc7dd2accc18adacae",
+        "rev": "ab3a49cb676930299380618914f78f4275c41737",
         "type": "github"
       },
       "original": {
