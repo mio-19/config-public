@@ -206,8 +206,8 @@
               mio = inputs.mio.packages."${system}";
             in
             {
-              #grub2 = final.nur.repos.mio.grub2;
-              inherit (mio) wireguird darling grub2;
+              grub2 = mio.grub2_patched;
+              inherit (mio) wireguird darling;
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               inherit (pkgs') pianotrans; # no binary cache with cuda and no binary cache with rocm
