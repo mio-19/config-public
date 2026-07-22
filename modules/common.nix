@@ -424,6 +424,8 @@
               nerd-fonts.fira-code
               #nerd-fonts.sauce-code-pro
               #source-code-pro
+              noto-fonts-cjk-sans
+              noto-fonts-cjk-serif
             ]
             ++ lib.optionals config.fonts_evil_c [
               # flatpak com.baidu.NetDisk https://tieba.baidu.com/p/8889052162 https://github.com/qier222/YesPlayMusic/issues/2121
@@ -432,10 +434,6 @@
               source-han-serif
               wqy_zenhei
               wqy_microhei
-            ]
-            ++ lib.optionals config.fonts_noto [
-              noto-fonts-cjk-sans
-              noto-fonts-cjk-serif
             ];
           fontconfig = {
             antialias = true;
@@ -458,8 +456,14 @@
                     "SF Mono"
                     "FiraCode Nerd Font"
                   ];
-                  sansSerif = [ "SF Pro" ];
-                  serif = [ "New York" ];
+                  sansSerif = [
+                    "SF Pro"
+                    "Noto Sans CJK SC"
+                  ];
+                  serif = [
+                    "New York"
+                    "Noto Serif CJK SC"
+                  ];
                 };
           };
         };
