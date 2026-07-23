@@ -71,9 +71,9 @@ jobs:
       with:
         name: mio-config
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: (cd mac && nix build .#darwinConfigurations.NixMac.system --keep-going)
+    - run: (cd mac && nix build .#darwinConfigurations.NixMac.system --keep-going --max-jobs 1)
       continue-on-error: true
-    - run: (cd mac && nix flake update && nix build .#darwinConfigurations.NixMac.system --keep-going)
+    - run: (cd mac && nix flake update && nix build .#darwinConfigurations.NixMac.system --keep-going --max-jobs 1)
       continue-on-error: true
-    - run: (cd mac && nix flake update --override-input nixpkgs-unstable github:nixos/nixpkgs/master && nix build .#darwinConfigurations.NixMac.system --keep-going)
+    - run: (cd mac && nix flake update --override-input nixpkgs-unstable github:nixos/nixpkgs/master && nix build .#darwinConfigurations.NixMac.system --keep-going --max-jobs 1)
       continue-on-error: true
