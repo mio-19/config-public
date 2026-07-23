@@ -79,7 +79,6 @@
             pixelorama
             plezy
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.komi-store
-            pkgs-chaotic'.firefox_nightly
             inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
             #quickemu
             #whatsapp-chat-exporter
@@ -94,6 +93,9 @@
             binaryninja-free
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
             bitwig-studio
+          ])
+          ++ (map cleanPkg [
+            pkgs-chaotic'.firefox_nightly
           ])
           ++ [
             # breaks with wrapper
