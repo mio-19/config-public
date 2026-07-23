@@ -12,6 +12,7 @@ let
       ghidra
       blender
       jetbrains.gateway
+      mailspring
     ];
 in
 {
