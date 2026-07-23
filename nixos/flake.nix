@@ -401,6 +401,12 @@
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               # nixos/firefox: make variant librewolf https://github.com/NixOS/nixpkgs/pull/467398
               (fetchpatch {
+                name = "graphene-hardened-malloc: 2025092700 -> 14";
+                url = "https://github.com/NixOS/nixpkgs/pull/510863.diff";
+                hash = "sha256-lOfwaknMzXkRVxuzX7yIMW3YG1wBgZ5rBwFsRbjEyQE=";
+                derivationArgs.allowSubstitutes = false;
+              })
+              (fetchpatch {
                 name = "types.path.check: Avoid derivation instantiation";
                 url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                 hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
