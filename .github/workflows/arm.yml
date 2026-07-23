@@ -34,11 +34,11 @@ jobs:
       with:
         name: mio-config
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: (cd nixos && timeout --signal=KILL 35m nix build .#nixosConfigurations.husky.config.system.build.toplevel)
+    - run: (cd nixos && timeout --signal=KILL 35m nix build .#nixosConfigurations.husky.config.system.build.toplevel --keep-going --max-jobs 1)
       continue-on-error: true
-    - run: (cd nixos && timeout --signal=KILL 35m nix build .#nixosConfigurations.macvirt.config.system.build.toplevel)
+    - run: (cd nixos && timeout --signal=KILL 35m nix build .#nixosConfigurations.macvirt.config.system.build.toplevel --keep-going --max-jobs 1)
       continue-on-error: true
-    - run: (cd nixos && nix flake update && timeout --signal=KILL 35m nix build .#nixosConfigurations.husky.config.system.build.toplevel)
+    - run: (cd nixos && nix flake update && timeout --signal=KILL 35m nix build .#nixosConfigurations.husky.config.system.build.toplevel --keep-going --max-jobs 1)
       continue-on-error: true
-    - run: (cd nixos && nix flake update && timeout --signal=KILL 35m nix build .#nixosConfigurations.macvirt.config.system.build.toplevel)
+    - run: (cd nixos && nix flake update && timeout --signal=KILL 35m nix build .#nixosConfigurations.macvirt.config.system.build.toplevel --keep-going --max-jobs 1)
       continue-on-error: true
