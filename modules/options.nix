@@ -143,6 +143,21 @@ let
           default = true;
           description = "Include vicinae in home-manager.sharedModules (off for home-manager-7074 / WSL).";
         };
+        middle_click_scroll = lib.mkOption {
+          type = lib.types.enum [
+            "off"
+            "plasma"
+            "browsers"
+          ];
+          default = "plasma";
+          description = ''
+            Middle-click scrolling mode:
+            - "plasma": all apps via Plasma/libinput ("Hold down middle button and move mouse to scroll")
+            - "browsers": Chromium MiddleClickAutoscroll + LibreWolf/Firefox general.autoScroll
+            - "off": disabled
+            Plasma and browsers modes conflict on the middle button; pick one.
+          '';
+        };
       };
 
       config = lib.optionalAttrs (!isDarwin) {

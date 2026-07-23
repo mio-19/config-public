@@ -1,5 +1,8 @@
 { den, ... }: {
   den.aspects.desktop-basic = {
+    includes = [
+      den.aspects.middle-click-scroll
+    ];
     nixos =
       args@{
         config,

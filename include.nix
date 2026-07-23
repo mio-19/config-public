@@ -254,6 +254,14 @@ customize
     pref("privacy.clearOnShutdown.formdata", false);
     pref("privacy.clearOnShutdown.offlineApps", false);
     pref("privacy.clearOnShutdown.siteSettings", false);
+  ''
+  + lib.optionalString ((config.middle_click_scroll or "off") == "browsers") ''
+    // Firefox/LibreWolf: Settings → General → Browsing → "Use autoscrolling"
+    // https://support.mozilla.org/kb/mouse-shortcuts-perform-common-tasks
+    // LibreWolf "Enable Autoscroll safely":
+    // https://librewolf.net/docs/settings/
+    pref("middlemouse.paste", false);
+    pref("general.autoScroll", true);
   '';
 
   # Shared toolchain packages used across NixOS + nix-darwin configs.
