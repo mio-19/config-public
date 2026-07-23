@@ -640,7 +640,6 @@
               blender
               ;
             inherit (pkgs-pin7) vscode; # build failed
-            inherit (pkgs-pin6) nixtamal; # build failed
           })
         ];
         home-manager.sharedModules = [
