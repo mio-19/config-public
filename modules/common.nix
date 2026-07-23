@@ -635,14 +635,8 @@
           (final: prev: {
             # failed to build (https://github.com/NixOS/nixpkgs/pull/536365):
             inherit (pkgs-pin3)
-              octaveFull
-              jadx
-              imhex
-              rectangle
               moonlight-qt
               supertuxkart
-              # likely failed to build:
-              qbittorrent-enhanced
               blender
               ;
             inherit (pkgs-pin3) zed-editor; # no binary cache
