@@ -98,11 +98,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1784784242,
-        "narHash": "sha256-R08wA4R7ZRiiT/L7PJjw2x4Mivc1gVprWJ9eLyalpZk=",
+        "lastModified": 1784801993,
+        "narHash": "sha256-8FLFBQ6V1h3enUieXWLWviNryn+eHlpBq3ZdzGQmtK8=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "9b6fae9006981d3705008b730307f4c5b9be4e3d",
+        "rev": "1fb5f537a96567fcdfbac8222fc4e881f8eafaaf",
         "type": "github"
       },
       "original": {
@@ -441,11 +441,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784729780,
-        "narHash": "sha256-2CE4KkubgPElu58wFh41AxaliaQuvOrAOfxz6XqjjoM=",
+        "lastModified": 1784805606,
+        "narHash": "sha256-A6w4g/hoZ6UErxr+6lgnX5eVUg9Y1W4yQ3SmymlzbUs=",
         "ref": "refs/heads/main",
-        "rev": "545e6e8274931ff26f561f5f7041765759a4087c",
-        "revCount": 2317,
+        "rev": "202d6bca6a28cf7b48ae0bc05ce13104a9f8cd4b",
+        "revCount": 2318,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -556,8 +556,9 @@
     },
     "nixpkgs-pin7": {
       "locked": {
-        "lastModified": 315532800,
+        "lastModified": 1784364478,
         "narHash": "sha256-eiNlOqzMSGC+sKwgrhkBK/Mn4n717NV1DEfJqHBVhgg=",
+        "rev": "20535e48e12c86043b577b8518234ff5dbb26957",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1036836.20535e48e12c/nixexprs.tar.xz"
       },
@@ -618,11 +619,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784795754,
-        "narHash": "sha256-oSM+R4ASbsFDoJkxoo4zpoFRMS5XBnI3b/+RypJ2DZ4=",
+        "lastModified": 1784805729,
+        "narHash": "sha256-7vP5CyIqcF/GF87aTgZ/lvYIn9UC/FBX0AnNlzC+AAQ=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "00df976a26ef6fc1393130aa429f8945c602429b",
+        "rev": "3b87c4cea03cfcf62e8e59988aa75c04c896a784",
         "type": "github"
       },
       "original": {
