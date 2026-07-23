@@ -79,6 +79,7 @@
             pixelorama
             plezy
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.komi-store
+            pkgs-chaotic.firefox_nightly
             inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
             #quickemu
             #whatsapp-chat-exporter
