@@ -95,7 +95,7 @@
             bitwig-studio
           ])
           ++ (map cleanPkg [
-            pkgs-chaotic'.firefox_nightly
+            #pkgs-chaotic'.firefox_nightly
           ])
           ++ [
             # breaks with wrapper
