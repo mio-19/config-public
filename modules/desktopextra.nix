@@ -77,7 +77,7 @@ in
           ++ (map cleanPkg [
             # unfree:
             android-studio
-            antigravity-fhs
+            antigravity-ide-fhs
             # DETAILS REMOVED
           ])
           # https://github.com/dune3d/dune3d/issues/87#issuecomment-2095816938
