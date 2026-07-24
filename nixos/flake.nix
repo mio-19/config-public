@@ -460,12 +460,6 @@
                 hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
                 derivationArgs.allowSubstitutes = false;
               })
-              (fetchpatch {
-                name = "github-copilot-cli: 1.0.26 -> 1.0.70";
-                url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
-                hash = "sha256-6U6qYZ0WD/GNkWvLUpchTCHRNUm0VYSorE8oi9aK9LE=";
-                derivationArgs.allowSubstitutes = false;
-              })
               /*
                 (fetchpatch {
                   name = "nixos/systemd-boot: defer boot file garbage collection";
