@@ -27,6 +27,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "antigravity-ide"
       "vista-fonts-cht"
       "vista-fonts-chs"
       "bambu-studio"
