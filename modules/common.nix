@@ -210,6 +210,7 @@
               inherit (mio) wireguird darling;
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
+              inherit (pkgs') ollama; # build failed with cuda?
               inherit (pkgs') pianotrans; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs-pin2') freecad;
               inherit (pkgs-pin2) f3d handbrake;
