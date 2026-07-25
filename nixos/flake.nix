@@ -250,7 +250,7 @@
     };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #need binary cache#inputs.nixpkgs.follows = "nixpkgs";
       inputs.blueprint.inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
     };
@@ -305,7 +305,7 @@
     # --option extra-substituters https://nix-gaming.cachix.org --option extra-trusted-public-keys nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #need binary cache#inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
       inputs.flake-compat.follows = "flake-compat";
