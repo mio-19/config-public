@@ -281,7 +281,8 @@
     };
     claude-desktop = {
       # pin slop to avoid many rebuilds
-      url = "github:aaddrick/claude-desktop-debian/4ef1cd86d48bdcc16c92c10a94952f297208886c";
+      # https://github.com/aaddrick/claude-desktop-debian
+      url = "github:aaddrick/claude-desktop-debian/0b105f6388590c875f056bf832a828e5aef2a230";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
