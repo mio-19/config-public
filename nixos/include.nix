@@ -429,7 +429,7 @@ let
               priority = pkg.meta.priority or null;
               mainProgram = pkg.meta.mainProgram or null;
             };
-            name = "${pkg.name or pkg.pname or "unknown"}-${suffix}";
+            name = "${pkg.name or pkg.pname}-${suffix}";
             paths = [ pkg ];
             nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
             postBuild = ''
