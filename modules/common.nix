@@ -368,44 +368,43 @@
           ++ (map cleanPkg [
             nix-output-monitor
           ])
-          ++
-            [
-              script.upgrade
-              script.switch
-              script.boot
-              script.upboot
+          ++ [
+            script.upgrade
+            script.switch
+            script.boot
+            script.upboot
+          ]
+          ++ lib.optionals config.mio_aria2 (
+            map hardenedPkg [
+              nur.repos.mio.aria2
+              nur.repos.mio.aria2-wrapped
             ]
-            ++ lib.optionals config.mio_aria2 (
-              map hardenedPkg [
-                nur.repos.mio.aria2
-                nur.repos.mio.aria2-wrapped
-              ]
-            )
-            ++ lib.optionals (!config.mio_aria2) (map hardenedPkg [ aria2 ])
-            ++ (map cleanPkg [
-              ego
-              #  they might execute some binary that doesn't like the grapheneos malloc
-              progs.nodejs
-              progs.pnpm
-            ])
-            ++ lib.optionals config.services.desktopManager.plasma6.enable (
-              with pkgs.kdePackages;
-              map (pkg: hardenedPkg (lib.hiPrio pkg)) [
-                # Note: some packages are broken with hardenedPkg. Only list those known to work here.
-                # https://github.com/NixOS/nixpkgs/blob/74a6c30612152d8b186f55f9c8b998f978afd6eb/nixos/modules/services/desktop-managers/plasma6.nix#L70-L218
-                kwalletmanager
-                kwin
-                plasma-systemmonitor
-                systemsettings
-                # optionalPackages
-                ark
-                elisa
-                gwenview
-                okular
-                dolphin
-                spectacle
-              ]
-            );
+          )
+          ++ lib.optionals (!config.mio_aria2) (map hardenedPkg [ aria2 ])
+          ++ (map cleanPkg [
+            ego
+            #  they might execute some binary that doesn't like the grapheneos malloc
+            progs.nodejs
+            progs.pnpm
+          ])
+          ++ lib.optionals config.services.desktopManager.plasma6.enable (
+            with pkgs.kdePackages;
+            map (pkg: hardenedPkg (lib.hiPrio pkg)) [
+              # Note: some packages are broken with hardenedPkg. Only list those known to work here.
+              # https://github.com/NixOS/nixpkgs/blob/74a6c30612152d8b186f55f9c8b998f978afd6eb/nixos/modules/services/desktop-managers/plasma6.nix#L70-L218
+              kwalletmanager
+              kwin
+              plasma-systemmonitor
+              systemsettings
+              # optionalPackages
+              ark
+              elisa
+              gwenview
+              okular
+              dolphin
+              spectacle
+            ]
+          );
 
         programs.nano.package = lib.mkDefault (cleanPkg pkgs.nano);
         programs.nano.enable = true;
