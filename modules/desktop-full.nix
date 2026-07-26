@@ -6,7 +6,11 @@ let
   # applies hardenedPkg/cleanPkg and gates x86_64-only ones,
   # darwin installs them plain/unconditional.
   sharedApps =
-    { pkgs, progs }:
+    {
+      pkgs,
+      progs,
+      config,
+    }:
     {
       hardened = with pkgs; [
         localsend
@@ -17,7 +21,7 @@ let
       ];
       clean = [
         inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
-        progs.librewolf' # progs.librewolf'_for_firejail
+        (if (config.librewolf_firejail or false) then progs.librewolf'_for_firejail else progs.librewolf')
       ];
       cleanX86 = with pkgs; [
       ];
@@ -167,12 +171,8 @@ in
       in
       with _include;
       let
-        apps = sharedApps { inherit pkgs progs; };
-        apps' = apps // {
-          clean = [
-            (if config.librewolf_firejail then progs.librewolf'_for_firejail else progs.librewolf')
-          ];
-        };
+        apps = sharedApps { inherit pkgs progs config; };
+        apps' = apps;
       in
       {
         # https://search.nixos.org/packages
@@ -506,12 +506,13 @@ in
     darwin =
       args@{
         pkgs,
+        config,
         ...
       }:
       let
         _include = args._include or import ../mac/include.nix args;
         apps = sharedApps {
-          inherit pkgs;
+          inherit pkgs config;
           inherit (_include) progs;
         };
       in
