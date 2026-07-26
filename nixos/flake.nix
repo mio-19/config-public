@@ -510,6 +510,13 @@
                 name = "Add deny fprintd PAM auth for su/sudo without tty";
                 url = "https://github.com/joshperry/nixpkgs/commit/e256ef2283759082941ddb6dd422b7d885378db4.patch";
                 hash = "sha256-WeKRwcAvQNhcRAjLtjX+kYX8Mp59TYBjrTQqh7znEkU=";
+                derivationArgs.allowSubstitutes = false;
+              })
+              (fetchpatch {
+                name = "downkyicore: 1.0.24 -> 1.0.32";
+                url = "https://github.com/NixOS/nixpkgs/pull/545155.patch";
+                hash = "sha256-c5gcDCTNz2oELb73oQN2wAWZP6FnkdhrPkpbWioLV7c=";
+                derivationArgs.allowSubstitutes = false;
               })
               /*
                 # unsure
