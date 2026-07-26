@@ -63,7 +63,7 @@ in
             nur.repos.mio.waveterm
             pianotrans
             nur.repos.mio.musescore-alex
-            pkgs-pin2.musescore-evolution
+            musescore-evolution
             # binaryNativeCode:
             spotube
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
