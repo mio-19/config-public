@@ -359,7 +359,6 @@
             lz4
             android-tools
             difftastic
-            nix-output-monitor
             lsof
             imagemagick
             waypipe
@@ -367,12 +366,13 @@
             # unfree:
             p7zip-rar
           ])
-          ++ [
+          ++ (map cleanPkg [
+            nix-output-monitor
             script.upgrade
             script.switch
             script.boot
             script.upboot
-          ]
+          ])
           ++ lib.optionals config.mio_aria2 (
             map hardenedPkg [
               nur.repos.mio.aria2
