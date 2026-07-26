@@ -104,7 +104,7 @@ in
             profile = "${pkgs.firejail}/etc/firejail/musescore.profile";
           };
           mscore-evo = {
-            executable = "${hardenedPkg pkgs-pin2.musescore-evolution}/bin/mscore-evo";
+            executable = "${hardenedPkg musescore-evolution}/bin/mscore-evo";
             profile = "${pkgs.firejail}/etc/firejail/musescore.profile";
           };
           xournalpp = {
