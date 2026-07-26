@@ -421,38 +421,35 @@ let
       */
       wrapPkg =
         suffix: args: pkg:
-        if pkg == null then
-          null
-        else
-          pkgs.symlinkJoin (
-            lib.filterAttrs (_: v: v != null) {
-              pname = pkg.pname or null;
-              version = pkg.version or null;
-              meta = lib.filterAttrs (_: v: v != null) {
-                priority = pkg.meta.priority or null;
-                mainProgram = pkg.meta.mainProgram or null;
-              };
-              name = "${pkg.name or pkg.pname or "unknown"}-${suffix}";
-              paths = [ pkg ];
-              nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
-              postBuild = ''
-                for program in "${pkg}/bin/"*; do
-                  if [[ -f "$program" && -x "$program" ]]; then
-                    rm "$out/bin/$(basename "$program")"
-                    makeWrapper "$program" "$out/bin/$(basename "$program")" ${
-                      builtins.replaceStrings [ "\n" ] [ " " ] args
-                    }
-                  fi
-                done
-                if [ -d "$out/share/dbus-1/services" ] && [ -n "$(ls "$out/share/dbus-1/services")" ]; then
-                  rm -fr "$out/share/dbus-1/services"/*
-                  cp --force --dereference --recursive "${pkg}/share/dbus-1/services/"* "$out/share/dbus-1/services/"
-                  substituteInPlace $out/share/dbus-1/services/*.service \
-                    --replace-quiet ${pkg}/bin $out/bin
+        pkgs.symlinkJoin (
+          lib.filterAttrs (_: v: v != null) {
+            pname = pkg.pname or null;
+            version = pkg.version or null;
+            meta = lib.filterAttrs (_: v: v != null) {
+              priority = pkg.meta.priority or null;
+              mainProgram = pkg.meta.mainProgram or null;
+            };
+            name = "${pkg.name or pkg.pname or "unknown"}-${suffix}";
+            paths = [ pkg ];
+            nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+            postBuild = ''
+              for program in "${pkg}/bin/"*; do
+                if [[ -f "$program" && -x "$program" ]]; then
+                  rm "$out/bin/$(basename "$program")"
+                  makeWrapper "$program" "$out/bin/$(basename "$program")" ${
+                    builtins.replaceStrings [ "\n" ] [ " " ] args
+                  }
                 fi
-              '';
-            }
-          );
+              done
+              if [ -d "$out/share/dbus-1/services" ] && [ -n "$(ls "$out/share/dbus-1/services")" ]; then
+                rm -fr "$out/share/dbus-1/services"/*
+                cp --force --dereference --recursive "${pkg}/share/dbus-1/services/"* "$out/share/dbus-1/services/"
+                substituteInPlace $out/share/dbus-1/services/*.service \
+                  --replace-quiet ${pkg}/bin $out/bin
+              fi
+            '';
+          }
+        );
       # https://github.com/surfaceflinger/notflake/blob/c71bd18a369b652b2a2224225da938c7af235636/packages/timedoctor-desktop/default.nix#L36
       # https://github.com/nixos/nixpkgs/blob/d7547a7ed4d0bedcd73c64b2b854426ab55da543/nixos/modules/osConfig/malloc.nix#L10
       hardenedPkg = wrapPkg "hardened" ''--inherit-argv0 --set LD_PRELOAD "${pkgs.graphene-hardened-malloc}/lib/libhardened_malloc.so"'';
