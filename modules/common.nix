@@ -368,7 +368,7 @@
           ++ (map cleanPkg [
             nix-output-monitor
           ])
-          +
+          ++
             [
               script.upgrade
               script.switch
