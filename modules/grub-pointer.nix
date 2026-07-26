@@ -1,6 +1,6 @@
 { den, ... }:
 {
-  den.aspects.grub-touch = {
+  den.aspects.grub-pointer = {
     description = "GRUB mouse and touchscreen support";
     nixos =
       {
