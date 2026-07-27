@@ -70,7 +70,7 @@
             openssl_1_1
             pnpm_9
             pnpm_10_29_2
-            jetbrains.idea-oss
+            #jetbrains.idea-oss
             #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
             ventoy
             ventoy-full-gtk
