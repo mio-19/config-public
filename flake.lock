@@ -1313,11 +1313,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1785138458,
-        "narHash": "sha256-8qwuonCYKiwSd/O47XVZI1UmiKhQVG0ByeHrslHbJiU=",
+        "lastModified": 1785145739,
+        "narHash": "sha256-qX/t+D9uVsMw32Za6oXcgXWn6d2HGZqEzMlZWnVQ4GM=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "5ed9245078ce9b810c966510ed2c65675b70d0b1",
+        "rev": "259abb89d0a0d3ba685987053ad344534a5d6600",
         "type": "github"
       },
       "original": {
@@ -2456,11 +2456,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1785002762,
-        "narHash": "sha256-djHx+I7Yp2yyngFbDgZtvcLyWsGZ85WlVSTl1XW3Ta8=",
-        "rev": "f7a2e428f5d71c47a5a938a3c5ad7138bb291093",
+        "lastModified": 1785104993,
+        "narHash": "sha256-V1MsJr1brsjtyfzGtnQ4id/qw6NjeYRqTY5vlf9s7CU=",
+        "rev": "8623c4c20aa4ca2f5fb81510d2944066c3fb0d96",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.6144.f7a2e428f5d7/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.6200.8623c4c20aa4/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -2604,11 +2604,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1784872115,
-        "narHash": "sha256-THPEF2po0fsoH8gNtp+Ae0XFDJH3N/ol7xO3v6VMTJU=",
+        "lastModified": 1785110946,
+        "narHash": "sha256-WWuWxmXKzGZWryswWlijP3Mjp6aGy4Ngmeil5nGMMjk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "335f0738cb2fa9708f3f428e39d2eae975d1338d",
+        "rev": "d3498f786f97ac0bded21b34bae0bf3809b45aa3",
         "type": "github"
       },
       "original": {
@@ -2814,10 +2814,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785138165,
-        "narHash": "sha256-JMQ1L59Z4M0KPKou9gS+rbYYhGEXIGtdPTX0kbbRx2o=",
+        "lastModified": 1785153025,
+        "narHash": "sha256-ubyziylgBIw321CEpkexuP32X2i/whn0LJHNhjWIldY=",
         "ref": "refs/heads/main",
-        "rev": "15544328ef656ca54155e43fc73fb664e5b993c8",
+        "rev": "8f3b21ed289d13c395a82f0dde06fb5ddf6f5078",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3058,11 +3058,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1785128480,
-        "narHash": "sha256-ZK4WqRGPN5Gdl+G5Hmg42xkgVuI1+BcbpyRuAQXFQ2o=",
+        "lastModified": 1785151454,
+        "narHash": "sha256-3RNEcnUfcx4HqqXaQt1BpoY4aKXt8fvQcc3shWopgg4=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "bac84a5390bfd183b1172513e847eaae574ff5fc",
+        "rev": "16d45dc3e3a7be9aaf582ae21b31c30d1e96a341",
         "type": "github"
       },
       "original": {
@@ -3931,10 +3931,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785039979,
-        "narHash": "sha256-vZjuRK0UgvChYGMeQ8daxiETJ5KQyGx+8u8YHdw5e/g=",
+        "lastModified": 1785149826,
+        "narHash": "sha256-0RSrog5pYzJur43VoT+Ur6R7csV8ltQI4tFbc9PjR98=",
         "ref": "refs/heads/main",
-        "rev": "6f5e680db7d105ecf02b4e0d752d48d9083da6c9",
+        "rev": "163fb9c2cb58f402ea8da849e0412d583b7fdf3b",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
