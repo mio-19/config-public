@@ -110,8 +110,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    import-tree.url = "github:denful/import-tree";
-    den.url = "github:denful/den";
+    # pin niche inputs to avoid bad people taking over.
+    import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
+    # pin niche inputs to avoid bad people taking over.
+    den.url = "github:denful/den/99cc0c5a1cc846cb1be681344b10d2731d430e13";
     apple-fonts = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:Lyndeno/apple-fonts.nix/ce044f6829c6b3ccde9624116577ba2c173ca49d";

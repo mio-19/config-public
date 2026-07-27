@@ -361,9 +361,9 @@
       inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
     };
     # pin niche inputs to avoid bad people taking over.
-    import-tree.url = "github:denful/import-tree/d321337efd0f23a9eb14a42adb7b2c29313ab274";
+    import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
     # pin niche inputs to avoid bad people taking over.
-    den.url = "github:denful/den/1614f6f8ed435c5bb257408bf91fd662f9aac43e";
+    den.url = "github:denful/den/99cc0c5a1cc846cb1be681344b10d2731d430e13";
     # pin to avoid rebuild
     mio-betterbird.url = "github:mio-19/nurpkgs/ff151e82bd0b635cde481e5fc11bb5e9a2c16194";
     chinese-fonts-overlay = {

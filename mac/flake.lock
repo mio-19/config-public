@@ -240,6 +240,7 @@
       "original": {
         "owner": "denful",
         "repo": "den",
+        "rev": "99cc0c5a1cc846cb1be681344b10d2731d430e13",
         "type": "github"
       }
     },
@@ -380,6 +381,7 @@
       "original": {
         "owner": "denful",
         "repo": "import-tree",
+        "rev": "4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69",
         "type": "github"
       }
     },
