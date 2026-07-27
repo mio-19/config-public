@@ -353,13 +353,15 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    globalprotect-openconnect = {
-      # pin niche inputs to avoid bad people taking over.
-      url = "github:yuezk/GlobalProtect-openconnect/fe55d11fc49bf30341ddc3ac8784b7f49be3ae9c";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
-    };
+    /*
+      globalprotect-openconnect = {
+        # pin niche inputs to avoid bad people taking over.
+        url = "github:yuezk/GlobalProtect-openconnect/fe55d11fc49bf30341ddc3ac8784b7f49be3ae9c";
+        inputs.flake-utils.follows = "flake-utils";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs.naersk.inputs.nixpkgs.follows = "nixpkgs";
+      };
+    */
     # pin niche inputs to avoid bad people taking over.
     import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
     # pin niche inputs to avoid bad people taking over.
