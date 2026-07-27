@@ -584,11 +584,10 @@
         powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
           ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
         '';
-        /*
-          powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
-            ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
-          '';
-        */
+        powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
+          ${pkgs.coreutils}/bin/sleep 2
+          ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
+        '';
       };
     darwin =
       args@{
