@@ -584,10 +584,26 @@
         powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
           ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
         '';
-        powerManagement.resumeCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
-          ${pkgs.coreutils}/bin/sleep 2
-          ${config.systemd.package}/bin/systemctl start fprintd.service 2>/dev/null || true
-        '';
+        systemd.services.fprintd-resume = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) {
+          description = "Restart fprintd after resume";
+          after = [
+            "suspend.target"
+            "hibernate.target"
+            "hybrid-sleep.target"
+            "suspend-then-hibernate.target"
+          ];
+          wantedBy = [
+            "suspend.target"
+            "hibernate.target"
+            "hybrid-sleep.target"
+            "suspend-then-hibernate.target"
+          ];
+          serviceConfig = {
+            Type = "oneshot";
+            ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
+            ExecStart = "${config.systemd.package}/bin/systemctl start fprintd.service";
+          };
+        };
       };
     darwin =
       args@{
