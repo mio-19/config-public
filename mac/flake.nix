@@ -200,7 +200,7 @@
                 (fetchpatch {
                   name = "github-copilot-cli: 1.0.26 -> 1.0.70";
                   url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
-                  hash = "sha256-6U6qYZ0WD/GNkWvLUpchTCHRNUm0VYSorE8oi9aK9LE=";
+                  hash = "sha256-Za/JptrEFFNOnObk9djXK6EpJzf35fxd7xwcHO8xbAY=";
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
