@@ -186,12 +186,6 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
-                  name = "makeBinaryWrapper: fix passthru.extractCmd on darwin";
-                  url = "https://github.com/NixOS/nixpkgs/pull/483719.diff";
-                  hash = "sha256-7mcSsAboehuksmXeSiP13SFDItZ24icjeyehRZiOg8s=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-                (fetchpatch {
                   name = "trayscale: add macOS application bundle";
                   url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
                   hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
