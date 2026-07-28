@@ -1445,11 +1445,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785278111,
-        "narHash": "sha256-lj8+/QEQxhy/+ryegSesobRMp4W1gzOEiom5nRryCuQ=",
+        "lastModified": 1785278935,
+        "narHash": "sha256-HZ+MbJjS6vV31v//NmE77j8waNtbwIjvzNkLOaosmyI=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "d3cd43b43426c441fde3d57e98077b1613603c81",
+        "rev": "cafeec897ee91da5f4a600170ab834b90aaa6ef0",
         "type": "github"
       },
       "original": {
@@ -2960,11 +2960,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1785196802,
-        "narHash": "sha256-65VjPiJ7kuW7FBu5SZAB0RUZ2GzK72zhusCbI+2Q8Y8=",
+        "lastModified": 1785278812,
+        "narHash": "sha256-vYvZxodrir5h8kw9zurZWbFdXssKlAKhbA1JJSXqTTU=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "d569117d48474f0ce60a52091945e723eaecdb86",
+        "rev": "aa2bd5c18424038acd8f7010cdf50a0523638041",
         "type": "github"
       },
       "original": {
