@@ -245,7 +245,7 @@ let
           jetbrains.idea
           #jetbrains.clion
           obsidian
-          antigravity
+          antigravity-ide
           #code-cursor # in app updater, better with cask.
         ]
         ++ lib.optionals config.mio_aria2 [

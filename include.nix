@@ -50,7 +50,6 @@ customize
       "gateway"
       "lmstudio"
       "android-studio-stable"
-      "antigravity"
       "antigravity-cli"
       "nvidia-settings"
       "vscode-extension-ms-vscode-cpptools"
