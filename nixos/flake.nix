@@ -399,6 +399,12 @@
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               # nixos/firefox: make variant librewolf https://github.com/NixOS/nixpkgs/pull/467398
               (fetchpatch {
+                name = "github-copilot-cli: 1.0.61 -> 1.0.73";
+                url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
+                hash = "sha256-Za/JptrEFFNOnObk9djXK6EpJzf35fxd7xwcHO8xbAY=";
+                derivationArgs.allowSubstitutes = false;
+              })
+              (fetchpatch {
                 name = "types.path.check: Avoid derivation instantiation";
                 url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                 hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
