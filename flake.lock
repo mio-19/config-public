@@ -254,11 +254,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1785219757,
-        "narHash": "sha256-LNgRn7Yx48j5dU0gGouXIcoGSJxmtJBcCHX9NvLx3k8=",
+        "lastModified": 1785225079,
+        "narHash": "sha256-cUjVmLcyzfXfKSwJ0cbzHf7rR9z4XmTJNsQehUBVXqU=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "f5778d2c3b6eac249ce32e2a3f5858d1f0322d74",
+        "rev": "6cf560c2e8c95e50321d2e65ff3d9ca769787604",
         "type": "github"
       },
       "original": {
@@ -1445,11 +1445,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785215439,
-        "narHash": "sha256-hOjDtGxoVPsl1rlJlIG2Sj6i9zRdS9dRUC9lbOQtM+0=",
+        "lastModified": 1785225822,
+        "narHash": "sha256-U36Zbn3Z6VP1CW+Yjgy6xMj/+9A29W2N7ven0qcZ0cg=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "251f4f0bd59f57af47a62c5926664b81f9976b7b",
+        "rev": "2b4d7b54461b990ced4c5f5ad0a66be46de0d913",
         "type": "github"
       },
       "original": {
@@ -2739,10 +2739,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785222645,
-        "narHash": "sha256-RXxsHOXHw/RB3PKeZeA5LJ8i979Bty/4+u8LIH1ndHQ=",
+        "lastModified": 1785225761,
+        "narHash": "sha256-w9xzz1jy7wqQAcrXhl/o9qp905hTE1YLU456j/GT0Gs=",
         "ref": "refs/heads/main",
-        "rev": "6ed62ac4e2d7c351cc950246f935304c0cf3aea9",
+        "rev": "557807fbe93f71edb109639dedb5a6d14ade196e",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3821,10 +3821,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785187836,
-        "narHash": "sha256-s0bx1KUa8wQhkL4zatdFmhae97J5O4DryIMJaHEeS7c=",
+        "lastModified": 1785224333,
+        "narHash": "sha256-8DNJUVM10ktK02V9ZIV064CH+fuPF272VCAZBn6arig=",
         "ref": "refs/heads/main",
-        "rev": "17a400c5b5afc3b8ff3ec1c8bfa6cc2e763b4d45",
+        "rev": "5f1a4be4d280e1ae06d61a75775a234b1714da3f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
