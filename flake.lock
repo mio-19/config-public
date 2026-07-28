@@ -1445,11 +1445,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785225822,
-        "narHash": "sha256-U36Zbn3Z6VP1CW+Yjgy6xMj/+9A29W2N7ven0qcZ0cg=",
+        "lastModified": 1785226915,
+        "narHash": "sha256-QIHKc4cmd4UidAsPFpdjgsR39+b9zrV3Gju4POOqFzw=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "2b4d7b54461b990ced4c5f5ad0a66be46de0d913",
+        "rev": "aa1509ae4732f6bc5b5123ac096eae15253875c4",
         "type": "github"
       },
       "original": {
@@ -2001,7 +2001,6 @@
         "nixpkgs-pin2": "nixpkgs-pin2_2",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
-        "nm2nix": "nm2nix",
         "nur": "nur_2",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "plasma-manager": "plasma-manager",
@@ -2601,28 +2600,6 @@
         "owner": "nixos",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nm2nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixos",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1774904352,
-        "narHash": "sha256-etI2VY39TIKl+W/MzraxTYE3eaqH9VYThe3YJzydV0E=",
-        "owner": "Janik-Haag",
-        "repo": "nm2nix",
-        "rev": "6d018aaad4093097fd647f867425a15f294e483e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Janik-Haag",
-        "repo": "nm2nix",
-        "rev": "6d018aaad4093097fd647f867425a15f294e483e",
         "type": "github"
       }
     },
