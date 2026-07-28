@@ -198,12 +198,6 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
-                  name = "github-copilot-cli: 1.0.26 -> 1.0.70";
-                  url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
-                  hash = "sha256-6U6qYZ0WD/GNkWvLUpchTCHRNUm0VYSorE8oi9aK9LE=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-                (fetchpatch {
                   name = "mailspring: fix linux desktop file, package using darwin .app";
                   url = "https://github.com/NixOS/nixpkgs/pull/539093.diff";
                   hash = "sha256-NY+9atjNnQ/DCv+H8n7oK5BWYNSthe/JZwCrNZupgQw=";
