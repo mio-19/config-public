@@ -350,7 +350,7 @@
             fzf
             file
             (lib.hiPrio btrfs-progs) # higher prio than builtin btrfs-progs when btrfs is enabled
-            inputs.nm2nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nm2nix
             #inputs.pinix.packages.${pkgs.stdenv.hostPlatform.system}.default
             dos2unix
             openssl
