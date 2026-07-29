@@ -198,6 +198,12 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
+                  name = "downkyicore: 1.0.24 -> 1.0.32";
+                  url = "https://github.com/NixOS/nixpkgs/pull/545155.patch";
+                  hash = "sha256-c5gcDCTNz2oELb73oQN2wAWZP6FnkdhrPkpbWioLV7c=";
+                  derivationArgs.allowSubstitutes = false;
+                })
+                (fetchpatch {
                   name = "baobab: add desktopToDarwinBundle override";
                   url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
                   hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
