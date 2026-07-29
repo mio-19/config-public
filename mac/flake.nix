@@ -186,12 +186,6 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
-                  name = "trayscale: add macOS application bundle";
-                  url = "https://github.com/NixOS/nixpkgs/pull/536595.diff";
-                  hash = "sha256-L+KmuCFum4hvK5kwQJvdr1ueJQ6tJSfEEfw1vOtmr/4=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-                (fetchpatch {
                   name = "github-copilot-cli: 1.0.61 -> 1.0.73";
                   url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
                   hash = "sha256-Za/JptrEFFNOnObk9djXK6EpJzf35fxd7xwcHO8xbAY=";
