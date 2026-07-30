@@ -56,11 +56,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #jovian.follows = "chaotic/jovian";
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      #url = "git+https://github.com/Jovian-Experiments/Jovian-NixOS.git?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    /*
+      jovian = {
+        url = "github:Jovian-Experiments/Jovian-NixOS";
+        #url = "git+https://github.com/Jovian-Experiments/Jovian-NixOS.git?shallow=1";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+    */
     chaotic = {
       #url = "github:lonerOrz/nyx-loner";
       url = "github:chaotic-cx/nyx";

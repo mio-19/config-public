@@ -21,7 +21,7 @@ in
 {
   imports = [
     # Feature aspects: den.aspects.deck-host.includes (modules/deck.nix)
-    inputs.jovian.nixosModules.default
+    inputs.chaotic.vendored.jovian.nixosModules.default
     ./disk-config.nix
   ];
   # DETAILS REMOVED # hardware.facter.reportPath = ./facter.json;
