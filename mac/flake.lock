@@ -269,11 +269,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1785116464,
-        "narHash": "sha256-O5bnHIzOkp2SQl0eCqKIqKzjgy2u0GXirTKSUdwER4Q=",
+        "lastModified": 1785448994,
+        "narHash": "sha256-pD8rBn57pNLOnWCz07D2HLzVE/DUFuuh0bzdEhc/dkw=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "4f4179edae9a9dd31339284c8334072e3a110528",
+        "rev": "145da05e26235784581a31ba83beb9949b24da84",
         "type": "github"
       },
       "original": {
@@ -412,11 +412,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1785393846,
-        "narHash": "sha256-ZrkupCDmDaM2lZZoOZ4bR5ioHBxyBdIUTSeXbx+383c=",
+        "lastModified": 1785450153,
+        "narHash": "sha256-/D01Km6ymzxdIHGEmu23FBsJxM1Ej/g6GsrT/+XvgoM=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "ce99071da939d9d7997e27d35cf4d6c5e44bc32a",
+        "rev": "228f24673aa57377bbb38eb13fd946d273532df2",
         "type": "github"
       },
       "original": {
@@ -459,11 +459,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785406156,
-        "narHash": "sha256-1aA9PvY+o0/cIC96WEHdPVtLyt/A18RlJ7l+1s9AQT8=",
+        "lastModified": 1785412731,
+        "narHash": "sha256-8aEdOXFXmW45cLwz7qcuIjU6ra9jHvpwQoyAh0PXVe8=",
         "ref": "refs/heads/main",
-        "rev": "7b538425eea691d8932946f39f37b88b1e870cd9",
-        "revCount": 2399,
+        "rev": "00dbce22a0692c59b54c1c2582ffb390a4fc95d8",
+        "revCount": 2400,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -574,8 +574,9 @@
     },
     "nixpkgs-pin7": {
       "locked": {
-        "lastModified": 315532800,
+        "lastModified": 1784364478,
         "narHash": "sha256-eiNlOqzMSGC+sKwgrhkBK/Mn4n717NV1DEfJqHBVhgg=",
+        "rev": "20535e48e12c86043b577b8518234ff5dbb26957",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1036836.20535e48e12c/nixexprs.tar.xz"
       },
@@ -636,11 +637,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785410991,
-        "narHash": "sha256-TsyxDfZDH5BaJHwknhLFMyv6bgLXxjh1ly4nZQS5jEg=",
+        "lastModified": 1785451275,
+        "narHash": "sha256-517PuwhswDIlVH3NYIdbxkXaMonJsQHZxGaSnUqRBKQ=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "201e0015b8162f72be8ce750348a2c82dfc20a49",
+        "rev": "942d078d3772e5754ec2d8aed2cc3d4ab3ef188e",
         "type": "github"
       },
       "original": {
