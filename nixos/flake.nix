@@ -67,6 +67,12 @@
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    chaotic-ff-nightly = {
+      #url = "github:lonerOrz/nyx-loner";
+      url = "github:chaotic-cx/nyx/b9f8dd624b96d9a101cb3f76805fe2630cec839c";
+      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     #chaotic.url = "git+https://github.com/mio-19/nyx-loner.git";
     systems.url = "github:nix-systems/triplet";
     flake-utils = {
