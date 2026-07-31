@@ -517,12 +517,6 @@
                 hash = "sha256-WeKRwcAvQNhcRAjLtjX+kYX8Mp59TYBjrTQqh7znEkU=";
                 derivationArgs.allowSubstitutes = false;
               })
-              (fetchpatch {
-                name = "downkyicore: 1.0.24 -> 1.0.32";
-                url = "https://github.com/NixOS/nixpkgs/pull/545155.patch";
-                hash = "sha256-c5gcDCTNz2oELb73oQN2wAWZP6FnkdhrPkpbWioLV7c=";
-                derivationArgs.allowSubstitutes = false;
-              })
               /*
                 # unsure
                 (fetchpatch {
