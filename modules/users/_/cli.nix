@@ -19,6 +19,7 @@ let
   zsh-patina = pkgs.nur.repos.mio.zsh-patina; # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zsh-patina or pkgs.zsh-patina;
   enable-zsh-sage = false;
   enable-flyline = pkgs ? flyline;
+  inherit (pkgs) stdenv;
 in
 {
   imports = [
@@ -128,7 +129,7 @@ in
       +
         # TODO: handle key bind conflict with atuin
         lib.optionalString enable-flyline ''
-          enable -f ${pkgs.flyline}/lib/libflyline.so flyline
+          enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
           ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
           RPS1='\t'
           flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
