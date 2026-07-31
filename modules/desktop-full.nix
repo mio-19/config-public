@@ -523,7 +523,7 @@ in
           ++ apps.clean
           ++ apps.cleanX86
           ++ [
-            pkgs-pin3.trayscale
+            trayscale
           ];
         homebrew.casks = [
           "zotero" # version from nixpkgs does not work
