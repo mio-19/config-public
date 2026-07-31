@@ -194,7 +194,7 @@
                 (fetchpatch {
                   name = "downkyicore: 1.0.24 -> 1.0.32";
                   url = "https://github.com/NixOS/nixpkgs/pull/545155.patch";
-                  hash = "sha256-c5gcDCTNz2oELb73oQN2wAWZP6FnkdhrPkpbWioLV7c=";
+                  hash = "sha256-aSiP23QfpQ9KkhIYHlU959topRk9f0eTknUWjqb5kSQ=";
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {

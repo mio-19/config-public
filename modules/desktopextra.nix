@@ -8,7 +8,7 @@ let
     { pkgs, inputs }:
     with pkgs;
     [
-      downkyicore # nur.repos.mio.downkyicore
+      downkyicore
       ghidra
       blender
       jetbrains.gateway
