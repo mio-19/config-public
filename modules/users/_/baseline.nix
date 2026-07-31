@@ -61,6 +61,11 @@ in
 
   gtk.gtk4.theme = config.gtk.theme; # was default until 25.11
 
+  # https://github.com/nix-community/home-manager/issues/7583#issuecomment-3187211983
+  home.activation.cleanupOldHomemanagerPath = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    rm -f ~/.local/state/nix/profiles/home-manager
+  '';
+
   xdg.userDirs = lib.optionalAttrs (options.xdg.userDirs ? setSessionVariables) {
     # default for 25.11 is xdg.userDirs.setSessionVariables = true;
     setSessionVariables = false;
