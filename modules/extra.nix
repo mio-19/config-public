@@ -215,7 +215,7 @@ let
           #kdiskmark # needs more patches
           imhex
           luanti-client
-          pkgs-pin3.nur.repos.mio.minetest591client
+          nur.repos.mio.minetest591client
           nur.repos.mio.beammp-launcher
           #thonny
           #mousecape
@@ -225,7 +225,7 @@ let
           #gnome-text-editor
           remmina
           #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
-          pkgs-pin3.baobab # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
+          baobab # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
           #adwaita-icon-theme
           #hicolor-icon-theme
           #gsettings-desktop-schemas
