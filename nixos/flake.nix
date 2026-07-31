@@ -246,7 +246,7 @@
     #};
     steam-config-nix = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:different-name/steam-config-nix/7b8021b2739733c547e2fe02739e6b8452813aa7";
+      url = "github:different-name/steam-config-nix/36c3dc1cfa60a5ce4032bcd801b094e770d8b871";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.systems.follows = "systems";
