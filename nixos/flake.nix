@@ -517,6 +517,12 @@
                 hash = "sha256-WeKRwcAvQNhcRAjLtjX+kYX8Mp59TYBjrTQqh7znEkU=";
                 derivationArgs.allowSubstitutes = false;
               })
+              (fetchpatch {
+                name = "nixos/*: Fix some pkgs.systemd references";
+                url = "https://github.com/NixOS/nixpkgs/pull/547726.patch";
+                hash = "sha256-vedf7hMQld1wYxZrcep2UgRkAGaUwRw0hjrXjrk39KQ=";
+                derivationArgs.allowSubstitutes = false;
+              })
               /*
                 # unsure
                 (fetchpatch {
