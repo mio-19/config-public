@@ -146,7 +146,7 @@ in
       {
         environment.systemPackages = sharedApps { inherit pkgs inputs; } ++ [
           pkgs-pin3.nur.repos.mio.musescore-alex
-          pkgs-pin3.musescore-evolution
+          musescore-evolution
         ];
       };
   };

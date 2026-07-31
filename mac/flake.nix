@@ -175,8 +175,8 @@
                 })
                 (fetchpatch {
                   name = "musescore-evolution: fix darwin build";
-                  url = "https://github.com/NixOS/nixpkgs/pull/538827.patch";
-                  hash = "sha256-q3V+g9BB1y9U3kp2HbwYa0XD/sH5zRPfBc0xwNM7WpY=";
+                  url = "https://github.com/NixOS/nixpkgs/pull/538827.diff";
+                  hash = "sha256-JNJXI6FXdgiz+8jW5Oluy48Y9DTMeNOLGZdAsrNDZos=";
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
