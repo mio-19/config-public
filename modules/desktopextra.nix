@@ -144,9 +144,12 @@ in
       in
       with _include;
       {
-        environment.systemPackages = sharedApps { inherit pkgs inputs; } ++ [
-          musescore-evolution
-        ];
+        environment.systemPackages =
+          with pkgs;
+          sharedApps { inherit pkgs inputs; }
+          ++ [
+            musescore-evolution
+          ];
       };
   };
 }
