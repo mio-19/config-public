@@ -106,7 +106,10 @@ in
       with _include;
       {
         environment.systemPackages = [
-          progs.telegram
+          # progs.telegram
+        ];
+        homebrew.casks = [
+          "telegram-desktop" # telegram-desktop from nixpkgs is suffereing from double title bar bug.
         ];
       };
     nixos =
