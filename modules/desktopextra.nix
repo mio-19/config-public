@@ -13,6 +13,7 @@ let
       blender
       jetbrains.gateway
       mailspring
+      nur.repos.mio.musescore-alex
     ];
 in
 {
@@ -62,7 +63,6 @@ in
             teams-for-linux
             nur.repos.mio.waveterm
             pianotrans
-            nur.repos.mio.musescore-alex
             musescore-evolution
             # binaryNativeCode:
             spotube
@@ -145,7 +145,6 @@ in
       with _include;
       {
         environment.systemPackages = sharedApps { inherit pkgs inputs; } ++ [
-          pkgs-pin3.nur.repos.mio.musescore-alex
           musescore-evolution
         ];
       };
