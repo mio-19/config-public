@@ -651,12 +651,6 @@
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
-            # failed to build (https://github.com/NixOS/nixpkgs/pull/536365):
-            inherit (pkgs-pin3)
-              moonlight-qt
-              supertuxkart
-              blender
-              ;
             inherit (pkgs-pin7) vscode; # build failed
           })
         ];
