@@ -281,7 +281,7 @@
     };
     nix-bwrapper = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:Naxdy/nix-bwrapper/ad48298ec8f582b2362fea1765973c163c3d038a";
+      url = "github:Naxdy/nix-bwrapper/49be156ec0ffff4afee501746ff965a5c4776bbd";
       inputs.nixpkgs.follows = "nixpkgs";
       #inputs.treefmt-nix.follows = "llm-agents/treefmt-nix";
       inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
