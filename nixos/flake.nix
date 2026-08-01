@@ -500,6 +500,11 @@
                 hash = "sha256-sIByggHgklk3j1StTFq8mdo4rqx8Mv/ASVo9TgsW6hc=";
                 derivationArgs.allowSubstitutes = false;
               })
+              (fetchpatch {
+                name = "sniffnet: 1.5.0 -> 1.5.1";
+                url = "https://github.com/NixOS/nixpkgs/pull/548261.diff";
+                hash = "sha256-tebhkm3/DuOrWEiNw0DSksdclJT2aSxHrCJc7ka7cWk=";
+              })
               # https://github.com/NixOS/nixpkgs/issues/442117
               (fetchpatch {
                 name = "Add deny fprintd PAM auth for su/sudo without tty";
