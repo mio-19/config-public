@@ -213,7 +213,6 @@
               xfce4-terminal = mio.xfce4-terminal-patched;
               inherit (pkgs') ollama; # build failed with cuda?
               inherit (pkgs') pianotrans freecad; # no binary cache with cuda and no binary cache with rocm
-              inherit (pkgs-pin2) lact;
             }
           )
           inputs.chaotic.overlays.default
