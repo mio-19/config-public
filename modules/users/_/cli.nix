@@ -113,39 +113,27 @@ in
   programs.bash = {
     package = null;
     enable = true;
-    enableCompletion = false;
-    shellOptions = [
-      "histappend"
-      "checkwinsize"
-      "extglob"
-    ];
     # https://github.com/TheR1D/shell_gpt/blob/main/sgpt/integration.py
-    initExtra = ''
-      if [ "''${BASH_VERSINFO:-0}" -ge 4 ]; then
-        if [ -z "$BASH_COMPLETION_VERSINFO" ]; then
-          . "${pkgs.bash-completion}/etc/profile.d/bash_completion.sh"
+    initExtra =
+      lib.optionalString enable-shell-gpt ''
+        # Shell-GPT integration BASH v0.2
+        _sgpt_bash() {
+        if [[ -n "$READLINE_LINE" ]]; then
+            READLINE_LINE=$(sgpt --shell <<< "$READLINE_LINE" --no-interaction)
+            READLINE_POINT=''${#READLINE_LINE}
         fi
-      fi
-    ''
-    + lib.optionalString enable-shell-gpt ''
-      # Shell-GPT integration BASH v0.2
-      _sgpt_bash() {
-      if [[ -n "$READLINE_LINE" ]]; then
-          READLINE_LINE=$(sgpt --shell <<< "$READLINE_LINE" --no-interaction)
-          READLINE_POINT=''${#READLINE_LINE}
-      fi
-      }
-      bind -x '"\C-l": _sgpt_bash'
-      # Shell-GPT integration BASH v0.2
-    ''
-    +
-      # TODO: handle key bind conflict with atuin
-      lib.optionalString enable-flyline ''
-        enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
-        ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
-        RPS1='\t'
-        flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
-      '';
+        }
+        bind -x '"\C-l": _sgpt_bash'
+        # Shell-GPT integration BASH v0.2
+      ''
+      +
+        # TODO: handle key bind conflict with atuin
+        lib.optionalString enable-flyline ''
+          enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
+          ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
+          RPS1='\t'
+          flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
+        '';
     shellAliases = shellAliases;
   };
   programs.zsh = {
