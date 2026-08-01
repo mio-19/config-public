@@ -6,6 +6,7 @@
       den.batteries.hostname
       den.aspects.persistent
       den.aspects.bios
+      den.aspects.desktop-specialisation
       #(den.aspects.desktop-specialisation-cosmic)
       den.aspects.hidpi
       #(den.aspects.desktop-specialisation-pantheon) # broken: lightdm didn't show up
