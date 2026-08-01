@@ -129,6 +129,7 @@
           geary # email client
           #seahorse    # password manager
         ];
+        programs.seahorse.enable = lib.mkIf config.services.desktopManager.plasma6.enable false;
         # https://discourse.nixos.org/t/unable-to-start-x-after-update-to-25-05-nvidia-open-drivers/60854/2
         services.xserver.displayManager.startx.enable = config.services.xserver.enable;
         #programs.ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass"; # lightdm.configuration.programs.ssh.askPassword has conflicting values between seahorse and plasma6
