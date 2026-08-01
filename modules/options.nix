@@ -85,6 +85,11 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
+        gnome_paperwm = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "use paperwm";
+        };
         fonts_noto = lib.mkOption {
           type = lib.types.bool;
           default = false;

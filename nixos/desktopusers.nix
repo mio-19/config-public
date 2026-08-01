@@ -171,15 +171,17 @@ in
   home.packages = lib.mkIf osConfig.services.desktopManager.gnome.enable (
     with pkgs.gnomeExtensions;
     [
-      blur-my-shell
+      #blur-my-shell
       light-style # conflicts with blur-my-shell; choose one.
       #quick-settings-tweaker # broken
       gsconnect
-      vitals
+      #vitals
       vicinae
-      paperwm
       appindicator
       # easyeffects-preset-selector # people say it is broken https://extensions.gnome.org/extension/4907/easyeffects-preset-selector/
+    ]
+    ++ lib.optionals osConfig.gnome_paperwm [
+      paperwm
     ]
   );
   dconf = lib.mkIf osConfig.services.desktopManager.gnome.enable {
@@ -194,7 +196,7 @@ in
           "gsconnect@andyholmes.github.io"
           #"Vitals@CoreCoding.com"
         ]
-        ++ lib.optionals (config.home.username == "user" || config.home.username == "mio") [
+        ++ lib.optionals osConfig.gnome_paperwm [
           "paperwm@paperwm.github.com"
         ];
       };
