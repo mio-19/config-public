@@ -20,6 +20,7 @@ let
   enable-zsh-sage = false;
   enable-flyline = pkgs ? flyline;
   inherit (pkgs) stdenv;
+  bash3workaround = stdenv.isDarwin;
 in
 {
   imports = [
@@ -113,9 +114,22 @@ in
   programs.bash = {
     package = null;
     enable = true;
+    enableCompletion = !bash3workaround;
+    shellOptions = lib.mkIf bash3workaround [
+      "histappend"
+      "checkwinsize"
+      "extglob"
+    ];
     # https://github.com/TheR1D/shell_gpt/blob/main/sgpt/integration.py
     initExtra =
-      lib.optionalString enable-shell-gpt ''
+      (lib.optionalString bash3workaround ''
+        if [ "''${BASH_VERSINFO:-0}" -ge 4 ]; then
+          if [ -z "$BASH_COMPLETION_VERSINFO" ]; then
+            . "${pkgs.bash-completion}/etc/profile.d/bash_completion.sh"
+          fi
+        fi
+      '')
+      + lib.optionalString enable-shell-gpt ''
         # Shell-GPT integration BASH v0.2
         _sgpt_bash() {
         if [[ -n "$READLINE_LINE" ]]; then
