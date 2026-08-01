@@ -96,10 +96,6 @@
     */
     # pin niche inputs to avoid bad people taking over.
     nix-flatpak.url = "github:gmodena/nix-flatpak/20d42f0ee98c9fe9f85e8d1de474f1409ed10d05";
-    #pinix = {
-    #  url = "git+https://github.com/remi-dupre/pinix.git";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
     /*
       lix-module = {
         #url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
@@ -108,11 +104,6 @@
         inputs.flake-utils.follows = "flake-utils";
       };
     */
-    #copyparty = {
-    #  url = "github:9001/copyparty";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #  inputs.flake-utils.follows = "flake-utils";
-    #};
     grub2-themes = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:vinceliuice/grub2-themes/80dd04ddf3ba7b284a7b1a5df2b1e95ee2aad606";
