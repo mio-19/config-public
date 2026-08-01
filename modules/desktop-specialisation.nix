@@ -6,6 +6,7 @@
     ];
     nixos =
       args@{
+        pkgs,
         config,
         lib,
         ...
