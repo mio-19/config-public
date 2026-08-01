@@ -71,7 +71,7 @@
     };
     chaotic-ff-nightly = {
       #url = "github:lonerOrz/nyx-loner";
-      url = "github:chaotic-cx/nyx/b9f8dd624b96d9a101cb3f76805fe2630cec839c";
+      url = "github:chaotic-cx/nyx/bcfaa2e5e66ddf8c6a6bc6327b7250e2c0035972";
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
