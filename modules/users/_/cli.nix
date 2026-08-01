@@ -145,12 +145,24 @@ in
       ''
       +
         # TODO: handle key bind conflict with atuin
-        lib.optionalString enable-flyline ''
-          enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
-          ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
-          RPS1='\t'
-          flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
-        '';
+        lib.optionalString enable-flyline (
+          if bash3workaround then
+            ''
+              if [ "''${BASH_VERSINFO:-0}" -ge 4 ]; then
+                enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
+                ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
+                RPS1='\t'
+                flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
+              fi
+            ''
+          else
+            ''
+              enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
+              ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
+              RPS1='\t'
+              flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
+            ''
+        );
     shellAliases = shellAliases;
   };
   programs.zsh = {
