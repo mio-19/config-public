@@ -259,7 +259,7 @@
             ]
           );
 
-        programs.ssh.package = progs.openssh;
+        programs.ssh.package = hardenedPkg progs.openssh;
 
         services.gnome.gnome-remote-desktop.enable = !config.services.pulseaudio.enable; # doesn't work with pulseaudio
 
