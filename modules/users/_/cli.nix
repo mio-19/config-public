@@ -115,6 +115,9 @@ in
     package = null;
     enable = true;
     enableCompletion = !bash3workaround;
+    # Remove globstar and checkjobs from home-manager defaults because they require bash 4.0+
+    # and fail on macOS's built-in bash 3.2.
+    # Default list: https://github.com/nix-community/home-manager/blob/master/modules/programs/bash.nix
     shellOptions = lib.mkIf bash3workaround [
       "histappend"
       "checkwinsize"
