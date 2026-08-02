@@ -17,7 +17,7 @@ let
         inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
         element-desktop
         qbittorrent-enhanced
-        progs.materialgram
+        #progs.materialgram # updates too slow does not update with upstream
       ];
       clean = [
         inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
