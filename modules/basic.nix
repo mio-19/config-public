@@ -39,8 +39,6 @@
               "https://mio.cachix.org/"
               "https://mio-cache.cachix.org/"
               #"https://staging.cachix.org/"
-              # https://garnix.io/docs/caching - https://t.me/nixos_zhcn/728695 # garnix sometimes often 504 Gateway Time-out. to avoid waiting on this garnix, supply `--offline` to nix commands.
-              #"https://cache.garnix.io"
               #"https://nix-community.cachix.org"
               #"https://cache.numtide.com" # https://github.com/numtide/llm-agents.nix
             ];
@@ -48,7 +46,6 @@
               "mio.cachix.org-1:FlupyyLPURqwdRqtPT/LBWKsXY7JKsDkzZQo2K6LeMM="
               "mio-cache.cachix.org-1:ouuIJZ59HIflYjpLW6DRyMc1c+6r3kC/LHuqGUsWigg="
               #"staging.cachix.org-1:WX63nyFdVdWGn6n59pIYwkcH/AtjJGjvMQFKlI2z00w="
-              #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
               #"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
               #"niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
             ];
