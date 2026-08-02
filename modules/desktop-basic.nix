@@ -142,7 +142,7 @@
         security.pam.services.kde.fprintAuth = false;
         #security.pam.services.kde-fingerprint.fprintAuth = false;
         security.pam.services.passwd.fprintAuth = false;
-        security.pam.services.polkit-1.fprintAuth = false;
+        security.pam.services.polkit-1.fprintAuth = config.services.fprintd.enable;
         # only enable for gdm as suggested by wiki - https://wiki.nixos.org/wiki/Fingerprint_scanner
         security.pam.services.gdm-fingerprint = lib.mkIf (config.services.fprintd.enable) {
           text = ''
