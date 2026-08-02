@@ -236,18 +236,6 @@
       inputs.blueprint.inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
     };
-    /*
-      nurl = {
-        url = "github:nix-community/nurl";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-      nix-init = {
-        url = "github:nix-community/nix-init";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.flake-parts.follows = "flake-parts";
-        inputs.treefmt-nix.follows = "llm-agents/treefmt-nix";
-      };
-    */
     nix-snapd = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:nix-community/nix-snapd/f7694a0e26d890e285137e1b726b1b44038805c4";
