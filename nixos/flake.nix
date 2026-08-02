@@ -508,10 +508,10 @@
               })
               (fetchpatch {
                 name = "normcap: relax zxing-cpp dependency constraint";
-  url = "https://github.com/NixOS/nixpkgs/pull/548268.diff";
-  hash = "sha256-60xT5hhruGpvOuIa9newcPkA96Am8hhJxri58pUtwf8=";
+                url = "https://github.com/NixOS/nixpkgs/pull/548268.diff";
+                hash = "sha256-60xT5hhruGpvOuIa9newcPkA96Am8hhJxri58pUtwf8=";
                 derivationArgs.allowSubstitutes = false;
-})
+              })
               (fetchpatch {
                 name = "fdroidserver: fix build, 2.4.3 -> 2.4.5";
                 url = "https://github.com/NixOS/nixpkgs/pull/548263.diff";
