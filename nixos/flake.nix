@@ -138,17 +138,6 @@
     #  url = "github:nix-community/stylix";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
-    #android-nixpkgs = {
-    #  #url = "github:tadfisher/android-nixpkgs";
-    #  url = "github:mio-19/android-nixpkgs";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #  inputs.flake-utils.follows = "flake-utils";
-    #};
-    # https://discourse.nixos.org/t/adding-experimental-i915-driver-to-nixos-for-use-as-guest-vm-with-sr-iov-passthrough/27123
-    #i915-sriov = {
-    #  url = "github:strongtz/i915-sriov-dkms/master";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
     rosetta-spice = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:zhaofengli/rosetta-spice/fefbca8a554290e54311c1d5cf7354f318ff1c16";
