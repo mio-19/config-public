@@ -1838,33 +1838,6 @@
         "type": "github"
       }
     },
-    "nix-software-center": {
-      "inputs": {
-        "nixos-appstream-data": "nixos-appstream-data",
-        "nixpkgs": [
-          "nixos",
-          "nixpkgs"
-        ],
-        "utils": [
-          "nixos",
-          "flake-utils"
-        ]
-      },
-      "locked": {
-        "lastModified": 1771143544,
-        "narHash": "sha256-hnApcv/55630/y7MPU7zgWYSStxj9IpnEfgxl/qpLj0=",
-        "owner": "snowfallorg",
-        "repo": "nix-software-center",
-        "rev": "181c1c61eab79130879257550dba0b36bd6bb8c9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "snowfallorg",
-        "repo": "nix-software-center",
-        "rev": "181c1c61eab79130879257550dba0b36bd6bb8c9",
-        "type": "github"
-      }
-    },
     "nix-vscode-extensions": {
       "inputs": {
         "nixpkgs": [
@@ -2002,7 +1975,6 @@
         "nix-mineral": "nix-mineral",
         "nix-on-droid": "nix-on-droid",
         "nix-snapd": "nix-snapd",
-        "nix-software-center": "nix-software-center",
         "nix-vscode-extensions": "nix-vscode-extensions_2",
         "nix-webapps": "nix-webapps",
         "nixified-ai": "nixified-ai",
@@ -2093,34 +2065,6 @@
         "owner": "mio-19",
         "ref": "mio-release-2025-08-23",
         "repo": "nixos-apple-silicon",
-        "type": "github"
-      }
-    },
-    "nixos-appstream-data": {
-      "inputs": {
-        "flake-utils": [
-          "nixos",
-          "nix-software-center",
-          "utils"
-        ],
-        "nixpkgs": [
-          "nixos",
-          "nix-software-center",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1712858390,
-        "narHash": "sha256-XE7gr+zU3N4SHPAhsgk8cVAFp1iBg+Lxxp3y4dUF1vE=",
-        "owner": "korfuri",
-        "repo": "nixos-appstream-data",
-        "rev": "0465d42a4433faa63b7a5eb0b8d397937c9fc13a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "korfuri",
-        "ref": "flake",
-        "repo": "nixos-appstream-data",
         "type": "github"
       }
     },
