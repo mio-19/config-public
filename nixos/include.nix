@@ -632,19 +632,16 @@ let
           inputs.chaotic.overlays.default
         ];
       };
-      pkgs-chaotic-ff-nightly' = pkgs-chaotic';
-      /*
-        pkgs-chaotic-ff-nightly' = import inputs.chaotic-ff-nightly.inputs.nixpkgs {
-          config = config.nixpkgs.config // {
-            cudaSupport = false;
-            rocmSupport = false;
-          };
-          system = pkgs.stdenv.hostPlatform.system;
-          overlays = [
-            inputs.chaotic-ff-nightly.overlays.default
-          ];
+      pkgs-chaotic-ff-nightly' = import inputs.chaotic-ff-nightly.inputs.nixpkgs {
+        config = config.nixpkgs.config // {
+          cudaSupport = false;
+          rocmSupport = false;
         };
-      */
+        system = pkgs.stdenv.hostPlatform.system;
+        overlays = [
+          inputs.chaotic-ff-nightly.overlays.default
+        ];
+      };
       pkgs-2505 = import inputs.nixpkgs-2505 {
         config = osConfig.nixpkgs.config;
         system = pkgs.stdenv.hostPlatform.system;

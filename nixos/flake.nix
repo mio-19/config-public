@@ -69,14 +69,12 @@
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    /*
-      chaotic-ff-nightly = {
-        #url = "github:lonerOrz/nyx-loner";
-        url = "github:chaotic-cx/nyx/01550f84c0af977a55bb4b14623de93a4be8fe0f";
-        #inputs.nixpkgs.follows = "nixpkgs";
-        inputs.home-manager.follows = "home-manager";
-      };
-    */
+    chaotic-ff-nightly = {
+      #url = "github:lonerOrz/nyx-loner";
+      url = "github:chaotic-cx/nyx/01550f84c0af977a55bb4b14623de93a4be8fe0f";
+      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     #chaotic.url = "git+https://github.com/mio-19/nyx-loner.git";
     systems.url = "github:nix-systems/triplet";
     flake-utils = {
