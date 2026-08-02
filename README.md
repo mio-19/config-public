@@ -26,3 +26,7 @@ Headache. Use LLM for boring, no-brain tasks. LLM pushed living cost higher? I c
 ## common problem - cannot install grub, uefi
 
 then install systemd-boot first, later change to grub if needed
+
+## to have list
+
++ pam_ssh_agent_auth
