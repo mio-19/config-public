@@ -65,7 +65,7 @@
     */
     chaotic = {
       #url = "github:lonerOrz/nyx-loner";
-      url = "github:chaotic-cx/nyx";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
