@@ -79,7 +79,7 @@
             pixelorama
             plezy
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.komi-store
-            inputs.nix-software-center.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
             #quickemu
             #whatsapp-chat-exporter
             #wlvncc
