@@ -10,6 +10,7 @@ let
   x86_64-linux = stdenv.isLinux && stdenv.isx86_64;
   hostName = config.networking.hostName;
   trusted-public-keys = [
+    "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
     "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
     "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
@@ -35,6 +36,10 @@ in
       network.ignore_nar_info_error = true;
       network.chunked_streaming = false; # seem to cause incomplete fetch with harmonia
       substituters = [
+        {
+          url = "https://cache.nixos-cuda.org";
+          priority = 40;
+        }
         {
           # https://www.nyx.chaotic.cx
           url = "https://nyx-cache.chaotic.cx/";
