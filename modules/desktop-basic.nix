@@ -12,16 +12,16 @@
         _include = args._include or (import ../nixos/include.nix args);
       in
       with (_include.scopeFor config);
-      lib.optionalAttrs config.services.pipewire.enable {
+      {
         # https://wiki.nixos.org/wiki/PipeWire
         # avahi required for service discovery
-        services.avahi.enable = true;
+        services.avahi.enable = lib.mkIf config.services.pipewire.enable true;
 
         services.pipewire = {
           # opens UDP ports 6001-6002
-          raopOpenFirewall = true;
+          raopOpenFirewall = lib.mkIf config.services.pipewire.enable true;
 
-          extraConfig.pipewire = {
+          extraConfig.pipewire = lib.mkIf config.services.pipewire.enable {
             "10-airplay" = {
               "context.modules" = [
                 {
