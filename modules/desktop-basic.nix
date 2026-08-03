@@ -12,7 +12,7 @@
         _include = args._include or (import ../nixos/include.nix args);
       in
       with (_include.scopeFor config);
-      lib.optinalAttrs config.services.pipewire.enable {
+      lib.optionalAttrs config.services.pipewire.enable {
         # https://wiki.nixos.org/wiki/PipeWire
         # avahi required for service discovery
         services.avahi.enable = true;
