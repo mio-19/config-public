@@ -778,11 +778,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1785700570,
-        "narHash": "sha256-AHiFiQ8APCY58OpPqIUalPECfrQrmQ0Bziv14nKpGMg=",
+        "lastModified": 1785713398,
+        "narHash": "sha256-M8Tb2VPOQ8aDByjndwRETdPBD0okeypHebJFBtPXkYA=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "d8c8ed623b58d163a3cac1b5ac3d56c38ee2bd74",
+        "rev": "e3a5e5f78b5e2af07a6ab873d2709e154665ea8f",
         "type": "github"
       },
       "original": {
@@ -1688,10 +1688,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785706199,
-        "narHash": "sha256-6djPMQsP+dD8OuiH1xO1VTyylIlztrorqyt9dEwYe/E=",
+        "lastModified": 1785710771,
+        "narHash": "sha256-xKxKNHOP3gSx3f9FiyOnKUTWDQGFTSFpRcA/+x1IlCM=",
         "ref": "refs/heads/main",
-        "rev": "af02cef7b2b1a9f3df7fc2d2df12c4d796e0d3df",
+        "rev": "49a9f83992aa638a275a95c422fc6a170363fe21",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -1940,11 +1940,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1785661724,
-        "narHash": "sha256-Waphz/UV/IOxNMRlnCt5IFHBzHtm/GrpGNexBd85bTU=",
+        "lastModified": 1785637298,
+        "narHash": "sha256-gbGiFITRptdWAsnybwtLiOFiyuTAI7koiydrcQ6e2j0=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "3c1e479559012700f492863b65265daa00ac7dc6",
+        "rev": "7bcb4b3b777950bcbfa80c3db5def5445b6ed518",
         "type": "github"
       },
       "original": {
