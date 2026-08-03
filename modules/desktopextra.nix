@@ -5,10 +5,15 @@ let
   # `extra` aspect (modules/extra.nix darwinExtra). Defined once so both stay in
   # sync: NixOS applies hardenedPkg, darwin installs them plain.
   sharedApps =
-    { pkgs, inputs }:
+    {
+      pkgs,
+      inputs,
+      _include,
+    }:
     with pkgs;
+    with _include;
     [
-      nur.repos.mio.bifrost
+      progs.bifrost
       downkyicore
       ghidra
       blender
@@ -90,7 +95,7 @@ in
             ))
           ]
           ++ (map hardenedPkg (sharedApps {
-            inherit pkgs inputs;
+            inherit pkgs inputs _include;
           }));
 
         #programs.throne.enable = true;
@@ -146,7 +151,7 @@ in
       {
         environment.systemPackages =
           with pkgs;
-          sharedApps { inherit pkgs inputs; }
+          sharedApps { inherit pkgs inputs _include; }
           ++ [
             musescore-evolution
           ];

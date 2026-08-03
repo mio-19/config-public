@@ -7,6 +7,7 @@
   ...
 }@args:
 let
+  infuse = (import ./infuse.nix { inherit lib; }).v1.infuse;
   customize = import ./customize.nix args;
   nixpkgsConfig = osConfig.nixpkgs.config or config.nixpkgs.config or { };
   librewolfPkgs =
@@ -24,6 +25,7 @@ let
 in
 customize
 // rec {
+  inherit infuse;
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
@@ -282,6 +284,13 @@ customize
 
     antlr = pkgs.antlr.override { jre = jre; };
 
+    bifrost =
+      if config.hidpi then
+        infuse pkgs.nur.repos.mio.bifrost {
+          __output.env.GDK_SCALE.__assign = "2";
+        }
+      else
+        pkgs.nur.repos.mio.bifrost;
     openssh =
       if config.mio_openssh_hpn then
         lib.hiPrio (pkgs.nur.repos.mio.openssh_hpn)

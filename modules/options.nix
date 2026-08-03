@@ -82,6 +82,11 @@ let
           default = false;
           description = "enable ridiculous fonts (too big to download and need many disk space)";
         };
+        hidpi = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "use hidpi";
+        };
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux

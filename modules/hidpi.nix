@@ -5,6 +5,7 @@
     nixos =
       { inputs, ... }:
       {
+        hidpi = true;
         nixpkgs.overlays = [
           (final: prev: {
             # Use mio's pinned ghidra for HiDPI; avoid recursion with NUR overrides.
@@ -17,6 +18,11 @@
         # for https://github.com/mio-19/nurpkgs/blob/66bf4502ae06769827811aecc81ba6c8fd64368c/by-name/bi/bifrost/package.nix#L43
         # but breaks ventoy?
         #environment.sessionVariables.GDK_SCALE = "2";
+      };
+    darwin =
+      { inputs, ... }:
+      {
+        hidpi = true;
       };
   };
 }
