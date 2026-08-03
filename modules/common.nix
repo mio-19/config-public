@@ -650,7 +650,6 @@
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
           (final: prev: {
-            inherit (pkgs-pin7) mailutils;
           })
         ];
         home-manager.sharedModules = [

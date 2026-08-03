@@ -154,6 +154,10 @@
               name = "nixpkgs-patched";
               src = inputs0.nixpkgs.outPath;
               patches = with pkgs0; [
+                (fetchpatch {
+                  url = "https://github.com/NixOS/nixpkgs/commit/6f01de0cfe9b170f415b2552fd2902891868e28c.diff";
+                  hash = "sha256-sx6bWF6vDt6EoyzkvT29AjjsMrWiKVl1iAjVsVW7Sgk=";
+                })
                 # possible to consider patches
                 # supertuxkart: updates for darwin and app experience - https://github.com/NixOS/nixpkgs/pull/520901.diff
                 # gimp3: fix Darwin build - https://github.com/NixOS/nixpkgs/pull/513484.diff
