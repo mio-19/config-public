@@ -541,19 +541,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-pin7": {
-      "locked": {
-        "lastModified": 1785542685,
-        "narHash": "sha256-Gyy0dcrE1lGbli8M1yMPl67x92rEvbKjLoxVOLfZQOQ=",
-        "rev": "f8e81fc7eb063db454f563cdd596fb96a5ad1497",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1045355.f8e81fc7eb06/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1045355.f8e81fc7eb06/nixexprs.tar.xz"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1785067121,
@@ -668,7 +655,6 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
