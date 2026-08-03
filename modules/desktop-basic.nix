@@ -1,5 +1,6 @@
 { den, ... }: {
   den.aspects.airplay-audio = {
+    # Working In Progress
     nixos =
       args@{
         config,
@@ -40,7 +41,7 @@
   };
   den.aspects.desktop-basic = {
     includes = [
-      den.aspects.airplay-audio
+      #den.aspects.airplay-audio
       den.aspects.middle-click-scroll
     ];
     nixos =
