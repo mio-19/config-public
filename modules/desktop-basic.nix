@@ -1,6 +1,46 @@
 { den, ... }: {
+  den.aspects.airplay-audio = {
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        _include = args._include or (import ../nixos/include.nix args);
+      in
+      with (_include.scopeFor config);
+      lib.optinalAttrs config.services.pipewire.enable {
+        # https://wiki.nixos.org/wiki/PipeWire
+        # avahi required for service discovery
+        services.avahi.enable = true;
+
+        services.pipewire = {
+          # opens UDP ports 6001-6002
+          raopOpenFirewall = true;
+
+          extraConfig.pipewire = {
+            "10-airplay" = {
+              "context.modules" = [
+                {
+                  name = "libpipewire-module-raop-discover";
+
+                  # increase the buffer size if you get dropouts/glitches
+                  # args = {
+                  #   "raop.latency.ms" = 500;
+                  # };
+                }
+              ];
+            };
+          };
+        };
+      };
+  };
   den.aspects.desktop-basic = {
     includes = [
+      den.aspects.airplay-audio
       den.aspects.middle-click-scroll
     ];
     nixos =
