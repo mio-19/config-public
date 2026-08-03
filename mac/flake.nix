@@ -167,6 +167,11 @@
                   hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
                   derivationArgs.allowSubstitutes = false;
                 })
+                (fetchpatch {
+                  name = "obsidian: fix darwin build - #548742";
+                  url = "https://github.com/NixOS/nixpkgs/pull/548742.diff";
+                  hash = "sha256-Z8fk7wsailj47r3BPLFbas7WzCfdXBJpRst50IFvnvA=";
+                })
                 (fetchurl {
                   name = "flyline: init at 1.3.0";
                   url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
