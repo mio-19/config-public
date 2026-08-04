@@ -43,6 +43,7 @@ with _include;
   persistent_power-profiles-daemon = false;
 
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   home-manager.sharedModules = [
     ../_homeManager/sleeping.nix
