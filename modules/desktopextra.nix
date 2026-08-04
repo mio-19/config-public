@@ -20,7 +20,6 @@ let
       jetbrains.gateway
       mailspring
       nur.repos.mio.musescore-alex
-      nur.repos.mio.telegram-mac
     ];
 in
 {
@@ -155,6 +154,7 @@ in
           sharedApps { inherit pkgs inputs _include; }
           ++ [
             musescore-evolution
+            nur.repos.mio.telegram-mac
           ];
       };
   };
