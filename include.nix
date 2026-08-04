@@ -31,6 +31,7 @@ customize
     builtins.elem (lib.getName pkg) [
       "wechat-universal-bwrap"
       "qq_bwrap"
+      "qq"
       "virtualbox-extpack"
       "antigravity-ide"
       "vista-fonts-cht"
