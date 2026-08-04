@@ -587,11 +587,15 @@
         ) countryCode;
 
         # https://github.com/NixOS/nixpkgs/issues/432276
+        # Stop fprintd before sleep so resume does not reuse a suspended daemon.
+        # On resume, restart fprintd after USB is up, then recycle kscreenlocker_greet:
+        # pam_fprintd caches D-Bus in that process, so restarting fprintd alone leaves
+        # fingerprint unlock intermittent until the greeter is respawned.
         powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
           ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
         '';
         systemd.services.fprintd-resume = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) {
-          description = "Restart fprintd after resume";
+          description = "Restart fprintd and Plasma lock greeter after resume";
           after = [
             "suspend.target"
             "hibernate.target"
@@ -606,8 +610,13 @@
           ];
           serviceConfig = {
             Type = "oneshot";
-            ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
-            ExecStart = "${config.systemd.package}/bin/systemctl start fprintd.service";
+            TimeoutStartSec = "15";
+            ExecStart = pkgs.writeShellScript "fprintd-resume" ''
+              ${pkgs.coreutils}/bin/sleep 2
+              ${config.systemd.package}/bin/systemctl restart fprintd.service || true
+              # Plasma respawns the greeter while the session stays locked.
+              ${pkgs.procps}/bin/pkill -TERM -x kscreenlocker_greet 2>/dev/null || true
+            '';
           };
         };
       };
