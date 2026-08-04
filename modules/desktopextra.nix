@@ -20,6 +20,7 @@ let
       jetbrains.gateway
       mailspring
       nur.repos.mio.musescore-alex
+      nur.repos.mio.telegram-mac
     ];
 in
 {
