@@ -474,12 +474,6 @@
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
-                name = "sniffnet: 1.5.0 -> 1.5.1";
-                url = "https://github.com/NixOS/nixpkgs/pull/548261.diff";
-                hash = "sha256-tebhkm3/DuOrWEiNw0DSksdclJT2aSxHrCJc7ka7cWk=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
                 name = "fdroidserver: fix build, 2.4.3 -> 2.4.5";
                 url = "https://github.com/NixOS/nixpkgs/pull/548263.diff";
                 hash = "sha256-oARICQHIRDMsm4PSI8H4hIXdudNzkMrJJWOHJDPGOcw=";
