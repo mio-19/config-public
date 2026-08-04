@@ -1274,11 +1274,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1785879945,
-        "narHash": "sha256-ZGDSZgmX/uDTAPD7xdkmyqj2RwgE7w3A0Cmgp7yu3I0=",
+        "lastModified": 1785880858,
+        "narHash": "sha256-j5PlfBlPNO3EvhrUGHsgcChuaK8aybINbXUh1J4RWVU=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "849ef3aca1376cd37c7cc24bcdd394fc325afd78",
+        "rev": "92b4121e344b4c82f6f095c17f961762a505e4ab",
         "type": "github"
       },
       "original": {
@@ -2613,10 +2613,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785878671,
-        "narHash": "sha256-Js10nPbP/8E9Mga9Fzz/+XwfAJ9EsTm+zgvBeW/sKU8=",
+        "lastModified": 1785880918,
+        "narHash": "sha256-wxKyoXUhY9vlSpsIMNIJPCQfRydZSlR36J5ukdEE51k=",
         "ref": "refs/heads/main",
-        "rev": "45ed78d1ddb3c86a66afcb910de870b791c72bbd",
+        "rev": "8c1c1a08587a6fe075649210756637f2bbf77669",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
