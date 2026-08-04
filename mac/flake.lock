@@ -412,11 +412,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1785796069,
-        "narHash": "sha256-ev3QSQQkIlHUa5zLyfVdEI2WMMhb5LOW2Qn1V7HR3nI=",
+        "lastModified": 1785797576,
+        "narHash": "sha256-x930WT7cKybunIT7DipPKOHknwuX/UxeTBaXlobx0sE=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "13a905bfd7c4429b9263db7f279c94e5b8e0e38d",
+        "rev": "dc43f251c79d4e8a0f24f9245024a0e06e2f9839",
         "type": "github"
       },
       "original": {
@@ -457,11 +457,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785757762,
-        "narHash": "sha256-UV+xDi03t45+W4EAIbHogB3SRrbpnYNp/clKxjzCzsQ=",
+        "lastModified": 1785804306,
+        "narHash": "sha256-3+LM4ctTuBW6KMF52L1H8lVheErdC620mrNFmDiFl9Y=",
         "ref": "refs/heads/main",
-        "rev": "acbe6c7619214ada5be8156a1841e28c00c46b2d",
-        "revCount": 36,
+        "rev": "221ef70a89fea7ae5c32f575817b234f310dd2c1",
+        "revCount": 38,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -609,11 +609,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785795944,
-        "narHash": "sha256-HSPA5lue6MdM/fTyGp7FBFKNd2I2JSg5Q3VVGUpCEoA=",
+        "lastModified": 1785804456,
+        "narHash": "sha256-p/YTc1eNhGqu0VW8JEYRobJNLJMPumuc8ue7ixGyAr0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "b6ad7dff8dee6548f7401030375ac4d97d52041d",
+        "rev": "1790294bff9e6df01d2486fa1b640e9711743488",
         "type": "github"
       },
       "original": {
