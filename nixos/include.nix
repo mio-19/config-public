@@ -371,24 +371,26 @@ let
       # DETAILS REMOVED
       filterExistingGroups =
         groups: builtins.filter (group: builtins.hasAttr group osConfig.users.groups) groups;
-      commonGroups = [
+      agentCommonGroups = [
         "users"
-      ]
-      ++ filterExistingGroups [
-        "networkmanager"
-        "audio"
-        "jackaudio"
-        "adbusers"
-        "openrazer"
-        "pipewire"
-        "pulse-access"
-        "realtime"
-        "dialout" # for serial ports
-        #"input" # for bongocat
-        "vboxusers"
-        "scanner"
-        "lp"
       ];
+      commonGroups =
+        agentCommonGroups
+        ++ filterExistingGroups [
+          "networkmanager"
+          "audio"
+          "jackaudio"
+          "adbusers"
+          "openrazer"
+          "pipewire"
+          "pulse-access"
+          "realtime"
+          "dialout" # for serial ports
+          #"input" # for bongocat
+          "vboxusers"
+          "scanner"
+          "lp"
+        ];
       commonAdminGroups = commonGroups ++ [
         "wheel"
       ];
