@@ -15,7 +15,7 @@ let
       lynx
       #herdr
       nh
-      nurl
+      nur.repos.mio.nurl_patched
       jadx
       cachix
       wrangler
