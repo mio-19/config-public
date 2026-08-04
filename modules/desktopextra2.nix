@@ -62,11 +62,11 @@
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rain
             #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bambu-studio-open
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
             # unfree:
             inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
           ])
           ++ (map cleanPkg [
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
             #firefox_nightly
             # binaryNativeCode:
             tor-browser # need non flatpak version for the sandbox - https://github.com/flathub/org.torproject.torbrowser-launcher/issues/67
