@@ -127,6 +127,16 @@
         };
 
         programs.firejail.wrappedBinaries = with pkgs; {
+          # same pattern as chromium in desktop-full; brave.profile includes chromium-common
+          brave-origin = {
+            executable = "${hardenedPkg brave-origin}/bin/brave-origin";
+            profile = "${pkgs.firejail}/etc/firejail/brave.profile";
+            extraArgs = [
+              # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
+              "--ignore=private-dev"
+              "--ignore=nogroups" # dialout group for serial devices
+            ];
+          };
           # no network with bilibili.profile?
           /*
             bilibili = {
