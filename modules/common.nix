@@ -319,53 +319,58 @@
         # https://search.nixos.org/packages
         environment.systemPackages =
           with pkgs;
-          (map hardenedPkg [
-            progs.git
-            progs.openssh
-            #nix-output-monitor
+          (
+            map hardenedPkg [
+              progs.git
+              progs.openssh
+              #nix-output-monitor
 
-            curl
-            wget
-            proto
-            smartmontools
-            mdbook
-            dust
-            iotop
-            nmap
-            nixfmt
-            nixfmt-tree
-            #caddy # caddy file-server --browse
-            #copyparty
-            typst
-            #dmidecode
-            pciutils
-            usbutils
-            unzip
-            zip
-            #nvd # https://discourse.nixos.org/t/nvd-simple-nix-nixos-version-diff-tool/12397/21
-            uv
-            python3
-            fd
-            fzf
-            file
-            (lib.hiPrio btrfs-progs) # higher prio than builtin btrfs-progs when btrfs is enabled
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nm2nix
-            #inputs.pinix.packages.${pkgs.stdenv.hostPlatform.system}.default
-            dos2unix
-            openssl
-            nur.repos.mio.cb
-            catimg
-            psmisc
-            lz4
-            android-tools
-            difftastic
-            lsof
-            imagemagick
-            waypipe
-            ripgrep
-            # unfree:
-            p7zip-rar
-          ])
+              curl
+              wget
+              proto
+              smartmontools
+              mdbook
+              dust
+              iotop
+              nmap
+              nixfmt
+              nixfmt-tree
+              #caddy # caddy file-server --browse
+              #copyparty
+              typst
+              #dmidecode
+              pciutils
+              usbutils
+              unzip
+              zip
+              #nvd # https://discourse.nixos.org/t/nvd-simple-nix-nixos-version-diff-tool/12397/21
+              uv
+              python3
+              fd
+              fzf
+              file
+              (lib.hiPrio btrfs-progs) # higher prio than builtin btrfs-progs when btrfs is enabled
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nm2nix
+              #inputs.pinix.packages.${pkgs.stdenv.hostPlatform.system}.default
+              dos2unix
+              openssl
+              nur.repos.mio.cb
+              catimg
+              psmisc
+              lz4
+              android-tools
+              difftastic
+              lsof
+              imagemagick
+              waypipe
+              ripgrep
+              # unfree:
+              p7zip-rar
+            ]
+            ++ lib.optionals (config.boot.loader.grub.enable && config.boot.loader.grub.efiSupport) [
+              efibootmgr
+            ]
+          )
           ++ (map cleanPkg [
             nix-output-monitor
           ])
