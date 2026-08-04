@@ -211,7 +211,6 @@ in
             nextcloud-client
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
             nur.repos.mio.icloud-mail
-            nur.repos.mio.wechat_bwrap
             nur.repos.mio.qq_bwrap
             (nix-webapps-lib.mkChromiumApp {
               appName = "chatgpt";
@@ -244,6 +243,7 @@ in
             firefox-esr
             (wrapPrio gnome-console)
             # unfree:
+            nur.repos.mio.wechat_bwrap
             progs.vscode
           ])
           ++ lib.optionals pkgs.stdenv.isx86_64 (
