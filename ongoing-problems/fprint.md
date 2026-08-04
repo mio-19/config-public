@@ -43,20 +43,20 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 * **Hardware OK**: Goodix `27c6:609c` present; `fprintd-list` showed enrolled left/right index fingers.
 * **`fprintd` idle/`inactive` is normal** (D-Bus on-demand); not proof of failure by itself.
 * **PAM path OK for Plasma**: unlock uses `kde` (password, `fprintAuth = false` on purpose) and `kde-fingerprint` (has `pam_fprintd`). Matches nixpkgs `plasma6.nix`.
-* **Failures clustered on resume**: around wake, journal showed `fprintd-resume` + `pam_unix(...): conversation failed` on `kde` / `kde-fingerprint`; successful unlock later was password-only (`kde` + kwallet).
+* **Failures clustered on resume**: around wake, journal showed the old `fprintd-resume` unit + `pam_unix(...): conversation failed` on `kde` / `kde-fingerprint`; successful unlock later was password-only (`kde` + kwallet).
 * **Same `kscreenlocker_greet` PID across suspend** (e.g. started ~00:23, still that PID at ~01:08) — greeter survived sleep with a stale `pam_fprintd` D-Bus connection after `fprintd` stopped/restarted ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)).
 * **Noise (not the intermittent bug)**: `pam_succeed_if(kde-fingerprint:auth): incomplete condition detected` from flake CVE patch `fprintd_sudo_only_tty` (NixOS brackets spaced args; rule still `default=ignore` so it should not skip `pam_fprintd`). `pam_zfs_key` / `pam_kwallet5` lines are unrelated.
 
 ### What we did
-* **Keep** `powerManagement.powerDownCommands`: stop `fprintd` before sleep (avoids “Cannot run while suspended” / suspended daemon).
-* **Change** `fprintd-resume` in `modules/common.nix`: after resume, `sleep 2` → `systemctl restart fprintd` → `pkill -TERM -x kscreenlocker_greet` so Plasma respawns the greeter with a fresh PAM↔fprintd session.
-* **Why not only restart fprintd**: that was the old workaround; it left the greeter’s cached D-Bus connection stale and matched “sometimes works, sometimes not.”
-* **Why not only stop-before-sleep**: issue author prefers that alone; a Framework 13 report still saw intermittency — our logs needed greeter recycle.
+* **`fprintd-sleep` in `modules/common.nix`**: one oneshot hooked to `sleep.target` the way systemd documents and NixOS `sleep-actions` does — `WantedBy`/`Before=sleep.target`, `StopWhenUnneeded`, `RemainAfterExit`; **ExecStart** stops `fprintd` before sleep; **ExecStop** after wake does `sleep 2` → `systemctl restart fprintd` → `pkill -TERM -x kscreenlocker_greet`.
+* **Why not `WantedBy=suspend.target` + `After=suspend.target` + `ExecStart`**: that can appear to run post-wake because `suspend.target` is `After=systemd-suspend.service`, but it is not the documented hook, needs every sleep target listed, and diverges from nixpkgs `power-management.nix`. `WantedBy=sleep.target` + `After=sleep.target` + `ExecStart` is wrong (runs before sleep; [systemd#6364](https://github.com/systemd/systemd/issues/6364)).
+* **Why not only restart fprintd**: greeter keeps a stale `pam_fprintd` D-Bus session → intermittent unlock.
+* **Why not only stop-before-sleep**: issue author prefers that; Framework 13 still saw intermittency — logs needed greeter recycle.
 * **Left alone for now**: commented-out `den.aspects.fprint-fix`; broken `fprintd_sudo_only_tty` flake patch (CVE mitigation noise, not the resume bug).
 
 ### Known Workarounds (Currently in Repo)
 * **Disabled fprintAuth** on `login` / `kde` / `passwd` (`modules/desktop-basic.nix`); `polkit-1` follows `services.fprintd.enable`. Plasma fingerprint goes through `kde-fingerprint`.
-* **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): stop `fprintd` before sleep; on resume wait 2s, restart `fprintd`, recycle `kscreenlocker_greet` (`modules/common.nix`).
+* **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): `fprintd-sleep` stop / restart+greeter-recycle via `sleep.target` ExecStart/ExecStop (`modules/common.nix`).
 * **Experimental libfprint patch**: `den.aspects.fprint-fix` commented out in `modules/common.nix` (`wvhulle` kill-without-clean).
 * **SSH sudo bypass**: `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH, fails in tmux).
 

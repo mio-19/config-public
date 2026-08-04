@@ -588,31 +588,25 @@
         ) countryCode;
 
         # https://github.com/NixOS/nixpkgs/issues/432276
-        # Stop fprintd before sleep so resume does not reuse a suspended daemon.
-        # On resume, restart fprintd after USB is up, then recycle kscreenlocker_greet:
-        # pam_fprintd caches D-Bus in that process, so restarting fprintd alone leaves
-        # fingerprint unlock intermittent until the greeter is respawned.
-        powerManagement.powerDownCommands = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) ''
-          ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
-        '';
-        systemd.services.fprintd-resume = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) {
-          description = "Restart fprintd and Plasma lock greeter after resume";
-          after = [
-            "suspend.target"
-            "hibernate.target"
-            "hybrid-sleep.target"
-            "suspend-then-hibernate.target"
-          ];
-          wantedBy = [
-            "suspend.target"
-            "hibernate.target"
-            "hybrid-sleep.target"
-            "suspend-then-hibernate.target"
-          ];
+        # Official post-resume hook: WantedBy=sleep.target + Before=sleep.target +
+        # RemainAfterExit + StopWhenUnneeded, with pre-sleep in ExecStart and
+        # post-resume in ExecStop (systemd.special(7); same shape as NixOS
+        # sleep-actions / powerManagement.resumeCommands).
+        # Stop fprintd before sleep; after wake wait for USB, restart fprintd, then
+        # recycle kscreenlocker_greet (pam_fprintd caches D-Bus in that process).
+        systemd.services.fprintd-sleep = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) {
+          description = "fprintd stop before sleep; restart and recycle Plasma lock greeter after resume";
+          wantedBy = [ "sleep.target" ];
+          before = [ "sleep.target" ];
+          unitConfig.StopWhenUnneeded = true;
           serviceConfig = {
             Type = "oneshot";
-            TimeoutStartSec = "15";
-            ExecStart = pkgs.writeShellScript "fprintd-resume" ''
+            RemainAfterExit = true;
+            TimeoutStopSec = "15";
+            ExecStart = pkgs.writeShellScript "fprintd-pre-sleep" ''
+              ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
+            '';
+            ExecStop = pkgs.writeShellScript "fprintd-post-resume" ''
               ${pkgs.coreutils}/bin/sleep 2
               ${config.systemd.package}/bin/systemctl restart fprintd.service || true
               # Plasma respawns the greeter while the session stays locked.
