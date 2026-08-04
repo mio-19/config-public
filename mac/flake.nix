@@ -107,7 +107,7 @@
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
     # pin niche inputs to avoid bad people taking over.

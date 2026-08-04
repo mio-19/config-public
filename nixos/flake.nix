@@ -305,7 +305,7 @@
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-mineral = {
       # pin niche inputs to avoid bad people taking over.
