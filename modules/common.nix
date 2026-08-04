@@ -664,8 +664,15 @@
           #inputs.emacs-overlay.overlays.package
           inputs.nur.overlays.default
           inputs.nix-vscode-extensions.overlays.default
-          (final: prev: {
-          })
+          (
+            final: prev:
+            let
+              mio = inputs.mio.packages."${system}";
+            in
+            {
+              starship = mio.starship_patched;
+            }
+          )
         ];
         home-manager.sharedModules = [
           #inputs.chaotic.homeManagerModules.default
