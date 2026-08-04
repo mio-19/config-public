@@ -211,6 +211,8 @@ in
             nextcloud-client
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
             nur.repos.mio.icloud-mail
+            nur.repos.mio.wechat_bwrap
+            nur.repos.mio.qq_bwrap
             (nix-webapps-lib.mkChromiumApp {
               appName = "chatgpt";
               desktopName = "ChatGPT";
@@ -456,8 +458,8 @@ in
             #"com.discordapp.Discord" # Download Pictures Videos and more
             "tv.plex.PlexDesktop"
             "com.spotify.Client"
-            "com.qq.QQ" # Download folder read/write access and more
-            "com.tencent.WeChat" # Download folder read access and more
+            #"com.qq.QQ" # Download folder read/write access and more
+            #"com.tencent.WeChat" # Download folder read access and more
             "com.baidu.NetDisk" # EOL and file system access
             "com.parsecgaming.parsec"
             # followings are built from source by flathub:
