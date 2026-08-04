@@ -42,7 +42,7 @@ with _include;
 
   persistent_power-profiles-daemon = false;
 
-  #virtualisation.virtualbox.host.enable = true; # once stuck on boot
+  virtualisation.virtualbox.host.enable = true;
 
   home-manager.sharedModules = [
     ../_homeManager/sleeping.nix
