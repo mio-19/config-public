@@ -173,7 +173,7 @@ with _include;
     enable32Bit = true;
   };
 
-  ridiculous_fonts = true;
+  #ridiculous_fonts = true;
 
   #services.guix.enable = true;
 
