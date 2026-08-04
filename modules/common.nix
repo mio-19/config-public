@@ -593,7 +593,11 @@
         # post-resume in ExecStop (systemd.special(7); same shape as NixOS
         # sleep-actions / powerManagement.resumeCommands).
         # Stop fprintd before sleep; after wake wait for USB, restart fprintd, then
-        # recycle kscreenlocker_greet (pam_fprintd caches D-Bus in that process).
+        # recycle kscreenlocker_greet (pam_fprintd caches D-Bus in that process and
+        # cannot recover from "name owner changed"). Use pkill -f, not -x: Linux
+        # comm is TASK_COMM_LEN (15), so -x kscreenlocker_greet never matches.
+        # Kill only after restart — an early kill lets Plasma respawn into the
+        # restart race window (nixpkgs#432276 / Discourse workarounds).
         systemd.services.fprintd-sleep = lib.mkIf (config.services.fprintd.enable && kdeDMEnabled) {
           description = "fprintd stop before sleep; restart and recycle Plasma lock greeter after resume";
           wantedBy = [ "sleep.target" ];
@@ -610,7 +614,7 @@
               ${pkgs.coreutils}/bin/sleep 2
               ${config.systemd.package}/bin/systemctl restart fprintd.service || true
               # Plasma respawns the greeter while the session stays locked.
-              ${pkgs.procps}/bin/pkill -TERM -x kscreenlocker_greet 2>/dev/null || true
+              ${pkgs.procps}/bin/pkill -TERM -f kscreenlocker_greet 2>/dev/null || true
             '';
           };
         };

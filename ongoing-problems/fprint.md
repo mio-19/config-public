@@ -47,8 +47,14 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 * **Same `kscreenlocker_greet` PID across suspend** (e.g. started ~00:23, still that PID at ~01:08) — greeter survived sleep with a stale `pam_fprintd` D-Bus connection after `fprintd` stopped/restarted ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)).
 * **Noise (not the intermittent bug)**: `pam_succeed_if(kde-fingerprint:auth): incomplete condition detected` from flake CVE patch `fprintd_sudo_only_tty` (NixOS brackets spaced args; rule still `default=ignore` so it should not skip `pam_fprintd`). `pam_zfs_key` / `pam_kwallet5` lines are unrelated.
 
+### What we saw (fw13, 2026-08-05 later — unlock failed again)
+* Greeter PID **9808** survived lock → suspend → resume → failed fprint → second sleep → password unlock.
+* Wake race: greeter mid-`pam_fprintd` while `fprintd-sleep` ExecStop restarted the daemon → `fprintd name owner changed during operation!` / `ReleaseDevice failed`.
+* **Broken recycle**: `pkill -TERM -x kscreenlocker_greet` never matches (Linux `comm` is 15 chars; name is 19). Need `pkill -f` ([pkill(1)](https://man.archlinux.org/man/pkill.1); same as Discourse / [nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276) workarounds).
+* Stop-before-sleep alone is not enough on Framework 13 (also reported on that issue); greeter must actually die and respawn.
+
 ### What we did
-* **`fprintd-sleep` in `modules/common.nix`**: one oneshot hooked to `sleep.target` the way systemd documents and NixOS `sleep-actions` does — `WantedBy`/`Before=sleep.target`, `StopWhenUnneeded`, `RemainAfterExit`; **ExecStart** stops `fprintd` before sleep; **ExecStop** after wake does `sleep 2` → `systemctl restart fprintd` → `pkill -TERM -x kscreenlocker_greet`.
+* **`fprintd-sleep` in `modules/common.nix`**: oneshot on `sleep.target` (`WantedBy`/`Before`, `StopWhenUnneeded`, `RemainAfterExit`). **ExecStart** stops `fprintd` before sleep. **ExecStop**: `sleep 2` → `systemctl restart fprintd` → `pkill -TERM -f kscreenlocker_greet` (not `-x`: `comm` is 15 chars so `-x` never matched; kill only after restart so Plasma does not respawn into the restart race).
 * **Why not `WantedBy=suspend.target` + `After=suspend.target` + `ExecStart`**: that can appear to run post-wake because `suspend.target` is `After=systemd-suspend.service`, but it is not the documented hook, needs every sleep target listed, and diverges from nixpkgs `power-management.nix`. `WantedBy=sleep.target` + `After=sleep.target` + `ExecStart` is wrong (runs before sleep; [systemd#6364](https://github.com/systemd/systemd/issues/6364)).
 * **Why not only restart fprintd**: greeter keeps a stale `pam_fprintd` D-Bus session → intermittent unlock.
 * **Why not only stop-before-sleep**: issue author prefers that; Framework 13 still saw intermittency — logs needed greeter recycle.
@@ -60,4 +66,4 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 * **Experimental libfprint patch**: `den.aspects.fprint-fix` commented out in `modules/common.nix` (`wvhulle` kill-without-clean).
 * **SSH sudo bypass**: `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH, fails in tmux).
 
-If fingerprint still fails after resume: check `lsusb` for Goodix drop-off / USB autosuspend.
+If fingerprint still fails after resume: check `lsusb` for Goodix drop-off / USB autosuspend. Manual unblock: `pkill -TERM -f kscreenlocker_greet`.

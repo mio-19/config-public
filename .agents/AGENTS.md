@@ -33,17 +33,19 @@ The private `config` repo regularly merges `config-public/main` to stay aligned 
 When pulling changes from `config-public` into `config`, you will often encounter merge conflicts in files that contain `# DETAILS REMOVED` in the public repository but hold real secrets in the private repository.
 **Always resolve these conflicts by keeping the private (`HEAD`) version (`git checkout --ours <file>`) to ensure secrets are preserved!**
 
-**Always merge config-public back into config after config-public changes**
+**Merge config-public back into private `config` when that repo is present**
 
-After any commit/push to `config-public`, **always** merge `config-public/main` into private `config` and push `config` too — even when the merge is a no-op on disk (e.g. you synced private → public and the trees already match). The merge commit records the sync point in git history for future pulls, conflict resolution, and audits.
+After commit/push to `config-public`, if a private `config` checkout is already available at the usual sibling path (e.g. `../config` next to `config-public`), merge `config-public/main` into it and push `config` too — even when the merge is a no-op on disk. The merge commit records the sync point in git history.
 
-Typical flow:
+**Do not** search the filesystem for a private `config` repo. If `../config` (or the path the user already gave) is missing, stop after pushing `config-public`; do not hunt elsewhere or ask where it is unless the user brings it up.
+
+Typical flow when private `config` is present:
 
 1. Change `config-public` → eval → commit → push `config-public`.
 2. In `config`: `git fetch config-public` → `git merge config-public/main` → resolve conflicts with `--ours` where `# DETAILS REMOVED` vs secrets → commit → push `config`.
 3. When you changed private `config` first and then synced sanitized edits to `config-public`, still do step 2 after pushing public — content may be unchanged, but the merge-back is required for history.
 
-**Sometimes faster:** When the change is clearly public-only (shared modules/import-line tweaks with no secrets), you can implement it directly in `config-public` first (eval → commit → push), then merge it into private `config`. This reduces manual porting and lowers the chance of accidentally overwriting `# DETAILS REMOVED` placeholders.
+**Sometimes faster:** When the change is clearly public-only (shared modules/import-line tweaks with no secrets), you can implement it directly in `config-public` first (eval → commit → push), then merge it into private `config` if that checkout exists. This reduces manual porting and lowers the chance of accidentally overwriting `# DETAILS REMOVED` placeholders.
 
 ## Den & import-tree behavior
 
