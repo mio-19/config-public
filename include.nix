@@ -29,6 +29,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "virtualbox-extpack"
       "antigravity-ide"
       "vista-fonts-cht"
       "vista-fonts-chs"
