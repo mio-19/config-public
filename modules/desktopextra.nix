@@ -69,7 +69,6 @@ in
             nur.repos.mio.waveterm
             pianotrans
             musescore-evolution
-            nur.repos.mio.zen-browser
             # binaryNativeCode:
             spotube
             #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
