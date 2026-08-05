@@ -89,7 +89,7 @@
               assert config.use_this_ix == "nix";
               pkgs.nix;
           settings = {
-            sandbox = true;
+            sandbox = if pkgs.stdenv.isDarwin then "relaxed" else true;
             auto-optimise-store = true;
             lint-url-literals = lib.mkIf (config.use_this_ix != "lix") "fatal";
             experimental-features = [
