@@ -1470,11 +1470,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785964162,
-        "narHash": "sha256-QljjEaSPmekhs/WD8rg7r+VVuNAj0B7kM766rMpAhx4=",
+        "lastModified": 1785970179,
+        "narHash": "sha256-6VXJsvaCsNHXWvbMQui7TAtCwBv+I6oatENGH3S8afA=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "0adbcfc9c484950ad1fa67599b064a1cc69332c5",
+        "rev": "0dc7a2a1672153f33446e85aacc0cc3c67f510c7",
         "type": "github"
       },
       "original": {
@@ -2646,10 +2646,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785966723,
-        "narHash": "sha256-77PN8w/GMo5ANgo0LFco+ipKv2fjIxhWqa0amYPJdI8=",
+        "lastModified": 1785971240,
+        "narHash": "sha256-Jbg1HtdVyJL/79eSLQ05CjDdwtCidG6D2lh9hq82a+k=",
         "ref": "refs/heads/main",
-        "rev": "766ca0dad1dc0e5a408f1f3c2540eb008d5e34f1",
+        "rev": "e1a6d38c0c49ffe04cf9eaf5c372f146268b32ad",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2890,11 +2890,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1785931966,
-        "narHash": "sha256-oOoLQK031+U1bhcRt/W61q13BOiI+ACjxeJsZjT146Q=",
+        "lastModified": 1785970114,
+        "narHash": "sha256-6lXGjQdzhmVO4THLFEMOUA8hQGW71rRDD3SEp/+rWf8=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "af0a8552826b467b0666e35f8d6e0cbba8a0b6ec",
+        "rev": "607f9bf9904a08d968bb5ba3ed85e69ad50905d3",
         "type": "github"
       },
       "original": {
