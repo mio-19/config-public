@@ -30,7 +30,7 @@ let
         };
         use_betterbird = lib.mkOption {
           type = lib.types.bool;
-          default = pkgs.stdenv.isx86_64;
+          default = if isDarwin then true else pkgs.stdenv.isx86_64;
           description = "use betterbird instead of thunderbird.";
         };
         gemini_zh = lib.mkOption {

@@ -470,6 +470,25 @@
         "url": "https://github.com/mio-19/nurpkgs.git"
       }
     },
+    "mio-betterbird": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1785923061,
+        "narHash": "sha256-N4WZ/qcWsYxdholvgiS/WrYCjLLl+ksiA5WW1wq0fi8=",
+        "owner": "mio-19",
+        "repo": "nurpkgs",
+        "rev": "4aa1af0235cc1299f294ec8c1d5e2d2c5f197f56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mio-19",
+        "repo": "nurpkgs",
+        "rev": "4aa1af0235cc1299f294ec8c1d5e2d2c5f197f56",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -601,6 +620,19 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1785747939,
+        "narHash": "sha256-NqaCaIITVSDaBYdcWcfCyEu1erL7paTPEQbISQp9xwQ=",
+        "rev": "104240a772428cc2e20d8fd86c9ddbb886bbaff2",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1046984.104240a77242/nixexprs.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1780243769,
         "narHash": "sha256-x5UQuRsH3MqI0U9afaXSNqzTPSeZlRLvFAav2Ux1pNw=",
         "owner": "NixOS",
@@ -666,6 +698,7 @@
         "llm-agents": "llm-agents",
         "mac-app-util": "mac-app-util",
         "mio": "mio",
+        "mio-betterbird": "mio-betterbird",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": [
@@ -683,7 +716,7 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1785886962,

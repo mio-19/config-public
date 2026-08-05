@@ -35,7 +35,12 @@ in
       with _include;
       {
         environment.systemPackages = [
-          pkgs.thunderbird-esr
+          (
+            if config.use_betterbird then
+              inputs.mio-betterbird.packages.${pkgs.stdenv.hostPlatform.system}.betterbird
+            else
+              pkgs.thunderbird-esr
+          )
         ];
       };
     nixos =
