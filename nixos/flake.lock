@@ -846,11 +846,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785893246,
-        "narHash": "sha256-uxY2DUdgj58MJC2Wb/QqoAE5LNR8FIaoEjhtF5CuoE0=",
+        "lastModified": 1785904033,
+        "narHash": "sha256-Cem5S1VGNfBNfg3tLwhsE2n/57ucsbhPivp9D05RzvM=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "be75e04c566b13c00620ebfadc1cedc229691c03",
+        "rev": "c6dcc2904a89c6e38ddf19d63d4e3a44c1678674",
         "type": "github"
       },
       "original": {
@@ -981,11 +981,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1785812511,
-        "narHash": "sha256-Uy9HdSGApgNS+7JzGx4yM+CqUYNnyC6f09UpwgkeIRk=",
+        "lastModified": 1785898401,
+        "narHash": "sha256-UxULHQDGAA818OpNhrzIOj9g6XYUarca/6pyEfYdOig=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "fbfc89e7670a207bef540a6248838855fe43dfe5",
+        "rev": "76fdf6463965839c5f3627d88a836b7a357746fa",
         "type": "github"
       },
       "original": {
@@ -1180,11 +1180,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785812695,
-        "narHash": "sha256-YKd6efsiKdJ7UOAURH6sanFqv6JXfHIqxXVC4kuDppc=",
+        "lastModified": 1785898908,
+        "narHash": "sha256-UPMYwEyyh6QhbnXyIlpIi0H9454Ow/eOOOSkRx3Hxkk=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "2ae89c3de613fb717a8e5e43e20b6603c4dd63cc",
+        "rev": "b510fc22aa22ad079592c5adb46d547a37def055",
         "type": "github"
       },
       "original": {
@@ -1704,10 +1704,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785893934,
-        "narHash": "sha256-JBDZjDt9yzaWNDHmGRGHKG7Te795D6hUwdnifKWz/+E=",
+        "lastModified": 1785904227,
+        "narHash": "sha256-2YMijSkRnftBfreZYP5j9YikDtR2ay+sv6LOaylR6Gg=",
         "ref": "refs/heads/main",
-        "rev": "cab901c3b16f0a039db833d20b50a7e1ad7b31b6",
+        "rev": "5280e3e90b0550421189eb5c8694ad55340e262f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
