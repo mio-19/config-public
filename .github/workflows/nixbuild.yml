@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: nixbuild/nix-quick-install-action@9f63be77f412a248c9d9a65a4c82cf066cdf8f0c # v35
         with:
-          nix_version: '2.31.2'
+          nix_version: '2.31.5'
           nix_conf: |
             experimental-features = nix-command flakes
             allow-import-from-derivation = true
