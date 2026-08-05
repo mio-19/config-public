@@ -31,7 +31,13 @@ in
   den.aspects.thunderbird = {
     description = "thunderbird";
     darwin =
-      args@{ pkgs, _include, ... }:
+      args@{
+        pkgs,
+        config,
+        inputs,
+        _include,
+        ...
+      }:
       with _include;
       {
         environment.systemPackages = [
