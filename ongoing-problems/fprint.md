@@ -66,4 +66,38 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 * **Experimental libfprint patch**: `den.aspects.fprint-fix` commented out in `modules/common.nix` (`wvhulle` kill-without-clean).
 * **SSH sudo bypass**: `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH, fails in tmux).
 
+### Issue 2b: Fingerprint prompt disappears / times out (no suspend involved)
+
+**Problem**: Even without suspend/resume, the lock screen's fingerprint option times out and vanishes before the user scans.
+
+**What we saw (fw13, 2026-08-05 ~21:21)**:
+* No suspend/resume since 18:48. fprintd was idle (auto-deactivated at ~20:08).
+* Locked screen at ~21:21. Journal shows **only `kde` PAM** at 21:21:36 (password unlock). Zero `kde-fingerprint` entries visible at unlock time.
+* Locked again at ~21:25. `kde-fingerprint` PAM fired, fprintd started on demand, fingerprint worked.
+
+**Root cause (from KDE source analysis)**:
+* `kscreenlocker_greet` is **spawned fresh per-lock** (not persistent). It always starts all three PAM authenticators (`kde`, `kde-fingerprint`, `kde-smartcard`) in parallel immediately on lock (since Plasma 6.3, [MR !163](https://invent.kde.org/plasma/kscreenlocker/-/merge_requests/163)).
+* `pam_fprintd` has a **~30 second timeout**. If the user doesn't scan within that window, `pam_authenticate()` returns failure, and kscreenlocker marks fingerprint as `m_unavailable = true` via `PamAuthenticator` ([pamauthenticator.cpp](https://invent.kde.org/plasma/kscreenlocker/-/blob/master/greeter/pamauthenticator.cpp)).
+* The 21:21 failure was likely the fingerprint option timing out before the user reached the lock screen, not a stale greeter.
+* [KDE Bug 506567](https://bugs.kde.org/show_bug.cgi?id=506567) — fingerprint prompt deactivates after a moment (RESOLVED FIXED, commit `1cccd29c`). Included in Plasma 6.7.3 (our version). Fixes unlock delay, **not** the timeout-before-scan.
+* [KDE Bug 469951](https://bugs.kde.org/show_bug.cgi?id=469951) — fingerprint errors if you don't scan promptly.
+* [Fedora discussion](https://discussion.fedoraproject.org/t/fingerprint-kde-plasma-6-3-problem-with-unlock-computer/144842) — fingerprint only works for seconds after locking.
+
+**Workaround**: Pressing Enter on an empty password field restarts the PAM conversation and re-triggers non-interactive authenticators (fingerprint). This may bring back the fingerprint prompt.
+
+**Still open**: The ~30s `pam_fprintd` timeout means if you don't scan within that window after locking, fingerprint silently becomes unavailable. No upstream fix yet. Plasma version: 6.7.3 (kscreenlocker 6.7.3, nixpkgs-unstable `e72e4f299401`).
+
+### Framework 13 specific: USB controller rebind on resume
+
+The Goodix `27c6:609c` sensor on Framework 13 (especially AMD Ryzen AI 300) can disappear from USB after suspend. The xHCI controller fails to reinitialize the sensor. Simple fprintd restart is not enough; may need USB controller unbind/rebind (find the PCI address with `lspci -D | grep xHCI`):
+```bash
+# Example PCI address — verify on your machine first
+echo "$PCI_ADDR" > /sys/bus/pci/drivers/xhci_hcd/unbind
+sleep 2
+echo "$PCI_ADDR" > /sys/bus/pci/drivers/xhci_hcd/bind
+sleep 3
+systemctl restart fprintd.service
+```
+Tracked at [FrameworkComputer/SoftwareFirmwareIssueTracker#102](https://github.com/FrameworkComputer/SoftwareFirmwareIssueTracker/issues/102). One user reported changing BIOS TPM Operation to "No operation" fixed it.
+
 If fingerprint still fails after resume: check `lsusb` for Goodix drop-off / USB autosuspend. Manual unblock: `pkill -TERM -f kscreenlocker_greet`.
