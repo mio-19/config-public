@@ -211,7 +211,6 @@ in
             nextcloud-client
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
             nur.repos.mio.icloud-mail
-            nur.repos.mio.qq_bwrap
             (nix-webapps-lib.mkChromiumApp {
               appName = "chatgpt";
               desktopName = "ChatGPT";
@@ -233,6 +232,7 @@ in
               class = "chrome-www.icloud.com__find_-Default";
             })
             # unfree:
+            nur.repos.mio.qq_bwrap
             obsidian
             #cider-2 # paid
             #parsec-bin
