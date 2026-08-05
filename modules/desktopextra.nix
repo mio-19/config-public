@@ -154,7 +154,7 @@ in
           sharedApps { inherit pkgs inputs _include; }
           ++ [
             musescore-evolution
-            nur.repos.mio.telegram-mac
+            #nur.repos.mio.telegram-mac
           ];
       };
   };
