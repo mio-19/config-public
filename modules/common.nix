@@ -672,7 +672,7 @@
           (
             final: prev:
             let
-              mio = inputs.mio.packages."${system}";
+              mio = inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}";
             in
             {
               starship = mio.starship_patched;
