@@ -180,6 +180,9 @@
         security.pam.services.login.fprintAuth = false;
         # they are buggy with fprint! can we disable them by this?
         security.pam.services.kde.fprintAuth = false;
+        # Upstream PAM service generation + fprint option definitions:
+        # https://github.com/NixOS/nixpkgs/blob/e72e4f299401/nixos/modules/security/pam.nix
+        # https://mynixos.com/nixpkgs/option/security.pam.services.%3Cname%3E.fprintAuth
         # Increase fingerprint window for the KDE lock screen.
         # `pam_fprintd` defaults to ~30s; if we don't scan within that window,
         # Plasma may mark the fingerprint auth as unavailable for that session.
