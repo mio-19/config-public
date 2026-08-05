@@ -846,11 +846,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785904430,
-        "narHash": "sha256-sLkWSG8OZo2XnKvGE8W/Qhsky0TgdXhgaECrP3PQN50=",
+        "lastModified": 1785914066,
+        "narHash": "sha256-q5jWBnY0HgA+LdDe8pRbFZiwZn5HQBVqNmCouvPyMMg=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "a4ea96a3b4aae3bbf5e4922539913ca9c9419947",
+        "rev": "22183eda2d704b0644ae71ce89183d48e655f74c",
         "type": "github"
       },
       "original": {
@@ -1704,10 +1704,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785910031,
-        "narHash": "sha256-6q/YBCvr//ELt0wHZdOE6ZmIcPyXIifHcEYEz/VigoQ=",
+        "lastModified": 1785921678,
+        "narHash": "sha256-286LVYLhdel3hTuvSDBPBbZPVnUjJJdcLww3bD79TJA=",
         "ref": "refs/heads/main",
-        "rev": "ddbc6dcec9a3035f0d232579366c9792f9a70601",
+        "rev": "1354623f0844b33f9137a44eba2c608c8f6c7b1b",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2574,10 +2574,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1785830592,
-        "narHash": "sha256-4lqvnaiXkjbMCYUkgDqkkPaD40ln0r0bCIz5pGu17EU=",
+        "lastModified": 1785915548,
+        "narHash": "sha256-uF+QIxu7hhxKgzh7ai2uWVmeiqJYDC1C4fJ4P/IFZ/k=",
         "ref": "refs/heads/main",
-        "rev": "3eb64fada36de0780703158ef9b1063ba697c24a",
+        "rev": "a7504841b8869ef5950c1b71f062ca51ca724a02",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
