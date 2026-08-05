@@ -611,8 +611,15 @@
               ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
             '';
             ExecStop = pkgs.writeShellScript "fprintd-post-resume" ''
-              ${pkgs.coreutils}/bin/sleep 2
+              ${pkgs.coreutils}/bin/sleep 3
               ${config.systemd.package}/bin/systemctl restart fprintd.service || true
+              # Wait for fprintd's D-Bus name to appear before killing the locker.
+              i=0
+              while [ $i -lt 8 ]; do
+                ${config.systemd.package}/bin/busctl --system status net.reactivated.Fprint >/dev/null 2>&1 && break
+                ${pkgs.coreutils}/bin/sleep 1
+                i=$((i+1))
+              done
               # Plasma respawns the greeter while the session stays locked.
               ${pkgs.procps}/bin/pkill -TERM -f kscreenlocker_greet 2>/dev/null || true
             '';

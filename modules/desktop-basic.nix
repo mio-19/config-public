@@ -180,7 +180,24 @@
         security.pam.services.login.fprintAuth = false;
         # they are buggy with fprint! can we disable them by this?
         security.pam.services.kde.fprintAuth = false;
-        #security.pam.services.kde-fingerprint.fprintAuth = false;
+        # Increase fingerprint window for the KDE lock screen.
+        # `pam_fprintd` defaults to ~30s; if we don't scan within that window,
+        # Plasma may mark the fingerprint auth as unavailable for that session.
+        # Tuned to stay within known-good PAM/libfprint ranges.
+        security.pam.services.kde-fingerprint = lib.mkIf config.services.fprintd.enable {
+          fprintAuth = lib.mkForce false;
+
+          rules.auth.fprintd-timeout = {
+            enable = true;
+            order = 11550;
+            control = "sufficient";
+            modulePath = "${config.services.fprintd.package}/lib/security/pam_fprintd.so";
+            args = [
+              "timeout=60"
+              "max-tries=3"
+            ];
+          };
+        };
         security.pam.services.passwd.fprintAuth = false;
         security.pam.services.polkit-1.fprintAuth = config.services.fprintd.enable;
         # only enable for gdm as suggested by wiki - https://wiki.nixos.org/wiki/Fingerprint_scanner
