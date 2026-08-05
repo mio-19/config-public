@@ -80,6 +80,7 @@ in
       container.disabled = true; # it shows [Systemd] for orbstack, which isn't very useful
       scala.disabled = true; # it shows `vdeprecated`
       time.disabled = false;
+      format = "$time$all";
     };
   };
 
