@@ -402,17 +402,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1785625699,
-        "narHash": "sha256-txjap8+C4PgEDaJic1BV3v426KuJWST07zj9OhyLkOA=",
+        "lastModified": 1785816828,
+        "narHash": "sha256-o4Z5CAKCG1ELMB0Z1N98seA+SB5OrLuPactPdWeqPtY=",
         "owner": "aaddrick",
         "repo": "claude-desktop-debian",
-        "rev": "5624512a7e255d3b0e1744999f987636240edfc4",
+        "rev": "2d6af53b7dfd0c40b1df004f76dbb36a456c7c83",
         "type": "github"
       },
       "original": {
         "owner": "aaddrick",
         "repo": "claude-desktop-debian",
-        "rev": "5624512a7e255d3b0e1744999f987636240edfc4",
+        "rev": "2d6af53b7dfd0c40b1df004f76dbb36a456c7c83",
         "type": "github"
       }
     },
@@ -1470,11 +1470,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786006607,
-        "narHash": "sha256-kdvOoGFLm/7JH8Yr1PDNBjZJoqrzumTXPw77SB/5Ab8=",
+        "lastModified": 1786007987,
+        "narHash": "sha256-gqYIiHYhzPQBmvsNTj4W/2uY33RhGefRq6/CdRxMGw8=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "ae6ea43d4e0ffee7f29fd5be016a0c03e7372635",
+        "rev": "caf7458933e5fbf239c93eac860ed87765cac31d",
         "type": "github"
       },
       "original": {
@@ -2646,10 +2646,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1786006795,
-        "narHash": "sha256-n4vuotcDz/7I75JbueAc28Eu8l2pF+pfgP4yHyYNwes=",
+        "lastModified": 1786008236,
+        "narHash": "sha256-B+KAD5M8qhIsGuOWUKYtFMDS5yVD9qfWXgs44s8iVBs=",
         "ref": "refs/heads/main",
-        "rev": "f64464fd93b43e969a672badc5504f266291fa15",
+        "rev": "ccc1ab359db164aacdfb00687346b95890809e9c",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
