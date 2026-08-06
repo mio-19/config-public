@@ -80,6 +80,7 @@ in
       container.disabled = true; # it shows [Systemd] for orbstack, which isn't very useful
       scala.disabled = true; # it shows `vdeprecated`
       time.disabled = false;
+      # Use `$fill` and insert `$time` before the `$line_break` to place it at the right end of the first line
       format = "$all$fill$time$line_break$jobs$battery$status$os$container$shell$character";
       fill = { symbol = " "; };
     };
