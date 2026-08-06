@@ -254,7 +254,9 @@ in
             firefox-esr
             (wrapPrio gnome-console)
             # unfree:
-            nur.repos.mio.wechat_bwrap
+            (nur.repos.mio.wechat_bwrap.override {
+              followSystemAppearance = true;
+            })
             progs.vscode
           ])
           ++ lib.optionals pkgs.stdenv.isx86_64 (

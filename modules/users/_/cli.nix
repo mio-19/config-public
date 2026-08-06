@@ -82,7 +82,9 @@ in
       time.disabled = false;
       # Use `$fill` and insert `$time` before the `$line_break` to place it at the right end of the first line
       format = "$all$fill$time$line_break$jobs$battery$status$os$container$shell$character";
-      fill = { symbol = " "; };
+      fill = {
+        symbol = " ";
+      };
     };
   };
 
