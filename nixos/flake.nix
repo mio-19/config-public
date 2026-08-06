@@ -341,7 +341,7 @@
     };
     apple-fonts = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:Lyndeno/apple-fonts.nix/ce044f6829c6b3ccde9624116577ba2c173ca49d";
+      url = "github:Lyndeno/apple-fonts.nix/74d423b80e0f87604ac7f053622c51fab0c72ca6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
