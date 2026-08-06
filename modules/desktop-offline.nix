@@ -28,7 +28,7 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
-            nur.repos.mio.freesmlauncher
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
             mpv # https://gist.github.com/arch1t3cht/b5b9552633567fa7658deee5aec60453/
             mediainfo-gui
             mkvtoolnix
