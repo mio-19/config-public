@@ -215,7 +215,7 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               android-translation-layer = mio.android-translation-layer_patched;
-              inherit (pkgs') ollama; # build failed with cuda?
+              inherit (pkgs') ollama ffmpeg-full; # build failed with cuda?
               inherit (pkgs') pianotrans freecad; # no binary cache with cuda and no binary cache with rocm
             }
           )

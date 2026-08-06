@@ -30,8 +30,6 @@
             #librewolf = if (config.nixpkgs.config.rocmSupport) then pkgs-norocm.librewolf else prev.librewolf;
             #  https://github.com/NixOS/nixpkgs/issues/497745 cause whisper-cpp (dependened by ffmpeg/kdenlive) failed to compile. last working nixpkgs: 80bdc1e5ce51f56b19791b52b2901187931f5353 first broken: aca4d95fce4914b3892661bcb80b8087293536c6
             kdenlive = if (config.nixpkgs.config.rocmSupport) then pkgs-norocm.kdenlive else prev.kdenlive;
-            ffmpeg-full =
-              if (config.nixpkgs.config.rocmSupport) then pkgs-norocm.ffmpeg-full else prev.ffmpeg-full;
           })
         ];
 
