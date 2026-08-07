@@ -215,7 +215,12 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               android-translation-layer = mio.android-translation-layer_patched;
-              inherit (pkgs') ollama ffmpeg-full krita handbrake; # build failed/depdendency build failed with cuda
+              inherit (pkgs')
+                ollama
+                ffmpeg-full
+                krita
+                handbrake
+                ; # build failed/depdendency build failed with cuda
               inherit (pkgs') pianotrans freecad; # no binary cache with cuda and no binary cache with rocm
             }
           )
@@ -483,6 +488,7 @@
         programs.tmux.enable = true;
         programs.tmux.extraConfig = ''
           set -g mouse on
+          set -as terminal-features '*:hyperlinks'
         '';
 
         # https://github.com/nix-community/home-manager/blob/9e3a33c0bcbc25619e540b9dfea372282f8a9740/modules/programs/zsh/default.nix#L166

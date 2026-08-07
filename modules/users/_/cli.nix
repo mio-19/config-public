@@ -309,6 +309,7 @@ in
     extraConfig = ''
       bind-key -n Home send Escape "OH"
       bind-key -n End send Escape "OF"
+      set -as terminal-features '*:hyperlinks'
     '';
   };
   # https://github.com/nix-community/NUR
