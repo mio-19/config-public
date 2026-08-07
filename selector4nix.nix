@@ -91,6 +91,14 @@ in
           priority = 5;
         }
         {
+          url = "https://mirrors.cqupt.edu.cn/nix-channels/store";
+          priority = 5;
+        }
+        {
+          url = "https://mirror.sjtu.edu.cn/nix-channels/store";
+          priority = 5;
+        }
+        {
           url = "https://mirror.nju.edu.cn/nix-channels/store";
           priority = 5;
         }
