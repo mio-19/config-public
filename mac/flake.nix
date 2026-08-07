@@ -112,7 +112,10 @@
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    exo.url = "github:mio-19/exo";
+    exo = {
+      url = "github:mio-19/exo";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
     # pin niche inputs to avoid bad people taking over.
     import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
     # pin niche inputs to avoid bad people taking over.
