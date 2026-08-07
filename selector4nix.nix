@@ -30,6 +30,7 @@ in
     enable = true;
     configureSubstituter = "overwrite";
     settings = {
+      proxy.rewrite_nar_url = false; # is this better? idk
       network.nar_info_timeout_secs = 30;
       network.nar_timeout_secs = 30;
       network.tolerance_msecs = 10000;
