@@ -207,6 +207,7 @@ let
           yt-dlp
           #easyeda2kicad
           #interactive-html-bom
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.exo
           # unfree:
           cursor-cli
 
