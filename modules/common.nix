@@ -67,7 +67,6 @@
           with pkgs;
           map (pkg: pkg.name) [
             electron_39
-            openssl_1_1
             pnpm_9
             pnpm_10_29_2
             #jetbrains.idea-oss
