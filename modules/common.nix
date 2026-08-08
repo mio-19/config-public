@@ -686,6 +686,7 @@
             {
               starship = mio.starship_patched;
               harmonia = mio.harmonia_patched;
+              inherit (pkgs-pin7) librewolf librewolf-unwrapped;
             }
           )
         ];
