@@ -36,7 +36,7 @@ in
       network.tolerance_msecs = 10000;
       network.max_concurrent_requests = 16;
       network.ignore_nar_info_error = true;
-      network.chunked_streaming = true;
+      network.chunked_streaming = false; # seems to have problems still
       substituters = [
         {
           url = "https://exo.cachix.org";
