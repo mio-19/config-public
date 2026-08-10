@@ -1494,19 +1494,6 @@
         "url": "https://nixos.org/channels/nixos-26.05/nixexprs.tar.xz"
       }
     },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1786201459,
-        "narHash": "sha256-nGjEsy0fPEsb9MAf3eBeu6YvJV9TwY9hDgo3M/ANi24=",
-        "rev": "8b8c811c7c2541c30382c5de7ed26be055569c60",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.7273.8b8c811c7c25/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://nixos.org/channels/nixos-26.05/nixexprs.tar.xz"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1786106723,
@@ -2063,7 +2050,6 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-2511": "nixpkgs-2511",
-        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
