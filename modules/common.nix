@@ -146,6 +146,7 @@
         # Set your time zone.
         #time.timeZone = lib.mkForce "Pacific/Auckland";
         #services.automatic-timezoned.enable = true;
+        time.timeZone = null;
         services.tzupdate.enable = true;
         assertions = [
           {
