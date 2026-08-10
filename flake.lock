@@ -231,11 +231,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1786335695,
-        "narHash": "sha256-LTorR5cU8WsRVLgARrJZnF4WSfR2RhwvR2idPDtvDz8=",
+        "lastModified": 1786360912,
+        "narHash": "sha256-sYMcxDIcgfmcjZNA5hbiWdTl1a2qalQoVZDOdgcZ+Tg=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "701afdd6edc7aab8ee5a193ea387a0a0f9cf6052",
+        "rev": "12dad542af9ca632036221aa50763c1f4ce947ec",
         "type": "github"
       },
       "original": {
@@ -553,11 +553,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1786220854,
-        "narHash": "sha256-/b79w+zO/+sJ1ADXUfkemP+0kBV+HPxmZVY7xlPI2ag=",
+        "lastModified": 1786361680,
+        "narHash": "sha256-IxaZkb9rCGEZ+yGndxKXONeIEcKMzoFUsvLTB5G/caw=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "4dcc87bbf8b3e63ecbe2bf3bb77d729ced7d91d8",
+        "rev": "16901271e5b30b591e56f7a84f25f186fb20f3e1",
         "type": "github"
       },
       "original": {
@@ -1198,11 +1198,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786286733,
-        "narHash": "sha256-7dN93WKkEERgutPtTjK7SY3ZarO2LAU33A1+vKu+7cc=",
+        "lastModified": 1786356609,
+        "narHash": "sha256-ou8fYz5w9yhXC8YbvvExybFIa19MyW5G/8dEPqa90hM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "367f7ef80856d18438953d54dda235d42a46ba31",
+        "rev": "c30c7955cec30d664a9baced6bc0112e263d4647",
         "type": "github"
       },
       "original": {
@@ -1436,6 +1436,7 @@
         "mac-app-util": "mac-app-util",
         "mio": "mio",
         "mio-betterbird": "mio-betterbird",
+        "multiverse": "multiverse",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": [
@@ -1613,6 +1614,36 @@
       "original": {
         "owner": "mio-19",
         "repo": "nurpkgs",
+        "type": "github"
+      }
+    },
+    "multiverse": {
+      "locked": {
+        "lastModified": 1786357017,
+        "narHash": "sha256-Aqs62N2WFhqh68X8mjwgxF5ue0p6Q7d5+NNParD1t34=",
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "rev": "bae029b0228b5ea3494e440b78255ba190a7276b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "type": "github"
+      }
+    },
+    "multiverse_2": {
+      "locked": {
+        "lastModified": 1786357017,
+        "narHash": "sha256-Aqs62N2WFhqh68X8mjwgxF5ue0p6Q7d5+NNParD1t34=",
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "rev": "bae029b0228b5ea3494e440b78255ba190a7276b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
         "type": "github"
       }
     },
@@ -2105,6 +2136,7 @@
         "mac-style-plymouth-b": "mac-style-plymouth-b",
         "mio": "mio_2",
         "mio-betterbird": "mio-betterbird_2",
+        "multiverse": "multiverse_2",
         "nix-bwrapper": "nix-bwrapper",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
@@ -2768,11 +2800,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786341465,
-        "narHash": "sha256-ys95iQES8jmHYSE3sLS5GARgew6chLkI7ll4fn+vv70=",
+        "lastModified": 1786359839,
+        "narHash": "sha256-/U9U8HiHhU67sLCORQHu/ze+wJXEqBEZ/7qE0DQygaU=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "83d2809f0bcdac9729b0edeb21cd4e79fa05c63b",
+        "rev": "b1d84e566e8094bfb42c2f354aa69a1237a44e2f",
         "type": "github"
       },
       "original": {
