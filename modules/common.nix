@@ -145,7 +145,8 @@
 
         # Set your time zone.
         #time.timeZone = lib.mkForce "Pacific/Auckland";
-        services.automatic-timezoned.enable = true;
+        #services.automatic-timezoned.enable = true;
+        services.tzupdate.enable = true;
 
         home-manager.sharedModules = [
           inputs.plasma-manager.homeModules.plasma-manager
