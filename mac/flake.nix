@@ -174,9 +174,9 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchurl {
-                  name = "flyline: init at 1.3.0";
+                  name = "flyline: init at 1.5.0";
                   url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
-                  hash = "sha256-PwjrniQVlTyVfgxks7xxFuIMuWxfMCXiojOcydn6omw=";
+                  hash = "sha256-a44g74r08UfHBRCoQn2ZS0u7pMr60ehvSVE9ihyLCTY=";
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
