@@ -2,6 +2,7 @@
   description = "Mio's darwin configuration";
 
   inputs = {
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };

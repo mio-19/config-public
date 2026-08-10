@@ -1,5 +1,6 @@
 {
   inputs = {
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-compat.url = "github:NixOS/flake-compat";
     # --option extra-substituters https://niri.cachix.org --option extra-trusted-public-keys niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=
     #niri.url = "github:sodiboo/niri-flake";
