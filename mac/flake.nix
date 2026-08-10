@@ -62,11 +62,10 @@
     };
     darwin-emacs = {
       # pin to avoid frequent updates and building emacs
-      url = "github:nix-giant/nix-darwin-emacs/59ab9eb4433da6da81561c0d1cd79e5dfbe71cfc";
+      url = "github:nix-giant/nix-darwin-emacs/467d31e7daa06dc346486207edc6a0ddd7a20c12";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    #nixpkgs-2505.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     #emacs-overlay = {
     #  url = "github:nix-community/emacs-overlay";
     #  inputs.nixpkgs.follows = "nixpkgs";
