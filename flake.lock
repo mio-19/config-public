@@ -1444,7 +1444,6 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-pin7": "nixpkgs-pin7",
-        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix"
@@ -2157,7 +2156,6 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-2511": "nixpkgs-2511",
-        "nixpkgs-stable": "nixpkgs-stable_2",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "nur": "nur_2",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
@@ -2447,32 +2445,6 @@
         "rev": "445d861c6d31b4af0c79d8d4be2331f762a361d7",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.7006.445d861c6d31/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://nixos.org/channels/nixos-26.05/nixexprs.tar.xz"
-      }
-    },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1786152057,
-        "narHash": "sha256-p82UYLIoYCcd4CHoTJ9My4YXeUbBpnOGgvC/oEJCl2U=",
-        "rev": "6241c49fffa016352c8e757decbdb20541aa9cb2",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/26.05-darwin/nixpkgs-darwin-26.05pre1011547.6241c49fffa0/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://nixos.org/channels/nixpkgs-26.05-darwin/nixexprs.tar.xz"
-      }
-    },
-    "nixpkgs-stable_2": {
-      "locked": {
-        "lastModified": 1786201459,
-        "narHash": "sha256-nGjEsy0fPEsb9MAf3eBeu6YvJV9TwY9hDgo3M/ANi24=",
-        "rev": "8b8c811c7c2541c30382c5de7ed26be055569c60",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.7273.8b8c811c7c25/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
