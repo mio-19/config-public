@@ -180,12 +180,6 @@
                   derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
-                  name = "musescore-evolution: fix darwin build";
-                  url = "https://github.com/NixOS/nixpkgs/pull/538827.diff";
-                  hash = "sha256-JNJXI6FXdgiz+8jW5Oluy48Y9DTMeNOLGZdAsrNDZos=";
-                  derivationArgs.allowSubstitutes = false;
-                })
-                (fetchpatch {
                   name = "tuxguitar: fix launch on darwin when app bundle path contains space";
                   url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
                   hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
