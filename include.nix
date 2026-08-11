@@ -150,6 +150,7 @@ customize
         "${inputs.nixpkgs}/pkgs/by-name/pi/pinta/deps.json"
       ];
       allowed = [
+        "src_binding"
         "brave-origin"
         "google-fonts"
         "Jan"
