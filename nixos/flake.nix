@@ -480,12 +480,6 @@
                 hash = "sha256-JJ3VrEbsWm4Qq1uTRbPtzLKkly5vxOmEZU/fw+DzcZo=";
                 derivationArgs.allowSubstitutes = false;
               })
-              (fetchpatch {
-                name = "fdroidserver: fix build, 2.4.3 -> 2.4.5";
-                url = "https://github.com/NixOS/nixpkgs/pull/548263.diff";
-                hash = "sha256-oARICQHIRDMsm4PSI8H4hIXdudNzkMrJJWOHJDPGOcw=";
-                derivationArgs.allowSubstitutes = false;
-              })
               # https://github.com/NixOS/nixpkgs/issues/442117
               (fetchpatch {
                 name = "Add deny fprintd PAM auth for su/sudo without tty";
