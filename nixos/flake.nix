@@ -481,12 +481,6 @@
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
-                name = "ONLYOFFICE DesktopEditors: updates";
-                url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
-                hash = "sha256-sIByggHgklk3j1StTFq8mdo4rqx8Mv/ASVo9TgsW6hc=";
-                derivationArgs.allowSubstitutes = false;
-              })
-              (fetchpatch {
                 name = "fdroidserver: fix build, 2.4.3 -> 2.4.5";
                 url = "https://github.com/NixOS/nixpkgs/pull/548263.diff";
                 hash = "sha256-oARICQHIRDMsm4PSI8H4hIXdudNzkMrJJWOHJDPGOcw=";
