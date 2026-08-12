@@ -378,19 +378,16 @@
                   derivationArgs.allowSubstitutes = false;
                 })
               */
-              (fetchpatch {
-                name = "chatgpt: split ChatGPT and ChatGPT Classic desktop apps";
-                url = "https://github.com/NixOS/nixpkgs/pull/546961.diff";
-                hash = "sha256-qkuhWIemaOlK3lTKEu/k5OGVMiN/aTinOHzJv4/AJ58=";
-              })
-              (fetchpatch {
+              (fetchurl {
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
-                hash = "sha256-08QOqYQVpWB3N/Sp+nkshOF19d8G6VFi2GcFuUFOSvA=";
+                hash = "sha256-btLNz8TIbcYPC/gQegCnSs6CYtav8lDfeov7BUJ2nHE=";
+                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 url = "https://github.com/NixOS/nixpkgs/commit/5b2aeeaee1b49b7ddde84c3882b4dd9f1800ad25.diff";
                 hash = "sha256-+r8wyqY0EhaCfDfvIntPy5Qp/Q5EDEqDMUiRd2v9dnA=";
+                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "github-copilot-cli: 1.0.61 -> 1.0.73";

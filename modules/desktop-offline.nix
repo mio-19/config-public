@@ -96,6 +96,7 @@
             binaryninja-free
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
             bitwig-studio
+            chatgpt
           ])
           ++ (map cleanPkg [
             pkgs-chaotic-ff-nightly'.firefox_nightly
