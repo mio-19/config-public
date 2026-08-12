@@ -248,6 +248,7 @@ let
           obsidian
           antigravity-ide
           #code-cursor # in app updater, better with cask.
+          chatgpt
         ]
         ++ lib.optionals config.mio_aria2 [
           nur.repos.mio.aria2
@@ -310,7 +311,7 @@ let
         "cleanshot"
         "cloudflare-warp"
         "utm"
-        "chatgpt"
+        #"chatgpt"
         "only-switch"
         "zulip"
         #"raycast"
