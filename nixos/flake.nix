@@ -1,6 +1,11 @@
 {
   inputs = {
-    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    #multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-compat.url = "github:NixOS/flake-compat";
     # --option extra-substituters https://niri.cachix.org --option extra-trusted-public-keys niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=
     #niri.url = "github:sodiboo/niri-flake";
@@ -238,6 +243,7 @@
       #need binary cache#inputs.nixpkgs.follows = "nixpkgs";
       inputs.blueprint.inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     nix-snapd = {
       # pin niche inputs to avoid bad people taking over.
@@ -303,6 +309,8 @@
       url = "github:mio-19/repo";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
