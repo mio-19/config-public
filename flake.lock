@@ -203,7 +203,6 @@
         ],
         "treefmt-nix": [
           "nixos",
-          "llm-agents",
           "treefmt-nix"
         ]
       },
@@ -1402,7 +1401,10 @@
         ],
         "nixpkgs": "nixpkgs_8",
         "systems": "systems_7",
-        "treefmt-nix": "treefmt-nix_4"
+        "treefmt-nix": [
+          "nixos",
+          "treefmt-nix"
+        ]
       },
       "locked": {
         "lastModified": 1786485384,
@@ -1631,21 +1633,6 @@
         "type": "github"
       }
     },
-    "multiverse_2": {
-      "locked": {
-        "lastModified": 1786471073,
-        "narHash": "sha256-LNbLedYsnjJZUii/iX5ZVf0mXvOw6qMzqmbO5cKcIS0=",
-        "owner": "fzakaria",
-        "repo": "nixpkgs-multiverse",
-        "rev": "a14ca00d399b91afda047a2abe46b766fbb08cf2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fzakaria",
-        "repo": "nixpkgs-multiverse",
-        "type": "github"
-      }
-    },
     "mvn2nix": {
       "inputs": {
         "nixpkgs": [
@@ -1681,7 +1668,7 @@
           "nixpkgs"
         ],
         "nuschtosSearch": "nuschtosSearch",
-        "treefmt-nix": "treefmt-nix_5"
+        "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
         "lastModified": 1784543655,
@@ -2135,7 +2122,6 @@
         "mac-style-plymouth-b": "mac-style-plymouth-b",
         "mio": "mio_2",
         "mio-betterbird": "mio-betterbird_2",
-        "multiverse": "multiverse_2",
         "nix-bwrapper": "nix-bwrapper",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
@@ -2169,6 +2155,7 @@
         "stable-diffusion-webui-nix": "stable-diffusion-webui-nix",
         "steam-config-nix": "steam-config-nix",
         "systems": "systems_9",
+        "treefmt-nix": "treefmt-nix_5",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
         "vscode-server": "vscode-server",
@@ -3154,7 +3141,10 @@
         "openwrt-imagebuilder": "openwrt-imagebuilder",
         "robotnix": "robotnix",
         "squish-find-the-brains": "squish-find-the-brains",
-        "treefmt-nix": "treefmt-nix_6"
+        "treefmt-nix": [
+          "nixos",
+          "treefmt-nix"
+        ]
       },
       "locked": {
         "lastModified": 1786319820,
@@ -3871,28 +3861,6 @@
       "inputs": {
         "nixpkgs": [
           "nixos",
-          "llm-agents",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785945821,
-        "narHash": "sha256-NLSyTCW4K4ofhNBllt3omPasm6QpralXH1DBZOc91Dw=",
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "rev": "ae7910970dddc408fe6ab1c8e4b277bb21d72dc0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "treefmt-nix_5": {
-      "inputs": {
-        "nixpkgs": [
-          "nixos",
           "nixpkgs"
         ]
       },
@@ -3909,11 +3877,10 @@
         "url": "https://flakehub.com/f/numtide/treefmt-nix/%2A"
       }
     },
-    "treefmt-nix_6": {
+    "treefmt-nix_5": {
       "inputs": {
         "nixpkgs": [
           "nixos",
-          "repo",
           "nixpkgs"
         ]
       },
