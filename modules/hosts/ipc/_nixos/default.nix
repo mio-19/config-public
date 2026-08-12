@@ -42,7 +42,7 @@ with _include;
   security.allowSimultaneousMultithreading = false; # maybe this avoid Machine Check error https://www.reddit.com/r/techsupport/comments/1am75eu/machine_check_errors_on_14700kf_faulty_cpu/?rdt=32949
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = lib.mkForce 1;
+    #"vm.swappiness" = lib.mkForce 1;
   };
 
   persistent_kde = false;

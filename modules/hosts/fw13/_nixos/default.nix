@@ -51,7 +51,7 @@ with _include;
   # DETAILS REMOVED
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = lib.mkForce 1;
+    #"vm.swappiness" = lib.mkForce 1;
   };
 
   users.mutableUsers = false;
