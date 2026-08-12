@@ -19,6 +19,12 @@ If a file starts with `# THIS IS A STUB`, it means that the whole file has been 
 --option substituters 'https://cache.nixos.org/ https://mio-config.cachix.org' --option extra-trusted-public-keys mio-config.cachix.org-1:VM6OZi+PC/ENBDf5ogaArQMgVUvJNvAL5t9ayXZdCIg=
 ```
 
+<https://gist.github.com/lxl66566/697db0cccd04b7247dc9a0cfb96d328c>
+
+```zsh
+wget https://gist.github.com/lxl66566/697db0cccd04b7247dc9a0cfb96d328c/raw/aa9d7fe25bedb3458866ac09bec9718402b5ebea/nixfollows.py
+```
+
 ## LLM policy
 
 Headache. Use LLM for boring, no-brain tasks. LLM pushed living cost higher? I cannot opt out of the higher living cost by opting out of LLM myself.
