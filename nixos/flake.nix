@@ -453,6 +453,11 @@
                 })
               */
               (fetchpatch {
+                name = "aseprite: 1.3.18.1 -> 1.3.18.2";
+                url = "https://github.com/NixOS/nixpkgs/pull/552085.diff";
+                hash = "sha256-oVg8zFdhTIXdyyF6V/OwOm2ZG+f9s7sETLZoKpo8Gus=";
+              })
+              (fetchpatch {
                 name = "nixos/nix-remote-build: permit non-integer speed factors";
                 url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
                 hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";
