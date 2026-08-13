@@ -431,7 +431,7 @@
               (fetchpatch {
                 name = "nixos/antigravity: init module";
                 url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
-                hash = "sha256-lIltTsEyk05p84h4Iml/aGHiWivI1YIM3k0u7O4rr6w=";
+                hash = "sha256-rXSixbD+aiCcnwqSNCSeIgtkY0o5M7sWlorL8GXCuws=";
                 derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
