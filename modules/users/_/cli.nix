@@ -159,6 +159,7 @@ in
             enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
             ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
             RPS1='\t'
+            # the following conflicts with starship time display at right
             #flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
           ''
           + (lib.optionalString bash3workaround ''
