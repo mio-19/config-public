@@ -100,7 +100,7 @@
             chatgpt
           ])
           ++ (map cleanPkg [
-            pkgs-chaotic-ff-nightly'.firefox_nightly
+            #pkgs-chaotic-ff-nightly'.firefox_nightly
           ])
           ++ [
             # breaks with wrapper
