@@ -29,6 +29,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "discord-unwrapped"
       "chatgpt"
       "wechat-universal-bwrap"
       "qq_bwrap"
