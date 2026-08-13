@@ -176,31 +176,26 @@
                   name = "types.path.check: Avoid derivation instantiation";
                   url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                   hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
-                  derivationArgs.allowSubstitutes = false;
                 })
                 (fetchurl {
                   name = "flyline: init at 1.5.0";
                   url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
                   hash = "sha256-a44g74r08UfHBRCoQn2ZS0u7pMr60ehvSVE9ihyLCTY=";
-                  derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
                   name = "tuxguitar: fix launch on darwin when app bundle path contains space";
                   url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
                   hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
-                  derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
                   name = "github-copilot-cli: 1.0.61 -> 1.0.73";
                   url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
                   hash = "sha256-Za/JptrEFFNOnObk9djXK6EpJzf35fxd7xwcHO8xbAY=";
-                  derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
                   name = "baobab: add desktopToDarwinBundle override";
                   url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
                   hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
-                  derivationArgs.allowSubstitutes = false;
                 })
               ];
             };

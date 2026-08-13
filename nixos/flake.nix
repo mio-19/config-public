@@ -383,7 +383,6 @@
                   name = "local-ai: 2.28.0 -> 4.x";
                   url = "https://github.com/NixOS/nixpkgs/pull/480216.diff";
                   hash = "sha256-kAzQNvxbAsYGKZ+NUTQPsPqtjFxVdIbj1us+Znt+7EU=";
-                  derivationArgs.allowSubstitutes = false;
                 })
               */
               (fetchurl {
@@ -446,7 +445,6 @@
                   name = "nixos/systemd-boot: defer boot file garbage collection";
                   url = "https://github.com/NixOS/nixpkgs/pull/531008.diff";
                   hash = "sha256-H4NMS9eDsJ1zM6gLQdZtyyBYumjKArrCFDcWeE+IOJQ=";
-                  derivationArgs.allowSubstitutes = false;
                 })
               */
               (fetchpatch {
@@ -491,13 +489,11 @@
                   name = "lib.options: several small performance cleanups";
                   url = "https://github.com/NixOS/nixpkgs/pull/517802.diff";
                   hash = "sha256-sVrOQJdfTz4ar5aNZDEAIWY+fHj0BI+U2yuOzBigBAA=";
-                  derivationArgs.allowSubstitutes = false;
                 })
                 (fetchpatch {
                   name = "lib.modules: small optimizations";
                   url = "https://github.com/NixOS/nixpkgs/pull/517881.diff";
                   hash = "sha256-PQoIfuw+GjtN8nHqc/vUEpbrIS+3IUxkxHzx2Ctjolw=";
-                  derivationArgs.allowSubstitutes = false;
                 })
               */
               /*
@@ -506,7 +502,6 @@
                   name = "linuxPackages.ntfs: init at 0-unstable-2026-05-03, nixos/ntfs: add option to use new NTFS(NTFSPLUS) module";
                   url = "https://github.com/NixOS/nixpkgs/pull/519075.patch";
                   hash = "sha256-E6ZRUd3nXN6AxNzUt1MC3jE1AVL7py/tnLUkd7UgN+o=";
-                  derivationArgs.allowSubstitutes = false;
                 })
               */
             ];
