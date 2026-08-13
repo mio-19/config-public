@@ -426,6 +426,11 @@
                 hash = "sha256-cpe1V1wm9jWk/D8vNlXeOHdBlxptmte2gUX3YjyLczE=";
               })
               (fetchpatch {
+                name = "giada: fix build with fmt 12";
+                url = "https://github.com/NixOS/nixpkgs/pull/552307.diff";
+                hash = "sha256-JVbUTsKmDLZSVRxihh3i1YHCzZzDAXXQUkJnv3y/VMs=";
+              })
+              (fetchpatch {
                 name = "nixos/antigravity: init module";
                 url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
                 hash = "sha256-rXSixbD+aiCcnwqSNCSeIgtkY0o5M7sWlorL8GXCuws=";
