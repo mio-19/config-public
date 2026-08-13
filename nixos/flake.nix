@@ -390,67 +390,56 @@
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
                 hash = "sha256-btLNz8TIbcYPC/gQegCnSs6CYtav8lDfeov7BUJ2nHE=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "github-copilot-cli: 1.0.61 -> 1.0.73";
                 url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
                 hash = "sha256-Za/JptrEFFNOnObk9djXK6EpJzf35fxd7xwcHO8xbAY=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "types.path.check: Avoid derivation instantiation";
                 url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                 hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchurl {
                 name = "flyline: init at 1.5.0";
                 url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
                 hash = "sha256-a44g74r08UfHBRCoQn2ZS0u7pMr60ehvSVE9ihyLCTY=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "grub-module-keep-booted-system-entry-option.patch";
                 url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
                 hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/hardware/printers: make ensure-printers partOf cups";
                 url = "https://github.com/NixOS/nixpkgs/pull/525012.diff";
                 hash = "sha256-cnGOdoUPZ1EMB4gO/eGu6m9/KRLpPNymLionMPrkM5U=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "systemd-boot: add options for entry naming and date format";
                 url = "https://github.com/NixOS/nixpkgs/pull/516959.diff";
                 hash = "sha256-cpe1V1wm9jWk/D8vNlXeOHdBlxptmte2gUX3YjyLczE=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/antigravity: init module";
                 url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
                 hash = "sha256-rXSixbD+aiCcnwqSNCSeIgtkY0o5M7sWlorL8GXCuws=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
                 url = "https://github.com/NixOS/nixpkgs/pull/526318.patch";
                 hash = "sha256-nAx/qqnbV4lAVBVKxifSoPOj9S/HJ7jW88Ve4y+Yu50=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/wireless: add support for setting wireless regdom";
                 url = "https://github.com/NixOS/nixpkgs/pull/528908.patch";
                 hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/security/wrappers: avoid linux-headers in closure";
                 url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
                 hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
-                derivationArgs.allowSubstitutes = false;
               })
               /*
                 (fetchpatch {
@@ -464,44 +453,37 @@
                 name = "nixos/nix-remote-build: permit non-integer speed factors";
                 url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
                 hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/btrfs: add services.btrfs.autoReclaim option";
                 url = "https://github.com/NixOS/nixpkgs/pull/527555.patch";
                 hash = "sha256-/fm1s8WnmZmGZ9pN/qBj/4998cBjShPVTii4qXsLZvE=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/bash: Reset title bar only for interactive shells";
                 url = "https://github.com/NixOS/nixpkgs/pull/521688.patch";
                 hash = "sha256-sD9sjD+GVoAjMe6gQjJ18Z4pYvWi2xjTdukaQBSm/Ao=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/fwupd: add enableGrubHook option";
                 url = "https://github.com/NixOS/nixpkgs/pull/521378.patch";
                 hash = "sha256-gzu5MAWLnzqaDafJx4Yc0gc7OmQqsTRxA0N/9lotdbI=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "nixos/tailscale: order tailscaled after network-online.target";
                 url = "https://github.com/NixOS/nixpkgs/pull/529035.patch";
                 hash = "sha256-JJ3VrEbsWm4Qq1uTRbPtzLKkly5vxOmEZU/fw+DzcZo=";
-                derivationArgs.allowSubstitutes = false;
               })
               (fetchpatch {
                 name = "ONLYOFFICE DesktopEditors: updates";
                 url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
                 hash = "sha256-sIByggHgklk3j1StTFq8mdo4rqx8Mv/ASVo9TgsW6hc=";
-                derivationArgs.allowSubstitutes = false;
               })
               # https://github.com/NixOS/nixpkgs/issues/442117
               (fetchpatch {
                 name = "Add deny fprintd PAM auth for su/sudo without tty";
                 url = "https://github.com/joshperry/nixpkgs/commit/e256ef2283759082941ddb6dd422b7d885378db4.patch";
                 hash = "sha256-WeKRwcAvQNhcRAjLtjX+kYX8Mp59TYBjrTQqh7znEkU=";
-                derivationArgs.allowSubstitutes = false;
               })
               /*
                 # unsure
@@ -546,7 +528,6 @@
                 name = "Get rid of deprecation warnings on nixos-unstable";
                 url = "https://github.com/nix-community/nixos-avf/pull/39.patch";
                 hash = "sha256-PGd0Bk+tgkXXWAcUyJg7f+XREvMo84/tdGWk2auAgM0=";
-                derivationArgs.allowSubstitutes = false;
               })
             ];
           };
