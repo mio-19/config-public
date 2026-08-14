@@ -173,6 +173,10 @@
                   hash = "sha256-qkuhWIemaOlK3lTKEu/k5OGVMiN/aTinOHzJv4/AJ58=";
                 })
                 (fetchpatch {
+                  url = "https://github.com/NixOS/nixpkgs/commit/b42f6f7412e3.diff";
+                  hash = "sha256-ZrfiyNZwpy2waATmgBmwwMJ5w6S3JEK3ydmmNLwVyjs=";
+                })
+                (fetchpatch {
                   name = "types.path.check: Avoid derivation instantiation";
                   url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                   hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
