@@ -11,6 +11,9 @@ in
 with upper;
 upper
 // rec {
+  progs = upper.progs // {
+    emacs = pkgs-pin6.emacs-31;
+  };
   pkgs-stable = import inputs.nixpkgs-stable {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
@@ -111,6 +114,7 @@ upper
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
     overlays = [
+      inputs.darwin-emacs.overlays.emacs
     ];
   };
   pkgs-pin7 = import inputs.nixpkgs-pin7 {

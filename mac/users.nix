@@ -16,7 +16,7 @@ with _include;
   # https://github.com/nix-community/home-manager/blob/9e3a33c0bcbc25619e540b9dfea372282f8a9740/modules/programs/zsh/default.nix#L174
   programs.zsh.completionInit = "autoload -Uz compinit && compinit -u";
 
-  programs.emacs.package = pkgs.emacs-31;
+  programs.emacs.package = progs.emacs;
 
   targets.darwin.mac-app-util.enable = mac-app-util-enabled;
   targets.darwin.linkApps.enable = true;
