@@ -150,6 +150,7 @@ customize
         "${inputs.nixpkgs}/pkgs/by-name/ro/roslyn/deps.json"
         "${inputs.nixpkgs}/pkgs/by-name/ce/celeste64/deps.json"
         "${inputs.nixpkgs}/pkgs/by-name/pi/pinta/deps.json"
+        "${inputs.nixpkgs}/pkgs/by-name/di/discordchatexporter-desktop/deps.json"
       ];
       allowed = [
         "src_binding"
