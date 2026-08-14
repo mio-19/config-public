@@ -197,7 +197,7 @@ let
           progs.jdk
           progs.pnpm
           progs.yarn-berry
-          progs.emavs
+          progs.emacs
           agda
           lean4
           #isabelle # cli only; use brew cask then
