@@ -92,6 +92,7 @@
             #scribus # can edit pdf? - https://www.reddit.com/r/opensource/comments/1bu1gdi/adobe_acrobat_foss_alternative_to_end_all/
             #xournalpp # can draw on pdf? - https://www.reddit.com/r/opensource/comments/1bu1gdi/adobe_acrobat_foss_alternative_to_end_all/
             super-productivity
+            discordchatexporter-desktop 
             # unfree:
             jetbrains.idea
             lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
