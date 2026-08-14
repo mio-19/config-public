@@ -62,7 +62,7 @@
     };
     darwin-emacs = {
       # pin to avoid frequent updates and building emacs
-      url = "github:nix-giant/nix-darwin-emacs/467d31e7daa06dc346486207edc6a0ddd7a20c12";
+      url = "github:nix-giant/nix-darwin-emacs/3c34cf8436db711ae4048245022d1ac6fa6c0622";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
