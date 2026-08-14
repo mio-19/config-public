@@ -259,7 +259,7 @@ in
             })
             progs.vscode
           ])
-          ++ lib.optionals pkgs.stdenv.isx86_64 (
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
             (map hardenedPkg [
               inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
               #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.cider
@@ -294,7 +294,7 @@ in
           )
           ++ (map hardenedPkg apps'.hardened)
           ++ (map cleanPkg apps'.clean)
-          ++ lib.optionals pkgs.stdenv.isx86_64 (
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
             map cleanPkg (
               apps'.cleanX86
               ++ [
@@ -354,7 +354,7 @@ in
               profile = "${pkgs.firejail}/etc/firejail/gnome-clocks.profile";
             };
             # https://github.com/librephoenix/nixos-config/blob/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/default.nix#L21
-            discord = lib.mkIf pkgs.stdenv.isx86_64 {
+            discord = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
               executable = "${hardenedPkg progs.discord}/bin/discord";
               profile = "${pkgs.firejail}/etc/firejail/discord.profile";
             };
@@ -455,7 +455,7 @@ in
 
         services.gvfs.enable = true;
 
-        services.flatpak = lib.mkIf pkgs.stdenv.isx86_64 {
+        services.flatpak = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
           # please update manually and take care of Spotify (SpotX)
           /*
             update.auto = {

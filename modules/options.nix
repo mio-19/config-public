@@ -16,7 +16,7 @@ let
           null
         else
           let
-            microarchDefault = if stdenv.isAarch64 then "v4" else "v3";
+            microarchDefault = if stdenv.hostPlatform.isAarch64 then "v4" else "v3";
             microarchValue = config.microarch or microarchDefault;
           in
           nixosInclude.scopeFor (config // { microarch = microarchValue; });
@@ -30,7 +30,7 @@ let
         };
         use_betterbird = lib.mkOption {
           type = lib.types.bool;
-          default = if isDarwin then true else pkgs.stdenv.isx86_64;
+          default = if isDarwin then true else pkgs.stdenv.hostPlatform.isx86_64;
           description = "use betterbird instead of thunderbird.";
         };
         gemini_zh = lib.mkOption {
@@ -44,7 +44,7 @@ let
         };
         use_librewolf_bin = lib.mkOption {
           type = lib.types.bool;
-          default = if isDarwin then false else !pkgs.stdenv.isx86_64;
+          default = if isDarwin then false else !pkgs.stdenv.hostPlatform.isx86_64;
           description = "use librewolf-bin instead of building from source.";
         };
         librewolf_firejail = lib.mkOption {
@@ -54,17 +54,18 @@ let
         };
         mio_openssh_hpn = lib.mkOption {
           type = lib.types.bool;
-          default = if (isDarwin || !stdenv.isx86_64) then true else inc.atleastV3;
+          default = if (isDarwin || !stdenv.hostPlatform.isx86_64) then true else inc.atleastV3;
           description = "use mio v3 patched openssh";
         };
         mio_aria2 = lib.mkOption {
           type = lib.types.bool;
-          default = if (isDarwin || !stdenv.isx86_64) then true else inc.atleastV3;
+          default = if (isDarwin || !stdenv.hostPlatform.isx86_64) then true else inc.atleastV3;
           description = "use mio v3 patched aria2";
         };
         compile_gram = lib.mkOption {
           type = lib.types.bool;
-          default = if stdenv.isDarwin then true else stdenv.isx86_64 && inc.atleastV3;
+          default =
+            if stdenv.hostPlatform.isDarwin then true else stdenv.hostPlatform.isx86_64 && inc.atleastV3;
           description = "compile our custom materialgram&telegram";
         };
         use_this_ix = lib.mkOption {
@@ -127,7 +128,7 @@ let
             "v4"
             "zen4"
           ];
-          default = if stdenv.isAarch64 then "v4" else "v3";
+          default = if stdenv.hostPlatform.isAarch64 then "v4" else "v3";
           description = "x86-64 microarchitecture level (v2: legacy e.g. i5-2410M)";
         };
         wine64_package = lib.mkPackageOption pkgs [ "wineWow64Packages" "full" ] {
@@ -173,15 +174,15 @@ let
       config = lib.optionalAttrs (!isDarwin) {
         assertions = [
           {
-            assertion = (config.mio_aria2 && pkgs.stdenv.isx86_64) -> inc.atleastV3;
+            assertion = (config.mio_aria2 && pkgs.stdenv.hostPlatform.isx86_64) -> inc.atleastV3;
             message = "on x86_64, no mio aria2 for v2";
           }
           {
-            assertion = (config.mio_openssh_hpn && pkgs.stdenv.isx86_64) -> inc.atleastV3;
+            assertion = (config.mio_openssh_hpn && pkgs.stdenv.hostPlatform.isx86_64) -> inc.atleastV3;
             message = "on x86_64, no mio hpn openssh for v2";
           }
           {
-            assertion = (config.compile_gram && pkgs.stdenv.isx86_64) -> inc.atleastV3;
+            assertion = (config.compile_gram && pkgs.stdenv.hostPlatform.isx86_64) -> inc.atleastV3;
             message = "on x86_64, no gram compile for v2";
           }
         ];
@@ -189,7 +190,7 @@ let
           lib.optionals config.enable_big-parallel [
             "big-parallel"
           ]
-          ++ lib.optionals stdenv.isx86_64 (
+          ++ lib.optionals stdenv.hostPlatform.isx86_64 (
             lib.optionals inc.atleastV3 [
               "gccarch-x86-64-v3"
             ]

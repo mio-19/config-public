@@ -181,6 +181,6 @@ upper
       sudo nice -n 20 darwin-rebuild switch --flake ~/Documents/config/mac --print-build-logs "$@" |& ${lib.getExe pkgs.nix-output-monitor}
     '';
   };
-  x86_64-darwin = (pkgs.stdenv.isx86_64 && pkgs.stdenv.isDarwin);
+  x86_64-darwin = (pkgs.stdenv.hostPlatform.isx86_64 && pkgs.stdenv.hostPlatform.isDarwin);
   mac-app-util-enabled = !x86_64-darwin;
 }

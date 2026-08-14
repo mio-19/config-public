@@ -9,10 +9,10 @@ let
   shellAliases = {
     ls = "ls --color=auto";
   }
-  // lib.optionalAttrs pkgs.stdenv.isDarwin {
+  // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
     tmux = "tmux -u"; # workaround
   };
-  x86_64-darwin = (pkgs.stdenv.isx86_64 && pkgs.stdenv.isDarwin);
+  x86_64-darwin = (pkgs.stdenv.hostPlatform.isx86_64 && pkgs.stdenv.hostPlatform.isDarwin);
   # doesn't have binary cache on x86_64-darwin
   enable-shell-gpt = (!x86_64-darwin);
   enable-zsh-patina = pkgs ? nur && pkgs.nur.repos ? mio && pkgs.nur.repos.mio ? zsh-patina; # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? zsh-patina || pkgs ? zsh-patina;
@@ -20,7 +20,7 @@ let
   enable-zsh-sage = false;
   enable-flyline = pkgs ? flyline;
   inherit (pkgs) stdenv;
-  bash3workaround = stdenv.isDarwin;
+  bash3workaround = stdenv.hostPlatform.isDarwin;
 in
 {
   imports = [
@@ -29,7 +29,7 @@ in
   ];
 
   programs.git = {
-    ignores = lib.optionals pkgs.stdenv.isDarwin [
+    ignores = lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       ".DS_Store"
     ];
     enable = true;
@@ -156,7 +156,9 @@ in
             if [ "''${BASH_VERSINFO:-0}" -ge 4 ]; then
           '')
           + ''
-            enable -f ${pkgs.flyline}/lib/libflyline.${if stdenv.isDarwin then "dylib" else "so"} flyline
+            enable -f ${pkgs.flyline}/lib/libflyline.${
+              if stdenv.hostPlatform.isDarwin then "dylib" else "so"
+            } flyline
             ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
             RPS1='\t'
             # the following conflicts with starship time display at right

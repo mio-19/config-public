@@ -36,7 +36,7 @@
             (offloadPkg stuntrally)
             #(offloadPkg warzone2100)
           ])
-          ++ lib.optionals pkgs.stdenv.isx86_64 (
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
             map cleanPkg [
               #wineWow64Packages.waylandFull
               #wineWow64Packages.staging

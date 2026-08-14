@@ -11,7 +11,7 @@ let
   customize = import ./customize.nix args;
   nixpkgsConfig = osConfig.nixpkgs.config or config.nixpkgs.config or { };
   librewolfPkgs =
-    if pkgs.stdenv.isLinux then
+    if pkgs.stdenv.hostPlatform.isLinux then
       import inputs.nixpkgs {
         config = nixpkgsConfig // {
           cudaSupport = false;
@@ -233,7 +233,7 @@ customize
       ++ lib.lists.flatten (
         map (deps: map (x: x.pname) (builtins.fromJSON (builtins.readFile deps))) depsFiles
       )
-      ++ lib.optionals (pkgs.stdenv.isx86_64 && pkgs.stdenv.isDarwin) [
+      ++ lib.optionals (pkgs.stdenv.hostPlatform.isx86_64 && pkgs.stdenv.hostPlatform.isDarwin) [
         "dotnet-runtime"
         "aspnetcore-runtime"
         "vlc-bin-intel64"
@@ -312,7 +312,7 @@ customize
     telegram =
       if config.compile_gram then
         (
-          if pkgs.stdenv.isDarwin then
+          if pkgs.stdenv.hostPlatform.isDarwin then
             pkgs.nur.repos.mio.telegram-desktop_patched
           else
             pkgs.nur.repos.mio.telegram-desktop_patched
@@ -322,7 +322,7 @@ customize
     materialgram =
       if config.compile_gram then
         (
-          if pkgs.stdenv.isDarwin then
+          if pkgs.stdenv.hostPlatform.isDarwin then
             pkgs.nur.repos.mio.materialgram_patched
           else
             pkgs.nur.repos.mio.materialgram_patched

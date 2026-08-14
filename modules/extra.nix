@@ -257,12 +257,13 @@ let
         ++ lib.optionals (!config.mio_aria2) [
           aria2
         ]
-        ++ lib.optionals pkgs.stdenv.isAarch64 [
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isAarch64 [
           # unsupported on x86_64 macOS:
           tuxguitar
         ]
         ++ lib.optional (
-          pkgs.stdenv.isAarch64 && inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? ryubing
+          pkgs.stdenv.hostPlatform.isAarch64
+          && inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? ryubing
         ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.ryubing
         ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
           oh-my-opencode

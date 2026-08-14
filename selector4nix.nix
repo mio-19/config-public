@@ -7,7 +7,7 @@
 }:
 let
   inherit (pkgs) stdenv;
-  x86_64-linux = stdenv.isLinux && stdenv.isx86_64;
+  x86_64-linux = stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isx86_64;
   hostName = config.networking.hostName;
   trusted-public-keys = [
     "exo.cachix.org-1:okq7hl624TBeAR3kV+g39dUFSiaZgLRkLsFBCuJ2NZI="

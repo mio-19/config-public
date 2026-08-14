@@ -699,7 +699,7 @@ let
       microarchFor = cfg: cfg.microarch;
       atleastV3For =
         cfg:
-        assert pkgs.stdenv.isx86_64;
+        assert pkgs.stdenv.hostPlatform.isx86_64;
         lib.elem (microarchFor cfg) [
           "v3"
           "v4"
@@ -707,7 +707,7 @@ let
         ];
       atleastV4For =
         cfg:
-        assert pkgs.stdenv.isx86_64;
+        assert pkgs.stdenv.hostPlatform.isx86_64;
         lib.elem (microarchFor cfg) [
           "v4"
           "zen4"

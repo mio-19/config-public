@@ -107,7 +107,7 @@
             # breaks with wrapper
             android-translation-layer
           ]
-          ++ lib.optionals pkgs.stdenv.isx86_64 (
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
             map hardenedPkg [
               # unfree:
               (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.line.override {

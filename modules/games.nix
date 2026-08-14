@@ -41,7 +41,7 @@
             boilr
             celeste64
           ])
-          ++ lib.optionals pkgs.stdenv.isx86_64 (
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
             [
               nur.repos.mio.beammp-launcher # cannot have more wrapper
             ]
@@ -76,7 +76,7 @@
           };
           # won't work as lutris in nixos has its own bwrap
           /*
-            lutris = lib.mkIf pkgs.stdenv.isx86_64 {
+            lutris = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
               executable = "${cleanPkg pkgs.lutris}/bin/lutris";
               profile = "${pkgs.firejail}/etc/firejail/lutris.profile";
             };
@@ -117,7 +117,7 @@
           '';
         */
 
-        programs.gamescope = lib.mkIf (!jovian && pkgs.stdenv.isx86_64) {
+        programs.gamescope = lib.mkIf (!jovian && pkgs.stdenv.hostPlatform.isx86_64) {
           package = pkgs.gamescope; # _git;
           enable = true;
           # TODO: do we need to disable this or not?
@@ -126,7 +126,7 @@
         };
 
         # https://nixos.wiki/wiki/Steam
-        programs.steam = lib.mkIf (!jovian && pkgs.stdenv.isx86_64) {
+        programs.steam = lib.mkIf (!jovian && pkgs.stdenv.hostPlatform.isx86_64) {
           enable = true;
           gamescopeSession.enable = true;
           #protontricks.enable = true;

@@ -88,7 +88,7 @@
               assert config.use_this_ix == "nix";
               pkgs.nix;
           settings = {
-            sandbox = if pkgs.stdenv.isDarwin then "relaxed" else true;
+            sandbox = if pkgs.stdenv.hostPlatform.isDarwin then "relaxed" else true;
             auto-optimise-store = true;
             lint-url-literals = lib.mkIf (config.use_this_ix != "lix") "fatal";
             experimental-features = [
@@ -247,9 +247,12 @@
         boot.zfs.forceImportRoot = false; # It is highly recommended to set it to `false`, the new default from 26.11 on, to reduce the risk of data loss. Alternatively, you can silence this warning by explicitly setting it to `true`.
 
         security.rtkit.enable = config.services.pipewire.enable || config.services.pulseaudio.enable;
-        services.pulseaudio.support32Bit = config.services.pulseaudio.enable && pkgs.stdenv.isx86_64;
-        services.pipewire.alsa.support32Bit = config.services.pipewire.alsa.enable && pkgs.stdenv.isx86_64;
-        services.jack.alsa.support32Bit = config.services.jack.alsa.enable && pkgs.stdenv.isx86_64;
+        services.pulseaudio.support32Bit =
+          config.services.pulseaudio.enable && pkgs.stdenv.hostPlatform.isx86_64;
+        services.pipewire.alsa.support32Bit =
+          config.services.pipewire.alsa.enable && pkgs.stdenv.hostPlatform.isx86_64;
+        services.jack.alsa.support32Bit =
+          config.services.jack.alsa.enable && pkgs.stdenv.hostPlatform.isx86_64;
         services.pipewire.pulse.enable = config.services.pipewire.enable;
         services.pipewire.alsa.enable = config.services.pipewire.enable;
 
@@ -835,7 +838,7 @@
         };
 
         environment.extraInit =
-          if pkgs.stdenv.isx86_64 then
+          if pkgs.stdenv.hostPlatform.isx86_64 then
             "eval \"$(/usr/local/bin/brew shellenv)\""
           else
             "eval \"$(/opt/homebrew/bin/brew shellenv)\"";
