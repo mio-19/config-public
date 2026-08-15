@@ -28,6 +28,41 @@ let
     };
 in
 {
+  den.aspects.chromium = {
+    description = "chromium";
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        _include,
+        ...
+      }:
+      with _include;
+      {
+        environment.systemPackages =
+          with pkgs;
+          (map hardenedPkg [
+            chromium
+          ]);
+        programs.firejail.wrappedBinaries = {
+          # https://github.com/legendofmiracles/dotnix/blob/ea678c780a1944e32c94ded1b58ce3a28be553d9/hosts/pain/configuration.nix#L110
+          # disable firejail for chromium if we want to use webflasher WebSerial
+          # disable firajail as it might break Antigravity? https://antigravity.google/docs/browser NO: antigravity's integration still doesn't work even without firejail
+          chromium = {
+            executable = "${hardenedPkg pkgs.chromium}/bin/chromium";
+            profile = "${pkgs.firejail}/etc/firejail/chromium.profile";
+            extraArgs = [
+              # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
+              # also webflasher WebSerial
+              "--ignore=private-dev"
+              "--ignore=nogroups" # dialout group for serial devices
+            ];
+          };
+        };
+      };
+  };
   den.aspects.thunderbird = {
     description = "thunderbird";
     darwin =
@@ -167,6 +202,7 @@ in
     includes = [
       den.aspects.telegram
       den.aspects.thunderbird
+      den.aspects.chromium
       den.aspects.desktop-basic
       den.aspects.tkg
       den.aspects.printing
@@ -197,7 +233,6 @@ in
             trayscale
             (wrapPrio gnome-calculator)
             (wrapPrio gnome-system-monitor)
-            chromium
             krita
             gimp
             saber
@@ -374,19 +409,6 @@ in
               extraArgs = [
                 # https://github.com/netblue30/firejail/issues/6681#issuecomment-2725161673
                 "--ignore=private-dev"
-              ];
-            };
-            # https://github.com/legendofmiracles/dotnix/blob/ea678c780a1944e32c94ded1b58ce3a28be553d9/hosts/pain/configuration.nix#L110
-            # disable firejail for chromium if we want to use webflasher WebSerial
-            # disable firajail as it might break Antigravity? https://antigravity.google/docs/browser NO: antigravity's integration still doesn't work even without firejail
-            chromium = {
-              executable = "${hardenedPkg pkgs.chromium}/bin/chromium";
-              profile = "${pkgs.firejail}/etc/firejail/chromium.profile";
-              extraArgs = [
-                # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
-                # also webflasher WebSerial
-                "--ignore=private-dev"
-                "--ignore=nogroups" # dialout group for serial devices
               ];
             };
             # test on filesystem permission: for example /run/wrappers/bin/firejail '--whitelist=/run/pipewire' '--profile=/nix/store/sfnvg7fpq26ckdb7dl1bxr7j366ii84c-source/nixos/wiliwili.profile' -- $(readlink /run/current-system/sw/bin/ls) Pictures
