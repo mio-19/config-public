@@ -151,6 +151,7 @@ customize
         }/by-name/di/discordchatexporter-desktop_patched/deps.json"
       ];
       allowed = [
+        "chatbox"
         "src_binding"
         "brave-origin"
         "google-fonts"
