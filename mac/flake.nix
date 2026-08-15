@@ -170,7 +170,7 @@
                 (fetchpatch {
                   name = "chatgpt: split ChatGPT and ChatGPT Classic desktop apps";
                   url = "https://github.com/NixOS/nixpkgs/pull/546961.diff";
-                  hash = "sha256-qkuhWIemaOlK3lTKEu/k5OGVMiN/aTinOHzJv4/AJ58=";
+                  hash = "sha256-sPUmyXp5ENX/0Q5TMy+gEEBjwXtSQHxpqjqCYGCBG2E=";
                 })
                 (fetchpatch {
                   url = "https://github.com/NixOS/nixpkgs/commit/b42f6f7412e3.diff";
