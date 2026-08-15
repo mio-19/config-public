@@ -155,6 +155,7 @@ in
           ++ [
             musescore-evolution
             nur.repos.mio.telegram-mac
+            nur.repos.mio.chatbox
           ];
       };
   };
