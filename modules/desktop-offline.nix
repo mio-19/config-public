@@ -19,6 +19,7 @@
           with pkgs;
           (map hardenedPkg (
             [
+              python314Packages.pdf2docx
               rustscan
               nur.repos.mio.pdf2pptx
               #herdr
@@ -36,6 +37,13 @@
               easyeda2kicad
               interactive-html-bom
               jujutsu
+              s-tui
+              eza
+              #code2prompt
+              yazi
+              #onefetch
+              #fresh-editor
+              #bat
             ]
             ++ lib.optional (
               inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli

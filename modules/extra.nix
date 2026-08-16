@@ -86,16 +86,9 @@ let
             qpdf # decrypt pdf
             nixd
             jq
-            s-tui
-            eza
-            #bat
             ffmpeg-full
-            #onefetch
-            #fresh-editor
             nixpkgs-reviewFull
             nix-update
-            #code2prompt
-            yazi
             nix-tree
             haskell-language-server
             ghc
@@ -160,7 +153,6 @@ let
         ++ [
           mdbook
           nur.repos.mio.mdbook-generate-summary
-          python314Packages.pdf2docx
           uv
           claude-code
           ollama
