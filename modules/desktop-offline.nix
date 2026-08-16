@@ -133,7 +133,6 @@
             pixelorama
             plezy
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.komi-store
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.chatbox
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
             brave-origin
             #quickemu

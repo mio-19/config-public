@@ -20,6 +20,7 @@
       in
       {
         systemPackages_hardened = with pkgs; [
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.chatbox
           progs.bifrost
           downkyicore
           ghidra
@@ -159,7 +160,6 @@
       {
         environment.systemPackages = with pkgs; [
           nur.repos.mio.telegram-mac
-          nur.repos.mio.chatbox
 
           #qdiskinfo # needs more patches
           #kdiskmark # needs more patches
