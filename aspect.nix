@@ -31,7 +31,8 @@ in
 {
   imports = [
     (aspects.resolve class resolvedAspect)
-  ];
+  ]
+  ++ lib.optional (class == "nixos" || class == "darwin") (aspects.resolve "os" resolvedAspect);
 }
 // lib.optionalAttrs (homeManagerImports != [ ]) {
   home-manager.sharedModules = homeManagerImports;
