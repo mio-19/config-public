@@ -170,6 +170,47 @@
         '';
       };
   };
+  den.aspects.materialgram = {
+    description = "materialgram";
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        _include = args._include or (import ../nixos/include.nix args);
+      in
+      with _include;
+      {
+        environment.systemPackages = with pkgs; [
+          (hardenedPkg progs.materialgram)
+        ];
+
+        programs.firejail.wrappedBinaries = {
+          materialgram = {
+            executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
+            profile = ../nixos/materialgram.profile;
+            extraArgs = [
+              # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+              "--dbus-user.talk=org.freedesktop.portal.Desktop"
+              "--ignore=noroot"
+            ];
+          };
+        };
+        # for opening web links:
+        environment.etc."firejail/materialgram.local".text = ''
+          dbus-user.talk org.freedesktop.portal.Desktop
+          dbus-user.talk org.freedesktop.portal.OpenURI
+          ignore noroot
+          whitelist /run/current-system
+          whitelist /run/wrappers
+          ignore private-bin
+        '';
+      };
+  };
   den.aspects.desktop-full = {
     description = "Full desktop packages, firejail, flatpak, and chromium";
     includes = [
@@ -204,7 +245,6 @@
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
           element-desktop
           qbittorrent-enhanced
-          #progs.materialgram # updates too slow does not update with upstream
         ];
         systemPackages_clean = [
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
@@ -405,15 +445,6 @@
               executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
               profile = ../nixos/wiliwili.profile;
             };
-            materialgram = {
-              executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
-              profile = ../nixos/materialgram.profile;
-              extraArgs = [
-                # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
-                "--dbus-user.talk=org.freedesktop.portal.Desktop"
-                "--ignore=noroot"
-              ];
-            };
           }
           // lib.optionalAttrs config.librewolf_firejail {
             librewolf = {
@@ -438,15 +469,6 @@
             noblacklist ${"$"}{PICTURES}
           '';
         };
-        # for opening web links:
-        environment.etc."firejail/materialgram.local".text = ''
-          dbus-user.talk org.freedesktop.portal.Desktop
-          dbus-user.talk org.freedesktop.portal.OpenURI
-          ignore noroot
-          whitelist /run/current-system
-          whitelist /run/wrappers
-          ignore private-bin
-        '';
 
         # xone causes issues that controller is blank after reboot until replugged. default driver xpad works fine.
         /*
