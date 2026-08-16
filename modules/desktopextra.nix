@@ -80,7 +80,7 @@
             #qcm
             teams-for-linux
             nur.repos.mio.waveterm
-            pianotrans
+            #pianotrans
             # binaryNativeCode:
             spotube
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default

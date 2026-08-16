@@ -227,7 +227,7 @@
                 krita
                 handbrake
                 ; # build failed/depdendency build failed with cuda
-              inherit (pkgs') pianotrans freecad; # no binary cache with cuda and no binary cache with rocm
+              inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
             }
           )
           inputs.chaotic.overlays.default
