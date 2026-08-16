@@ -13,7 +13,6 @@ let
     with pkgs;
     [
       lynx
-      #herdr
       nh
       nur.repos.mio.nurl_patched
       jadx
@@ -22,22 +21,17 @@ let
       btop
       markdownlint-cli
       gh
-      rustscan
       cargo
       rustc
       diffnav
       gef
       gdb
       progs.antlr
-      nur.repos.mio.pdf2pptx
+      openscad
     ]
     ++ lib.optional (
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? forester
-    ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester
-    ++ lib.optional (
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
-    ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli;
-
+    ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester;
   commonCliClean =
     { pkgs, ... }:
     with pkgs;

@@ -1,7 +1,38 @@
 { den, ... }: {
+  den.aspects.offline-tools = {
+    description = "Rarely-used offline packages ";
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        _include = args._include or (import ../nixos/include.nix args);
+      in
+      with _include;
+      {
+        # https://search.nixos.org/packages
+        environment.systemPackages =
+          with pkgs;
+          (map hardenedPkg (
+            [
+              rustscan
+              nur.repos.mio.pdf2pptx
+              #herdr
+            ]
+            ++ lib.optional (
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
+            ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
+          ));
+      };
+  };
   den.aspects.desktop-offline = {
     description = "Rarely-used offline desktop packages and flatpaks";
     includes = [
+      den.aspects.offline-tools
       den.aspects.desktopextra2
     ];
     nixos =
