@@ -385,11 +385,6 @@
                   hash = "sha256-kAzQNvxbAsYGKZ+NUTQPsPqtjFxVdIbj1us+Znt+7EU=";
                 })
               */
-              (fetchpatch {
-                name = "waypipe: pin to ffmpeg_8";
-                url = "https://github.com/NixOS/nixpkgs/pull/552268.diff";
-                hash = "sha256-LlX1afpHlRqwI2kPNBW0yWcstVhJ0wr1o4JIxbfAfJs=";
-              })
               (fetchurl {
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
