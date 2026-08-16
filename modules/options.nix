@@ -88,6 +88,16 @@ let
           default = false;
           description = "use hidpi";
         };
+        systemPackages_hardened = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          default = [ ];
+          description = "Packages to be installed and wrapped with hardenedPkg (on NixOS) or just installed (on Darwin).";
+        };
+        systemPackages_clean = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          default = [ ];
+          description = "Packages to be installed and wrapped with cleanPkg (on NixOS) or just installed (on Darwin).";
+        };
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
@@ -171,7 +181,15 @@ let
         };
       };
 
-      config = lib.optionalAttrs (!isDarwin) {
+      config = {
+        environment.systemPackages =
+          if isDarwin then
+            config.systemPackages_hardened ++ config.systemPackages_clean
+          else
+            (map nixosInclude.hardenedPkg config.systemPackages_hardened)
+            ++ (map nixosInclude.cleanPkg config.systemPackages_clean);
+      }
+      // lib.optionalAttrs (!isDarwin) {
         assertions = [
           {
             assertion = (config.mio_aria2 && pkgs.stdenv.hostPlatform.isx86_64) -> inc.atleastV3;

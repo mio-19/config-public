@@ -1,32 +1,5 @@
 # Full desktop packages and apps (den.aspects.desktop-full).
 { den, inputs, ... }:
-let
-  # cross-platform apps shared between the NixOS desktop-full body and the darwin
-  # common branch (modules/common.nix). Defined once so both stay in sync: NixOS
-  # applies hardenedPkg/cleanPkg and gates x86_64-only ones,
-  # darwin installs them plain/unconditional.
-  sharedApps =
-    {
-      pkgs,
-      progs,
-      config,
-    }:
-    {
-      hardened = with pkgs; [
-        localsend
-        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
-        element-desktop
-        qbittorrent-enhanced
-        #progs.materialgram # updates too slow does not update with upstream
-      ];
-      clean = [
-        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
-        (if (config.librewolf_firejail or false) then progs.librewolf'_for_firejail else progs.librewolf')
-      ];
-      cleanX86 = with pkgs; [
-      ];
-    };
-in
 {
   den.aspects.chromium = {
     description = "chromium";
@@ -208,6 +181,24 @@ in
       den.aspects.printing
       den.aspects.scan
     ];
+    os = args@{ pkgs, config, inputs, ... }:
+      let
+        _include = args._include or (if pkgs.stdenv.hostPlatform.isDarwin then (import ../mac/include.nix args) else (import ../nixos/include.nix args));
+        inherit (_include) progs;
+      in
+      {
+        systemPackages_hardened = with pkgs; [
+          localsend
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
+          element-desktop
+          qbittorrent-enhanced
+          #progs.materialgram # updates too slow does not update with upstream
+        ];
+        systemPackages_clean = [
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
+          (if (config.librewolf_firejail or false) then progs.librewolf'_for_firejail else progs.librewolf')
+        ];
+      };
     nixos =
       args@{
         config,
@@ -220,10 +211,6 @@ in
         _include = args._include or (import ../nixos/include.nix args);
       in
       with _include;
-      let
-        apps = sharedApps { inherit pkgs progs config; };
-        apps' = apps;
-      in
       {
         # https://search.nixos.org/packages
         environment.systemPackages =
@@ -324,16 +311,9 @@ in
               (lib.hiPrio config.programs.steam.package.run) # override the non cleanPkg one
             ])
           )
-          ++ (map hardenedPkg apps'.hardened)
-          ++ (map cleanPkg apps'.clean)
-          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
-            map cleanPkg (
-              apps'.cleanX86
-              ++ [
-                zotero # segfault with hardenedPkg on NixOS
-              ]
-            )
-          );
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
+            (cleanPkg zotero) # segfault with hardenedPkg on NixOS
+          ];
         programs.localsend.package = hardenedPkg pkgs.localsend;
 
         programs.firejail.wrappedBinaries =
@@ -537,31 +517,16 @@ in
 
         programs.sniffnet.enable = true;
       };
-    # darwin reuses only the cross-platform apps shared with the NixOS desktop-full
-    # (sharedApps above). The firejail/flatpak/chromium and other Linux-only bits
-    # stay in the nixos branch.
     darwin =
-      args@{
-        pkgs,
-        config,
-        ...
-      }:
+      args@{ pkgs, config, ... }:
       let
         _include = args._include or import ../mac/include.nix args;
-        apps = sharedApps {
-          inherit pkgs config;
-          inherit (_include) progs;
-        };
       in
       with _include;
       {
-        environment.systemPackages =
-          apps.hardened
-          ++ apps.clean
-          ++ apps.cleanX86
-          ++ [
-            pkgs.trayscale
-          ];
+        environment.systemPackages = [
+          pkgs.trayscale
+        ];
         homebrew.casks = [
           "zotero" # version from nixpkgs does not work
           "discord"

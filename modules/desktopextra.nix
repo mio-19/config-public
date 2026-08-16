@@ -1,40 +1,4 @@
-# Extra desktop packages and apps (den.aspects.desktopextra).
 { den, ... }:
-let
-  # cross-platform apps shared between the NixOS desktopextra body and the darwin
-  # `extra` aspect (modules/extra.nix darwinExtra). Defined once so both stay in
-  # sync: NixOS applies hardenedPkg, darwin installs them plain.
-  sharedApps =
-    {
-      pkgs,
-      inputs,
-      _include,
-    }:
-    with pkgs;
-    with _include;
-    [
-      progs.bifrost
-      downkyicore
-      ghidra
-      blender
-      jetbrains.gateway
-      mailspring
-      nur.repos.mio.musescore-alex
-      musescore-evolution
-      joplin-desktop
-      imhex
-      # Good Linux GUI packages:
-      pympress
-      remmina
-      baobab
-      hicolor-icon-theme
-      koodo-reader
-      jetbrains-toolbox
-      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
-      obsidian
-      chatgpt
-    ];
-in
 {
   den.aspects.desktopextra = {
     description = "Extra desktop packages, firejail wrappers, and wireshark";
@@ -42,6 +6,35 @@ in
       den.aspects.gemini-desktop
       den.aspects.games
     ];
+    os = args@{ pkgs, inputs, ... }:
+      let
+        _include = args._include or (if pkgs.stdenv.hostPlatform.isDarwin then (import ../mac/include.nix args) else (import ../nixos/include.nix args));
+        inherit (_include) progs;
+      in
+      {
+      systemPackages_hardened = with pkgs; [
+        progs.bifrost
+        downkyicore
+        ghidra
+        blender
+        jetbrains.gateway
+        mailspring
+        nur.repos.mio.musescore-alex
+        musescore-evolution
+        joplin-desktop
+        imhex
+        # Good Linux GUI packages:
+        pympress
+        remmina
+        baobab
+        hicolor-icon-theme
+        koodo-reader
+        jetbrains-toolbox
+        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
+        obsidian
+        chatgpt
+      ];
+    };
     nixos =
       args@{
         config,
@@ -105,10 +98,7 @@ in
                 exec "${lib.getExe (hardenedPkg pkgs.dune3d)}" "$@"
               ''
             ))
-          ]
-          ++ (map hardenedPkg (sharedApps {
-            inherit pkgs inputs _include;
-          }));
+          ];
 
         #programs.throne.enable = true;
         #programs.throne.tunMode.enable = true;
@@ -163,8 +153,7 @@ in
       {
         environment.systemPackages =
           with pkgs;
-          sharedApps { inherit pkgs inputs _include; }
-          ++ [
+          [
             nur.repos.mio.telegram-mac
             nur.repos.mio.chatbox
 
