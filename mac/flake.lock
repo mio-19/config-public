@@ -584,11 +584,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786870863,
-        "narHash": "sha256-7LvFwns9wc3vwaL91/x6r2m/M/gE7hVXDNxD9Jq2AS8=",
+        "lastModified": 1786880206,
+        "narHash": "sha256-5vxbGY6nseej5vlAGP1gIa+OJixh3hqFddSu9H7llzM=",
         "ref": "refs/heads/main",
-        "rev": "69ea38e51d8680f10d64c720eb18ff7556e46c27",
-        "revCount": 543,
+        "rev": "17acee9e21c8d6ef4ac39040488249ff04118fca",
+        "revCount": 544,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
