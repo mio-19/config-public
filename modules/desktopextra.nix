@@ -24,7 +24,6 @@
           downkyicore
           ghidra
           blender
-          jetbrains.gateway
           mailspring
           nur.repos.mio.musescore-alex
           musescore-evolution
@@ -37,6 +36,7 @@
           koodo-reader
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
           # unfree:
+          jetbrains.gateway
           jetbrains-toolbox
           obsidian
           chatgpt
