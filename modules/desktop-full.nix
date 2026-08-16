@@ -181,9 +181,21 @@
       den.aspects.printing
       den.aspects.scan
     ];
-    os = args@{ pkgs, config, inputs, ... }:
+    os =
+      args@{
+        pkgs,
+        config,
+        inputs,
+        ...
+      }:
       let
-        _include = args._include or (if pkgs.stdenv.hostPlatform.isDarwin then (import ../mac/include.nix args) else (import ../nixos/include.nix args));
+        _include =
+          args._include or (
+            if pkgs.stdenv.hostPlatform.isDarwin then
+              (import ../mac/include.nix args)
+            else
+              (import ../nixos/include.nix args)
+          );
         inherit (_include) progs;
       in
       {

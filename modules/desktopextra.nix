@@ -6,35 +6,42 @@
       den.aspects.gemini-desktop
       den.aspects.games
     ];
-    os = args@{ pkgs, inputs, ... }:
+    os =
+      args@{ pkgs, inputs, ... }:
       let
-        _include = args._include or (if pkgs.stdenv.hostPlatform.isDarwin then (import ../mac/include.nix args) else (import ../nixos/include.nix args));
+        _include =
+          args._include or (
+            if pkgs.stdenv.hostPlatform.isDarwin then
+              (import ../mac/include.nix args)
+            else
+              (import ../nixos/include.nix args)
+          );
         inherit (_include) progs;
       in
       {
-      systemPackages_hardened = with pkgs; [
-        progs.bifrost
-        downkyicore
-        ghidra
-        blender
-        jetbrains.gateway
-        mailspring
-        nur.repos.mio.musescore-alex
-        musescore-evolution
-        joplin-desktop
-        imhex
-        # Good Linux GUI packages:
-        pympress
-        remmina
-        baobab
-        hicolor-icon-theme
-        koodo-reader
-        jetbrains-toolbox
-        inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
-        obsidian
-        chatgpt
-      ];
-    };
+        systemPackages_hardened = with pkgs; [
+          progs.bifrost
+          downkyicore
+          ghidra
+          blender
+          jetbrains.gateway
+          mailspring
+          nur.repos.mio.musescore-alex
+          musescore-evolution
+          joplin-desktop
+          imhex
+          pympress
+          remmina
+          baobab
+          #hicolor-icon-theme
+          koodo-reader
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
+          # unfree:
+          jetbrains-toolbox
+          obsidian
+          chatgpt
+        ];
+      };
     nixos =
       args@{
         config,
@@ -151,36 +158,34 @@
       in
       with _include;
       {
-        environment.systemPackages =
-          with pkgs;
-          [
-            nur.repos.mio.telegram-mac
-            nur.repos.mio.chatbox
+        environment.systemPackages = with pkgs; [
+          nur.repos.mio.telegram-mac
+          nur.repos.mio.chatbox
 
-            #qdiskinfo # needs more patches
-            #kdiskmark # needs more patches
-            #thonny
-            #mousecape
-            #gnome-calculator
-            #gnome-text-editor
-            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
-            #adwaita-icon-theme
-            #hicolor-icon-theme
-            #gsettings-desktop-schemas
-            #gtk3
-            #xournalpp
-            #helix
-            #jellyfin-desktop
-            # open source but downloaded as binary - binaryNativeCode:
-            #(inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default)
-            #waveterm
-            #aerospace
-            # unfree:
-            #zoom-us # recording scrren permission problems. use homebrew version then
-            #jetbrains.clion
-            antigravity-ide
-            #code-cursor # in app updater, better with cask.
-          ];
+          #qdiskinfo # needs more patches
+          #kdiskmark # needs more patches
+          #thonny
+          #mousecape
+          #gnome-calculator
+          #gnome-text-editor
+          #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
+          #adwaita-icon-theme
+          #hicolor-icon-theme
+          #gsettings-desktop-schemas
+          #gtk3
+          #xournalpp
+          #helix
+          #jellyfin-desktop
+          # open source but downloaded as binary - binaryNativeCode:
+          #(inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default)
+          #waveterm
+          #aerospace
+          # unfree:
+          #zoom-us # recording scrren permission problems. use homebrew version then
+          #jetbrains.clion
+          antigravity-ide
+          #code-cursor # in app updater, better with cask.
+        ];
 
         homebrew.casks = [
           "sublime-merge"
