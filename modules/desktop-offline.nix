@@ -132,6 +132,7 @@
             easyeffects
             pixelorama
             plezy
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.uplink
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.komi-store
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
             brave-origin
