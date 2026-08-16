@@ -239,7 +239,6 @@ in
             gparted
             vlc
             bitwarden-desktop
-            joplin-desktop
             prusa-slicer
             #ytmdesktop # no: this one cannot block ad
             fluffychat
@@ -248,7 +247,6 @@ in
             (if qtIsPreferred then libreoffice-qt6-fresh else libreoffice-fresh)
             #bottles
             #kdePackages.sddm-kcm
-            remmina
             kdePackages.kweather
             (wrapPrio gnome-clocks)
             #ventoy-full
@@ -279,7 +277,6 @@ in
             })
             # unfree:
             nur.repos.mio.qq_bwrap
-            obsidian
             #cider-2 # paid
             #parsec-bin
             sublime4-dev # sublime4 broken, need -dev # (callPackage ./sublime-text.nix { })

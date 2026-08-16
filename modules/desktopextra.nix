@@ -23,9 +23,6 @@ let
       musescore-evolution
       joplin-desktop
       imhex
-      luanti-client
-      nur.repos.mio.minetest591client
-      nur.repos.mio.beammp-launcher
       # Good Linux GUI packages:
       pympress
       remmina
@@ -33,7 +30,7 @@ let
       hicolor-icon-theme
       koodo-reader
       jetbrains-toolbox
-      jetbrains.idea
+      inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
       obsidian
       chatgpt
     ];

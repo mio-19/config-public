@@ -44,7 +44,6 @@
             famistudio
             audacity
             powertabeditor
-            koreader
             guitarix
             gxplugins-lv2
             tamgamp-lv2

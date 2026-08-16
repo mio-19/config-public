@@ -176,5 +176,14 @@
 
         #programs.gamemode.enable = true;
       };
+    darwin =
+      { pkgs, ... }:
+      {
+        environment.systemPackages = with pkgs; [
+          luanti-client
+          nur.repos.mio.minetest591client
+          nur.repos.mio.beammp-launcher
+        ];
+      };
   };
 }

@@ -102,7 +102,6 @@
             carla
             popsicle # alternative to Balena Etcher - https://github.com/NixOS/nixpkgs/issues/371992#issuecomment-2576548039
             jellyfin-desktop
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
             cpu-x
             giada
             motrix-next
@@ -118,7 +117,6 @@
             kdePackages.kdenlive
             shotcut
             flowblade
-            imhex
             mousam # always buggy
             #emote # no we already have plasma-emojier with meta+.
             nur.repos.mio.altus
@@ -152,7 +150,6 @@
             binaryninja-free
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
             bitwig-studio
-            chatgpt
           ])
           ++ (map cleanPkg [
             #pkgs-chaotic-ff-nightly'.firefox_nightly

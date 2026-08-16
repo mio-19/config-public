@@ -134,6 +134,7 @@ in
       {
         imports = [
           (import ../aspect.nix "desktopextra") # cross-platform desktop apps shared with NixOS desktopextra
+          (import ../aspect.nix "games")
         ];
 
         # disable emacs to work around https://github.com/hraban/mac-app-util/issues/43
