@@ -231,11 +231,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1786855262,
-        "narHash": "sha256-mMgM6dKcrpZ0sBrlnYU4EoV1JzWjIP8faWPllFXhW8g=",
+        "lastModified": 1786874463,
+        "narHash": "sha256-sqpB40jWbGUKXonAAAkdXfTXMK45ue1aWwRW0HRRdgI=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "651d55cfb9ae62189ce078ad35161043490c1a96",
+        "rev": "d55715120795fb886b17e2600ea293b1c4f7771c",
         "type": "github"
       },
       "original": {
@@ -1547,11 +1547,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786864772,
-        "narHash": "sha256-cUjplf1A/T9S036O+4ysUHyRZ9RUQUpCOuiQ+sgRFKU=",
+        "lastModified": 1786881940,
+        "narHash": "sha256-+7kw+2VcQJUyYakyWb8nhsbBQdalSuWf+c0oxSpugBo=",
         "ref": "refs/heads/main",
-        "rev": "08973eabd8c46845a9e6306890332648524d1801",
-        "revCount": 542,
+        "rev": "c8d73ce4bc5e930739f04d947843b573a82b63bc",
+        "revCount": 548,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -1606,11 +1606,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786864772,
-        "narHash": "sha256-cUjplf1A/T9S036O+4ysUHyRZ9RUQUpCOuiQ+sgRFKU=",
+        "lastModified": 1786886156,
+        "narHash": "sha256-uLwgI+tI+gVB17jRcXX0OGafbdTkMYzh+6o7UUOH4xY=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "08973eabd8c46845a9e6306890332648524d1801",
+        "rev": "53313a72099e68e9f6fb8563473290cd3664a2ad",
         "type": "github"
       },
       "original": {
@@ -2758,11 +2758,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786866709,
-        "narHash": "sha256-FHicjfRIFrISaWrx0PB9kxxr/TEYrJT6SAOboD5byuA=",
+        "lastModified": 1786881147,
+        "narHash": "sha256-SP3a7a3nENJVeZVyLYo8aJXBoCQPSlH0F4+pcYUVpX0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "47d81cdee0e4d7eab4b3d09a3a69a18442b01d8f",
+        "rev": "ae51083f105be0ec4a2ff98ca246a4899bb8fe92",
         "type": "github"
       },
       "original": {
@@ -2820,10 +2820,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1786868714,
-        "narHash": "sha256-m7GK0V8yWc1/VPIwx9UfjbtuJ1ANepH7JECvUGs7bkE=",
+        "lastModified": 1786886372,
+        "narHash": "sha256-X4EBAOEbf/Hy4yUSY7wHNf1A8QTdB8x/zRNwr8pFE4Y=",
         "ref": "refs/heads/main",
-        "rev": "02eb02285ae9f2c3a8c436541f95a24c5018ae7c",
+        "rev": "0b041aa735d17f1dca13d409106d4c1a454d7bd3",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3373,11 +3373,11 @@
         "nixpkgs": "nixpkgs_15"
       },
       "locked": {
-        "lastModified": 1786849931,
-        "narHash": "sha256-oov+BlnXkixT1BimePnOkeH1bH/6rVsQkdwtDZtDJ7M=",
+        "lastModified": 1786884725,
+        "narHash": "sha256-UO2+A18oYumV0CMN5V+wf5r01CtESIUj1znNrB5K2P4=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "f624469dc9dd1e55b8cf91cb4911526e094b7962",
+        "rev": "a796cf48ac477f2ff404a0121406eb975a862aad",
         "type": "github"
       },
       "original": {
@@ -4069,10 +4069,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1786843091,
-        "narHash": "sha256-rDgy/7UIfSq5A8ZrutP0sMMvUFS516NF3dkZcbWK86o=",
+        "lastModified": 1786883935,
+        "narHash": "sha256-GE0VmDa7cLMReaNTrzYQ3sFSPUd6ARynENviHdnnUDM=",
         "ref": "refs/heads/main",
-        "rev": "4029bbad5456acdff0e5bcb66ca45c2d90e42873",
+        "rev": "37dc6abfa4a2c306b131f74770b1f36288d9bf2e",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
