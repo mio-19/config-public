@@ -224,7 +224,7 @@ in
           #"chromium"
           "calibre"
           "prismlauncher"
-          "openzfs"
+          "openzfs" # or manually upgrade with https://github.com/openzfsonosx/openzfs-fork/releases
           "betterdisplay"
           "tabby"
           "balenaetcher"
