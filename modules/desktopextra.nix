@@ -16,6 +16,9 @@ let
       progs.bifrost
       downkyicore
       ghidra
+      blender
+      jetbrains.gateway
+      mailspring
       nur.repos.mio.musescore-alex
       musescore-evolution
       joplin-desktop
