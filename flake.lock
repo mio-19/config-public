@@ -1606,11 +1606,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786893557,
-        "narHash": "sha256-KJhjbW2eS9P0TOpxDodkqNUNrqAJOc4DQtfKABqjhyM=",
+        "lastModified": 1786894210,
+        "narHash": "sha256-9oMs8bV+JOEmReDbFFVB3XpEhmDtTWROuPov9vb7fyg=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "ca1182954a8210a28af94d99779d0889c00b1927",
+        "rev": "1989b63601f56bf758847266d7909ba8db5ea14a",
         "type": "github"
       },
       "original": {
@@ -2452,11 +2452,11 @@
     },
     "nixpkgs-unstable_2": {
       "locked": {
-        "lastModified": 1786599213,
-        "narHash": "sha256-yjGG65gA1jORt0hWxjzrnw3AYkIn8EWolp8vezwXZ3I=",
-        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+        "lastModified": 1786862985,
+        "narHash": "sha256-kSR/jfpR4cE26YRZ8exQkoRbEA30vyWimajwZANYYaE=",
+        "rev": "e5bdc4a41d4c072fe1e3787eaa0320a384741d44",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1053317.0e251e24a4f2/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1055335.e5bdc4a41d4c/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -2820,10 +2820,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1786893162,
-        "narHash": "sha256-B8FlXeI9HYmW+3Y7r6u+ugXfqdpPtho5fXau4QBYy2Y=",
+        "lastModified": 1786894224,
+        "narHash": "sha256-fqGhnpVbNDpvufcxPIWkauyI9cYA3Jf7IkUjxUByvdY=",
         "ref": "refs/heads/main",
-        "rev": "a6a3c7b4ecb974e84e60a0598ceb41d893d65874",
+        "rev": "9d05d99eabd476e5842ccb052d6ea2172a2378ce",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3996,11 +3996,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786890730,
-        "narHash": "sha256-RnrtoMY0gFrUp6RB7wh7q1IsrfXeaH2LFg9hcHsBWbU=",
+        "lastModified": 1786894275,
+        "narHash": "sha256-bmXnjhNtSDfMLA1+my1oXmLimzpjRHIKQJOEzL5fsn0=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "00af78e4e8d04cfe3bb58ed40ed811854ed57a92",
+        "rev": "e7f8b89763974ca21fc7ae1d4118a197e2cab457",
         "type": "github"
       },
       "original": {
