@@ -34,7 +34,6 @@
           baobab
           #hicolor-icon-theme
           koodo-reader
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
           # unfree:
           jetbrains.gateway
           jetbrains-toolbox

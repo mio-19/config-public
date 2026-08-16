@@ -81,6 +81,7 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
             openshot-qt
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
             mpv # https://gist.github.com/arch1t3cht/b5b9552633567fa7658deee5aec60453/
