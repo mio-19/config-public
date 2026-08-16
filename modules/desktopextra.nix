@@ -16,10 +16,23 @@ let
       progs.bifrost
       downkyicore
       ghidra
-      blender
-      jetbrains.gateway
-      mailspring
       nur.repos.mio.musescore-alex
+      musescore-evolution
+      joplin-desktop
+      imhex
+      luanti-client
+      nur.repos.mio.minetest591client
+      nur.repos.mio.beammp-launcher
+      # Good Linux GUI packages:
+      pympress
+      remmina
+      baobab
+      hicolor-icon-theme
+      koodo-reader
+      jetbrains-toolbox
+      jetbrains.idea
+      obsidian
+      chatgpt
     ];
 in
 {
@@ -68,7 +81,6 @@ in
             teams-for-linux
             nur.repos.mio.waveterm
             pianotrans
-            musescore-evolution
             # binaryNativeCode:
             spotube
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -153,10 +165,102 @@ in
           with pkgs;
           sharedApps { inherit pkgs inputs _include; }
           ++ [
-            musescore-evolution
             nur.repos.mio.telegram-mac
             nur.repos.mio.chatbox
+
+            #qdiskinfo # needs more patches
+            #kdiskmark # needs more patches
+            #thonny
+            #mousecape
+            #gnome-calculator
+            #gnome-text-editor
+            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
+            #adwaita-icon-theme
+            #hicolor-icon-theme
+            #gsettings-desktop-schemas
+            #gtk3
+            #xournalpp
+            #helix
+            #jellyfin-desktop
+            # open source but downloaded as binary - binaryNativeCode:
+            #(inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default)
+            #waveterm
+            #aerospace
+            # unfree:
+            #zoom-us # recording scrren permission problems. use homebrew version then
+            #jetbrains.clion
+            antigravity-ide
+            #code-cursor # in app updater, better with cask.
           ];
+
+        homebrew.casks = [
+          "sublime-merge"
+          "inmusic-software-center"
+          "native-access"
+          "zoom"
+          "racket"
+          "cursor"
+          "mullvad-vpn"
+          "66HEX/frame/frame" # https://github.com/66HEX/frame
+          "affinity"
+          "microsoft-teams"
+          "adobe-acrobat-pro"
+          "adobe-creative-cloud"
+          "duckduckgo"
+          "sdformatter"
+          "graalvm-jdk"
+          "signal"
+          #"rider"
+          "wave"
+          "lm-studio"
+          "rclone-ui"
+          #"android-commandlinetools"
+          "prusaslicer"
+          "plex"
+          "steam"
+          "microsoft-office"
+          "microsoft-auto-update"
+          "electerm"
+          #"chromium"
+          "calibre"
+          "prismlauncher"
+          "openzfs"
+          "betterdisplay"
+          "tabby"
+          "balenaetcher"
+          "microsoft-edge"
+          "cleanshot"
+          "cloudflare-warp"
+          "utm"
+          #"chatgpt"
+          "only-switch"
+          "zulip"
+          #"raycast"
+          "orbstack"
+          "isabelle"
+          "parsec"
+          #"localsend"
+          #"zen"
+          "karabiner-elements"
+          "logi-options+"
+          "rustdesk"
+          "alienator88-sentinel"
+          # Good Linux GUI packages:
+          "kicad"
+          "kdenlive"
+          "krita"
+          "gimp"
+          "freecad"
+          "inkscape"
+        ];
+        homebrew.brews = [
+          # https://github.com/nohajc/anylinuxfs
+          "nohajc/anylinuxfs/anylinuxfs"
+        ];
+        homebrew.taps = [
+          "nohajc/anylinuxfs"
+          "66HEX/frame"
+        ];
       };
   };
 }

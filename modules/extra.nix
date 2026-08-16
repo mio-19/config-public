@@ -184,45 +184,6 @@ in
             inputs.exo.packages.${pkgs.stdenv.hostPlatform.system}.exo # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.exo
             # unfree:
             cursor-cli
-
-            joplin-desktop
-            #qdiskinfo # needs more patches
-            #kdiskmark # needs more patches
-            imhex
-            luanti-client
-            nur.repos.mio.minetest591client
-            nur.repos.mio.beammp-launcher
-            #thonny
-            #mousecape
-            # Good Linux GUI packages:
-            pympress
-            #gnome-calculator
-            #gnome-text-editor
-            remmina
-            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.evince
-            baobab # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.baobab # Disk Usage Analyzer
-            #adwaita-icon-theme
-            #hicolor-icon-theme
-            #gsettings-desktop-schemas
-            #gtk3
-            hicolor-icon-theme # can this fix icons?
-            #xournalpp
-            #helix
-            #jellyfin-desktop
-            koodo-reader
-            # open source but downloaded as binary - binaryNativeCode:
-            #(inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default)
-            #waveterm
-            #aerospace
-            # unfree:
-            #zoom-us # recording scrren permission problems. use homebrew version then
-            jetbrains-toolbox
-            jetbrains.idea
-            #jetbrains.clion
-            obsidian
-            antigravity-ide
-            #code-cursor # in app updater, better with cask.
-            chatgpt
           ]
           ++ lib.optionals config.mio_aria2 [
             nur.repos.mio.aria2
@@ -247,74 +208,6 @@ in
             (lib.hiPrio antigravity-cli) # higher prio than gui app for cli command "antigravity"
           ];
 
-        homebrew.casks = [
-          "sublime-merge"
-          "inmusic-software-center"
-          "native-access"
-          "zoom"
-          "racket"
-          "cursor"
-          "mullvad-vpn"
-          "66HEX/frame/frame" # https://github.com/66HEX/frame
-          "affinity"
-          "microsoft-teams"
-          "adobe-acrobat-pro"
-          "adobe-creative-cloud"
-          "duckduckgo"
-          "sdformatter"
-          "graalvm-jdk"
-          "signal"
-          #"rider"
-          "wave"
-          "lm-studio"
-          "rclone-ui"
-          #"android-commandlinetools"
-          "prusaslicer"
-          "plex"
-          "steam"
-          "microsoft-office"
-          "microsoft-auto-update"
-          "electerm"
-          #"chromium"
-          "calibre"
-          "prismlauncher"
-          "openzfs"
-          "betterdisplay"
-          "tabby"
-          "balenaetcher"
-          "microsoft-edge"
-          "cleanshot"
-          "cloudflare-warp"
-          "utm"
-          #"chatgpt"
-          "only-switch"
-          "zulip"
-          #"raycast"
-          "orbstack"
-          "isabelle"
-          "parsec"
-          #"localsend"
-          #"zen"
-          "karabiner-elements"
-          "logi-options+"
-          "rustdesk"
-          "alienator88-sentinel"
-          # Good Linux GUI packages:
-          "kicad"
-          "kdenlive"
-          "krita"
-          "gimp"
-          "freecad"
-          "inkscape"
-        ];
-        homebrew.brews = [
-          # https://github.com/nohajc/anylinuxfs
-          "nohajc/anylinuxfs/anylinuxfs"
-        ];
-        homebrew.taps = [
-          "nohajc/anylinuxfs"
-          "66HEX/frame"
-        ];
       };
   };
 }
