@@ -79,22 +79,12 @@ let
             lean4
             yarn-berry
             update-nix-fetchgit
-            jujutsu
             nvfetcher
-            #git-repo
-            pmbootstrap
-            #clang
             gnumake
             texliveFull
             poppler-utils
             qpdf # decrypt pdf
-            #julia # https://github.com/NixOS/nixpkgs/issues/475534
-            baidupcs-go
-            nix-init
             nixd
-            mediainfo
-            img2pdf
-            vulnix
             jq
             s-tui
             eza
@@ -107,12 +97,8 @@ let
             #code2prompt
             yazi
             nix-tree
-            matugen
-            polarity
             haskell-language-server
             ghc
-            easyeda2kicad
-            interactive-html-bom
             diffoscope
           ]
         ))

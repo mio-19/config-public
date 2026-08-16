@@ -1,6 +1,6 @@
 { den, ... }: {
   den.aspects.offline-tools = {
-    description = "Rarely-used offline packages ";
+    description = "Rarely-used packages ";
     nixos =
       args@{
         config,
@@ -22,6 +22,20 @@
               rustscan
               nur.repos.mio.pdf2pptx
               #herdr
+              #git-repo
+              pmbootstrap
+              #clang
+              baidupcs-go
+              nix-init
+              mediainfo
+              img2pdf
+              vulnix
+              #julia # https://github.com/NixOS/nixpkgs/issues/475534
+              matugen
+              polarity
+              easyeda2kicad
+              interactive-html-bom
+              jujutsu
             ]
             ++ lib.optional (
               inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
