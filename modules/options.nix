@@ -101,6 +101,10 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
+        fprintd-sleep_workaround_delay_restart = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+        };
         gnome_paperwm = lib.mkOption {
           type = lib.types.bool;
           default = false;
