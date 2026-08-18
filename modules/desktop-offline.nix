@@ -162,11 +162,13 @@
         systemPackages_clean = with pkgs; [
           #pkgs-chaotic-ff-nightly'.firefox_nightly
         ];
-        environment.systemPackages = [
-          # breaks with wrapper
-          android-translation-layer
-        ]
-        ++ [ papirus-icon-theme ];
+        environment.systemPackages =
+          with pkgs;
+          [
+            # breaks with wrapper
+            android-translation-layer
+          ]
+          ++ [ papirus-icon-theme ];
 
         services.flatpak = {
           enable = true;
