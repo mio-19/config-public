@@ -19,6 +19,7 @@
           with pkgs;
           (map hardenedPkg (
             [
+              sydbox
               python314Packages.pdf2docx
               rustscan
               nur.repos.mio.pdf2pptx
