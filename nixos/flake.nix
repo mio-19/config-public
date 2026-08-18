@@ -463,11 +463,6 @@
                 hash = "sha256-sD9sjD+GVoAjMe6gQjJ18Z4pYvWi2xjTdukaQBSm/Ao=";
               })
               (fetchpatch {
-                name = "nixos/fwupd: add enableGrubHook option";
-                url = "https://github.com/NixOS/nixpkgs/pull/521378.patch";
-                hash = "sha256-gzu5MAWLnzqaDafJx4Yc0gc7OmQqsTRxA0N/9lotdbI=";
-              })
-              (fetchpatch {
                 name = "nixos/tailscale: order tailscaled after network-online.target";
                 url = "https://github.com/NixOS/nixpkgs/pull/529035.patch";
                 hash = "sha256-ejSZR/46qHycDVwbVV4UjESICT2CTBbJ4J51hasgRs4=";
