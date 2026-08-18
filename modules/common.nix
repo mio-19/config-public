@@ -216,7 +216,7 @@
             {
               grub2 = mio.grub2_patched;
               starship = mio.starship_patched;
-              harmonia = mio.harmonia_patched;
+              #harmonia = mio.harmonia_patched;
               inherit (mio) wireguird darling;
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
