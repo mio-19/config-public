@@ -106,9 +106,12 @@
                 [
                   "/etc/wireguard"
                 ]
-            ++ lib.optionals (config.services.ollama.enable) [
-              config.services.ollama.home
-            ];
+            ++
+              lib.optionals
+                (config.services.ollama.enable && config.services.ollama.home == "/var/lib/ollama-service")
+                [
+                  config.services.ollama.home
+                ];
             files =
               lib.optionals (config.persistent_kde && config.services.displayManager.sddm.enable) [
                 #"/var/lib/sddm/state.conf" # last login user for sddm
