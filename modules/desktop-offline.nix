@@ -77,9 +77,9 @@
         ];
 
         # https://search.nixos.org/packages
-        environment.systemPackages =
+        systemPackages_hardened =
           with pkgs;
-          (map hardenedPkg [
+          [
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
             openshot-qt
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.freesmlauncher
@@ -150,23 +150,21 @@
             binaryninja-free
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
             bitwig-studio
-          ])
-          ++ (map cleanPkg [
-            #pkgs-chaotic-ff-nightly'.firefox_nightly
-          ])
-          ++ [
-            # breaks with wrapper
-            android-translation-layer
           ]
-          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
-            map hardenedPkg [
-              # unfree:
-              (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.line.override {
-                wine = config.wine64_package;
-              })
-            ]
-          )
-          ++ [ papirus-icon-theme ];
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
+            # unfree:
+            (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.line.override {
+              wine = config.wine64_package;
+            })
+          ];
+        systemPackages_clean = with pkgs; [
+          #pkgs-chaotic-ff-nightly'.firefox_nightly
+        ];
+        environment.systemPackages = [
+          # breaks with wrapper
+          android-translation-layer
+        ]
+        ++ [ papirus-icon-theme ];
 
         services.flatpak = {
           enable = true;
