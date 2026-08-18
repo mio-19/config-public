@@ -18,7 +18,6 @@
         systemPackages_hardened =
           with pkgs;
           [
-            sydbox
             python314Packages.pdf2docx
             rustscan
             nur.repos.mio.pdf2pptx
@@ -48,6 +47,9 @@
           ++ lib.optional (
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
           ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli;
+        systemPackages_clean = with pkgs; [
+          sydbox
+        ];
       };
   };
   den.aspects.desktop-offline = {
