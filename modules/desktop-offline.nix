@@ -15,41 +15,39 @@
       with _include;
       {
         # https://search.nixos.org/packages
-        environment.systemPackages =
+        systemPackages_hardened =
           with pkgs;
-          (map hardenedPkg (
-            [
-              sydbox
-              python314Packages.pdf2docx
-              rustscan
-              nur.repos.mio.pdf2pptx
-              #herdr
-              #git-repo
-              pmbootstrap
-              #clang
-              baidupcs-go
-              nix-init
-              mediainfo
-              img2pdf
-              vulnix
-              #julia # https://github.com/NixOS/nixpkgs/issues/475534
-              matugen
-              polarity
-              easyeda2kicad
-              interactive-html-bom
-              jujutsu
-              s-tui
-              eza
-              #code2prompt
-              yazi
-              #onefetch
-              #fresh-editor
-              #bat
-            ]
-            ++ lib.optional (
-              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
-            ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli
-          ));
+          [
+            sydbox
+            python314Packages.pdf2docx
+            rustscan
+            nur.repos.mio.pdf2pptx
+            #herdr
+            #git-repo
+            pmbootstrap
+            #clang
+            baidupcs-go
+            nix-init
+            mediainfo
+            img2pdf
+            vulnix
+            #julia # https://github.com/NixOS/nixpkgs/issues/475534
+            matugen
+            polarity
+            easyeda2kicad
+            interactive-html-bom
+            jujutsu
+            s-tui
+            eza
+            #code2prompt
+            yazi
+            #onefetch
+            #fresh-editor
+            #bat
+          ]
+          ++ lib.optional (
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
+          ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.sem-cli;
       };
   };
   den.aspects.desktop-offline = {
