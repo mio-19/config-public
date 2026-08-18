@@ -174,6 +174,7 @@
           enable = true;
           packages = [
             "cn.lceda.LCEDAPro"
+            "com.easyeda.EasyEDAPro"
             "app.organicmaps.desktop"
             "io.github.rinigus.PureMaps" # difficult to use
             "com.google.EarthPro"
