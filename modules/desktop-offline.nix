@@ -195,12 +195,10 @@
             ];
           };
           # no network with bilibili.profile?
-          /*
-            bilibili = {
-              executable = "${hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili}/bin/bilibili";
-              profile = ./bilibili.profile;
-            };
-          */
+          bilibili = {
+            executable = "${hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili}/bin/bilibili";
+            profile = ../nixos/bilibili.profile;
+          };
         };
       };
   };
