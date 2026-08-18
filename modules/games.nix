@@ -72,7 +72,7 @@
           prismlauncher = {
             executable = "${cleanPkg (offloadPkg pkgs.prismlauncher)}/bin/prismlauncher";
             # https://github.com/librephoenix/nixos-config/raw/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/profiles/prismlauncher.profile
-            profile = ../nixos/prismlauncher.profile;
+            profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/prismlauncher.profile";
           };
           # won't work as lutris in nixos has its own bwrap
           /*

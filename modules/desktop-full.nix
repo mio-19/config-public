@@ -192,7 +192,7 @@
         programs.firejail.wrappedBinaries = {
           materialgram = {
             executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
-            profile = ../nixos/materialgram.profile;
+            profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/materialgram.profile";
             extraArgs = [
               # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
               "--dbus-user.talk=org.freedesktop.portal.Desktop"
@@ -434,7 +434,7 @@
             };
             zulip = {
               executable = "${hardenedPkg pkgs.zulip}/bin/zulip";
-              profile = ../nixos/zulip.profile;
+              profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/zulip.profile";
               extraArgs = [
                 # https://github.com/netblue30/firejail/issues/6681#issuecomment-2725161673
                 "--ignore=private-dev"
@@ -443,7 +443,7 @@
             # test on filesystem permission: for example /run/wrappers/bin/firejail '--whitelist=/run/pipewire' '--profile=/nix/store/sfnvg7fpq26ckdb7dl1bxr7j366ii84c-source/nixos/wiliwili.profile' -- $(readlink /run/current-system/sw/bin/ls) Pictures
             wiliwili = {
               executable = "${hardenedPkg pkgs.wiliwili}/bin/wiliwili";
-              profile = ../nixos/wiliwili.profile;
+              profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/wiliwili.profile";
             };
           }
           // lib.optionalAttrs config.librewolf_firejail {
