@@ -15,11 +15,13 @@ whitelist ${HOME}/.cache/bilibili
 whitelist ${HOME}/.config/bilibili
 whitelist ${HOME}/.local/share/bilibili
 
+# Allow D-Bus notifications/portal
+ignore dbus-user none
+ignore dbus-system none
+
 # Redirect
 include electron-common.profile
 
-# Allow D-Bus notifications/portal
-ignore dbus-user none
 dbus-user filter
 dbus-user.talk org.freedesktop.Notifications
 dbus-user.talk org.freedesktop.portal.Desktop
