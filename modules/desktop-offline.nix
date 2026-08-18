@@ -196,8 +196,12 @@
           };
           # no network with bilibili.profile?
           bilibili = {
-            executable = "${hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili}/bin/bilibili";
-            profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/bilibili.profile";
+            executable = "${
+              hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili
+            }/bin/bilibili";
+            profile = "${
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+            }/etc/firejail/bilibili.profile";
           };
         };
       };

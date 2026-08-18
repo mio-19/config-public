@@ -34,7 +34,9 @@
         programs.firejail.wrappedBinaries = {
           gemini-desktop = {
             executable = "${hardenedPkg gemini-desktop}/bin/gemini-desktop";
-            profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/gemini-desktop.profile";
+            profile = "${
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+            }/etc/firejail/gemini-desktop.profile";
             extraArgs = [
               # https://github.com/netblue30/firejail/issues/6681#issuecomment-2725161673
               "--ignore=private-dev"

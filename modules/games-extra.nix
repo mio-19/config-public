@@ -62,11 +62,15 @@
           # https://github.com/RigsOfRods/rigs-of-rods/issues/3134
           RoR = {
             executable = "${cleanPkg (offloadPkg rigsofrods-bin)}/bin/RoR";
-            profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/rigsofrods.profile";
+            profile = "${
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+            }/etc/firejail/rigsofrods.profile";
           };
           RunRoR = {
             executable = "${cleanPkg (offloadPkg rigsofrods-bin)}/bin/RunRoR";
-            profile = "${inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles}/etc/firejail/rigsofrods.profile";
+            profile = "${
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+            }/etc/firejail/rigsofrods.profile";
           };
         };
       };
