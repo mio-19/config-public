@@ -247,6 +247,7 @@
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
           element-desktop
           qbittorrent-enhanced
+          openlogi
         ];
         systemPackages_clean = [
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
