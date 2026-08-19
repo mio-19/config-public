@@ -125,6 +125,7 @@
     };
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
+      inputs.flake-parts.follows = "flake-parts";
     };
     nixos-wsl = {
       url = "git+https://github.com/nix-community/NixOS-WSL.git?shallow=1";
