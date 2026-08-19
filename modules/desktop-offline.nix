@@ -43,6 +43,7 @@
             #onefetch
             #fresh-editor
             #bat
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pandora-box
           ]
           ++ lib.optional (
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? sem-cli
