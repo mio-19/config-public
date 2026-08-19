@@ -80,11 +80,8 @@ in
       container.disabled = true; # it shows [Systemd] for orbstack, which isn't very useful
       scala.disabled = true; # it shows `vdeprecated`
       time.disabled = false;
-      # Use `$fill` and insert `$time` before the `$line_break` to place it at the right end of the first line
-      format = "$all$fill$time$line_break$jobs$battery$status$os$container$shell$character";
-      fill = {
-        symbol = " ";
-      };
+      # insert `$time` before the `$line_break` to place it at the right end of the first line
+      format = "$all$time$line_break$jobs$battery$status$os$container$shell$character";
     };
   };
 
@@ -161,8 +158,7 @@ in
             } flyline
             ${lib.optionalString config.programs.zsh.enable "flyline --load-zsh-history"}
             RPS1='\t'
-            # the following conflicts with starship time display at right
-            #flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
+            flyline create-prompt-widget mouse-mode --name MOUSE_MODE 'ON ' 'OFF' && RPS1=" MOUSE_MODE $RPS1"
           ''
           + (lib.optionalString bash3workaround ''
             fi
