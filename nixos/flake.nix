@@ -243,7 +243,7 @@
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
       #need binary cache#inputs.nixpkgs.follows = "nixpkgs";
-      inputs.blueprint.inputs.systems.follows = "systems";
+      inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
@@ -310,9 +310,10 @@
     repo = {
       url = "github:mio-19/repo";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
       inputs.treefmt-nix.follows = "treefmt-nix";
-
+      inputs.android-nixpkgs.inputs.flake-utils.follows = "flake-utils";
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
@@ -330,6 +331,7 @@
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
     };
     /*
       globalprotect-openconnect = {
