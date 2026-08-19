@@ -228,6 +228,7 @@
                 handbrake
                 ; # build failed/depdendency build failed with cuda
               inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
+              inherit (pkgs') firefox-esr firefox-esr-unwrapped;
             }
           )
           inputs.chaotic.overlays.default
