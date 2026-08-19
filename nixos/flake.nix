@@ -160,7 +160,7 @@
     # --option extra-substituters https://nixos-apple-silicon.cachix.org --option extra-trusted-public-keys nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=
     nixos-apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
-      #inputs.nixpkgs.follows = "nixpkgs"; # needs to comment out this to use binary cache
+      inputs.nixpkgs.follows = "nixpkgs"; # needs to comment out this to use binary cache
       inputs.flake-compat.follows = "flake-compat";
     };
     flake-parts = {
