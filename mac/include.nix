@@ -149,6 +149,7 @@ upper
   script = {
     upgrade = pkgs.writeShellScriptBin "upgrade" ''
       set -e
+      set -o pipefail
       cd ~/Documents/config/mac
       ${lib.getExe progs.git} config pull.rebase false
       sudo true
@@ -176,6 +177,7 @@ upper
     '';
     switch = pkgs.writeShellScriptBin "swit" ''
       set -e
+      set -o pipefail
       cd ~/Documents/config/mac
       ${lib.getExe progs.git} config pull.rebase false
       sudo true

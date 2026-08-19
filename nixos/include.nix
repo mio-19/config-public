@@ -302,6 +302,7 @@ let
           '';
           upCmd = ''
             set -e
+            set -o pipefail
             if [ -d ~/Documents/config/nixos ]; then
               cd ~/Documents/config/nixos
             else
@@ -331,6 +332,7 @@ let
           '';
           fetchCmd = ''
             set -e
+            set -o pipefail
             if [ -d ~/Documents/config/nixos ]; then
               cd ~/Documents/config/nixos
             else
