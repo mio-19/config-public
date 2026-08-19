@@ -162,6 +162,7 @@
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     nur = {
       #url = "github:nix-community/NUR";
@@ -316,6 +317,7 @@
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
       #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     nix-mineral = {
       # pin niche inputs to avoid bad people taking over.
