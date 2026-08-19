@@ -153,6 +153,21 @@ in
           };
         };
       }
+      {
+        description = "Allow VSCode to focus (Wayland IPC workaround)";
+        match = {
+          window-class = {
+            value = "code";
+            type = "substring";
+          };
+        };
+        apply = {
+          fsplevel = {
+            value = 0; # 0 = None
+            apply = "force";
+          };
+        };
+      }
     ];
   };
 
