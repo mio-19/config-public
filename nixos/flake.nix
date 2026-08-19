@@ -314,6 +314,7 @@
       inputs.flake-compat.follows = "flake-compat";
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.android-nixpkgs.inputs.flake-utils.follows = "flake-utils";
+      inputs.nixos-apple-silicon.follows = "nixos-apple-silicon";
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
