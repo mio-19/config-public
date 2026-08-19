@@ -124,11 +124,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1787072010,
-        "narHash": "sha256-hN1QALrVA4DbmdBFBp44FY0DTHrrLI+CX/E2LDwogKU=",
+        "lastModified": 1787117796,
+        "narHash": "sha256-rnweJVeE2nqobuG4hIThw+ghk0B2Ctv360/qZAJbcrs=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "aecddf41afa0386a22f0122772ae5459dc6eb04f",
+        "rev": "32080c9f55458ac8c494e5e5a55957d990ee18c0",
         "type": "github"
       },
       "original": {
@@ -1248,10 +1248,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1786867632,
-        "narHash": "sha256-ez+ubZlA1RtdjCB18a6zJ9M4u8qoPDy08EcnsW5M3Xw=",
+        "lastModified": 1787126170,
+        "narHash": "sha256-AFZ07P7jdBhPJt0VkZhQPWEx1+JNySEkBA0IjpPAx08=",
         "ref": "master",
-        "rev": "ff17823245ab9ff7bcae6acf950bd89cba82c38c",
+        "rev": "e8a8bfbbfadb96834ec3fa3d17a03807e38f4e63",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/NixOS/nixos-hardware.git"
@@ -1542,10 +1542,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787121623,
-        "narHash": "sha256-ixIOpCSNa3s3lU+QithtQUwifbQQ5fRjAAl5TA9h0vs=",
+        "lastModified": 1787128509,
+        "narHash": "sha256-8EgbrZ4mFMV7r36c+Z/3KVwuzEJuOv1swxtZeqd+E6E=",
         "ref": "refs/heads/main",
-        "rev": "ed7ffc6beea05f9d220eb001c6660ba35c2bdffb",
+        "rev": "2379191dfd7465d9b0928f9bcd54bdbf386cfe00",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
