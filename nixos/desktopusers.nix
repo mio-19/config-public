@@ -130,6 +130,24 @@ in
 
     # https://github.com/9dkc/dotfiles/blob/cbbfeb63729a97d735edf033eaf1f99f6ac957e7/modules/home/desktop/kde/kwin.nix#L7
     kwin.effects.blur.enable = true;
+
+    kwin.windowRules = [
+      {
+        description = "Allow LibreWolf to focus (Wayland IPC workaround)";
+        match = {
+          window-class = {
+            value = "librewolf";
+            type = "substring";
+          };
+        };
+        apply = {
+          focusstealingprevention = {
+            value = 0; # 0 = None
+            apply = "force";
+          };
+        };
+      }
+    ];
   };
 
   # https://github.com/keenanweaver/nix-config/blob/78fa3cb210be76a64241def0e788edfdab03df6e/modules/apps/steam/default.nix#L117
