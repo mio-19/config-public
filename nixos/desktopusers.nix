@@ -131,6 +131,12 @@ in
     # https://github.com/9dkc/dotfiles/blob/cbbfeb63729a97d735edf033eaf1f99f6ac957e7/modules/home/desktop/kde/kwin.nix#L7
     kwin.effects.blur.enable = true;
 
+    # Workaround for Firefox/Librewolf upstream Wayland IPC bug (Bug 1744002 / 1818296)
+    # When clicking a link in another app (like Betterbird), the system generates an xdg_activation_v1 token
+    # and passes it to the new Librewolf process. If Librewolf is already running, the new process passes the URL
+    # to the existing process via IPC, but currently fails to correctly hand off the Wayland activation token.
+    # Without the token, KWin blocks the window from coming to the front (Focus Stealing Prevention).
+    # This rule explicitly exempts Librewolf from focus stealing prevention to fix this behavior.
     kwin.windowRules = [
       {
         description = "Allow LibreWolf to focus (Wayland IPC workaround)";
