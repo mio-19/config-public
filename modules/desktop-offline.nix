@@ -194,7 +194,6 @@
               "--ignore=nogroups" # dialout group for serial devices
             ];
           };
-          # no network with bilibili.profile?
           bilibili = {
             executable = "${
               hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili
