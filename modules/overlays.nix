@@ -34,7 +34,6 @@
               xfce4-terminal = mio.xfce4-terminal-patched;
               android-translation-layer = mio.android-translation-layer_patched;
               inherit (pkgs')
-                ollama
                 ffmpeg-full
                 krita
                 handbrake
