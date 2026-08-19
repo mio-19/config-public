@@ -137,7 +137,7 @@ in
     # to the existing process via IPC, but currently fails to correctly hand off the Wayland activation token.
     # Without the token, KWin blocks the window from coming to the front (Focus Stealing Prevention).
     # This rule explicitly exempts Librewolf from focus stealing prevention to fix this behavior.
-    kwin.windowRules = [
+    window-rules = [
       {
         description = "Allow LibreWolf to focus (Wayland IPC workaround)";
         match = {
