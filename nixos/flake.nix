@@ -117,7 +117,10 @@
       url = "github:vinceliuice/grub2-themes/80dd04ddf3ba7b284a7b1a5df2b1e95ee2aad606";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "git+https://github.com/NixOS/nixos-hardware.git?shallow=1&ref=master";
+    nixos-hardware = {
+      url = "git+https://github.com/NixOS/nixos-hardware.git?shallow=1&ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     plasma-manager = {
       url = "git+https://github.com/nix-community/plasma-manager.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
