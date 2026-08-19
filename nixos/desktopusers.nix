@@ -147,7 +147,7 @@ in
           };
         };
         apply = {
-          focusstealingprevention = {
+          fsplevel = {
             value = 0; # 0 = None
             apply = "force";
           };
