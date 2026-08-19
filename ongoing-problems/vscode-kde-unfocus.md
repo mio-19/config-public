@@ -23,7 +23,11 @@ Based on web and nixpkgs issue searches, this is a known issue with Electron app
 2. **Check KDE Window Management Settings**:
    - Sometimes KDE's "Focus stealing prevention" can interfere with Electron's modal dialogs or menus. Check **System Settings > Window Management > Window Behavior**.
 
-3. **Check NixOS Ozone Wayland Flags**:
+3. **KWin Window Rule (Focus Stealing Prevention Bypass)**:
+   - Because Electron's Wayland implementation drops or mishandles the `xdg_activation_v1` token, KWin steps in and blocks the window from regaining focus.
+   - Creating a KWin Window Rule to explicitly set `Focus Stealing Prevention` to `None` for the `code` window class entirely bypasses this security handshake, resolving the issue without dropping back to XWayland. This is what we have implemented declaratively via `plasma-manager`.
+
+4. **Check NixOS Ozone Wayland Flags**:
    - If `NIXOS_OZONE_WL="1"` is set globally, it forces Electron apps to use Wayland natively, which triggers this bug. You could try removing it or overriding it for VSCode specifically to fall back to XWayland.
 
 ### Fractional Scaling & Electron Updates
