@@ -930,11 +930,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1786844088,
-        "narHash": "sha256-gVwzq9tiX4oa6jwwoKsBJlKb2kPndVdMrYEvTpfi7DY=",
+        "lastModified": 1787189401,
+        "narHash": "sha256-oN3XyyW7Vz9zpoS8P+nWjUQg0fs/K8VnA7SvBbIYqVg=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "23ff06d540f4df5e315d9a45b2388b6581d1c0a5",
+        "rev": "520b4c53009ce918d2430162b628dc1f00ba35fa",
         "type": "github"
       },
       "original": {
@@ -1129,11 +1129,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787103818,
-        "narHash": "sha256-ATm0WHSBL4ZiKAzCXNn3EDZPXISAxJBzQk3NQaqnT0o=",
+        "lastModified": 1787189790,
+        "narHash": "sha256-nxn1PrNDZ45AzoiZse3Uu+X5UH+Uj95wuWTzggC5V+k=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "3180d2a35f4373f6931455cd5f49e6ae42977c90",
+        "rev": "81ab2acb9f2f2312c4fba3ad21923c173ad20693",
         "type": "github"
       },
       "original": {
@@ -1542,10 +1542,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787186773,
-        "narHash": "sha256-9hZ3EtmhSu8no2P2LG5Tjp0DsQUsuKfM0n3+aZkDpCE=",
+        "lastModified": 1787190283,
+        "narHash": "sha256-zFfoR2s5xo0gA8/pytngzDsuiibXQjST+hyBbkB8CmA=",
         "ref": "refs/heads/main",
-        "rev": "2072367ee7f9cd509f9c6be7eb79fcc590b02d0a",
+        "rev": "c9706840b90258c0cab1ade9c04bd6dd997e1036",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
