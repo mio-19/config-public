@@ -168,11 +168,6 @@
                 # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
                 # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
                 (fetchpatch {
-                  name = "chatgpt: split ChatGPT and ChatGPT Classic desktop apps";
-                  url = "https://github.com/NixOS/nixpkgs/pull/546961.diff";
-                  hash = "sha256-sPUmyXp5ENX/0Q5TMy+gEEBjwXtSQHxpqjqCYGCBG2E=";
-                })
-                (fetchpatch {
                   name = "types.path.check: Avoid derivation instantiation";
                   url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                   hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
