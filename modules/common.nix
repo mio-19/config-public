@@ -572,6 +572,16 @@
         ) countryCode;
 
         # https://github.com/NixOS/nixpkgs/issues/432276
+        powerManagement.powerDownCommands =
+          lib.mkIf
+            (
+              config.fprintd-plasma_workaround == "powerdown_cmd"
+              && config.services.fprintd.enable
+              && kdeDMEnabled
+            )
+            ''
+              ${pkgs.systemd}/bin/systemctl stop fprintd.service 2>/dev/null || true
+            '';
         # Official post-resume hook: WantedBy=sleep.target + Before=sleep.target +
         # RemainAfterExit + StopWhenUnneeded, with pre-sleep in ExecStart and
         # post-resume in ExecStop (systemd.special(7); same shape as NixOS
@@ -584,7 +594,11 @@
         # restart race window (nixpkgs#432276 / Discourse workarounds).
         systemd.services.fprintd-sleep =
           lib.mkIf
-            (config.fprintd-sleep_workaround_delay_restart && config.services.fprintd.enable && kdeDMEnabled)
+            (
+              config.fprintd-plasma_workaround == "delay_restart"
+              && config.services.fprintd.enable
+              && kdeDMEnabled
+            )
             {
               description = "fprintd stop before sleep; restart and recycle Plasma lock greeter after resume";
               wantedBy = [ "sleep.target" ];
