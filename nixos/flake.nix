@@ -398,6 +398,11 @@
                   hash = "sha256-kAzQNvxbAsYGKZ+NUTQPsPqtjFxVdIbj1us+Znt+7EU=";
                 })
               */
+              (fetchpatch {
+                name = "ryzen-smu: 0.1.7-unstable-2026-04-25 -> 0.1.7-unstable-2026-08-15";
+                url = "https://github.com/NixOS/nixpkgs/pull/555135.patch";
+                hash = "sha256-xsDhDu5c57ycS6P7nW/AH5aa7Zn6XcTM7NtVPzybeqw=";
+              })
               (fetchurl {
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
