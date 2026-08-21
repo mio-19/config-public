@@ -487,6 +487,11 @@ let
             name = "nixpkgs-patched";
             src = nixpkgs0;
             patches = with pkgs; [
+              (fetchpatch {
+                name = "ryzen-smu: 0.1.7-unstable-2026-04-25 -> 0.1.7-unstable-2026-08-15";
+                url = "https://github.com/NixOS/nixpkgs/pull/555135.patch";
+                hash = "sha256-xsDhDu5c57ycS6P7nW/AH5aa7Zn6XcTM7NtVPzybeqw=";
+              })
             ];
           };
           nixpkgs =
@@ -619,21 +624,21 @@ let
           inputs.chaotic.overlays.default
         ];
       };
-      pkgs-chaotic = import inputs.chaotic.inputs.nixpkgs {
+      pkgs-chaotic = import (nixpkgsPatch inputs.chaotic.inputs.nixpkgs) {
         config = osConfig.nixpkgs.config;
         system = pkgs.stdenv.hostPlatform.system;
         overlays = [
           inputs.chaotic.overlays.default
         ];
       };
-      pkgs-chaotic_pin = import inputs.chaotic_pin.inputs.nixpkgs {
+      pkgs-chaotic_pin = import (nixpkgsPatch inputs.chaotic_pin.inputs.nixpkgs) {
         config = osConfig.nixpkgs.config;
         system = pkgs.stdenv.hostPlatform.system;
         overlays = [
           inputs.chaotic_pin.overlays.default
         ];
       };
-      pkgs-chaotic' = import inputs.chaotic.inputs.nixpkgs {
+      pkgs-chaotic' = import (nixpkgsPatch inputs.chaotic.inputs.nixpkgs) {
         config = config.nixpkgs.config // {
           cudaSupport = false;
           rocmSupport = false;
