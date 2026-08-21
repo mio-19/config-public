@@ -23,6 +23,7 @@
               "pkgs.zen4"
               "pkgs.no-zen4"
               "pin"
+              "pin.no-zen4"
               "nixpkgs"
             ];
             default = false;
@@ -44,6 +45,8 @@
                   pkgs-chaotic'.linuxPackages_cachyos-lto-znver4
                 else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pin" then
                   pkgs-chaotic_pin.linuxPackages_cachyos-lto-znver4
+                else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pin.no-zen4" then
+                  pkgs-chaotic_pin.linuxPackages_cachyos
                 else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.zen4" then
                   pkgs.linuxPackages_cachyos-lto-znver4
                 else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.no-zen4" then
