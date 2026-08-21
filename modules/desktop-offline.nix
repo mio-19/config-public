@@ -1,4 +1,36 @@
 { den, ... }: {
+  den.aspects.bilibili = {
+    description = "Bilibili desktop client";
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      let
+        _include = args._include or (import ../nixos/include.nix args);
+      in
+      with _include;
+      {
+        # https://search.nixos.org/packages
+        systemPackages_hardened = with pkgs; [
+          # unfree:
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
+        ];
+        programs.firejail.wrappedBinaries = with pkgs; {
+          bilibili = {
+            executable = "${
+              hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili
+            }/bin/bilibili";
+            profile = "${
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+            }/etc/firejail/bilibili.profile";
+          };
+        };
+      };
+  };
   den.aspects.offline-tools = {
     description = "Rarely-used packages ";
     nixos =
@@ -151,7 +183,6 @@
             #jetbrains.idea
             lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
             binaryninja-free
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili # how safe is it? we clicked into it once on razer # TODO: wrap it with nixwrap or similar
             bitwig-studio
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
@@ -194,14 +225,6 @@
               "--ignore=private-dev"
               "--ignore=nogroups" # dialout group for serial devices
             ];
-          };
-          bilibili = {
-            executable = "${
-              hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bilibili
-            }/bin/bilibili";
-            profile = "${
-              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
-            }/etc/firejail/bilibili.profile";
           };
         };
       };
