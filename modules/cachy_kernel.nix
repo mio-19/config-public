@@ -49,7 +49,7 @@
                 else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.no-zen4" then
                   pkgs.linuxPackages_cachyos
                 else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "nixpkgs" then
-                  pkgs.linuxPackages_latest
+                  pkgs.linuxPackages_7_1
                 else
                   assert config.workaround_i_dont_know_kernel_nvidia_refer_problem == false;
                   pkgs-chaotic.linuxPackages_cachyos-lto-znver4
