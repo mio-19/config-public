@@ -580,7 +580,7 @@
               && kdeDMEnabled
             )
             ''
-              ${pkgs.systemd}/bin/systemctl stop fprintd.service 2>/dev/null || true
+              ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
             '';
         # Official post-resume hook: WantedBy=sleep.target + Before=sleep.target +
         # RemainAfterExit + StopWhenUnneeded, with pre-sleep in ExecStart and
