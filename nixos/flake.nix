@@ -70,8 +70,12 @@
       };
     */
     chaotic = {
-      #url = "github:lonerOrz/nyx-loner";
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+    chaotic_pin = {
+      url = "github:chaotic-cx/nyx/205e298182afe92f1df9a6192a5341cd3eae9dd1";
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
