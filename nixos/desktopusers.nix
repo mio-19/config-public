@@ -138,7 +138,7 @@ in
     # Without the token, KWin blocks the window from coming to the front (Focus Stealing Prevention).
     # This rule explicitly exempts Librewolf from focus stealing prevention to fix this behavior.
     #
-    # This identical workaround is also applied to VSCode to resolve similar missing focus token bugs 
+    # This identical workaround is also applied to VSCode to resolve similar missing focus token bugs
     # under Wayland (see ongoing-problems/vscode-kde-unfocus.md).
     window-rules = [
       {
