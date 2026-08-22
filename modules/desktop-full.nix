@@ -495,6 +495,9 @@
 
         services.gvfs.enable = true;
 
+        services.mullvad-vpn.enable = true;
+        services.mullvad-vpn.gui.enable = true;
+
         services.flatpak = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
           # please update manually and take care of Spotify (SpotX)
           /*
