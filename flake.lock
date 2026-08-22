@@ -1395,11 +1395,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787372739,
-        "narHash": "sha256-0o/VXqH7ENNuDZ9YOL2JMUo0wkhZc6FUKLUwGOwGq1A=",
+        "lastModified": 1787422068,
+        "narHash": "sha256-DjDTnteLE/TT1Nh4wfloJxiOVOpiiQDYvKe6Wk+GIUg=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "304ada966596829e870cacc580e6b8bf27186744",
+        "rev": "9f76c65289d4255af4c6edc6fe7d2dec82c53499",
         "type": "github"
       },
       "original": {
@@ -1536,11 +1536,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787373609,
-        "narHash": "sha256-2TlXnvBzV/7tysr9DEmH3d+NfZPmZRFTfERMkEtkI18=",
+        "lastModified": 1787412230,
+        "narHash": "sha256-njRjnpFZYeX8B7spLPP7/dkhE60FdyAWWGvXLNuVFvA=",
         "ref": "refs/heads/main",
-        "rev": "a07cff0382eede826303acf58ef54676bf6d0baa",
-        "revCount": 622,
+        "rev": "22618ba78348f0535968c1ea5d14a2a85fc6a8f1",
+        "revCount": 626,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -1595,11 +1595,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787403338,
-        "narHash": "sha256-zUDLFiCvYRdJu4PAMhqiVmlsndaQB9ubphmVK1kMAoA=",
+        "lastModified": 1787412230,
+        "narHash": "sha256-njRjnpFZYeX8B7spLPP7/dkhE60FdyAWWGvXLNuVFvA=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "2e297c0a7b27814caf49dfafcc54875e06c385e6",
+        "rev": "22618ba78348f0535968c1ea5d14a2a85fc6a8f1",
         "type": "github"
       },
       "original": {
@@ -2415,11 +2415,11 @@
     },
     "nixpkgs-unstable_2": {
       "locked": {
-        "lastModified": 1787135253,
-        "narHash": "sha256-M5/r2v++FjVhdsxXYMb4BDJ5YLAdCWFt3aZotcshocA=",
-        "rev": "ffb3c9b700e759be2ef13237c9d8f953b32a1e46",
+        "lastModified": 1787360063,
+        "narHash": "sha256-95aJfHyQTLWslCXFVNB0odgmVkpdmDezQwTg9mhqV1E=",
+        "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1058091.ffb3c9b700e7/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1059570.2c423e03bbaf/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -2692,11 +2692,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787392124,
-        "narHash": "sha256-IYpJGDFXtYTf41RWpOdM5tsledl8v9H7caYc7MT315A=",
+        "lastModified": 1787413948,
+        "narHash": "sha256-ZQvmO8SjceA7z8ZfwQrVcSrsj23c07oGf2WK+4BHhYw=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "ce76c448400c742d3342540e6b36901f74be3849",
+        "rev": "ac51bc8680987b8b2998a36a12db863ce944f0b7",
         "type": "github"
       },
       "original": {
@@ -2754,10 +2754,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787405598,
-        "narHash": "sha256-L/uLYHeZ5DdT9saHQwZCt4ZplBxWEvIDN2aze0Q8SYo=",
+        "lastModified": 1787420778,
+        "narHash": "sha256-Kv3d8bCKkbQ41qgdPwY+rXEKoyDt//jfJ3APX0hPelg=",
         "ref": "refs/heads/main",
-        "rev": "d40d1f2a70624560c59dfe6dbebf9a2ab26f6ac4",
+        "rev": "d4d333cadc9f49a530e300cd3f57f4a8cd4c5cb9",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3293,11 +3293,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1787201968,
-        "narHash": "sha256-BaJVIdXc5kuhptOT4o+oiGTkAk3Gg1V9GraigfOr95M=",
+        "lastModified": 1787410551,
+        "narHash": "sha256-dn8EXXuhdnAjFrU0HWUYrv7R+vKwdOErk3DYbb8f9DM=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "a0e8b0db006cdc2f275a740f7c60f760a1346607",
+        "rev": "1d0e20a66580ffc09a68ebee4814813036bb4747",
         "type": "github"
       },
       "original": {
@@ -3316,11 +3316,11 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1787405928,
-        "narHash": "sha256-fpP+0cUdWjdE1txu27hju12n0vJ02lg1ihDi0uFvd2w=",
+        "lastModified": 1787410551,
+        "narHash": "sha256-dn8EXXuhdnAjFrU0HWUYrv7R+vKwdOErk3DYbb8f9DM=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "7b344e25f50d6d937ca5605427b3a7e9a7244995",
+        "rev": "1d0e20a66580ffc09a68ebee4814813036bb4747",
         "type": "github"
       },
       "original": {
