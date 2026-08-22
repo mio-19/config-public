@@ -104,11 +104,12 @@
       in
       with _include;
       {
-        boot.supportedFilesystems =
-          [ ] # lib.optional (!(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2")) "apfs"
-          ++ lib.optionals (!(builtins.any (tag: tag == "rc") config.system.nixos.tags)) [
-            "bcachefs"
-          ];
+        boot.supportedFilesystems = [
+          "apfs"
+        ]
+        ++ lib.optionals (!(builtins.any (tag: tag == "rc") config.system.nixos.tags)) [
+          "bcachefs"
+        ];
 
         # https://search.nixos.org/packages
         systemPackages_hardened =

@@ -399,6 +399,11 @@
                 })
               */
               (fetchpatch {
+                name = "linuxPackages.apfs: 0.3.20 -> 0.3.21-unstable-2025-08-22";
+                url = "https://github.com/NixOS/nixpkgs/pull/555282.diff";
+                hash = "sha256-aR+fQjG7WNxGZWZrXZv8rj+BZulEuEaEvhOKn37Uw9k=";
+              })
+              (fetchpatch {
                 name = "ryzen-smu: 0.1.7-unstable-2026-04-25 -> 0.1.7-unstable-2026-08-15";
                 url = "https://github.com/NixOS/nixpkgs/pull/555135.patch";
                 hash = "sha256-xsDhDu5c57ycS6P7nW/AH5aa7Zn6XcTM7NtVPzybeqw=";
