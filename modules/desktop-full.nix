@@ -267,11 +267,10 @@
       in
       with _include;
       {
-        # https://search.nixos.org/packages
-        environment.systemPackages =
+        systemPackages_hardened =
           with pkgs;
-          (map hardenedPkg [
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.uplink
+          [
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.uplink
             simple-scan
             trayscale
             (wrapPrio gnome-calculator)
@@ -324,8 +323,35 @@
             #parsec-bin
             sublime4-dev # sublime4 broken, need -dev # (callPackage ./sublime-text.nix { })
             sublime-merge # (callPackage ./sublime-merge.nix { })
-          ])
-          ++ (map cleanPkg [
+          ]
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
+            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.cider
+            handbrake
+            tuxguitar # TODO: maybe try firejail for this
+            #fluidsynth
+            #lilypond
+            lmms-full
+            (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.notepad-plus-plus.override {
+              wine = config.wine64_package;
+            })
+            # open source but from binary
+            onlyoffice-desktopeditors
+            # unfree:
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.adobe-acrobat-reader
+            (offloadPkg (
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.insta360-studio.override {
+                wine = config.wine64_package;
+              }
+            ))
+            (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.affinity-v3.override {
+              wine = config.wine64_package;
+            })
+            progs.discord
+          ];
+        systemPackages_clean =
+          with pkgs;
+          [
             firefox-esr
             (wrapPrio gnome-console)
             # unfree:
@@ -333,42 +359,13 @@
               followSystemAppearance = true;
             })
             progs.vscode
-          ])
-          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
-            (map hardenedPkg [
-              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
-              #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.cider
-              handbrake
-              tuxguitar # TODO: maybe try firejail for this
-              #fluidsynth
-              #lilypond
-              lmms-full
-              (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.notepad-plus-plus.override {
-                wine = config.wine64_package;
-              })
-              # open source but from binary
-              onlyoffice-desktopeditors
-              # unfree:
-              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.adobe-acrobat-reader
-              (offloadPkg (
-                inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.insta360-studio.override {
-                  wine = config.wine64_package;
-                }
-              ))
-              (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.affinity-v3.override {
-                wine = config.wine64_package;
-              })
-              progs.discord
-            ])
-            ++ (map cleanPkg [
-              zed-editor-fhs
-
-              # https://nixos.wiki/wiki/Steam
-              (lib.hiPrio config.programs.steam.package.run) # override the non cleanPkg one
-            ])
-          )
+          ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
-            (cleanPkg zotero) # segfault with hardenedPkg on NixOS
+            zotero # segfault with hardenedPkg on NixOS
+            zed-editor-fhs
+
+            # https://nixos.wiki/wiki/Steam
+            (lib.hiPrio config.programs.steam.package.run) # override the non cleanPkg one
           ];
         programs.localsend.package = hardenedPkg pkgs.localsend;
 
