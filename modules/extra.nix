@@ -144,6 +144,7 @@ in
 
         homebrew.brews = [
           "ollama"
+          "Mesh-LLM/tap/mesh-llm" # https://github.com/Mesh-LLM/mesh-llm
         ];
 
         # List packages installed in system profile. To search by name, run:

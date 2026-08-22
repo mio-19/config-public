@@ -187,7 +187,6 @@
         ];
 
         homebrew.casks = [
-          "Mesh-LLM/tap/mesh-llm" # https://github.com/Mesh-LLM/mesh-llm
           "sublime-merge"
           "inmusic-software-center"
           "native-access"
