@@ -469,6 +469,14 @@ let
             --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER NVIDIA-G0 
             --set __GLX_VENDOR_LIBRARY_NAME nvidia 
             --set __VK_LAYER_NV_optimus NVIDIA_only'' pkg;
+      # https://github.com/dune3d/dune3d/issues/87#issuecomment-2095816938
+      pkg_gl-prefer-gl =
+        if config.hardware.nvidia.enable then
+          wrapPkg "gl-prefer-gl" ''
+            --inherit-argv0 
+            --set GDK_DEBUG "gl-prefer-gl"'' pkg
+        else
+          pkg;
       # https://github.com/tauri-apps/tauri/issues/10702
       fixTauriPkg =
         pkg:

@@ -60,52 +60,40 @@
           ../extradeusers.nix
         ];
 
-        # https://search.nixos.org/packages
-        environment.systemPackages =
-          with pkgs;
-          (map hardenedPkg [
-            rclone
+        systemPackages_hardened = with pkgs; [
+          rclone
 
-            # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
-            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
-            progs.inkscape
-            #gg-jj
-            kdiskmark
-            #gsmartcontrol
-            qdiskinfo
-            obs-studio
-            freecad
-            #openscad
-            #nemo
-            #qcm
-            teams-for-linux
-            nur.repos.mio.waveterm
-            #pianotrans
-            # binaryNativeCode:
-            spotube
-            inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-            # unfree:
-            (lib.hiPrio pkgs.aseprite) # lib.hiPrio: a file colliding with libresprite
-            #davinci-resolve
-            lmstudio
-            google-chrome # does antigravity only work with google-chrome?
-            code-cursor
-          ])
-          ++ (map cleanPkg [
-            # unfree:
-            android-studio
-            antigravity-ide-fhs
-            # DETAILS REMOVED
-          ])
-          # https://github.com/dune3d/dune3d/issues/87#issuecomment-2095816938
-          ++ lib.optionals config.hardware.nvidia.enabled [
-            (lib.hiPrio (
-              pkgs.writeShellScriptBin "dune3d" ''
-                export GDK_DEBUG="gl-prefer-gl"
-                exec "${lib.getExe (hardenedPkg pkgs.dune3d)}" "$@"
-              ''
-            ))
-          ];
+          # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
+          #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
+          progs.inkscape
+          #gg-jj
+          kdiskmark
+          #gsmartcontrol
+          qdiskinfo
+          obs-studio
+          freecad
+          #openscad
+          #nemo
+          #qcm
+          teams-for-linux
+          nur.repos.mio.waveterm
+          #pianotrans
+          # binaryNativeCode:
+          spotube
+          inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+          # unfree:
+          (lib.hiPrio pkgs.aseprite) # lib.hiPrio: a file colliding with libresprite
+          #davinci-resolve
+          lmstudio
+          google-chrome # does antigravity only work with google-chrome?
+          code-cursor
+        ];
+        systemPackages_clean = with pkgs; [
+          # unfree:
+          android-studio
+          antigravity-ide-fhs
+          # DETAILS REMOVED
+        ];
 
         #programs.throne.enable = true;
         #programs.throne.tunMode.enable = true;

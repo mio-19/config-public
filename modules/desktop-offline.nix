@@ -140,7 +140,7 @@
             #haruna
             jan
             okteta
-            dune3d
+            (pkg_gl-prefer-gl dune3d)
             lingot
             gmetronome
             #piliplus # bluescreen
