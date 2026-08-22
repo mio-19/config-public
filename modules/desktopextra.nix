@@ -187,21 +187,17 @@
         ];
 
         homebrew.casks = [
+          "Mesh-LLM/tap/mesh-llm" # https://github.com/Mesh-LLM/mesh-llm
           "sublime-merge"
           "inmusic-software-center"
           "native-access"
           "zoom"
           "racket"
           "cursor"
-          "mullvad-vpn"
-          "66HEX/frame/frame" # https://github.com/66HEX/frame
           "affinity"
           "microsoft-teams"
           "adobe-acrobat-pro"
           "adobe-creative-cloud"
-          "duckduckgo"
-          "sdformatter"
-          "graalvm-jdk"
           "signal"
           #"rider"
           "wave"
@@ -209,7 +205,6 @@
           "rclone-ui"
           #"android-commandlinetools"
           "prusaslicer"
-          "plex"
           "steam"
           "microsoft-office"
           "microsoft-auto-update"
@@ -219,7 +214,6 @@
           "prismlauncher"
           "openzfs" # or manually upgrade with https://github.com/openzfsonosx/openzfs-fork/releases
           "betterdisplay"
-          "tabby"
           "balenaetcher"
           "microsoft-edge"
           "cleanshot"
