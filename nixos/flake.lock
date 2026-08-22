@@ -2087,11 +2087,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1787201968,
-        "narHash": "sha256-BaJVIdXc5kuhptOT4o+oiGTkAk3Gg1V9GraigfOr95M=",
+        "lastModified": 1787405928,
+        "narHash": "sha256-fpP+0cUdWjdE1txu27hju12n0vJ02lg1ihDi0uFvd2w=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "a0e8b0db006cdc2f275a740f7c60f760a1346607",
+        "rev": "7b344e25f50d6d937ca5605427b3a7e9a7244995",
         "type": "github"
       },
       "original": {
