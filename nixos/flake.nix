@@ -411,7 +411,7 @@
               (fetchurl {
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
-                hash = "sha256-Tk4VeUG7ZNto8Nq9ByP5EUkutWmfI+mCXm7wURUJHxU=";
+                hash = "sha256-ZJl/Rb+0Z+DjiLe5DuMhfxeSVQFnxR2bMsgCXgs40gU=";
               })
               (fetchpatch {
                 name = "github-copilot-cli: 1.0.61 -> 1.0.73";
