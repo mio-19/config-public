@@ -113,7 +113,6 @@ See `modules/zfs.nix` (`options.zfs_arc_max_mib` + `config.*`).
 | Old path (from `nixos/foo.nix`) | New path (from `modules/foo.nix`) |
 |---|---|
 | `./profile` | `../nixos/profile` |
-| `../nixos-base-den.nix` | `../nixos-base-den.nix` (unchanged) |
 | `./include.nix` | `../nixos/include.nix` |
 
 Keep all existing comments, links, and commented-out blocks unless the user asks to remove them.

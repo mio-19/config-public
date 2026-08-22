@@ -10,7 +10,8 @@ with _include;
 {
   imports = [
     (import ../../../../aspect.nix "keep")
-    ../../../../nixos-base-den.nix
+    (import ../../../../aspect.nix "common")
+    (import ../../../../aspect.nix "selector4nix")
     ../../../../nixos/stockhm.nix
     (import ../../../../aspect.nix "extra")
     inputs.nixos-avf.nixosModules.avf

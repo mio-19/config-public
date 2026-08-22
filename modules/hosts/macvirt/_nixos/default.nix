@@ -33,7 +33,8 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     inputs.rosetta-spice.nixosModules.rosetta-spice
-    ../../../../nixos-base-den.nix
+    (import ../../../../aspect.nix "common")
+    (import ../../../../aspect.nix "selector4nix")
     ./disk.nix
     (import ../../../../aspect.nix "desktop-full")
     (import ../../../../aspect.nix "alwayson")
