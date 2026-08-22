@@ -335,8 +335,6 @@
             (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.notepad-plus-plus.override {
               wine = config.wine64_package;
             })
-            # open source but from binary
-            onlyoffice-desktopeditors
             # unfree:
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.adobe-acrobat-reader
             (offloadPkg (
@@ -368,6 +366,8 @@
             (lib.hiPrio config.programs.steam.package.run) # override the non cleanPkg one
           ];
         programs.localsend.package = hardenedPkg pkgs.localsend;
+
+        programs.onlyoffice.enable = true; # maybe open source but from binary
 
         programs.firejail.wrappedBinaries =
           with pkgs;
