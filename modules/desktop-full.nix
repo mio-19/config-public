@@ -271,6 +271,7 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.uplink
             simple-scan
             trayscale
             (wrapPrio gnome-calculator)
