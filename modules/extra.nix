@@ -142,6 +142,10 @@ in
         #  ../extradeusers.nix
         #];
 
+        homebrew.brews = [
+          "ollama"
+        ];
+
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages =
@@ -158,7 +162,7 @@ in
             nur.repos.mio.mdbook-generate-summary
             uv
             claude-code
-            ollama
+            #ollama # no MLX
             #onefetch
             unixtools.watch
             opam
