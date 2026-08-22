@@ -471,6 +471,7 @@ let
             --set __VK_LAYER_NV_optimus NVIDIA_only'' pkg;
       # https://github.com/dune3d/dune3d/issues/87#issuecomment-2095816938
       pkg_gl-prefer-gl =
+        pkg:
         if config.hardware.nvidia.enabled then
           wrapPkg "gl-prefer-gl" ''
             --inherit-argv0 
