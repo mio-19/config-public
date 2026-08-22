@@ -570,6 +570,7 @@
           "discord"
           "iterm2"
           "google-chrome"
+          "mullvad-vpn"
           #"element"
         ];
       };
