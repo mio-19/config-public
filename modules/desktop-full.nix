@@ -484,12 +484,6 @@
           hardware.xpad-noone.enable = lib.mkIf novirt true;
         */
 
-        /*
-          # https://t.me/chaotic_nyx_sac/27154
-          boot.extraModulePackages = lib.mkIf (novirt && config.hardware.bluetooth.enable) [
-            (config.boot.kernelPackages.xpadneo.override { bluez = pkgs.bluez; })
-          ];
-        */
         # cannot condition on config.hardware.bluetooth.enable as of https://github.com/NixOS/nixpkgs/pull/483838
         hardware.xpadneo.enable = lib.mkIf novirt true;
 
