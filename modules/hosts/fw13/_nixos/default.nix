@@ -34,7 +34,7 @@ with _include;
   security.pam.zfs.homes = "${pool}/nixos/safe/encrypted";
   chaotic.zfs-impermanence-on-shutdown.volume = "${pool}/nixos/local/ephemeral";
 
-  fprintd-plasma_workaround = "powerdown_cmd";
+  fprintd-plasma_workaround = "delay_restart";
   plasma-login-manager_instead = true; # plm seems to take more seconds to launch, but sddm takes more seconds to enter plasma
 
   security.allowSimultaneousMultithreading = true;
