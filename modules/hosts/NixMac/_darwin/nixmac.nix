@@ -53,7 +53,7 @@
     supertuxkart
   ];
 
-  homebrew.onActivation.cleanup = "uninstall"; # looks like homebrew updated and this broke..
+  #homebrew.onActivation.cleanup = "uninstall"; # why do you put my other apps into trash bin...
   homebrew.taps = [ "xpipe-io/tap" ];
   homebrew.casks = [
     "background-music"
