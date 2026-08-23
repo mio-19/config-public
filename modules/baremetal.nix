@@ -1,6 +1,11 @@
 { den, ... }: {
   den.aspects.baremetal = {
     description = "Bare-metal baseline: disko, networking, chrony, filesystems";
+    includes = [
+      den.aspects.wifi
+      den.aspects.common
+      den.aspects.selector4nix
+    ];
     nixos =
       args@{
         config,
@@ -16,9 +21,6 @@
       {
         imports = [
           inputs.grub2-themes.nixosModules.default
-          (import ../aspect.nix "wifi")
-          (import ../aspect.nix "common")
-          (import ../aspect.nix "selector4nix")
           ../nixos/stockhm.nix
           inputs.disko.nixosModules.disko
         ];
