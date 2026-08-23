@@ -42,8 +42,8 @@
             K900 (༼ つ ◕_◕ ༽つ give zen6): But we want to follow the vendor behavior here
           */
         };
-        systemd = lib.optionalAttrs (!(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2")) {
-          services.scx.wantedBy = lib.mkIf is-jovian (lib.mkOverride 49 [ "multi-user.target" ]);
+        systemd.services.scx = lib.optionalAttrs (!(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2")) {
+          wantedBy = lib.mkIf is-jovian (lib.mkOverride 49 [ "multi-user.target" ]);
         };
       };
   };
