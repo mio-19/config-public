@@ -101,6 +101,15 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
+        linux_tz = lib.mkOption {
+          type = lib.types.enum [
+            null
+            "Pacific/Auckland"
+            "Australia/Canberra"
+          ];
+          default = null;
+          description = "Linux timezone";
+        };
         fprintd-plasma_workaround = lib.mkOption {
           type = lib.types.enum [
             false
