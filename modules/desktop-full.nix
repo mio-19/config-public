@@ -286,7 +286,7 @@
             fluffychat
             progs.zulip
             normcap
-            (if qtIsPreferred then libreoffice-qt-stable else libreoffice-fresh)
+            (if qtIsPreferred then libreoffice-qt-stable else libreoffice-stable)
             #bottles
             #kdePackages.sddm-kcm
             kdePackages.kweather
