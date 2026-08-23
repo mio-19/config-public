@@ -2,15 +2,9 @@
 { den, ... }: {
   den.aspects.desktop-baremetal-kde = {
     description = "Bare-metal KDE desktop with full desktop packages";
-    nixos =
-      args@{
-        config,
-        inputs,
-        lib,
-        pkgs,
-        system,
-        ...
-      }:
-      import ./_desktop-baremetal-kde/default.nix args;
+    includes = [
+      den.aspects."desktop-baremetal-kde-basic"
+      den.aspects."desktop-full"
+    ];
   };
 }
