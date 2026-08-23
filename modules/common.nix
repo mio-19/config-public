@@ -2,6 +2,7 @@
   den.aspects.common = {
     description = "Shared base configuration for NixOS and nix-darwin";
     includes = [
+      den.aspects.common-hidden
       den.aspects.overlays
       den.aspects.basic
       den.aspects.options
