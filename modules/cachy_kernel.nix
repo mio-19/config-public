@@ -54,14 +54,14 @@
               pkgs.linuxPackages_cachyos
             else if nixpkgs_kernel then
               pkgs.linuxPackages_6_18
-            else if config.microarch == "zen4" then
-              assert config.workaround_i_dont_know_kernel_nvidia_refer_problem == false;
-              pkgs-chaotic.linuxPackages_cachyos-lto-znver4
             else if
               config.virtualisation.vmware.host.enable
               || builtins.hasAttr "bcachefs" config.boot.supportedFilesystems
             then
               pkgs-chaotic.linuxPackages_cachyos-gcc
+            else if config.microarch == "zen4" then
+              assert config.workaround_i_dont_know_kernel_nvidia_refer_problem == false;
+              pkgs-chaotic.linuxPackages_cachyos-lto-znver4
             else
               pkgs-chaotic.linuxPackages_cachyos;
           boot.zfs.package = if nixpkgs_kernel then pkgs.zfs else pkgs.zfs_cachyos;
