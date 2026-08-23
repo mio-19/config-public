@@ -12,7 +12,7 @@
       }:
       let
         _include = args._include or (import ../nixos/include.nix args);
-        enable_scx = true; # (!(lib.versionAtLeast config.boot.kernelPackages.kernel.version "7.2"));
+        enable_scx = (!(lib.versionAtLeast config.boot.kernelPackages.kernel.version "7.2"));
       in
       with _include;
       {
