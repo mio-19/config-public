@@ -35,7 +35,7 @@
           };
         };
         config = {
-          enable_scx = nixpkgs_kernel; # https://t.me/chaotic_nyx_sac/32603
+          kernel_rust = nixpkgs_kernel; # https://t.me/chaotic_nyx_sac/32603
           boot.kernelPackages =
             if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "no-zen4" then
               pkgs-chaotic.linuxPackages_cachyos
