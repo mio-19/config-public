@@ -101,7 +101,7 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
-        kernel_rust = lib.mkOption {
+        enable_scx = lib.mkOption {
           type = lib.types.bool;
           default = true;
           description = "Kernel rust support";
