@@ -16,6 +16,4 @@
       ];
     };
   };
-
-  den.default.includes = [ den.aspects.selector4nix ];
 }

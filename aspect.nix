@@ -3,7 +3,6 @@
 # Usage:
 #   (import ./aspect.nix "options")
 #   (import ./aspect.nix "desktop-basic")
-#   (import ./aspect.nix den.aspects.selector4nix)
 #
 # Resolves the aspect for nixos or darwin from `system`. When the aspect defines
 # a homeManager branch, merges its imports into home-manager.sharedModules.
