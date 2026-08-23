@@ -14,7 +14,7 @@
         _include = args._include or (import ../nixos/include.nix args);
       in
       with _include;
-      {
+      lib.optionalAttrs (!(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2")) {
         services.scx.enable = true;
         services.scx.package = lib.mkDefault pkgs.scx.rustscheds;
         # https://www.phoronix.com/news/Meta-SCX-LAVD-Steam-Deck-Server
