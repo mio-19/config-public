@@ -31,7 +31,7 @@
           };
         };
         config = {
-          services.scx.package = pkgs-chaotic.scx.rustscheds;
+          #services.scx.package = pkgs-chaotic.scx.rustscheds;
           boot.kernelPackages =
             if
               config.virtualisation.vmware.host.enable
