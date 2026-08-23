@@ -102,7 +102,7 @@ let
       // lib.optionalAttrs (!isDarwin) {
         # Linux
         kernel_rust = lib.mkOption {
-          type = lib.types.boolean;
+          type = lib.types.bool;
           default = true;
           description = "Kernel rust support";
         };
