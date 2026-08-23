@@ -43,8 +43,8 @@
           */
         };
         systemd.services = lib.optionalAttrs (
-          (!(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2")) && is-jovian
-        ) { scx.wantedBy = (lib.mkOverride 49 [ "multi-user.target" ]); };
+          !(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2")
+        ) { scx.wantedBy = lib.mkIf is-jovian (lib.mkOverride 49 [ "multi-user.target" ]); };
       };
   };
 }
