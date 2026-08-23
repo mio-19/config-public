@@ -11,6 +11,9 @@
       }:
       let
         _include = args._include or (import ../nixos/include.nix args);
+        nixpkgs_kernel = (
+          config.microarch == "zen4" && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "nixpkgs"
+        );
       in
       with _include;
       {
@@ -31,14 +34,9 @@
           };
         };
         config = {
-          #services.scx.package = pkgs-chaotic.scx.rustscheds;
+          kernel_rust = !nixpkgs_kernel; # https://t.me/chaotic_nyx_sac/32603
           boot.kernelPackages =
-            if
-              config.virtualisation.vmware.host.enable
-              || builtins.hasAttr "bcachefs" config.boot.supportedFilesystems
-            then
-              pkgs-chaotic.linuxPackages_cachyos-gcc
-            else if config.microarch == "zen4" then
+            if config.microarch == "zen4" then
               (
                 if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "no-zen4" then
                   pkgs-chaotic.linuxPackages_cachyos
@@ -52,23 +50,20 @@
                   pkgs.linuxPackages_cachyos-lto-znver4
                 else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.no-zen4" then
                   pkgs.linuxPackages_cachyos
-                else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "nixpkgs" then
+                else if nixpkgs_kernel then
                   pkgs.linuxPackages_6_18
                 else
                   assert config.workaround_i_dont_know_kernel_nvidia_refer_problem == false;
                   pkgs-chaotic.linuxPackages_cachyos-lto-znver4
               )
+            else if
+              config.virtualisation.vmware.host.enable
+              || builtins.hasAttr "bcachefs" config.boot.supportedFilesystems
+            then
+              pkgs-chaotic.linuxPackages_cachyos-gcc
             else
               pkgs-chaotic.linuxPackages_cachyos;
-          boot.zfs.package =
-            if
-              (
-                config.microarch == "zen4" && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "nixpkgs"
-              )
-            then
-              pkgs.zfs
-            else
-              pkgs.zfs_cachyos;
+          boot.zfs.package = if nixpkgs_kernel then pkgs.zfs else pkgs.zfs_cachyos;
         };
       };
   };

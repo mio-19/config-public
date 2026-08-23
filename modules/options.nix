@@ -101,6 +101,11 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
+        kernel_rust = lib.mkOption {
+          type = lib.types.boolean;
+          default = true;
+          description = "Kernel rust support";
+        };
         linux_tz = lib.mkOption {
           type = lib.types.enum [
             null
