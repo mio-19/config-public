@@ -4,6 +4,7 @@
     description = "Bare-metal KDE baseline with SDDM or plasma-login-manager";
     includes = [
       den.aspects.baremetal
+      den.aspects."desktop-basic"
     ];
     nixos =
       args@{
@@ -14,6 +15,11 @@
         system,
         ...
       }:
-      import ./_desktop-baremetal-kde-basic/default.nix args;
+      {
+        services.displayManager.plasma-login-manager.enable = config.plasma-login-manager_instead;
+        services.displayManager.sddm.enable = !config.plasma-login-manager_instead;
+        services.displayManager.gdm.enable = false;
+        services.xserver.displayManager.lightdm.enable = false;
+      };
   };
 }
