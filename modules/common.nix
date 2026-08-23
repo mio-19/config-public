@@ -148,7 +148,7 @@
         #time.timeZone = lib.mkForce "Pacific/Auckland";
         #services.automatic-timezoned.enable = true;
         time.timeZone = lib.mkIf (config.linux_tz != null) config.linux_tz;
-        services.tzupdate.enable = lib.mkIf (config.linux_tz != null) true;
+        services.tzupdate.enable = lib.mkIf (config.linux_tz == null) true;
         assertions = [
           {
             assertion = !(config.services.tzupdate.enable && config.services.automatic-timezoned.enable);
