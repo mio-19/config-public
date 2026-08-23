@@ -12,10 +12,11 @@
       }:
       let
         _include = args._include or (import ../nixos/include.nix args);
+        enable_scx = (!(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2"));
       in
       with _include;
-      lib.optionalAttrs (!(lib.versionAtLeast config.boot.kernelPackages.kernel "7.2")) {
-        services.scx.enable = true;
+      {
+        services.scx.enable = enable_scx;
         services.scx.package = lib.mkDefault pkgs.scx.rustscheds;
         # https://www.phoronix.com/news/Meta-SCX-LAVD-Steam-Deck-Server
         # https://github.com/search?q=scx_lavd+language%3ANix&type=code&l=Nix
@@ -40,7 +41,9 @@
 
           K900 (༼ つ ◕_◕ ༽つ give zen6): But we want to follow the vendor behavior here
         */
-        systemd.services.scx.wantedBy = lib.mkIf is-jovian (lib.mkOverride 49 [ "multi-user.target" ]);
+        systemd.services.scx.wantedBy = lib.mkIf (is-jovian && enable_scx) (
+          lib.mkOverride 49 [ "multi-user.target" ]
+        );
       };
   };
 }
