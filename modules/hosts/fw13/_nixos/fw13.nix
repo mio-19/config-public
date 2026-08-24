@@ -217,13 +217,11 @@ in
   # https://wiki.archlinux.org/title/AMDGPU -> Overclocking
   hardware.amdgpu.overdrive.ppfeaturemask = "0xfff7ffff";
 
-  environment.systemPackages =
-    with pkgs;
-    (map hardenedPkg [
-      amdgpu_top
-      ryzenadj
-      kdePackages.kamoso
-    ]);
+  systemPackages_hardened = with pkgs; [
+    amdgpu_top
+    ryzenadj
+    kdePackages.kamoso
+  ];
 
   boot.kernelParams = [
     # https://github.com/search?q=mem_sleep_default%3Ds2idle+language%3ANix&type=code&l=Nix
