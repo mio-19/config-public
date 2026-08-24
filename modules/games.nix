@@ -25,7 +25,7 @@
         environment.systemPackages =
           with pkgs;
           (map cleanPkg [
-            (offloadPkg prismlauncher)
+            #(offloadPkg prismlauncher)
             (offloadPkg ryubing)
             (offloadPkg luanti-client)
             (lib.hiPrio (offloadPkg nur.repos.mio.minetest580client))
@@ -66,15 +66,23 @@
             ]
           );
 
+        services.flatpak = {
+          enable = true;
+          packages = [
+            "org.prismlauncher.PrismLauncher"
+          ];
+        };
         # https://github.com/librephoenix/nixos-config/blob/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/default.nix#L24
         programs.firejail.wrappedBinaries = {
-          prismlauncher = {
-            executable = "${cleanPkg (offloadPkg pkgs.prismlauncher)}/bin/prismlauncher";
-            # https://github.com/librephoenix/nixos-config/raw/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/profiles/prismlauncher.profile
-            profile = "${
-              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
-            }/etc/firejail/prismlauncher.profile";
-          };
+          /*
+            prismlauncher = {
+              executable = "${cleanPkg (offloadPkg pkgs.prismlauncher)}/bin/prismlauncher";
+              # https://github.com/librephoenix/nixos-config/raw/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/profiles/prismlauncher.profile
+              profile = "${
+                inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+              }/etc/firejail/prismlauncher.profile";
+            };
+          */
           # won't work as lutris in nixos has its own bwrap
           /*
             lutris = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
