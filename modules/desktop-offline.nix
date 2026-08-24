@@ -124,7 +124,7 @@
           "apfs"
         ]
         ++ lib.optionals (!(builtins.any (tag: tag == "rc") config.system.nixos.tags)) [
-          "bcachefs"
+          # "bcachefs"
         ];
 
         # https://search.nixos.org/packages
