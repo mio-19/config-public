@@ -21,50 +21,46 @@
         # https://github.com/Electrostasy/dots/blob/6438185e9de14610ff4e8a9a82d0079a82a647ec/hosts/terra/gaming.nix#L8C1-L12C5
         boot.kernelModules = [ "ntsync" ];
 
-        # https://search.nixos.org/packages
+        systemPackages_clean = [
+          #(offloadPkg prismlauncher)
+          (offloadPkg ryubing)
+          (offloadPkg luanti-client)
+          (lib.hiPrio (offloadPkg nur.repos.mio.minetest580client))
+          (offloadPkg (wrapPrio supertuxkart))
+          (offloadPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.supertuxkart-evolution)
+          supertux
+          the-powder-toy
+          ludusavi
+          (offloadPkg vdrift)
+          zeroad
+          jumpnbump
+          linthesia
+          boilr
+          celeste64
+        ]
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
+          (offloadPkg bombsquad)
+          lutris
+          heroic
+          rare
+          /*
+            (lutris.override {
+              extraPkgs =
+                pkgs': with pkgs'; [
+                  zenity
+                ];
+              extraLibraries =
+                pkgs': with pkgs'; [
+                  libadwaita
+                  gtk4
+                  ];
+            })
+          */
+        ];
         environment.systemPackages =
           with pkgs;
-          (map cleanPkg [
-            #(offloadPkg prismlauncher)
-            (offloadPkg ryubing)
-            (offloadPkg luanti-client)
-            (lib.hiPrio (offloadPkg nur.repos.mio.minetest580client))
-            (offloadPkg (wrapPrio supertuxkart))
-            (offloadPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.supertuxkart-evolution)
-            supertux
-            the-powder-toy
-            ludusavi
-            (offloadPkg vdrift)
-            zeroad
-            jumpnbump
-            linthesia
-            boilr
-            celeste64
-          ])
-          ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 (
-            [
-              nur.repos.mio.beammp-launcher # cannot have more wrapper
-            ]
-            ++ map cleanPkg [
-              (offloadPkg bombsquad)
-              lutris
-              heroic
-              rare
-              /*
-                (lutris.override {
-                  extraPkgs =
-                    pkgs': with pkgs'; [
-                      zenity
-                    ];
-                  extraLibraries =
-                    pkgs': with pkgs'; [
-                      libadwaita
-                      gtk4
-                      ];
-                })
-              */
-            ]
-          );
+          lib.optional pkgs.stdenv.hostPlatform.isx86_64 nur.repos.mio.beammp-launcher # cannot have more wrapper
+        ;
 
         services.flatpak = {
           enable = true;
