@@ -64,7 +64,7 @@
               pkgs-chaotic.linuxPackages_cachyos-lto-znver4
             else
               pkgs-chaotic.linuxPackages_cachyos;
-          boot.zfs.package = if nixpkgs_kernel then pkgs.zfs else pkgs.zfs_cachyos;
+          boot.zfs.package = if nixpkgs_kernel then pkgs.zfs else pkgs-chaotic.zfs_cachyos;
         };
       };
   };
