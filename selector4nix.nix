@@ -10,6 +10,7 @@ let
   x86_64-linux = stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isx86_64;
   hostName = config.networking.hostName;
   trusted-public-keys = [
+    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" # https://github.com/xddxdd/nix-cachyos-kernel
     "exo.cachix.org-1:okq7hl624TBeAR3kV+g39dUFSiaZgLRkLsFBCuJ2NZI="
     "selector4nix.cachix.org-1:wovVlT07In5JCVz2tFgxPQTLpnN8hZT6P/RwfFcz3KE="
     "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
@@ -38,6 +39,10 @@ in
       network.ignore_nar_info_error = true;
       network.chunked_streaming = false; # seems to have problems still
       substituters = [
+        {
+          url = "https://attic.xuyh0120.win/lantian";
+          priority = 40;
+        }
         {
           url = "https://exo.cachix.org";
           priority = 40;
