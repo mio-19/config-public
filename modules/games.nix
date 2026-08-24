@@ -75,6 +75,7 @@
         # https://github.com/librephoenix/nixos-config/blob/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/default.nix#L24
         programs.firejail.wrappedBinaries = {
           /*
+            # intenet broke with firejail
             prismlauncher = {
               executable = "${cleanPkg (offloadPkg pkgs.prismlauncher)}/bin/prismlauncher";
               # https://github.com/librephoenix/nixos-config/raw/0c3b676ab9d3e93780f06dbe5e084048eeed9a32/modules/system/security/firejail/profiles/prismlauncher.profile
