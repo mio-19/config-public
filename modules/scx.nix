@@ -1,7 +1,7 @@
 { den, ... }:
 {
   den.aspects.scx = {
-    description = "SCX scheduler (scx_lavd) with optional Jovian wantedBy";
+    description = "SCX scheduler with optional Jovian wantedBy";
     nixos =
       args@{
         config,
@@ -12,7 +12,7 @@
       }:
       let
         _include = args._include or (import ../nixos/include.nix args);
-        enable_scx = config.support_scx; # (!(lib.versionAtLeast config.boot.kernelPackages.kernel.version "7.2"));
+        enable_scx = true; # (!(lib.versionAtLeast config.boot.kernelPackages.kernel.version "7.2"));
       in
       with _include;
       {
@@ -20,7 +20,7 @@
         services.scx.package = lib.mkDefault pkgs.scx.rustscheds;
         # https://www.phoronix.com/news/Meta-SCX-LAVD-Steam-Deck-Server
         # https://github.com/search?q=scx_lavd+language%3ANix&type=code&l=Nix
-        services.scx.scheduler = "scx_lavd";
+        services.scx.scheduler = "scx_pandemonium"; # "scx_lavd"; # https://github.com/NixOS/nixpkgs/issues/555996
         # https://github.com/Jovian-Experiments/Jovian-NixOS/blob/d15853dadb69837bc1e86c5be52c1e6b4bda3da4/modules/steam/steam.nix#L64C7-L64C36
         # https://github.com/NixOS/nixpkgs/blob/9dfcba812aa0f4dc374acfe0600d591885f4e274/lib/modules.nix#L653C13-L653C23
         # see matrix group:

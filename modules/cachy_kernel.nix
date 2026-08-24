@@ -24,7 +24,7 @@
               "nixpkgs"
               "chaotic"
             ];
-            default = "nixpkgs"; # https://t.me/chaotic_nyx_sac/32603
+            default = "chaotic";
             description = "CachyOS kernel variant to use";
           };
           workaround_i_dont_know_kernel_nvidia_refer_problem = lib.mkOption {
@@ -43,7 +43,6 @@
           };
         };
         config = {
-          support_scx = nixpkgs_kernel; # https://t.me/chaotic_nyx_sac/32603
           boot.kernelPackages =
             if nixpkgs_kernel then
               pkgs.linuxPackages_6_18

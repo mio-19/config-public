@@ -101,11 +101,6 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
-        support_scx = lib.mkOption {
-          type = lib.types.bool;
-          default = true;
-          description = "Kernel rust support";
-        };
         linux_tz = lib.mkOption {
           type = lib.types.enum [
             null
