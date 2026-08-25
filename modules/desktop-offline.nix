@@ -1,22 +1,6 @@
 { den, ... }: {
   den.aspects.bilibili = {
     description = "Bilibili desktop client";
-    darwin =
-      { inputs, pkgs, ... }@args:
-      let
-        _include = args._include or import ../mac/include.nix args;
-      in
-      with _include;
-      {
-        homebrew.casks = [
-          "66HEX/frame/frame" # https://github.com/66HEX/frame
-          "duckduckgo"
-          "sdformatter"
-          "graalvm-jdk"
-          "plex"
-          "tabby"
-        ];
-      };
     nixos =
       args@{
         config,
@@ -107,6 +91,22 @@
       den.aspects.offline-tools
       den.aspects.desktopextra2
     ];
+    darwin =
+      { inputs, pkgs, ... }@args:
+      let
+        _include = args._include or import ../mac/include.nix args;
+      in
+      with _include;
+      {
+        homebrew.casks = [
+          "66HEX/frame/frame" # https://github.com/66HEX/frame
+          "duckduckgo"
+          "sdformatter"
+          "graalvm-jdk"
+          "plex"
+          "tabby"
+        ];
+      };
     nixos =
       args@{
         config,
