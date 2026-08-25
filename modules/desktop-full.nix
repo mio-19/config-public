@@ -144,13 +144,13 @@
       in
       with _include;
       {
-        environment.systemPackages = with pkgs; [
-          (hardenedPkg progs.telegram)
+        systemPackages_clean = with pkgs; [
+          progs.telegram # fatal allocator error: sized deallocation mismatch (small)
         ];
 
         programs.firejail.wrappedBinaries = {
           Telegram = {
-            executable = "${hardenedPkg progs.telegram}/bin/Telegram";
+            executable = "${cleanPkg progs.telegram}/bin/Telegram";
             profile = "${pkgs.firejail}/etc/firejail/Telegram.profile";
             extraArgs = [
               # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
@@ -185,13 +185,13 @@
       in
       with _include;
       {
-        environment.systemPackages = with pkgs; [
-          (hardenedPkg progs.materialgram)
+        systemPackages_clean = with pkgs; [
+          (cleanPkg progs.materialgram)
         ];
 
         programs.firejail.wrappedBinaries = {
           materialgram = {
-            executable = "${hardenedPkg progs.materialgram}/bin/materialgram";
+            executable = "${cleanPkg progs.materialgram}/bin/materialgram";
             profile = "${
               inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
             }/etc/firejail/materialgram.profile";
