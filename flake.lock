@@ -253,11 +253,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1787611481,
-        "narHash": "sha256-noCSso3B7/QJalyS6lzTWmNTDIhdIh32ivO0t48bkw4=",
+        "lastModified": 1787635538,
+        "narHash": "sha256-dPBXg3znQ6Y1d7Di/iglwtAZHg+5gLKSUIpFy1O6Xjs=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "559fd0bc2894235bf1cbfcfdc69901cbe84b0f1b",
+        "rev": "30309e8186b8aa50b4cb983724a4b600f421b47a",
         "type": "github"
       },
       "original": {
@@ -2761,10 +2761,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787643251,
-        "narHash": "sha256-Oiv6EDYzL0lIzXueMxvczaww8f9EW+OwAUBxvRySQ+U=",
+        "lastModified": 1787651452,
+        "narHash": "sha256-MoBZLMUP9e4Ycn48g9vHrncGU06nqEGXm78/28/XIDs=",
         "ref": "refs/heads/main",
-        "rev": "dfb5506ca7f6198ec1864756f385d1940e5ad307",
+        "rev": "4f7e72ae13cc75a4cc843bbf55bf13b34cd41cc1",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
