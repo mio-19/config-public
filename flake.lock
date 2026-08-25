@@ -1395,11 +1395,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787632720,
-        "narHash": "sha256-HR+GKxQuLbrpWJuJlbZxMWV9ECSs9WHSGoKtI1Dc3BU=",
+        "lastModified": 1787658474,
+        "narHash": "sha256-56a+FBAcFpN5yVvrbcadoCXq8RwLnF5YOJ9DSZE9rpA=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "88dccae0669e6581694b930c5c2903f1ceb60c7e",
+        "rev": "eecabf722defd1f84f26b56f052d27a03e277f22",
         "type": "github"
       },
       "original": {
@@ -1718,11 +1718,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1787535674,
-        "narHash": "sha256-YSaFKa3BUqlujqdoQIwAsd2qtiHZAeoyLZKgRg9oa0A=",
+        "lastModified": 1787658282,
+        "narHash": "sha256-dXr/GUrYxOeuHF+QWNL5gxnBPV/H+pBIKygYfi/Bv/Q=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "c328665c0ae2cf1c2cafcc02c88da73a70b15372",
+        "rev": "1f64f73ab6419f643b051061bcb6347fbc0be7ce",
         "type": "github"
       },
       "original": {
@@ -2761,10 +2761,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787651452,
-        "narHash": "sha256-MoBZLMUP9e4Ycn48g9vHrncGU06nqEGXm78/28/XIDs=",
+        "lastModified": 1787653254,
+        "narHash": "sha256-xBo0bSNNUvieRHJ3FYbX0bnLl/vTI+NtXU5WH+gkzgI=",
         "ref": "refs/heads/main",
-        "rev": "4f7e72ae13cc75a4cc843bbf55bf13b34cd41cc1",
+        "rev": "1b4587e134b480335d7a543e84a431032a596459",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
