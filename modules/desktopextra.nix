@@ -147,7 +147,7 @@
       with _include;
       {
         environment.systemPackages = with pkgs; [
-          nur.repos.mio.telegram-mac
+          #nur.repos.mio.telegram-mac
 
           #qdiskinfo # needs more patches
           #kdiskmark # needs more patches
