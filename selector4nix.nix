@@ -88,30 +88,32 @@ in
           url = "https://cache.nixos.org/";
           priority = 5;
         }
-        {
-          url = "https://mirror.sjtu.edu.cn/nix-channels/store";
-          priority = 6;
-        }
-        {
-          url = "https://mirrors.ustc.edu.cn/nix-channels/store";
-          priority = 6;
-        }
-        {
-          url = "https://mirrors.cqupt.edu.cn/nix-channels/store";
-          priority = 6;
-        }
-        {
-          url = "https://mirror.sjtu.edu.cn/nix-channels/store";
-          priority = 6;
-        }
-        {
-          url = "https://mirror.nju.edu.cn/nix-channels/store";
-          priority = 6;
-        }
-        {
-          url = "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store";
-          priority = 6;
-        }
+        /*
+          {
+            url = "https://mirror.sjtu.edu.cn/nix-channels/store";
+            priority = 6;
+          }
+          {
+            url = "https://mirrors.ustc.edu.cn/nix-channels/store";
+            priority = 6;
+          }
+          {
+            url = "https://mirrors.cqupt.edu.cn/nix-channels/store";
+            priority = 6;
+          }
+          {
+            url = "https://mirror.sjtu.edu.cn/nix-channels/store";
+            priority = 6;
+          }
+          {
+            url = "https://mirror.nju.edu.cn/nix-channels/store";
+            priority = 6;
+          }
+          {
+            url = "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store";
+            priority = 6;
+          }
+        */
         {
           # https://github.com/numtide/nixos-passthru-cache
           url = "https://hetzner-cache.numtide.com";
