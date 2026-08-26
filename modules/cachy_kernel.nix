@@ -39,34 +39,35 @@
               "nixpkgs"
             ];
             default = false;
-            description = "I don't know why it does not or does work";
+            description = "for zen4, I don't know why it does not or does work";
           };
         };
         config = {
           boot.kernelPackages =
             if nixpkgs_kernel then
               pkgs.linuxPackages_6_18
-            else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "no-zen4" then
+            else if config.hardware.nvidia.enabled && config.hardware.nvidia.open then
+              pkgs-chaotic.linuxPackages_cachyos-lts # https://t.me/chaotic_nyx_sac/32764
+            else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "no-zen4" then
               pkgs-chaotic.linuxPackages_cachyos
-            else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "'" then
-              assert zen4;
+            else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "'" then
               pkgs-chaotic'.linuxPackages_cachyos-lto-znver4
-            else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pin" then
-              assert zen4;
+            else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pin" then
               pkgs-chaotic_pin.linuxPackages_cachyos-lto-znver4
-            else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pin.no-zen4" then
+            else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pin.no-zen4" then
               pkgs-chaotic_pin.linuxPackages_cachyos
-            else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.zen4" then
-              assert zen4;
+            else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.zen4" then
               pkgs.linuxPackages_cachyos-lto-znver4
-            else if config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.no-zen4" then
+            else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "pkgs.no-zen4" then
               pkgs.linuxPackages_cachyos
             else if
               config.virtualisation.vmware.host.enable
               || builtins.hasAttr "bcachefs" config.boot.supportedFilesystems
             then
               pkgs-chaotic.linuxPackages_cachyos-gcc
-            else if config.microarch == "zen4" then
+            else if builtins.hasAttr "zfs" config.boot.supportedFilesystems then # https://t.me/chaotic_nyx_sac/32776
+              pkgs-chaotic.linuxPackages_cachyos-gcc
+            else if zen4 then
               assert config.workaround_i_dont_know_kernel_nvidia_refer_problem == false;
               pkgs-chaotic.linuxPackages_cachyos-lto-znver4
             else
