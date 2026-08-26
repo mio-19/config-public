@@ -65,8 +65,6 @@
               || builtins.hasAttr "bcachefs" config.boot.supportedFilesystems
             then
               pkgs-chaotic.linuxPackages_cachyos-gcc
-            else if builtins.hasAttr "zfs" config.boot.supportedFilesystems then # https://t.me/chaotic_nyx_sac/32776
-              pkgs-chaotic.linuxPackages_cachyos-gcc
             else if zen4 then
               assert config.workaround_i_dont_know_kernel_nvidia_refer_problem == false;
               pkgs-chaotic.linuxPackages_cachyos-lto-znver4
