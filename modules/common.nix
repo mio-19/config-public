@@ -140,7 +140,11 @@
           (map (input: input.to.path or input.flake) (builtins.attrValues config.nix.registry))
           ++ lib.optionals config.programs.firejail.enable (
             lib.mapAttrsToList (name: value: value.profile) config.programs.firejail.wrappedBinaries
-          );
+          )
+          ++ lib.optionals config.programs.firejail.enable [
+            pkgs.firejail
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+          ];
 
         boot.loader.grub.keepBootedSystemEntry = true;
 
