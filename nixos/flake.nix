@@ -384,14 +384,15 @@
       perSystem =
         { pkgs, ... }:
         let
-          # inherit (pkgs) applyPatches;
-          applyPatches = pkgs.callPackage ../apply-patches-cow.nix { };
+          inherit (pkgs) applyPatches;
+          # applyPatches = pkgs.callPackage ../apply-patches-cow.nix { };
+          inherit (pkgs) fetchurl fetchpatch;
           nixpkgs-drv = applyPatches {
             name = "nixpkgs-patched";
             src = inputs.nixpkgs;
             # PR .patch URLs track branch head, so the hash changes when the PR is updated.
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
-            patches = with pkgs; [
+            patches = [
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               # nixos/firefox: make variant librewolf https://github.com/NixOS/nixpkgs/pull/467398
@@ -530,7 +531,7 @@
           nixos-avf-drv = applyPatches {
             name = "nixos-avf-patched";
             src = inputs.nixos-avf;
-            patches = with pkgs; [
+            patches = [
               (fetchpatch {
                 name = "Get rid of deprecation warnings on nixos-unstable";
                 url = "https://github.com/nix-community/nixos-avf/pull/39.patch";
