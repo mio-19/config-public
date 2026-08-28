@@ -26,12 +26,24 @@ if [[ -z "${QDBUS:-}" ]]; then
   fi
 fi
 
-ACTIVE_OUTPUT=$("$QDBUS" org.kde.KWin /KWin activeOutputName 2>/dev/null || true)
-DISPLAYS=$("$QDBUS" org.kde.ScreenBrightness /org/kde/ScreenBrightness org.kde.ScreenBrightness.DisplaysDBusNames 2>/dev/null || true)
+# qdbus on Plasma 6 often returns typed values (e.g. "variant uint32 123").
+dbus_string() {
+  local raw="${1:-}"
+  if [[ "$raw" =~ \"([^\"]+)\" ]]; then
+    echo "${BASH_REMATCH[1]}"
+    return
+  fi
+  echo "$raw" | awk '{print $NF}'
+}
 
-if [[ -z "$DISPLAYS" ]]; then
-  exit 0
-fi
+dbus_bool() {
+  dbus_string "${1:-}" | grep -qi '^true$'
+}
+
+dbus_int() {
+  local raw="${1:-}"
+  echo "$raw" | grep -oE '[0-9]+' | tail -1
+}
 
 get_display_prop() {
   local disp="${1:?}"
@@ -39,12 +51,26 @@ get_display_prop() {
   "$QDBUS" org.kde.ScreenBrightness "/org/kde/ScreenBrightness/$disp" org.freedesktop.DBus.Properties.Get org.kde.ScreenBrightness.Display "$prop" 2>/dev/null || true
 }
 
+ACTIVE_OUTPUT=$(dbus_string "$("$QDBUS" org.kde.KWin /KWin activeOutputName 2>/dev/null || true)")
+
+DISPLAYS_RAW=$("$QDBUS" org.kde.ScreenBrightness /org/kde/ScreenBrightness org.kde.ScreenBrightness.DisplaysDBusNames 2>/dev/null || true)
+DISPLAY_LIST=()
+while IFS= read -r disp; do
+  [[ -n "$disp" ]] && DISPLAY_LIST+=("$disp")
+done < <(
+  echo "$DISPLAYS_RAW" | tr ',()"' ' \n' | grep -E '^[A-Za-z0-9]' | grep -Ev '^(QStringList|variant|string|uint|bool)$' || true
+)
+
+if [[ ${#DISPLAY_LIST[@]} -eq 0 ]]; then
+  exit 0
+fi
+
 TARGET_DISPLAY=""
 
 # Map KWin's active output to a PowerDevil ScreenBrightness node.
 if [[ "$ACTIVE_OUTPUT" == eDP* ]] || [[ "$ACTIVE_OUTPUT" == LVDS* ]]; then
-  for disp in $DISPLAYS; do
-    if [[ "$(get_display_prop "$disp" "IsInternal")" == "true" ]]; then
+  for disp in "${DISPLAY_LIST[@]}"; do
+    if dbus_bool "$(get_display_prop "$disp" "IsInternal")"; then
       TARGET_DISPLAY=$disp
       break
     fi
@@ -65,12 +91,12 @@ elif [[ -n "$ACTIVE_OUTPUT" ]]; then
     EDID_TEXT=$(tr -cd '[:print:]' <"$EDID_FILE")
   fi
 
-  for disp in $DISPLAYS; do
-    if [[ "$(get_display_prop "$disp" "IsInternal")" == "true" ]]; then
+  for disp in "${DISPLAY_LIST[@]}"; do
+    if dbus_bool "$(get_display_prop "$disp" "IsInternal")"; then
       continue
     fi
 
-    LABEL=$(get_display_prop "$disp" "Label")
+    LABEL=$(dbus_string "$(get_display_prop "$disp" "Label")")
     if [[ -n "$LABEL" && -n "$EDID_TEXT" ]]; then
       read -ra WORDS <<<"$LABEL"
       NUM_WORDS=${#WORDS[@]}
@@ -105,15 +131,15 @@ fi
 
 # NixOS addition: fall back to first controllable display instead of erroring on hotkey.
 if [[ -z "$TARGET_DISPLAY" ]]; then
-  read -r TARGET_DISPLAY _ <<<"$DISPLAYS"
+  TARGET_DISPLAY=${DISPLAY_LIST[0]}
 fi
 
 if [[ -z "$TARGET_DISPLAY" ]]; then
   exit 0
 fi
 
-CURRENT=$(get_display_prop "$TARGET_DISPLAY" "Brightness")
-MAX=$(get_display_prop "$TARGET_DISPLAY" "MaxBrightness")
+CURRENT=$(dbus_int "$(get_display_prop "$TARGET_DISPLAY" "Brightness")")
+MAX=$(dbus_int "$(get_display_prop "$TARGET_DISPLAY" "MaxBrightness")")
 
 if [[ -z "$CURRENT" || -z "$MAX" ]]; then
   exit 0

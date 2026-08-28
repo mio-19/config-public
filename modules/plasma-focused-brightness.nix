@@ -54,13 +54,17 @@ let
               hotkeys.commands = {
                 "increase-focused-brightness" = {
                   name = "Increase Focused Display Brightness";
+                  comment = "increase-focused-brightness";
                   key = "XF86MonBrightnessUp";
                   command = "${focusedBrightnessScript}/bin/plasma-focused-brightness up";
+                  logs.enabled = false;
                 };
                 "decrease-focused-brightness" = {
                   name = "Decrease Focused Display Brightness";
+                  comment = "decrease-focused-brightness";
                   key = "XF86MonBrightnessDown";
                   command = "${focusedBrightnessScript}/bin/plasma-focused-brightness down";
+                  logs.enabled = false;
                 };
               };
             }
