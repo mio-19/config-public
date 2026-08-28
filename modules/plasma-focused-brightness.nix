@@ -34,8 +34,6 @@ let
       };
     in
     lib.mkIf enabled {
-      home.packages = [ focusedBrightnessScript ];
-
       programs.plasma = {
         enable = true;
 
@@ -53,14 +51,14 @@ let
             # KDE names hardware brightness keys "Monitor Brightness Up/Down" in
             # kglobalshortcutsrc, not XF86MonBrightnessUp/Down.
             key = "Monitor Brightness Up";
-            command = "plasma-focused-brightness up";
+            command = "${lib.getExe focusedBrightnessScript} up";
             logs.enabled = false;
           };
           "decrease-focused-brightness" = {
             name = "Decrease Focused Display Brightness";
             comment = "decrease-focused-brightness";
             key = "Monitor Brightness Down";
-            command = "plasma-focused-brightness down";
+            command = "${lib.getExe focusedBrightnessScript} down";
             logs.enabled = false;
           };
         };
