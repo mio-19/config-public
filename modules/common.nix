@@ -32,7 +32,7 @@
         programs.fish.enable = true;
         programs.fish.useBabelfish = true;
 
-        system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
+        system.configurationRevision = self.sourceInfo.shortRev or self.dirtyShortRev or null;
 
         nixpkgs.config.allowUnfree = false;
         nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
