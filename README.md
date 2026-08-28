@@ -19,10 +19,11 @@ If a file starts with `# THIS IS A STUB`, it means that the whole file has been 
 --option substituters 'https://cache.nixos.org/ https://mio-config.cachix.org' --option extra-trusted-public-keys mio-config.cachix.org-1:VM6OZi+PC/ENBDf5ogaArQMgVUvJNvAL5t9ayXZdCIg=
 ```
 
-<https://gist.github.com/lxl66566/697db0cccd04b7247dc9a0cfb96d328c>
+<https://gist.github.com/lxl66566/697db0cccd04b7247dc9a0cfb96d328c> <https://github.com/ccicnce113424/nixos-config/blob/main/lib/apply-patches-cow.nix>
 
 ```zsh
 wget https://gist.github.com/lxl66566/697db0cccd04b7247dc9a0cfb96d328c/raw/aa9d7fe25bedb3458866ac09bec9718402b5ebea/nixfollows.py
+wget https://github.com/ccicnce113424/nixos-config/raw/refs/heads/main/lib/apply-patches-cow.nix
 ```
 
 ## LLM policy
