@@ -261,13 +261,15 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
     };
-    claude-desktop = {
-      # pin slop to avoid many rebuilds
-      # https://github.com/aaddrick/claude-desktop-debian
-      url = "github:aaddrick/claude-desktop-debian/v3.2.2+claude1.32885.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
+    /*
+      claude-desktop = {
+        # pin slop to avoid many rebuilds
+        # https://github.com/aaddrick/claude-desktop-debian
+        url = "github:aaddrick/claude-desktop-debian/v3.2.2+claude1.32885.1";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs.flake-parts.follows = "flake-parts";
+      };
+    */
     nix-bwrapper = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:Naxdy/nix-bwrapper/49be156ec0ffff4afee501746ff965a5c4776bbd";

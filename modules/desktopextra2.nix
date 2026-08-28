@@ -62,7 +62,7 @@
             #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bambu-studio-open
             # unfree:
-            inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
           ])
           ++ (map cleanPkg [
             #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
