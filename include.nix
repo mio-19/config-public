@@ -198,7 +198,7 @@ customize
         "librewolf-bin"
         "librewolf-bin-unwrapped"
         "source" # plezy
-        "splayer"
+        "splayer-next"
         "tor-browser"
         "librewolf" # librewolf-bin
         "antlr"

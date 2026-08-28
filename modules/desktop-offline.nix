@@ -146,7 +146,7 @@
             #piliplus # bluescreen
             millisecond
             audacious
-            splayer
+            splayer-next
             netease-cloud-music-gtk
             notepad-next
             qpwgraph
