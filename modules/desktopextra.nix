@@ -101,6 +101,16 @@
         programs.zoom-us.enable = true;
 
         programs.firejail.wrappedBinaries = with pkgs; {
+          chatgpt = {
+            executable = "${hardenedPkg chatgpt}/bin/${chatgpt.meta.mainProgram}";
+            profile = "${
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
+            }/etc/firejail/chatgpt.profile";
+            extraArgs = [
+              # https://github.com/netblue30/firejail/issues/6681#issuecomment-2725161673
+              "--ignore=private-dev"
+            ];
+          };
           mscore = {
             executable = "${hardenedPkg nur.repos.mio.musescore-alex}/bin/mscore";
             profile = "${pkgs.firejail}/etc/firejail/musescore.profile";
