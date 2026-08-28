@@ -413,32 +413,6 @@
         "type": "github"
       }
     },
-    "claude-desktop": {
-      "inputs": {
-        "flake-parts": [
-          "nixos",
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixos",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1787105852,
-        "narHash": "sha256-trsSmQ//cHemNcHPpfQ+k8qFQGL5YE87dAQqyx/HNuc=",
-        "owner": "aaddrick",
-        "repo": "claude-desktop-debian",
-        "rev": "55478e3b813d9b8d448936f867232af033c39999",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aaddrick",
-        "ref": "v3.2.2+claude1.32885.1",
-        "repo": "claude-desktop-debian",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1775790182,
@@ -2079,7 +2053,6 @@
         "chaotic": "chaotic_2",
         "chaotic_pin": "chaotic_pin",
         "chinese-fonts-overlay": "chinese-fonts-overlay_2",
-        "claude-desktop": "claude-desktop",
         "den": "den_2",
         "deploy-rs": "deploy-rs_2",
         "disko": "disko",
