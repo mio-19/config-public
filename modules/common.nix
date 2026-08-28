@@ -207,10 +207,8 @@
         home-manager.backupFileExtension =
           "hm-backup-"
           + (
-            if config.system.configurationRevision != null then
-              config.system.configurationRevision
-            else
-              "unknown"
+            assert config.system.configurationRevision != null;
+            config.system.configurationRevision
           );
 
         # https://wiki.nixos.org/wiki/Firejail
