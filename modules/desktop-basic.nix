@@ -464,11 +464,14 @@
           style = "breeze";
         };
 
+        # Den aspect `includes` does not forward `homeManager` to HM users; deliver
+        # desktopusers (vicinae, plasma-manager hotkeys, etc.) via sharedModules
+        # (same pattern as plasma-focused-brightness.nix).
+        home-manager.sharedModules = [
+          ../nixos/desktopusers.nix
+        ];
+
         # TODO: solve https://discussion.fedoraproject.org/t/correct-way-to-theme-kde-apps-on-gnome/133996
       };
-
-    homeManager = {
-      imports = [ ../nixos/desktopusers.nix ];
-    };
   };
 }
