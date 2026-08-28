@@ -12,14 +12,31 @@
 
   i18n.inputMethod = {
     type = "fcitx5";
-    fcitx5.waylandFrontend = true;
     enable = enable-fcitx;
-    fcitx5.fcitx5-with-addons = pkgs.kdePackages.fcitx5-with-addons;
-    fcitx5.addons = with pkgs; [
-      qt6Packages.fcitx5-chinese-addons
-      fcitx5-gtk
-      fcitx5-nord
-    ];
+    fcitx5 = {
+      waylandFrontend = true;
+      fcitx5-with-addons = pkgs.kdePackages.fcitx5-with-addons;
+      addons = with pkgs; [
+        qt6Packages.fcitx5-chinese-addons
+        fcitx5-gtk
+        fcitx5-nord
+      ];
+      # On KDE Wayland, KWin should launch fcitx5 via Virtual Keyboard settings.
+      systemd.enable = !(osConfig.services.desktopManager.plasma6.enable or false);
+      settings.addons.classicui.globalSection =
+        if osConfig.services.desktopManager.plasma6.enable then
+          {
+            Theme = "plasma";
+            DarkTheme = "plasma";
+            UseDarkTheme = true;
+          }
+        else
+          {
+            Theme = "Nord-Light";
+            DarkTheme = "Nord-Dark";
+            UseDarkTheme = true;
+          };
+    };
   };
 
   # https://discourse.nixos.org/t/enabling-gnome-extensions-with-home-manager/59701/2
