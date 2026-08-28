@@ -50,7 +50,13 @@ if [[ "$ACTIVE_OUTPUT" == eDP* ]] || [[ "$ACTIVE_OUTPUT" == LVDS* ]]; then
     fi
   done
 elif [[ -n "$ACTIVE_OUTPUT" ]]; then
-  EDID_FILE=$(ls /sys/class/drm/*-"$ACTIVE_OUTPUT"/edid 2>/dev/null | head -n 1)
+  EDID_FILE=""
+  for candidate in /sys/class/drm/*-"$ACTIVE_OUTPUT"/edid; do
+    if [[ -f "$candidate" ]]; then
+      EDID_FILE=$candidate
+      break
+    fi
+  done
 
   BEST_MATCH=""
   HIGHEST_SCORE=0
