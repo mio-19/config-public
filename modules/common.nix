@@ -32,7 +32,7 @@
         programs.fish.enable = true;
         programs.fish.useBabelfish = true;
 
-        system.configurationRevision = self.sourceInfo.shortRev or self.dirtyShortRev or null;
+        system.configurationRevision = inputs.self.sourceInfo.shortRev or inputs.self.dirtyShortRev or null;
 
         nixpkgs.config.allowUnfree = false;
         nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
@@ -207,8 +207,8 @@
         home-manager.backupFileExtension =
           "hm-backup-"
           + (
-            assert (self.sourceInfo.shortRev or self.dirtyShortRev) != null;
-            (self.sourceInfo.shortRev or self.dirtyShortRev)
+            assert (inputs.self.sourceInfo.shortRev or inputs.self.dirtyShortRev) != null;
+            (inputs.self.sourceInfo.shortRev or inputs.self.dirtyShortRev)
           );
 
         # https://wiki.nixos.org/wiki/Firejail
