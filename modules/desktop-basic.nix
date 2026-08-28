@@ -42,6 +42,7 @@
     includes = [
       den.aspects.airplay-audio
       den.aspects.middle-click-scroll
+      den.aspects.plasma-focused-brightness
     ];
     nixos =
       args@{

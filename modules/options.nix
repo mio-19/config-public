@@ -191,6 +191,27 @@ let
             Plasma and browsers modes conflict on the middle button; pick one.
           '';
         };
+        plasma_focused_brightness = lib.mkOption {
+          type = lib.types.submodule {
+            options = {
+              enable = lib.mkEnableOption "focused-display monitor brightness hotkeys on KDE Plasma";
+              stepPercent = lib.mkOption {
+                type = lib.types.int;
+                default = 5;
+                description = "Brightness step size as a percentage of each display's maximum.";
+              };
+            };
+          };
+          default = {
+            enable = true;
+            stepPercent = 5;
+          };
+          description = ''
+            On KDE Plasma 6, hardware brightness keys normally adjust every connected
+            monitor. When enabled, PowerDevil's default shortcuts are disabled and
+            XF86MonBrightnessUp/Down target only the focused display.
+          '';
+        };
       };
 
       config = {
