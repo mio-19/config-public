@@ -13,62 +13,56 @@ let
       ...
     }:
     let
+      enabled =
+        (osConfig.plasma_focused_brightness.enable or false)
+        && (osConfig.services.desktopManager.plasma6.enable or false);
       qdbus = lib.getExe' pkgs.kdePackages.qttools "qdbus";
+      stepPercent = osConfig.plasma_focused_brightness.stepPercent or 5;
+      focusedBrightnessScript = pkgs.writeShellApplication {
+        name = "plasma-focused-brightness";
+        runtimeInputs = with pkgs; [
+          kdePackages.qttools
+          bash
+          coreutils
+          gnugrep
+        ];
+        text = ''
+          export QDBUS=${qdbus}
+          export STEP_PERCENT=${toString stepPercent}
+          ${builtins.readFile ./_plasma-focused-brightness/smart_brightness.sh}
+        '';
+      };
     in
-    {
-      programs.plasma =
-        lib.mkIf
-          (
-            (osConfig.plasma_focused_brightness.enable or false)
-            && (osConfig.services.desktopManager.plasma6.enable or false)
-          )
-          (
-            let
-              stepPercent = osConfig.plasma_focused_brightness.stepPercent or 5;
+    lib.mkIf enabled {
+      home.packages = [ focusedBrightnessScript ];
 
-              focusedBrightnessScript = pkgs.writeShellApplication {
-                name = "plasma-focused-brightness";
-                runtimeInputs = with pkgs; [
-                  kdePackages.qttools
-                  bash
-                  coreutils
-                  gnugrep
-                ];
-                text = ''
-                  export QDBUS=${qdbus}
-                  export STEP_PERCENT=${toString stepPercent}
-                  ${builtins.readFile ./_plasma-focused-brightness/smart_brightness.sh}
-                '';
-              };
-            in
-            {
-              enable = true;
+      programs.plasma = {
+        enable = true;
 
-              shortcuts = {
-                org_kde_powerdevil = {
-                  "Increase Screen Brightness" = "none";
-                  "Decrease Screen Brightness" = "none";
-                };
-              };
+        shortcuts = {
+          org_kde_powerdevil = {
+            "Increase Screen Brightness" = "none";
+            "Decrease Screen Brightness" = "none";
+          };
+        };
 
-              hotkeys.commands = {
-                "increase-focused-brightness" = {
-                  name = "Increase Focused Display Brightness";
-                  comment = "increase-focused-brightness";
-                  key = "XF86MonBrightnessUp";
-                  command = "${focusedBrightnessScript}/bin/plasma-focused-brightness up";
-                  logs.enabled = false;
-                };
-                "decrease-focused-brightness" = {
-                  name = "Decrease Focused Display Brightness";
-                  comment = "decrease-focused-brightness";
-                  key = "XF86MonBrightnessDown";
-                  command = "${focusedBrightnessScript}/bin/plasma-focused-brightness down";
-                  logs.enabled = false;
-                };
-              };
-            }
-          );
+        hotkeys.commands = {
+          "increase-focused-brightness" = {
+            name = "Increase Focused Display Brightness";
+            comment = "increase-focused-brightness";
+            key = "XF86MonBrightnessUp";
+            command = "${focusedBrightnessScript}/bin/plasma-focused-brightness up";
+            logs.enabled = false;
+          };
+          "decrease-focused-brightness" = {
+            name = "Decrease Focused Display Brightness";
+            comment = "decrease-focused-brightness";
+            key = "XF86MonBrightnessDown";
+            command = "${focusedBrightnessScript}/bin/plasma-focused-brightness down";
+            logs.enabled = false;
+          };
+        };
+      };
     };
 in
 {
