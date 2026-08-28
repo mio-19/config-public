@@ -395,7 +395,6 @@
             patches = [
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
-              # nixos/firefox: make variant librewolf https://github.com/NixOS/nixpkgs/pull/467398
               /*
                 (fetchpatch {
                   name = "local-ai: 2.28.0 -> 4.x";
@@ -403,6 +402,11 @@
                   hash = "sha256-kAzQNvxbAsYGKZ+NUTQPsPqtjFxVdIbj1us+Znt+7EU=";
                 })
               */
+              (fetchpatch {
+                name = "nixos/firefox: make variant librewolf";
+                url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
+                hash = "sha256-qkUXGG0GEe0vC1/0J/DUAPPM9Oj71vRZ24sKmmLtYAQ=";
+              })
               (fetchurl {
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
