@@ -147,9 +147,8 @@ customize
         "${inputs.nixpkgs}/pkgs/by-name/ce/celeste64/deps.json"
         "${inputs.nixpkgs}/pkgs/by-name/pi/pinta/deps.json"
         "${inputs.nixpkgs}/pkgs/by-name/di/discordchatexporter-desktop/deps.json"
-        "${
-          inputs.nur.legacyPackages."${pkgs.stdenv.hostPlatform.system}".repo-sources.mio
-        }/by-name/di/discordchatexporter-desktop_patched/deps.json"
+        # inputs.nur.legacyPackages."${pkgs.stdenv.hostPlatform.system}".repo-sources.mio
+        "${inputs.mio}/by-name/di/discordchatexporter-desktop_patched/deps.json"
       ];
       allowed = [
         "chatbox"
