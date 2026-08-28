@@ -21,8 +21,6 @@
         fcitx5-gtk
         fcitx5-nord
       ];
-      # On KDE Wayland, KWin should launch fcitx5 via Virtual Keyboard settings.
-      systemd.enable = !(osConfig.services.desktopManager.plasma6.enable or false);
       settings.addons.classicui.globalSection =
         if osConfig.services.desktopManager.plasma6.enable then
           {
