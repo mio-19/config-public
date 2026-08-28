@@ -3,6 +3,9 @@
 # Plasma 6 hardware brightness keys adjust every connected display by default.
 # Disable PowerDevil's global shortcuts and bind XF86MonBrightnessUp/Down to a
 # script that targets the focused display via org.kde.ScreenBrightness D-Bus.
+#
+# Script adapted from KDE Discuss (llIlllIll, 2026-04):
+# https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4
 { den, ... }:
 {
   den.aspects.plasma-focused-brightness = {
@@ -32,55 +35,129 @@
                       name = "plasma-focused-brightness";
                       runtimeInputs = with pkgs; [
                         kdePackages.qttools
-                        kdePackages.libkscreen
-                        kdotool
-                        jq
                         bash
+                        coreutils
+                        gnugrep
                       ];
                       text = ''
-                        ACTION="''${1:-up}"
+                        set -euo pipefail
+
+                        DIRECTION="''${1:-}"
                         STEP_PERCENT=${toString stepPercent}
 
-                        DISPLAY_NODES=$(qdbus org.kde.ScreenBrightness /org/kde/ScreenBrightness org.kde.ScreenBrightness.DisplaysDBusNames 2>/dev/null || true)
-                        if [ -z "$DISPLAY_NODES" ]; then
+                        if [[ "$DIRECTION" != "up" && "$DIRECTION" != "down" ]]; then
+                          echo "usage: plasma-focused-brightness up|down" >&2
+                          exit 1
+                        fi
+
+                        if command -v qdbus6 >/dev/null 2>&1; then
+                          QDBUS=qdbus6
+                        elif command -v qdbus >/dev/null 2>&1; then
+                          QDBUS=qdbus
+                        else
+                          echo "qdbus6 or qdbus not found" >&2
+                          exit 1
+                        fi
+
+                        ACTIVE_OUTPUT=$("$QDBUS" org.kde.KWin /KWin activeOutputName 2>/dev/null || true)
+                        DISPLAYS=$("$QDBUS" org.kde.ScreenBrightness /org/kde/ScreenBrightness org.kde.ScreenBrightness.DisplaysDBusNames 2>/dev/null || true)
+
+                        if [[ -z "$DISPLAYS" ]]; then
                           exit 0
                         fi
 
-                        readarray -t NODES <<< "$DISPLAY_NODES"
-                        TARGET_NODE="''${NODES[0]}"
+                        get_display_prop() {
+                          local disp="''${1:?}"
+                          local prop="''${2:?}"
+                          "$QDBUS" org.kde.ScreenBrightness "/org/kde/ScreenBrightness/$disp" org.freedesktop.DBus.Properties.Get org.kde.ScreenBrightness.Display "$prop" 2>/dev/null || true
+                        }
 
-                        if [ "''${#NODES[@]}" -gt 1 ]; then
-                          FOCUSED_OUTPUT=""
-                          if kdotool getactivewindow >/dev/null 2>&1; then
-                            JSON_DATA=$(kscreen-doctor -j)
-                            FOCUSED_OUTPUT=$(echo "$JSON_DATA" | jq -r '.outputs[] | select(.enabled == true and .priority == 1) | .name')
-                          fi
+                        TARGET_DISPLAY=""
 
-                          for NODE in "''${NODES[@]}"; do
-                            LABEL=$(qdbus org.kde.ScreenBrightness "/org/kde/ScreenBrightness/$NODE" org.kde.ScreenBrightness.Display.Label 2>/dev/null || true)
-                            if [[ -n "$FOCUSED_OUTPUT" && "$LABEL" == *"$FOCUSED_OUTPUT"* ]]; then
-                              TARGET_NODE="$NODE"
+                        # Map KWin's active output to a PowerDevil ScreenBrightness node.
+                        if [[ "$ACTIVE_OUTPUT" == eDP* ]] || [[ "$ACTIVE_OUTPUT" == LVDS* ]]; then
+                          for disp in $DISPLAYS; do
+                            if [[ "$(get_display_prop "$disp" "IsInternal")" == "true" ]]; then
+                              TARGET_DISPLAY=$disp
                               break
                             fi
                           done
+                        elif [[ -n "$ACTIVE_OUTPUT" ]]; then
+                          EDID_FILE=$(ls /sys/class/drm/*-"$ACTIVE_OUTPUT"/edid 2>/dev/null | head -n 1)
+
+                          BEST_MATCH=""
+                          HIGHEST_SCORE=0
+                          EDID_TEXT=""
+                          if [[ -f "$EDID_FILE" ]]; then
+                            EDID_TEXT=$(tr -cd '[:print:]' < "$EDID_FILE")
+                          fi
+
+                          for disp in $DISPLAYS; do
+                            if [[ "$(get_display_prop "$disp" "IsInternal")" == "true" ]]; then
+                              continue
+                            fi
+
+                            LABEL=$(get_display_prop "$disp" "Label")
+                            if [[ -n "$LABEL" && -n "$EDID_TEXT" ]]; then
+                              read -ra WORDS <<< "$LABEL"
+                              NUM_WORDS=''${#WORDS[@]}
+                              SUBSTRING=""
+                              CURRENT_MATCH_LEN=0
+
+                              for (( i=NUM_WORDS-1; i>=0; i-- )); do
+                                if [[ -z "$SUBSTRING" ]]; then
+                                  SUBSTRING="''${WORDS[i]}"
+                                else
+                                  SUBSTRING="''${WORDS[i]} $SUBSTRING"
+                                fi
+
+                                if echo "$EDID_TEXT" | grep -i -q "$SUBSTRING"; then
+                                  CURRENT_MATCH_LEN=''${#SUBSTRING}
+                                else
+                                  break
+                                fi
+                              done
+
+                              if [[ "$CURRENT_MATCH_LEN" -gt "$HIGHEST_SCORE" ]]; then
+                                HIGHEST_SCORE=$CURRENT_MATCH_LEN
+                                BEST_MATCH=$disp
+                              fi
+                            fi
+                          done
+
+                          if [[ "$HIGHEST_SCORE" -gt 0 ]]; then
+                            TARGET_DISPLAY=$BEST_MATCH
+                          fi
                         fi
 
-                        DBUS_PATH="/org/kde/ScreenBrightness/$TARGET_NODE"
-                        CURRENT=$(qdbus org.kde.ScreenBrightness "$DBUS_PATH" org.kde.ScreenBrightness.Display.Brightness 2>/dev/null)
-                        MAX=$(qdbus org.kde.ScreenBrightness "$DBUS_PATH" org.kde.ScreenBrightness.Display.BrightnessMax 2>/dev/null || echo 100)
+                        if [[ -z "$TARGET_DISPLAY" ]]; then
+                          read -r TARGET_DISPLAY _ <<< "$DISPLAYS"
+                        fi
+
+                        if [[ -z "$TARGET_DISPLAY" ]]; then
+                          exit 0
+                        fi
+
+                        CURRENT=$(get_display_prop "$TARGET_DISPLAY" "Brightness")
+                        MAX=$(get_display_prop "$TARGET_DISPLAY" "MaxBrightness")
+
+                        if [[ -z "$CURRENT" ]] || [[ -z "$MAX" ]]; then
+                          exit 0
+                        fi
 
                         STEP=$(( MAX * STEP_PERCENT / 100 ))
-                        if [ "$STEP" -lt 1 ]; then STEP=1; fi
+                        if [[ "$STEP" -eq 0 ]]; then STEP=1; fi
 
-                        if [ "$ACTION" == "up" ]; then
-                          NEW_VALUE=$(( CURRENT + STEP ))
-                          if [ "$NEW_VALUE" -gt "$MAX" ]; then NEW_VALUE="$MAX"; fi
+                        if [[ "$DIRECTION" == "up" ]]; then
+                          NEW_VAL=$((CURRENT + STEP))
                         else
-                          NEW_VALUE=$(( CURRENT - STEP ))
-                          if [ "$NEW_VALUE" -lt 0 ]; then NEW_VALUE=0; fi
+                          NEW_VAL=$((CURRENT - STEP))
                         fi
 
-                        qdbus org.kde.ScreenBrightness "$DBUS_PATH" org.kde.ScreenBrightness.Display.SetBrightness "$NEW_VALUE" 0
+                        if [[ "$NEW_VAL" -lt 0 ]]; then NEW_VAL=0; fi
+                        if [[ "$NEW_VAL" -gt "$MAX" ]]; then NEW_VAL=$MAX; fi
+
+                        "$QDBUS" org.kde.ScreenBrightness "/org/kde/ScreenBrightness/$TARGET_DISPLAY" org.kde.ScreenBrightness.Display.SetBrightness "$NEW_VAL" 0
                       '';
                     };
                   in
