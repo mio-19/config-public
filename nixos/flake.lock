@@ -764,11 +764,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787872008,
-        "narHash": "sha256-oQ3zF08XwGsK1HE66fyg/iwey0h2vRVq+zJZUaMrybg=",
+        "lastModified": 1787886634,
+        "narHash": "sha256-WQ+fVurYouDctSTwky8e5s19wkRyI6bF4OGkQiKZUf8=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "ffab3ab39b36f476fffce229b317fb25fdb07bea",
+        "rev": "578a0ac347cd737eca8e6b872741c53cf53e5d5e",
         "type": "github"
       },
       "original": {
@@ -832,11 +832,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787882362,
-        "narHash": "sha256-1LVxLVU/awtapS1tRu21H1TrviLRpoAj6xAZVzcBmyI=",
+        "lastModified": 1787892476,
+        "narHash": "sha256-f/PUZoXrvVd/oaz7BhI47bL1mzWWGFBS8NJBzR+XA7g=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "5721ed9d75031d43399efc39987a15fd4ecf5a6d",
+        "rev": "629647f23daa702082350e5717f8be3eb6f86a5c",
         "type": "github"
       },
       "original": {
@@ -1601,10 +1601,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787882459,
-        "narHash": "sha256-7KA3YI348fBE4o6YoQ5hJsjDZ4swNCWMmhqX8eQPHls=",
+        "lastModified": 1787891439,
+        "narHash": "sha256-TL6aylRD/tIYIXrowpedK0D6RtUXgacz8GM21TPwWbU=",
         "ref": "refs/heads/main",
-        "rev": "6700876b62c2dcc2a4ea929a16b9c3e5ae9f313a",
+        "rev": "474e00f553877ee3d4775830df055204625d7d12",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
