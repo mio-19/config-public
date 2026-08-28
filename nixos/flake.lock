@@ -808,11 +808,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787919190,
-        "narHash": "sha256-75jDU3LFp2RFujUsBxDVheoucnULLPaG/ntZ/RO1HmE=",
+        "lastModified": 1787935305,
+        "narHash": "sha256-xcm+wfhO65eKod+mA5WvhMG2lFO7C2JHu5gtr9G5Nv0=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "9e24501c73cd7f7990fb6d3dd8e81f6c6581c869",
+        "rev": "46c0a5c68990ea7dda0da3689e05647278c25c78",
         "type": "github"
       },
       "original": {
@@ -1577,10 +1577,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787923245,
-        "narHash": "sha256-EB8Ut4oG360df8tS9p/pHXitA/gRQ81UZcyFAlZ/1Zc=",
+        "lastModified": 1787935434,
+        "narHash": "sha256-suEAKUnuvUCLDSrxmZrZ3pslokJ405UkpJ7E3OD2Q2s=",
         "ref": "refs/heads/main",
-        "rev": "55fb6dfb97b1baf69a6ad5f23659f33ead701b4e",
+        "rev": "e02e73c6e88fa0c643769cbe317f0538699158a0",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -1857,11 +1857,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787910656,
-        "narHash": "sha256-Mpt9GELcTkG0FFfhc1F25fozRuyLWFD+G0xvl/WvACs=",
+        "lastModified": 1787935097,
+        "narHash": "sha256-gWzgaV2XtwEkkQQViFQPEitHZ0yol88j/UzTZ6aUQXw=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "5c1b98f7a0349f7288c117495b3583c37353327d",
+        "rev": "175f12e7de59b7b807459b56d94eae1a49aa69be",
         "type": "github"
       },
       "original": {
@@ -2029,10 +2029,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787834454,
-        "narHash": "sha256-jXSvqn04IOecJCvSvl8+g3PsbDVNP6qKs6dKUs/b16k=",
+        "lastModified": 1787926460,
+        "narHash": "sha256-Rf2+5+ACRsI0xBicCraxsBtfSaQ93Br0Nr22nWimkS4=",
         "ref": "refs/heads/master",
-        "rev": "dc2fd1acc537f3583744e1373597a5731ff7a6e3",
+        "rev": "04ceec130b3a935d01584d4b1a68a366919674a9",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
@@ -2328,11 +2328,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787922551,
-        "narHash": "sha256-tt862rbWTOGAud9uXbByCaPnEsXBVekR5UhvFbReTJk=",
+        "lastModified": 1787934896,
+        "narHash": "sha256-yDsK6FxQzfREDEkBvZ6rg31uqmna/V78yYOMFwP7lr4=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "b0273863a1f73923e9a92fa33a26ac34abe1381d",
+        "rev": "52955f1962061a3109b5385548a055597ec34db3",
         "type": "github"
       },
       "original": {
