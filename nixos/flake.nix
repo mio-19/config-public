@@ -384,7 +384,9 @@
       perSystem =
         { pkgs, ... }:
         let
-          nixpkgs-drv = pkgs.applyPatches {
+          # inherit (pkgs) applyPatches;
+          applyPatches = pkgs.callPackage ../apply-patches-cow.nix { };
+          nixpkgs-drv = applyPatches {
             name = "nixpkgs-patched";
             src = inputs.nixpkgs;
             # PR .patch URLs track branch head, so the hash changes when the PR is updated.
@@ -525,7 +527,7 @@
               # for https://github.com/hercules-ci/flake-parts/blob/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb/modules/perSystem.nix#L113
               _type = "flake";
             };
-          nixos-avf-drv = pkgs.applyPatches {
+          nixos-avf-drv = applyPatches {
             name = "nixos-avf-patched";
             src = inputs.nixos-avf;
             patches = with pkgs; [
