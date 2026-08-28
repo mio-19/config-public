@@ -77,8 +77,6 @@
               starship = mio.starship_patched;
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin5) blender;
-              inherit (pkgs-pin7) jadx;
-              inherit (pkgs-pin4) yt-dlp;
             }
           )
         ];
