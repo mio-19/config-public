@@ -50,15 +50,17 @@ let
           "increase-focused-brightness" = {
             name = "Increase Focused Display Brightness";
             comment = "increase-focused-brightness";
-            key = "XF86MonBrightnessUp";
-            command = "${focusedBrightnessScript}/bin/plasma-focused-brightness up";
+            # KDE names hardware brightness keys "Monitor Brightness Up/Down" in
+            # kglobalshortcutsrc, not XF86MonBrightnessUp/Down.
+            key = "Monitor Brightness Up";
+            command = "plasma-focused-brightness up";
             logs.enabled = false;
           };
           "decrease-focused-brightness" = {
             name = "Decrease Focused Display Brightness";
             comment = "decrease-focused-brightness";
-            key = "XF86MonBrightnessDown";
-            command = "${focusedBrightnessScript}/bin/plasma-focused-brightness down";
+            key = "Monitor Brightness Down";
+            command = "plasma-focused-brightness down";
             logs.enabled = false;
           };
         };
