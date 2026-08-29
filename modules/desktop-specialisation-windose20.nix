@@ -106,47 +106,67 @@
             osConfig,
             config,
             lib,
+            pkgs,
             ...
           }:
           let
             inWindose20 = builtins.elem "windose20" osConfig.system.nixos.tags;
-            configHome = "${config.home.homeDirectory}/.config";
-            readConfig = path: if builtins.pathExists path then builtins.readFile path else "";
-            kdeglobals = readConfig "${configHome}/kdeglobals";
-            plasmaApplets = readConfig "${configHome}/plasma-org.kde.plasma.desktop-appletsrc";
-            windose20PlasmaDetected =
-              !inWindose20
-              && osConfig.services.desktopManager.plasma6.enable
-              && (
-                lib.hasInfix "Plasma-Overdose" kdeglobals
-                || lib.hasInfix "Plasma-Overdose" plasmaApplets
-                || lib.hasInfix "fusion-pixel-10px-proportional-latin" kdeglobals
-                || lib.hasInfix "windose20" plasmaApplets
-                || builtins.pathExists "${configHome}/konsole/Plasma-Overdose.profile"
-              );
-            restorePrio = lib.mkOverride 0;
-          in
-          lib.mkIf windose20PlasmaDetected {
-            programs.plasma = {
-              workspace = {
-                lookAndFeel = restorePrio "org.kde.breeze.desktop";
-                cursor = {
-                  theme = restorePrio "breeze_cursors";
-                  size = 24;
-                };
-                wallpaper = restorePrio osConfig.system_background;
-              };
-            };
+            systemBackground = toString osConfig.system_background;
+            windose20RestoreScript = ''
+              set -eu
+              config_home="${config.xdg.configHome}"
 
-            home.activation.windose20RestoreCleanup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              rm -f "${configHome}/konsole/Plasma-Overdose.profile"
+              windose20_config_detected() {
+                for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc"; do
+                  [ -f "$f" ] || continue
+                  if grep -qE 'Plasma-Overdose|fusion-pixel-10px-proportional-latin|windose20' "$f" 2>/dev/null; then
+                    return 0
+                  fi
+                done
+                [ -f "$config_home/konsole/Plasma-Overdose.profile" ] && return 0
+                return 1
+              }
+
+              if ! windose20_config_detected; then
+                exit 0
+              fi
+
+              kdeglobals="$config_home/kdeglobals"
+              if [ -f "$kdeglobals" ]; then
+                ${pkgs.gnused}/bin/sed -i \
+                  -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/g' \
+                  -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/g' \
+                  -e 's|theme=Plasma-Overdose|theme=breeze_cursors|g' \
+                  "$kdeglobals"
+              fi
+
+              rm -f "$config_home/konsole/Plasma-Overdose.profile"
               for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
-                target="${configHome}/$rel"
+                target="$config_home/$rel"
                 if [ -e "$target" ] && grep -qF 'share/windose20/' "$target" 2>/dev/null; then
                   rm -f "$target"
                 fi
               done
             '';
+          in
+          lib.mkIf (!inWindose20 && osConfig.services.desktopManager.plasma6.enable) {
+            # Eval-time gate uses only the boot specialisation tag. Detection and
+            # restore run during home-manager activation on the live profile.
+            home.activation.windose20RestoreBeforePlasma = lib.hm.dag.entryBefore [
+              "writeBoundary"
+            ] windose20RestoreScript;
+
+            home.activation.windose20RestoreAfterPlasma = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+              windose20RestoreScript
+              + ''
+                if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel" ]; then
+                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel org.kde.breeze.desktop || true
+                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-cursortheme breeze_cursors || true
+                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage \
+                    --fill-mode preserveAspectCrop "${systemBackground}" || true
+                fi
+              ''
+            );
           };
       in
       {
