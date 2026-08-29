@@ -6,6 +6,10 @@
 //! Extensions beyond that script: hold-to-repeat stepping (detached worker process,
 //! hold-delay debounce for clean single taps), target-display caching for fast
 //! repeats, and typed D-Bus calls via zbus.
+//!
+//! Hold-repeat keeps a detached worker alive while KDE re-fires the global shortcut
+//! on keyboard repeat (System Settings → Keyboard → Key repeat). Each refire runs a
+//! new parent process that applies one step; the worker only holds the repeat lock.
 
 use anyhow::{Context, Result, bail};
 use fs2::FileExt;
@@ -28,9 +32,8 @@ const KWIN_INTERFACE: &str = "org.kde.KWin";
 const PROPERTIES_INTERFACE: &str = "org.freedesktop.DBus.Properties";
 const WORKER_ENV: &str = "PLASMA_FOCUSED_BRIGHTNESS_WORKER";
 
-const HOLD_DELAY: Duration = Duration::from_millis(400);
-const REPEAT_INTERVAL: Duration = Duration::from_millis(80);
-const REPEAT_GRACE: Duration = Duration::from_millis(500);
+const REPEAT_GRACE: Duration = Duration::from_millis(700);
+const POLL_INTERVAL: Duration = Duration::from_millis(30);
 const TARGET_CACHE_TTL: Duration = Duration::from_millis(2000);
 const DEFAULT_STEP_PERCENT: u32 = 5;
 
@@ -343,7 +346,7 @@ fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
     Ok(())
 }
 
-fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
+fn run_hold_repeat_worker(_connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
     let stamp_file = config
         .state_dir
         .join(format!("{}.stamp", direction_label(direction)));
@@ -361,17 +364,9 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
         return Ok(());
     }
 
-    let baseline_stamp = read_stamp(&stamp_file);
-    thread::sleep(HOLD_DELAY);
-
-    let stamp_after_delay = read_stamp(&stamp_file);
-    if stamp_after_delay == baseline_stamp {
-        // Single click: parent already applied one step; no follow-up ramp.
-        return Ok(());
-    }
-
-    // Skip stamps the parent already handled on recent key events.
-    let mut last_handled = stamp_after_delay;
+    // Keep the lock alive while KDE re-fires the shortcut (system key-repeat delay).
+    // Each refire is a new parent process that adjusts once; we only track stamp updates.
+    let mut last_stamp = read_stamp(&stamp_file);
 
     loop {
         let stamp = read_stamp(&stamp_file);
@@ -381,12 +376,11 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
             break;
         }
 
-        if stamp != last_handled {
-            let _ = adjust_brightness_once(connection, config, direction);
-            last_handled = stamp;
+        if stamp != last_stamp {
+            last_stamp = stamp;
         }
 
-        thread::sleep(REPEAT_INTERVAL);
+        thread::sleep(POLL_INTERVAL);
     }
 
     Ok(())
