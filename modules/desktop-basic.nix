@@ -295,7 +295,6 @@
             # https://github.com/9dkc/dotfiles/blob/cbbfeb63729a97d735edf033eaf1f99f6ac957e7/modules/home/desktop/kde/kwin.nix#L2C26-L2C45
             #kde-rounded-corners # no: broken with vicinae dialog
             #whitesur-kde # no: buggy
-            plasma-overdose-kde-theme
             # https://github.com/tdortman/dotfiles/blob/c6811906d5c5c775b45a772e5e71bab3a305bef2/nix/modules/nixos/hdr/default.nix#L91
             vulkan-hdr-layer-kwin6
           ]
