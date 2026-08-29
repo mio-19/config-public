@@ -8,3 +8,6 @@ result-*
 
 # Ignore NixOS interactive test driver history
 **/.nixos-test-history
+
+# Rust build output
+**/target/
