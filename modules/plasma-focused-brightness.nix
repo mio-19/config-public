@@ -1,5 +1,8 @@
 # Focus-aware monitor brightness hotkeys for KDE Plasma 6 (see option `plasma_focused_brightness`).
 #
+# Inspired by llIlllIll's script on KDE Discuss:
+# https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4
+#
 # Plasma 6 hardware brightness keys adjust every connected display by default.
 # Disable PowerDevil's global shortcuts and bind XF86MonBrightnessUp/Down to a
 # helper that targets the focused display via org.kde.ScreenBrightness D-Bus.

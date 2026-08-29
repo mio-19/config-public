@@ -2,7 +2,7 @@
 name = "plasma-focused-brightness"
 version = "0.1.0"
 edition = "2021"
-description = "KDE Plasma 6 focused-display brightness hotkey helper"
+description = "KDE Plasma 6 focused-display brightness hotkey helper (inspired by https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4)"
 
 [dependencies]
 anyhow = "1"
