@@ -14,6 +14,16 @@
         mio = inputs.mio.packages.${system};
         windose20 = mio.windose20 or (lib.throw "windose20 package missing from inputs.mio");
         plasmaOverdose = mio.plasma-overdose-kde-theme or pkgs.plasma-overdose-kde-theme;
+        windose20Wallpaper = "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
+        windose20Font = "fusion-pixel-10px-proportional-latin,10,-1,5,50,0,0,0,0,0";
+        windose20PlasmaloginKdeglobals = pkgs.writeText "windose20-plasmalogin-kdeglobals" ''
+          [KDE]
+          LookAndFeelPackage=Plasma-Overdose
+
+          [General]
+          font=${windose20Font}
+          fixed=${windose20Font}
+        '';
         # Beat per-user mkForce (priority 50) when the windose20 specialisation is active.
         windose20Prio = lib.mkOverride 0;
         windose20HomeModule =
@@ -39,7 +49,7 @@
                       theme = windose20Prio "Plasma-Overdose";
                       size = 24;
                     };
-                    wallpaper = windose20Prio "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
+                    wallpaper = windose20Prio windose20Wallpaper;
                   };
                   fonts = {
                     general = {
@@ -83,7 +93,7 @@
               "konsole/Plasma-Overdose.profile".text = ''
                 [Appearance]
                 ColorScheme=Plasma-Overdose
-                Font=fusion-pixel-10px-proportional-latin,10,-1,5,50,0,0,0,0,0
+                Font=${windose20Font}
 
                 [Background]
                 BackgroundImage=${windose20}/share/windose20/pngs/JINEBG.png
@@ -109,10 +119,37 @@
           environment.systemPackages = [
             windose20
             plasmaOverdose
+          ]
+          ++ lib.optionals config.services.displayManager.sddm.enable [
+            (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+              [General]
+              background=${windose20Wallpaper}
+            '')
           ];
 
           environment.etc."xdg/fastfetch/config.jsonc".source =
             "${windose20}/share/windose20/configs/fastfetch.jsonc";
+
+          services.displayManager.plasma-login-manager.settings =
+            lib.mkIf config.services.displayManager.plasma-login-manager.enable
+              {
+                Greeter.WallpaperPluginId = "org.kde.image";
+                "Greeter/Wallpaper/org.kde.image/General" = {
+                  Image = "file://${windose20Wallpaper}";
+                  FillMode = 1; # tiled, matching the Plasma workspace wallpaper
+                };
+              };
+
+          system.activationScripts.windose20Plasmalogin =
+            lib.mkIf config.services.displayManager.plasma-login-manager.enable
+              {
+                text = ''
+                  if [ -d /var/lib/plasmalogin ]; then
+                    mkdir -p /var/lib/plasmalogin/.config
+                    ln -sfn ${windose20PlasmaloginKdeglobals} /var/lib/plasmalogin/.config/kdeglobals
+                  fi
+                '';
+              };
 
           boot.plymouth = {
             enable = lib.mkForce true;
