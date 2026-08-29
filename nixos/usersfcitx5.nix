@@ -21,6 +21,17 @@
         fcitx5-gtk
         fcitx5-nord
       ];
+      ignoreUserConfig = false; # keep ~/.local/share/fcitx5 for learned pinyin dictionary
+      settings.inputMethod = {
+        GroupOrder."0" = "Default";
+        "Groups/0" = {
+          Name = "Default";
+          "Default Layout" = "us";
+          DefaultIM = "pinyin";
+        };
+        "Groups/0/Items/0".Name = "keyboard-us";
+        "Groups/0/Items/1".Name = "pinyin";
+      };
       settings.addons.classicui.globalSection =
         if osConfig.services.desktopManager.plasma6.enable then
           {

@@ -205,11 +205,16 @@
           )
         ];
         home-manager.backupFileExtension =
-          "hm-backup-"
-          + (
-            assert (inputs.self.sourceInfo.shortRev or inputs.self.dirtyShortRev) != null;
-            (inputs.self.sourceInfo.shortRev or inputs.self.dirtyShortRev)
-          );
+          let
+            flakeRev =
+              if inputs.self.sourceInfo ? shortRev && inputs.self.sourceInfo.shortRev != null then
+                inputs.self.sourceInfo.shortRev
+              else if inputs.self ? dirtyShortRev && inputs.self.dirtyShortRev != null then
+                inputs.self.dirtyShortRev
+              else
+                "dirty";
+          in
+          "hm-backup-${flakeRev}";
 
         # https://wiki.nixos.org/wiki/Firejail
         programs.firejail = {
