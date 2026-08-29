@@ -338,44 +338,42 @@ fn adjust_brightness_once(
     set_brightness(connection, &display, new_val)
 }
 
-fn run_hold_repeat_worker(config: Config, direction: Direction) {
-    let stamp_file = config.state_dir.join(format!("{}.stamp", direction_label(direction)));
-    let lock_file = config.state_dir.join(format!("{}.repeat.lock", direction_label(direction)));
+fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
+    let stamp_file = config
+        .state_dir
+        .join(format!("{}.stamp", direction_label(direction)));
+    let lock_file = config
+        .state_dir
+        .join(format!("{}.repeat.lock", direction_label(direction)));
 
-    thread::spawn(move || {
-        let Ok(lock) = OpenOptions::new()
-            .create(true)
-            .write(true)
-            .open(&lock_file)
-        else {
-            return;
-        };
-        if lock.try_lock_exclusive().is_err() {
-            return;
+    let lock = OpenOptions::new()
+        .create(true)
+        .write(true)
+        .open(&lock_file)
+        .with_context(|| format!("open {}", lock_file.display()))?;
+    if lock.try_lock_exclusive().is_err() {
+        // Another instance is already handling hold-repeat for this direction.
+        return Ok(());
+    }
+
+    let mut last_handled = 0u128;
+    loop {
+        let stamp = read_stamp(&stamp_file);
+        let now = now_ms();
+
+        if stamp != last_handled {
+            let _ = adjust_brightness_once(connection, config, direction);
+            last_handled = stamp;
         }
 
-        let connection = match Connection::session() {
-            Ok(connection) => connection,
-            Err(_) => return,
-        };
-
-        let mut last_handled = 0u128;
-        loop {
-            let stamp = read_stamp(&stamp_file);
-            let now = now_ms();
-
-            if stamp != last_handled {
-                let _ = adjust_brightness_once(&connection, &config, direction);
-                last_handled = stamp;
-            }
-
-            if now.saturating_sub(stamp) > config.repeat_grace.as_millis() {
-                break;
-            }
-
-            thread::sleep(config.repeat_interval);
+        if now.saturating_sub(stamp) > config.repeat_grace.as_millis() {
+            break;
         }
-    });
+
+        thread::sleep(config.repeat_interval);
+    }
+
+    Ok(())
 }
 
 fn direction_label(direction: Direction) -> &'static str {
@@ -398,11 +396,12 @@ fn main() -> Result<()> {
         .join(format!("{}.stamp", direction_label(direction)));
     touch_stamp(&stamp_file)?;
 
+    let connection = Connection::session().context("connect to session bus")?;
+
     if config.hold_repeat {
-        run_hold_repeat_worker(config, direction);
+        run_hold_repeat_worker(&connection, &config, direction)?;
         return Ok(());
     }
 
-    let connection = Connection::session().context("connect to session bus")?;
     adjust_brightness_once(&connection, &config, direction)
 }
