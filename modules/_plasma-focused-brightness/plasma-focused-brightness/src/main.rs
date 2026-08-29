@@ -125,6 +125,21 @@ fn value_to_string(value: &OwnedValue) -> Result<String> {
         .context("expected string dbus value")
 }
 
+fn get_root_prop(connection: &Connection, prop: &str) -> Result<OwnedValue> {
+    connection
+        .call_method(
+            Some(SCREEN_BRIGHTNESS_SERVICE),
+            SCREEN_BRIGHTNESS_ROOT,
+            Some(PROPERTIES_INTERFACE),
+            "Get",
+            &(SCREEN_BRIGHTNESS_SERVICE, prop),
+        )
+        .with_context(|| format!("Get {prop} from ScreenBrightness"))?
+        .body()
+        .deserialize()
+        .context("deserialize ScreenBrightness property")
+}
+
 fn get_display_prop(connection: &Connection, display: &str, prop: &str) -> Result<OwnedValue> {
     let path = format!("{SCREEN_BRIGHTNESS_ROOT}/{display}");
     connection
@@ -141,6 +156,14 @@ fn get_display_prop(connection: &Connection, display: &str, prop: &str) -> Resul
         .context("deserialize display property")
 }
 
+fn value_to_string_list(value: &OwnedValue) -> Result<Vec<String>> {
+    value
+        .try_clone()
+        .context("clone dbus value")?
+        .try_into()
+        .context("expected string list dbus value")
+}
+
 fn set_brightness(connection: &Connection, display: &str, value: u32) -> Result<()> {
     let path = format!("{SCREEN_BRIGHTNESS_ROOT}/{display}");
     connection
@@ -149,7 +172,7 @@ fn set_brightness(connection: &Connection, display: &str, value: u32) -> Result<
             path.as_str(),
             Some(DISPLAY_INTERFACE),
             "SetBrightness",
-            &(value, 0u32),
+            &((value as i32), 0u32),
         )
         .with_context(|| format!("SetBrightness for {display}"))?
         .body()
@@ -173,18 +196,7 @@ fn active_output_name(connection: &Connection) -> Result<String> {
 }
 
 fn display_names(connection: &Connection) -> Result<Vec<String>> {
-    connection
-        .call_method(
-            Some(SCREEN_BRIGHTNESS_SERVICE),
-            SCREEN_BRIGHTNESS_ROOT,
-            Some(SCREEN_BRIGHTNESS_SERVICE),
-            "DisplaysDBusNames",
-            &(),
-        )
-        .context("DisplaysDBusNames")?
-        .body()
-        .deserialize()
-        .context("deserialize DisplaysDBusNames")
+    value_to_string_list(&get_root_prop(connection, "DisplaysDBusNames")?)
 }
 
 fn read_edid_for_output(output: &str) -> Option<String> {
@@ -326,44 +338,42 @@ fn adjust_brightness_once(
     set_brightness(connection, &display, new_val)
 }
 
-fn run_hold_repeat_worker(config: Config, direction: Direction) {
-    let stamp_file = config.state_dir.join(format!("{}.stamp", direction_label(direction)));
-    let lock_file = config.state_dir.join(format!("{}.repeat.lock", direction_label(direction)));
+fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
+    let stamp_file = config
+        .state_dir
+        .join(format!("{}.stamp", direction_label(direction)));
+    let lock_file = config
+        .state_dir
+        .join(format!("{}.repeat.lock", direction_label(direction)));
 
-    thread::spawn(move || {
-        let Ok(lock) = OpenOptions::new()
-            .create(true)
-            .write(true)
-            .open(&lock_file)
-        else {
-            return;
-        };
-        if lock.try_lock_exclusive().is_err() {
-            return;
+    let lock = OpenOptions::new()
+        .create(true)
+        .write(true)
+        .open(&lock_file)
+        .with_context(|| format!("open {}", lock_file.display()))?;
+    if lock.try_lock_exclusive().is_err() {
+        // Another instance is already handling hold-repeat for this direction.
+        return Ok(());
+    }
+
+    let mut last_handled = 0u128;
+    loop {
+        let stamp = read_stamp(&stamp_file);
+        let now = now_ms();
+
+        if stamp != last_handled {
+            let _ = adjust_brightness_once(connection, config, direction);
+            last_handled = stamp;
         }
 
-        let connection = match Connection::session() {
-            Ok(connection) => connection,
-            Err(_) => return,
-        };
-
-        let mut last_handled = 0u128;
-        loop {
-            let stamp = read_stamp(&stamp_file);
-            let now = now_ms();
-
-            if stamp != last_handled {
-                let _ = adjust_brightness_once(&connection, &config, direction);
-                last_handled = stamp;
-            }
-
-            if now.saturating_sub(stamp) > config.repeat_grace.as_millis() {
-                break;
-            }
-
-            thread::sleep(config.repeat_interval);
+        if now.saturating_sub(stamp) > config.repeat_grace.as_millis() {
+            break;
         }
-    });
+
+        thread::sleep(config.repeat_interval);
+    }
+
+    Ok(())
 }
 
 fn direction_label(direction: Direction) -> &'static str {
@@ -386,11 +396,12 @@ fn main() -> Result<()> {
         .join(format!("{}.stamp", direction_label(direction)));
     touch_stamp(&stamp_file)?;
 
+    let connection = Connection::session().context("connect to session bus")?;
+
     if config.hold_repeat {
-        run_hold_repeat_worker(config, direction);
+        run_hold_repeat_worker(&connection, &config, direction)?;
         return Ok(());
     }
 
-    let connection = Connection::session().context("connect to session bus")?;
     adjust_brightness_once(&connection, &config, direction)
 }

@@ -75,6 +75,7 @@
             in
             {
               starship = mio.starship_patched;
+              raycast = mio.raycast_macos15;
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin5) blender;
             }
