@@ -111,8 +111,7 @@
           }:
           let
             inWindose20 = builtins.elem "windose20" osConfig.system.nixos.tags;
-            restorePrio = lib.mkOverride 0;
-            windose20RestoreCleanupScript = ''
+            windose20RestoreScript = ''
               set -eu
               config_home="${config.xdg.configHome}"
 
@@ -131,6 +130,17 @@
                 exit 0
               fi
 
+              kdeglobals="$config_home/kdeglobals"
+              if [ -f "$kdeglobals" ]; then
+                ${pkgs.gnused}/bin/sed -i \
+                  -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/g' \
+                  -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/g' \
+                  -e 's|theme=Plasma-Overdose|theme=breeze_cursors|g' \
+                  -e '/^font=fusion-pixel-10px-proportional-latin/d' \
+                  -e '/^fixed=fusion-pixel-10px-proportional-latin/d' \
+                  "$kdeglobals"
+              fi
+
               rm -f "$config_home/konsole/Plasma-Overdose.profile"
               for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
                 target="$config_home/$rel"
@@ -141,21 +151,14 @@
             '';
           in
           lib.mkIf (!inWindose20 && osConfig.services.desktopManager.plasma6.enable) {
-            # Eval-time gate uses only the boot specialisation tag. plasma-manager
-            # reapplies Breeze on normal KDE boots; activation handles leftover files
-            # when windose20 markers are still present in the live profile.
-            programs.plasma = {
-              workspace = {
-                lookAndFeel = restorePrio "org.kde.breeze.desktop";
-                cursor = {
-                  theme = restorePrio "breeze_cursors";
-                  size = 24;
-                };
-              };
-            };
+            # Eval-time gate uses only the boot specialisation tag. Detection and
+            # Breeze restore run during home-manager activation on the live profile.
+            home.activation.windose20RestoreBeforePlasma = lib.hm.dag.entryBefore [
+              "writeBoundary"
+            ] windose20RestoreScript;
 
             home.activation.windose20RestoreAfterPlasma = lib.hm.dag.entryAfter [ "writeBoundary" ] (
-              windose20RestoreCleanupScript
+              windose20RestoreScript
               + ''
                 if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel" ]; then
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel org.kde.breeze.desktop || true
