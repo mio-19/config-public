@@ -8,6 +8,8 @@ this configuration is not organized in the best way. I move my focus to other th
 
 I put time in this configuration when kde plasma or some other software hurts me.
 
+I spend time in this configuration when I am bored and unable to do other things 
+
 this is shared for debugging purposes
 
 you can see `DETAILS REMOVED` with what I feel uncomfortable sharing or unsafe to share.
