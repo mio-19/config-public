@@ -3,8 +3,8 @@
 //! Inspired by llIlllIll's script on KDE Discuss:
 //! <https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4>
 //!
-//! Extensions beyond that script: hold-to-repeat stepping, target-display
-//! caching for fast repeats, and typed D-Bus calls via zbus.
+//! Extensions beyond that script: hold-to-repeat stepping (detached worker process),
+//! target-display caching for fast repeats, and typed D-Bus calls via zbus.
 
 use anyhow::{Context, Result, bail};
 use fs2::FileExt;
@@ -12,6 +12,7 @@ use std::env;
 use std::fs::{self, File, OpenOptions};
 use std::io::Read;
 use std::path::{Path, PathBuf};
+use std::process::{Command, Stdio};
 use std::thread;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use zbus::blocking::Connection;
@@ -24,6 +25,7 @@ const KWIN_SERVICE: &str = "org.kde.KWin";
 const KWIN_PATH: &str = "/KWin";
 const KWIN_INTERFACE: &str = "org.kde.KWin";
 const PROPERTIES_INTERFACE: &str = "org.freedesktop.DBus.Properties";
+const WORKER_ENV: &str = "PLASMA_FOCUSED_BRIGHTNESS_WORKER";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum Direction {
@@ -346,6 +348,18 @@ fn adjust_brightness_once(
     set_brightness(connection, &display, new_val)
 }
 
+fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
+    Command::new(env::current_exe().context("resolve current executable")?)
+        .env(WORKER_ENV, "1")
+        .arg(direction_label(direction))
+        .stdin(Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .spawn()
+        .context("spawn hold-repeat worker")?;
+    Ok(())
+}
+
 fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
     let stamp_file = config
         .state_dir
@@ -399,17 +413,22 @@ fn main() -> Result<()> {
             .as_str(),
     )?;
     let config = Config::from_env()?;
+
+    if env::var(WORKER_ENV).is_ok() {
+        let connection = Connection::session().context("connect to session bus")?;
+        return run_hold_repeat_worker(&connection, &config, direction);
+    }
+
     let stamp_file = config
         .state_dir
         .join(format!("{}.stamp", direction_label(direction)));
     touch_stamp(&stamp_file)?;
 
-    let connection = Connection::session().context("connect to session bus")?;
-
     if config.hold_repeat {
-        run_hold_repeat_worker(&connection, &config, direction)?;
+        spawn_hold_repeat_worker(direction)?;
         return Ok(());
     }
 
+    let connection = Connection::session().context("connect to session bus")?;
     adjust_brightness_once(&connection, &config, direction)
 }
