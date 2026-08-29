@@ -5,7 +5,8 @@
 #
 # Plasma 6 hardware brightness keys adjust every connected display by default.
 # Disable PowerDevil's global shortcuts and bind Monitor Brightness Up/Down to a
-# helper that targets the focused display via org.kde.ScreenBrightness D-Bus.
+# Rust helper that targets the focused display via org.kde.ScreenBrightness D-Bus
+# and ramps on hold via evdev key-state tracking.
 { den, ... }:
 let
   homeModule =
@@ -75,7 +76,7 @@ in
               homeModule
             ];
 
-        # Hold-repeat reads /dev/input for brightness key state.
+        # Hold-repeat reads /dev/input; primary desktop user on NixOS hosts.
         users.users.user.extraGroups = lib.mkIf (
           config.plasma_focused_brightness.enable && config.services.desktopManager.plasma6.enable
         ) [ "input" ];

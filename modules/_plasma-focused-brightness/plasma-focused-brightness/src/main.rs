@@ -35,8 +35,9 @@ const WORKER_ENV: &str = "PLASMA_FOCUSED_BRIGHTNESS_WORKER";
 
 const DEFAULT_REPEAT_DELAY: Duration = Duration::from_millis(600);
 const DEFAULT_REPEAT_INTERVAL: Duration = Duration::from_millis(40);
+const POLL_INTERVAL: Duration = Duration::from_millis(5);
 const TARGET_CACHE_TTL: Duration = Duration::from_millis(2000);
-const DEFAULT_STEP_PERCENT: u32 = 5;
+const STEP_PERCENT: u32 = 5;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum Direction {
@@ -59,11 +60,16 @@ impl Direction {
             Self::Down => KeyCode::KEY_BRIGHTNESSDOWN,
         }
     }
+
+    fn label(self) -> &'static str {
+        match self {
+            Self::Up => "up",
+            Self::Down => "down",
+        }
+    }
 }
 
-#[derive(Debug, Clone)]
 struct Config {
-    step_percent: u32,
     state_dir: PathBuf,
 }
 
@@ -73,7 +79,6 @@ impl Config {
             .map(PathBuf::from)
             .unwrap_or_else(|_| PathBuf::from("/tmp"));
         Self {
-            step_percent: DEFAULT_STEP_PERCENT,
             state_dir: runtime_dir.join("plasma-focused-brightness"),
         }
     }
@@ -315,7 +320,7 @@ fn adjust_brightness_once(
         return Ok(());
     }
 
-    let mut step = max.saturating_mul(config.step_percent) / 100;
+    let mut step = max.saturating_mul(STEP_PERCENT) / 100;
     if step == 0 {
         step = 1;
     }
@@ -359,6 +364,22 @@ fn key_is_pressed(devices: &[Device], key: KeyCode) -> bool {
     })
 }
 
+fn brightness_key_released(devices: &mut [Device], key: KeyCode) -> bool {
+    for device in devices {
+        let Ok(mut events) = device.fetch_events() else {
+            continue;
+        };
+        for event in events.by_ref() {
+            if let EventSummary::Key(_, code, 0) = event.destructure() {
+                if code == key {
+                    return true;
+                }
+            }
+        }
+    }
+    false
+}
+
 fn repeat_timing(devices: &[Device]) -> (Duration, Duration) {
     let Some(repeat) = devices.iter().find_map(|device| device.get_auto_repeat()) else {
         return (DEFAULT_REPEAT_DELAY, DEFAULT_REPEAT_INTERVAL);
@@ -370,13 +391,12 @@ fn repeat_timing(devices: &[Device]) -> (Duration, Duration) {
 }
 
 fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
-    // Re-exec the same binary so the worker inherits argv and session env.
     let program = env::args()
         .next()
         .context("missing argv0 for hold-repeat worker")?;
     Command::new(program)
         .env(WORKER_ENV, "1")
-        .arg(direction_label(direction))
+        .arg(direction.label())
         .stdin(Stdio::null())
         .stdout(Stdio::null())
         .stderr(Stdio::null())
@@ -388,7 +408,7 @@ fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
 fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
     let lock_file = config
         .state_dir
-        .join(format!("{}.repeat.lock", direction_label(direction)));
+        .join(format!("{}.repeat.lock", direction.label()));
 
     let lock = OpenOptions::new()
         .create(true)
@@ -401,7 +421,7 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
 
     let key = direction.brightness_key();
     let mut devices = open_brightness_devices(key);
-    if devices.is_empty() {
+    if devices.is_empty() || !key_is_pressed(&devices, key) {
         return Ok(());
     }
 
@@ -409,63 +429,25 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
         let _ = device.set_nonblocking(true);
     }
 
-    // Tap finished before the worker started: nothing more to do.
-    if !key_is_pressed(&devices, key) {
-        return Ok(());
-    }
-
     let (repeat_delay, repeat_interval) = repeat_timing(&devices);
     let started = Instant::now();
     let mut last_ramp = started;
-    let mut repeat_armed = false;
 
     loop {
-        for device in &mut devices {
-            let Ok(mut events) = device.fetch_events() else {
-                continue;
-            };
-            for event in events.by_ref() {
-                if let EventSummary::Key(_, code, value) = event.destructure() {
-                    if code != key {
-                        continue;
-                    }
-                    match value {
-                        0 => return Ok(()),
-                        2 => {
-                            let _ = adjust_brightness_once(connection, config, direction);
-                            last_ramp = Instant::now();
-                            repeat_armed = true;
-                        }
-                        1 => {}
-                        _ => {}
-                    }
-                }
-            }
-        }
-
-        if !key_is_pressed(&devices, key) {
+        if brightness_key_released(&mut devices, key) || !key_is_pressed(&devices, key) {
             return Ok(());
         }
 
         let now = Instant::now();
-        if !repeat_armed && now.duration_since(started) >= repeat_delay {
-            repeat_armed = true;
-            last_ramp = now;
-        }
-
-        if repeat_armed && now.duration_since(last_ramp) >= repeat_interval {
+        if now.duration_since(started) >= repeat_delay
+            && now.duration_since(last_ramp) >= repeat_interval
+        {
+            // Ignore transient D-Bus errors so a single failure does not abort a hold.
             let _ = adjust_brightness_once(connection, config, direction);
             last_ramp = now;
         }
 
-        thread::sleep(Duration::from_millis(5));
-    }
-}
-
-fn direction_label(direction: Direction) -> &'static str {
-    match direction {
-        Direction::Up => "up",
-        Direction::Down => "down",
+        thread::sleep(POLL_INTERVAL);
     }
 }
 
@@ -477,13 +459,12 @@ fn main() -> Result<()> {
             .as_str(),
     )?;
     let config = Config::for_session();
+    let connection = Connection::session().context("connect to session bus")?;
 
     if env::var(WORKER_ENV).is_ok() {
-        let connection = Connection::session().context("connect to session bus")?;
         return run_hold_repeat_worker(&connection, &config, direction);
     }
 
-    let connection = Connection::session().context("connect to session bus")?;
     adjust_brightness_once(&connection, &config, direction)?;
     spawn_hold_repeat_worker(direction)?;
     Ok(())
