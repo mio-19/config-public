@@ -44,8 +44,8 @@ let
         };
         use_librewolf_bin = lib.mkOption {
           type = lib.types.bool;
-          default = if isDarwin then false else !pkgs.stdenv.hostPlatform.isx86_64;
-          description = "use librewolf-bin instead of building from source.";
+          default = !pkgs.stdenv.hostPlatform.isDarwin && !pkgs.stdenv.hostPlatform.isx86_64;
+          description = "Use librewolf-bin instead of building from source (Linux only).";
         };
         librewolf_firejail = lib.mkOption {
           type = lib.types.bool;
