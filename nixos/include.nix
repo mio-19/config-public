@@ -494,6 +494,26 @@ let
 
       cudaSupport = osConfig.nixpkgs.config.cudaSupport or false;
 
+      nixpkgsPatch_backup =
+        nixpkgs0:
+        let
+          nixpkgs-drv = pkgs.applyPatches {
+            name = "nixpkgs-patched";
+            src = nixpkgs0;
+            patches = with pkgs; [
+            ];
+          };
+          nixpkgs =
+            (import "${nixpkgs-drv}/flake.nix").outputs {
+              self = nixpkgs;
+            }
+            // {
+              outPath = toString nixpkgs-drv;
+              # for https://github.com/hercules-ci/flake-parts/blob/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb/modules/perSystem.nix#L113
+              _type = "flake";
+            };
+        in
+        nixpkgs;
       # PRs #555282 (apfs) and #555135 (ryzen-smu) merged upstream; no patches needed.
       nixpkgsPatch = nixpkgs0: nixpkgs0;
 
