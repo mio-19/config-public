@@ -82,6 +82,24 @@ in
   #'';
   home.file.".config/bluedevilglobalrc".text = "";
 
+  home.activation.applyDeclarativePlasmaWallpaper =
+    lib.mkIf osConfig.services.desktopManager.plasma6.enable
+      (
+        lib.hm.dag.entryAfter [ "writeBoundary" ] (
+          let
+            wallpaper = config.programs.plasma.workspace.wallpaper or null;
+          in
+          if wallpaper == null then
+            ""
+          else
+            ''
+              if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage" ]; then
+                ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage "${wallpaper}" || true
+              fi
+            ''
+        )
+      );
+
   programs.plasma = lib.mkIf osConfig.services.desktopManager.plasma6.enable {
     enable = osConfig.services.desktopManager.plasma6.enable;
     workspace = {

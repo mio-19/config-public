@@ -111,6 +111,16 @@
           }:
           let
             inWindose20 = builtins.elem "windose20" osConfig.system.nixos.tags;
+            plasmaWallpaper = config.programs.plasma.workspace.wallpaper or null;
+            plasmaWallpaperApplyScript =
+              if plasmaWallpaper == null then
+                ""
+              else
+                ''
+                  if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage" ]; then
+                    ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage "${plasmaWallpaper}" || true
+                  fi
+                '';
             windose20RestoreScript = ''
               set -eu
               config_home="${config.xdg.configHome}"
@@ -164,6 +174,7 @@
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel org.kde.breeze.desktop || true
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-cursortheme breeze_cursors || true
                 fi
+                ${plasmaWallpaperApplyScript}
               ''
             );
           };
