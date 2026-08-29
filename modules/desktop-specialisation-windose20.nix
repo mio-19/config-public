@@ -50,12 +50,17 @@
             };
 
             xdg.configFile = {
+              "fastfetch/config.jsonc".source = "${windose20}/share/windose20/configs/fastfetch.jsonc";
               "neofetch/config.conf".source = "${windose20}/share/windose20/configs/neofetch.conf";
               "cava/config".source = "${windose20}/share/windose20/configs/cava.conf";
               "konsole/Plasma-Overdose.profile".text = ''
                 [Appearance]
                 ColorScheme=Plasma-Overdose
                 Font=fusion-pixel-10px-proportional-latin,10,-1,5,50,0,0,0,0,0
+
+                [Background]
+                BackgroundImage=${windose20}/share/windose20/pngs/JINEBG.png
+                BackgroundImageStyle=1
               '';
             };
           };
