@@ -4,14 +4,15 @@
 //! <https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4>
 //!
 //! Extensions beyond that script: hold-to-repeat stepping (detached worker process,
-//! hold-delay debounce for clean single taps), target-display caching for fast
+//! evdev key-state tracking for clean single taps), target-display caching for fast
 //! repeats, and typed D-Bus calls via zbus.
 //!
-//! Hold-repeat keeps a detached worker alive while KDE re-fires the global shortcut
-//! on keyboard repeat (System Settings → Keyboard → Key repeat). Each refire runs a
-//! new parent process that applies one step; the worker only holds the repeat lock.
+//! KDE global shortcuts fire once per physical press; they do not re-fire on keyboard
+//! repeat. The worker watches `/dev/input` for the brightness key staying down and
+//! ramps at the kernel auto-repeat rate.
 
 use anyhow::{Context, Result, bail};
+use evdev::{Device, EventSummary, KeyCode};
 use fs2::FileExt;
 use std::env;
 use std::fs::{self, File, OpenOptions};
@@ -19,7 +20,7 @@ use std::io::Read;
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 use std::thread;
-use std::time::{Duration, SystemTime, UNIX_EPOCH};
+use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 use zbus::blocking::Connection;
 use zbus::zvariant::OwnedValue;
 
@@ -32,8 +33,8 @@ const KWIN_INTERFACE: &str = "org.kde.KWin";
 const PROPERTIES_INTERFACE: &str = "org.freedesktop.DBus.Properties";
 const WORKER_ENV: &str = "PLASMA_FOCUSED_BRIGHTNESS_WORKER";
 
-const REPEAT_GRACE: Duration = Duration::from_millis(700);
-const POLL_INTERVAL: Duration = Duration::from_millis(30);
+const DEFAULT_REPEAT_DELAY: Duration = Duration::from_millis(600);
+const DEFAULT_REPEAT_INTERVAL: Duration = Duration::from_millis(40);
 const TARGET_CACHE_TTL: Duration = Duration::from_millis(2000);
 const DEFAULT_STEP_PERCENT: u32 = 5;
 
@@ -49,6 +50,13 @@ impl Direction {
             "up" => Ok(Self::Up),
             "down" => Ok(Self::Down),
             _ => bail!("invalid direction {s:?}; use 'up' or 'down'"),
+        }
+    }
+
+    fn brightness_key(self) -> KeyCode {
+        match self {
+            Self::Up => KeyCode::KEY_BRIGHTNESSUP,
+            Self::Down => KeyCode::KEY_BRIGHTNESSDOWN,
         }
     }
 }
@@ -83,16 +91,6 @@ fn read_stamp(path: &Path) -> u128 {
         .ok()
         .and_then(|s| s.trim().parse().ok())
         .unwrap_or(0)
-}
-
-fn touch_stamp(path: &Path) -> Result<u128> {
-    fs::create_dir_all(
-        path.parent()
-            .context("stamp path must have a parent directory")?,
-    )?;
-    let stamp = now_ms();
-    fs::write(path, stamp.to_string())?;
-    Ok(stamp)
 }
 
 fn value_to_u32(value: &OwnedValue) -> Result<u32> {
@@ -330,6 +328,47 @@ fn adjust_brightness_once(
     set_brightness(connection, &display, new_val)
 }
 
+fn open_brightness_devices(key: KeyCode) -> Vec<Device> {
+    let Ok(entries) = fs::read_dir("/dev/input") else {
+        return Vec::new();
+    };
+
+    entries
+        .filter_map(Result::ok)
+        .map(|entry| entry.path())
+        .filter(|path| {
+            path.file_name()
+                .and_then(|name| name.to_str())
+                .is_some_and(|name| name.starts_with("event"))
+        })
+        .filter_map(|path| Device::open(path).ok())
+        .filter(|device| {
+            device
+                .supported_keys()
+                .is_some_and(|keys| keys.contains(key))
+        })
+        .collect()
+}
+
+fn key_is_pressed(devices: &[Device], key: KeyCode) -> bool {
+    devices.iter().any(|device| {
+        device
+            .get_key_state()
+            .ok()
+            .is_some_and(|keys| keys.contains(key))
+    })
+}
+
+fn repeat_timing(devices: &[Device]) -> (Duration, Duration) {
+    let Some(repeat) = devices.iter().find_map(|device| device.get_auto_repeat()) else {
+        return (DEFAULT_REPEAT_DELAY, DEFAULT_REPEAT_INTERVAL);
+    };
+
+    let delay = Duration::from_millis(repeat.delay.max(1) as u64);
+    let interval = Duration::from_millis(repeat.period.max(1) as u64);
+    (delay, interval)
+}
+
 fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
     // Re-exec the same binary so the worker inherits argv and session env.
     let program = env::args()
@@ -346,10 +385,7 @@ fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
     Ok(())
 }
 
-fn run_hold_repeat_worker(_connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
-    let stamp_file = config
-        .state_dir
-        .join(format!("{}.stamp", direction_label(direction)));
+fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: Direction) -> Result<()> {
     let lock_file = config
         .state_dir
         .join(format!("{}.repeat.lock", direction_label(direction)));
@@ -360,30 +396,70 @@ fn run_hold_repeat_worker(_connection: &Connection, config: &Config, direction: 
         .open(&lock_file)
         .with_context(|| format!("open {}", lock_file.display()))?;
     if lock.try_lock_exclusive().is_err() {
-        // Another instance is already handling hold-repeat for this direction.
         return Ok(());
     }
 
-    // Keep the lock alive while KDE re-fires the shortcut (system key-repeat delay).
-    // Each refire is a new parent process that adjusts once; we only track stamp updates.
-    let mut last_stamp = read_stamp(&stamp_file);
-
-    loop {
-        let stamp = read_stamp(&stamp_file);
-        let now = now_ms();
-
-        if now.saturating_sub(stamp) > REPEAT_GRACE.as_millis() {
-            break;
-        }
-
-        if stamp != last_stamp {
-            last_stamp = stamp;
-        }
-
-        thread::sleep(POLL_INTERVAL);
+    let key = direction.brightness_key();
+    let mut devices = open_brightness_devices(key);
+    if devices.is_empty() {
+        return Ok(());
     }
 
-    Ok(())
+    for device in &devices {
+        let _ = device.set_nonblocking(true);
+    }
+
+    // Tap finished before the worker started: nothing more to do.
+    if !key_is_pressed(&devices, key) {
+        return Ok(());
+    }
+
+    let (repeat_delay, repeat_interval) = repeat_timing(&devices);
+    let started = Instant::now();
+    let mut last_ramp = started;
+    let mut repeat_armed = false;
+
+    loop {
+        for device in &mut devices {
+            let Ok(mut events) = device.fetch_events() else {
+                continue;
+            };
+            for event in events.by_ref() {
+                if let EventSummary::Key(_, code, value) = event.destructure() {
+                    if code != key {
+                        continue;
+                    }
+                    match value {
+                        0 => return Ok(()),
+                        2 => {
+                            let _ = adjust_brightness_once(connection, config, direction);
+                            last_ramp = Instant::now();
+                            repeat_armed = true;
+                        }
+                        1 => {}
+                        _ => {}
+                    }
+                }
+            }
+        }
+
+        if !key_is_pressed(&devices, key) {
+            return Ok(());
+        }
+
+        let now = Instant::now();
+        if !repeat_armed && now.duration_since(started) >= repeat_delay {
+            repeat_armed = true;
+            last_ramp = now;
+        }
+
+        if repeat_armed && now.duration_since(last_ramp) >= repeat_interval {
+            let _ = adjust_brightness_once(connection, config, direction);
+            last_ramp = now;
+        }
+
+        thread::sleep(Duration::from_millis(5));
+    }
 }
 
 fn direction_label(direction: Direction) -> &'static str {
@@ -406,11 +482,6 @@ fn main() -> Result<()> {
         let connection = Connection::session().context("connect to session bus")?;
         return run_hold_repeat_worker(&connection, &config, direction);
     }
-
-    let stamp_file = config
-        .state_dir
-        .join(format!("{}.stamp", direction_label(direction)));
-    touch_stamp(&stamp_file)?;
 
     let connection = Connection::session().context("connect to session bus")?;
     adjust_brightness_once(&connection, &config, direction)?;

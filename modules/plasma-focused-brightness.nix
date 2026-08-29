@@ -74,6 +74,11 @@ in
             [
               homeModule
             ];
+
+        # Hold-repeat reads /dev/input for brightness key state.
+        users.users.user.extraGroups = lib.mkIf (
+          config.plasma_focused_brightness.enable && config.services.desktopManager.plasma6.enable
+        ) [ "input" ];
       };
 
     homeManager = {
