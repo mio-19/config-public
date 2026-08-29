@@ -23,7 +23,8 @@
       ];
       # On KDE Wayland, KWin should launch fcitx5 via Virtual Keyboard settings.
       systemd.enable = !(osConfig.services.desktopManager.plasma6.enable or false);
-      ignoreUserConfig = false; # keep ~/.local/share/fcitx5 for learned pinyin dictionary
+      # HM manages ~/.config/fcitx5; learned words live in ~/.local/share/fcitx5/pinyin/user.{dict,history}
+      ignoreUserConfig = false;
       settings.inputMethod = {
         GroupOrder."0" = "Default";
         "Groups/0" = {
@@ -33,6 +34,12 @@
         };
         "Groups/0/Items/0".Name = "keyboard-us";
         "Groups/0/Items/1".Name = "pinyin";
+      };
+      settings.addons.pinyin.globalSection = {
+        # Without this, fcitx5-chinese-addons shows the cloud-pinyin prompt every boot
+        # because HM owns ~/.config/fcitx5 and user-written pinyin.conf cannot stick.
+        FirstRun = false;
+        CloudPinyinEnabled = false;
       };
       settings.addons.classicui.globalSection =
         if osConfig.services.desktopManager.plasma6.enable then
