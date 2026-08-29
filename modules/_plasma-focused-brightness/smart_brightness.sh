@@ -249,7 +249,7 @@ run_hold_repeat_worker() {
 touch_stamp() {
   local direction="${1:?}"
   mkdir -p "$STATE_DIR"
-  echo "$(now_ms)" >"$STATE_DIR/${direction}.stamp"
+  now_ms >"$STATE_DIR/${direction}.stamp"
 }
 
 touch_stamp "$DIRECTION"
