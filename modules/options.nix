@@ -229,14 +229,6 @@ let
                   key event. Should be longer than the keyboard repeat delay.
                 '';
               };
-              boostKeyRepeat = lib.mkOption {
-                type = lib.types.bool;
-                default = true;
-                description = ''
-                  Lower keyboard repeat delay and raise repeat rate so Plasma custom
-                  shortcuts fire more often while brightness keys are held.
-                '';
-              };
             };
           };
           default = {
@@ -245,7 +237,6 @@ let
             holdRepeat = true;
             repeatIntervalMs = 50;
             repeatGraceMs = 400;
-            boostKeyRepeat = true;
           };
           description = ''
             On KDE Plasma 6, hardware brightness keys normally adjust every connected

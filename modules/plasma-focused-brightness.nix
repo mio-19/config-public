@@ -21,7 +21,6 @@ let
       holdRepeat = osConfig.plasma_focused_brightness.holdRepeat or true;
       repeatIntervalMs = osConfig.plasma_focused_brightness.repeatIntervalMs or 50;
       repeatGraceMs = osConfig.plasma_focused_brightness.repeatGraceMs or 400;
-      boostKeyRepeat = osConfig.plasma_focused_brightness.boostKeyRepeat or true;
       focusedBrightnessScript = pkgs.writeShellApplication {
         name = "plasma-focused-brightness";
         runtimeInputs = with pkgs; [
@@ -44,13 +43,6 @@ let
     lib.mkIf enabled {
       programs.plasma = {
         enable = true;
-
-        input = lib.mkIf boostKeyRepeat {
-          keyboard = {
-            repeatDelay = lib.mkDefault 200;
-            repeatRate = lib.mkDefault 40;
-          };
-        };
 
         shortcuts = {
           org_kde_powerdevil = {
