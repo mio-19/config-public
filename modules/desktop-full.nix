@@ -538,19 +538,6 @@
           ];
         };
 
-        programs.chromium = {
-          enable = true;
-          enablePlasmaBrowserIntegration = true;
-          plasmaBrowserIntegrationPackage = lib.mkDefault pkgs.kdePackages.plasma-browser-integration;
-          /*
-            extraOpts = {
-              #RestoreOnStartup = 1;
-              BrowserSignin = 1;
-              SyncDisabled = false;
-            };
-          */
-        };
-
         programs.sniffnet.enable = true;
       };
     darwin =
