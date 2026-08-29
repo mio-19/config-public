@@ -3,8 +3,9 @@
 //! Inspired by llIlllIll's script on KDE Discuss:
 //! <https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4>
 //!
-//! Extensions beyond that script: hold-to-repeat stepping (detached worker process),
-//! target-display caching for fast repeats, and typed D-Bus calls via zbus.
+//! Extensions beyond that script: hold-to-repeat stepping (detached worker process,
+//! hold-delay debounce for clean single taps), target-display caching for fast
+//! repeats, and typed D-Bus calls via zbus.
 
 use anyhow::{Context, Result, bail};
 use fs2::FileExt;
@@ -47,6 +48,8 @@ impl Direction {
 struct Config {
     step_percent: u32,
     hold_repeat: bool,
+    hold_delay: Duration,
+    continuous_repeat_after_hold_delay: bool,
     repeat_interval: Duration,
     repeat_grace: Duration,
     target_cache_ttl: Duration,
@@ -61,8 +64,10 @@ impl Config {
         Ok(Self {
             step_percent: env_u32("STEP_PERCENT", 5)?,
             hold_repeat: env_bool("HOLD_REPEAT", true),
-            repeat_interval: Duration::from_millis(env_u64("REPEAT_INTERVAL_MS", 50)?),
-            repeat_grace: Duration::from_millis(env_u64("REPEAT_GRACE_MS", 800)?),
+            hold_delay: Duration::from_millis(env_u64("HOLD_DELAY_MS", 400)?),
+            continuous_repeat_after_hold_delay: env_bool("CONTINUOUS_REPEAT_AFTER_HOLD_DELAY", false),
+            repeat_interval: Duration::from_millis(env_u64("REPEAT_INTERVAL_MS", 80)?),
+            repeat_grace: Duration::from_millis(env_u64("REPEAT_GRACE_MS", 500)?),
             target_cache_ttl: Duration::from_millis(env_u64("TARGET_CACHE_TTL_MS", 2000)?),
             state_dir: runtime_dir.join("plasma-focused-brightness"),
         })
@@ -382,6 +387,18 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
         return Ok(());
     }
 
+    let baseline_stamp = read_stamp(&stamp_file);
+    thread::sleep(config.hold_delay);
+
+    let stamp_after_delay = read_stamp(&stamp_file);
+    if stamp_after_delay == baseline_stamp && !config.continuous_repeat_after_hold_delay {
+        // Single click: parent already applied one step; no follow-up ramp.
+        return Ok(());
+    }
+
+    // Skip stamps the parent already handled on recent key events.
+    let mut last_handled = stamp_after_delay;
+
     loop {
         let stamp = read_stamp(&stamp_file);
         let now = now_ms();
@@ -390,10 +407,13 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
             break;
         }
 
-        // KDE fires the hotkey once per press, not on keyboard auto-repeat, so step
-        // on every interval while the grace window is open (stamp refreshed on each
-        // new key event from the parent).
-        let _ = adjust_brightness_once(connection, config, direction);
+        if stamp != last_handled {
+            let _ = adjust_brightness_once(connection, config, direction);
+            last_handled = stamp;
+        } else if config.continuous_repeat_after_hold_delay {
+            let _ = adjust_brightness_once(connection, config, direction);
+        }
+
         thread::sleep(config.repeat_interval);
     }
 
@@ -426,11 +446,13 @@ fn main() -> Result<()> {
         .join(format!("{}.stamp", direction_label(direction)));
     touch_stamp(&stamp_file)?;
 
+    let connection = Connection::session().context("connect to session bus")?;
+    adjust_brightness_once(&connection, &config, direction)?;
+
     if config.hold_repeat {
         spawn_hold_repeat_worker(direction)?;
         return Ok(());
     }
 
-    let connection = Connection::session().context("connect to session bus")?;
-    adjust_brightness_once(&connection, &config, direction)
+    Ok(())
 }

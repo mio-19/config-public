@@ -21,8 +21,11 @@ let
         && (osConfig.services.desktopManager.plasma6.enable or false);
       stepPercent = osConfig.plasma_focused_brightness.stepPercent or 5;
       holdRepeat = osConfig.plasma_focused_brightness.holdRepeat or true;
-      repeatIntervalMs = osConfig.plasma_focused_brightness.repeatIntervalMs or 50;
-      repeatGraceMs = osConfig.plasma_focused_brightness.repeatGraceMs or 800;
+      holdDelayMs = osConfig.plasma_focused_brightness.holdDelayMs or 400;
+      continuousRepeatAfterHoldDelay =
+        osConfig.plasma_focused_brightness.continuousRepeatAfterHoldDelay or false;
+      repeatIntervalMs = osConfig.plasma_focused_brightness.repeatIntervalMs or 80;
+      repeatGraceMs = osConfig.plasma_focused_brightness.repeatGraceMs or 500;
       rustSrc = ./_plasma-focused-brightness/plasma-focused-brightness;
       plasmaFocusedBrightness = pkgs.rustPlatform.buildRustPackage {
         pname = "plasma-focused-brightness";
@@ -34,6 +37,8 @@ let
       focusedBrightnessBin = pkgs.writeShellScriptBin "plasma-focused-brightness" ''
         export STEP_PERCENT=${toString stepPercent}
         export HOLD_REPEAT=${if holdRepeat then "1" else "0"}
+        export HOLD_DELAY_MS=${toString holdDelayMs}
+        export CONTINUOUS_REPEAT_AFTER_HOLD_DELAY=${if continuousRepeatAfterHoldDelay then "1" else "0"}
         export REPEAT_INTERVAL_MS=${toString repeatIntervalMs}
         export REPEAT_GRACE_MS=${toString repeatGraceMs}
         exec ${lib.getExe plasmaFocusedBrightness} "$@"
