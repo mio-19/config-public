@@ -282,12 +282,15 @@ customize
 
   librewolf_nix_extensions = map firefoxAddonAsNixExtension librewolf_extension_packages;
 
-  librewolf_declarative_extension_args =
+  librewolf_declarative_extension_args_for =
+    old:
     lib.optionalAttrs
       ((config.librewolf_declarative_extensions or true) && librewolf_nix_extensions != [ ])
       {
-        nixExtensions = librewolf_nix_extensions;
+        nixExtensions = (old.nixExtensions or [ ]) ++ librewolf_nix_extensions;
       };
+
+  librewolf_declarative_extension_args = librewolf_declarative_extension_args_for { };
 
   librewolf_customize_prefs = ''
     // Don't remove data on exit
@@ -347,12 +350,7 @@ customize
           {
             extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
           }
-          //
-            lib.optionalAttrs
-              ((config.librewolf_declarative_extensions or true) && librewolf_nix_extensions != [ ])
-              {
-                nixExtensions = (old.nixExtensions or [ ]) ++ librewolf_nix_extensions;
-              }
+          // librewolf_declarative_extension_args_for old
         );
     telegram =
       if config.compile_gram then
