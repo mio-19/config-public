@@ -112,7 +112,6 @@
           let
             inWindose20 = builtins.elem "windose20" osConfig.system.nixos.tags;
             restorePrio = lib.mkOverride 0;
-            systemBackground = toString osConfig.system_background;
             windose20RestoreCleanupScript = ''
               set -eu
               config_home="${config.xdg.configHome}"
@@ -152,7 +151,6 @@
                   theme = restorePrio "breeze_cursors";
                   size = 24;
                 };
-                wallpaper = restorePrio osConfig.system_background;
               };
             };
 
@@ -162,8 +160,6 @@
                 if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel" ]; then
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel org.kde.breeze.desktop || true
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-cursortheme breeze_cursors || true
-                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage \
-                    --fill-mode preserveAspectCrop "${systemBackground}" || true
                 fi
               ''
             );
