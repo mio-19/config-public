@@ -57,7 +57,7 @@ let
           default = true;
           description = ''
             Install a fixed set of LibreWolf extensions via wrapFirefox nixExtensions.
-            Blocks manual extension installs while enabled.
+            Shared between NixOS and nix-darwin. Blocks manual extension installs while enabled.
           '';
         };
         mio_openssh_hpn = lib.mkOption {

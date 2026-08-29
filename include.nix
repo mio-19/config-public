@@ -22,6 +22,16 @@ let
       }
     else
       pkgs;
+
+  librewolf = import ./librewolf.nix {
+    inherit
+      config
+      inputs
+      lib
+      pkgs
+      librewolfPkgs
+      ;
+  };
 in
 customize
 // rec {
@@ -253,66 +263,14 @@ customize
     || (lib.hasPrefix "runtime." (lib.getName pkg) && lib.hasInfix "Microsoft." (lib.getName pkg))
     || lib.hasPrefix "VBoxGuestAdditions_" (lib.getName pkg);
 
-  firefoxAddonAsNixExtension =
-    pkg:
-    let
-      extid =
-        pkg.extid or (pkg.passthru or { }).extid
-          or (lib.throw "firefox addon ${lib.getName pkg} is missing extid");
-    in
-    pkg
-    // {
-      inherit extid;
-    };
-
-  librewolf_extension_packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
-    with inputs.mio.packages.${pkgs.stdenv.hostPlatform.system};
-    [
-      audio-equalizer-firefox
-      bitwarden-extension
-      dark-reader
-      floccus-firefox
-      plasma-integration-firefox
-      sponsorblock-for-youtube-firefox
-      ublock-origin-firefox
-      unhook-firefox
-      wayback-machine-extension
-      yt-mirror-firefox
-    ]
-  );
-
-  librewolf_nix_extensions = map firefoxAddonAsNixExtension librewolf_extension_packages;
-
-  librewolf_declarative_extension_args_for =
-    old:
-    lib.optionalAttrs
-      ((config.librewolf_declarative_extensions or true) && librewolf_nix_extensions != [ ])
-      {
-        nixExtensions = (old.nixExtensions or [ ]) ++ librewolf_nix_extensions;
-      };
-
-  librewolf_declarative_extension_args = librewolf_declarative_extension_args_for { };
-
-  librewolf_customize_prefs = ''
-    // Don't remove data on exit
-    pref("privacy.sanitize.sanitizeOnShutdown", false);
-    pref("privacy.clearOnShutdown.history", false);
-    pref("privacy.clearOnShutdown.cookies", false);
-    pref("privacy.clearOnShutdown.sessions", false);
-    pref("privacy.clearOnShutdown.cache", false);
-    pref("privacy.clearOnShutdown.downloads", false);
-    pref("privacy.clearOnShutdown.formdata", false);
-    pref("privacy.clearOnShutdown.offlineApps", false);
-    pref("privacy.clearOnShutdown.siteSettings", false);
-  ''
-  + lib.optionalString ((config.middle_click_scroll or "off") == "browsers") ''
-    // Firefox/LibreWolf: Settings → General → Browsing → "Use autoscrolling"
-    // https://support.mozilla.org/kb/mouse-shortcuts-perform-common-tasks
-    // LibreWolf "Enable Autoscroll safely":
-    // https://librewolf.net/docs/settings/
-    pref("middlemouse.paste", false);
-    pref("general.autoScroll", true);
-  '';
+  inherit (librewolf)
+    firefoxAddonAsNixExtension
+    librewolf_extension_packages
+    librewolf_nix_extensions
+    librewolf_declarative_extension_args_for
+    librewolf_declarative_extension_args
+    librewolf_customize_prefs
+    ;
 
   # Shared toolchain packages used across NixOS + nix-darwin configs.
   #
@@ -344,15 +302,7 @@ customize
       else
         lib.hiPrio pkgs.openssh_hpn;
     git = pkgs.git.override { inherit openssh; };
-    librewolf' =
-      (if config.use_librewolf_bin then librewolfPkgs.librewolf-bin else librewolfPkgs.librewolf).override
-        (
-          old:
-          {
-            extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
-          }
-          // librewolf_declarative_extension_args_for old
-        );
+    librewolf' = librewolf.package;
     telegram =
       if config.compile_gram then
         (
