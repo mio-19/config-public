@@ -86,6 +86,12 @@
 
           environment.etc."xdg/fastfetch/config.jsonc".source =
             "${windose20}/share/windose20/configs/fastfetch.jsonc";
+
+          boot.plymouth = {
+            enable = lib.mkForce true;
+            theme = lib.mkForce "windose20";
+            themePackages = lib.mkForce [ windose20 ];
+          };
         };
       };
   };

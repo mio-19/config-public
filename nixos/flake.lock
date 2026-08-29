@@ -808,11 +808,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787975955,
-        "narHash": "sha256-fdGiEumTMoeTLdc+USqV/RR0T0TCTDiHabF63Ac8HHk=",
+        "lastModified": 1787991860,
+        "narHash": "sha256-icjg3LM84sr2/N5aPCjazS3UfwmbVJmPahWfalNqiQ8=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "447fd9cea4f565fd9ea4d87455e8a4597526398e",
+        "rev": "331c7b72e1b6d4ca24f6098621677d46ccad5f07",
         "type": "github"
       },
       "original": {
