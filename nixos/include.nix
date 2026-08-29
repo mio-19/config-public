@@ -494,36 +494,8 @@ let
 
       cudaSupport = osConfig.nixpkgs.config.cudaSupport or false;
 
-      nixpkgsPatch =
-        nixpkgs0:
-        let
-          nixpkgs-drv = pkgs.applyPatches {
-            name = "nixpkgs-patched";
-            src = nixpkgs0;
-            patches = with pkgs; [
-              (fetchpatch {
-                name = "linuxPackages.apfs: 0.3.20 -> 0.3.21-unstable-2025-08-22";
-                url = "https://github.com/NixOS/nixpkgs/pull/555282.diff";
-                hash = "sha256-aR+fQjG7WNxGZWZrXZv8rj+BZulEuEaEvhOKn37Uw9k=";
-              })
-              (fetchpatch {
-                name = "ryzen-smu: 0.1.7-unstable-2026-04-25 -> 0.1.7-unstable-2026-08-15";
-                url = "https://github.com/NixOS/nixpkgs/pull/555135.patch";
-                hash = "sha256-xsDhDu5c57ycS6P7nW/AH5aa7Zn6XcTM7NtVPzybeqw=";
-              })
-            ];
-          };
-          nixpkgs =
-            (import "${nixpkgs-drv}/flake.nix").outputs {
-              self = nixpkgs;
-            }
-            // {
-              outPath = toString nixpkgs-drv;
-              # for https://github.com/hercules-ci/flake-parts/blob/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb/modules/perSystem.nix#L113
-              _type = "flake";
-            };
-        in
-        nixpkgs;
+      # PRs #555282 (apfs) and #555135 (ryzen-smu) merged upstream; no patches needed.
+      nixpkgsPatch = nixpkgs0: nixpkgs0;
 
       pkgs-pin = import inputs.nixpkgs-pin {
         config = osConfig.nixpkgs.config;
