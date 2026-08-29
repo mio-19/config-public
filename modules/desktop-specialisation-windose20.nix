@@ -101,9 +101,75 @@
               '';
             };
           };
+        windose20RestoreHomeModule =
+          {
+            osConfig,
+            config,
+            lib,
+            ...
+          }:
+          let
+            inWindose20 = builtins.elem "windose20" osConfig.system.nixos.tags;
+            configHome = "${config.home.homeDirectory}/.config";
+            readConfig = path: if builtins.pathExists path then builtins.readFile path else "";
+            kdeglobals = readConfig "${configHome}/kdeglobals";
+            plasmaApplets = readConfig "${configHome}/plasma-org.kde.plasma.desktop-appletsrc";
+            windose20PlasmaDetected =
+              !inWindose20
+              && osConfig.services.desktopManager.plasma6.enable
+              && (
+                lib.hasInfix "Plasma-Overdose" kdeglobals
+                || lib.hasInfix "Plasma-Overdose" plasmaApplets
+                || lib.hasInfix "fusion-pixel-10px-proportional-latin" kdeglobals
+                || lib.hasInfix "windose20" plasmaApplets
+                || builtins.pathExists "${configHome}/konsole/Plasma-Overdose.profile"
+              );
+            restorePrio = lib.mkOverride 0;
+          in
+          lib.mkIf windose20PlasmaDetected {
+            programs.plasma = {
+              workspace = {
+                lookAndFeel = restorePrio "org.kde.breeze.desktop";
+                cursor = {
+                  theme = restorePrio "breeze_cursors";
+                  size = 24;
+                };
+                wallpaper = restorePrio osConfig.system_background;
+              };
+            };
+
+            home.activation.windose20RestoreCleanup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              rm -f "${configHome}/konsole/Plasma-Overdose.profile"
+              for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
+                target="${configHome}/$rel"
+                if [ -e "$target" ] && grep -qF 'share/windose20/' "$target" 2>/dev/null; then
+                  rm -f "$target"
+                fi
+              done
+            '';
+          };
       in
       {
-        home-manager.sharedModules = [ windose20HomeModule ];
+        home-manager.sharedModules = [
+          windose20HomeModule
+          windose20RestoreHomeModule
+        ];
+
+        system.activationScripts.windose20PlasmaloginRestore =
+          lib.mkIf
+            (
+              config.services.displayManager.plasma-login-manager.enable
+              && !(builtins.elem "windose20" config.system.nixos.tags)
+              && !(builtins.elem "windose20-xfce" config.system.nixos.tags)
+            )
+            {
+              text = ''
+                kdeglobals=/var/lib/plasmalogin/.config/kdeglobals
+                if [ -e "$kdeglobals" ] && grep -qE 'Plasma-Overdose|fusion-pixel-10px-proportional-latin' "$kdeglobals" 2>/dev/null; then
+                  rm -f "$kdeglobals"
+                fi
+              '';
+            };
 
         specialisation.windose20.configuration = {
           system.nixos.tags = [ "windose20" ];
