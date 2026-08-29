@@ -131,6 +131,17 @@ let
           default = false;
           description = "use paperwm";
         };
+        windose20_automate_kickoff = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = ''
+            On the windose20 boot specialisation, replace Plasma panels so the
+            application launcher uses the Windose20 logo and the label "Start".
+
+            Disabled by default because plasma-manager overwrites the existing
+            panel layout when this is enabled.
+          '';
+        };
         fonts_noto = lib.mkOption {
           type = lib.types.bool;
           default = false;

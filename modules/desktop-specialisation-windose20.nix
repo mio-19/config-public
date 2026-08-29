@@ -28,26 +28,51 @@
               plasmaOverdose
             ];
 
-            programs.plasma = {
-              workspace = {
-                lookAndFeel = lib.mkForce "Plasma-Overdose";
-                cursor = {
-                  theme = lib.mkForce "Plasma-Overdose";
-                  size = 24;
-                };
-                wallpaper = lib.mkForce "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
-              };
-              fonts = {
-                general = {
-                  family = lib.mkForce "fusion-pixel-10px-proportional-latin";
-                  pointSize = 10;
-                };
-                fixedWidth = {
-                  family = lib.mkForce "fusion-pixel-10px-proportional-latin";
-                  pointSize = 10;
-                };
-              };
-            };
+            programs.plasma =
+              lib.recursiveUpdate
+                {
+                  workspace = {
+                    lookAndFeel = lib.mkForce "Plasma-Overdose";
+                    cursor = {
+                      theme = lib.mkForce "Plasma-Overdose";
+                      size = 24;
+                    };
+                    wallpaper = lib.mkForce "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
+                  };
+                  fonts = {
+                    general = {
+                      family = lib.mkForce "fusion-pixel-10px-proportional-latin";
+                      pointSize = 10;
+                    };
+                    fixedWidth = {
+                      family = lib.mkForce "fusion-pixel-10px-proportional-latin";
+                      pointSize = 10;
+                    };
+                  };
+                }
+                (
+                  lib.optionalAttrs (osConfig.windose20_automate_kickoff or false) {
+                    panels = [
+                      {
+                        location = "bottom";
+                        widgets = [
+                          {
+                            kickoff = {
+                              icon = "${windose20}/share/windose20/pngs/logo.png";
+                              label = "Start";
+                            };
+                          }
+                          "org.kde.plasma.pager"
+                          "org.kde.plasma.icontasks"
+                          "org.kde.plasma.marginsseparator"
+                          "org.kde.plasma.systemtray"
+                          "org.kde.plasma.digitalclock"
+                          "org.kde.plasma.showdesktop"
+                        ];
+                      }
+                    ];
+                  }
+                );
 
             xdg.configFile = {
               "fastfetch/config.jsonc".source = "${windose20}/share/windose20/configs/fastfetch.jsonc";
