@@ -277,6 +277,7 @@ customize
       ublock-origin-firefox
       unhook-firefox
       wayback-machine-extension
+      yt-mirror-firefox
     ]
   );
 
