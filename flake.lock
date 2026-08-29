@@ -1567,11 +1567,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787936732,
-        "narHash": "sha256-+k9PaMgHOtVVieQUzL8X7nO9/0BkV+YTpOEmYSBu1ag=",
+        "lastModified": 1787940071,
+        "narHash": "sha256-76P5gYbawXUhjCnHSh0KPg7PhYa+Tzfbw4lbmmlSZa4=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "69edb1388e804bb33e72f5f3f25df40933f6e4d8",
+        "rev": "b017a53cedfbd6a607bce423862f172829084947",
         "type": "github"
       },
       "original": {
