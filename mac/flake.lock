@@ -539,11 +539,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1787985059,
-        "narHash": "sha256-NQEbobIZAYguu7oUufLHdVQgOMBmHcMOno0eubhN3Lk=",
+        "lastModified": 1788006759,
+        "narHash": "sha256-ByEiXTy08iUzvM3FmZ3/x7LxyMINPRwISlhw9mAfbZY=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "f975e5921db0675b8c535b25d019555936b15e9f",
+        "rev": "d4b4c9f411806277aafa77f6e17d46209ca7de66",
         "type": "github"
       },
       "original": {
@@ -584,11 +584,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787991870,
-        "narHash": "sha256-hPa81K7mSHSi0dbjtfVKsGxRkcL2Qzu5nyjJWmshN0o=",
+        "lastModified": 1788008939,
+        "narHash": "sha256-hJw2alScB41aXKo2gR15pOAG9rUhPhdtvJN61tkvl5Q=",
         "ref": "refs/heads/main",
-        "rev": "ca7b1b40e62ebe0ea843fa25f04fba37632b8d5a",
-        "revCount": 697,
+        "rev": "f265a0ae221e64d6f493817c24467d6457778e13",
+        "revCount": 699,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -710,8 +710,9 @@
     },
     "nixpkgs-pin5": {
       "locked": {
-        "lastModified": 315532800,
+        "lastModified": 1786719841,
         "narHash": "sha256-LGkFiPNiMfZHIXX//qTAMGaaLo+2pvS7MEdInQZR/0s=",
+        "rev": "8be7bd0c83f12e2e3bbba07c9044d6fed9e66f7f",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1054271.8be7bd0c83f1/nixexprs.tar.xz"
       },
@@ -833,11 +834,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788000645,
-        "narHash": "sha256-mR7lpA1Xa8RLEz8eItiYlQZHZhC7NIzhNdOrDOyx/rU=",
+        "lastModified": 1788009833,
+        "narHash": "sha256-Iz0C1FCz8NW1pkW52QQo7cuYQWvp8XcI8qAJYPVUIZA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "bc106483a3a692e4b868eba508237a7f9685d25f",
+        "rev": "bb96ccabbb5ebd981c05108547a126ccc09371bd",
         "type": "github"
       },
       "original": {
