@@ -125,6 +125,21 @@ fn value_to_string(value: &OwnedValue) -> Result<String> {
         .context("expected string dbus value")
 }
 
+fn get_root_prop(connection: &Connection, prop: &str) -> Result<OwnedValue> {
+    connection
+        .call_method(
+            Some(SCREEN_BRIGHTNESS_SERVICE),
+            SCREEN_BRIGHTNESS_ROOT,
+            Some(PROPERTIES_INTERFACE),
+            "Get",
+            &(SCREEN_BRIGHTNESS_SERVICE, prop),
+        )
+        .with_context(|| format!("Get {prop} from ScreenBrightness"))?
+        .body()
+        .deserialize()
+        .context("deserialize ScreenBrightness property")
+}
+
 fn get_display_prop(connection: &Connection, display: &str, prop: &str) -> Result<OwnedValue> {
     let path = format!("{SCREEN_BRIGHTNESS_ROOT}/{display}");
     connection
@@ -141,6 +156,14 @@ fn get_display_prop(connection: &Connection, display: &str, prop: &str) -> Resul
         .context("deserialize display property")
 }
 
+fn value_to_string_list(value: &OwnedValue) -> Result<Vec<String>> {
+    value
+        .try_clone()
+        .context("clone dbus value")?
+        .try_into()
+        .context("expected string list dbus value")
+}
+
 fn set_brightness(connection: &Connection, display: &str, value: u32) -> Result<()> {
     let path = format!("{SCREEN_BRIGHTNESS_ROOT}/{display}");
     connection
@@ -149,7 +172,7 @@ fn set_brightness(connection: &Connection, display: &str, value: u32) -> Result<
             path.as_str(),
             Some(DISPLAY_INTERFACE),
             "SetBrightness",
-            &(value, 0u32),
+            &((value as i32), 0u32),
         )
         .with_context(|| format!("SetBrightness for {display}"))?
         .body()
@@ -173,18 +196,7 @@ fn active_output_name(connection: &Connection) -> Result<String> {
 }
 
 fn display_names(connection: &Connection) -> Result<Vec<String>> {
-    connection
-        .call_method(
-            Some(SCREEN_BRIGHTNESS_SERVICE),
-            SCREEN_BRIGHTNESS_ROOT,
-            Some(SCREEN_BRIGHTNESS_SERVICE),
-            "DisplaysDBusNames",
-            &(),
-        )
-        .context("DisplaysDBusNames")?
-        .body()
-        .deserialize()
-        .context("deserialize DisplaysDBusNames")
+    value_to_string_list(&get_root_prop(connection, "DisplaysDBusNames")?)
 }
 
 fn read_edid_for_output(output: &str) -> Option<String> {
