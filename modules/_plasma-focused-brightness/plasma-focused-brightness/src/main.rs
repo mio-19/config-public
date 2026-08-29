@@ -1,3 +1,11 @@
+//! Focused-display brightness for KDE Plasma 6 hardware keys.
+//!
+//! Inspired by llIlllIll's script on KDE Discuss:
+//! <https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4>
+//!
+//! Extensions beyond that script: hold-to-repeat stepping, target-display
+//! caching for fast repeats, and typed D-Bus calls via zbus.
+
 use anyhow::{Context, Result, bail};
 use fs2::FileExt;
 use std::env;
