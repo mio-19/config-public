@@ -28,6 +28,12 @@ const KWIN_INTERFACE: &str = "org.kde.KWin";
 const PROPERTIES_INTERFACE: &str = "org.freedesktop.DBus.Properties";
 const WORKER_ENV: &str = "PLASMA_FOCUSED_BRIGHTNESS_WORKER";
 
+const HOLD_DELAY: Duration = Duration::from_millis(400);
+const REPEAT_INTERVAL: Duration = Duration::from_millis(80);
+const REPEAT_GRACE: Duration = Duration::from_millis(500);
+const TARGET_CACHE_TTL: Duration = Duration::from_millis(2000);
+const DEFAULT_STEP_PERCENT: u32 = 5;
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum Direction {
     Up,
@@ -47,12 +53,6 @@ impl Direction {
 #[derive(Debug, Clone)]
 struct Config {
     step_percent: u32,
-    hold_repeat: bool,
-    hold_delay: Duration,
-    continuous_repeat_after_hold_delay: bool,
-    repeat_interval: Duration,
-    repeat_grace: Duration,
-    target_cache_ttl: Duration,
     state_dir: PathBuf,
 }
 
@@ -62,36 +62,9 @@ impl Config {
             .map(PathBuf::from)
             .unwrap_or_else(|_| PathBuf::from("/tmp"));
         Ok(Self {
-            step_percent: env_u32("STEP_PERCENT", 5)?,
-            hold_repeat: env_bool("HOLD_REPEAT", true),
-            hold_delay: Duration::from_millis(env_u64("HOLD_DELAY_MS", 400)?),
-            continuous_repeat_after_hold_delay: env_bool("CONTINUOUS_REPEAT_AFTER_HOLD_DELAY", false),
-            repeat_interval: Duration::from_millis(env_u64("REPEAT_INTERVAL_MS", 80)?),
-            repeat_grace: Duration::from_millis(env_u64("REPEAT_GRACE_MS", 500)?),
-            target_cache_ttl: Duration::from_millis(env_u64("TARGET_CACHE_TTL_MS", 2000)?),
+            step_percent: DEFAULT_STEP_PERCENT,
             state_dir: runtime_dir.join("plasma-focused-brightness"),
         })
-    }
-}
-
-fn env_u32(name: &str, default: u32) -> Result<u32> {
-    match env::var(name) {
-        Ok(value) => value.parse().with_context(|| format!("parse {name}")),
-        Err(_) => Ok(default),
-    }
-}
-
-fn env_u64(name: &str, default: u64) -> Result<u64> {
-    match env::var(name) {
-        Ok(value) => value.parse().with_context(|| format!("parse {name}")),
-        Err(_) => Ok(default),
-    }
-}
-
-fn env_bool(name: &str, default: bool) -> bool {
-    match env::var(name) {
-        Ok(value) => !matches!(value.as_str(), "0" | "false" | "FALSE" | "no" | "NO"),
-        Err(_) => default,
     }
 }
 
@@ -288,7 +261,7 @@ fn resolve_target_display(connection: &Connection, config: &Config) -> Result<Op
 
     if cache_file.is_file() && cache_stamp.is_file() {
         let cached_at = read_stamp(&cache_stamp);
-        if now_ms().saturating_sub(cached_at) < config.target_cache_ttl.as_millis() {
+        if now_ms().saturating_sub(cached_at) < TARGET_CACHE_TTL.as_millis() {
             return Ok(Some(fs::read_to_string(&cache_file)?.trim().to_string()));
         }
     }
@@ -388,10 +361,10 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
     }
 
     let baseline_stamp = read_stamp(&stamp_file);
-    thread::sleep(config.hold_delay);
+    thread::sleep(HOLD_DELAY);
 
     let stamp_after_delay = read_stamp(&stamp_file);
-    if stamp_after_delay == baseline_stamp && !config.continuous_repeat_after_hold_delay {
+    if stamp_after_delay == baseline_stamp {
         // Single click: parent already applied one step; no follow-up ramp.
         return Ok(());
     }
@@ -403,18 +376,16 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
         let stamp = read_stamp(&stamp_file);
         let now = now_ms();
 
-        if now.saturating_sub(stamp) > config.repeat_grace.as_millis() {
+        if now.saturating_sub(stamp) > REPEAT_GRACE.as_millis() {
             break;
         }
 
         if stamp != last_handled {
             let _ = adjust_brightness_once(connection, config, direction);
             last_handled = stamp;
-        } else if config.continuous_repeat_after_hold_delay {
-            let _ = adjust_brightness_once(connection, config, direction);
         }
 
-        thread::sleep(config.repeat_interval);
+        thread::sleep(REPEAT_INTERVAL);
     }
 
     Ok(())
@@ -448,11 +419,6 @@ fn main() -> Result<()> {
 
     let connection = Connection::session().context("connect to session bus")?;
     adjust_brightness_once(&connection, &config, direction)?;
-
-    if config.hold_repeat {
-        spawn_hold_repeat_worker(direction)?;
-        return Ok(());
-    }
-
+    spawn_hold_repeat_worker(direction)?;
     Ok(())
 }

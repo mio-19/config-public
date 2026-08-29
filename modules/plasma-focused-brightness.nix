@@ -4,7 +4,7 @@
 # https://discuss.kde.org/t/plasma-6-2-brightness-control/21782/4
 #
 # Plasma 6 hardware brightness keys adjust every connected display by default.
-# Disable PowerDevil's global shortcuts and bind XF86MonBrightnessUp/Down to a
+# Disable PowerDevil's global shortcuts and bind Monitor Brightness Up/Down to a
 # helper that targets the focused display via org.kde.ScreenBrightness D-Bus.
 { den, ... }:
 let
@@ -19,13 +19,6 @@ let
       enabled =
         (osConfig.plasma_focused_brightness.enable or false)
         && (osConfig.services.desktopManager.plasma6.enable or false);
-      stepPercent = osConfig.plasma_focused_brightness.stepPercent or 5;
-      holdRepeat = osConfig.plasma_focused_brightness.holdRepeat or true;
-      holdDelayMs = osConfig.plasma_focused_brightness.holdDelayMs or 400;
-      continuousRepeatAfterHoldDelay =
-        osConfig.plasma_focused_brightness.continuousRepeatAfterHoldDelay or false;
-      repeatIntervalMs = osConfig.plasma_focused_brightness.repeatIntervalMs or 80;
-      repeatGraceMs = osConfig.plasma_focused_brightness.repeatGraceMs or 500;
       rustSrc = ./_plasma-focused-brightness/plasma-focused-brightness;
       plasmaFocusedBrightness = pkgs.rustPlatform.buildRustPackage {
         pname = "plasma-focused-brightness";
@@ -34,15 +27,6 @@ let
         cargoLock.lockFile = "${rustSrc}/Cargo.lock";
         meta.mainProgram = "plasma-focused-brightness";
       };
-      focusedBrightnessBin = pkgs.writeShellScriptBin "plasma-focused-brightness" ''
-        export STEP_PERCENT=${toString stepPercent}
-        export HOLD_REPEAT=${if holdRepeat then "1" else "0"}
-        export HOLD_DELAY_MS=${toString holdDelayMs}
-        export CONTINUOUS_REPEAT_AFTER_HOLD_DELAY=${if continuousRepeatAfterHoldDelay then "1" else "0"}
-        export REPEAT_INTERVAL_MS=${toString repeatIntervalMs}
-        export REPEAT_GRACE_MS=${toString repeatGraceMs}
-        exec ${lib.getExe plasmaFocusedBrightness} "$@"
-      '';
     in
     lib.mkIf enabled {
       programs.plasma = {
@@ -62,14 +46,14 @@ let
             # KDE names hardware brightness keys "Monitor Brightness Up/Down" in
             # kglobalshortcutsrc, not XF86MonBrightnessUp/Down.
             key = "Monitor Brightness Up";
-            command = "${lib.getExe focusedBrightnessBin} up";
+            command = "${lib.getExe plasmaFocusedBrightness} up";
             logs.enabled = false;
           };
           "decrease-focused-brightness" = {
             name = "Decrease Focused Display Brightness";
             comment = "decrease-focused-brightness";
             key = "Monitor Brightness Down";
-            command = "${lib.getExe focusedBrightnessBin} down";
+            command = "${lib.getExe plasmaFocusedBrightness} down";
             logs.enabled = false;
           };
         };

@@ -214,59 +214,10 @@ let
           type = lib.types.submodule {
             options = {
               enable = lib.mkEnableOption "focused-display monitor brightness hotkeys on KDE Plasma";
-              stepPercent = lib.mkOption {
-                type = lib.types.int;
-                default = 5;
-                description = "Brightness step size as a percentage of each display's maximum.";
-              };
-              holdRepeat = lib.mkOption {
-                type = lib.types.bool;
-                default = true;
-                description = ''
-                  After holdDelayMs, keep stepping while new brightness key events
-                  arrive within repeatGraceMs. A quick tap only applies one step.
-                '';
-              };
-              holdDelayMs = lib.mkOption {
-                type = lib.types.int;
-                default = 400;
-                description = ''
-                  Milliseconds to wait before starting hold-repeat. Prevents a quick
-                  tap from being treated as a hold ramp.
-                '';
-              };
-              continuousRepeatAfterHoldDelay = lib.mkOption {
-                type = lib.types.bool;
-                default = false;
-                description = ''
-                  If KDE does not re-fire the shortcut while a key is held, keep
-                  stepping at repeatIntervalMs after holdDelayMs anyway. Makes hold
-                  ramps stronger but quick taps may change brightness more than once.
-                '';
-              };
-              repeatIntervalMs = lib.mkOption {
-                type = lib.types.int;
-                default = 80;
-                description = "Milliseconds between brightness steps while a key is held.";
-              };
-              repeatGraceMs = lib.mkOption {
-                type = lib.types.int;
-                default = 500;
-                description = ''
-                  Stop hold-repeat this many milliseconds after the last brightness
-                  key event.
-                '';
-              };
             };
           };
           default = {
             enable = true;
-            stepPercent = 5;
-            holdRepeat = true;
-            holdDelayMs = 400;
-            continuousRepeatAfterHoldDelay = false;
-            repeatIntervalMs = 80;
-            repeatGraceMs = 500;
           };
           description = ''
             On KDE Plasma 6, hardware brightness keys normally adjust every connected
