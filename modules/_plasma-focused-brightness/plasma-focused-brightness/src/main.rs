@@ -57,14 +57,14 @@ struct Config {
 }
 
 impl Config {
-    fn from_env() -> Result<Self> {
+    fn for_session() -> Self {
         let runtime_dir = env::var("XDG_RUNTIME_DIR")
             .map(PathBuf::from)
             .unwrap_or_else(|_| PathBuf::from("/tmp"));
-        Ok(Self {
+        Self {
             step_percent: DEFAULT_STEP_PERCENT,
             state_dir: runtime_dir.join("plasma-focused-brightness"),
-        })
+        }
     }
 }
 
@@ -216,6 +216,7 @@ fn read_edid_for_output(output: &str) -> Option<String> {
 fn best_edid_match(displays: &[String], edid_text: &str, connection: &Connection) -> Result<Option<String>> {
     let mut best_match = None;
     let mut highest_score = 0usize;
+    let edid_lower = edid_text.to_ascii_lowercase();
 
     for display in displays {
         if value_to_bool(&get_display_prop(connection, display, "IsInternal")?)? {
@@ -234,7 +235,7 @@ fn best_edid_match(displays: &[String], edid_text: &str, connection: &Connection
                 substring = format!("{word} {substring}");
             }
 
-            if edid_text.to_ascii_lowercase().contains(&substring.to_ascii_lowercase()) {
+            if edid_lower.contains(&substring.to_ascii_lowercase()) {
                 current_match_len = substring.len();
             } else {
                 break;
@@ -327,7 +328,7 @@ fn adjust_brightness_once(
 }
 
 fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
-    // Re-exec via argv[0] so the Nix shell wrapper (env exports) is preserved.
+    // Re-exec the same binary so the worker inherits argv and session env.
     let program = env::args()
         .next()
         .context("missing argv0 for hold-repeat worker")?;
@@ -405,7 +406,7 @@ fn main() -> Result<()> {
             .context("usage: plasma-focused-brightness up|down")?
             .as_str(),
     )?;
-    let config = Config::from_env()?;
+    let config = Config::for_session();
 
     if env::var(WORKER_ENV).is_ok() {
         let connection = Connection::session().context("connect to session bus")?;
