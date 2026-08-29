@@ -253,6 +253,42 @@ customize
     || (lib.hasPrefix "runtime." (lib.getName pkg) && lib.hasInfix "Microsoft." (lib.getName pkg))
     || lib.hasPrefix "VBoxGuestAdditions_" (lib.getName pkg);
 
+  firefoxAddonAsNixExtension =
+    pkg:
+    let
+      extid =
+        pkg.extid or (pkg.passthru or { }).extid
+          or (lib.throw "firefox addon ${lib.getName pkg} is missing extid");
+    in
+    pkg
+    // {
+      inherit extid;
+    };
+
+  librewolf_extension_packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
+    with inputs.mio.packages.${pkgs.stdenv.hostPlatform.system};
+    [
+      audio-equalizer-firefox
+      bitwarden-extension
+      dark-reader
+      floccus-firefox
+      plasma-integration-firefox
+      sponsorblock-for-youtube-firefox
+      ublock-origin-firefox
+      unhook-firefox
+      wayback-machine-extension
+    ]
+  );
+
+  librewolf_nix_extensions = map firefoxAddonAsNixExtension librewolf_extension_packages;
+
+  librewolf_declarative_extension_args =
+    lib.optionalAttrs
+      ((config.librewolf_declarative_extensions or true) && librewolf_nix_extensions != [ ])
+      {
+        nixExtensions = librewolf_nix_extensions;
+      };
+
   librewolf_customize_prefs = ''
     // Don't remove data on exit
     pref("privacy.sanitize.sanitizeOnShutdown", false);
@@ -306,9 +342,18 @@ customize
     git = pkgs.git.override { inherit openssh; };
     librewolf' =
       (if config.use_librewolf_bin then librewolfPkgs.librewolf-bin else librewolfPkgs.librewolf).override
-        (old: {
-          extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
-        });
+        (
+          old:
+          {
+            extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
+          }
+          //
+            lib.optionalAttrs
+              ((config.librewolf_declarative_extensions or true) && librewolf_nix_extensions != [ ])
+              {
+                nixExtensions = (old.nixExtensions or [ ]) ++ librewolf_nix_extensions;
+              }
+        );
     telegram =
       if config.compile_gram then
         (

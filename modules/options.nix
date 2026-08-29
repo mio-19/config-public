@@ -52,6 +52,14 @@ let
           default = false;
           description = "wrap librewolf with firejail.";
         };
+        librewolf_declarative_extensions = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = ''
+            Install a fixed set of LibreWolf extensions via wrapFirefox nixExtensions.
+            Blocks manual extension installs while enabled.
+          '';
+        };
         mio_openssh_hpn = lib.mkOption {
           type = lib.types.bool;
           default = if (isDarwin || !stdenv.hostPlatform.isx86_64) then true else inc.atleastV3;

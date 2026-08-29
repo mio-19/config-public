@@ -185,6 +185,7 @@ let
               };
             }
           );
+          inherit librewolf_declarative_extension_args;
           librewolf_for_firejail =
             if config.use_librewolf_bin then librewolf_for_firejail_bin else librewolf_for_firejail_src;
           librewolf_for_firejail_bin = cleanPkg (
@@ -209,6 +210,7 @@ let
                 lockPref("widget.use-xdg-desktop-portal.settings", 1);
               '';
             }
+            // librewolf_declarative_extension_args
           );
           librewolf_for_firejail_src = cleanPkg (
             wrapFirefox librewolf-unwrapped {
@@ -227,6 +229,7 @@ let
                 lockPref("widget.use-xdg-desktop-portal.settings", 1);
               '';
             }
+            // librewolf_declarative_extension_args
           );
           librewolf'_for_firejail =
             if config.use_librewolf_bin then librewolf'_for_firejail_bin else librewolf'_for_firejail_src;
@@ -252,6 +255,7 @@ let
                 lockPref("widget.use-xdg-desktop-portal.settings", 1);
               '';
             }
+            // librewolf_declarative_extension_args
           );
           librewolf'_for_firejail_src = cleanPkg (
             wrapFirefox librewolf-unwrapped {
@@ -270,6 +274,7 @@ let
                 lockPref("widget.use-xdg-desktop-portal.settings", 1);
               '';
             }
+            // librewolf_declarative_extension_args
           );
           vscode = pkgs.vscode; # vscode-fhs;
           discord = pkgs.discord.override {
