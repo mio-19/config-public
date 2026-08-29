@@ -21,6 +21,8 @@
         fcitx5-gtk
         fcitx5-nord
       ];
+      # On KDE Wayland, KWin should launch fcitx5 via Virtual Keyboard settings.
+      systemd.enable = !(osConfig.services.desktopManager.plasma6.enable or false);
       ignoreUserConfig = false; # keep ~/.local/share/fcitx5 for learned pinyin dictionary
       settings.inputMethod = {
         GroupOrder."0" = "Default";

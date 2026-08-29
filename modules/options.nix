@@ -208,11 +208,44 @@ let
                 default = 5;
                 description = "Brightness step size as a percentage of each display's maximum.";
               };
+              holdRepeat = lib.mkOption {
+                type = lib.types.bool;
+                default = true;
+                description = ''
+                  While a brightness key is held, keep stepping at repeatIntervalMs until
+                  no new key events arrive for repeatGraceMs.
+                '';
+              };
+              repeatIntervalMs = lib.mkOption {
+                type = lib.types.int;
+                default = 50;
+                description = "Milliseconds between brightness steps while a key is held.";
+              };
+              repeatGraceMs = lib.mkOption {
+                type = lib.types.int;
+                default = 400;
+                description = ''
+                  Stop hold-repeat after this many milliseconds without a new brightness
+                  key event. Should be longer than the keyboard repeat delay.
+                '';
+              };
+              boostKeyRepeat = lib.mkOption {
+                type = lib.types.bool;
+                default = true;
+                description = ''
+                  Lower keyboard repeat delay and raise repeat rate so Plasma custom
+                  shortcuts fire more often while brightness keys are held.
+                '';
+              };
             };
           };
           default = {
             enable = true;
             stepPercent = 5;
+            holdRepeat = true;
+            repeatIntervalMs = 50;
+            repeatGraceMs = 400;
+            boostKeyRepeat = true;
           };
           description = ''
             On KDE Plasma 6, hardware brightness keys normally adjust every connected

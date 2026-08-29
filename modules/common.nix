@@ -113,6 +113,18 @@
       }:
       let
         _include = (args._include or import ../nixos/include.nix args);
+        flakeShortRev =
+          let
+            flake = inputs.self;
+          in
+          if flake.sourceInfo ? shortRev && flake.sourceInfo.shortRev != null then
+            flake.sourceInfo.shortRev
+          else if flake ? dirtyShortRev && flake.dirtyShortRev != null then
+            flake.dirtyShortRev
+          else
+            lib.warn ''
+              common: flake source lacks shortRev and dirtyShortRev; using "dirty" suffix fallback
+            '' "dirty";
       in
       with _include;
       {
@@ -204,17 +216,7 @@
             }
           )
         ];
-        home-manager.backupFileExtension =
-          let
-            flakeRev =
-              if inputs.self.sourceInfo ? shortRev && inputs.self.sourceInfo.shortRev != null then
-                inputs.self.sourceInfo.shortRev
-              else if inputs.self ? dirtyShortRev && inputs.self.dirtyShortRev != null then
-                inputs.self.dirtyShortRev
-              else
-                "dirty";
-          in
-          "hm-backup-${flakeRev}";
+        home-manager.backupFileExtension = "hm-backup-${flakeShortRev}";
 
         # https://wiki.nixos.org/wiki/Firejail
         programs.firejail = {
@@ -247,11 +249,9 @@
             ++ [
               (
                 if self.sourceInfo ? lastModifiedDate then
-                  "${substring 0 8 self.sourceInfo.lastModifiedDate}.${
-                    self.sourceInfo.shortRev or self.dirtyShortRev or "dirty"
-                  }"
+                  "${substring 0 8 self.sourceInfo.lastModifiedDate}.${flakeShortRev}"
                 else
-                  self.sourceInfo.shortRev or self.dirtyShortRev or "dirty"
+                  flakeShortRev
               )
             ]
           );
