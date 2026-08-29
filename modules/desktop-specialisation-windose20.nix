@@ -14,6 +14,8 @@
         mio = inputs.mio.packages.${system};
         windose20 = mio.windose20 or (lib.throw "windose20 package missing from inputs.mio");
         plasmaOverdose = mio.plasma-overdose-kde-theme or pkgs.plasma-overdose-kde-theme;
+        # Beat per-user mkForce (priority 50) when the windose20 specialisation is active.
+        windose20Prio = lib.mkOverride 0;
         windose20HomeModule =
           {
             osConfig,
@@ -32,20 +34,20 @@
               lib.recursiveUpdate
                 {
                   workspace = {
-                    lookAndFeel = lib.mkForce "Plasma-Overdose";
+                    lookAndFeel = windose20Prio "Plasma-Overdose";
                     cursor = {
-                      theme = lib.mkForce "Plasma-Overdose";
+                      theme = windose20Prio "Plasma-Overdose";
                       size = 24;
                     };
-                    wallpaper = lib.mkForce "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
+                    wallpaper = windose20Prio "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
                   };
                   fonts = {
                     general = {
-                      family = lib.mkForce "fusion-pixel-10px-proportional-latin";
+                      family = windose20Prio "fusion-pixel-10px-proportional-latin";
                       pointSize = 10;
                     };
                     fixedWidth = {
-                      family = lib.mkForce "fusion-pixel-10px-proportional-latin";
+                      family = windose20Prio "fusion-pixel-10px-proportional-latin";
                       pointSize = 10;
                     };
                   };
