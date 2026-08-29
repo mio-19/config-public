@@ -58,6 +58,7 @@
             };
 
             home.pointerCursor = {
+              enable = true;
               package = plasmaOverdose;
               name = "Plasma-Overdose";
               size = 24;

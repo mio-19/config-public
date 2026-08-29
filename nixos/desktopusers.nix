@@ -257,6 +257,7 @@ in
   # DETAILS REMOVED
 
   home.pointerCursor = lib.mkIf osConfig.services.desktopManager.pantheon.enable {
+    enable = true;
     package = pkgs.pantheon.elementary-icon-theme;
     name = "elementary";
     gtk.enable = true;
