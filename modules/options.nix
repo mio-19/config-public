@@ -234,10 +234,12 @@ let
               };
               repeatGraceMs = lib.mkOption {
                 type = lib.types.int;
-                default = 400;
+                default = 800;
                 description = ''
-                  Stop hold-repeat after this many milliseconds without a new brightness
-                  key event. Should be longer than the keyboard repeat delay.
+                  Keep hold-repeat running for this many milliseconds after the last
+                  brightness key event. Each event extends the window; while active
+                  the worker steps every repeatIntervalMs. Increase for longer ramps
+                  when KDE does not re-fire the shortcut during a physical hold.
                 '';
               };
             };
@@ -247,7 +249,7 @@ let
             stepPercent = 5;
             holdRepeat = true;
             repeatIntervalMs = 50;
-            repeatGraceMs = 400;
+            repeatGraceMs = 800;
           };
           description = ''
             On KDE Plasma 6, hardware brightness keys normally adjust every connected

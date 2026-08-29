@@ -62,7 +62,7 @@ impl Config {
             step_percent: env_u32("STEP_PERCENT", 5)?,
             hold_repeat: env_bool("HOLD_REPEAT", true),
             repeat_interval: Duration::from_millis(env_u64("REPEAT_INTERVAL_MS", 50)?),
-            repeat_grace: Duration::from_millis(env_u64("REPEAT_GRACE_MS", 400)?),
+            repeat_grace: Duration::from_millis(env_u64("REPEAT_GRACE_MS", 800)?),
             target_cache_ttl: Duration::from_millis(env_u64("TARGET_CACHE_TTL_MS", 2000)?),
             state_dir: runtime_dir.join("plasma-focused-brightness"),
         })
@@ -349,7 +349,11 @@ fn adjust_brightness_once(
 }
 
 fn spawn_hold_repeat_worker(direction: Direction) -> Result<()> {
-    Command::new(env::current_exe().context("resolve current executable")?)
+    // Re-exec via argv[0] so the Nix shell wrapper (env exports) is preserved.
+    let program = env::args()
+        .next()
+        .context("missing argv0 for hold-repeat worker")?;
+    Command::new(program)
         .env(WORKER_ENV, "1")
         .arg(direction_label(direction))
         .stdin(Stdio::null())
@@ -378,20 +382,18 @@ fn run_hold_repeat_worker(connection: &Connection, config: &Config, direction: D
         return Ok(());
     }
 
-    let mut last_handled = 0u128;
     loop {
         let stamp = read_stamp(&stamp_file);
         let now = now_ms();
-
-        if stamp != last_handled {
-            let _ = adjust_brightness_once(connection, config, direction);
-            last_handled = stamp;
-        }
 
         if now.saturating_sub(stamp) > config.repeat_grace.as_millis() {
             break;
         }
 
+        // KDE fires the hotkey once per press, not on keyboard auto-repeat, so step
+        // on every interval while the grace window is open (stamp refreshed on each
+        // new key event from the parent).
+        let _ = adjust_brightness_once(connection, config, direction);
         thread::sleep(config.repeat_interval);
     }
 

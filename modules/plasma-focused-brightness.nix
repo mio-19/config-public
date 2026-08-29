@@ -22,7 +22,7 @@ let
       stepPercent = osConfig.plasma_focused_brightness.stepPercent or 5;
       holdRepeat = osConfig.plasma_focused_brightness.holdRepeat or true;
       repeatIntervalMs = osConfig.plasma_focused_brightness.repeatIntervalMs or 50;
-      repeatGraceMs = osConfig.plasma_focused_brightness.repeatGraceMs or 400;
+      repeatGraceMs = osConfig.plasma_focused_brightness.repeatGraceMs or 800;
       rustSrc = ./_plasma-focused-brightness/plasma-focused-brightness;
       plasmaFocusedBrightness = pkgs.rustPlatform.buildRustPackage {
         pname = "plasma-focused-brightness";
