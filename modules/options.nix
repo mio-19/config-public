@@ -252,7 +252,7 @@ let
           description = ''
             On KDE Plasma 6, hardware brightness keys normally adjust every connected
             monitor. When enabled, PowerDevil's default shortcuts are disabled and
-            XF86MonBrightnessUp/Down target only the focused display.
+            Monitor Brightness Up/Down target only the focused display.
           '';
         };
       };
