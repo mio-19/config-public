@@ -18,6 +18,10 @@ let
         && (osConfig.services.desktopManager.plasma6.enable or false);
       qdbus = lib.getExe' pkgs.kdePackages.qttools "qdbus";
       stepPercent = osConfig.plasma_focused_brightness.stepPercent or 5;
+      holdRepeat = osConfig.plasma_focused_brightness.holdRepeat or true;
+      repeatIntervalMs = osConfig.plasma_focused_brightness.repeatIntervalMs or 50;
+      repeatGraceMs = osConfig.plasma_focused_brightness.repeatGraceMs or 400;
+      boostKeyRepeat = osConfig.plasma_focused_brightness.boostKeyRepeat or true;
       focusedBrightnessScript = pkgs.writeShellApplication {
         name = "plasma-focused-brightness";
         runtimeInputs = with pkgs; [
@@ -25,10 +29,14 @@ let
           bash
           coreutils
           gnugrep
+          util-linux
         ];
         text = ''
           export QDBUS=${qdbus}
           export STEP_PERCENT=${toString stepPercent}
+          export HOLD_REPEAT=${if holdRepeat then "1" else "0"}
+          export REPEAT_INTERVAL_MS=${toString repeatIntervalMs}
+          export REPEAT_GRACE_MS=${toString repeatGraceMs}
           ${builtins.readFile ./_plasma-focused-brightness/smart_brightness.sh}
         '';
       };
@@ -36,6 +44,13 @@ let
     lib.mkIf enabled {
       programs.plasma = {
         enable = true;
+
+        input = lib.mkIf boostKeyRepeat {
+          keyboard = {
+            repeatDelay = lib.mkDefault 200;
+            repeatRate = lib.mkDefault 40;
+          };
+        };
 
         shortcuts = {
           org_kde_powerdevil = {
