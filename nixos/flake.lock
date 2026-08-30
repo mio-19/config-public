@@ -808,11 +808,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788068134,
-        "narHash": "sha256-PNHm/M5EB1l0K91KQHrSt1D+XvrkBNmbrbBSHiGacZA=",
+        "lastModified": 1788068976,
+        "narHash": "sha256-4YUJ41nGv3DQz/AFlVJadHRHIQxqg+LbqL7FfNRZz/U=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "39312dfdd96a2c346ceb4a9489ea5d7240936a6d",
+        "rev": "ab3291780728d06bce1ee1e84ad06602f8645d79",
         "type": "github"
       },
       "original": {
@@ -1577,10 +1577,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1788064183,
-        "narHash": "sha256-nn4yrjjyux2oK7b8sP6q/wWyV5Wkvx35Jy5Igu28WmM=",
+        "lastModified": 1788074645,
+        "narHash": "sha256-+W1i5yea1QYjo6SJ/xptZvNUZ6IB4XOlgHVpdn7ELYU=",
         "ref": "refs/heads/main",
-        "rev": "0db51467b36c4bf2ebab2cc027532f6b5107c5ef",
+        "rev": "05006ef015734ea09be9445c8849ea5261f566ff",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -1857,11 +1857,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787984563,
-        "narHash": "sha256-4XKbT5w+VKWWD9x2Lb6hMLKePu/N/KpEug1vkvSNNsQ=",
+        "lastModified": 1788069526,
+        "narHash": "sha256-9KzuHubXK+VTG+T6RR3jov+MslpVagNld6FPIRBi9zU=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "c285ca80c57f412cded621fc7658f6e95926c055",
+        "rev": "899fd6ac9dc98b087a36131a3a23db5c737162a8",
         "type": "github"
       },
       "original": {
@@ -2029,10 +2029,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1787993548,
-        "narHash": "sha256-+IAEnmmx5YIhUWo0lp15jLLHchnXo5yKgWsi6C6Cf+0=",
+        "lastModified": 1788077403,
+        "narHash": "sha256-c20YZQKzQ27qC6Wh729fWRTpI7oV4+7Ur4icKssD4Wc=",
         "ref": "refs/heads/master",
-        "rev": "996e9b0b019a4a9eb9e9a5641aefa06d801b5895",
+        "rev": "89e26eeaafa88a2ede4778734acc794ff0299beb",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
@@ -2398,10 +2398,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1788042348,
-        "narHash": "sha256-0elxLaDKy+Eg0iH7B9YT7N2vXpMNahkYrMmzRBihl9Q=",
+        "lastModified": 1788076699,
+        "narHash": "sha256-7/xv7BWHPqFZOdJJJkXoNnGDG/lznobSpwLtj2fr73A=",
         "ref": "refs/heads/main",
-        "rev": "7e5eae4a0ec7d29b83858ba5f54e156a19bbffbf",
+        "rev": "8d0d0f036b0104699e60ec0d549d36a24d6e8637",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
