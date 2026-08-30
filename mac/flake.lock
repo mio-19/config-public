@@ -98,11 +98,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1788057760,
-        "narHash": "sha256-u2TmKbFtMKrwJTTRtibfflg4zq7didmC/iNtxvv7Eyc=",
+        "lastModified": 1788075699,
+        "narHash": "sha256-jdGlh7tkoSN3qgSm+623sO9zHJFXmbwp3JmMc7/aO4A=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "615b9d2e411a9ddbcf39afafac6ac48e156e69a7",
+        "rev": "ce9bf91aed90a6712ad2de088e1294f52552ebbd",
         "type": "github"
       },
       "original": {
@@ -584,11 +584,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788068134,
-        "narHash": "sha256-PNHm/M5EB1l0K91KQHrSt1D+XvrkBNmbrbBSHiGacZA=",
+        "lastModified": 1788068976,
+        "narHash": "sha256-4YUJ41nGv3DQz/AFlVJadHRHIQxqg+LbqL7FfNRZz/U=",
         "ref": "refs/heads/main",
-        "rev": "39312dfdd96a2c346ceb4a9489ea5d7240936a6d",
-        "revCount": 703,
+        "rev": "ab3291780728d06bce1ee1e84ad06602f8645d79",
+        "revCount": 705,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -623,11 +623,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787457452,
-        "narHash": "sha256-FJh4esFS3zqNNuKwvN3t6wrJGewqp1AUF9DAEvoKPD8=",
+        "lastModified": 1788080100,
+        "narHash": "sha256-n14luQo3F/ZLfCEHk1QieiI1nGnW92ZQZeZ0UIb0UMQ=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "c51d5c2ba69c907a34e90c9b6b80cd2b93811745",
+        "rev": "dbb978fa87faf13398e90ccbc52c343d21c7dd6d",
         "type": "github"
       },
       "original": {
@@ -832,11 +832,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788068298,
-        "narHash": "sha256-Th4nd0hNQTy+l+hxQL65Cj46fQKXWd+GgWAfyqpHLko=",
+        "lastModified": 1788089878,
+        "narHash": "sha256-1PsrT7W6bXVSvsVEGA6uLrIT61J9NN3riASY3TwD3n8=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "a71bf6614c2b850e8af72517756e7dff7de1ae19",
+        "rev": "02de613ce062d11dae314a882d1a24df5a44f9bc",
         "type": "github"
       },
       "original": {
