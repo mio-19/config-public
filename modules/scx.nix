@@ -20,7 +20,8 @@
         services.scx.package = lib.mkDefault pkgs.scx.rustscheds;
         # https://www.phoronix.com/news/Meta-SCX-LAVD-Steam-Deck-Server
         # https://github.com/search?q=scx_lavd+language%3ANix&type=code&l=Nix
-        services.scx.scheduler = "scx_pandemonium"; # "scx_lavd"; # https://github.com/NixOS/nixpkgs/issues/555996
+        #services.scx.scheduler = "scx_pandemonium";
+        services.scx.scheduler = "scx_lavd"; # note https://github.com/NixOS/nixpkgs/issues/555996
         # https://github.com/Jovian-Experiments/Jovian-NixOS/blob/d15853dadb69837bc1e86c5be52c1e6b4bda3da4/modules/steam/steam.nix#L64C7-L64C36
         # https://github.com/NixOS/nixpkgs/blob/9dfcba812aa0f4dc374acfe0600d591885f4e274/lib/modules.nix#L653C13-L653C23
         # see matrix group:
