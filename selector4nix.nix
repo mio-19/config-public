@@ -117,7 +117,7 @@ in
         {
           # https://github.com/numtide/nixos-passthru-cache
           url = "https://hetzner-cache.numtide.com";
-          priority = 6;
+          priority = 5;
         }
         # DETAILS REMOVED
       ];
