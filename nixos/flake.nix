@@ -407,10 +407,10 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
                 hash = "sha256-qkUXGG0GEe0vC1/0J/DUAPPM9Oj71vRZ24sKmmLtYAQ=";
               })
-              (fetchurl {
+              (fetchpatch {
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
-                hash = "sha256-jv24Gf/pU32huW0KHdUmiWiLeZFNXmWDj1tZsL7RDEs=";
+                hash = "sha256-ND4idJBXPttECpF5crevL39QctHKcYHaIHl1l42DSSE=";
               })
               (fetchpatch {
                 name = "github-copilot-cli: 1.0.61 -> 1.0.73";
