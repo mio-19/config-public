@@ -13,16 +13,17 @@ in
 {
   flake =
     let
+      inputsFor = system: withSystem system ({ inputs-patched, ... }: inputs-patched);
       the =
         system:
         let
-          inputs = withSystem system ({ inputs-patched, ... }: inputs-patched);
+          inputs = inputsFor system;
         in
         inputs;
       nixosSystem =
         { system, ... }@args:
         let
-          inputs = withSystem system ({ inputs-patched, ... }: inputs-patched);
+          inputs = inputsFor system;
           inherit (inputs) nixpkgs;
         in
         nixpkgs.lib.nixosSystem (
@@ -36,8 +37,8 @@ in
         );
       deployPkgs =
         let
-          inherit (inputs) nixpkgs deploy-rs;
           system = "x86_64-linux";
+          inherit (inputsFor system) nixpkgs deploy-rs;
           # Unmodified nixpkgs
           pkgs = import nixpkgs { inherit system; };
           # nixpkgs with deploy-rs overlay but force the nixpkgs package
@@ -55,7 +56,12 @@ in
           };
         in
         deployPkgs;
-      denFor = system: import ../den-config.nix { inherit inputs system; };
+      denFor =
+        system:
+        import ../den-config.nix {
+          inherit system;
+          inputs = inputsFor system;
+        };
       denX86 = denFor "x86_64-linux";
       denA64 = denFor "aarch64-linux";
       inherit (denX86.hosts.x86_64-linux) fw13 ipc deck;
