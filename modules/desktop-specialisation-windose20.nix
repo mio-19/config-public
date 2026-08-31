@@ -126,7 +126,7 @@
               config_home="${config.xdg.configHome}"
 
               windose20_config_detected() {
-                for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc"; do
+                for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc" "$config_home/kcminputrc"; do
                   [ -f "$f" ] || continue
                   if grep -qE 'Plasma-Overdose|fusion-pixel-10px-proportional-latin|windose20' "$f" 2>/dev/null; then
                     return 0
@@ -149,6 +149,21 @@
                   -e '/^font=fusion-pixel-10px-proportional-latin/d' \
                   -e '/^fixed=fusion-pixel-10px-proportional-latin/d' \
                   "$kdeglobals"
+              fi
+
+              kcminputrc="$config_home/kcminputrc"
+              if [ -f "$kcminputrc" ]; then
+                ${pkgs.gnused}/bin/sed -i \
+                  -e 's/cursorTheme=Plasma-Overdose/cursorTheme=breeze_cursors/g' \
+                  "$kcminputrc"
+              fi
+
+              appletsrc="$config_home/plasma-org.kde.plasma.desktop-appletsrc"
+              if [ -f "$appletsrc" ]; then
+                ${pkgs.gnused}/bin/sed -i \
+                  -e '/Plasma-Overdose/d' \
+                  -e '/windose20/d' \
+                  "$appletsrc"
               fi
 
               rm -f "$config_home/konsole/Plasma-Overdose.profile"
