@@ -133,46 +133,55 @@
                   fi
                 done
                 [ -f "$config_home/konsole/Plasma-Overdose.profile" ] && return 0
+                [ -f "$HOME/.icons/default/index.theme" ] && grep -q "Plasma-Overdose" "$HOME/.icons/default/index.theme" 2>/dev/null && return 0
                 return 1
               }
 
-              if ! windose20_config_detected; then
-                exit 0
-              fi
-
-              kdeglobals="$config_home/kdeglobals"
-              if [ -f "$kdeglobals" ]; then
-                ${pkgs.gnused}/bin/sed -i \
-                  -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/g' \
-                  -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/g' \
-                  -e 's|theme=Plasma-Overdose|theme=breeze_cursors|g' \
-                  -e '/^font=fusion-pixel-10px-proportional-latin/d' \
-                  -e '/^fixed=fusion-pixel-10px-proportional-latin/d' \
-                  "$kdeglobals"
-              fi
-
-              kcminputrc="$config_home/kcminputrc"
-              if [ -f "$kcminputrc" ]; then
-                ${pkgs.gnused}/bin/sed -i \
-                  -e 's/cursorTheme=Plasma-Overdose/cursorTheme=breeze_cursors/g' \
-                  "$kcminputrc"
-              fi
-
-              appletsrc="$config_home/plasma-org.kde.plasma.desktop-appletsrc"
-              if [ -f "$appletsrc" ]; then
-                ${pkgs.gnused}/bin/sed -i \
-                  -e '/Plasma-Overdose/d' \
-                  -e '/windose20/d' \
-                  "$appletsrc"
-              fi
-
-              rm -f "$config_home/konsole/Plasma-Overdose.profile"
-              for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
-                target="$config_home/$rel"
-                if [ -e "$target" ] && grep -qF 'share/windose20/' "$target" 2>/dev/null; then
-                  rm -f "$target"
+              if windose20_config_detected; then
+                kdeglobals="$config_home/kdeglobals"
+                if [ -f "$kdeglobals" ]; then
+                  ${pkgs.gnused}/bin/sed -i \
+                    -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/g' \
+                    -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/g' \
+                    -e 's|theme=Plasma-Overdose|theme=breeze_cursors|g' \
+                    -e '/^font=fusion-pixel-10px-proportional-latin/d' \
+                    -e '/^fixed=fusion-pixel-10px-proportional-latin/d' \
+                    "$kdeglobals"
                 fi
-              done
+
+                kcminputrc="$config_home/kcminputrc"
+                if [ -f "$kcminputrc" ]; then
+                  ${pkgs.gnused}/bin/sed -i \
+                    -e 's/cursorTheme=Plasma-Overdose/cursorTheme=breeze_cursors/g' \
+                    "$kcminputrc"
+                fi
+
+                appletsrc="$config_home/plasma-org.kde.plasma.desktop-appletsrc"
+                if [ -f "$appletsrc" ]; then
+                  ${pkgs.gnused}/bin/sed -i \
+                    -e '/Plasma-Overdose/d' \
+                    -e '/windose20/d' \
+                    "$appletsrc"
+                fi
+
+                rm -f "$config_home/konsole/Plasma-Overdose.profile"
+                for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
+                  target="$config_home/$rel"
+                  if [ -e "$target" ] && grep -qF 'share/windose20/' "$target" 2>/dev/null; then
+                    rm -f "$target"
+                  fi
+                done
+                
+                # Clean up ~/.icons/default if plasma-apply-cursortheme made it a directory
+                if [ -d "$HOME/.icons/default" ] && ! [ -L "$HOME/.icons/default" ]; then
+                  if grep -q "Plasma-Overdose" "$HOME/.icons/default/index.theme" 2>/dev/null; then
+                    rm -rf "$HOME/.icons/default"
+                  fi
+                fi
+                
+                # Signal AfterPlasma to run dbus commands
+                touch "$config_home/.windose20_restore_pending"
+              fi
             '';
           in
           lib.mkIf (!inWindose20 && osConfig.services.desktopManager.plasma6.enable) {
@@ -182,16 +191,17 @@
               "writeBoundary"
             ] windose20RestoreScript;
 
-            home.activation.windose20RestoreAfterPlasma = lib.hm.dag.entryAfter [ "writeBoundary" ] (
-              windose20RestoreScript
-              + ''
+            home.activation.windose20RestoreAfterPlasma = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              config_home="${config.xdg.configHome}"
+              if [ -f "$config_home/.windose20_restore_pending" ]; then
+                rm -f "$config_home/.windose20_restore_pending"
                 if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel" ]; then
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel org.kde.breeze.desktop || true
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-cursortheme breeze_cursors || true
                 fi
                 ${plasmaWallpaperApplyScript}
-              ''
-            );
+              fi
+            '';
           };
       in
       {
