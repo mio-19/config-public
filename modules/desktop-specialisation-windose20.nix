@@ -126,14 +126,13 @@
               config_home="${config.xdg.configHome}"
 
               windose20_config_detected() {
-                for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc" "$config_home/kcminputrc"; do
+                for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc" "$config_home/kcminputrc" "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0" "$HOME/.icons/default/index.theme" "$HOME/.local/share/icons/default/index.theme"; do
                   [ -f "$f" ] || continue
-                  if grep -qE 'Plasma-Overdose|fusion-pixel-10px-proportional-latin|windose20' "$f" 2>/dev/null; then
+                  if grep -qiE 'Plasma-Overdose|fusion-pixel-10px-proportional-latin|windose20' "$f" 2>/dev/null; then
                     return 0
                   fi
                 done
                 [ -f "$config_home/konsole/Plasma-Overdose.profile" ] && return 0
-                [ -f "$HOME/.icons/default/index.theme" ] && grep -q "Plasma-Overdose" "$HOME/.icons/default/index.theme" 2>/dev/null && return 0
                 return 1
               }
 
@@ -141,26 +140,32 @@
                 kdeglobals="$config_home/kdeglobals"
                 if [ -f "$kdeglobals" ]; then
                   ${pkgs.gnused}/bin/sed -i \
-                    -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/g' \
-                    -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/g' \
-                    -e 's|theme=Plasma-Overdose|theme=breeze_cursors|g' \
-                    -e '/^font=fusion-pixel-10px-proportional-latin/d' \
-                    -e '/^fixed=fusion-pixel-10px-proportional-latin/d' \
+                    -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/ig' \
+                    -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/ig' \
+                    -e 's|[tT]heme=Plasma-Overdose|Theme=breeze_cursors|ig' \
+                    -e '/^font=fusion-pixel-10px-proportional-latin/Id' \
+                    -e '/^fixed=fusion-pixel-10px-proportional-latin/Id' \
                     "$kdeglobals"
                 fi
 
                 kcminputrc="$config_home/kcminputrc"
                 if [ -f "$kcminputrc" ]; then
                   ${pkgs.gnused}/bin/sed -i \
-                    -e 's/cursorTheme=Plasma-Overdose/cursorTheme=breeze_cursors/g' \
+                    -e 's/[cC]ursor[tT]heme=Plasma-Overdose/cursorTheme=breeze_cursors/ig' \
                     "$kcminputrc"
                 fi
+
+                for gtk in "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0"; do
+                  if [ -f "$gtk" ]; then
+                    ${pkgs.gnused}/bin/sed -i 's/Plasma-Overdose/breeze_cursors/ig' "$gtk"
+                  fi
+                done
 
                 appletsrc="$config_home/plasma-org.kde.plasma.desktop-appletsrc"
                 if [ -f "$appletsrc" ]; then
                   ${pkgs.gnused}/bin/sed -i \
-                    -e '/Plasma-Overdose/d' \
-                    -e '/windose20/d' \
+                    -e '/Plasma-Overdose/Id' \
+                    -e '/windose20/Id' \
                     "$appletsrc"
                 fi
 
