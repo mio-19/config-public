@@ -189,7 +189,12 @@
               fi
             '';
           in
-          lib.mkIf (!inWindose20 && osConfig.services.desktopManager.plasma6.enable) {
+          lib.mkIf (!inWindose20) {
+            xdg.configFile = {
+              "fastfetch/config.jsonc".text = "";
+              "neofetch/config.conf".text = "";
+              "cava/config".text = "";
+            };
             # Eval-time gate uses only the boot specialisation tag. Detection and
             # Breeze restore run during home-manager activation on the live profile.
             home.activation.windose20RestoreBeforePlasma = lib.hm.dag.entryBefore [
