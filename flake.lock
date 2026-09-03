@@ -2091,6 +2091,7 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-2511": "nixpkgs-2511",
+        "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "nur": "nur_2",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
@@ -2306,6 +2307,19 @@
         "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs-pin2": {
+      "locked": {
+        "lastModified": 1788179007,
+        "narHash": "sha256-maQBa7XmWJ+a6te4QwF++R1FIXUrjvki0AtGOOhyZn0=",
+        "rev": "34ab99075ac4f7e40cf037eef32cb1c360bb85e9",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1064949.34ab99075ac4/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1064949.34ab99075ac4/nixexprs.tar.zst"
       }
     },
     "nixpkgs-pin5": {
