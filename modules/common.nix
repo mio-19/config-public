@@ -372,6 +372,7 @@
             plasma-systemmonitor
             systemsettings
             # optionalPackages
+            okular
             ark
             elisa
             gwenview
@@ -391,7 +392,6 @@
           map (pkg: (lib.hiPrio pkg)) [
             # https://github.com/NixOS/nixpkgs/blob/74a6c30612152d8b186f55f9c8b998f978afd6eb/nixos/modules/services/desktop-managers/plasma6.nix#L70-L218
             # optionalPackages
-            okular
           ]
         );
         environment.systemPackages =
