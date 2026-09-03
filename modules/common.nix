@@ -315,62 +315,89 @@
         networking.firewall.allowedTCPPorts = [ 8080 ]; # temp file share with $ caddy file-server --browse --debug --listen :8080
 
         # https://search.nixos.org/packages
+        systemPackages_hardened = [
+          progs.git
+          progs.openssh
+          #nix-output-monitor
+
+          curl
+          wget
+          proto
+          smartmontools
+          mdbook
+          dust
+          iotop
+          nmap
+          nixfmt
+          nixfmt-tree
+          #caddy # caddy file-server --browse
+          #copyparty
+          typst
+          #dmidecode
+          pciutils
+          usbutils
+          unzip
+          zip
+          #nvd # https://discourse.nixos.org/t/nvd-simple-nix-nixos-version-diff-tool/12397/21
+          uv
+          python3
+          fd
+          fzf
+          file
+          (lib.hiPrio btrfs-progs) # higher prio than builtin btrfs-progs when btrfs is enabled
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nm2nix
+          #inputs.pinix.packages.${pkgs.stdenv.hostPlatform.system}.default
+          dos2unix
+          openssl
+          nur.repos.mio.cb
+          catimg
+          psmisc
+          lz4
+          android-tools
+          difftastic
+          lsof
+          imagemagick
+          waypipe
+          ripgrep
+          # unfree:
+          p7zip-rar
+        ]
+        ++ lib.optionals config.services.desktopManager.plasma6.enable (
+          with pkgs.kdePackages;
+          map (pkg: (lib.hiPrio pkg)) [
+            # Note: some packages are broken with hardenedPkg. Only list those known to work here.
+            # https://github.com/NixOS/nixpkgs/blob/74a6c30612152d8b186f55f9c8b998f978afd6eb/nixos/modules/services/desktop-managers/plasma6.nix#L70-L218
+            kwalletmanager
+            kwin
+            plasma-systemmonitor
+            systemsettings
+            # optionalPackages
+            ark
+            elisa
+            gwenview
+            dolphin
+            spectacle
+          ]
+        )
+        ++ lib.optionals config.mio_aria2 [
+          nur.repos.mio.aria2
+          nur.repos.mio.aria2-wrapped
+        ];
+        systemPackages_clean = [
+          nix-output-monitor
+        ]
+        ++ lib.optionals config.services.desktopManager.plasma6.enable (
+          with pkgs.kdePackages;
+          map (pkg: (lib.hiPrio pkg)) [
+            # https://github.com/NixOS/nixpkgs/blob/74a6c30612152d8b186f55f9c8b998f978afd6eb/nixos/modules/services/desktop-managers/plasma6.nix#L70-L218
+            # optionalPackages
+            okular
+          ]
+        );
         environment.systemPackages =
           with pkgs;
-          (
-            map hardenedPkg [
-              progs.git
-              progs.openssh
-              #nix-output-monitor
-
-              curl
-              wget
-              proto
-              smartmontools
-              mdbook
-              dust
-              iotop
-              nmap
-              nixfmt
-              nixfmt-tree
-              #caddy # caddy file-server --browse
-              #copyparty
-              typst
-              #dmidecode
-              pciutils
-              usbutils
-              unzip
-              zip
-              #nvd # https://discourse.nixos.org/t/nvd-simple-nix-nixos-version-diff-tool/12397/21
-              uv
-              python3
-              fd
-              fzf
-              file
-              (lib.hiPrio btrfs-progs) # higher prio than builtin btrfs-progs when btrfs is enabled
-              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nm2nix
-              #inputs.pinix.packages.${pkgs.stdenv.hostPlatform.system}.default
-              dos2unix
-              openssl
-              nur.repos.mio.cb
-              catimg
-              psmisc
-              lz4
-              android-tools
-              difftastic
-              lsof
-              imagemagick
-              waypipe
-              ripgrep
-              # unfree:
-              p7zip-rar
-            ]
-            ++ lib.optionals (config.boot.loader.grub.enable && config.boot.loader.grub.efiSupport) [
-              efibootmgr
-            ]
-          )
-          ++ (map cleanPkg [
-            nix-output-monitor
+          (lib.optionals (config.boot.loader.grub.enable && config.boot.loader.grub.efiSupport) [
+            efibootmgr
           ])
           ++ [
             script.upgrade
@@ -378,37 +405,13 @@
             script.boot
             script.upboot
           ]
-          ++ lib.optionals config.mio_aria2 (
-            map hardenedPkg [
-              nur.repos.mio.aria2
-              nur.repos.mio.aria2-wrapped
-            ]
-          )
           ++ lib.optionals (!config.mio_aria2) (map hardenedPkg [ aria2 ])
           ++ (map cleanPkg [
             ego
             #  they might execute some binary that doesn't like the grapheneos malloc
             progs.nodejs
             progs.pnpm
-          ])
-          ++ lib.optionals config.services.desktopManager.plasma6.enable (
-            with pkgs.kdePackages;
-            map (pkg: hardenedPkg (lib.hiPrio pkg)) [
-              # Note: some packages are broken with hardenedPkg. Only list those known to work here.
-              # https://github.com/NixOS/nixpkgs/blob/74a6c30612152d8b186f55f9c8b998f978afd6eb/nixos/modules/services/desktop-managers/plasma6.nix#L70-L218
-              kwalletmanager
-              kwin
-              plasma-systemmonitor
-              systemsettings
-              # optionalPackages
-              ark
-              elisa
-              gwenview
-              okular
-              dolphin
-              spectacle
-            ]
-          );
+          ]);
 
         programs.nano.package = lib.mkDefault (cleanPkg pkgs.nano);
         programs.nano.enable = true;
