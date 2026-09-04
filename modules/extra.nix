@@ -36,7 +36,7 @@ let
     { pkgs, ... }:
     with pkgs;
     [
-      nvfetcher
+      nvfetcher # with hardened: fatal allocator error: invalid free
       codex
       opencode
       github-copilot-cli
