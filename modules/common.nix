@@ -730,7 +730,6 @@
           #nix-output-monitor
           android-tools
           update-nix-fetchgit
-          nvfetcher
           #git-repo
           #ccache
           dust

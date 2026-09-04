@@ -36,6 +36,7 @@ let
     { pkgs, ... }:
     with pkgs;
     [
+      nvfetcher
       codex
       opencode
       github-copilot-cli
@@ -82,7 +83,6 @@ in
               lean4
               yarn-berry
               update-nix-fetchgit
-              nvfetcher
               gnumake
               texliveFull
               poppler-utils
