@@ -23,7 +23,7 @@
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
     nixpkgs-pin2.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1064949.34ab99075ac4/nixexprs.tar.zst"; # a commit from nixos-unstable
-    #nixpkgs-pin3.url = "github:NixOS/nixpkgs/567a49d1913ce81ac6e9582e3553dd90a955875f"; # a commit from nixos-unstable
+    nixpkgs-pin3.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1066106.3ed67ec0a4d3/nixexprs.tar.zst"; # a commit from nixos-unstable
     #nixpkgs-pin4.url = "github:NixOS/nixpkgs/8dc49b8b206a683d1f6605e0fd993c0f5d49c98d"; # a commit from nixos-unstable-small
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
     nix-vscode-extensions = {

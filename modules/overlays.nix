@@ -42,6 +42,7 @@
               inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
               inherit (pkgs-pin2) jabref;
+              inherit (pkgs-pin3) rare;
             }
           )
           inputs.chaotic.overlays.default
