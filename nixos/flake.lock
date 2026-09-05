@@ -741,11 +741,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788589628,
-        "narHash": "sha256-ZrUD4+QmT0c9xoHy7OYtSyvdg2wzN0RTeVGI3BQfx8M=",
+        "lastModified": 1788594240,
+        "narHash": "sha256-0RX+zJOVOHgSQkhE+FhRo++rjul2G1/RpPxcv9r8HQM=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "f819791f5cd977872cd14d175f9f7b3c2925a1f8",
+        "rev": "d0950fcb1e078816da2bf00c20b5f5050130829e",
         "type": "github"
       },
       "original": {
@@ -809,11 +809,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788591443,
-        "narHash": "sha256-GZb5BQnh1Lb7Jy7a+oBuR7KukimfFAbE7ybsqHtyQ2M=",
+        "lastModified": 1788593559,
+        "narHash": "sha256-J8SzqfEgSxdv2zEKDJ1r2pv2KBBLbiRA16HVeO1hEhU=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "87b48c6bce1cf96c8ce24699b9b3037ae3ee789b",
+        "rev": "51c2347f7e1c4ce54bfbb34332aa14c11b0088ad",
         "type": "github"
       },
       "original": {
@@ -1199,11 +1199,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788535815,
-        "narHash": "sha256-72S6xjygRPBLM0zatNGHbgjR0VuQKfgWtoJ+fNC2N/U=",
+        "lastModified": 1788594496,
+        "narHash": "sha256-7hX88h0VYiVROmqyz2yTI1KSh7pE9CbnzmlVt4w50gQ=",
         "owner": "nixified-ai",
         "repo": "flake",
-        "rev": "829a114470362eea7e9b39488b5b441b4f532765",
+        "rev": "a296636adb1a082103e80110655bfbe4f931098c",
         "type": "github"
       },
       "original": {
@@ -1604,10 +1604,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1788591532,
-        "narHash": "sha256-Qpul3qw0arl99jiI+AYCeNixslcUaSLiSj12T1z2LuU=",
+        "lastModified": 1788594396,
+        "narHash": "sha256-HLvxvUIMxBHl+vv/1OVTLPKrSLTinId97WBIxWWByJ0=",
         "ref": "refs/heads/main",
-        "rev": "e2d466f8fd1606243eccad959dbff6ddbafddd08",
+        "rev": "82ca52a282cd5f90afabcf7c9acd27571b253523",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
