@@ -28,6 +28,7 @@ let
       gdb
       progs.antlr
       openscad
+      qpdf # decrypt pdf
     ]
     ++ lib.optional (
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? forester
@@ -86,7 +87,6 @@ in
               gnumake
               texliveFull
               poppler-utils
-              qpdf # decrypt pdf
               nixd
               jq
               ffmpeg-full
