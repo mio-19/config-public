@@ -18,7 +18,7 @@ let
   enable-zsh-patina = pkgs ? nur && pkgs.nur.repos ? mio && pkgs.nur.repos.mio ? zsh-patina; # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? zsh-patina || pkgs ? zsh-patina;
   zsh-patina = pkgs.nur.repos.mio.zsh-patina; # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zsh-patina or pkgs.zsh-patina;
   enable-zsh-sage = false;
-  enable-flyline = pkgs ? flyline;
+  enable-flyline = !stdenv.hostPlatform.isDarwin && pkgs ? flyline; # flyline feels wrong on darwin
   inherit (pkgs) stdenv;
   bash3workaround = stdenv.hostPlatform.isDarwin;
 in
