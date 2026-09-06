@@ -72,4 +72,9 @@ in
     # default for 25.11 is xdg.userDirs.setSessionVariables = true;
     setSessionVariables = false;
   };
+
+  services.home-manager.autoExpire = {
+    frequency = "daily";
+    timestamp = "-1 days";
+  };
 }
