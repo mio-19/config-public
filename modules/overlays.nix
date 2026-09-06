@@ -79,7 +79,7 @@
               starship = mio.starship_patched;
               raycast = mio.raycast_macos15;
               #harmonia = mio.harmonia_patched;
-              inherit (pkgs-pin7) jadx asymptote;
+              inherit (pkgs-pin7) jadx;
             }
           )
         ];
