@@ -29,6 +29,7 @@ let
       progs.antlr
       openscad
       qpdf # decrypt pdf
+      pandoc
     ]
     ++ lib.optional (
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? forester
