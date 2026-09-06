@@ -161,6 +161,7 @@ customize
         #"${inputs.mio}/by-name/di/discordchatexporter-desktop_patched/deps.json"
       ];
       allowed = [
+        "vscodium"
         "chatbox"
         "src_binding"
         "brave-origin"
