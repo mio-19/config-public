@@ -38,6 +38,7 @@
                 ffmpeg-full
                 krita
                 handbrake
+                gimp
                 ;
               inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
