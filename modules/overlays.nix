@@ -23,7 +23,7 @@
           (
             final: prev:
             let
-              mio = inputs.mio.packages."${system}";
+              mio = inputs.mio.legacyPackages."${system}";
             in
             {
               grub2 = mio.grub2_patched;
