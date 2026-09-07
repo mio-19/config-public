@@ -123,6 +123,11 @@ let
             false
             "delay_restart"
             "powerdown_cmd"
+            # greeter_recycle: stop fprintd before sleep (system service), restart on resume,
+            # then wait for fprintd to be device-ready (gdbus GetDefaultDevice) via a per-user
+            # service before recycling kscreenlocker_greet. Eliminates the race between fprintd
+            # restart and the greeter opening a fresh PAM session (nixpkgs#432276).
+            "greeter_recycle"
           ];
           default = false;
         };

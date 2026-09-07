@@ -53,17 +53,28 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 * **Broken recycle**: `pkill -TERM -x kscreenlocker_greet` never matches (Linux `comm` is 15 chars; name is 19). Need `pkill -f` ([pkill(1)](https://man.archlinux.org/man/pkill.1); same as Discourse / [nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276) workarounds).
 * Stop-before-sleep alone is not enough on Framework 13 (also reported on that issue); greeter must actually die and respawn.
 
-### What we did
-* **`fprintd-sleep` in `modules/common.nix`**: oneshot on `sleep.target` (`WantedBy`/`Before`, `StopWhenUnneeded`, `RemainAfterExit`). **ExecStart** stops `fprintd` before sleep. **ExecStop**: `sleep 2` → `systemctl restart fprintd` → `pkill -TERM -f kscreenlocker_greet` (not `-x`: `comm` is 15 chars so `-x` never matched; kill only after restart so Plasma does not respawn into the restart race).
-* **Why not `WantedBy=suspend.target` + `After=suspend.target` + `ExecStart`**: that can appear to run post-wake because `suspend.target` is `After=systemd-suspend.service`, but it is not the documented hook, needs every sleep target listed, and diverges from nixpkgs `power-management.nix`. `WantedBy=sleep.target` + `After=sleep.target` + `ExecStart` is wrong (runs before sleep; [systemd#6364](https://github.com/systemd/systemd/issues/6364)).
-* **Why not only restart fprintd**: greeter keeps a stale `pam_fprintd` D-Bus session → intermittent unlock.
-* **Why not only stop-before-sleep**: issue author prefers that; Framework 13 still saw intermittency — logs needed greeter recycle.
-* **Left alone for now**: commented-out `den.aspects.fprint-fix`; broken `fprintd_sudo_only_tty` flake patch (CVE mitigation noise, not the resume bug).
+### What we saw (fw13, 2026-09-07 — all modes failed; root cause from source)
+* **Hardware confirmed**: `lspci -D | grep -i xhci` → **empty** (no xHCI controller visible). USB rebind approach is inapplicable on this machine.
+* **Sensor stays on USB**: `lsusb | grep 27c6` → `Bus 001 Device 003: ID 27c6:609c` visible after resume. USB device disappearance is NOT the failure mode.
+* **Root cause confirmed via kscreenlocker source** (`pamauthenticator.cpp`):
+  * `m_unavailable = true` is set when PAM returns `WorkerResult::Unavailable` or after >3 rapid failures within 2 seconds. Once set, `tryUnlock()` returns immediately — fingerprint is silently disabled for that greeter lifetime.
+  * `busctl status net.reactivated.Fprint` (D-Bus name visible) fires ~500ms **before** fprintd finishes USB device enumeration. A fresh greeter started at this point calls pam_fprintd → `WorkerResult::Unavailable` → `m_unavailable=true` in the new greeter too.
+  * This is why `delay_restart` failed: the greeter recycle happened at the right time but fprintd wasn't truly device-ready yet.
+* **`ksldapp` auto-respawns greeter** (`ksldapp.cpp` line ~207): when `kscreenlocker_greet` exits (including via SIGTERM), `ksldapp` starts a fresh one — `pkill -TERM -f kscreenlocker_greet` is the correct mechanism, but timing is critical.
+
+### What we did (2026-09-07)
+* **New `greeter_recycle` mode** in `modules/common.nix` + `modules/options.nix`:
+  - **System service `fprintd-pre-sleep`** (`sleep.target`, `WantedBy`/`Before`, `StopWhenUnneeded`, `RemainAfterExit`): ExecStart stops fprintd before sleep; ExecStop restarts it after resume. Does NOT kill the greeter — that is the user service's job.
+  - **User service `fprintd-greeter-recycle`** (`systemd.user.services`): runs after resume in the login session. Polls `net.reactivated.Fprint.Manager.GetDefaultDevice` via `gdbus call` (not just D-Bus name presence) until it returns an object path (device enumerated and ready). Then `pkill -TERM -f kscreenlocker_greet`. `ksldapp` respawns the greeter into a ready fprintd.
+  - `GetDefaultDevice` returning an object path (not an error) is the correct readiness signal — confirms the device is enumerated and fprintd can accept PAM sessions. Name-only presence is insufficient.
+* **Enabled `den.aspects.fprint-fix`** in `modules/common.nix`: libfprint USB serial retry patch (3 attempts, exponential backoff) for Goodix and Synaptics drivers. Reduces probe failures when fprintd restarts after resume.
+* **fw13 set to `greeter_recycle`** in `modules/hosts/fw13/_nixos/default.nix`.
 
 ### Known Workarounds (Currently in Repo)
 * **Disabled fprintAuth** on `login` / `kde` / `passwd` (`modules/desktop-basic.nix`); `polkit-1` follows `services.fprintd.enable`. Plasma fingerprint goes through `kde-fingerprint`.
-* **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): `fprintd-sleep` stop / restart+greeter-recycle via `sleep.target` ExecStart/ExecStop (`modules/common.nix`).
-* **Experimental libfprint patch**: `den.aspects.fprint-fix` commented out in `modules/common.nix` (`wvhulle` kill-without-clean).
+* **`pam_fprintd timeout=60 max-tries=3`** on `kde-fingerprint` (`modules/desktop-basic.nix`): extends the fingerprint window.
+* **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): `greeter_recycle` mode — `fprintd-pre-sleep` (system) + `fprintd-greeter-recycle` (user). Uses `GetDefaultDevice` readiness check before greeter recycle (`modules/common.nix`).
+* **libfprint USB serial retry patch**: `den.aspects.fprint-fix` enabled in `modules/common.nix` (`wvhulle` kill-without-clean, rebased on v1.94.10).
 * **SSH sudo bypass**: `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH, fails in tmux).
 
 ### Issue 2b: Fingerprint prompt disappears / times out (no suspend involved)
@@ -87,11 +98,13 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 
 **Still open**: The ~30s `pam_fprintd` timeout means if you don't scan within that window after locking, fingerprint silently becomes unavailable. No upstream fix yet. Plasma version: 6.7.3 (kscreenlocker 6.7.3, nixpkgs-unstable `e72e4f299401`).
 
-### Framework 13 specific: USB controller rebind on resume
+### Framework 13 specific: USB controller notes
 
-The Goodix `27c6:609c` sensor on Framework 13 (especially AMD Ryzen AI 300) can disappear from USB after suspend. The xHCI controller fails to reinitialize the sensor. Simple fprintd restart is not enough; may need USB controller unbind/rebind (find the PCI address with `lspci -D | grep xHCI`):
+On the fw13 AMD Ryzen AI 300: `lspci -D | grep -i xhci` returns **empty** — there is no separately-visible xHCI PCI controller. The Goodix sensor (`Bus 001 Device 003: ID 27c6:609c`) stays on USB after suspend — USB disappearance is NOT the failure mode on this machine. xHCI rebind workarounds are not applicable here.
+
+For other Framework 13 variants (e.g. AMD Ryzen 7040 Series) that do show an xHCI controller and lose the sensor on resume, the unbind/rebind approach may help:
 ```bash
-# Example PCI address — verify on your machine first
+# Example PCI address — verify on your machine first with lspci -D | grep xHCI
 echo "$PCI_ADDR" > /sys/bus/pci/drivers/xhci_hcd/unbind
 sleep 2
 echo "$PCI_ADDR" > /sys/bus/pci/drivers/xhci_hcd/bind
@@ -100,4 +113,4 @@ systemctl restart fprintd.service
 ```
 Tracked at [FrameworkComputer/SoftwareFirmwareIssueTracker#102](https://github.com/FrameworkComputer/SoftwareFirmwareIssueTracker/issues/102). One user reported changing BIOS TPM Operation to "No operation" fixed it.
 
-If fingerprint still fails after resume: check `lsusb` for Goodix drop-off / USB autosuspend. Manual unblock: `pkill -TERM -f kscreenlocker_greet`.
+If fingerprint still fails after resume: check `lsusb` for Goodix drop-off / USB autosuspend. Manual greeter recycle: `pkill -TERM -f kscreenlocker_greet`.
