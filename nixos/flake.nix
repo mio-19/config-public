@@ -22,7 +22,7 @@
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/0bb7ec54c8483066ec9d7720e780a5caa71f8612"; # https://hydra.nixos.org/job/nixos/unstable/tested#tabs-constituents
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
-    nixpkgs-pin2.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1064949.34ab99075ac4/nixexprs.tar.zst"; # a commit from nixos-unstable
+    #nixpkgs-pin2.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1064949.34ab99075ac4/nixexprs.tar.zst"; # a commit from nixos-unstable
     #nixpkgs-pin3.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1066703.0968519e14f7/nixexprs.tar.zst"; # a commit from nixos-unstable
     #nixpkgs-pin4.url = "github:NixOS/nixpkgs/8dc49b8b206a683d1f6605e0fd993c0f5d49c98d"; # a commit from nixos-unstable-small
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
@@ -402,6 +402,11 @@
                   hash = "sha256-kAzQNvxbAsYGKZ+NUTQPsPqtjFxVdIbj1us+Znt+7EU=";
                 })
               */
+              (fetchpatch {
+                name = "jabref";
+                url = "https://github.com/mio-19/nixpkgs/commit/c452a55ef4e1008f0ea2c9b7b0fe51fdbc310858.diff";
+                hash = "sha256-svwH3egLQJ2zdH/bP+GVrpQ4QjjNoZJjchpcBvwLfJw=";
+              })
               (fetchpatch {
                 name = "nixos/firefox: make variant librewolf";
                 url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";

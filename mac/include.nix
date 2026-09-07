@@ -75,27 +75,6 @@ upper
       inputs.chaotic.overlays.default
     ];
   };
-  pkgs-pin = import inputs.nixpkgs-pin {
-    config = config.nixpkgs.config;
-    system = pkgs.stdenv.hostPlatform.system;
-    overlays = [
-      inputs.nur.overlays.default
-    ];
-  };
-  pkgs-pin2 = import inputs.nixpkgs-pin2 {
-    config = config.nixpkgs.config;
-    system = pkgs.stdenv.hostPlatform.system;
-    overlays = [
-      inputs.nur.overlays.default
-    ];
-  };
-  pkgs-pin3 = import nixpkgs-pin3' {
-    config = config.nixpkgs.config;
-    system = pkgs.stdenv.hostPlatform.system;
-    overlays = [
-      inputs.nur.overlays.default
-    ];
-  };
   pkgs-pin4 = import inputs.nixpkgs-pin4 {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
