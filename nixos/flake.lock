@@ -809,11 +809,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788767896,
-        "narHash": "sha256-W8tC8NmfDmYYJaoJFcbFH04lxgMG020uSN4j6hacdBM=",
+        "lastModified": 1788790147,
+        "narHash": "sha256-ztdM3cwJahvoKVhfS6mzaQEy6y0jI8ef68bTXmlKj8c=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "d8d8fe82ebd4ba9a4384c5e5af9a722066bcab01",
+        "rev": "e88fad62bac26a3333bcd18578535f859c29bbd6",
         "type": "github"
       },
       "original": {
@@ -1858,11 +1858,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788766932,
-        "narHash": "sha256-pdc7ml9feHItW8rnacFvFnCPUxbu+Ra7hYSIPNonkz4=",
+        "lastModified": 1788790069,
+        "narHash": "sha256-zbCHDgwJEfa/BX1ZNHGWFPrro1wDIQfl8Cuhelym9ks=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "b0be85ecfd9d282229d90a52707a6dff2e2d7795",
+        "rev": "c4a5d7c57df5d7ccfe2a05170f61f9260717ce13",
         "type": "github"
       },
       "original": {
@@ -2356,11 +2356,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788550304,
-        "narHash": "sha256-EeOUdF/XWkoaGGHM1Eg7aIWzZ8QTLX3fc5cmYzrePkU=",
+        "lastModified": 1788790280,
+        "narHash": "sha256-8jwpyelhHMw4Mj117y4/MC2RPhVes+OQfYz5GEty+fU=",
         "owner": "vicinaehq",
         "repo": "extensions",
-        "rev": "6681a95e13b01c752e7cf4cb448162a3647b2eb8",
+        "rev": "dca8a4f6805641af1992c80165ab93b1c6abb510",
         "type": "github"
       },
       "original": {
