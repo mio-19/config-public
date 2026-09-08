@@ -6,7 +6,7 @@
       den.aspects.overlays
       den.aspects.basic
       den.aspects.options
-      den.aspects.fprint-fix
+      #den.aspects.fprint-fix
       den.aspects.nix-ld
       den.aspects.nixpkgs-workaround
       den.aspects.customize
