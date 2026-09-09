@@ -471,11 +471,6 @@
                 })
               */
               (fetchpatch {
-                name = "nixos/nix-remote-build: permit non-integer speed factors";
-                url = "https://github.com/NixOS/nixpkgs/pull/532764.patch";
-                hash = "sha256-8Sc0mj515Y2VspYoPmWppNjj4OkiqnAqEJ9VfsfeaT0=";
-              })
-              (fetchpatch {
                 name = "nixos/btrfs: add services.btrfs.autoReclaim option";
                 url = "https://github.com/NixOS/nixpkgs/pull/527555.patch";
                 hash = "sha256-/fm1s8WnmZmGZ9pN/qBj/4998cBjShPVTii4qXsLZvE=";
