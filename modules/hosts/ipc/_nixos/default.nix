@@ -45,7 +45,7 @@ with _include;
     #"vm.swappiness" = lib.mkForce 1;
   };
 
-  persistent_kde = false;
+  #persistent_kde = false;
 
   users.mutableUsers = false;
   users.users.root = {
