@@ -62,9 +62,6 @@
             ];
         };
 
-        nixpkgs.config.problems.handlers = {
-          "sublimetext4".removal = "ignore";
-        };
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
           map (pkg: pkg.name) [
