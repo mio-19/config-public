@@ -69,6 +69,7 @@
           with pkgs;
           map (pkg: pkg.name) [
             electron_39
+            electron_41
             pnpm_10_29_2
             #jetbrains.idea-oss
             #  Ventoy uses binary blobs which can't be trusted to be free of malware or compliant to their licenses.
