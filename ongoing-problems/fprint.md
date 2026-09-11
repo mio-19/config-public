@@ -7,6 +7,7 @@
 journalctl | grep pam_fprintd
 journalctl -u sshd.service -b
 ```
+**Status**: Still open. Bypass lives in `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH).
 
 ## Issue 2: KDE Plasma Lockscreen Unlock (intermittent after suspend)
 
@@ -20,6 +21,10 @@ journalctl -u sshd.service -b
   systemctl status fprintd.service --no-pager -l
   echo '=== fprintd journal (this boot) ==='
   journalctl -u fprintd.service -b --no-pager
+  echo '=== fprintd-sleep (resume workaround) ==='
+  systemctl status fprintd-sleep.service --no-pager -l || true
+  systemctl status fprintd-sleep-v2.service --no-pager -l || true
+  journalctl -u fprintd-sleep.service -u fprintd-sleep-v2.service -b --no-pager || true
   echo '=== kscreenlocker / pam (this boot) ==='
   journalctl -b -t kscreenlocker_greet --no-pager
   journalctl -b --no-pager | grep -Ei 'fprint|pam_fprintd|kscreenlocker|fingerprint|goodix'
@@ -36,7 +41,7 @@ journalctl -u sshd.service -b
 
 Live follow while reproducing:
 ```bash
-journalctl -u fprintd.service -t kscreenlocker_greet -f
+journalctl -u fprintd.service -u fprintd-sleep.service -t kscreenlocker_greet -f
 ```
 
 ### What we saw (fw13, 2026-08-05)
@@ -53,29 +58,29 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 * **Broken recycle**: `pkill -TERM -x kscreenlocker_greet` never matches (Linux `comm` is 15 chars; name is 19). Need `pkill -f` ([pkill(1)](https://man.archlinux.org/man/pkill.1); same as Discourse / [nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276) workarounds).
 * Stop-before-sleep alone is not enough on Framework 13 (also reported on that issue); greeter must actually die and respawn.
 
-### What we saw (fw13, 2026-09-07 — all modes failed; root cause from source)
+### What we saw (fw13, 2026-09-07 — root cause from source)
 * **Hardware confirmed**: `lspci -D | grep -i xhci` → **empty** (no xHCI controller visible). USB rebind approach is inapplicable on this machine.
 * **Sensor stays on USB**: `lsusb | grep 27c6` → `Bus 001 Device 003: ID 27c6:609c` visible after resume. USB device disappearance is NOT the failure mode.
 * **Root cause confirmed via kscreenlocker source** (`pamauthenticator.cpp`):
   * `m_unavailable = true` is set when PAM returns `WorkerResult::Unavailable` or after >3 rapid failures within 2 seconds. Once set, `tryUnlock()` returns immediately — fingerprint is silently disabled for that greeter lifetime.
   * `busctl status net.reactivated.Fprint` (D-Bus name visible) fires ~500ms **before** fprintd finishes USB device enumeration. A fresh greeter started at this point calls pam_fprintd → `WorkerResult::Unavailable` → `m_unavailable=true` in the new greeter too.
-  * This is why `delay_restart` failed: the greeter recycle happened at the right time but fprintd wasn't truly device-ready yet.
+  * Early `delay_restart` failed for this reason: it recycled the greeter on name presence, before the device was ready.
 * **`ksldapp` auto-respawns greeter** (`ksldapp.cpp` line ~207): when `kscreenlocker_greet` exits (including via SIGTERM), `ksldapp` starts a fresh one — `pkill -TERM -f kscreenlocker_greet` is the correct mechanism, but timing is critical.
 
-### What we did (2026-09-07)
-* **New `greeter_recycle` mode** in `modules/common.nix` + `modules/options.nix`:
-  - **System service `fprintd-pre-sleep`** (`sleep.target`, `WantedBy`/`Before`, `StopWhenUnneeded`, `RemainAfterExit`): ExecStart stops fprintd before sleep; ExecStop restarts it after resume. Does NOT kill the greeter — that is the user service's job.
-  - **User service `fprintd-greeter-recycle`** (`systemd.user.services`): runs after resume in the login session. Polls `net.reactivated.Fprint.Manager.GetDefaultDevice` via `gdbus call` (not just D-Bus name presence) until it returns an object path (device enumerated and ready). Then `pkill -TERM -f kscreenlocker_greet`. `ksldapp` respawns the greeter into a ready fprintd.
-  - `GetDefaultDevice` returning an object path (not an error) is the correct readiness signal — confirms the device is enumerated and fprintd can accept PAM sessions. Name-only presence is insufficient.
-* **Enabled `den.aspects.fprint-fix`** in `modules/common.nix`: libfprint USB serial retry patch (3 attempts, exponential backoff) for Goodix and Synaptics drivers. Reduces probe failures when fprintd restarts after resume.
-* **fw13 set to `greeter_recycle`** in `modules/hosts/fw13/_nixos/default.nix`.
+### What we tried and rejected (2026-09-07 → 2026-09-11)
+* **`greeter_recycle` mode** (system `fprintd-pre-sleep` + user `fprintd-greeter-recycle`) was introduced to wait on `GetDefaultDevice` in a user unit, then kill the greeter. **Removed**: user systemd has no wired `sleep.target`, and user units cannot `After=` system `fprintd.service`. The readiness idea was kept; the user-unit split was not.
 
 ### Known Workarounds (Currently in Repo)
 * **Disabled fprintAuth** on `login` / `kde` / `passwd` (`modules/desktop-basic.nix`); `polkit-1` follows `services.fprintd.enable`. Plasma fingerprint goes through `kde-fingerprint`.
-* **`pam_fprintd timeout=60 max-tries=3`** on `kde-fingerprint` (`modules/desktop-basic.nix`): extends the fingerprint window.
-* **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): `greeter_recycle` mode — `fprintd-pre-sleep` (system) + `fprintd-greeter-recycle` (user). Uses `GetDefaultDevice` readiness check before greeter recycle (`modules/common.nix`).
-* **libfprint USB serial retry patch**: `den.aspects.fprint-fix` enabled in `modules/common.nix` (`wvhulle` kill-without-clean, rebased on v1.94.10).
-* **SSH sudo bypass**: `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH, fails in tmux).
+* **`pam_fprintd timeout=60 max-tries=3`** on `kde-fingerprint` (`modules/desktop-basic.nix`): extends the fingerprint window past the default ~30s.
+* **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): option `fprintd-plasma_workaround`:
+  * `"delay_restart"` (fw13): system service `fprintd-sleep` — stop fprintd before sleep; on resume sleep 3s, restart fprintd, wait for D-Bus name `net.reactivated.Fprint`, then `pkill -TERM -f kscreenlocker_greet` (`modules/common.nix`).
+  * `"delay_restart_v2"`: same system sleep hook, but poll `GetDefaultDevice` until an object path appears before recycling the greeter (avoids the name-visible-before-enumeration race).
+  * `"powerdown_cmd"`: only stop fprintd via `powerManagement.powerDownCommands` (no greeter recycle).
+  * `false`: disabled.
+  * Removed: `"greeter_recycle"` (user-unit sleep hook was invalid — no wired user `sleep.target`, cannot `After=` system `fprintd`).
+* **libfprint USB serial retry patch**: option `fprint_fix` (fw13 `true`) gates `den.aspects.fprint-fix` overlay (`nixos/fprint-fix.patch`, rebased on libfprint 1.94.100 / `wvhulle` kill-without-clean). Not gated on `services.fprintd.enable` (pkgs ↔ overlays recursion).
+* **SSH sudo bypass**: `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH, fails in tmux — Issue 1).
 
 ### Issue 2b: Fingerprint prompt disappears / times out (no suspend involved)
 
@@ -88,15 +93,15 @@ journalctl -u fprintd.service -t kscreenlocker_greet -f
 
 **Root cause (from KDE source analysis)**:
 * `kscreenlocker_greet` is **spawned fresh per-lock** (not persistent). It always starts all three PAM authenticators (`kde`, `kde-fingerprint`, `kde-smartcard`) in parallel immediately on lock (since Plasma 6.3, [MR !163](https://invent.kde.org/plasma/kscreenlocker/-/merge_requests/163)).
-* `pam_fprintd` has a **~30 second timeout**. If the user doesn't scan within that window, `pam_authenticate()` returns failure, and kscreenlocker marks fingerprint as `m_unavailable = true` via `PamAuthenticator` ([pamauthenticator.cpp](https://invent.kde.org/plasma/kscreenlocker/-/blob/master/greeter/pamauthenticator.cpp)).
+* `pam_fprintd` defaults to a **~30 second timeout**. If the user doesn't scan within that window, `pam_authenticate()` returns failure, and kscreenlocker marks fingerprint as `m_unavailable = true` via `PamAuthenticator` ([pamauthenticator.cpp](https://invent.kde.org/plasma/kscreenlocker/-/blob/master/greeter/pamauthenticator.cpp)).
 * The 21:21 failure was likely the fingerprint option timing out before the user reached the lock screen, not a stale greeter.
-* [KDE Bug 506567](https://bugs.kde.org/show_bug.cgi?id=506567) — fingerprint prompt deactivates after a moment (RESOLVED FIXED, commit `1cccd29c`). Included in Plasma 6.7.3 (our version). Fixes unlock delay, **not** the timeout-before-scan.
+* [KDE Bug 506567](https://bugs.kde.org/show_bug.cgi?id=506567) — fingerprint prompt deactivates after a moment (RESOLVED FIXED, commit `1cccd29c`). Included in Plasma 6.7.3. Fixes unlock delay, **not** the timeout-before-scan.
 * [KDE Bug 469951](https://bugs.kde.org/show_bug.cgi?id=469951) — fingerprint errors if you don't scan promptly.
 * [Fedora discussion](https://discussion.fedoraproject.org/t/fingerprint-kde-plasma-6-3-problem-with-unlock-computer/144842) — fingerprint only works for seconds after locking.
 
-**Workaround**: Pressing Enter on an empty password field restarts the PAM conversation and re-triggers non-interactive authenticators (fingerprint). This may bring back the fingerprint prompt.
+**Mitigation in repo**: `timeout=60` on `kde-fingerprint` (see above). Manual recovery: Enter on an empty password field restarts the PAM conversation and may re-trigger fingerprint.
 
-**Still open**: The ~30s `pam_fprintd` timeout means if you don't scan within that window after locking, fingerprint silently becomes unavailable. No upstream fix yet. Plasma version: 6.7.3 (kscreenlocker 6.7.3, nixpkgs-unstable `e72e4f299401`).
+**Still open**: No upstream fix for “scan whenever you’re ready after lock”; longer PAM timeout only softens it. Re-check after Plasma upgrades.
 
 ### Framework 13 specific: USB controller notes
 

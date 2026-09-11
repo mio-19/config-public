@@ -648,71 +648,32 @@
                 '';
               };
             };
-        # greeter_recycle mode: two-stage approach that eliminates the race between fprintd
-        # restarting and the fresh greeter opening a PAM session.
-        # Stage 1 (system service): stop fprintd before sleep; restart it after resume.
-        # Stage 2 (user service): wait until fprintd is truly device-ready
-        # (net.reactivated.Fprint.Manager.GetDefaultDevice returns an object path, not just
-        # the D-Bus name appearing), then recycle kscreenlocker_greet. This is required because
-        # busctl "name visible" fires ~500ms before fprintd finishes device enumeration, so a
-        # greeter spawned at that point still gets WorkerResult::Unavailable from pam_fprintd
-        # and immediately sets m_unavailable=true (pamauthenticator.cpp).
-        # https://github.com/NixOS/nixpkgs/issues/432276
-        systemd.services.fprintd-pre-sleep =
+        # delay_restart_v2: same system sleep hook as delay_restart, but wait until
+        # GetDefaultDevice returns a device path before recycling the greeter.
+        # busctl name presence alone races ~500ms ahead of USB enumeration; a greeter
+        # respawned then gets WorkerResult::Unavailable → m_unavailable=true.
+        systemd.services.fprintd-sleep-v2 =
           lib.mkIf
             (
-              config.fprintd-plasma_workaround == "greeter_recycle"
+              config.fprintd-plasma_workaround == "delay_restart_v2"
               && config.services.fprintd.enable
               && kdeDMEnabled
             )
             {
-              description = "fprintd stop before sleep; restart after resume (greeter_recycle mode)";
+              description = "fprintd stop before sleep; restart, wait for device, recycle greeter (v2)";
               wantedBy = [ "sleep.target" ];
               before = [ "sleep.target" ];
               unitConfig.StopWhenUnneeded = true;
               serviceConfig = {
                 Type = "oneshot";
                 RemainAfterExit = true;
-                TimeoutStopSec = "10";
-                ExecStart = pkgs.writeShellScript "fprintd-pre-sleep" ''
+                TimeoutStopSec = "25";
+                ExecStart = pkgs.writeShellScript "fprintd-pre-sleep-v2" ''
                   ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
                 '';
-                # After resume: restart fprintd so it re-enumerates the device.
-                # The user-level fprintd-greeter-recycle service handles the greeter recycle
-                # after verifying device readiness — do NOT kill the greeter here.
-                ExecStop = pkgs.writeShellScript "fprintd-post-resume" ''
-                  ${pkgs.coreutils}/bin/sleep 1
-                  ${config.systemd.package}/bin/systemctl restart fprintd.service || true
-                '';
-              };
-            };
-        # User-level service: runs in the login session after resume. Polls fprintd via
-        # GetDefaultDevice (not just name presence) to confirm the fingerprint device is
-        # enumerated, then sends SIGTERM to kscreenlocker_greet. ksldapp auto-respawns it
-        # with a fresh PAM session that connects to the ready fprintd.
-        systemd.user.services.fprintd-greeter-recycle =
-          lib.mkIf
-            (
-              config.fprintd-plasma_workaround == "greeter_recycle"
-              && config.services.fprintd.enable
-              && kdeDMEnabled
-            )
-            {
-              description = "Recycle kscreenlocker_greet after fprintd is device-ready on resume";
-              wantedBy = [ "sleep.target" ];
-              after = [
-                "sleep.target"
-                "fprintd.service"
-              ];
-              serviceConfig = {
-                Type = "oneshot";
-                ExecStart = pkgs.writeShellScript "fprintd-greeter-recycle" ''
-                  # Brief pause to let fprintd-pre-sleep ExecStop (systemctl restart) begin.
+                ExecStop = pkgs.writeShellScript "fprintd-post-resume-v2" ''
                   ${pkgs.coreutils}/bin/sleep 2
-
-                  # Poll until fprintd has enumerated a device (GetDefaultDevice returns an
-                  # object path). This is stricter than checking D-Bus name presence:
-                  # fprintd registers its name ~500ms before finishing device enumeration.
+                  ${config.systemd.package}/bin/systemctl restart fprintd.service || true
                   i=0
                   while [ $i -lt 15 ]; do
                     result=$(${pkgs.glib}/bin/gdbus call \
@@ -727,11 +688,6 @@
                     ${pkgs.coreutils}/bin/sleep 1
                     i=$((i+1))
                   done
-
-                  # fprintd is device-ready. Recycle the greeter so it gets a fresh PAM
-                  # session. ksldapp (the locker daemon) auto-respawns kscreenlocker_greet.
-                  # Use -f (full cmdline match): comm is TASK_COMM_LEN=15 chars so -x never
-                  # matches the 19-char name kscreenlocker_greet.
                   ${pkgs.procps}/bin/pkill -TERM -f kscreenlocker_greet 2>/dev/null || true
                 '';
               };
