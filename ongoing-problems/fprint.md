@@ -74,8 +74,8 @@ journalctl -u fprintd.service -u fprintd-sleep.service -u fprintd-sleep-v2.servi
 * **Disabled fprintAuth** on `login` / `kde` / `passwd` (`modules/desktop-basic.nix`); `polkit-1` follows `services.fprintd.enable`. Plasma fingerprint goes through `kde-fingerprint`.
 * **`pam_fprintd timeout=60 max-tries=3`** on `kde-fingerprint` (`modules/desktop-basic.nix`): extends the fingerprint window past the default ~30s.
 * **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): option `fprintd-plasma_workaround`:
-  * `"delay_restart"` (fw13): system service `fprintd-sleep` — stop fprintd before sleep; on resume sleep 3s, restart fprintd, wait for D-Bus name `net.reactivated.Fprint`, then `pkill -TERM -f kscreenlocker_greet` (`modules/common.nix`).
-  * `"delay_restart_v2"`: same system sleep hook, but poll `GetDefaultDevice` until an object path appears before recycling the greeter (avoids the name-visible-before-enumeration race).
+  * `"delay_restart"`: system service `fprintd-sleep` — stop fprintd before sleep; on resume sleep 3s, restart fprintd, wait for D-Bus name `net.reactivated.Fprint`, then `pkill -TERM -f kscreenlocker_greet` (`modules/common.nix`).
+  * `"delay_restart_v2"` (fw13): same system sleep hook, but poll `GetDefaultDevice` until an object path appears before recycling the greeter (avoids the name-visible-before-enumeration race).
   * `"powerdown_cmd"`: only stop fprintd via `powerManagement.powerDownCommands` (no greeter recycle).
   * `false`: disabled.
   * Removed: `"greeter_recycle"` (user-unit sleep hook was invalid — no wired user `sleep.target`, cannot `After=` system `fprintd`).
