@@ -1,0 +1,220 @@
+kscreenlocker 6.7.5: rearm fingerprint PAM after fprintd becomes device-ready.
+
+After suspend/resume, pam_fprintd can return PAM_AUTHINFO_UNAVAIL and the greeter
+latches m_unavailable for its lifetime (nixpkgs#432276). Instead of killing
+kscreenlocker_greet, recreate the fingerprint PAM handle once GetDefaultDevice
+returns a path, then tryUnlock again.
+
+Also only cancel authenticators on prepareForSleep(true); resume triggers rearm.
+
+diff --git a/greeter/pamauthenticator.h b/greeter/pamauthenticator.h
+--- a/greeter/pamauthenticator.h
++++ b/greeter/pamauthenticator.h
+@@ -71,6 +71,8 @@ public Q_SLOTS:
+     void tryUnlock();
+     void respond(const QByteArray &response);
+     void cancel();
++    // Recreate the PAM handle and clear sticky unavailability (e.g. after fprintd restart).
++    void rearm();
+ 
+ protected:
+     void init(const QString &service, const QString &user);
+diff --git a/greeter/pamauthenticator.cpp b/greeter/pamauthenticator.cpp
+--- a/greeter/pamauthenticator.cpp
++++ b/greeter/pamauthenticator.cpp
+@@ -43,6 +43,7 @@ public:
+     Q_DISABLE_COPY_MOVE(PamWorker)
+     void start(const QString &service, const QString &user);
+     void authenticate();
++    void rearm();
+     void startFailedDelay(uint useconds);
+ 
+ Q_SIGNALS:
+@@ -72,6 +73,7 @@ private:
+     std::chrono::steady_clock::time_point m_nextAttemptAllowedTime;
+     int m_result = -1;
+     QString m_service;
++    QString m_user;
+ };
+ 
+ int PamWorker::converse(int n, const struct pam_message **msg, struct pam_response **resp, void *data)
+@@ -234,6 +236,7 @@ static void fail_delay(int retval, unsig
+ void PamWorker::start(const QString &service, const QString &user)
+ {
+     m_service = service;
++    m_user = user;
+     if (user.isEmpty())
+         m_result = pam_start(qPrintable(service), nullptr, &m_conv, &m_handle);
+     else
+@@ -356,6 +359,32 @@ bool PamAuthenticator::isUnlocked() cons
+     return m_unlocked;
+ }
+ 
++
++void PamWorker::rearm()
++{
++    // Break any nested converse loop, then replace the PAM handle so pam_fprintd
++    // drops a stale D-Bus connection after fprintd restart (nixpkgs#432276).
++    Q_EMIT cancelled();
++    if (m_handle) {
++        pam_end(m_handle, PAM_SUCCESS);
++        m_handle = nullptr;
++    }
++    m_unavailable = false;
++    m_inAuthenticate = false;
++    Q_EMIT inAuthenticateChanged(m_inAuthenticate);
++    Q_EMIT unavailabilityChanged(m_unavailable);
++    start(m_service, m_user);
++    qCDebug(KSCREENLOCKER_GREET, "[PAM worker %s] rearm: PAM handle recreated", qUtf8Printable(m_service));
++}
++
++void PamAuthenticator::rearm()
++{
++    m_unlocked = false;
++    m_unavailable = false;
++    Q_EMIT availableChanged();
++    QMetaObject::invokeMethod(d, &PamWorker::rearm);
++}
++
+ void PamAuthenticator::tryUnlock()
+ {
+     m_unlocked = false;
+diff --git a/greeter/pamauthenticators.h b/greeter/pamauthenticators.h
+--- a/greeter/pamauthenticators.h
++++ b/greeter/pamauthenticators.h
+@@ -49,6 +49,8 @@ public:
+     Q_SIGNAL void stateChanged();
+     Q_INVOKABLE void startAuthenticating();
+     Q_INVOKABLE void stopAuthenticating();
++    // Restart fingerprint PAM after fprintd is device-ready (no greeter kill).
++    Q_INVOKABLE void rearmFingerprint();
+ 
+     // these properties delegate to the interactive authenticator
+     bool isBusy() const;
+diff --git a/greeter/pamauthenticators.cpp b/greeter/pamauthenticators.cpp
+--- a/greeter/pamauthenticators.cpp
++++ b/greeter/pamauthenticators.cpp
+@@ -163,6 +163,25 @@ void PamAuthenticators::stopAuthenticati
+     setState(AuthenticatorsState::Idle);
+ }
+ 
++void PamAuthenticators::rearmFingerprint()
++{
++    if (d->graceLocked) {
++        return;
++    }
++    for (auto &&noninteractive : d->noninteractive) {
++        if (!(noninteractive->authenticatorType() & PamAuthenticator::Fingerprint)) {
++            continue;
++        }
++        qCDebug(KSCREENLOCKER_GREET) << "PamAuthenticators: rearming fingerprint authenticator"
++                                     << qUtf8Printable(noninteractive->service());
++        noninteractive->cancel();
++        noninteractive->rearm();
++        noninteractive->tryUnlock();
++        setState(AuthenticatorsState::Authenticating);
++        return;
++    }
++}
++
+ void PamAuthenticators::setState(AuthenticatorsState state)
+ {
+     if (d->state == state) {
+diff --git a/greeter/greeterapp.h b/greeter/greeterapp.h
+--- a/greeter/greeterapp.h
++++ b/greeter/greeterapp.h
+@@ -84,6 +84,10 @@ private:
+     bool m_testing;
+     bool m_immediateLock;
+     PamAuthenticators *m_authenticators;
++    QTimer *m_fingerprintRearmTimer = nullptr;
++    int m_fingerprintRearmAttempts = 0;
++    void scheduleFingerprintRearm();
++    void pollFingerprintRearm();
+     int m_graceTime;
+     bool m_noLock;
+ 
+diff --git a/greeter/greeterapp.cpp b/greeter/greeterapp.cpp
+--- a/greeter/greeterapp.cpp
++++ b/greeter/greeterapp.cpp
+@@ -41,6 +41,9 @@ SPDX-License-Identifier: GPL-2.0-or-late
+ #include <QAbstractNativeEventFilter>
+ #include <QClipboard>
+ #include <QDBusConnection>
++#include <QDBusInterface>
++#include <QDBusReply>
++#include <QDBusObjectPath>
+ #include <QFile>
+ #include <QKeyEvent>
+ #include <QMimeData>
+@@ -142,8 +145,18 @@ UnlockApp::UnlockApp(int &argc, char **a
+     noninteractive.push_back(
+         std::make_unique<PamAuthenticator>(QStringLiteral(KSCREENLOCKER_PAM_SMARTCARD_SERVICE), KUser().loginName(), PamAuthenticator::Smartcard));
+     m_authenticators = new PamAuthenticators(std::move(interactive), std::move(noninteractive), this);
+-    connect(m_logindIntegration, &LogindIntegration::prepareForSleep, m_authenticators, [this] {
+-        m_authenticators->cancel();
++    // Only cancel PAM on going-to-sleep. On resume, rearm fingerprint once fprintd has a device
++    // (GetDefaultDevice), instead of latching Unavailable for the greeter lifetime (nixpkgs#432276).
++    connect(m_logindIntegration, &LogindIntegration::prepareForSleep, this, [this](bool sleeping) {
++        if (sleeping) {
++            m_authenticators->cancel();
++            if (m_fingerprintRearmTimer) {
++                m_fingerprintRearmTimer->stop();
++            }
++            m_fingerprintRearmAttempts = 0;
++        } else {
++            scheduleFingerprintRearm();
++        }
+     });
+     initialize();
+ 
+@@ -676,4 +689,49 @@ void UnlockApp::osdText(const QString &i
+     }
+ }
+ 
++
++void UnlockApp::scheduleFingerprintRearm()
++{
++    if (!m_fingerprintRearmTimer) {
++        m_fingerprintRearmTimer = new QTimer(this);
++        m_fingerprintRearmTimer->setInterval(1000);
++        connect(m_fingerprintRearmTimer, &QTimer::timeout, this, &UnlockApp::pollFingerprintRearm);
++    }
++    m_fingerprintRearmAttempts = 0;
++    // Brief delay so a system fprintd restart on resume can begin.
++    QTimer::singleShot(1500, this, [this]() {
++        pollFingerprintRearm();
++        if (m_fingerprintRearmTimer && m_fingerprintRearmAttempts < 15) {
++            m_fingerprintRearmTimer->start();
++        }
++    });
++}
++
++void UnlockApp::pollFingerprintRearm()
++{
++    m_fingerprintRearmAttempts++;
++    QDBusInterface manager(QStringLiteral("net.reactivated.Fprint"),
++                           QStringLiteral("/net/reactivated/Fprint/Manager"),
++                           QStringLiteral("net.reactivated.Fprint.Manager"),
++                           QDBusConnection::systemBus());
++    if (manager.isValid()) {
++        const QDBusReply<QDBusObjectPath> reply = manager.call(QStringLiteral("GetDefaultDevice"));
++        if (reply.isValid() && !reply.value().path().isEmpty() && reply.value().path() != QLatin1String("/")) {
++            qCDebug(KSCREENLOCKER_GREET) << "UnlockApp: fprintd device ready at" << reply.value().path()
++                                         << "- rearming fingerprint PAM";
++            if (m_fingerprintRearmTimer) {
++                m_fingerprintRearmTimer->stop();
++            }
++            m_authenticators->rearmFingerprint();
++            return;
++        }
++    }
++    if (m_fingerprintRearmAttempts >= 15) {
++        qCWarning(KSCREENLOCKER_GREET) << "UnlockApp: giving up waiting for fprintd device after resume";
++        if (m_fingerprintRearmTimer) {
++            m_fingerprintRearmTimer->stop();
++        }
++    }
++}
++
+ } // namespace

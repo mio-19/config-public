@@ -121,11 +121,22 @@ let
         fprintd-plasma_workaround = lib.mkOption {
           type = lib.types.enum [
             false
+            # Modes vs fprint_fix (libfprint USB serial retry overlay):
+            # - delay_restart: greeter recycle after D-Bus name; better WITH fprint_fix
+            #   (helps Goodix/Synaptics after unclean fprintd stop). Not required.
+            # - delay_restart_v2: greeter recycle after GetDefaultDevice; better than
+            #   delay_restart; better WITH fprint_fix. Not required.
+            # - fingerprint_rearm: kscreenlocker patch rearms fingerprint PAM (no greeter
+            #   kill) + stop/restart fprintd on sleep. Best long-term workaround.
+            #   REQUIRES fprint_fix (asserted): unclean fprintd restart is inherent;
+            #   without the libfprint retry, GetDefaultDevice/rearm can still fail on
+            #   Goodix/Synaptics after resume.
+            # - powerdown_cmd: only stop fprintd on sleep; weakest. fprint_fix optional;
+            #   not particularly recommended with this mode alone.
+            # - false: no Plasma sleep workaround; fprint_fix is independent (ok either way).
             "delay_restart"
-            # delay_restart_v2: like delay_restart, but wait for GetDefaultDevice
-            # (device enumerated) before recycling kscreenlocker_greet. Name-only
-            # busctl checks fire before enumeration finishes (nixpkgs#432276).
             "delay_restart_v2"
+            "fingerprint_rearm"
             "powerdown_cmd"
           ];
           default = false;
@@ -265,6 +276,12 @@ let
           {
             assertion = (config.compile_gram && pkgs.stdenv.hostPlatform.isx86_64) -> inc.atleastV3;
             message = "on x86_64, no gram compile for v2";
+          }
+          {
+            # fingerprint_rearm always unclean-stops/restarts fprintd; libfprint retry is required
+            # so GetDefaultDevice + PAM rearm can succeed on flaky Goodix/Synaptics readers.
+            assertion = config.fprintd-plasma_workaround != "fingerprint_rearm" || config.fprint_fix;
+            message = ''fprintd-plasma_workaround = "fingerprint_rearm" requires fprint_fix = true'';
           }
         ];
         nix.settings.system-features =

@@ -614,6 +614,7 @@
         # comm is TASK_COMM_LEN (15), so -x kscreenlocker_greet never matches.
         # Kill only after restart — an early kill lets Plasma respawn into the
         # restart race window (nixpkgs#432276 / Discourse workarounds).
+        # Better WITH fprint_fix (not required).
         systemd.services.fprintd-sleep =
           lib.mkIf
             (
@@ -652,6 +653,7 @@
         # GetDefaultDevice returns a device path before recycling the greeter.
         # busctl name presence alone races ~500ms ahead of USB enumeration; a greeter
         # respawned then gets WorkerResult::Unavailable → m_unavailable=true.
+        # Better WITH fprint_fix (not required).
         systemd.services.fprintd-sleep-v2 =
           lib.mkIf
             (
@@ -689,6 +691,48 @@
                     i=$((i+1))
                   done
                   ${pkgs.procps}/bin/pkill -TERM -f kscreenlocker_greet 2>/dev/null || true
+                '';
+              };
+            };
+        # fingerprint_rearm: long-term approach — patch kscreenlocker to recreate the
+        # fingerprint PAM handle once GetDefaultDevice succeeds (no greeter kill).
+        # System unit only stops/restarts fprintd around sleep. Requires fprint_fix
+        # (asserted in options.nix). Patch: nixos/kscreenlocker-fingerprint-rearm.patch
+        nixpkgs.overlays = lib.mkIf (config.fprintd-plasma_workaround == "fingerprint_rearm") [
+          (final: prev: {
+            kdePackages = prev.kdePackages.overrideScope (
+              kfinal: kprev: {
+                kscreenlocker = kprev.kscreenlocker.overrideAttrs (old: {
+                  patches = (old.patches or [ ]) ++ [
+                    ../nixos/kscreenlocker-fingerprint-rearm.patch
+                  ];
+                });
+              }
+            );
+          })
+        ];
+        systemd.services.fprintd-sleep-rearm =
+          lib.mkIf
+            (
+              config.fprintd-plasma_workaround == "fingerprint_rearm"
+              && config.services.fprintd.enable
+              && kdeDMEnabled
+            )
+            {
+              description = "fprintd stop before sleep; restart after resume (fingerprint_rearm)";
+              wantedBy = [ "sleep.target" ];
+              before = [ "sleep.target" ];
+              unitConfig.StopWhenUnneeded = true;
+              serviceConfig = {
+                Type = "oneshot";
+                RemainAfterExit = true;
+                TimeoutStopSec = "15";
+                ExecStart = pkgs.writeShellScript "fprintd-pre-sleep-rearm" ''
+                  ${config.systemd.package}/bin/systemctl stop fprintd.service 2>/dev/null || true
+                '';
+                ExecStop = pkgs.writeShellScript "fprintd-post-resume-rearm" ''
+                  ${pkgs.coreutils}/bin/sleep 1
+                  ${config.systemd.package}/bin/systemctl restart fprintd.service || true
                 '';
               };
             };

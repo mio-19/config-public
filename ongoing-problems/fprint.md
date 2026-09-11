@@ -24,7 +24,8 @@ journalctl -u sshd.service -b
   echo '=== fprintd-sleep (resume workaround) ==='
   systemctl status fprintd-sleep.service --no-pager -l || true
   systemctl status fprintd-sleep-v2.service --no-pager -l || true
-  journalctl -u fprintd-sleep.service -u fprintd-sleep-v2.service -b --no-pager || true
+  systemctl status fprintd-sleep-rearm.service --no-pager -l || true
+  journalctl -u fprintd-sleep.service -u fprintd-sleep-v2.service -u fprintd-sleep-rearm.service -b --no-pager || true
   echo '=== kscreenlocker / pam (this boot) ==='
   journalctl -b -t kscreenlocker_greet --no-pager
   journalctl -b --no-pager | grep -Ei 'fprint|pam_fprintd|kscreenlocker|fingerprint|goodix'
@@ -41,7 +42,7 @@ journalctl -u sshd.service -b
 
 Live follow while reproducing:
 ```bash
-journalctl -u fprintd.service -u fprintd-sleep.service -u fprintd-sleep-v2.service -t kscreenlocker_greet -f
+journalctl -u fprintd.service -u fprintd-sleep.service -u fprintd-sleep-v2.service -u fprintd-sleep-rearm.service -t kscreenlocker_greet -f
 ```
 
 ### What we saw (fw13, 2026-08-05)
@@ -68,18 +69,22 @@ journalctl -u fprintd.service -u fprintd-sleep.service -u fprintd-sleep-v2.servi
 * **`ksldapp` auto-respawns greeter** (`ksldapp.cpp` line ~207): when `kscreenlocker_greet` exits (including via SIGTERM), `ksldapp` starts a fresh one — `pkill -TERM -f kscreenlocker_greet` is the correct mechanism, but timing is critical.
 
 ### What we tried and rejected (2026-09-07 → 2026-09-11)
-* **`greeter_recycle` mode** (system `fprintd-pre-sleep` + user `fprintd-greeter-recycle`) was introduced to wait on `GetDefaultDevice` in a user unit, then kill the greeter. **Removed**: user systemd has no wired `sleep.target`, and user units cannot `After=` system `fprintd.service`. The readiness idea was kept; the user-unit split was not.
+* **`greeter_recycle` mode** (system `fprintd-pre-sleep` + user `fprintd-greeter-recycle`) was introduced to wait on `GetDefaultDevice` in a user unit, then kill the greeter. **Removed**: user systemd has no wired `sleep.target`, and user units cannot `After=` system `fprintd.service`. The readiness idea was kept in `delay_restart_v2` / `fingerprint_rearm`.
+
+### Current preferred approach (2026-09-11)
+* **`fingerprint_rearm`**: custom `kscreenlocker` patch rearms fingerprint PAM after resume when `GetDefaultDevice` succeeds (no `pkill` greeter). Pair with `fprint_fix = true`.
 
 ### Known Workarounds (Currently in Repo)
 * **Disabled fprintAuth** on `login` / `kde` / `passwd` (`modules/desktop-basic.nix`); `polkit-1` follows `services.fprintd.enable`. Plasma fingerprint goes through `kde-fingerprint`.
 * **`pam_fprintd timeout=60 max-tries=3`** on `kde-fingerprint` (`modules/desktop-basic.nix`): extends the fingerprint window past the default ~30s.
 * **Suspend/resume** ([nixpkgs#432276](https://github.com/NixOS/nixpkgs/issues/432276)): option `fprintd-plasma_workaround`:
-  * `"delay_restart"`: system service `fprintd-sleep` — stop fprintd before sleep; on resume sleep 3s, restart fprintd, wait for D-Bus name `net.reactivated.Fprint`, then `pkill -TERM -f kscreenlocker_greet` (`modules/common.nix`).
-  * `"delay_restart_v2"` (fw13): same system sleep hook, but poll `GetDefaultDevice` until an object path appears before recycling the greeter (avoids the name-visible-before-enumeration race).
-  * `"powerdown_cmd"`: only stop fprintd via `powerManagement.powerDownCommands` (no greeter recycle).
-  * `false`: disabled.
+  * `"fingerprint_rearm"` (fw13): **preferred long-term**. Patches `kscreenlocker` (`nixos/kscreenlocker-fingerprint-rearm.patch`) to recreate fingerprint PAM once `GetDefaultDevice` succeeds after resume (no greeter kill). System unit `fprintd-sleep-rearm` only stops/restarts fprintd. **Requires `fprint_fix = true`** (asserted).
+  * `"delay_restart_v2"`: recycle greeter after `GetDefaultDevice`; better than `delay_restart`. Better WITH `fprint_fix` (not required).
+  * `"delay_restart"`: recycle greeter after D-Bus name presence. Better WITH `fprint_fix` (not required).
+  * `"powerdown_cmd"`: only stop fprintd via `powerManagement.powerDownCommands` (no greeter recycle / no rearm). Weakest; `fprint_fix` optional / not particularly recommended with this alone.
+  * `false`: no Plasma sleep workaround; `fprint_fix` independent.
   * Removed: `"greeter_recycle"` (user-unit sleep hook was invalid — no wired user `sleep.target`, cannot `After=` system `fprintd`).
-* **libfprint USB serial retry patch**: option `fprint_fix` (fw13 `true`) gates `den.aspects.fprint-fix` overlay (`nixos/fprint-fix.patch`, rebased on libfprint 1.94.100 / `wvhulle` kill-without-clean). Not gated on `services.fprintd.enable` (pkgs ↔ overlays recursion).
+* **libfprint USB serial retry patch**: option `fprint_fix` gates `den.aspects.fprint-fix` overlay (`nixos/fprint-fix.patch`, rebased on libfprint 1.94.100 / `wvhulle` kill-without-clean). Required for `fingerprint_rearm`; recommended for `delay_restart` / `delay_restart_v2`.
 * **SSH sudo bypass**: `modules/sudo-fprint-ssh-bypass.nix` (works for normal SSH, fails in tmux — Issue 1).
 
 ### Issue 2b: Fingerprint prompt disappears / times out (no suspend involved)
