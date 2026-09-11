@@ -41,7 +41,7 @@ journalctl -u sshd.service -b
 
 Live follow while reproducing:
 ```bash
-journalctl -u fprintd.service -u fprintd-sleep.service -t kscreenlocker_greet -f
+journalctl -u fprintd.service -u fprintd-sleep.service -u fprintd-sleep-v2.service -t kscreenlocker_greet -f
 ```
 
 ### What we saw (fw13, 2026-08-05)
