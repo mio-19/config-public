@@ -131,6 +131,17 @@ let
           ];
           default = false;
         };
+        # Gated separately from services.fprintd.enable so nixpkgs.overlays does not
+        # recurse through pkgs ↔ config (classic NixOS overlay infinite-recursion trap).
+        fprint_fix = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = ''
+            Apply the libfprint USB serial retry / device_id fallback overlay
+            (nixos/fprint-fix.patch) for flaky Goodix/Synaptics readers after
+            unclean fprintd restarts (nixpkgs#432276).
+          '';
+        };
         gnome_paperwm = lib.mkOption {
           type = lib.types.bool;
           default = false;

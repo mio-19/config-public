@@ -1,14 +1,15 @@
-Rebased on libfprint v1.94.10 from wvhulle/libfprint kill-without-clean branch:
+Rebased on libfprint v1.94.100 from wvhulle/libfprint kill-without-clean:
 - https://codeberg.org/wvhulle/libfprint/commit/1a27f17253ec604eb73074befca316b9aba79699
 - https://codeberg.org/wvhulle/libfprint/commit/a59e66056e23
 - https://codeberg.org/wvhulle/libfprint/commit/d89514f76e46
 - https://github.com/NixOS/nixpkgs/issues/432276
+Updated for fpi_device_emulation_mode_enabled() (replaced getenv FP_DEVICE_EMULATION).
 Goodix MOC probe uses the same serial retry/fallback pattern (27c6:609c).
 
 diff --git a/libfprint/drivers/goodixmoc/goodix.c b/libfprint/drivers/goodixmoc/goodix.c
 --- a/libfprint/drivers/goodixmoc/goodix.c
 +++ b/libfprint/drivers/goodixmoc/goodix.c
-@@ -1357,18 +1357,31 @@ gx_fp_probe (FpDevice *device)
+@@ -1379,18 +1379,31 @@ gx_fp_probe (FpDevice *device)
      }
    else
      {
@@ -52,10 +53,10 @@ diff --git a/libfprint/drivers/goodixmoc/goodix.c b/libfprint/drivers/goodixmoc/
 diff --git a/libfprint/drivers/synaptics/synaptics.c b/libfprint/drivers/synaptics/synaptics.c
 --- a/libfprint/drivers/synaptics/synaptics.c
 +++ b/libfprint/drivers/synaptics/synaptics.c
-@@ -1211,11 +1211,33 @@ prob_msg_cb (FpiDeviceSynaptics *self,
+@@ -1222,11 +1222,33 @@ prob_msg_cb (FpiDeviceSynaptics *self,
      }
  
-   if (g_strcmp0 (g_getenv ("FP_DEVICE_EMULATION"), "1") == 0)
+   if (fpi_device_emulation_mode_enabled (FP_DEVICE (self)))
 -    serial = g_strdup ("emulated-device");
 +    {
 +      serial = g_strdup ("emulated-device");
@@ -93,7 +94,7 @@ diff --git a/libfprint/drivers/synaptics/synaptics.c b/libfprint/drivers/synapti
 diff --git a/libfprint/fpi-device.c b/libfprint/fpi-device.c
 --- a/libfprint/fpi-device.c
 +++ b/libfprint/fpi-device.c
-@@ -1140,6 +1140,18 @@ fpi_device_probe_complete (FpDevice    *device,
+@@ -1232,6 +1232,18 @@ fpi_device_probe_complete (FpDevice    *
            priv->device_id = g_strdup (device_id);
            g_object_notify (G_OBJECT (device), "device-id");
          }
