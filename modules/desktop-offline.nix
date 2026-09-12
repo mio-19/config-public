@@ -241,7 +241,30 @@
               "--ignore=nogroups" # dialout group for serial devices
             ];
           };
+          # No upstream profile: https://github.com/netblue30/firejail/issues/1139
+          # profile must be a store path (common.nix adds it to system.extraDependencies)
+          bitwig-studio = {
+            executable = "${hardenedPkg bitwig-studio}/bin/bitwig-studio";
+            profile = ./bitwig-studio.profile;
+            extraArgs = [
+              # MIDI controllers / audio interfaces need real /dev and dialout-style groups
+              "--ignore=private-dev"
+              "--ignore=nogroups"
+            ];
+          };
         };
+
+        # Also install under /etc so include bitwig-studio.local resolves next to the name
+        environment.etc."firejail/bitwig-studio.profile".source = ./bitwig-studio.profile;
+        # NixOS store/wrapper access; optional `net none` after license activation
+        environment.etc."firejail/bitwig-studio.local".text = ''
+          ignore noroot
+          whitelist /run/current-system
+          whitelist /run/wrappers
+          ignore private-bin
+          # After activation, uncomment to block updates/telemetry (KVR tip):
+          # net none
+        '';
       };
   };
 }
