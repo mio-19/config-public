@@ -19,14 +19,16 @@
             or (lib.throw "needy-girl-overdose-theme package missing from inputs.mio");
         gtkThemeName = "NEEDY-GIRL-OVERDOSE";
         windose20Wallpaper = "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
-        windose20Font = "fusion-pixel-10px-proportional-latin,10,-1,5,50,0,0,0,0,0";
+        windose20FontFamily = "Fusion Pixel 10px Prop latin";
+        windose20MonoFamily = "Fusion Pixel 10px Mono latin";
+        windose20Font = "${windose20FontFamily} 10";
         windose20PlasmaloginKdeglobals = pkgs.writeText "windose20-plasmalogin-kdeglobals" ''
           [KDE]
           LookAndFeelPackage=Plasma-Overdose
 
           [General]
-          font=${windose20Font}
-          fixed=${windose20Font}
+          font=${windose20FontFamily},10,-1,5,50,0,0,0,0,0
+          fixed=${windose20MonoFamily},10,-1,5,50,0,0,0,0,0
         '';
         windose20XfceHomeModule =
           {
@@ -48,7 +50,7 @@
             gtk = {
               enable = true;
               font = {
-                name = "fusion-pixel-10px-proportional-latin";
+                name = windose20FontFamily;
                 size = 10;
               };
               theme = {
@@ -67,7 +69,17 @@
               };
             };
 
-            dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-light";
+            dconf.settings = {
+              "org/gnome/desktop/interface" = {
+                color-scheme = "prefer-light";
+                font-name = "${windose20FontFamily} 10";
+                monospace-font-name = "${windose20MonoFamily} 10";
+              };
+              "org/gnome/Console" = {
+                use-system-font = true;
+                custom-font = "${windose20MonoFamily} 10";
+              };
+            };
 
             home.pointerCursor = {
               enable = true;
@@ -96,6 +108,7 @@
                 };
                 xsettings = {
                   "Gtk/FontName" = windose20Font;
+                  "Gtk/MonospaceFontName" = "${windose20MonoFamily} 10";
                   "Gtk/CursorThemeName" = "Plasma-Overdose";
                   "Gtk/CursorThemeSize" = 24;
                   "Gtk/IconThemeName" = "breeze";

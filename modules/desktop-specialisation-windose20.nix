@@ -15,14 +15,18 @@
         windose20 = mio.windose20 or (lib.throw "windose20 package missing from inputs.mio");
         plasmaOverdose = mio.plasma-overdose-kde-theme or pkgs.plasma-overdose-kde-theme;
         windose20Wallpaper = "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
-        windose20Font = "fusion-pixel-10px-proportional-latin,10,-1,5,50,0,0,0,0,0";
+        # Real fontconfig family names from the TTFs (not the filenames).
+        windose20FontFamily = "Fusion Pixel 10px Prop latin";
+        windose20MonoFamily = "Fusion Pixel 10px Mono latin";
+        windose20Font = "${windose20FontFamily},10,-1,5,50,0,0,0,0,0";
+        windose20MonoFont = "${windose20MonoFamily},10,-1,5,50,0,0,0,0,0";
         windose20PlasmaloginKdeglobals = pkgs.writeText "windose20-plasmalogin-kdeglobals" ''
           [KDE]
           LookAndFeelPackage=Plasma-Overdose
 
           [General]
           font=${windose20Font}
-          fixed=${windose20Font}
+          fixed=${windose20MonoFont}
         '';
         # Beat per-user mkForce (priority 50) when the windose20 specialisation is active.
         windose20Prio = lib.mkOverride 0;
@@ -44,6 +48,10 @@
             # Beat baseline Adwaita iconTheme when this specialisation is active.
             gtk = {
               enable = true;
+              font = {
+                name = windose20FontFamily;
+                size = 10;
+              };
               iconTheme = {
                 name = windose20Prio "breeze";
                 package = windose20Prio pkgs.kdePackages.breeze-icons;
@@ -56,7 +64,18 @@
               };
             };
 
-            dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-light";
+            dconf.settings = {
+              "org/gnome/desktop/interface" = {
+                color-scheme = "prefer-light";
+                font-name = "${windose20FontFamily} 10";
+                # kgx (GNOME Console) follows this when use-system-font is true.
+                monospace-font-name = "${windose20MonoFamily} 10";
+              };
+              "org/gnome/Console" = {
+                use-system-font = true;
+                custom-font = "${windose20MonoFamily} 10";
+              };
+            };
 
             programs.plasma =
               lib.recursiveUpdate
@@ -75,11 +94,11 @@
                   };
                   fonts = {
                     general = {
-                      family = windose20Prio "fusion-pixel-10px-proportional-latin";
+                      family = windose20Prio windose20FontFamily;
                       pointSize = 10;
                     };
                     fixedWidth = {
-                      family = windose20Prio "fusion-pixel-10px-proportional-latin";
+                      family = windose20Prio windose20MonoFamily;
                       pointSize = 10;
                     };
                   };
@@ -115,7 +134,7 @@
               "konsole/Plasma-Overdose.profile".text = ''
                 [Appearance]
                 ColorScheme=Plasma-Overdose
-                Font=${windose20Font}
+                Font=${windose20MonoFont}
 
                 [Background]
                 BackgroundImage=${windose20}/share/windose20/pngs/JINEBG.png
@@ -150,7 +169,7 @@
               windose20_config_detected() {
                 for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc" "$config_home/kcminputrc" "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0" "$HOME/.icons/default/index.theme" "$HOME/.local/share/icons/default/index.theme"; do
                   [ -f "$f" ] || continue
-                  if grep -qiE 'Plasma-Overdose|fusion-pixel-10px-proportional-latin|windose20' "$f" 2>/dev/null; then
+                  if grep -qiE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px|windose20' "$f" 2>/dev/null; then
                     return 0
                   fi
                 done
@@ -166,8 +185,10 @@
                     -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/ig' \
                     -e 's/ColorScheme=PlasmaOverdose/ColorScheme=BreezeLight/ig' \
                     -e 's|[tT]heme=Plasma-Overdose|Theme=breeze_cursors|ig' \
-                    -e '/^font=fusion-pixel-10px-proportional-latin/Id' \
-                    -e '/^fixed=fusion-pixel-10px-proportional-latin/Id' \
+                    -e '/^font=Fusion Pixel 10px/Id' \
+                    -e '/^fixed=Fusion Pixel 10px/Id' \
+                    -e '/^font=fusion-pixel-10px/Id' \
+                    -e '/^fixed=fusion-pixel-10px/Id' \
                     "$kdeglobals"
                 fi
 
@@ -255,7 +276,7 @@
             {
               text = ''
                 kdeglobals=/var/lib/plasmalogin/.config/kdeglobals
-                if [ -e "$kdeglobals" ] && grep -qE 'Plasma-Overdose|fusion-pixel-10px-proportional-latin' "$kdeglobals" 2>/dev/null; then
+                if [ -e "$kdeglobals" ] && grep -qE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px' "$kdeglobals" 2>/dev/null; then
                   rm -f "$kdeglobals"
                 fi
               '';
