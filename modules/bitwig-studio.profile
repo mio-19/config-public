@@ -14,6 +14,12 @@ include bitwig-studio.local
 # Persistent global definitions
 include globals.local
 
+# NixOS: globals.local whitelists /run/pipewire (etc.), which enables whitelist mode for
+# all of /run. Without these, /run/current-system is hidden and Nix wrappers lose PATH
+# tools (dirname → "command not found"). Keep here so it applies even if .local is missing.
+whitelist /run/current-system
+whitelist /run/wrappers
+
 # Config / library / project dirs (Flatpak: persist .BitwigStudio and "Bitwig Studio")
 noblacklist ${HOME}/.BitwigStudio
 noblacklist ${HOME}/Bitwig Studio

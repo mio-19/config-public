@@ -250,6 +250,11 @@
               # MIDI controllers / audio interfaces need real /dev and dialout-style groups
               "--ignore=private-dev"
               "--ignore=nogroups"
+              # Match .local / profile NixOS tweaks (extraArgs always apply via the wrap)
+              "--ignore=noroot"
+              "--ignore=private-bin"
+              "--whitelist=/run/current-system"
+              "--whitelist=/run/wrappers"
             ];
           };
         };
@@ -265,6 +270,7 @@
           # After activation, uncomment to block updates/telemetry (also blocks content packs):
           # net none
           # If yabridge/Wine plugins fail, try: ignore private-tmp
+          # Bitwig's nixpkgs wrapper nests bwrap; if launch still fails after PATH fixes, try without firejail
         '';
       };
   };
