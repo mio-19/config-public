@@ -14,7 +14,7 @@
         mio = inputs.mio.packages.${system};
         windose20 = mio.windose20 or (lib.throw "windose20 package missing from inputs.mio");
         plasmaOverdose = mio.plasma-overdose-kde-theme or pkgs.plasma-overdose-kde-theme;
-        windose20Wallpaper = "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
+        windose20Wallpaper = "${windose20}/share/windose20/pngs/bg.png";
         # Real fontconfig family names from the TTFs (not the filenames).
         windose20FontFamily = "Fusion Pixel 10px Prop latin";
         windose20MonoFamily = "Fusion Pixel 10px Mono latin";
@@ -91,6 +91,7 @@
                       size = 24;
                     };
                     wallpaper = windose20Prio windose20Wallpaper;
+                    wallpaperFillMode = windose20Prio "preserveAspectCrop";
                   };
                   fonts = {
                     general = {
@@ -313,7 +314,7 @@
                 Greeter.WallpaperPluginId = "org.kde.image";
                 "Greeter/Wallpaper/org.kde.image/General" = {
                   Image = "file://${windose20Wallpaper}";
-                  FillMode = 1; # tiled, matching the Plasma workspace wallpaper
+                  FillMode = 2; # PreserveAspectCrop — full README bg.png, not tiled
                 };
               };
 

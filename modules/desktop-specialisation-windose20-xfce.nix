@@ -18,7 +18,7 @@
           mio.needy-girl-overdose-theme
             or (lib.throw "needy-girl-overdose-theme package missing from inputs.mio");
         gtkThemeName = "NEEDY-GIRL-OVERDOSE";
-        windose20Wallpaper = "${plasmaOverdose}/share/wallpapers/Plasma-Overdose/tile.png";
+        windose20Wallpaper = "${windose20}/share/windose20/pngs/bg.png";
         windose20FontFamily = "Fusion Pixel 10px Prop latin";
         windose20MonoFamily = "Fusion Pixel 10px Mono latin";
         windose20Font = "${windose20FontFamily} 10";
@@ -98,13 +98,13 @@
                 };
                 xfce4-desktop = {
                   "backdrop/screen0/monitor0/workspace0/last-image" = windose20Wallpaper;
-                  "backdrop/screen0/monitor0/workspace0/image-style" = 3;
+                  "backdrop/screen0/monitor0/workspace0/image-style" = 5;
                   "backdrop/screen0/monitor0/workspace1/last-image" = windose20Wallpaper;
-                  "backdrop/screen0/monitor0/workspace1/image-style" = 3;
+                  "backdrop/screen0/monitor0/workspace1/image-style" = 5;
                   "backdrop/screen0/monitor0/workspace2/last-image" = windose20Wallpaper;
-                  "backdrop/screen0/monitor0/workspace2/image-style" = 3;
+                  "backdrop/screen0/monitor0/workspace2/image-style" = 5;
                   "backdrop/screen0/monitor0/workspace3/last-image" = windose20Wallpaper;
-                  "backdrop/screen0/monitor0/workspace3/image-style" = 3;
+                  "backdrop/screen0/monitor0/workspace3/image-style" = 5;
                 };
                 xsettings = {
                   "Gtk/FontName" = windose20Font;
@@ -165,7 +165,7 @@
                 Greeter.WallpaperPluginId = "org.kde.image";
                 "Greeter/Wallpaper/org.kde.image/General" = {
                   Image = "file://${windose20Wallpaper}";
-                  FillMode = 1;
+                  FillMode = 2;
                 };
               };
 
