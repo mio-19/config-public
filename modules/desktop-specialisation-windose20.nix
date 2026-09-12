@@ -19,6 +19,7 @@
         windose20FontFamily = "Fusion Pixel 10px Prop latin";
         windose20MonoFamily = "Fusion Pixel 10px Mono latin";
         windose20Font = "${windose20FontFamily},10,-1,5,50,0,0,0,0,0";
+        windose20SmallFont = "${windose20FontFamily},8,-1,5,50,0,0,0,0,0";
         windose20MonoFont = "${windose20MonoFamily},10,-1,5,50,0,0,0,0,0";
         windose20PlasmaloginKdeglobals = pkgs.writeText "windose20-plasmalogin-kdeglobals" ''
           [KDE]
@@ -27,6 +28,10 @@
           [General]
           font=${windose20Font}
           fixed=${windose20MonoFont}
+          smallestReadableFont=${windose20SmallFont}
+          toolBarFont=${windose20Font}
+          menuFont=${windose20Font}
+          windowTitleFont=${windose20Font}
         '';
         # Beat per-user mkForce (priority 50) when the windose20 specialisation is active.
         windose20Prio = lib.mkOverride 0;
@@ -68,6 +73,7 @@
               "org/gnome/desktop/interface" = {
                 color-scheme = "prefer-light";
                 font-name = "${windose20FontFamily} 10";
+                document-font-name = "${windose20FontFamily} 10";
                 # kgx (GNOME Console) follows this when use-system-font is true.
                 monospace-font-name = "${windose20MonoFamily} 10";
               };
@@ -100,6 +106,22 @@
                     };
                     fixedWidth = {
                       family = windose20Prio windose20MonoFamily;
+                      pointSize = 10;
+                    };
+                    small = {
+                      family = windose20Prio windose20FontFamily;
+                      pointSize = 8;
+                    };
+                    toolbar = {
+                      family = windose20Prio windose20FontFamily;
+                      pointSize = 10;
+                    };
+                    menu = {
+                      family = windose20Prio windose20FontFamily;
+                      pointSize = 10;
+                    };
+                    windowTitle = {
+                      family = windose20Prio windose20FontFamily;
                       pointSize = 10;
                     };
                   };
@@ -141,6 +163,53 @@
                 BackgroundImage=${windose20}/share/windose20/pngs/JINEBG.png
                 BackgroundImageStyle=1
               '';
+              "fontconfig/conf.d/99-windose20.conf".text = ''
+                <?xml version="1.0"?>
+                <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+                <fontconfig>
+                  <!-- Windose20: force Fusion Pixel for Open Sans (Telegram Desktop) and Windows/web fonts -->
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>Open Sans</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>OpenSans</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>Segoe UI</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>Tahoma</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>MS Sans Serif</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                </fontconfig>
+              '';
             };
           };
         windose20RestoreHomeModule =
@@ -175,6 +244,7 @@
                   fi
                 done
                 [ -f "$config_home/konsole/Plasma-Overdose.profile" ] && return 0
+                [ -f "$config_home/fontconfig/conf.d/99-windose20.conf" ] && return 0
                 if command -v dconf >/dev/null 2>&1 && dconf dump /org/gnome/ 2>/dev/null | grep -qiE 'Fusion Pixel'; then
                   return 0
                 fi
@@ -189,9 +259,9 @@
                     -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/ig' \
                     -e 's/ColorScheme=PlasmaOverdose/ColorScheme=BreezeLight/ig' \
                     -e 's|[tT]heme=Plasma-Overdose|Theme=breeze_cursors|ig' \
-                    -e '/^font=Fusion Pixel 10px/Id' \
+                    -e '/.*[fF]ont=Fusion Pixel 10px/Id' \
                     -e '/^fixed=Fusion Pixel 10px/Id' \
-                    -e '/^font=fusion-pixel-10px/Id' \
+                    -e '/.*[fF]ont=fusion-pixel-10px/Id' \
                     -e '/^fixed=fusion-pixel-10px/Id' \
                     "$kdeglobals"
                 fi
@@ -218,6 +288,7 @@
                 fi
 
                 rm -f "$config_home/konsole/Plasma-Overdose.profile"
+                rm -f "$config_home/fontconfig/conf.d/99-windose20.conf"
                 for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
                   target="$config_home/$rel"
                   if [ -e "$target" ] && grep -qF 'share/windose20/' "$target" 2>/dev/null; then
@@ -235,6 +306,7 @@
                 if command -v dconf >/dev/null 2>&1; then
                   dconf reset -f /org/gnome/Console/ 2>/dev/null || true
                   dconf reset /org/gnome/desktop/interface/font-name 2>/dev/null || true
+                  dconf reset /org/gnome/desktop/interface/document-font-name 2>/dev/null || true
                   dconf reset /org/gnome/desktop/interface/monospace-font-name 2>/dev/null || true
                   dconf reset /org/gnome/desktop/interface/color-scheme 2>/dev/null || true
                 fi
@@ -303,6 +375,66 @@
           };
 
           fonts.packages = [ windose20 ];
+
+          fonts.fontconfig = {
+            defaultFonts = {
+              sansSerif = lib.mkForce [
+                windose20FontFamily
+                "Noto Sans CJK SC"
+              ];
+              serif = lib.mkForce [
+                windose20FontFamily
+                "Noto Serif CJK SC"
+              ];
+              monospace = lib.mkForce [
+                windose20MonoFamily
+                "FiraCode Nerd Font"
+              ];
+            };
+            localConf = ''
+              <!-- Windose20: force Fusion Pixel for Open Sans (Telegram Desktop) and Windows/web fonts -->
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>Open Sans</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>OpenSans</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>Segoe UI</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>Tahoma</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>MS Sans Serif</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+            '';
+          };
 
           environment.systemPackages = [
             windose20

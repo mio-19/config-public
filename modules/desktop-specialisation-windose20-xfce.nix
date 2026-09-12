@@ -73,6 +73,7 @@
               "org/gnome/desktop/interface" = {
                 color-scheme = "prefer-light";
                 font-name = "${windose20FontFamily} 10";
+                document-font-name = "${windose20FontFamily} 10";
                 monospace-font-name = "${windose20MonoFamily} 10";
               };
               "org/gnome/Console" = {
@@ -122,6 +123,53 @@
               "fastfetch/config.jsonc".source = "${windose20}/share/windose20/configs/fastfetch.jsonc";
               "neofetch/config.conf".source = "${windose20}/share/windose20/configs/neofetch.conf";
               "cava/config".source = "${windose20}/share/windose20/configs/cava.conf";
+              "fontconfig/conf.d/99-windose20.conf".text = ''
+                <?xml version="1.0"?>
+                <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+                <fontconfig>
+                  <!-- Windose20: force Fusion Pixel for Open Sans (Telegram Desktop) and Windows/web fonts -->
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>Open Sans</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>OpenSans</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>Segoe UI</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>Tahoma</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                  <match target="pattern">
+                    <test name="family" qual="any" compare="contains">
+                      <string>MS Sans Serif</string>
+                    </test>
+                    <edit name="family" mode="assign" binding="strong">
+                      <string>${windose20FontFamily}</string>
+                    </edit>
+                  </match>
+                </fontconfig>
+              '';
             };
           };
       in
@@ -138,6 +186,66 @@
           };
 
           fonts.packages = [ windose20 ];
+
+          fonts.fontconfig = {
+            defaultFonts = {
+              sansSerif = lib.mkForce [
+                windose20FontFamily
+                "Noto Sans CJK SC"
+              ];
+              serif = lib.mkForce [
+                windose20FontFamily
+                "Noto Serif CJK SC"
+              ];
+              monospace = lib.mkForce [
+                windose20MonoFamily
+                "FiraCode Nerd Font"
+              ];
+            };
+            localConf = ''
+              <!-- Windose20: force Fusion Pixel for Open Sans (Telegram Desktop) and Windows/web fonts -->
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>Open Sans</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>OpenSans</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>Segoe UI</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>Tahoma</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+              <match target="pattern">
+                <test name="family" qual="any" compare="contains">
+                  <string>MS Sans Serif</string>
+                </test>
+                <edit name="family" mode="assign" binding="strong">
+                  <string>${windose20FontFamily}</string>
+                </edit>
+              </match>
+            '';
+          };
           programs.xfconf.enable = true;
 
           services.desktopManager.plasma6.enable = lib.mkForce false;
