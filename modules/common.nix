@@ -157,7 +157,8 @@
           ++ lib.optionals config.programs.firejail.enable [
             pkgs.firejail
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
-          ];
+          ]
+          ++ [ ./. ];
 
         boot.loader.grub.keepBootedSystemEntry = true;
 
