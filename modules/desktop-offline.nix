@@ -256,14 +256,15 @@
 
         # Also install under /etc so include bitwig-studio.local resolves next to the name
         environment.etc."firejail/bitwig-studio.profile".source = ./bitwig-studio.profile;
-        # NixOS store/wrapper access; optional `net none` after license activation
+        # NixOS store/wrapper access; optional `net none` after offline/online activation
         environment.etc."firejail/bitwig-studio.local".text = ''
           ignore noroot
           whitelist /run/current-system
           whitelist /run/wrappers
           ignore private-bin
-          # After activation, uncomment to block updates/telemetry (KVR tip):
+          # After activation, uncomment to block updates/telemetry (also blocks content packs):
           # net none
+          # If yabridge/Wine plugins fail, try: ignore private-tmp
         '';
       };
   };
