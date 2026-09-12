@@ -40,11 +40,33 @@
               plasmaOverdose
             ];
 
+            # NGO Plasma-Overdose is a light pink scheme; keep GTK from flipping dark.
+            # Beat baseline Adwaita iconTheme when this specialisation is active.
+            gtk = {
+              enable = true;
+              iconTheme = {
+                name = windose20Prio "breeze";
+                package = windose20Prio pkgs.kdePackages.breeze-icons;
+              };
+              gtk3.extraConfig = {
+                gtk-application-prefer-dark-theme = 0;
+              };
+              gtk4.extraConfig = {
+                gtk-application-prefer-dark-theme = 0;
+              };
+            };
+
+            dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-light";
+
             programs.plasma =
               lib.recursiveUpdate
                 {
                   workspace = {
                     lookAndFeel = windose20Prio "Plasma-Overdose";
+                    # Match ColorScheme= id inside PlasmaOverdose.colors (not the hyphenated filename).
+                    colorScheme = windose20Prio "PlasmaOverdose";
+                    # Directory name is lowercase; capital "Breeze" misses icons on case-sensitive FS.
+                    iconTheme = windose20Prio "breeze";
                     cursor = {
                       theme = windose20Prio "Plasma-Overdose";
                       size = 24;
@@ -142,6 +164,7 @@
                   ${pkgs.gnused}/bin/sed -i \
                     -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/ig' \
                     -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/ig' \
+                    -e 's/ColorScheme=PlasmaOverdose/ColorScheme=BreezeLight/ig' \
                     -e 's|[tT]heme=Plasma-Overdose|Theme=breeze_cursors|ig' \
                     -e '/^font=fusion-pixel-10px-proportional-latin/Id' \
                     -e '/^fixed=fusion-pixel-10px-proportional-latin/Id' \
@@ -207,7 +230,9 @@
                 rm -f "$config_home/.windose20_restore_pending"
                 if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel" ]; then
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel org.kde.breeze.desktop || true
+                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-colorscheme BreezeLight || true
                   ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-cursortheme breeze_cursors || true
+                  ${pkgs.kdePackages.plasma-workspace}/libexec/plasma-changeicons breeze || true
                 fi
                 ${plasmaWallpaperApplyScript}
               fi

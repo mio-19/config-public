@@ -55,7 +55,19 @@
                 name = gtkThemeName;
                 package = needyGirlOverdoseTheme;
               };
+              iconTheme = {
+                name = "breeze";
+                package = pkgs.kdePackages.breeze-icons;
+              };
+              gtk3.extraConfig = {
+                gtk-application-prefer-dark-theme = 0;
+              };
+              gtk4.extraConfig = {
+                gtk-application-prefer-dark-theme = 0;
+              };
             };
+
+            dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-light";
 
             home.pointerCursor = {
               enable = true;
@@ -86,7 +98,9 @@
                   "Gtk/FontName" = windose20Font;
                   "Gtk/CursorThemeName" = "Plasma-Overdose";
                   "Gtk/CursorThemeSize" = 24;
+                  "Gtk/IconThemeName" = "breeze";
                   "Net/ThemeName" = gtkThemeName;
+                  "Net/IconThemeName" = "breeze";
                 };
               };
             };
