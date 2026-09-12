@@ -175,6 +175,9 @@
                   fi
                 done
                 [ -f "$config_home/konsole/Plasma-Overdose.profile" ] && return 0
+                if command -v dconf >/dev/null 2>&1 && dconf dump /org/gnome/ 2>/dev/null | grep -qiE 'Fusion Pixel'; then
+                  return 0
+                fi
                 return 1
               }
 
@@ -227,6 +230,13 @@
                   if grep -q "Plasma-Overdose" "$HOME/.icons/default/index.theme" 2>/dev/null; then
                     rm -rf "$HOME/.icons/default"
                   fi
+                fi
+
+                if command -v dconf >/dev/null 2>&1; then
+                  dconf reset -f /org/gnome/Console/ 2>/dev/null || true
+                  dconf reset /org/gnome/desktop/interface/font-name 2>/dev/null || true
+                  dconf reset /org/gnome/desktop/interface/monospace-font-name 2>/dev/null || true
+                  dconf reset /org/gnome/desktop/interface/color-scheme 2>/dev/null || true
                 fi
                 
                 # Signal AfterPlasma to run dbus commands
