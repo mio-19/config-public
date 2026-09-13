@@ -359,7 +359,7 @@
                 rm -f "$HOME/.librewolf/librewolf.overrides.cfg"
                 for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
                   target="$config_home/$rel"
-                  if [ -e "$target" ] && ${grepBin} -qF 'share/windose20/' "$target" 2>/dev/null; then
+                  if [ -e "$target" ] && { ${grepBin} -qF 'share/windose20/' "$target" 2>/dev/null || readlink "$target" 2>/dev/null | ${grepBin} -q 'share/windose20/'; }; then
                     rm -f "$target"
                   fi
                 done
@@ -435,8 +435,7 @@
         system.activationScripts.windose20SddmRestore =
           lib.mkIf
             (
-              config.services.displayManager.sddm.enable
-              && !(builtins.elem "windose20" config.system.nixos.tags)
+              config.services.displayManager.sddm.enable && !(builtins.elem "windose20" config.system.nixos.tags)
             )
             {
               text = ''
