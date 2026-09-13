@@ -448,11 +448,14 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/526318.patch";
                 hash = "sha256-nAx/qqnbV4lAVBVKxifSoPOj9S/HJ7jW88Ve4y+Yu50=";
               })
-              (fetchpatch {
-                name = "nixos/wireless: add support for setting wireless regdom";
-                url = "https://github.com/NixOS/nixpkgs/pull/528908.patch";
-                hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
-              })
+              /*
+                # conflicts
+                (fetchpatch {
+                  name = "nixos/wireless: add support for setting wireless regdom";
+                  url = "https://github.com/NixOS/nixpkgs/pull/528908.patch";
+                  hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
+                })
+              */
               (fetchpatch {
                 name = "nixos/security/wrappers: avoid linux-headers in closure";
                 url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
