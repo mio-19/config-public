@@ -24,7 +24,6 @@
       den.aspects.rocm
       den.aspects.desktop-baremetal-kde
       den.aspects.desktop-specialisation-windose20
-      #den.aspects.desktop-specialisation-windose20-xfce
       den.aspects.zswap
       den.aspects.games
       den.aspects.games-extra

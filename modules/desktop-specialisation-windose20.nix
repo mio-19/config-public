@@ -383,11 +383,6 @@
             '';
           in
           lib.mkIf (!inWindose20) {
-            xdg.configFile = {
-              "fastfetch/config.jsonc".text = "";
-              "neofetch/config.conf".text = "";
-              "cava/config".text = "";
-            };
             # Eval-time gate uses only the boot specialisation tag. Detection and
             # Breeze restore run during home-manager activation on the live profile.
             home.activation.windose20RestoreBeforePlasma = lib.hm.dag.entryBefore [
@@ -420,7 +415,6 @@
             (
               config.services.displayManager.plasma-login-manager.enable
               && !(builtins.elem "windose20" config.system.nixos.tags)
-              && !(builtins.elem "windose20-xfce" config.system.nixos.tags)
             )
             {
               text = ''
@@ -443,7 +437,6 @@
             (
               config.services.displayManager.sddm.enable
               && !(builtins.elem "windose20" config.system.nixos.tags)
-              && !(builtins.elem "windose20-xfce" config.system.nixos.tags)
             )
             {
               text = ''
