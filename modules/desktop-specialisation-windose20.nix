@@ -311,7 +311,7 @@
               config_home="${config.xdg.configHome}"
 
               windose20_config_detected() {
-                for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc" "$config_home/kcminputrc" "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0" "$HOME/.icons/default/index.theme" "$HOME/.local/share/icons/default/index.theme"; do
+                for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc" "$config_home/kcminputrc" "$config_home/kwinrc" "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0" "$HOME/.icons/default/index.theme" "$HOME/.local/share/icons/default/index.theme"; do
                   [ -f "$f" ] || continue
                   if ${grepBin} -qiE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px|windose20' "$f" 2>/dev/null; then
                     return 0
@@ -346,6 +346,13 @@
                   ${sedBin} -i \
                     -e 's/[cC]ursor[tT]heme=Plasma-Overdose/cursorTheme=breeze_cursors/ig' \
                     "$kcminputrc"
+                fi
+
+                kwinrc="$config_home/kwinrc"
+                if [ -f "$kwinrc" ]; then
+                  ${sedBin} -i \
+                    -e '/Plasma-Overdose/Id' \
+                    "$kwinrc"
                 fi
 
                 for gtk in "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0"; do
