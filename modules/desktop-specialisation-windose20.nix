@@ -227,7 +227,7 @@
               };
             };
             home.activation.windose20ApplyTaskbar = config.lib.dag.entryBefore [ "writeBoundary" ] ''
-              appletsrc="''${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc"
+              appletsrc="${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc"
               if [ -f "$appletsrc" ]; then
                 kickoffs=$(${lib.getExe pkgs.gawk} -F'[][]' '/plugin=org\.kde\.plasma\.kickoff/ {
                     split(prev, a, /\]\[|\[|\]/)
