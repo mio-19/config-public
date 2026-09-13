@@ -809,11 +809,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789285425,
-        "narHash": "sha256-mHAqvD5UMB/UcowZPeto4vezIrYirlzJN79dpZt38xA=",
+        "lastModified": 1789286451,
+        "narHash": "sha256-UQ2eejVisD1g4ZetBZyHGSh7QY3ikOchfPgqFg61pFY=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "62873d1cc131a7fea8f9828db4c0df670162a075",
+        "rev": "6e30ac05bee530fbeadf4fb37589d0117734385c",
         "type": "github"
       },
       "original": {
@@ -985,11 +985,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789285203,
-        "narHash": "sha256-uK7nb1ijkoAYppFZmUkbqtLQPDTV2F+zpLz9PMEysg0=",
+        "lastModified": 1789286446,
+        "narHash": "sha256-xVstyCdg0DpzjyrEacm72VJAIP9DMhfWJdPDzhWxHuo=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "7bf1a567b0d73f0702adb99d6bc05e0958bf75f4",
+        "rev": "a74e173407559083a412ea89a1cc58ea389c3b65",
         "type": "github"
       },
       "original": {
@@ -1591,10 +1591,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1789285538,
-        "narHash": "sha256-866rWQ/3aORIwUYJdrVRlrAUcg8guEQoHq9NS94Ir5Q=",
+        "lastModified": 1789286601,
+        "narHash": "sha256-iA9ufagjsquacQDtv1o4cNfNQsx9hiOrf9oZDia+iUA=",
         "ref": "refs/heads/main",
-        "rev": "eb71a70b5be6367d1a96783b5621bb2b3d604e5c",
+        "rev": "4a5590322444e00f995d742f0e0bc0d25f450b79",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
