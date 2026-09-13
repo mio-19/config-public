@@ -241,6 +241,19 @@
                     ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --group Configuration --group General --key menuLabel "Start"
                   fi
                 done
+
+                icontasks=$(${lib.getExe pkgs.gawk} -F'[][]' '/plugin=org\.kde\.plasma\.icontasks/ {
+                    split(prev, a, /\]\[|\[|\]/)
+                    print a[3] " " a[5]
+                }
+                /^\[/ { prev=$0 }' "$appletsrc")
+
+                echo "$icontasks" | while read -r c_id a_id; do
+                  if [ -n "$c_id" ] && [ -n "$a_id" ]; then
+                    ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --key plugin "org.kde.plasma.taskmanager"
+                    ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --group Configuration --group General --key windose20_was_icontasks "true"
+                  fi
+                done
               fi
             '';
 
@@ -282,6 +295,8 @@
             dconfBin = lib.getExe pkgs.dconf;
             grepBin = lib.getExe' pkgs.gnugrep "grep";
             sedBin = lib.getExe' pkgs.gnused "sed";
+            awkBin = lib.getExe pkgs.gawk;
+            kwriteconfig6Bin = lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6";
             plasmaWallpaperApplyScript =
               if plasmaWallpaper == null then
                 ""
@@ -341,6 +356,19 @@
 
                 appletsrc="$config_home/plasma-org.kde.plasma.desktop-appletsrc"
                 if [ -f "$appletsrc" ]; then
+                  icontasks_to_restore=$(${awkBin} -F'[][]' '/windose20_was_icontasks=true/ {
+                      split(prev, a, /\]\[|\[|\]/)
+                      print a[3] " " a[5]
+                  }
+                  /^\[/ { prev=$0 }' "$appletsrc")
+
+                  echo "$icontasks_to_restore" | while read -r c_id a_id; do
+                    if [ -n "$c_id" ] && [ -n "$a_id" ]; then
+                      ${kwriteconfig6Bin} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --key plugin "org.kde.plasma.icontasks"
+                      ${kwriteconfig6Bin} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --group Configuration --group General --key windose20_was_icontasks --delete
+                    fi
+                  done
+
                   ${sedBin} -i \
                     -e '/Plasma-Overdose/Id' \
                     -e '/windose20/Id' \
