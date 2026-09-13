@@ -1569,11 +1569,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789276625,
-        "narHash": "sha256-EdWnyo2RR/dfrPg15GHnhPVEEhUy4aDgk0iFF69ecLU=",
+        "lastModified": 1789285425,
+        "narHash": "sha256-mHAqvD5UMB/UcowZPeto4vezIrYirlzJN79dpZt38xA=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "20537c248aac4ff6c28e7fc2ce1b44822fbe9943",
+        "rev": "62873d1cc131a7fea8f9828db4c0df670162a075",
         "type": "github"
       },
       "original": {
@@ -1756,11 +1756,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788680125,
-        "narHash": "sha256-amGSoDobwmp4CFvCn841ws2iuitus+HUJdD/gKgsrJA=",
+        "lastModified": 1789285203,
+        "narHash": "sha256-uK7nb1ijkoAYppFZmUkbqtLQPDTV2F+zpLz9PMEysg0=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "116ad1c2adb642405ef8916f6a94c8626f971344",
+        "rev": "7bf1a567b0d73f0702adb99d6bc05e0958bf75f4",
         "type": "github"
       },
       "original": {
@@ -2721,10 +2721,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1789283236,
-        "narHash": "sha256-7wxQRSB58JwUaIpdFvVgRbWVuorqvzbCrvZbWpmjnfY=",
+        "lastModified": 1789285538,
+        "narHash": "sha256-866rWQ/3aORIwUYJdrVRlrAUcg8guEQoHq9NS94Ir5Q=",
         "ref": "refs/heads/main",
-        "rev": "828758fe32177e28969b35afbce1f41e120cc983",
+        "rev": "eb71a70b5be6367d1a96783b5621bb2b3d604e5c",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3220,10 +3220,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1789196581,
-        "narHash": "sha256-yJr1Bt4fKkKIpPYbsKGqJ0VFdoDnURgRwuffmBQ2WzY=",
+        "lastModified": 1789284144,
+        "narHash": "sha256-Slc8gCNYzyuq2f0NIACIYxl55ZeeGcy0SN6LAwixDkY=",
         "ref": "refs/heads/master",
-        "rev": "228ecefb6329d5a531b77b46b581a2f0c26ee056",
+        "rev": "9c72e6db1fc10cdb18e5ef01e31c1f4951e197e0",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
