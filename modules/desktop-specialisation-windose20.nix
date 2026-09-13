@@ -238,6 +238,7 @@
                 echo "$kickoffs" | while read -r c_id a_id; do
                   if [ -n "$c_id" ] && [ -n "$a_id" ]; then
                     ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --group Configuration --group General --key icon "${windose20}/share/windose20/pngs/logo.png"
+                    ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --group Configuration --group General --key menuLabel "Start"
                   fi
                 done
               fi
@@ -343,6 +344,7 @@
                   ${sedBin} -i \
                     -e '/Plasma-Overdose/Id' \
                     -e '/windose20/Id' \
+                    -e '/^menuLabel=Start$/d' \
                     "$appletsrc"
                 fi
 
