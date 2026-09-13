@@ -590,9 +590,9 @@
             ''
               options cfg80211 ieee80211_regdom="${countryCode}"
             '';
-        hardware.wireless.regulatoryDomain = lib.mkIf (
-          config.networking.wireless.enable || config.networking.wireless.iwd.enable
-        ) countryCode;
+        #hardware.wireless.regulatoryDomain = lib.mkIf (
+        #  config.networking.wireless.enable || config.networking.wireless.iwd.enable
+        #) countryCode;
 
         # https://github.com/NixOS/nixpkgs/issues/432276
         powerManagement.powerDownCommands =
