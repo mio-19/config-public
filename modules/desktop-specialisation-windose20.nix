@@ -223,13 +223,21 @@
           let
             inWindose20 = builtins.elem "windose20" osConfig.system.nixos.tags;
             plasmaWallpaper = config.programs.plasma.workspace.wallpaper or null;
+            plasmaApplyWallpaper = lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-wallpaperimage";
+            plasmaApplyLookAndFeel = lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-lookandfeel";
+            plasmaApplyColorScheme = lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-colorscheme";
+            plasmaApplyCursorTheme = lib.getExe' pkgs.kdePackages.plasma-workspace "plasma-apply-cursortheme";
+            plasmaChangeIcons = "${pkgs.kdePackages.plasma-workspace}/libexec/plasma-changeicons";
+            dconfBin = lib.getExe pkgs.dconf;
+            grepBin = lib.getExe' pkgs.gnugrep "grep";
+            sedBin = lib.getExe' pkgs.gnused "sed";
             plasmaWallpaperApplyScript =
               if plasmaWallpaper == null then
                 ""
               else
                 ''
-                  if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage" ]; then
-                    ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage "${plasmaWallpaper}" || true
+                  if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ]; then
+                    ${plasmaApplyWallpaper} "${plasmaWallpaper}" || true
                   fi
                 '';
             windose20RestoreScript = ''
@@ -239,13 +247,13 @@
               windose20_config_detected() {
                 for f in "$config_home/kdeglobals" "$config_home/plasma-org.kde.plasma.desktop-appletsrc" "$config_home/kcminputrc" "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0" "$HOME/.icons/default/index.theme" "$HOME/.local/share/icons/default/index.theme"; do
                   [ -f "$f" ] || continue
-                  if grep -qiE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px|windose20' "$f" 2>/dev/null; then
+                  if ${grepBin} -qiE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px|windose20' "$f" 2>/dev/null; then
                     return 0
                   fi
                 done
                 [ -f "$config_home/konsole/Plasma-Overdose.profile" ] && return 0
                 [ -f "$config_home/fontconfig/conf.d/99-windose20.conf" ] && return 0
-                if command -v dconf >/dev/null 2>&1 && dconf dump /org/gnome/ 2>/dev/null | grep -qiE 'Fusion Pixel'; then
+                if ${dconfBin} dump /org/gnome/ 2>/dev/null | ${grepBin} -qiE 'Fusion Pixel'; then
                   return 0
                 fi
                 return 1
@@ -254,7 +262,7 @@
               if windose20_config_detected; then
                 kdeglobals="$config_home/kdeglobals"
                 if [ -f "$kdeglobals" ]; then
-                  ${pkgs.gnused}/bin/sed -i \
+                  ${sedBin} -i \
                     -e 's/LookAndFeelPackage=Plasma-Overdose/LookAndFeelPackage=org.kde.breeze.desktop/ig' \
                     -e 's/ColorScheme=Plasma-Overdose/ColorScheme=BreezeLight/ig' \
                     -e 's/ColorScheme=PlasmaOverdose/ColorScheme=BreezeLight/ig' \
@@ -268,20 +276,20 @@
 
                 kcminputrc="$config_home/kcminputrc"
                 if [ -f "$kcminputrc" ]; then
-                  ${pkgs.gnused}/bin/sed -i \
+                  ${sedBin} -i \
                     -e 's/[cC]ursor[tT]heme=Plasma-Overdose/cursorTheme=breeze_cursors/ig' \
                     "$kcminputrc"
                 fi
 
                 for gtk in "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0"; do
                   if [ -f "$gtk" ]; then
-                    ${pkgs.gnused}/bin/sed -i 's/Plasma-Overdose/breeze_cursors/ig' "$gtk"
+                    ${sedBin} -i 's/Plasma-Overdose/breeze_cursors/ig' "$gtk"
                   fi
                 done
 
                 appletsrc="$config_home/plasma-org.kde.plasma.desktop-appletsrc"
                 if [ -f "$appletsrc" ]; then
-                  ${pkgs.gnused}/bin/sed -i \
+                  ${sedBin} -i \
                     -e '/Plasma-Overdose/Id' \
                     -e '/windose20/Id' \
                     "$appletsrc"
@@ -291,26 +299,24 @@
                 rm -f "$config_home/fontconfig/conf.d/99-windose20.conf"
                 for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
                   target="$config_home/$rel"
-                  if [ -e "$target" ] && grep -qF 'share/windose20/' "$target" 2>/dev/null; then
+                  if [ -e "$target" ] && ${grepBin} -qF 'share/windose20/' "$target" 2>/dev/null; then
                     rm -f "$target"
                   fi
                 done
-                
+
                 # Clean up ~/.icons/default if plasma-apply-cursortheme made it a directory
                 if [ -d "$HOME/.icons/default" ] && ! [ -L "$HOME/.icons/default" ]; then
-                  if grep -q "Plasma-Overdose" "$HOME/.icons/default/index.theme" 2>/dev/null; then
+                  if ${grepBin} -q "Plasma-Overdose" "$HOME/.icons/default/index.theme" 2>/dev/null; then
                     rm -rf "$HOME/.icons/default"
                   fi
                 fi
 
-                if command -v dconf >/dev/null 2>&1; then
-                  dconf reset -f /org/gnome/Console/ 2>/dev/null || true
-                  dconf reset /org/gnome/desktop/interface/font-name 2>/dev/null || true
-                  dconf reset /org/gnome/desktop/interface/document-font-name 2>/dev/null || true
-                  dconf reset /org/gnome/desktop/interface/monospace-font-name 2>/dev/null || true
-                  dconf reset /org/gnome/desktop/interface/color-scheme 2>/dev/null || true
-                fi
-                
+                ${dconfBin} reset -f /org/gnome/Console/ 2>/dev/null || true
+                ${dconfBin} reset /org/gnome/desktop/interface/font-name 2>/dev/null || true
+                ${dconfBin} reset /org/gnome/desktop/interface/document-font-name 2>/dev/null || true
+                ${dconfBin} reset /org/gnome/desktop/interface/monospace-font-name 2>/dev/null || true
+                ${dconfBin} reset /org/gnome/desktop/interface/color-scheme 2>/dev/null || true
+
                 # Signal AfterPlasma to run dbus commands
                 touch "$config_home/.windose20_restore_pending"
               fi
@@ -332,11 +338,11 @@
               config_home="${config.xdg.configHome}"
               if [ -f "$config_home/.windose20_restore_pending" ]; then
                 rm -f "$config_home/.windose20_restore_pending"
-                if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -x "${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel" ]; then
-                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-lookandfeel org.kde.breeze.desktop || true
-                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-colorscheme BreezeLight || true
-                  ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-cursortheme breeze_cursors || true
-                  ${pkgs.kdePackages.plasma-workspace}/libexec/plasma-changeicons breeze || true
+                if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ]; then
+                  ${plasmaApplyLookAndFeel} org.kde.breeze.desktop || true
+                  ${plasmaApplyColorScheme} BreezeLight || true
+                  ${plasmaApplyCursorTheme} breeze_cursors || true
+                  ${plasmaChangeIcons} breeze || true
                 fi
                 ${plasmaWallpaperApplyScript}
               fi
@@ -359,7 +365,7 @@
             {
               text = ''
                 kdeglobals=/var/lib/plasmalogin/.config/kdeglobals
-                if [ -e "$kdeglobals" ] && grep -qE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px' "$kdeglobals" 2>/dev/null; then
+                if [ -e "$kdeglobals" ] && ${lib.getExe' pkgs.gnugrep "grep"} -qE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px' "$kdeglobals" 2>/dev/null; then
                   rm -f "$kdeglobals"
                 fi
               '';
