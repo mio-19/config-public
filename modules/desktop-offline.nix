@@ -199,7 +199,7 @@
             lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
             binaryninja-free
             # Single bwrap (VampTransforms); do not firejail — nests with nixpkgs/our bwrap
-            (callPackage ./_bitwig/bwrap.nix { })
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bitwig-studio-bwrap
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
             # unfree:
