@@ -139,6 +139,7 @@
         windose20HomeModule =
           {
             osConfig,
+            config,
             ...
           }:
           let
@@ -184,72 +185,63 @@
               };
             };
 
-            programs.plasma =
-              lib.recursiveUpdate
-                {
-                  workspace = {
-                    lookAndFeel = windose20Prio "Plasma-Overdose";
-                    # Match ColorScheme= id inside PlasmaOverdose.colors (not the hyphenated filename).
-                    colorScheme = windose20Prio "PlasmaOverdose";
-                    # Directory name is lowercase; capital "Breeze" misses icons on case-sensitive FS.
-                    iconTheme = windose20Prio "breeze";
-                    cursor = {
-                      theme = windose20Prio "Plasma-Overdose";
-                      size = 24;
-                    };
-                    wallpaper = windose20Prio windose20Wallpaper;
-                    wallpaperFillMode = windose20Prio "preserveAspectCrop";
-                  };
-                  fonts = {
-                    general = {
-                      family = windose20Prio windose20FontFamily;
-                      pointSize = 10;
-                    };
-                    fixedWidth = {
-                      family = windose20Prio windose20MonoFamily;
-                      pointSize = 10;
-                    };
-                    small = {
-                      family = windose20Prio windose20FontFamily;
-                      pointSize = 8;
-                    };
-                    toolbar = {
-                      family = windose20Prio windose20FontFamily;
-                      pointSize = 10;
-                    };
-                    menu = {
-                      family = windose20Prio windose20FontFamily;
-                      pointSize = 10;
-                    };
-                    windowTitle = {
-                      family = windose20Prio windose20FontFamily;
-                      pointSize = 10;
-                    };
-                  };
+            programs.plasma = {
+              workspace = {
+                lookAndFeel = windose20Prio "Plasma-Overdose";
+                # Match ColorScheme= id inside PlasmaOverdose.colors (not the hyphenated filename).
+                colorScheme = windose20Prio "PlasmaOverdose";
+                # Directory name is lowercase; capital "Breeze" misses icons on case-sensitive FS.
+                iconTheme = windose20Prio "breeze";
+                cursor = {
+                  theme = windose20Prio "Plasma-Overdose";
+                  size = 24;
+                };
+                wallpaper = windose20Prio windose20Wallpaper;
+                wallpaperFillMode = windose20Prio "preserveAspectCrop";
+              };
+              fonts = {
+                general = {
+                  family = windose20Prio windose20FontFamily;
+                  pointSize = 10;
+                };
+                fixedWidth = {
+                  family = windose20Prio windose20MonoFamily;
+                  pointSize = 10;
+                };
+                small = {
+                  family = windose20Prio windose20FontFamily;
+                  pointSize = 8;
+                };
+                toolbar = {
+                  family = windose20Prio windose20FontFamily;
+                  pointSize = 10;
+                };
+                menu = {
+                  family = windose20Prio windose20FontFamily;
+                  pointSize = 10;
+                };
+                windowTitle = {
+                  family = windose20Prio windose20FontFamily;
+                  pointSize = 10;
+                };
+              };
+            };
+            home.activation.windose20ApplyTaskbar = lib.hm.dag.entryBefore [ "writeBoundary" ] ''
+              appletsrc="''${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc"
+              if [ -f "$appletsrc" ]; then
+                kickoffs=$(${lib.getExe pkgs.gawk} -F'[][]' '/plugin=org\.kde\.plasma\.kickoff/ {
+                    split(prev, a, /\]\[|\[|\]/)
+                    print a[3] " " a[5]
                 }
-                (
-                  lib.optionalAttrs (osConfig.windose20_automate_kickoff or false) {
-                    panels = [
-                      {
-                        location = "bottom";
-                        widgets = [
-                          {
-                            kickoff = {
-                              icon = "${windose20}/share/windose20/pngs/logo.png";
-                              label = "Start";
-                            };
-                          }
-                          "org.kde.plasma.pager"
-                          "org.kde.plasma.icontasks"
-                          "org.kde.plasma.marginsseparator"
-                          "org.kde.plasma.systemtray"
-                          "org.kde.plasma.digitalclock"
-                          "org.kde.plasma.showdesktop"
-                        ];
-                      }
-                    ];
-                  }
-                );
+                /^\[/ { prev=$0 }' "$appletsrc")
+
+                echo "$kickoffs" | while read -r c_id a_id; do
+                  if [ -n "$c_id" ] && [ -n "$a_id" ]; then
+                    ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} --file "$appletsrc" --group Containments --group "$c_id" --group Applets --group "$a_id" --group Configuration --group General --key icon "${windose20}/share/windose20/pngs/logo.png"
+                  fi
+                done
+              fi
+            '';
 
             xdg.configFile = {
               "fastfetch/config.jsonc".source = "${windose20}/share/windose20/configs/fastfetch.jsonc";
