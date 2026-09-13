@@ -418,11 +418,6 @@
                 hash = "sha256-ND4idJBXPttECpF5crevL39QctHKcYHaIHl1l42DSSE=";
               })
               (fetchpatch {
-                name = "github-copilot-cli: 1.0.61 -> 1.0.73";
-                url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
-                hash = "sha256-Za/JptrEFFNOnObk9djXK6EpJzf35fxd7xwcHO8xbAY=";
-              })
-              (fetchpatch {
                 name = "types.path.check: Avoid derivation instantiation";
                 url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
                 hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
