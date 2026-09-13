@@ -15,23 +15,124 @@
         windose20 = mio.windose20 or (lib.throw "windose20 package missing from inputs.mio");
         plasmaOverdose = mio.plasma-overdose-kde-theme or pkgs.plasma-overdose-kde-theme;
         windose20Wallpaper = "${windose20}/share/windose20/pngs/bg.png";
+        windose20Logo = "${windose20}/share/windose20/pngs/logo.png";
         # Real fontconfig family names from the TTFs (not the filenames).
         windose20FontFamily = "Fusion Pixel 10px Prop latin";
         windose20MonoFamily = "Fusion Pixel 10px Mono latin";
         windose20Font = "${windose20FontFamily},10,-1,5,50,0,0,0,0,0";
         windose20SmallFont = "${windose20FontFamily},8,-1,5,50,0,0,0,0,0";
         windose20MonoFont = "${windose20MonoFamily},10,-1,5,50,0,0,0,0,0";
+        # Accent used by Plymouth/NGO splash (#FF70A6) for SDDM solid fallback / chrome.
+        windose20Accent = "#FF70A6";
+        # Remap common UI / web font families to Fusion Pixel (system lookups + site fallbacks).
+        # Downloaded @font-face (e.g. GitHub Mona Sans woff2) still bypasses fontconfig —
+        # browsers also get use_document_fonts=0 / --disable-remote-fonts below.
+        windose20FontconfigSansFamilies = [
+          "Open Sans"
+          "OpenSans"
+          "Segoe UI"
+          "Tahoma"
+          "MS Sans Serif"
+          "Mona Sans"
+          "Hubot Sans"
+          "Arial"
+          "Helvetica"
+          "Noto Sans"
+          "system-ui"
+          "ui-sans-serif"
+          "-apple-system"
+          "BlinkMacSystemFont"
+          "SF Pro"
+          "Cantarell"
+          "Ubuntu"
+          "Roboto"
+          "Inter"
+          "DejaVu Sans"
+          "Liberation Sans"
+        ];
+        windose20FontconfigMonoFamilies = [
+          "Mona Sans Mono"
+          "ui-monospace"
+          "SFMono-Regular"
+          "SF Mono"
+          "Menlo"
+          "Consolas"
+          "Liberation Mono"
+          "Courier New"
+          "DejaVu Sans Mono"
+        ];
+        windose20FontconfigMatch = targetFamily: replaceFamily: ''
+          <match target="pattern">
+            <test name="family" qual="any" compare="contains">
+              <string>${targetFamily}</string>
+            </test>
+            <edit name="family" mode="assign" binding="strong">
+              <string>${replaceFamily}</string>
+            </edit>
+          </match>
+        '';
+        windose20FontconfigRules =
+          lib.concatMapStrings (
+            f: windose20FontconfigMatch f windose20FontFamily
+          ) windose20FontconfigSansFamilies
+          + lib.concatMapStrings (
+            f: windose20FontconfigMatch f windose20MonoFamily
+          ) windose20FontconfigMonoFamilies;
+        windose20FontconfigFileText = ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+          <fontconfig>
+            <!-- Windose20: remap UI/web fonts to Fusion Pixel (Telegram, GitHub fallbacks, etc.) -->
+            ${windose20FontconfigRules}
+          </fontconfig>
+        '';
+        # LibreWolf: ignore page @font-face so GitHub Mona Sans etc. cannot bypass fontconfig.
+        windose20LibrewolfOverrides = ''
+          // Windose20: force browser UI fonts; ignore document/webfonts (GitHub Mona Sans, etc.)
+          defaultPref("browser.display.use_document_fonts", 0);
+          defaultPref("gfx.downloadable_fonts.enabled", false);
+          defaultPref("font.name.serif.x-western", "${windose20FontFamily}");
+          defaultPref("font.name.sans-serif.x-western", "${windose20FontFamily}");
+          defaultPref("font.name.monospace.x-western", "${windose20MonoFamily}");
+          defaultPref("font.name.serif.x-cyrillic", "${windose20FontFamily}");
+          defaultPref("font.name.sans-serif.x-cyrillic", "${windose20FontFamily}");
+          defaultPref("font.name.monospace.x-cyrillic", "${windose20MonoFamily}");
+        '';
+        # Greeter theming: PLM reads kdedefaults/* (not only ~/.config/kdeglobals).
         windose20PlasmaloginKdeglobals = pkgs.writeText "windose20-plasmalogin-kdeglobals" ''
           [KDE]
           LookAndFeelPackage=Plasma-Overdose
+          widgetStyle=Breeze
 
           [General]
+          ColorScheme=PlasmaOverdose
           font=${windose20Font}
           fixed=${windose20MonoFont}
           smallestReadableFont=${windose20SmallFont}
           toolBarFont=${windose20Font}
           menuFont=${windose20Font}
           windowTitleFont=${windose20Font}
+
+          [Icons]
+          Theme=breeze
+        '';
+        windose20PlasmaloginKcminputrc = pkgs.writeText "windose20-plasmalogin-kcminputrc" ''
+          [Mouse]
+          cursorTheme=Plasma-Overdose
+          cursorSize=24
+        '';
+        windose20PlasmaloginPlasmarc = pkgs.writeText "windose20-plasmalogin-plasmarc" ''
+          [Theme]
+          name=Plasma-Overdose
+        '';
+        windose20SddmThemeConf = pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+          [General]
+          background=${windose20Wallpaper}
+          type=image
+          showlogo=shown
+          logo=${windose20Logo}
+          color=${windose20Accent}
+          fontSize=10
         '';
         # Beat per-user mkForce (priority 50) when the windose20 specialisation is active.
         windose20Prio = lib.mkOverride 0;
@@ -163,54 +264,11 @@
                 BackgroundImage=${windose20}/share/windose20/pngs/JINEBG.png
                 BackgroundImageStyle=1
               '';
-              "fontconfig/conf.d/99-windose20.conf".text = ''
-                <?xml version="1.0"?>
-                <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
-                <fontconfig>
-                  <!-- Windose20: force Fusion Pixel for Open Sans (Telegram Desktop) and Windows/web fonts -->
-                  <match target="pattern">
-                    <test name="family" qual="any" compare="contains">
-                      <string>Open Sans</string>
-                    </test>
-                    <edit name="family" mode="assign" binding="strong">
-                      <string>${windose20FontFamily}</string>
-                    </edit>
-                  </match>
-                  <match target="pattern">
-                    <test name="family" qual="any" compare="contains">
-                      <string>OpenSans</string>
-                    </test>
-                    <edit name="family" mode="assign" binding="strong">
-                      <string>${windose20FontFamily}</string>
-                    </edit>
-                  </match>
-                  <match target="pattern">
-                    <test name="family" qual="any" compare="contains">
-                      <string>Segoe UI</string>
-                    </test>
-                    <edit name="family" mode="assign" binding="strong">
-                      <string>${windose20FontFamily}</string>
-                    </edit>
-                  </match>
-                  <match target="pattern">
-                    <test name="family" qual="any" compare="contains">
-                      <string>Tahoma</string>
-                    </test>
-                    <edit name="family" mode="assign" binding="strong">
-                      <string>${windose20FontFamily}</string>
-                    </edit>
-                  </match>
-                  <match target="pattern">
-                    <test name="family" qual="any" compare="contains">
-                      <string>MS Sans Serif</string>
-                    </test>
-                    <edit name="family" mode="assign" binding="strong">
-                      <string>${windose20FontFamily}</string>
-                    </edit>
-                  </match>
-                </fontconfig>
-              '';
+              "fontconfig/conf.d/99-windose20.conf".text = windose20FontconfigFileText;
             };
+
+            # LibreWolf: ignore GitHub/other @font-face so Fusion Pixel wins in the browser.
+            home.file.".librewolf/librewolf.overrides.cfg".text = windose20LibrewolfOverrides;
           };
         windose20RestoreHomeModule =
           {
@@ -253,6 +311,7 @@
                 done
                 [ -f "$config_home/konsole/Plasma-Overdose.profile" ] && return 0
                 [ -f "$config_home/fontconfig/conf.d/99-windose20.conf" ] && return 0
+                [ -f "$HOME/.librewolf/librewolf.overrides.cfg" ] && ${grepBin} -q 'Windose20' "$HOME/.librewolf/librewolf.overrides.cfg" 2>/dev/null && return 0
                 if ${dconfBin} dump /org/gnome/ 2>/dev/null | ${grepBin} -qiE 'Fusion Pixel'; then
                   return 0
                 fi
@@ -297,6 +356,7 @@
 
                 rm -f "$config_home/konsole/Plasma-Overdose.profile"
                 rm -f "$config_home/fontconfig/conf.d/99-windose20.conf"
+                rm -f "$HOME/.librewolf/librewolf.overrides.cfg"
                 for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
                   target="$config_home/$rel"
                   if [ -e "$target" ] && ${grepBin} -qF 'share/windose20/' "$target" 2>/dev/null; then
@@ -364,10 +424,35 @@
             )
             {
               text = ''
-                kdeglobals=/var/lib/plasmalogin/.config/kdeglobals
-                if [ -e "$kdeglobals" ] && ${lib.getExe' pkgs.gnugrep "grep"} -qE 'Plasma-Overdose|Fusion Pixel 10px|fusion-pixel-10px' "$kdeglobals" 2>/dev/null; then
-                  rm -f "$kdeglobals"
-                fi
+                plm_home=/var/lib/plasmalogin
+                for f in \
+                  "$plm_home/.config/kdeglobals" \
+                  "$plm_home/.config/kdedefaults/kdeglobals" \
+                  "$plm_home/.config/kdedefaults/kcminputrc" \
+                  "$plm_home/.config/kdedefaults/plasmarc" \
+                  "$plm_home/.config/kcminputrc"; do
+                  if [ -e "$f" ] && ${lib.getExe' pkgs.gnugrep "grep"} -qE 'Plasma-Overdose|PlasmaOverdose|Fusion Pixel 10px|fusion-pixel-10px|windose20' "$f" 2>/dev/null; then
+                    rm -f "$f"
+                  fi
+                done
+              '';
+            };
+
+        system.activationScripts.windose20SddmRestore =
+          lib.mkIf
+            (
+              config.services.displayManager.sddm.enable
+              && !(builtins.elem "windose20" config.system.nixos.tags)
+              && !(builtins.elem "windose20-xfce" config.system.nixos.tags)
+            )
+            {
+              text = ''
+                sddm_home=/var/lib/sddm
+                for f in "$sddm_home/.config/kdeglobals" "$sddm_home/.config/kcminputrc"; do
+                  if [ -e "$f" ] && ${lib.getExe' pkgs.gnugrep "grep"} -qE 'Plasma-Overdose|PlasmaOverdose|Fusion Pixel 10px|fusion-pixel-10px|windose20' "$f" 2>/dev/null; then
+                    rm -f "$f"
+                  fi
+                done
               '';
             };
 
@@ -398,63 +483,40 @@
               ];
             };
             localConf = ''
-              <!-- Windose20: force Fusion Pixel for Open Sans (Telegram Desktop) and Windows/web fonts -->
-              <match target="pattern">
-                <test name="family" qual="any" compare="contains">
-                  <string>Open Sans</string>
-                </test>
-                <edit name="family" mode="assign" binding="strong">
-                  <string>${windose20FontFamily}</string>
-                </edit>
-              </match>
-              <match target="pattern">
-                <test name="family" qual="any" compare="contains">
-                  <string>OpenSans</string>
-                </test>
-                <edit name="family" mode="assign" binding="strong">
-                  <string>${windose20FontFamily}</string>
-                </edit>
-              </match>
-              <match target="pattern">
-                <test name="family" qual="any" compare="contains">
-                  <string>Segoe UI</string>
-                </test>
-                <edit name="family" mode="assign" binding="strong">
-                  <string>${windose20FontFamily}</string>
-                </edit>
-              </match>
-              <match target="pattern">
-                <test name="family" qual="any" compare="contains">
-                  <string>Tahoma</string>
-                </test>
-                <edit name="family" mode="assign" binding="strong">
-                  <string>${windose20FontFamily}</string>
-                </edit>
-              </match>
-              <match target="pattern">
-                <test name="family" qual="any" compare="contains">
-                  <string>MS Sans Serif</string>
-                </test>
-                <edit name="family" mode="assign" binding="strong">
-                  <string>${windose20FontFamily}</string>
-                </edit>
-              </match>
+              <!-- Windose20: remap UI/web fonts to Fusion Pixel (Telegram, GitHub fallbacks, etc.) -->
+              ${windose20FontconfigRules}
             '';
           };
 
           environment.systemPackages = [
             windose20
             plasmaOverdose
+            # Chromium: block remote @font-face (GitHub Mona Sans) without rebuilding chromium.
+            (lib.hiPrio (
+              pkgs.writeShellScriptBin "chromium" ''
+                exec ${lib.getExe pkgs.chromium} --disable-remote-fonts "$@"
+              ''
+            ))
           ]
           ++ lib.optionals config.services.displayManager.sddm.enable [
-            (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-              [General]
-              background=${windose20Wallpaper}
-            '')
+            # Beat baseline theme.conf.user from desktop-basic.
+            (lib.hiPrio windose20SddmThemeConf)
           ];
 
           environment.etc."xdg/fastfetch/config.jsonc".source =
             "${windose20}/share/windose20/configs/fastfetch.jsonc";
+
+          services.displayManager.sddm = lib.mkIf config.services.displayManager.sddm.enable {
+            theme = lib.mkForce "breeze";
+            settings = {
+              Theme = {
+                Current = "breeze";
+                CursorTheme = "Plasma-Overdose";
+                CursorSize = "24";
+                Font = windose20FontFamily;
+              };
+            };
+          };
 
           services.displayManager.plasma-login-manager.settings =
             lib.mkIf config.services.displayManager.plasma-login-manager.enable
@@ -470,12 +532,32 @@
             lib.mkIf config.services.displayManager.plasma-login-manager.enable
               {
                 text = ''
-                  if [ -d /var/lib/plasmalogin ]; then
-                    mkdir -p /var/lib/plasmalogin/.config
-                    ln -sfn ${windose20PlasmaloginKdeglobals} /var/lib/plasmalogin/.config/kdeglobals
+                  plm_home=/var/lib/plasmalogin
+                  if [ -d "$plm_home" ]; then
+                    mkdir -p "$plm_home/.config/kdedefaults"
+                    # Both paths matter: some greeter bits read kdeglobals, chrome reads kdedefaults.
+                    ln -sfn ${windose20PlasmaloginKdeglobals} "$plm_home/.config/kdeglobals"
+                    ln -sfn ${windose20PlasmaloginKdeglobals} "$plm_home/.config/kdedefaults/kdeglobals"
+                    ln -sfn ${windose20PlasmaloginKcminputrc} "$plm_home/.config/kdedefaults/kcminputrc"
+                    ln -sfn ${windose20PlasmaloginKcminputrc} "$plm_home/.config/kcminputrc"
+                    ln -sfn ${windose20PlasmaloginPlasmarc} "$plm_home/.config/kdedefaults/plasmarc"
+                    chown -R plasmalogin:plasmalogin "$plm_home/.config" || true
                   fi
                 '';
               };
+
+          # SDDM greeter Qt/Kirigami theming (cursor/font also set via sddm.settings above).
+          system.activationScripts.windose20Sddm = lib.mkIf config.services.displayManager.sddm.enable {
+            text = ''
+              sddm_home=/var/lib/sddm
+              if [ -d "$sddm_home" ]; then
+                mkdir -p "$sddm_home/.config"
+                ln -sfn ${windose20PlasmaloginKdeglobals} "$sddm_home/.config/kdeglobals"
+                ln -sfn ${windose20PlasmaloginKcminputrc} "$sddm_home/.config/kcminputrc"
+                chown -R sddm:sddm "$sddm_home/.config" 2>/dev/null || true
+              fi
+            '';
+          };
 
           boot.plymouth = {
             enable = lib.mkForce true;
