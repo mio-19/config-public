@@ -36,7 +36,7 @@ with _include;
 
   #fprintd-plasma_workaround = "fingerprint_rearm";
   fprintd-plasma_workaround = "delay_restart_v2";
-  fprint_fix = true;
+  #fprint_fix = true;
   plasma-login-manager_instead = true; # plm seems to take more seconds to launch, but sddm takes more seconds to enter plasma
 
   security.allowSimultaneousMultithreading = true;
