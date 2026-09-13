@@ -542,36 +542,20 @@
                 };
               };
 
-          system.activationScripts.windose20Plasmalogin =
-            lib.mkIf config.services.displayManager.plasma-login-manager.enable
-              {
-                text = ''
-                  plm_home=/var/lib/plasmalogin
-                  if [ -d "$plm_home" ]; then
-                    mkdir -p "$plm_home/.config/kdedefaults"
-                    # Both paths matter: some greeter bits read kdeglobals, chrome reads kdedefaults.
-                    ln -sfn ${windose20PlasmaloginKdeglobals} "$plm_home/.config/kdeglobals"
-                    ln -sfn ${windose20PlasmaloginKdeglobals} "$plm_home/.config/kdedefaults/kdeglobals"
-                    ln -sfn ${windose20PlasmaloginKcminputrc} "$plm_home/.config/kdedefaults/kcminputrc"
-                    ln -sfn ${windose20PlasmaloginKcminputrc} "$plm_home/.config/kcminputrc"
-                    ln -sfn ${windose20PlasmaloginPlasmarc} "$plm_home/.config/kdedefaults/plasmarc"
-                    chown -R plasmalogin:plasmalogin "$plm_home/.config" || true
-                  fi
-                '';
-              };
-
-          # SDDM greeter Qt/Kirigami theming (cursor/font also set via sddm.settings above).
-          system.activationScripts.windose20Sddm = lib.mkIf config.services.displayManager.sddm.enable {
-            text = ''
-              sddm_home=/var/lib/sddm
-              if [ -d "$sddm_home" ]; then
-                mkdir -p "$sddm_home/.config"
-                ln -sfn ${windose20PlasmaloginKdeglobals} "$sddm_home/.config/kdeglobals"
-                ln -sfn ${windose20PlasmaloginKcminputrc} "$sddm_home/.config/kcminputrc"
-                chown -R sddm:sddm "$sddm_home/.config" 2>/dev/null || true
-              fi
-            '';
-          };
+          systemd.tmpfiles.rules =
+            (lib.optionals config.services.displayManager.plasma-login-manager.enable [
+              "d /var/lib/plasmalogin/.config/kdedefaults 0755 plasmalogin plasmalogin"
+              "L+ /var/lib/plasmalogin/.config/kdeglobals - - - - ${windose20PlasmaloginKdeglobals}"
+              "L+ /var/lib/plasmalogin/.config/kdedefaults/kdeglobals - - - - ${windose20PlasmaloginKdeglobals}"
+              "L+ /var/lib/plasmalogin/.config/kcminputrc - - - - ${windose20PlasmaloginKcminputrc}"
+              "L+ /var/lib/plasmalogin/.config/kdedefaults/kcminputrc - - - - ${windose20PlasmaloginKcminputrc}"
+              "L+ /var/lib/plasmalogin/.config/kdedefaults/plasmarc - - - - ${windose20PlasmaloginPlasmarc}"
+            ])
+            ++ (lib.optionals config.services.displayManager.sddm.enable [
+              "d /var/lib/sddm/.config 0755 sddm sddm"
+              "L+ /var/lib/sddm/.config/kdeglobals - - - - ${windose20PlasmaloginKdeglobals}"
+              "L+ /var/lib/sddm/.config/kcminputrc - - - - ${windose20PlasmaloginKcminputrc}"
+            ]);
 
           boot.plymouth = {
             enable = lib.mkForce true;
