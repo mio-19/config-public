@@ -179,11 +179,6 @@
                   url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
                   hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
                 })
-                (fetchpatch {
-                  name = "baobab: add desktopToDarwinBundle override";
-                  url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
-                  hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
-                })
               ];
             };
             nixpkgs =
