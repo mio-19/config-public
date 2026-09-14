@@ -180,11 +180,6 @@
                   hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
                 })
                 (fetchpatch {
-                  name = "github-copilot-cli: 1.0.61 -> 1.0.73";
-                  url = "https://github.com/NixOS/nixpkgs/pull/534884.diff";
-                  hash = "sha256-Za/JptrEFFNOnObk9djXK6EpJzf35fxd7xwcHO8xbAY=";
-                })
-                (fetchpatch {
                   name = "baobab: add desktopToDarwinBundle override";
                   url = "https://github.com/NixOS/nixpkgs/pull/536603.diff";
                   hash = "sha256-OTgYDCP9PsldoFGarL9NB7WEyB3jAjeVxeZo20M6HWE=";
