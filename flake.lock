@@ -1371,11 +1371,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789360822,
-        "narHash": "sha256-XlJlSgogeOHV1kAVZZ1c7g/Rs1MN/7GssneN+2Hi4qc=",
+        "lastModified": 1789367948,
+        "narHash": "sha256-/RwZVHYMHOhG9e6SCcA6gwX7dUGAFKIx6yzpkZcHZos=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "56c2c2545fab41644c492f1182e48d7ca6415181",
+        "rev": "e5fba4b49a76262fab3632a64ef466698caa317c",
         "type": "github"
       },
       "original": {
@@ -1408,6 +1408,7 @@
           "mac",
           "nixpkgs-unstable"
         ],
+        "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-pin6": "nixpkgs-pin6",
         "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
@@ -2322,6 +2323,19 @@
         "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1070770.8ce4ef6cb6f8/nixexprs.tar.zst"
       }
     },
+    "nixpkgs-pin5": {
+      "locked": {
+        "lastModified": 1789073787,
+        "narHash": "sha256-vLblJRFZjrSBOyHD4jwBkGJm2iOVk8c9BJnzZTOojSc=",
+        "rev": "aff8a0b28396750446e5537a96461bc4facdb287",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1071116.aff8a0b28396/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1071116.aff8a0b28396/nixexprs.tar.zst"
+      }
+    },
     "nixpkgs-pin6": {
       "locked": {
         "lastModified": 315532800,
@@ -2721,10 +2735,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1789360088,
-        "narHash": "sha256-+NzxDHoAWozYQnilClfB6tedDP7WQm/hl3N2Gl9WdeI=",
+        "lastModified": 1789369761,
+        "narHash": "sha256-5tPPzj+gMCz1KNjDgb57wBJQD7tCfDB5rE0I4hiNfdA=",
         "ref": "refs/heads/main",
-        "rev": "07d9be41cf5ea8e6efd6ad0f27dc11f4a84b27d8",
+        "rev": "608894a95b15dbf45972e81b7e9c324b08200bbb",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
