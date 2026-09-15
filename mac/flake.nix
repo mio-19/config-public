@@ -167,7 +167,7 @@
                 (fetchpatch {
                   name = "types.path.check: Avoid derivation instantiation";
                   url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
-                  hash = "sha256-rJ+c2Wvwt5fr1c4HdQR8QAyhdfXfrDtiAnONnNgEuIo=";
+                  hash = "sha256-t+iFDm9ANEjeAH1bHG2dtVuS4d11OJkdqKB77rCFOBo=";
                 })
                 (fetchurl {
                   name = "flyline: init at 1.5.0";
