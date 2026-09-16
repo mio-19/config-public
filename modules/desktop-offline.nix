@@ -198,7 +198,6 @@
             #jetbrains.idea
             lightworks # maybe doesn't support wayland well # maybe consider https://github.com/kekkoudesu/lightworks-flatpak
             binaryninja-free
-            bitwig-studio # inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bitwig-studio-bwrap
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
             # unfree:
@@ -207,6 +206,7 @@
             })
           ];
         systemPackages_clean = with pkgs; [
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bitwig-studio-bwrap
           #pkgs-chaotic-ff-nightly'.firefox_nightly
         ];
         environment.systemPackages =
