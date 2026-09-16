@@ -500,6 +500,7 @@
           */
           enable = true;
           packages = [
+            "com.github.tchx84.Flatseal"
             #"sh.cider.Cider" # doesn't work
             "com.microsoft.Edge" # Download Documents Music Pictures Videos ...
             #"com.google.Chrome" # Download Documents Music Pictures Videos ...
