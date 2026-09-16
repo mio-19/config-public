@@ -60,7 +60,6 @@
             f3d
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rain
             #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bambu-studio-open
             # unfree:
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
           ])
