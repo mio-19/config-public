@@ -417,11 +417,6 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
                 hash = "sha256-ND4idJBXPttECpF5crevL39QctHKcYHaIHl1l42DSSE=";
               })
-              (fetchpatch {
-                name = "types.path.check: Avoid derivation instantiation";
-                url = "https://github.com/NixOS/nixpkgs/pull/540399.patch";
-                hash = "sha256-t+iFDm9ANEjeAH1bHG2dtVuS4d11OJkdqKB77rCFOBo=";
-              })
               (fetchurl {
                 name = "flyline: init at 1.5.0";
                 url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
