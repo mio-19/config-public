@@ -125,6 +125,8 @@
                 "/etc/adjtime"
                 #"/etc/machine-id" # let's use systemd.machine_id=firmware instead # https://github.com/nix-community/preservation/issues/6
                 #"/etc/zfs/zpool.cache"
+              ]
+              ++ lib.optionals config.services.openssh.enable [
                 "/etc/ssh/ssh_host_rsa_key"
                 "/etc/ssh/ssh_host_rsa_key.pub"
                 "/etc/ssh/ssh_host_ed25519_key"
