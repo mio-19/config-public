@@ -95,6 +95,9 @@
             ++ lib.optionals config.services.dnscrypt-proxy.enable [
               "/var/cache/dnscrypt-proxy"
             ]
+            ++ lib.optionals config.services.mullvad-vpn.enable [
+              "/etc/mullvad-vpn"
+            ]
             ++ lib.optionals (config.services.snap.enable or false) [
               "/var/lib/snapd"
               "/snap"
