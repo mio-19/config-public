@@ -37,6 +37,7 @@
               "/var/lib/nixos"
               "/var/lib/flatpak"
               "/var/lib/tailscale"
+              "/root/.cache/nix"
               "/root/.ssh" # for use nixremote
               # https://discourse.nixos.org/t/screen-brightness-at-100-on-startup/59157/4
               "/var/lib/systemd/backlight"
