@@ -2,6 +2,7 @@
 {
   den.aspects.fw13 = {
     includes = [
+      den.aspects.waydroid
       den.aspects.common
       den.batteries.hostname
       den.aspects.persistent
