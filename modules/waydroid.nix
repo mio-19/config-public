@@ -29,7 +29,7 @@
           # type  target                    link-to-path                mode uid  gid  age  argument
           "L+ /var/lib/waydroid - - - - /home/user/.var_lib_waydroid"
         ];
-        services.avahi.enable = false; # does this interfere by any chance?
+        #services.avahi.enable = false; # does this interfere by any chance?
 
         environment.systemPackages =
           with pkgs;
