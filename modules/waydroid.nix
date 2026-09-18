@@ -27,8 +27,16 @@
         systemd.services."waydroid-container".wantedBy = lib.mkForce [ ]; # don't start waydroid-container at boot
         systemd.tmpfiles.rules = [
           # type  target                    link-to-path                mode uid  gid  age  argument
-          "L+ /var/lib/waydroid - - - - /home/user/.var_lib_waydroid"
+          "d /home/user/.var_lib_waydroid 0755 root root - -"
         ];
+        fileSystems."/var/lib/waydroid" = {
+          device = "/home/user/.var_lib_waydroid";
+          fsType = "none";
+          options = [ "bind" "noauto" "x-systemd.automount" ];
+        };
+        security.apparmor.includes."tunables/alias" = ''
+          alias /var/lib/waydroid/ -> /home/user/.var_lib_waydroid/,
+        '';
         #services.avahi.enable = false; # does this interfere by any chance?
 
         environment.systemPackages =
