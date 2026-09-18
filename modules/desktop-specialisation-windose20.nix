@@ -355,11 +355,7 @@
                     "$kwinrc"
                 fi
 
-                for gtk in "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0"; do
-                  if [ -f "$gtk" ]; then
-                    ${sedBin} -i 's/Plasma-Overdose/breeze_cursors/ig' "$gtk"
-                  fi
-                done
+                rm -f "$config_home/gtk-3.0/settings.ini" "$config_home/gtk-4.0/settings.ini" "$config_home/gtkrc-2.0"
 
                 appletsrc="$config_home/plasma-org.kde.plasma.desktop-appletsrc"
                 if [ -f "$appletsrc" ]; then
