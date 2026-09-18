@@ -386,7 +386,7 @@
                 rm -f "$config_home/konsole/Plasma-Overdose.profile"
                 rm -f "$config_home/fontconfig/conf.d/99-windose20.conf"
                 rm -f "$HOME/.librewolf/librewolf.overrides.cfg"
-                for p in "$HOME/.librewolf/"*"/prefs.js" "$HOME/.librewolf/prefs.js"; do
+                for p in "$HOME/.librewolf/"*"/prefs.js" "$HOME/.librewolf/prefs.js" "$HOME/.librewolf/"*"/user.js"; do
                   if [ -f "$p" ]; then
                     ${sedBin} -i -e '/browser\.display\.use_document_fonts/d' \
                                  -e '/gfx\.downloadable_fonts\.enabled/d' \
@@ -395,6 +395,8 @@
                                  "$p"
                   fi
                 done
+                rm -rf "$HOME/.cache/fontconfig"
+
                 for rel in fastfetch/config.jsonc neofetch/config.conf cava/config; do
                   target="$config_home/$rel"
                   if [ -e "$target" ] && { ${grepBin} -qF 'share/windose20/' "$target" 2>/dev/null || readlink "$target" 2>/dev/null | ${grepBin} -q 'share/windose20/'; }; then
