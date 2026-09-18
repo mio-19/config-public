@@ -33,7 +33,6 @@
 
         environment.systemPackages =
           with pkgs;
-          with pkgs;
           (map hardenedPkg [
             wl-clipboard # https://nixos.wiki/wiki/WayDroid - clipboard sharing
           ])
