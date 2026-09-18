@@ -32,7 +32,11 @@
         fileSystems."/var/lib/waydroid" = {
           device = "/home/user/.var_lib_waydroid";
           fsType = "none";
-          options = [ "bind" "noauto" "x-systemd.automount" ];
+          options = [
+            "bind"
+            "noauto"
+            "x-systemd.automount"
+          ];
         };
         security.apparmor.includes."tunables/alias" = ''
           alias /var/lib/waydroid/ -> /home/user/.var_lib_waydroid/,
