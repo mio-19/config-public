@@ -24,20 +24,25 @@
         # https://github.com/NixOS/nixpkgs/pull/466473/files
         virtualisation.waydroid.package = pkgs.waydroid-nftables;
         networking.nftables.enable = true;
-        systemd.services."waydroid-container".wantedBy = lib.mkForce [ ]; # don't start waydroid-container at boot
+        systemd.services."waydroid-container" = {
+          wantedBy = lib.mkForce [ ]; # don't start waydroid-container at boot
+          preStart = ''
+            mkdir -p /home/user/.var_lib_waydroid
+            mkdir -p /var/lib/waydroid
+            if ! mountpoint -q /var/lib/waydroid; then
+              mount --bind /home/user/.var_lib_waydroid /var/lib/waydroid
+            fi
+          '';
+          postStop = ''
+            if mountpoint -q /var/lib/waydroid; then
+              umount /var/lib/waydroid || true
+            fi
+          '';
+        };
         systemd.tmpfiles.rules = [
           # type  target                    link-to-path                mode uid  gid  age  argument
           "d /home/user/.var_lib_waydroid 0755 root root - -"
         ];
-        fileSystems."/var/lib/waydroid" = {
-          device = "/home/user/.var_lib_waydroid";
-          fsType = "none";
-          options = [
-            "bind"
-            "noauto"
-            "x-systemd.automount"
-          ];
-        };
         security.apparmor.includes."tunables/alias" = ''
           alias /var/lib/waydroid/ -> /home/user/.var_lib_waydroid/,
         '';
@@ -49,6 +54,20 @@
             wl-clipboard # https://nixos.wiki/wiki/WayDroid - clipboard sharing
           ])
           ++ [
+            (lib.hiPrio (
+              pkgs.writeShellScriptBin "waydroid" ''
+                if ! mountpoint -q /var/lib/waydroid; then
+                  if [ "$EUID" -eq 0 ]; then
+                    mkdir -p /home/user/.var_lib_waydroid
+                    mkdir -p /var/lib/waydroid
+                    mount --bind /home/user/.var_lib_waydroid /var/lib/waydroid
+                  else
+                    echo "Warning: /var/lib/waydroid is not mounted. The waydroid-container service should mount it."
+                  fi
+                fi
+                exec ${pkgs.waydroid}/bin/waydroid "$@"
+              ''
+            ))
             nur.repos.ataraxiasjel.waydroid-script
 
             waydroid-helper
