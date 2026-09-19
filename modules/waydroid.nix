@@ -24,32 +24,25 @@
         # https://github.com/NixOS/nixpkgs/pull/466473/files
         virtualisation.waydroid.package = pkgs.waydroid-nftables;
         networking.nftables.enable = true;
-        systemd.services."waydroid-container" = {
-          wantedBy = lib.mkForce [ ]; # don't start waydroid-container at boot
-          # Stage-2 units only get a minimal PATH (coreutils/…), not util-linux —
-          # same idiom as nixpkgs systemd-fsck@ / zram-setup (path = [ pkgs.util-linux ]).
-          path = [ pkgs.util-linux ];
-          preStart = ''
-            mkdir -p /home/user/.var_lib_waydroid
-            mkdir -p /var/lib/waydroid
-            if ! ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
-              ${lib.getExe' pkgs.util-linux "mount"} --bind /home/user/.var_lib_waydroid /var/lib/waydroid
-            fi
-          '';
-          postStop = ''
-            if ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
-              ${lib.getExe' pkgs.util-linux "umount"} /var/lib/waydroid || true
-            fi
-          '';
-        };
+
+        # Don't start at boot — encrypted /home/user may still be locked
+        systemd.services."waydroid-container".wantedBy = lib.mkForce [ ];
+
+        # Data lives under encrypted home; dangling until user unlocks home is fine
         systemd.tmpfiles.rules = [
-          # type  target                    link-to-path                mode uid  gid  age  argument
-          "d /home/user/.var_lib_waydroid 0755 root root - -"
+          # type  target              link-to-path
+          "L+ /var/lib/waydroid - - - - /home/user/.var_lib_waydroid"
         ];
+        # LXC/AppArmor follow the real path; alias keeps profiles matching /var/lib/waydroid/
         security.apparmor.includes."tunables/alias" = ''
           alias /var/lib/waydroid/ -> /home/user/.var_lib_waydroid/,
         '';
-        #services.avahi.enable = false; # does this interfere by any chance?
+
+        # System-wide PipeWire pulse socket is /run/pulse/native, not /run/user/$UID/pulse/native.
+        # Waydroid bind-mounts $PULSE_RUNTIME_PATH/native and fails if that path is missing.
+        environment.sessionVariables = lib.mkIf config.services.pipewire.systemWide {
+          PULSE_RUNTIME_PATH = "/run/pulse";
+        };
 
         environment.systemPackages =
           with pkgs;
@@ -59,27 +52,13 @@
           ++ [
             (lib.hiPrio (
               pkgs.writeShellScriptBin "waydroid" ''
-                # waydroid CLI runs is_initialized() against /var/lib/waydroid *before*
-                # starting the container, so the unit preStart never runs in time unless
-                # the bind already exists (or we start the unit first as non-root).
-                if ! ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
-                  if [ "$EUID" -eq 0 ]; then
-                    mkdir -p /home/user/.var_lib_waydroid
-                    mkdir -p /var/lib/waydroid
-                    ${lib.getExe' pkgs.util-linux "mount"} --bind /home/user/.var_lib_waydroid /var/lib/waydroid
-                  else
-                    if ! ${lib.getExe' pkgs.systemd "systemctl"} start waydroid-container; then
-                      echo "Failed to start waydroid-container (needed to bind-mount encrypted /var/lib/waydroid)." >&2
-                      echo "Try: sudo systemctl start waydroid-container" >&2
-                      exit 1
-                    fi
-                  fi
-                fi
+                ${lib.optionalString config.services.pipewire.systemWide ''
+                  export PULSE_RUNTIME_PATH=/run/pulse
+                ''}
                 exec ${config.virtualisation.waydroid.package}/bin/waydroid "$@"
               ''
             ))
             nur.repos.ataraxiasjel.waydroid-script
-
             waydroid-helper
           ];
       };
