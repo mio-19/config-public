@@ -28,10 +28,10 @@
         # https://github.com/NixOS/nixpkgs/issues/459520 -> https://github.com/waydroid/waydroid/issues/117
         services.resolved.enable = false;
         # https://github.com/waydroid/waydroid/issues/117#issuecomment-1380760713
-        networking.resolvconf.enable = false;
-        environment.etc."resolv.conf".text = ''
-          nameserver 1.1.1.1
-          nameserver 8.8.8.8'';
+        #networking.resolvconf.enable = false;
+        #environment.etc."resolv.conf".text = ''
+        #  nameserver 1.1.1.1
+        #  nameserver 8.8.8.8'';
         virtualisation.waydroid.enable = true;
         # https://github.com/NixOS/nixpkgs/pull/466473/files
         virtualisation.waydroid.package = pkgs.waydroid-nftables;
