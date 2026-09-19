@@ -59,12 +59,21 @@
           ++ [
             (lib.hiPrio (
               pkgs.writeShellScriptBin "waydroid" ''
-                # As root (e.g. waydroid init): bind before the daemon runs.
-                # As user: waydroid-container.service preStart does the bind — don't warn/race.
-                if [ "$EUID" -eq 0 ] && ! ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
-                  mkdir -p /home/user/.var_lib_waydroid
-                  mkdir -p /var/lib/waydroid
-                  ${lib.getExe' pkgs.util-linux "mount"} --bind /home/user/.var_lib_waydroid /var/lib/waydroid
+                # waydroid CLI runs is_initialized() against /var/lib/waydroid *before*
+                # starting the container, so the unit preStart never runs in time unless
+                # the bind already exists (or we start the unit first as non-root).
+                if ! ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
+                  if [ "$EUID" -eq 0 ]; then
+                    mkdir -p /home/user/.var_lib_waydroid
+                    mkdir -p /var/lib/waydroid
+                    ${lib.getExe' pkgs.util-linux "mount"} --bind /home/user/.var_lib_waydroid /var/lib/waydroid
+                  else
+                    if ! ${lib.getExe' pkgs.systemd "systemctl"} start waydroid-container; then
+                      echo "Failed to start waydroid-container (needed to bind-mount encrypted /var/lib/waydroid)." >&2
+                      echo "Try: sudo systemctl start waydroid-container" >&2
+                      exit 1
+                    fi
+                  fi
                 fi
                 exec ${config.virtualisation.waydroid.package}/bin/waydroid "$@"
               ''
