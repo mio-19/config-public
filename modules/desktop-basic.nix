@@ -105,6 +105,10 @@
                   "xwayland-native-scaling" # Scales Xwayland applications to look crisp on HiDPI screens
                 ];
               };
+              # kgx schema default is 'night'; follow desktop light/dark instead
+              "org/gnome/Console" = {
+                theme = "auto";
+              };
               #"org/gnome/login-screen" = {
               #  # doesn't seem to work?
               #  "users-welcome-order" = "linux,user,zdmin";

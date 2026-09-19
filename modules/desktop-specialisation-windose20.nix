@@ -180,6 +180,7 @@
                 monospace-font-name = "${windose20MonoFamily} 10";
               };
               "org/gnome/Console" = {
+                theme = "auto";
                 use-system-font = true;
                 custom-font = "${windose20MonoFamily} 10";
               };

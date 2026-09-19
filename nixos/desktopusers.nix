@@ -244,9 +244,15 @@ in
       paperwm
     ]
   );
-  dconf = lib.mkIf osConfig.services.desktopManager.gnome.enable {
+  dconf = {
     enable = true;
     settings = {
+      # kgx schema default is 'night'; follow desktop light/dark instead
+      "org/gnome/Console" = {
+        theme = "auto";
+      };
+    }
+    // lib.optionalAttrs osConfig.services.desktopManager.gnome.enable {
       "org/gnome/shell" = {
         # `gnome-extensions list` for a list
         enabled-extensions = [
