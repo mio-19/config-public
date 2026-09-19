@@ -26,16 +26,19 @@
         networking.nftables.enable = true;
         systemd.services."waydroid-container" = {
           wantedBy = lib.mkForce [ ]; # don't start waydroid-container at boot
+          # Stage-2 units only get a minimal PATH (coreutils/…), not util-linux —
+          # same idiom as nixpkgs systemd-fsck@ / zram-setup (path = [ pkgs.util-linux ]).
+          path = [ pkgs.util-linux ];
           preStart = ''
             mkdir -p /home/user/.var_lib_waydroid
             mkdir -p /var/lib/waydroid
-            if ! mountpoint -q /var/lib/waydroid; then
-              mount --bind /home/user/.var_lib_waydroid /var/lib/waydroid
+            if ! ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
+              ${lib.getExe' pkgs.util-linux "mount"} --bind /home/user/.var_lib_waydroid /var/lib/waydroid
             fi
           '';
           postStop = ''
-            if mountpoint -q /var/lib/waydroid; then
-              umount /var/lib/waydroid || true
+            if ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
+              ${lib.getExe' pkgs.util-linux "umount"} /var/lib/waydroid || true
             fi
           '';
         };
@@ -56,16 +59,14 @@
           ++ [
             (lib.hiPrio (
               pkgs.writeShellScriptBin "waydroid" ''
-                if ! mountpoint -q /var/lib/waydroid; then
-                  if [ "$EUID" -eq 0 ]; then
-                    mkdir -p /home/user/.var_lib_waydroid
-                    mkdir -p /var/lib/waydroid
-                    mount --bind /home/user/.var_lib_waydroid /var/lib/waydroid
-                  else
-                    echo "Warning: /var/lib/waydroid is not mounted. The waydroid-container service should mount it."
-                  fi
+                # As root (e.g. waydroid init): bind before the daemon runs.
+                # As user: waydroid-container.service preStart does the bind — don't warn/race.
+                if [ "$EUID" -eq 0 ] && ! ${lib.getExe' pkgs.util-linux "mountpoint"} -q /var/lib/waydroid; then
+                  mkdir -p /home/user/.var_lib_waydroid
+                  mkdir -p /var/lib/waydroid
+                  ${lib.getExe' pkgs.util-linux "mount"} --bind /home/user/.var_lib_waydroid /var/lib/waydroid
                 fi
-                exec ${pkgs.waydroid}/bin/waydroid "$@"
+                exec ${config.virtualisation.waydroid.package}/bin/waydroid "$@"
               ''
             ))
             nur.repos.ataraxiasjel.waydroid-script
