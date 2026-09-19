@@ -11,6 +11,18 @@
         ...
       }@args:
       with _include;
+      let
+        # /run/pulse/native is used when Pulse (or PipeWire's pulse compat) is system-wide.
+        # Per-user mode uses /run/user/$UID/pulse/native instead — Waydroid must not
+        # be forced to /run/pulse in that case.
+        pulseSystemWide =
+          (
+            config.services.pipewire.enable
+            && config.services.pipewire.pulse.enable
+            && config.services.pipewire.systemWide
+          )
+          || (config.services.pulseaudio.enable && config.services.pulseaudio.systemWide);
+      in
       {
         # NEED: sudo tailscale set  --accept-dns=false
         # https://github.com/NixOS/nixpkgs/issues/459520 -> https://github.com/waydroid/waydroid/issues/117
@@ -25,6 +37,21 @@
         virtualisation.waydroid.package = pkgs.waydroid-nftables;
         networking.nftables.enable = true;
 
+        assertions = [
+          {
+            assertion =
+              !config.services.pulseaudio.systemWide
+              || config.services.pulseaudio.enable
+              || (config.services.pipewire.enable && config.services.pipewire.systemWide);
+            message = ''
+              services.pulseaudio.systemWide = true but neither services.pulseaudio.enable
+              nor services.pipewire.systemWide is on — pulse is not actually system-wide.
+              Waydroid only sets PULSE_RUNTIME_PATH=/run/pulse when pulse really is system-wide
+              (pipewire.systemWide + pipewire.pulse, or pulseaudio.enable + pulseaudio.systemWide).
+            '';
+          }
+        ];
+
         # Don't start at boot — encrypted /home/user may still be locked
         systemd.services."waydroid-container".wantedBy = lib.mkForce [ ];
 
@@ -38,9 +65,8 @@
           alias /var/lib/waydroid/ -> /home/user/.var_lib_waydroid/,
         '';
 
-        # System-wide PipeWire pulse socket is /run/pulse/native, not /run/user/$UID/pulse/native.
-        # Waydroid bind-mounts $PULSE_RUNTIME_PATH/native and fails if that path is missing.
-        environment.sessionVariables = lib.mkIf config.services.pipewire.systemWide {
+        # Waydroid bind-mounts $PULSE_RUNTIME_PATH/native; system-wide socket is /run/pulse/native.
+        environment.sessionVariables = lib.mkIf pulseSystemWide {
           PULSE_RUNTIME_PATH = "/run/pulse";
         };
 
@@ -52,7 +78,7 @@
           ++ [
             (lib.hiPrio (
               pkgs.writeShellScriptBin "waydroid" ''
-                ${lib.optionalString config.services.pipewire.systemWide ''
+                ${lib.optionalString pulseSystemWide ''
                   export PULSE_RUNTIME_PATH=/run/pulse
                 ''}
                 exec ${config.virtualisation.waydroid.package}/bin/waydroid "$@"

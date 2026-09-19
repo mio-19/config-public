@@ -169,8 +169,6 @@ with _include;
     jack.enable = true;
   };
   services.pipewire.enable = lib.mkDefault true;
-  # System-wide pulse socket is /run/pulse/native. Waydroid needs PULSE_RUNTIME_PATH=/run/pulse
-  # (set in modules/waydroid.nix). Per-user /run/user/$UID/pulse does not exist with systemWide.
   services.pulseaudio.systemWide = true;
 
   hardware.graphics = {
