@@ -70,6 +70,16 @@
           PULSE_RUNTIME_PATH = "/run/pulse";
         };
 
+        # System pipewire-pulse.socket ships SocketMode=0660 pipewire:pipewire.
+        # Per-user sockets default to 0666. Waydroid only mounts the socket into LXC;
+        # Android audio UIDs are not in the pipewire group, so connect(2) fails and
+        # the session is silent even though the container starts.
+        systemd.sockets.pipewire-pulse = lib.mkIf (
+          config.services.pipewire.enable
+          && config.services.pipewire.pulse.enable
+          && config.services.pipewire.systemWide
+        ) { socketConfig.SocketMode = "0666"; };
+
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
