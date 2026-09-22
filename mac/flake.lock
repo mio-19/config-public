@@ -16,17 +16,17 @@
         "sf-pro": "sf-pro"
       },
       "locked": {
-        "lastModified": 1785995430,
-        "narHash": "sha256-4cjJFmq6JC0Gk9wWt3aZzqovtmM9mikrDWjsBL2ZWu8=",
+        "lastModified": 1789419105,
+        "narHash": "sha256-T5A/AqlF4iL908aIZh45e35Mvj8lTJKq8ddS5bk7nd8=",
         "owner": "Lyndeno",
         "repo": "apple-fonts.nix",
-        "rev": "74d423b80e0f87604ac7f053622c51fab0c72ca6",
+        "rev": "3861e2249cb244bfbc7cfab2303c152cf5f9d9e9",
         "type": "github"
       },
       "original": {
         "owner": "Lyndeno",
         "repo": "apple-fonts.nix",
-        "rev": "74d423b80e0f87604ac7f053622c51fab0c72ca6",
+        "rev": "3861e2249cb244bfbc7cfab2303c152cf5f9d9e9",
         "type": "github"
       }
     },
@@ -500,11 +500,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790021793,
-        "narHash": "sha256-wXAdaLBAjbQK/OfESV/i0pgolkz+Uo4SbBP/MbfGLHU=",
+        "lastModified": 1790080548,
+        "narHash": "sha256-u4sa7RCbwvk8cZmAGs35F7o0h4IqDc3wsrrnjQvMumk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a3dfb887d40d134af29fa8e924ba85a3e3a99194",
+        "rev": "cbcbfa2778e0c5653ef349df3ebae8288efac3c0",
         "type": "github"
       },
       "original": {
@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790078272,
-        "narHash": "sha256-UtqT+sng3/4yIU9Z/jEMayuCckhxsojJwG21Xg+zB8w=",
+        "lastModified": 1790080114,
+        "narHash": "sha256-Ynfj2QH89rmzMlfKMVntccn08q8fNpv+EgVRHHatl24=",
         "ref": "refs/heads/main",
-        "rev": "5109181f646928c3390f1afcf026bd4a427d90df",
-        "revCount": 889,
+        "rev": "69ccbab5416bbde57aad3203e876dd47a0fe2da9",
+        "revCount": 892,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -708,9 +708,8 @@
     },
     "nixpkgs-pin5": {
       "locked": {
-        "lastModified": 1789073787,
+        "lastModified": 315532800,
         "narHash": "sha256-vLblJRFZjrSBOyHD4jwBkGJm2iOVk8c9BJnzZTOojSc=",
-        "rev": "aff8a0b28396750446e5537a96461bc4facdb287",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1071116.aff8a0b28396/nixexprs.tar.zst"
       },
@@ -733,11 +732,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1789960332,
-        "narHash": "sha256-6LGCY9g1ZBI6kQeF8AKZ49sBPxcWLeuWTtbiC6LDtfU=",
-        "rev": "35e212742ceab4ae1dcfbfd9039a39215c816e8e",
+        "lastModified": 1789994327,
+        "narHash": "sha256-mNEdEhfKGzZoS2AvDmgl/VaU8HMP4se5EVHN0kLft1o=",
+        "rev": "3396d0584677afd0e6ce20ac2474eab0adf0fb2b",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1077358.35e212742cea/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1077524.3396d0584677/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -831,11 +830,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790078399,
-        "narHash": "sha256-nPTJgAzeesmV7zn4yEDldejJA4Xp8YHLd5rmi8OeQs8=",
+        "lastModified": 1790082298,
+        "narHash": "sha256-wCYWPYwDk71iJIb2s7u6uJBwGrG5lYUn9MVJRhJ3ld4=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "060986e9b5f041b0cbd1ac0c307dc8c2bd859ae1",
+        "rev": "7c59f0a2e753d53c3a861341ab03b367e6c42658",
         "type": "github"
       },
       "original": {
@@ -1026,7 +1025,7 @@
     "sf-compact": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-83JwqfF9O4+gemMQXWHLRg2GNz2jHxsej1F1IkM2dug=",
+        "narHash": "sha256-KjCzuJOrNxgptsMLGaR8wcrU/bBxCpwtUGzGDcCxJTc=",
         "type": "file",
         "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg"
       },
@@ -1074,7 +1073,7 @@
     "sf-pro": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-vINUEMyFmNzZRBOX2aQ4heScWur6RyA/MPmsqlMPIx4=",
+        "narHash": "sha256-dvGLO786y9ygKRSKDJlhIF6AGmn2NTJ5tBulKinPRxY=",
         "type": "file",
         "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
       },
