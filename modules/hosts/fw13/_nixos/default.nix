@@ -41,8 +41,6 @@ with _include;
 
   security.allowSimultaneousMultithreading = true;
 
-  programs.wireguird.enable = true;
-
   persistent_power-profiles-daemon = false;
 
   virtualisation.virtualbox.host.enable = true;
