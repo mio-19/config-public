@@ -14,10 +14,12 @@ Along with GUI sandbox warnings:
 GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: Portal operation not allowed: Unable to open /proc/.../root
 ```
 
-## Root Cause
-`wireguird` functions as a GUI wrapper that invokes `wg-quick up` under the hood. If the WireGuard configuration file contains a `DNS = ...` directive, `wg-quick` automatically attempts to execute `resolvconf` to inject its DNS servers into `/etc/resolv.conf`.
-
-On NixOS, `/etc/resolv.conf` is strictly managed by the system (often symlinked to `/run/resolvconf/resolv.conf` or controlled by NetworkManager/systemd-resolved). `wireguird` (and by extension the `wg-quick` process it spawns) operates within a restricted context or sandbox. While it has sufficient capabilities (`CAP_NET_ADMIN`) to create the network interface (`wgcf-profile`), it is blocked from modifying core system files (`/etc/resolv.conf`) and denied permission to send kill signals to system daemons (like `avahi-daemon`).
+## Root Cause (nurpkgs5 wireguird.nix)
+The issue originates from how `wireguird` is packaged and configured in your `nurpkgs5` repository:
+1. **Capabilities vs. Root**: In `modules/wireguird.nix`, `wireguird` and `wg-quick` are granted ambient capabilities (`CAP_NET_ADMIN`, `CAP_NET_RAW`) instead of running via `sudo`.
+2. **The wg-quick Patch**: The custom patch (`wg-quick-capability-check.patch`) tricks `wg-quick` into skipping privilege escalation (`auto_su`) because it sees it already has network capabilities.
+3. **The openresolv Conflict**: While `modules/wireguird.nix` attempts a clever hack to grant your user ACL access to `/run/resolvconf`, it misses a critical detail: `openresolv`'s subscriber scripts (like `libc.d/avahi-daemon`) need to send kill/restart signals to system services (e.g., `kill -HUP $(pidof avahi-daemon)`). Because `wg-quick` skipped `sudo`, it runs as your regular user and lacks `CAP_KILL` or root uid, causing the script to crash with `Operation not permitted`.
+4. **Portal Warning**: The GTK warning (`Unable to open /proc/.../root`) happens because applying file capabilities disables Linux process dumpability (`PR_SET_DUMPABLE=0`), which blocks the `xdg-desktop-portal` daemon from verifying the application.
 
 ## Workarounds / Solutions
 
