@@ -5,6 +5,7 @@
   den.aspects.deck-host = {
     includes = [
       den.aspects.common
+      den.aspects.laptop
       den.batteries.hostname
       den.aspects.persistent
       den.aspects.privacy

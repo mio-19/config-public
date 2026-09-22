@@ -4,6 +4,7 @@
     includes = [
       den.aspects.waydroid
       den.aspects.common
+      den.aspects.laptop
       den.batteries.hostname
       den.aspects.persistent
       den.aspects.bios
