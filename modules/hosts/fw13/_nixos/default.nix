@@ -42,6 +42,7 @@ with _include;
   security.allowSimultaneousMultithreading = true;
 
   programs.wireguird.enable = true;
+  services.resolved.enable = true;
 
   persistent_power-profiles-daemon = false;
 
