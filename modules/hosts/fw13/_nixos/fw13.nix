@@ -223,7 +223,10 @@ in
     kdePackages.kamoso
   ];
 
+  hardware.framework.trackpad-resume-workaround.enable = true;
+
   boot.kernelParams = [
+
     # https://github.com/search?q=mem_sleep_default%3Ds2idle+language%3ANix&type=code&l=Nix
     "mem_sleep_default=s2idle"
     # https://www.reddit.com/r/framework/comments/1hxoola/trackpad_delays/
