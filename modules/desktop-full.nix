@@ -270,6 +270,7 @@
         systemPackages_hardened =
           with pkgs;
           [
+            kiwix
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.uplink
             simple-scan
             trayscale
