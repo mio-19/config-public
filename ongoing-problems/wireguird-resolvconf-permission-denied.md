@@ -16,8 +16,9 @@ GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: Portal operation not allowe
 
 ## Root Cause (nurpkgs5 wireguird.nix)
 The issue originates from how `wireguird` is packaged and configured in your `nurpkgs5` repository:
-1. **Missing Capabilities**: In `modules/wireguird.nix`, `wg-quick` is granted ambient capabilities (`CAP_NET_ADMIN`, `CAP_NET_RAW`) instead of running via `sudo` (using a custom patch). However, it missed two critical capabilities: `openresolv`'s subscriber scripts need `CAP_KILL` to send kill/restart signals to system services (like `avahi-daemon`), and `CAP_DAC_OVERRIDE` to safely bypass file ownership checks when updating `/etc/resolv.conf`. Without these, `resolvconf` crashes with `Permission denied` and `Operation not permitted`.
-2. **Portal Warning**: The GTK warning (`Unable to open /proc/.../root`) happens because `wireguird` itself was wrapped with capabilities. Applying file capabilities disables Linux process dumpability (`PR_SET_DUMPABLE=0`), which completely blocks the `xdg-desktop-portal` daemon from verifying the application.
+1. **MagicDNS overriding ACLs**: The `wireguird` module tries to grant standard users write access to `/run/resolvconf` via `setfacl`. However, if **Tailscale MagicDNS** is enabled, it forcefully symlinks `/etc/resolv.conf` to `/run/tailscale/resolv.conf` instead, which *doesn't* have the ACL! Thus, `openresolv` fails with `Permission denied`. Disabling MagicDNS on laptops (`--accept-dns=false`) fixes this by restoring the symlink to `/run/resolvconf/resolv.conf` where the ACL applies natively.
+2. **Missing `CAP_KILL`**: `openresolv`'s subscriber scripts need `CAP_KILL` to send kill/restart signals to system services (like `avahi-daemon`). Because `wg-quick` is running as a normal user (due to your custom patch skipping `sudo`), it crashed with `Operation not permitted`.
+3. **Portal Warning**: The GTK warning (`Unable to open /proc/.../root`) happens because `wireguird` itself was wrapped with capabilities. Applying file capabilities disables Linux process dumpability (`PR_SET_DUMPABLE=0`), which completely blocks the `xdg-desktop-portal` daemon from verifying the application.
 
 ## Workarounds / Solutions
 
