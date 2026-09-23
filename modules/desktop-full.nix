@@ -549,8 +549,9 @@
       in
       with _include;
       {
-        environment.systemPackages = [
-          pkgs.trayscale
+        environment.systemPackages = with pkgs;[
+          kiwix-apple
+          trayscale
         ];
         homebrew.casks = [
           "zotero" # version from nixpkgs does not work
