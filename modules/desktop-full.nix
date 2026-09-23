@@ -549,7 +549,7 @@
       in
       with _include;
       {
-        environment.systemPackages = with pkgs;[
+        environment.systemPackages = with pkgs; [
           kiwix-apple
           trayscale
         ];
