@@ -20,23 +20,25 @@ The issue originates from how `wireguird` is packaged and configured in your `nu
 2. **Missing `CAP_KILL`**: `openresolv`'s subscriber scripts need `CAP_KILL` to send kill/restart signals to system services (like `avahi-daemon`). Because `wg-quick` is running as a normal user (due to your custom patch skipping `sudo`), it crashed with `Operation not permitted`.
 3. **Portal Warning**: The GTK warning (`Unable to open /proc/.../root`) happens because `wireguird` itself was wrapped with capabilities. Applying file capabilities disables Linux process dumpability (`PR_SET_DUMPABLE=0`), which completely blocks the `xdg-desktop-portal` daemon from verifying the application.
 
-## Workarounds / Solutions
+## Solutions
 
-### 1. Use NetworkManager (Recommended)
-NixOS's NetworkManager natively supports WireGuard and handles DNS routing correctly with full system privileges, avoiding permission errors entirely. 
+### Applied Fix (Current Setup)
+1. **Disable Tailscale MagicDNS on laptops** via `den.aspects.laptop` (`services.tailscale.extraUpFlags = [ "--accept-dns=false" ]`). This stops Tailscale from overriding `/etc/resolv.conf` so the `setfacl` ACL on `/run/resolvconf` takes effect.
+2. **Grant `cap_kill`** to `wg-quick` wrapper in `nurpkgs5/modules/wireguird.nix` so it can signal `avahi-daemon`.
+3. **Remove the `wireguird` GUI security wrapper** from `security.wrappers` so the GUI process remains dumpable and `xdg-desktop-portal` works normally (fixing dark mode and theming).
 
-Import the profile directly into NetworkManager:
+### Alternative: Remove the DNS Directive in `wireguird`
+If MagicDNS must stay enabled, edit the WireGuard connection profile within the `wireguird` app and remove the `DNS = ...` line. This prevents `wg-quick` from invoking `resolvconf` at all. The VPN will connect successfully, but all DNS queries will fall back to your existing system DNS.
+
+### Alternative: NetworkManager
+NixOS's NetworkManager natively supports WireGuard and handles DNS routing correctly with full system privileges:
 ```bash
 nmcli connection import type wireguard file /path/to/your/wgcf-profile.conf
 ```
-You can then seamlessly toggle the connection from the standard KDE/GNOME network applet.
+Toggle the connection from the KDE/GNOME network applet. No capability wrappers needed.
 
-### 2. Remove the DNS Directive in `wireguird`
-If you prefer to keep using the `wireguird` app, edit the connection profile within the app and remove the `DNS = ...` line. This prevents `wg-quick` from invoking `resolvconf`. The VPN will connect successfully, but all DNS queries will fall back to your existing system DNS (e.g., Tailscale MagicDNS or local Wi-Fi).
-
-### 3. Native NixOS Configuration
-For permanent/always-on VPNs, define the interface declaratively in your NixOS configuration so systemd can manage it natively:
-
+### Alternative: Native NixOS Configuration
+For permanent/always-on VPNs, define the interface declaratively:
 ```nix
 networking.wg-quick.interfaces.wgcf-profile = {
   configFile = "/path/to/your/wgcf-profile.conf";
