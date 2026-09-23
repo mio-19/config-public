@@ -162,6 +162,7 @@ customize
         #"${inputs.mio}/by-name/di/discordchatexporter-desktop_patched/deps.json"
       ];
       allowed = [
+        "kiwix-apple"
         "vscodium"
         "chatbox"
         "src_binding"
