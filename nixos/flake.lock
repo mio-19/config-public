@@ -125,11 +125,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1790151680,
-        "narHash": "sha256-8iv4LvtBu8NOPnrxOBcy3yvplb0Pwq1zCX4AxGvzF2w=",
+        "lastModified": 1790184445,
+        "narHash": "sha256-1VtmAftERfeBTQkr9iVbP4NcZzSU9ZWshovWXWfOwtc=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "d09d48e091998f9fdc8d6c5fe137eb58cc627f6f",
+        "rev": "ed62722f0e008692846ce15b8d2a22f256015664",
         "type": "github"
       },
       "original": {
@@ -599,10 +599,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790128814,
-        "narHash": "sha256-6Gm9q+wW3E4Ey4F6wEbJAwaMsEK6hvCYfTW7yY64ZfA=",
+        "lastModified": 1790199334,
+        "narHash": "sha256-EAIvpJtPEqxRO8eXLSj/6AqHMDTxxpd+l2PZVG/Pswk=",
         "ref": "master",
-        "rev": "0b2f1129177f70c5f0f5d88bb53c49ca47d0bfc0",
+        "rev": "aa09c3b459bf536af336393a175f8416adb49fb0",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager.git"
@@ -741,11 +741,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790156955,
-        "narHash": "sha256-fX01id/iJpSbHzVDYgrQHy1vr7OsqCZrNAwfYsestLQ=",
+        "lastModified": 1790202176,
+        "narHash": "sha256-TTEnjen0U5eaaH8UnP3a/u1qCk03e1eGXXjH1L2w7VQ=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "06830d044f23ec9bc55cec62771122d2941c634d",
+        "rev": "43492740b91b385e9ec64d6f2fbbeaaed647e6a5",
         "type": "github"
       },
       "original": {
@@ -1430,11 +1430,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1790055231,
-        "narHash": "sha256-QpXotokGh5eeMG1Njiuh27oP0rK6t5+cMp7ymXSs7mc=",
+        "lastModified": 1790149054,
+        "narHash": "sha256-FfjXg6mAzKQBCY+7V9keGWOXG4DV2Eym/qA987lFl8A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b6c98e9e6633ee64753b594ff4a5febf0367fc00",
+        "rev": "8825bebf6324e0579d012936eff73379af284b6d",
         "type": "github"
       },
       "original": {
@@ -1588,10 +1588,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790179054,
-        "narHash": "sha256-z/E4A4MJH4q96Ww+7d4FwoJ1V2Msz/PVXv17jKe7lUU=",
+        "lastModified": 1790211416,
+        "narHash": "sha256-VwxroUv4EZ9q2umpkp8WRhhMT6AiazKv54qPE3+yCMU=",
         "ref": "refs/heads/main",
-        "rev": "7eb444b01a6aabe7d9aec093f4859ba02065eeeb",
+        "rev": "f400101d50d7d865a45180474c54aa646554f43e",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
