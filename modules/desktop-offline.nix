@@ -131,7 +131,7 @@
         systemPackages_hardened =
           with pkgs;
           [
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bambu-studio-open
+            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bambu-studio-open
             orca-slicer
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
             openshot-qt
