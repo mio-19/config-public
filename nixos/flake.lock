@@ -599,10 +599,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790292277,
-        "narHash": "sha256-z+knvdMItRrMonmG4RIsqKYIa/hwYUzKjotDTfC5DDc=",
+        "lastModified": 1790365885,
+        "narHash": "sha256-iQ0ebhiVo64NktTnwft9hNxlFu4j5cvljVxyJaEVIP4=",
         "ref": "master",
-        "rev": "4b9add8645d5e2b0f7de18f7a442d08fe2bdcc91",
+        "rev": "7b4c5ec4bedaf1e062bbc1bcaeddbc6bd242aa1b",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager.git"
@@ -741,11 +741,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790330085,
-        "narHash": "sha256-24n3/yPQBO8octZaiJMtRqqeJOI3RHzerUZNIZp9Nk4=",
+        "lastModified": 1790372205,
+        "narHash": "sha256-CWIDZFX/HsNJeMv6hOqVT6m/5Tkx9xfEzok+Lw2zkHk=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "65270b324e9a42aa10be157ca20e8f3db8839048",
+        "rev": "2e9c743bc337136b0714f27dae05d575ad81f0ee",
         "type": "github"
       },
       "original": {
@@ -809,11 +809,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790356371,
-        "narHash": "sha256-3zZXkTkMt1h9YZO9/rq0qd2DP7qtwmpiCCstf9mRJ5c=",
+        "lastModified": 1790389426,
+        "narHash": "sha256-g3uuGyhow/1kNSwRONZavURxioXa2ag/RmgcfYh8l08=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "df8a20a233f0de31f241bfd7f46b89689c4d391a",
+        "rev": "e5fbd68e6ad2138c39eb6277ddd9f75484c5f576",
         "type": "github"
       },
       "original": {
@@ -1401,11 +1401,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1790185690,
-        "narHash": "sha256-EZwz6sR6RLzbKiJJ9QQgXPZ/zA6P8ecfFr/6fwBRfes=",
-        "rev": "4975466d324710c576dc11ad614684e6bd8cad8e",
+        "lastModified": 1790323409,
+        "narHash": "sha256-m4DGo58Fza5ImOegtWOeE18nhpSO1IGzsVA6Lpsb4zw=",
+        "rev": "e94cb152ed51bd6e24eb4a41f1460252beb52cd2",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1078696.4975466d3247/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1079315.e94cb152ed51/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -1588,10 +1588,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790355432,
-        "narHash": "sha256-cIt10uftNOX9t3zdwGHvx0AS1Bwz5XLvjwcCJs5gOLI=",
+        "lastModified": 1790390546,
+        "narHash": "sha256-4lNdYyWiTdXi1E6SCmV03gfD+Yu4wuaKX+BCLsidEkc=",
         "ref": "refs/heads/main",
-        "rev": "c8255279fc753bd5261980264999002631e9c1e6",
+        "rev": "275f5f87f7100eef2ea829c8467fc56ddef41a8e",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
