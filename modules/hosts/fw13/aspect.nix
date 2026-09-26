@@ -38,7 +38,6 @@
       den.aspects.scx
       den.aspects.emulated-arm
       den.aspects.harmonia_lan_only_not_public_ip
-      den.aspects.touchpad-tap-to-click
       #(den.aspects.rc)
     ];
 
@@ -49,6 +48,16 @@
         homeManager.home.stateVersion = lib.mkDefault "25.11";
         homeManager.programs.plasma = {
           enable = true;
+          input.touchpads = [
+            {
+              enable = true;
+              name = "PIXA3854:00 093A:0274 Touchpad";
+              vendorId = "093a";
+              productId = "0274";
+              tapToClick = true;
+              naturalScroll = true;
+            }
+          ];
           powerdevil.AC = {
             powerButtonAction = lib.mkForce "sleep";
             autoSuspend.action = lib.mkForce "sleep";
