@@ -223,7 +223,9 @@ in
     kdePackages.kamoso
   ];
 
-  hardware.framework.trackpad-resume-workaround.enable = true;
+  # Disabled because reloading the driver makes the trackpad disappear and reappear as a new device,
+  # causing libinput and KDE to temporarily drop click events and tap-to-click settings.
+  hardware.framework.trackpad-resume-workaround.enable = false;
 
   boot.kernelParams = [
 

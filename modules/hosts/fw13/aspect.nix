@@ -7,6 +7,7 @@
       den.aspects.laptop
       den.batteries.hostname
       den.aspects.persistent
+      # DETAILS REMOVED
       den.aspects.bios
       #den.aspects.desktop-specialisation # gnome: used zero times
       #(den.aspects.desktop-specialisation-cosmic)
@@ -37,6 +38,7 @@
       den.aspects.scx
       den.aspects.emulated-arm
       den.aspects.harmonia_lan_only_not_public_ip
+      den.aspects.touchpad-tap-to-click
       #(den.aspects.rc)
     ];
 
@@ -53,7 +55,6 @@
             whenLaptopLidClosed = lib.mkForce "sleep";
           };
         };
-        # DETAILS REMOVED
       };
   };
 }
