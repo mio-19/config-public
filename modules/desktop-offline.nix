@@ -50,6 +50,7 @@
         systemPackages_hardened =
           with pkgs;
           [
+            hol
             python314Packages.pdf2docx
             rustscan
             nur.repos.mio.pdf2pptx
