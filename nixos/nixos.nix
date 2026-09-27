@@ -64,7 +64,7 @@ in
         };
       denX86 = denFor "x86_64-linux";
       denA64 = denFor "aarch64-linux";
-      inherit (denX86.hosts.x86_64-linux) fw13 ipc deck;
+      inherit (denX86.hosts.x86_64-linux) fw13 fw16 ipc deck;
       inherit (denA64.hosts.aarch64-linux) husky macvirt;
     in
     {
@@ -79,6 +79,12 @@ in
         system = "x86_64-linux";
         modules = [
           fw13.mainModule
+        ];
+      };
+      nixosConfigurations.fw16 = nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          fw16.mainModule
         ];
       };
       nixosConfigurations.deck = nixosSystem {

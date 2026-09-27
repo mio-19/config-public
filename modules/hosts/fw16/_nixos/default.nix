@@ -1,0 +1,210 @@
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  system,
+  ...
+}@args:
+let
+  _include = args._include or import ../../../../nixos/include.nix args;
+  pool = "fw16";
+in
+with _include;
+{
+  imports = [
+    # DETAILS REMOVED
+    # Feature aspects: den.aspects.fw16.includes (modules/fw16.nix)
+    ./fw16.nix
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    ./disk.nix
+    #../betterbird.nix # tired of compiling
+    #../secure.nix
+    #../niri
+  ];
+  nixpkgs.overlays = [
+    #inputs.chaotic-pin.overlays.default # try older kernel
+  ];
+  microarch = "zen4";
+  compile_gram = true;
+  # DETAILS REMOVED # hardware.facter.reportPath = ./facter.json;
+
+  zfs_arc_max_mib = 70000;
+  security.pam.zfs.enable = true;
+  security.pam.zfs.homes = "${pool}/nixos/safe/encrypted";
+  chaotic.zfs-impermanence-on-shutdown.volume = "${pool}/nixos/local/ephemeral";
+
+  #fprintd-plasma_workaround = "fingerprint_rearm";
+  fprintd-plasma_workaround = "delay_restart_v2";
+  #fprint_fix = true;
+  plasma-login-manager_instead = true; # plm seems to take more seconds to launch, but sddm takes more seconds to enter plasma
+
+  security.allowSimultaneousMultithreading = true;
+
+  programs.wireguird.enable = true;
+
+  persistent_power-profiles-daemon = false;
+
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  home-manager.sharedModules = [
+    ../_homeManager/sleeping.nix
+  ];
+  # DETAILS REMOVED
+
+  boot.kernel.sysctl = {
+    #"vm.swappiness" = lib.mkForce 1;
+  };
+
+  users.mutableUsers = false;
+  users.users.root = {
+    shell = pkgs.fish;
+    hashedPasswordFile = "/persistent/etc/pass-user-user";
+  };
+  # DETAILS REMOVED
+  users.users.user = {
+    hashedPasswordFile = "/persistent/etc/pass-user-user";
+    uid = 1001;
+    isNormalUser = true;
+    extraGroups = extraAdminGroups;
+  };
+  # DETAILS REMOVED
+
+  boot.kernelParams = [
+    "nohibernate" # no hibernate swap configured
+  ];
+
+  boot.loader = {
+    timeout = 3;
+    grub.enable = true;
+    grub.memtest86.enable = true;
+    grub.configurationLimit = 5;
+    # https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows
+    grub.useOSProber = true;
+    # https://discourse.nixos.org/t/question-about-grub-and-nodev/37867
+    grub.device = "nodev";
+    # https://www.reddit.com/r/NixOS/comments/klahwf/comment/kt10tt8
+    grub.default = "saved";
+    #sagrub.default = "'Windows Boot Manager'";
+    grub.efiSupport = true;
+    efi.canTouchEfiVariables = true;
+    grub2-theme = {
+      enable = true;
+      #splashImage = config.system_background; # unable to see menu clearly with this image
+      splashImage = ../../../../nixos/black.png;
+      theme = "stylish";
+      #theme = "whitesur";
+      #icon = "whitesur";
+      footer = true;
+      screen = "4k";
+    };
+  };
+
+  # neededForBoot flag is not settable from disko
+  fileSystems = {
+    "/nix".neededForBoot = true;
+    "/home".neededForBoot = true;
+    "/var/log".neededForBoot = true;
+    "/var/cache".neededForBoot = true;
+    "/persistent".neededForBoot = true;
+  };
+  networking.hostName = "fw16";
+
+  networking.firewall.allowedTCPPorts = [ 8080 ]; # temp file share with $ nix run nixpkgs#caddy -- file-server --browse --debug --listen :8080
+
+  #virtualisation.docker.rootless.enable = true;
+  #virtualisation.docker.rootless.setSocketVariable = true;
+
+  services.xserver.enable = true;
+
+  # https://search.nixos.org/packages
+  environment.systemPackages = with pkgs; ([
+    /*
+      (
+        if
+          (
+            config.hardware.nvidia.enabled
+            && (!(builtins.any (tag: tag == "battery-saver") config.system.nixos.tags))
+          )
+        then
+          mathematica-cuda
+        else
+          mathematica
+      )
+    */
+    #kdePackages.kamoso # doesn't work with our camera? also snapshot doesn't work too
+    #cheese
+    guvcview # more smooth than cheese
+    webcamoid # smooth and user friendly gui
+    ollama
+    #pkgs-qtwebengine5.globalprotect-openconnect # does not work
+    #openconnect
+    #inputs.globalprotect-openconnect.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ]);
+
+  # https://discourse.nixos.org/t/globalprotect-vpn/24014/5
+  #networking.networkmanager.plugins = with pkgs; [
+  #  networkmanager-openconnect
+  #];
+
+  #services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true; # Show battery charge of Bluetooth devices
+      };
+    };
+  };
+
+  nix-mineral.enable = false; # this breaks sddm
+
+  #musnix.enable = true; # has conflicts with our limit settings for wine esync!
+  # https://wiki.nixos.org/wiki/PipeWire
+  services.pipewire = {
+    systemWide = true;
+    # If you want to use JACK applications, uncomment the following
+    jack.enable = true;
+  };
+  services.pipewire.enable = lib.mkDefault true;
+  services.pulseaudio.systemWide = true;
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  ridiculous_fonts = true;
+
+  #services.guix.enable = true;
+
+  # https://github.com/search?q=programs.captive-browser.enable&type=code
+  programs.captive-browser.enable = true;
+  # https://github.com/Atemu/nixos-config/blob/ebee2da72f7881bef4166699d2664329901b73d9/hardware/FW16.nix#L83
+  programs.captive-browser.interface = "wlan0";
+
+  programs.darling.enable = true;
+
+  services.openssh.enable = true;
+  services.openssh.openFirewall = true;
+  services.openssh.settings.PasswordAuthentication = false;
+  services.openssh.settings.X11Forwarding = true;
+
+  networking.nftables.enable = true;
+
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "both";
+
+  system.stateVersion = "25.11";
+
+  # INTERFERE WITH KDE PLASMA's NOTIFICATION PROVIDER
+  #services.xserver.desktopManager.xfce.enable = true;
+  #services.xserver.desktopManager.xfce.enableWaylandSession = true;
+
+  # documentation.man.cache.enable = true;
+  # documentation.enable = true;
+
+  # DETAILS REMOVED
+}
