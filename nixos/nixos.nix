@@ -64,7 +64,12 @@ in
         };
       denX86 = denFor "x86_64-linux";
       denA64 = denFor "aarch64-linux";
-      inherit (denX86.hosts.x86_64-linux) fw13 fw16 ipc deck;
+      inherit (denX86.hosts.x86_64-linux)
+        fw13
+        fw16
+        ipc
+        deck
+        ;
       inherit (denA64.hosts.aarch64-linux) husky macvirt;
     in
     {
