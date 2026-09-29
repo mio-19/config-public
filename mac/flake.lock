@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790647228,
-        "narHash": "sha256-LOcZgwED43EEO34XwtTsfTvE/2G1mXpsj/fYxqgHPZw=",
+        "lastModified": 1790648146,
+        "narHash": "sha256-QvjscQ0OSZWO7f40FFaNqygnFlQYAil1gv7f6YmLaAE=",
         "ref": "refs/heads/main",
-        "rev": "5d62b4eeb769080545c9de217d73651780035776",
-        "revCount": 995,
+        "rev": "f17247c81655d1722fefd7895d549381ee1ce56f",
+        "revCount": 998,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -718,6 +718,19 @@
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1051111.d482ef84049d/nixexprs.tar.zst"
       }
     },
+    "nixpkgs-pin7": {
+      "locked": {
+        "lastModified": 1790510107,
+        "narHash": "sha256-KveNUoALIFda3G7m2VWk38jiTIky80vwY3h9gGOoF2g=",
+        "rev": "3181085bfd08663b6b9e60bc7a8395c2aaa741bd",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1080404.3181085bfd08/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1080404.3181085bfd08/nixexprs.tar.zst"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1790570722,
@@ -818,11 +831,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790646523,
-        "narHash": "sha256-MQUd/tDGgegto4jKc74pJkD+QHAiar5AGuekqDxyKDA=",
+        "lastModified": 1790648457,
+        "narHash": "sha256-VVPGNlaiBXmcGi5EECHG/2pgbmv0tlcMT0lAbkUHmzo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f34a5cc815a0288be75e9df2425d77fc57fd8065",
+        "rev": "d1dc70f6c203f8cc4d97acb29543400252fa85df",
         "type": "github"
       },
       "original": {
@@ -941,6 +954,7 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-pin6": "nixpkgs-pin6",
+        "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix"
