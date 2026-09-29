@@ -24,7 +24,7 @@
       #(den.aspects.safe)
       den.aspects.zfs
       den.aspects.cachy_kernel
-      den.aspects.rocm
+      #den.aspects.rocm
       den.aspects.desktop-baremetal-kde
       den.aspects.desktop-specialisation-windose20
       den.aspects.zswap
