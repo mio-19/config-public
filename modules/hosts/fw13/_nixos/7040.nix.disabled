@@ -1,0 +1,39 @@
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  system,
+  _include,
+  ...
+}@args:
+with _include;
+{
+  # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
+  imports = [
+    inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+  ];
+
+  # https://github.com/ilya-zlobintsev/LACT/wiki/Overclocking-(AMD)
+  hardware.amdgpu.overdrive.enable = true;
+  services.lact.enable = true;
+  # https://wiki.archlinux.org/title/AMDGPU -> Overclocking
+  hardware.amdgpu.overdrive.ppfeaturemask = "0xfff7ffff";
+
+  systemPackages_hardened = with pkgs; [
+    amdgpu_top
+    ryzenadj
+  ];
+
+  boot.kernelParams = [
+
+    # https://github.com/search?q=mem_sleep_default%3Ds2idle+language%3ANix&type=code&l=Nix
+    "mem_sleep_default=s2idle"
+    # https://www.reddit.com/r/framework/comments/1hxoola/trackpad_delays/
+    "amdgpu.dcdebugmask=0x10"
+  ];
+
+  programs.ryzen-monitor-ng.enable = true;
+  hardware.cpu.amd.ryzen-smu.enable = true;
+
+}

@@ -211,15 +211,7 @@ in
     };
   };
 
-  # https://github.com/ilya-zlobintsev/LACT/wiki/Overclocking-(AMD)
-  hardware.amdgpu.overdrive.enable = true;
-  services.lact.enable = true;
-  # https://wiki.archlinux.org/title/AMDGPU -> Overclocking
-  hardware.amdgpu.overdrive.ppfeaturemask = "0xfff7ffff";
-
   systemPackages_hardened = with pkgs; [
-    amdgpu_top
-    ryzenadj
     kdePackages.kamoso
   ];
 
@@ -227,23 +219,12 @@ in
   # causing libinput and KDE to temporarily drop click events and tap-to-click settings.
   hardware.framework.trackpad-resume-workaround.enable = false;
 
-  boot.kernelParams = [
-
-    # https://github.com/search?q=mem_sleep_default%3Ds2idle+language%3ANix&type=code&l=Nix
-    "mem_sleep_default=s2idle"
-    # https://www.reddit.com/r/framework/comments/1hxoola/trackpad_delays/
-    "amdgpu.dcdebugmask=0x10"
-  ];
-
   /*
     # https://github.com/troymoder/dotfiles/blob/f09867c7d178331596359cf1229e7e6806e75624/system/framework.nix#L48-L49
     # https://wiki.archlinux.org/title/Framework_Laptop_13_(AMD_Ryzen_7040_Series)
     services.colord.enable = true;
     environment.etc."color/icc/BOE_CQ_NE135FBM_N41_03.icm".source = ./BOE_CQ_______NE135FBM_N41_03.icm;
   */
-
-  programs.ryzen-monitor-ng.enable = true;
-  hardware.cpu.amd.ryzen-smu.enable = true;
 
   # https://www.reddit.com/r/framework/comments/17d6pjy/comment/k5uup6a/
   boot.blacklistedKernelModules = [
