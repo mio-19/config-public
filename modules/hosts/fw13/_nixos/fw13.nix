@@ -8,9 +8,6 @@
   ...
 }@args:
 with _include;
-let
-  fan_workaround = false;
-in
 {
   # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
   imports = [
