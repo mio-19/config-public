@@ -32,9 +32,9 @@
               "self"
             ]
           );
-          # Map registries to channels (useful when using legacy commands)
-          nixPath = lib.mapAttrsToList (n: v: "${n}=${v.to.path}") config.nix.registry;
           settings = {
+            # Map registries to channels (useful when using legacy commands)
+            nix-path = lib.mapAttrsToList (n: v: "${n}=${v.to.path}") config.nix.registry;
             substituters = [
               "https://mio.cachix.org/"
               "https://mio-cache.cachix.org/"
