@@ -18,6 +18,8 @@ in
   ];
   services.power-profiles-daemon.enable = true;
 
+  services.lact.enable = true;
+
   # https://github.com/NixOS/nixos-hardware/tree/master/framework
   services.fwupd.enable = true;
 
