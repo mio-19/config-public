@@ -550,7 +550,8 @@
       with _include;
       {
         environment.systemPackages = with pkgs; [
-          kiwix-apple
+          #kiwix-apple
+          nur.repos.mio.kiwix_patched
           trayscale
         ];
         homebrew.casks = [
