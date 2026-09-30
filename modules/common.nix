@@ -1,7 +1,28 @@
 { den, ... }: {
+  den.aspects.multiuser = {
+    description = "Multi user gui system";
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        system,
+        _include,
+        ...
+      }:
+      with _include;
+      {
+        services.pulseaudio.systemWide = true;
+        services.pipewire = {
+          systemWide = true;
+        };
+      };
+  };
   den.aspects.common = {
     description = "Shared base configuration for NixOS and nix-darwin";
     includes = [
+      den.aspects.multiuser
       den.aspects.common-hidden
       den.aspects.overlays
       den.aspects.basic
