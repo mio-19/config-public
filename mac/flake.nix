@@ -99,7 +99,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # pin to avoid rebuild
-    mio-betterbird.url = "github:mio-19/nurpkgs/1e724391204b70fae74ce9b1743e2c095eab7897";
+    mio-betterbird.url = "github:mio-19/nurpkgs/8d73e001a8470881587d414c852883d6b87a72f0";
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
