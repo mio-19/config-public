@@ -33,6 +33,7 @@
       }:
       with _include;
       {
+        # https://discourse.nixos.org/t/can-i-set-the-nice-level-for-nix-build-processes/10596/4
         nix.daemonCPUSchedPolicy = "idle";
         nix.daemonIOSchedClass = "idle";
       };
