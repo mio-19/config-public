@@ -187,6 +187,8 @@ with _include;
 
   programs.darling.enable = true;
 
+  virtualisation.vmware.host.enable = true;
+
   services.openssh.enable = true;
   services.openssh.openFirewall = true;
   services.openssh.settings.PasswordAuthentication = false;
