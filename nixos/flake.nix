@@ -407,11 +407,13 @@
                 url = "https://github.com/mio-19/nixpkgs/commit/c452a55ef4e1008f0ea2c9b7b0fe51fdbc310858.diff";
                 hash = "sha256-svwH3egLQJ2zdH/bP+GVrpQ4QjjNoZJjchpcBvwLfJw=";
               })
-              (fetchpatch {
-                name = "nixos/firefox: make variant librewolf";
-                url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
-                hash = "sha256-qkUXGG0GEe0vC1/0J/DUAPPM9Oj71vRZ24sKmmLtYAQ=";
-              })
+              /*
+                (fetchpatch {
+                  name = "nixos/firefox: make variant librewolf";
+                  url = "https://github.com/NixOS/nixpkgs/pull/467398.diff";
+                  hash = "sha256-qkUXGG0GEe0vC1/0J/DUAPPM9Oj71vRZ24sKmmLtYAQ=";
+                })
+              */
               (fetchpatch {
                 name = "chatgpt: support linux";
                 url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
