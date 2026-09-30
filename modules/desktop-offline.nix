@@ -132,6 +132,8 @@
         systemPackages_hardened =
           with pkgs;
           [
+            gnome-online-accounts-gtk
+            gnome-calendar
             #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bambu-studio-open
             orca-slicer
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.jetbrains_idea-oss # jetbrains.idea-oss
