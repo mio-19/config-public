@@ -109,6 +109,11 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
+        config_swit_inhibit = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "inhibit";
+        };
         linux_tz = lib.mkOption {
           type = lib.types.enum [
             null
