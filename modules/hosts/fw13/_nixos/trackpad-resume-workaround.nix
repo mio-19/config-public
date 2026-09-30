@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.hardware.framework.trackpad-resume-workaround;
+  cfg = config.config_trackpad-resume-workaround;
 in
 {
-  options.hardware.framework.trackpad-resume-workaround = {
+  options.config_trackpad-resume-workaround = {
     enable = lib.mkEnableOption "workaround for trackpad not working after suspend on Framework laptops";
   };
 

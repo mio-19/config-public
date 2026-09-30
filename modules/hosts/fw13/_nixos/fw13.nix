@@ -26,7 +26,7 @@ with _include;
 
   # Disabled because reloading the driver makes the trackpad disappear and reappear as a new device,
   # causing libinput and KDE to temporarily drop click events and tap-to-click settings.
-  hardware.framework.trackpad-resume-workaround.enable = false;
+  config_trackpad-resume-workaround = false;
 
   /*
     # https://github.com/troymoder/dotfiles/blob/f09867c7d178331596359cf1229e7e6806e75624/system/framework.nix#L48-L49
