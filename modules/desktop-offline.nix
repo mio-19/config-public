@@ -195,7 +195,7 @@
             #wlvncc
             #gpt4all
             #figma-linux
-            #scribus # can edit pdf? - https://www.reddit.com/r/opensource/comments/1bu1gdi/adobe_acrobat_foss_alternative_to_end_all/
+            scribus # can edit pdf? - https://www.reddit.com/r/opensource/comments/1bu1gdi/adobe_acrobat_foss_alternative_to_end_all/
             #xournalpp # can draw on pdf? - https://www.reddit.com/r/opensource/comments/1bu1gdi/adobe_acrobat_foss_alternative_to_end_all/
             super-productivity
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.discordchatexporter-desktop_patched
