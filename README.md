@@ -30,6 +30,8 @@ wget https://gist.github.com/lxl66566/697db0cccd04b7247dc9a0cfb96d328c/raw/aa9d7
 wget https://github.com/ccicnce113424/nixos-config/raw/refs/heads/main/lib/apply-patches-cow.nix
 ```
 
+put custom options in the top level so they are special: nixos modules options usually have multiple levels config.x.y
+
 ## LLM policy
 
 Headache. Use LLM for boring, no-brain tasks. LLM pushed living cost higher? I cannot opt out of the higher living cost by opting out of LLM myself.
