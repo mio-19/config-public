@@ -500,11 +500,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790742230,
-        "narHash": "sha256-5399J1/O3DyLSsYGVa950JtOUDB9Reqvy7FhfDuTVzk=",
+        "lastModified": 1790792194,
+        "narHash": "sha256-404+/PoCo34O0iruXzN2nY3sh2ZP7dxmdQ+duis2arI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0aefa652eb6fd8b7396af25e8c81cb0790f12cc2",
+        "rev": "fab715cc65199017cc4d86312eb07c01230b01a4",
         "type": "github"
       },
       "original": {
@@ -706,6 +706,19 @@
         "type": "github"
       }
     },
+    "nixpkgs-pin5": {
+      "locked": {
+        "lastModified": 1790600678,
+        "narHash": "sha256-k0ouG9zZIYS9D2B6yADfOoMbcUDSBrFg+tfHuUgbHDU=",
+        "rev": "f45c6f04c2f013f004bf94e284e95d72898d9393",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1081052.f45c6f04c2f0/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1081052.f45c6f04c2f0/nixexprs.tar.zst"
+      }
+    },
     "nixpkgs-pin6": {
       "locked": {
         "lastModified": 315532800,
@@ -720,9 +733,8 @@
     },
     "nixpkgs-pin7": {
       "locked": {
-        "lastModified": 1790510107,
+        "lastModified": 315532800,
         "narHash": "sha256-KveNUoALIFda3G7m2VWk38jiTIky80vwY3h9gGOoF2g=",
-        "rev": "3181085bfd08663b6b9e60bc7a8395c2aaa741bd",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1080404.3181085bfd08/nixexprs.tar.zst"
       },
@@ -831,11 +843,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790768111,
-        "narHash": "sha256-7VysKeHUp65Zkhg1uVohcxcFPQUhTt2WqN4QJL5e+vQ=",
+        "lastModified": 1790792755,
+        "narHash": "sha256-Bib8a1VUR+7Gj0twUFUNhBCLImFzl2UWsjS5+cwCIFk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "91c0924c79c88690fa1ce541490eefc575213d36",
+        "rev": "adc45655adac54996ca0ca860dad7675c72b2687",
         "type": "github"
       },
       "original": {
@@ -953,6 +965,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-pin6": "nixpkgs-pin6",
         "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
