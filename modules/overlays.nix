@@ -95,6 +95,7 @@
               raycast = mio.raycast_macos15;
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin7) blender;
+              inherit (pkgs-pin5) joplin-desktop;
             }
           )
         ];
