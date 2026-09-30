@@ -52,10 +52,10 @@
                 handbrake
                 gimp
                 blender
+                jadx
                 ;
               inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
-              inherit (pkgs') jadx; # failed with cuda
               #vscode = mio.vscode1133;
               #vscode-fhs = mio.vscode-fhs1133;
               #vscode-extensions = mio.vscode-extensions1133;
