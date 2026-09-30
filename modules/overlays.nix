@@ -58,6 +58,7 @@
               #vscode = mio.vscode1133;
               #vscode-fhs = mio.vscode-fhs1133;
               #vscode-extensions = mio.vscode-extensions1133;
+              inherit (pkgs-pin2) graphene-hardened-malloc;
             }
           )
           inputs.chaotic.overlays.default
