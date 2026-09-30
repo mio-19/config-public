@@ -19,9 +19,28 @@
         };
       };
   };
+  den.aspects.nix-idle = {
+    description = "lower prio for nix daemons";
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        system,
+        _include,
+        ...
+      }:
+      with _include;
+      {
+        nix.daemonCPUSchedPolicy = "idle";
+        nix.daemonIOSchedClass = "idle";
+      };
+  };
   den.aspects.common = {
     description = "Shared base configuration for NixOS and nix-darwin";
     includes = [
+      den.aspects.nix-idle
       den.aspects.multiuser
       den.aspects.common-hidden
       den.aspects.overlays
