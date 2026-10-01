@@ -281,7 +281,6 @@
             saber
             gparted
             vlc
-            bitwarden-desktop
             prusa-slicer
             #ytmdesktop # no: this one cannot block ad
             fluffychat
@@ -351,6 +350,7 @@
         systemPackages_clean =
           with pkgs;
           [
+            bitwarden-desktop
             firefox-esr
             (wrapPrio gnome-console)
             # unfree:
@@ -431,7 +431,7 @@
               };
             */
             bitwarden-desktop = {
-              executable = "${hardenedPkg pkgs.bitwarden-desktop}/bin/bitwarden";
+              executable = "${cleanPkg pkgs.bitwarden-desktop}/bin/bitwarden";
               profile = "${pkgs.firejail}/etc/firejail/bitwarden.profile";
             };
             zulip = {
