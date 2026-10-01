@@ -35,7 +35,7 @@ let
       inputs.mio.packages.${pkgs.stdenv.hostPlatform.system} ? forester
     ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.forester;
   commonCliClean =
-    { pkgs, ... }:
+    { pkgs, inputs, ... }:
     with pkgs;
     [
       nvfetcher # with hardened: fatal allocator error: invalid free
@@ -103,7 +103,7 @@ in
             ]
           ))
           ++ (map cleanPkg (
-            commonCliClean { inherit pkgs; }
+            commonCliClean { inherit pkgs inputs; }
             ++ [
               cursor-cli
               #claude-code
