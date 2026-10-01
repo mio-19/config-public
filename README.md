@@ -43,7 +43,7 @@ then install systemd-boot first, later change to grub if needed
 ## to have list
 
 + pam_ssh_agent_auth
-+ <https://github.com/nix-community/nix-wrapper-modules>
++ <https://github.com/nix-community/nix-wrapper-modules> <https://www.reddit.com/r/NixOS/comments/1tmlba7/makewrapper_alternatives/> <https://github.com/lassulus/wrappers>
 
 ## fix bootloader
 
