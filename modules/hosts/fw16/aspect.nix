@@ -48,16 +48,6 @@
         homeManager.home.stateVersion = lib.mkDefault "25.11";
         homeManager.programs.plasma = {
           enable = true;
-          input.touchpads = [
-            {
-              enable = true;
-              name = "PIXA3854:00 093A:0274 Touchpad";
-              vendorId = "093a";
-              productId = "0274";
-              tapToClick = true;
-              naturalScroll = true;
-            }
-          ];
           powerdevil.AC = {
             powerButtonAction = lib.mkForce "sleep";
             autoSuspend.action = lib.mkForce "sleep";
