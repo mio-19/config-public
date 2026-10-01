@@ -34,10 +34,10 @@
       with _include;
       {
         # https://discourse.nixos.org/t/can-i-set-the-nice-level-for-nix-build-processes/10596/4
-        nix.daemonCPUSchedPolicy = "idle";
-        nix.daemonIOSchedClass = "idle";
+        nix.daemonCPUSchedPolicy = lib.mkIf config.nix_builder_nicer "idle";
+        nix.daemonIOSchedClass = lib.mkIf config.nix_builder_nicer "idle";
         # https://github.com/NixOS/nix/issues/11088#issuecomment-3509017731
-        systemd.services.nix-daemon.serviceConfig = {
+        systemd.services.nix-daemon.serviceConfig = lib.optionalAttrs config.nix_builder_nicer {
           Nice = lib.mkForce 15;
           IOSchedulingClass = lib.mkForce "idle";
         };
@@ -484,8 +484,8 @@
               nerd-fonts.fira-code
               #nerd-fonts.sauce-code-pro
               #source-code-pro
-              noto-fonts-cjk-sans
-              noto-fonts-cjk-serif
+              noto-fonts-cjk-sans-static
+              noto-fonts-cjk-serif-static
             ]
             ++ lib.optionals config.fonts_evil_c [
               # flatpak com.baidu.NetDisk https://tieba.baidu.com/p/8889052162 https://github.com/qier222/YesPlayMusic/issues/2121
@@ -521,7 +521,8 @@
                     "Noto Sans CJK SC"
                   ];
                   serif = [
-                    "New York"
+                    # "New York" is a variable font that renders as hairline-thin in Chromium due to Linux variable font weight bugs.
+                    "Noto Serif"
                     "Noto Serif CJK SC"
                   ];
                 };
@@ -990,7 +991,7 @@
 
         fonts.packages = with pkgs; [
           noto-fonts
-          noto-fonts-cjk-sans
+          noto-fonts-cjk-sans-static
           noto-fonts-color-emoji
           nerd-fonts.noto
           source-code-pro

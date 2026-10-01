@@ -45,6 +45,7 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               android-translation-layer = mio.android-translation-layer_patched;
+              ollama-cuda = pkgs'.ollama; # build failed
               # build failed/depdendency build failed with cuda
               inherit (pkgs')
                 ffmpeg-full
@@ -52,12 +53,23 @@
                 handbrake
                 gimp
                 blender
+                jadx
+                ollama
                 ;
               inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
               #vscode = mio.vscode1133;
               #vscode-fhs = mio.vscode-fhs1133;
               #vscode-extensions = mio.vscode-extensions1133;
+              inherit (pkgs-pin2)
+                openshot-qt
+                stuntrally
+                zotero
+                scribus
+                smplayer
+                joplin-desktop
+                rpcs3
+                ;
             }
           )
           inputs.chaotic.overlays.default

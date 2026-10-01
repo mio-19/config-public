@@ -461,7 +461,21 @@ let
         );
       # https://github.com/surfaceflinger/notflake/blob/c71bd18a369b652b2a2224225da938c7af235636/packages/timedoctor-desktop/default.nix#L36
       # https://github.com/nixos/nixpkgs/blob/d7547a7ed4d0bedcd73c64b2b854426ab55da543/nixos/modules/osConfig/malloc.nix#L10
-      hardenedPkg = wrapPkg "hardened" ''--inherit-argv0 --set LD_PRELOAD "${pkgs.graphene-hardened-malloc}/lib/libhardened_malloc.so"'';
+      _allocator-gos = "${pkgs.graphene-hardened-malloc}/lib/libhardened_malloc.so";
+      # https://github.com/NixOS/nixpkgs/blob/b4fd65b198c599cbe814fcb9f42d25d021595ec9/nixos/modules/config/malloc.nix#L55
+      allocator =
+        let
+          platformMap = {
+            aarch64-linux = "aarch64";
+            x86_64-linux = "x86_64";
+          };
+
+          systemPlatform =
+            platformMap.${pkgs.stdenv.hostPlatform.system}
+              or (throw "scudo not supported on ${pkgs.stdenv.hostPlatform.system}");
+        in
+        "${pkgs.llvmPackages.compiler-rt}/lib/linux/libclang_rt.scudo_standalone-${systemPlatform}.so";
+      hardenedPkg = wrapPkg "hardened" ''--inherit-argv0 --set LD_PRELOAD "${allocator}"'';
       cleanPkg = wrapPkg "clean" "--inherit-argv0 --unset LD_PRELOAD";
       offloadPkg =
         pkg:
