@@ -98,8 +98,8 @@ in
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     fontPackages = with pkgs; [
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
+      noto-fonts-cjk-sans-static
+      noto-fonts-cjk-serif-static
       source-han-sans
       source-han-serif
       wqy_zenhei

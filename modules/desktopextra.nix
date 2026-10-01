@@ -193,7 +193,7 @@
           "cursor"
           "affinity"
           "microsoft-teams"
-          "adobe-acrobat-pro"
+          "adobe-acrobat-reader"
           "adobe-creative-cloud"
           "signal"
           #"rider"
