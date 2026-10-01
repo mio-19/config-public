@@ -170,8 +170,8 @@
             };
           };
           fontPackages = with pkgs; [
-            noto-fonts-cjk-sans
-            noto-fonts-cjk-serif
+            noto-fonts-cjk-sans-static
+            noto-fonts-cjk-serif-static
             source-han-sans
             source-han-serif
             wqy_zenhei
