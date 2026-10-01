@@ -521,7 +521,8 @@
                     "Noto Sans CJK SC"
                   ];
                   serif = [
-                    "New York"
+                    # "New York" is a variable font that renders as hairline-thin in Chromium due to Linux variable font weight bugs.
+                    "Noto Serif"
                     "Noto Serif CJK SC"
                   ];
                 };
