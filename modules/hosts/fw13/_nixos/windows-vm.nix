@@ -1,10 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # =======================================================================
   # High-Performance Windows VM Configuration (Intel Lunar Lake / FW13)
   # Hypervisor: QEMU/KVM
-  # GPU: Intel Xe3 SR-IOV 
+  # GPU: Intel Xe3 SR-IOV
   # Display/Audio: Looking Glass & Scream
   # =======================================================================
 
@@ -35,7 +40,7 @@
     # "xe.force_probe=*" # Uncomment if required for Lunar Lake Xe3 on your current kernel
   ];
 
-  boot.kernelModules = [ 
+  boot.kernelModules = [
     "kvm-intel"
     "vfio_pci"
     "vfio_iommu_type1"
@@ -55,7 +60,7 @@
   services.udev.extraRules = ''
     # Set permissions for the Looking Glass shared memory device so the libvirt/kvm group can read it
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="kvm", MODE="0660"
-    
+
     # -----------------------------------------------------------------------------------
     # Intel SR-IOV Virtual Function (VF) Auto-Creation
     # -----------------------------------------------------------------------------------
@@ -64,6 +69,11 @@
     # 
     # ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{class}=="0x030000", ATTR{sriov_numvfs}="1"
   '';
+
+  # Pre-create the Scream shared memory file with permissions so the user audio service can read it
+  systemd.tmpfiles.rules = [
+    "f /dev/shm/scream-ivshmem 0666 root kvm -"
+  ];
 
   # Ensure the Scream audio receiver runs in the background for your user session
   systemd.user.services.scream-receiver = {
