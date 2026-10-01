@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  cpuPinning = true;
+in
 {
   # =======================================================================
   # High-Performance Windows VM Configuration (Intel Lunar Lake / FW13)
@@ -98,7 +101,24 @@
           <memory unit='GiB'>16</memory>
           <currentMemory unit='GiB'>16</currentMemory>
           
-          <vcpu>4</vcpu>
+          ${
+            if cpuPinning then
+              ''
+                <vcpu placement='static'>4</vcpu>
+                <cputune>
+                  <vcpupin vcpu="0" cpuset="0"/>
+                  <vcpupin vcpu="1" cpuset="1"/>
+                  <vcpupin vcpu="2" cpuset="2"/>
+                  <vcpupin vcpu="3" cpuset="3"/>
+                  <!-- Offload QEMU emulator overhead to Skymont E-cores -->
+                  <emulatorpin cpuset="4-7"/>
+                </cputune>
+              ''
+            else
+              ''
+                <vcpu>4</vcpu>
+              ''
+          }
           
           <os>
             <type arch='x86_64' machine='q35'>hvm</type>
@@ -130,6 +150,7 @@
           </features>
           
           <cpu mode='host-passthrough' check='none' migratable='on'>
+            ${if cpuPinning then "<topology sockets='1' dies='1' cores='4' threads='1'/>" else ""}
             <cache mode='passthrough'/>
           </cpu>
           
