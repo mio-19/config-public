@@ -40,6 +40,8 @@ let
     [
       nvfetcher # with hardened: fatal allocator error: invalid free
       codex
+      claude-code
+      claude-code-router
       opencode
       github-copilot-cli
     ];
