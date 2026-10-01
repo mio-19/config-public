@@ -211,6 +211,7 @@ in
           ) inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.ryubing
           ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
             oh-my-opencode
+            dsh
             #oh-my-codex # no binary cache
           ])
           ++ [
