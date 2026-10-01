@@ -60,7 +60,8 @@
   services.udev.extraRules = ''
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="kvm", MODE="0660"
 
-    # ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{class}=="0x030000", ATTR{sriov_numvfs}="1"
+    # Automatically create 1 Virtual Function (vGPU) for the Intel GPU at boot
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{class}=="0x030000", ATTR{sriov_numvfs}="1"
   '';
 
   systemd.tmpfiles.rules = [
@@ -97,15 +98,7 @@
           <memory unit='GiB'>16</memory>
           <currentMemory unit='GiB'>16</currentMemory>
           
-          <vcpu placement='static'>4</vcpu>
-          <cputune>
-            <vcpupin vcpu="0" cpuset="0"/>
-            <vcpupin vcpu="1" cpuset="1"/>
-            <vcpupin vcpu="2" cpuset="2"/>
-            <vcpupin vcpu="3" cpuset="3"/>
-            <!-- Offload QEMU emulator overhead to Skymont E-cores -->
-            <emulatorpin cpuset="4-7"/>
-          </cputune>
+          <vcpu>4</vcpu>
           
           <os>
             <type arch='x86_64' machine='q35'>hvm</type>
@@ -137,7 +130,6 @@
           </features>
           
           <cpu mode='host-passthrough' check='none' migratable='on'>
-            <topology sockets='1' dies='1' cores='4' threads='1'/>
             <cache mode='passthrough'/>
           </cpu>
           
@@ -169,14 +161,12 @@
               <model type='virtio'/>
             </interface>
 
-            <!-- Intel SR-IOV Passthrough (Update PCI address once VF is created) -->
-            <!-- Uncomment once PCI ID is known
+            <!-- Intel SR-IOV Passthrough (Automatically targets first VF at 00:02.1) -->
             <hostdev mode='subsystem' type='pci' managed='yes'>
               <source>
-                <address domain='0x0000' bus='0x03' slot='0x00' function='0x1'/>
+                <address domain='0x0000' bus='0x00' slot='0x02' function='0x1'/>
               </source>
             </hostdev>
-            -->
 
             <!-- Looking Glass Shared Memory -->
             <shmem name='looking-glass'>
