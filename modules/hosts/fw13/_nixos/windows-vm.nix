@@ -50,7 +50,7 @@
   ];
 
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    looking-glass-module
+    kvmfr
   ];
 
   boot.extraModprobeConfig = ''
