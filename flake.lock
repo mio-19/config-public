@@ -1225,10 +1225,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790819692,
-        "narHash": "sha256-rvubAPbh3QCliic3sAK+CXTrPCGgJstY52OTs/5H1J4=",
+        "lastModified": 1790883051,
+        "narHash": "sha256-g84X5VU81CZAgY7Q0m1RrdvwNIoFd4UzKG9YaORuRFE=",
         "ref": "master",
-        "rev": "c8ecc29e5175452bee4a2aa1ba2383856d795338",
+        "rev": "d85475546a5f6696233bba981933e2227a584047",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager.git"
@@ -1371,11 +1371,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790832743,
-        "narHash": "sha256-ho6vTx7+GLxXZNzp9eCq/X+49s16KLO1EEEGYCkMjQ0=",
+        "lastModified": 1790894339,
+        "narHash": "sha256-XOBUM+kB06Q2hddWcV+cJ26yisezD5DIQJUOBaVsuDw=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "3a994324e0a724f3eb043200368f0b60c06862e3",
+        "rev": "659aa1f77505e24dd68f73f37a2ce84325bd6509",
         "type": "github"
       },
       "original": {
@@ -1570,11 +1570,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790835379,
-        "narHash": "sha256-EnK4q1kuw4slJ9sthcrdG9UZAzsId5buVXQ4IHiQfHM=",
+        "lastModified": 1790862951,
+        "narHash": "sha256-qpO1KMcuCEjXJrK6eoJR5sBDZmjxfIVnQARGkM6ReU0=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "9aae71420cb11446572ea1f700cfcd9983a691d5",
+        "rev": "08e9000c07af57a882e1cc05276c6a3a9d4f7d89",
         "type": "github"
       },
       "original": {
@@ -2386,11 +2386,11 @@
     },
     "nixpkgs-unstable_2": {
       "locked": {
-        "lastModified": 1790689126,
-        "narHash": "sha256-VyUI5WA3WdOB9kjb04A0pxE6XTWC6cG95ZkoPSv58F0=",
-        "rev": "b4fd65b198c599cbe814fcb9f42d25d021595ec9",
+        "lastModified": 1790822859,
+        "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA=",
+        "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1082427.b4fd65b198c5/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -2729,10 +2729,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790844341,
-        "narHash": "sha256-Kye5e8ciewBbgJ+D4OG/mpKS0MtqIGqH0sL9BSCVnv4=",
+        "lastModified": 1790894746,
+        "narHash": "sha256-CFbUdSGvQBZKzsanwY9mhHITdtGCssNqtLS/CSrw/R8=",
         "ref": "refs/heads/main",
-        "rev": "b713edd796ca5a318b05a4018e8c740dbe021462",
+        "rev": "1df5d111e08a3396131280cf954cfa6ddf93364f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3084,11 +3084,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790842972,
-        "narHash": "sha256-l/1IEhLOLLDy6y3vz5J/IkG/ND4jR7rV0HMy8LFKVq8=",
+        "lastModified": 1790894625,
+        "narHash": "sha256-1u+G8t2MLukd5UYvwxqmQbQpinKkZxjittLEqIkJVH8=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "a2b0a077c87a84969e18c2eccceb4eac348b6803",
+        "rev": "4fb4732efd3bc8d6d03ecc924563b5c020cb1fe8",
         "type": "github"
       },
       "original": {
@@ -3228,10 +3228,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790843958,
-        "narHash": "sha256-jtYAaAXT1gxEtzmeYmOGu0IvKPle5J39BOFbgl6os+A=",
+        "lastModified": 1790882220,
+        "narHash": "sha256-n+rcrZkqos6/HY2iSJsVsJw3Q4mB9XEquYpus97iOi4=",
         "ref": "refs/heads/master",
-        "rev": "b2ccad3b67335d368eef49ec48b9c8166858e73d",
+        "rev": "dcee1adabb61484343af863501d2e3d91ef51f72",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
