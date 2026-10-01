@@ -44,7 +44,8 @@ let
       claude-code-router
       opencode
       github-copilot-cli
-    ];
+    ]
+    ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [ dsh ]);
 
   commonCliDarwin = args: commonCliHardened args ++ commonCliClean args;
 

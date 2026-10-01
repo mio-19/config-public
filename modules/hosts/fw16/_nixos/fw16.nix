@@ -231,7 +231,6 @@ in
     "amdgpu.dcdebugmask=0x10"
   ];
 
-
   programs.ryzen-monitor-ng.enable = true;
   hardware.cpu.amd.ryzen-smu.enable = true;
 
