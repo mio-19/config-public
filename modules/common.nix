@@ -34,10 +34,10 @@
       with _include;
       {
         # https://discourse.nixos.org/t/can-i-set-the-nice-level-for-nix-build-processes/10596/4
-        nix.daemonCPUSchedPolicy = "idle";
-        nix.daemonIOSchedClass = "idle";
+        nix.daemonCPUSchedPolicy = lib.mkIf config.nix_builder_nicer "idle";
+        nix.daemonIOSchedClass = lib.mkIf config.nix_builder_nicer "idle";
         # https://github.com/NixOS/nix/issues/11088#issuecomment-3509017731
-        systemd.services.nix-daemon.serviceConfig = {
+        systemd.services.nix-daemon.serviceConfig = lib.optionalAttrs config.nix_builder_nicer {
           Nice = lib.mkForce 15;
           IOSchedulingClass = lib.mkForce "idle";
         };

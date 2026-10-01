@@ -109,6 +109,11 @@ let
       }
       // lib.optionalAttrs (!isDarwin) {
         # Linux
+        nix_builder_nicer = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "enable nicer priority for nix-builder";
+        };
         config_swit_inhibit = lib.mkOption {
           type = lib.types.bool;
           default = false;
