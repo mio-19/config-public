@@ -45,6 +45,7 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               android-translation-layer = mio.android-translation-layer_patched;
+              ollama-cuda = pkgs'.ollama; # build failed
               # build failed/depdendency build failed with cuda
               inherit (pkgs')
                 ffmpeg-full
