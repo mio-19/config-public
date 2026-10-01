@@ -19,6 +19,7 @@
         environment.systemPackages =
           with pkgs;
           (map hardenedPkg [
+            immich-cli
             yt-dlp
             nur.repos.mio.rocksmith2tab
             nur.repos.mio.mdbook-generate-summary
