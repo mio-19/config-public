@@ -8,7 +8,7 @@
 let
   cpuPinning = true;
 in
-lib.optionalAttrs (config.microarch == "intel-ultra-xe") {
+{
   # =======================================================================
   # High-Performance Windows VM Configuration (Intel Lunar Lake / FW13)
   # Hypervisor: QEMU/KVM
@@ -24,7 +24,7 @@ lib.optionalAttrs (config.microarch == "intel-ultra-xe") {
   # freed space automatically back to your `razer` pool!
   # =======================================================================
 
-  virtualisation.libvirtd = {
+  virtualisation.libvirtd = lib.mkIf (config.microarch == "intel-ultra-xe") {
     enable = true;
     qemu = {
       package = pkgs.qemu_kvm;
@@ -33,45 +33,49 @@ lib.optionalAttrs (config.microarch == "intel-ultra-xe") {
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    looking-glass-client
-    scream # Audio receiver for PipeWire
-  ];
+  environment.systemPackages =
+    with pkgs;
+    lib.mkIf (config.microarch == "intel-ultra-xe") [
+      virt-manager
+      looking-glass-client
+      scream # Audio receiver for PipeWire
+    ];
 
-  boot.kernelParams = [
+  boot.kernelParams = lib.mkIf (config.microarch == "intel-ultra-xe") [
     "intel_iommu=on"
     "iommu=pt"
     # "xe.force_probe=*" # Uncomment if required for Lunar Lake Xe3 on your current kernel
   ];
 
-  boot.kernelModules = [
+  boot.kernelModules = lib.mkIf (config.microarch == "intel-ultra-xe") [
     "kvm-intel"
     "vfio_pci"
     "vfio_iommu_type1"
     "vfio_virqfd"
   ];
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    kvmfr
-  ];
+  boot.extraModulePackages =
+    with config.boot.kernelPackages;
+    lib.mkIf (config.microarch == "intel-ultra-xe") [
+      kvmfr
+    ];
 
-  boot.extraModprobeConfig = ''
+  boot.extraModprobeConfig = lib.mkIf (config.microarch == "intel-ultra-xe") ''
     options kvmfr static_size_mb=64
   '';
 
-  services.udev.extraRules = ''
+  services.udev.extraRules = lib.mkIf (config.microarch == "intel-ultra-xe") ''
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="kvm", MODE="0660"
 
     # Automatically create 1 Virtual Function (vGPU) for the Intel GPU at boot
     ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{class}=="0x030000", ATTR{sriov_numvfs}="1"
   '';
 
-  systemd.tmpfiles.rules = [
+  systemd.tmpfiles.rules = lib.mkIf (config.microarch == "intel-ultra-xe") [
     "f /dev/shm/scream-ivshmem 0666 root kvm -"
   ];
 
-  systemd.user.services.scream-receiver = {
+  systemd.user.services.scream-receiver = lib.mkIf (config.microarch == "intel-ultra-xe") {
     description = "Scream IVSHMEM Audio Receiver";
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
@@ -85,7 +89,7 @@ lib.optionalAttrs (config.microarch == "intel-ultra-xe") {
   # =======================================================================
   # Fully Declarative Libvirt XML Injection
   # =======================================================================
-  systemd.services.define-windows-vm = {
+  systemd.services.define-windows-vm = lib.mkIf (config.microarch == "intel-ultra-xe") {
     description = "Declaratively define the Windows VM in Libvirt";
     wantedBy = [ "multi-user.target" ];
     after = [ "libvirtd.service" ];
