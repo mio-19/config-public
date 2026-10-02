@@ -8,7 +8,7 @@
 let
   cpuPinning = true;
 in
-{
+lib.optionalAttrs (config.microarch == "intel-ultra-xe") {
   # =======================================================================
   # High-Performance Windows VM Configuration (Intel Lunar Lake / FW13)
   # Hypervisor: QEMU/KVM
