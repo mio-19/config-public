@@ -16,6 +16,7 @@ in
   # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
   imports = [
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+    (import ../../../../aspect.nix "rocm")
   ];
 
   # https://github.com/Svenum/holynix/blob/2a3d096b74bbbcf0a166ee58507846fb2f5ba8c3/systems/x86_64-linux/Yon/hardware.nix#L76
