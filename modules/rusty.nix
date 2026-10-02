@@ -3,7 +3,7 @@
   den.aspects.rusty_extreme = {
     description = "installing Rusty utilities, excluding sudo-rs, replaceDependencies";
     includes = [
-      den.aspects.rusty
+      den.aspects.rusty_more
     ];
     nixos =
       args@{
@@ -31,6 +31,45 @@
           ];
       };
   };
+  den.aspects.rusty_more = {
+    description = "installing Rusty utilities, more, excluding sudo-rs";
+    includes = [
+      den.aspects.rusty
+    ];
+
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+        environment.systemPackages =
+          with pkgs;
+          map lib.hiPrio [
+            uutils-procps # I do not like top by uutils-procps
+          ];
+      };
+    darwin =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+        environment.systemPackages =
+          with pkgs;
+          map lib.hiPrio [
+            uutils-coreutils-noprefix
+            uutils-tar
+            uutils-findutils
+          ];
+      };
+    };
   den.aspects.rusty = {
     description = "installing Rusty utilities, excluding sudo-rs";
     nixos =
@@ -45,10 +84,12 @@
         environment.systemPackages =
           with pkgs;
           map lib.hiPrio [
-            #uutils-procps # I do not like top by uutils-procps
             uutils-acl
             uutils-util-linux
-            uutils-diffutils
+            # darwin: they break scripts written for darwin!
+            uutils-coreutils-noprefix
+            uutils-tar
+            uutils-findutils
           ];
       };
     os =
@@ -63,12 +104,10 @@
         environment.systemPackages =
           with pkgs;
           map lib.hiPrio [
-            uutils-coreutils-noprefix
+            uutils-diffutils
             uutils-sed
-            uutils-tar
             uutils-login
             uutils-hostname
-            uutils-findutils
           ];
       };
   };
