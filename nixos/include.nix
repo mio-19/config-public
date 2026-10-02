@@ -460,7 +460,7 @@ let
           }
         );
       # https://github.com/surfaceflinger/notflake/blob/c71bd18a369b652b2a2224225da938c7af235636/packages/timedoctor-desktop/default.nix#L36
-      # https://github.com/nixos/nixpkgs/blob/d7547a7ed4d0bedcd73c64b2b854426ab55da543/nixos/modules/osConfig/malloc.nix#L10
+      # https://github.com/NixOS/nixpkgs/blob/a95622ea7c80a4fd67cae6be55516bdb92e193a8/nixos/modules/config/malloc.nix#L13
       allocator = "${pkgs.graphene-hardened-malloc}/lib/libhardened_malloc.so";
       # https://github.com/NixOS/nixpkgs/blob/b4fd65b198c599cbe814fcb9f42d25d021595ec9/nixos/modules/config/malloc.nix#L55
       _allocator-scudo =
