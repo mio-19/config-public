@@ -132,6 +132,7 @@
         systemPackages_hardened =
           with pkgs;
           [
+            ladybird
             #gnome-online-accounts-gtk
             #gnome-calendar
             #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.bambu-studio-open
