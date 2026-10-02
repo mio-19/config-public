@@ -64,6 +64,7 @@
         environment.systemPackages =
           with pkgs;
           map lib.hiPrio [
+            # darwin: they break scripts written for darwin!
             uutils-coreutils-noprefix
             uutils-tar
             uutils-findutils
