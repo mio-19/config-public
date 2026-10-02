@@ -7,9 +7,10 @@
   ...
 }@args:
 {
-  # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
   imports = [
+    # https://wiki.nixos.org/wiki/Hardware/Framework/Laptop_13#AMD_AI_300_Series
     inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series3
+    ./windows-vm.nix
   ];
   services.power-profiles-daemon.enable = true;
   services.thermald.enable = true;

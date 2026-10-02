@@ -9,7 +9,7 @@
 }@args:
 with _include;
 {
-  import = [
+  imports = [
     ./358h.nix
   ];
   systemPackages_hardened = with pkgs; [
