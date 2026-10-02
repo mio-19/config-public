@@ -1,7 +1,10 @@
 { den, ... }:
 {
-  den.aspects.rusty = {
-    description = "installing Rusty utilities, excluding sudo-rs";
+  den.aspects.rusty_extreme = {
+    description = "installing Rusty utilities, excluding sudo-rs, replaceDependencies";
+    includes = [
+      den.aspects.rusty
+    ];
     nixos =
       args@{
         config,
@@ -26,6 +29,19 @@
               replacement = uutils.overrideAttrs { name = pkgs.coreutils-full.name; };
             }
           ];
+      };
+  };
+  den.aspects.rusty = {
+    description = "installing Rusty utilities, excluding sudo-rs";
+    nixos =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
         environment.systemPackages =
           with pkgs;
           map lib.hiPrio [
