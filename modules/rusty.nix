@@ -32,6 +32,7 @@
             uutils-procps
             uutils-acl
             uutils-util-linux
+            uutils-diffutils
           ];
       };
     os =
@@ -52,7 +53,6 @@
             uutils-login
             uutils-hostname
             uutils-findutils
-            uutils-diffutils
           ];
       };
   };
