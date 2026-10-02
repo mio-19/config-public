@@ -45,7 +45,7 @@
         environment.systemPackages =
           with pkgs;
           map lib.hiPrio [
-            uutils-procps
+            #uutils-procps # I do not like top by uutils-procps
             uutils-acl
             uutils-util-linux
             uutils-diffutils
