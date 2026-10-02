@@ -25,7 +25,6 @@ with _include;
   nixpkgs.overlays = [
     #inputs.chaotic-pin.overlays.default # try older kernel
   ];
-  microarch = "zen4";
   compile_gram = true;
   # DETAILS REMOVED # hardware.facter.reportPath = ./facter.json;
 
