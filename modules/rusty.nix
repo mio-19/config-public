@@ -11,6 +11,8 @@
         ...
       }:
       {
+        security.sudo-rs.enable = true;
+        security.sudo.enable = false;
         environment.systemPackages =
           with pkgs;
           map lib.hiPrio [
