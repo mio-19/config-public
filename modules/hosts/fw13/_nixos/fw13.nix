@@ -9,9 +9,6 @@
 }@args:
 with _include;
 {
-  imports = [
-    ./358h.nix
-  ];
   systemPackages_hardened = with pkgs; [
     kdePackages.kamoso
   ];
