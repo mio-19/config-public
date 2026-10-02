@@ -1,7 +1,7 @@
 { den, ... }:
 {
   den.aspects.rusty = {
-    description = "installing Rusty utilities";
+    description = "installing Rusty utilities, excluding sudo-rs";
     nixos =
       args@{
         config,
@@ -11,8 +11,21 @@
         ...
       }:
       {
-        security.sudo-rs.enable = true;
-        security.sudo.enable = false;
+        system.replaceDependencies.replacements =
+          # https://github.com/overby-me/overby-me/blob/11e252a0a44c7d69d90a2950786f880cca453562/safety/oxidized/nixos/coreutils.nix#L4
+          let
+            uutils = pkgs.uutils-coreutils-noprefix;
+          in
+          [
+            {
+              original = pkgs.coreutils;
+              replacement = uutils.overrideAttrs { name = pkgs.coreutils.name; };
+            }
+            {
+              original = pkgs.coreutils-full;
+              replacement = uutils.overrideAttrs { name = pkgs.coreutils-full.name; };
+            }
+          ];
         environment.systemPackages =
           with pkgs;
           map lib.hiPrio [
