@@ -17,7 +17,6 @@ with _include;
     # Feature aspects: den.aspects.fw13.includes (modules/fw13.nix)
     ./fw13.nix
     inputs.nixos-hardware.nixosModules.common-pc-ssd
-    ./disk.nix
     #../betterbird.nix # tired of compiling
     #../secure.nix
     #../niri
