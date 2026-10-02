@@ -743,6 +743,7 @@ let
           "v3"
           "v4"
           "zen4"
+          "intel-ultra-xe"
         ];
       atleastV4For =
         cfg:
@@ -750,6 +751,7 @@ let
         lib.elem (microarchFor cfg) [
           "v4"
           "zen4"
+          "intel-ultra-xe"
         ];
       qtIsPreferredFor = cfg: kdeDMEnabledFor cfg;
 

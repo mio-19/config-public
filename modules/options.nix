@@ -194,6 +194,7 @@ let
             "v3"
             "v4"
             "zen4"
+            "intel-ultra-xe"
           ];
           default = if stdenv.hostPlatform.isAarch64 then "v4" else "v3";
           description = "x86-64 microarchitecture level (v2: legacy e.g. i5-2410M)";
