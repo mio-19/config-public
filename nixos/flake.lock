@@ -809,11 +809,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791024124,
-        "narHash": "sha256-tbybNkNEVGlAAfPOMmPr9Rt/rlXqHafXxde+lnt2HMA=",
+        "lastModified": 1791024236,
+        "narHash": "sha256-PbLPdQVmH949wzUUreHF15KjoN+0gJnSyBbFgVWVE0k=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "33a388689c37b5489e66ca7a7147a2577729b66b",
+        "rev": "bf458d3271c516a5d8316fd33f7878a0399fdc87",
         "type": "github"
       },
       "original": {
@@ -1588,10 +1588,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1791023724,
-        "narHash": "sha256-z1FpqSUgOW8H77d4dqp+lFXKaehZvTakpmlgOtm0mzg=",
+        "lastModified": 1791024247,
+        "narHash": "sha256-ArAUDlBngsAUCJMTpF9D5uXh0B01idE9nr0pZ727DXQ=",
         "ref": "refs/heads/main",
-        "rev": "86701b8a8fd68e8f26453fe7cd4da1b0c53cc1e6",
+        "rev": "8153308036e59db3dcc4be99e660fdc27062a1e2",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
