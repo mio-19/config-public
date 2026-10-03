@@ -255,11 +255,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1790929159,
-        "narHash": "sha256-msAVF1zvaJzteC2zPp6loM609+icIBulEDIt06onKPQ=",
+        "lastModified": 1790954787,
+        "narHash": "sha256-zw5AG0cORxIfu0FopdUFhfmdNrsBXNcZnMRYnrhnpb0=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "ee6708b43ed337dc11d50d5311b4af99343b6490",
+        "rev": "5eefd45dfd01e9ccdeca30414c50e7e6581d0976",
         "type": "github"
       },
       "original": {
@@ -1225,10 +1225,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790928438,
-        "narHash": "sha256-ZuJbu8VQe/Qzy7GJdZ3Xv7adRllH1o4O7nqONtkhFbA=",
+        "lastModified": 1790989254,
+        "narHash": "sha256-ZN+riaeFuE+DZ5zfqJiXlM12jLwZzeIXiNkU1YeHMXI=",
         "ref": "master",
-        "rev": "833540099ef43cbeb28b1e3f3c21901961edb48e",
+        "rev": "acd21c5a3420a9d5fd0ed06299b10828267ef9ba",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/home-manager.git"
@@ -1371,11 +1371,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790918187,
-        "narHash": "sha256-F3py52yPDHBSKKkx4CzpTMc5KxzCBT+jLUIRNOYpr4Q=",
+        "lastModified": 1790983003,
+        "narHash": "sha256-IG8ZzzTIaXCM78zS3C8LIvwW5LKy+iG3dhXrs4L43K0=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "20762f12777a611184868a1a4408bc42a014adf1",
+        "rev": "f86fdf7df0a871d33c0532e962afccf32d3a9da2",
         "type": "github"
       },
       "original": {
@@ -1570,11 +1570,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790938778,
-        "narHash": "sha256-XmA0n+N1SaJZy2/E8RVn6rMHHlf3vDcw9MgBQOfqe44=",
+        "lastModified": 1790998016,
+        "narHash": "sha256-kzNC2udG7xMorEhU4bcDCwVMtYzJsuDDF4lFhW5hpWs=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "543f6165f0b145281e0b5205ed360fad618fd34f",
+        "rev": "81179200983b8f915e5d2b8633d165f2160837a6",
         "type": "github"
       },
       "original": {
@@ -2176,10 +2176,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790722812,
-        "narHash": "sha256-XwFt1uLyaBCQU1/nUeGqeBnqNXPVgGRnz20YVYdmF6Y=",
+        "lastModified": 1790948122,
+        "narHash": "sha256-fDMYyzY1lI5b8RuCMrvoaIgTeRwNnTG4dNk1ucROlQE=",
         "ref": "master",
-        "rev": "06f9ecaea5f64b6ff61cf42cb32f21621c4fa14a",
+        "rev": "0953bb1a609df63013176e3463393f8df993d3ef",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/NixOS/nixos-hardware.git"
@@ -2729,10 +2729,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790944228,
-        "narHash": "sha256-sDMyf5VkrP1sYCvDHCt8atJjyySrOwy9HknIjGcBnYM=",
+        "lastModified": 1790997590,
+        "narHash": "sha256-EROYXxmaK23qpjf/My9G/v5pkLW15eniyCZT7pS+d6I=",
         "ref": "refs/heads/main",
-        "rev": "c7cee0a130b69e5bdca9c3c79ffca1b83499972d",
+        "rev": "0f699154643db362b18b3c0dcb96d092a4271e4d",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3084,11 +3084,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790898193,
-        "narHash": "sha256-uSQTuZv+y0tZwzXWM4RQO2fQm4p4tD9PA8i4LwOLR7Y=",
+        "lastModified": 1790944922,
+        "narHash": "sha256-3WAy2KUj0TjiY7VbNS90UcrSwZ+ytvGlTHKIZd6Y7b4=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "2dc7cc687b0686cca937b639e1de11d236be273a",
+        "rev": "528de1b73f9d0b3531266e0b10d03fc6ce49661f",
         "type": "github"
       },
       "original": {
@@ -3856,11 +3856,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790771562,
-        "narHash": "sha256-HuBu9NU+L2H/BW07H85E9A5/sT2ctOpGSBtB4IfteTk=",
+        "lastModified": 1790972264,
+        "narHash": "sha256-JAi32uRoi5NxQAbLAJPF1m/ixqGbNs9e6ja3meHLvZw=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "7f1d1d96ea7ca9b08130962c91d0469df24a1362",
+        "rev": "7733e952e88ec2b44340f35b93846d1158e3fd24",
         "type": "github"
       },
       "original": {
@@ -3932,10 +3932,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1790940304,
-        "narHash": "sha256-i1W4IdG9PVdSRN1rvTHaqiVqvnRS3+OXgaQa7z5iRDc=",
+        "lastModified": 1790970446,
+        "narHash": "sha256-wHviEjgHonlY5yWMD339ChnEpwbTAvHsb81RlaQwMyw=",
         "ref": "refs/heads/main",
-        "rev": "b12abb753335dd3b9ba5ea90d3be799bd9b2dc29",
+        "rev": "0dbda5093c81c06f02eb283ce0b95a70c6431c96",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
