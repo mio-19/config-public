@@ -157,6 +157,8 @@ with _include;
 
   nix-mineral.enable = false; # this breaks sddm
 
+  linux_tz = lib.mkForce null;
+
   #musnix.enable = true; # has conflicts with our limit settings for wine esync!
   # https://wiki.nixos.org/wiki/PipeWire
   services.pipewire = {
