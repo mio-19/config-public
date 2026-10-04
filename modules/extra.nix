@@ -45,7 +45,10 @@ let
       opencode
       github-copilot-cli
     ]
-    ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [ dsh ]);
+    ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+      dsh
+      reasonix
+    ]);
 
   commonCliDarwin = args: commonCliHardened args ++ commonCliClean args;
 

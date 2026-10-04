@@ -70,7 +70,7 @@
             uutils-findutils
           ];
       };
-    };
+  };
   den.aspects.rusty = {
     description = "installing Rusty utilities, excluding sudo-rs";
     nixos =
