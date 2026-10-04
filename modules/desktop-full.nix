@@ -327,7 +327,7 @@
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
-            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.cider
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.cider
             handbrake
             tuxguitar # TODO: maybe try firejail for this
             #fluidsynth
