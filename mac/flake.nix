@@ -167,7 +167,7 @@
                 (fetchurl {
                   name = "flyline: init at 1.5.0";
                   url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
-                  hash = "sha256-a44g74r08UfHBRCoQn2ZS0u7pMr60ehvSVE9ihyLCTY=";
+                  hash = "sha256-M2hwE/KpOi9v/sCcXeB7SnXPpqo5aE2E0gkzbzIxvtM=";
                 })
                 (fetchpatch {
                   name = "tuxguitar: fix launch on darwin when app bundle path contains space";
