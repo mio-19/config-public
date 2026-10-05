@@ -22,52 +22,49 @@
         services.snap.enable = true;
         # sudo snap install icloud-for-linux
 
-        # https://search.nixos.org/packages
-        environment.systemPackages =
-          with pkgs;
-          (map hardenedPkg [
-            rustdesk-flutter
-            isabelle
-            (fixTauriPkg rclone-ui)
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rclone-browser
-            #gnome-frog # https://github.com/NixOS/nixpkgs/issues/457538
-            #textsnatcher
-            #gImageReader
-            #dissent
-            heimdall-gui
-            koreader
-            #lan-mouse
-            #transmission_4-qt
-            #(lib.hiPrio transmission_4-gtk)
-            libresprite
-            famistudio
-            audacity
-            powertabeditor
-            guitarix
-            gxplugins-lv2
-            tamgamp-lv2
-            (wrapPrio gnome-software)
-            firebird-emu
-            octaveFull
-            #kdePackages.merkuro # crashed
-            gnome-sound-recorder
-            (wrapPrio gnome-maps)
-            czkawka-full
-            #(fixTauriPkg gitbutler)
-            kicad
-            freac
-            f3d
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rain
-            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
-            # unfree:
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
-          ])
-          ++ (map cleanPkg [
-            signal-desktop
-            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
-            # binaryNativeCode:
-            tor-browser # need non flatpak version for the sandbox - https://github.com/flathub/org.torproject.torbrowser-launcher/issues/67
-          ]);
+        systemPackages_hardened = with pkgs; [
+          rustdesk-flutter
+          isabelle
+          (fixTauriPkg rclone-ui)
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rclone-browser
+          #gnome-frog # https://github.com/NixOS/nixpkgs/issues/457538
+          #textsnatcher
+          #gImageReader
+          #dissent
+          heimdall-gui
+          koreader
+          #lan-mouse
+          #transmission_4-qt
+          #(lib.hiPrio transmission_4-gtk)
+          libresprite
+          famistudio
+          audacity
+          powertabeditor
+          guitarix
+          gxplugins-lv2
+          tamgamp-lv2
+          (wrapPrio gnome-software)
+          firebird-emu
+          octaveFull
+          #kdePackages.merkuro # crashed
+          gnome-sound-recorder
+          (wrapPrio gnome-maps)
+          czkawka-full
+          #(fixTauriPkg gitbutler)
+          kicad
+          freac
+          f3d
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rain
+          #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.gifcurry
+          # unfree:
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
+        ];
+        systemPackages_clean = [
+          signal-desktop
+          #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
+          # binaryNativeCode:
+          tor-browser # need non flatpak version for the sandbox - https://github.com/flathub/org.torproject.torbrowser-launcher/issues/67
+        ];
 
         services.flatpak = {
           enable = true;
