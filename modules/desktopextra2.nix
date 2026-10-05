@@ -23,6 +23,7 @@
         # sudo snap install icloud-for-linux
 
         systemPackages_hardened = with pkgs; [
+          signal-desktop
           rustdesk-flutter
           isabelle
           (fixTauriPkg rclone-ui)
@@ -60,7 +61,6 @@
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
         ];
         systemPackages_clean = [
-          signal-desktop
           #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
           # binaryNativeCode:
           tor-browser # need non flatpak version for the sandbox - https://github.com/flathub/org.torproject.torbrowser-launcher/issues/67
