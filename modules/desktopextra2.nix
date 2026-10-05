@@ -60,7 +60,7 @@
           # unfree:
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
         ];
-        systemPackages_clean = [
+        systemPackages_clean = with pkgs; [
           #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
           # binaryNativeCode:
           tor-browser # need non flatpak version for the sandbox - https://github.com/flathub/org.torproject.torbrowser-launcher/issues/67
