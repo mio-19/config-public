@@ -1409,9 +1409,7 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-pin4": "nixpkgs-pin4",
-        "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-pin6": "nixpkgs-pin6",
-        "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "selector4nix": "selector4nix"
@@ -2348,19 +2346,6 @@
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1082837.c9fe7d12cd78/nixexprs.tar.zst"
       }
     },
-    "nixpkgs-pin5": {
-      "locked": {
-        "lastModified": 1790600678,
-        "narHash": "sha256-k0ouG9zZIYS9D2B6yADfOoMbcUDSBrFg+tfHuUgbHDU=",
-        "rev": "f45c6f04c2f013f004bf94e284e95d72898d9393",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1081052.f45c6f04c2f0/nixexprs.tar.zst"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1081052.f45c6f04c2f0/nixexprs.tar.zst"
-      }
-    },
     "nixpkgs-pin6": {
       "locked": {
         "lastModified": 315532800,
@@ -2371,19 +2356,6 @@
       "original": {
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1051111.d482ef84049d/nixexprs.tar.zst"
-      }
-    },
-    "nixpkgs-pin7": {
-      "locked": {
-        "lastModified": 1790510107,
-        "narHash": "sha256-KveNUoALIFda3G7m2VWk38jiTIky80vwY3h9gGOoF2g=",
-        "rev": "3181085bfd08663b6b9e60bc7a8395c2aaa741bd",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1080404.3181085bfd08/nixexprs.tar.zst"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1080404.3181085bfd08/nixexprs.tar.zst"
       }
     },
     "nixpkgs-python27": {
@@ -2757,10 +2729,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1791183903,
-        "narHash": "sha256-j1tAP8pqQqoXCei5i5bn6EN7U1G+9lPPg3jrOBRpLCY=",
+        "lastModified": 1791184172,
+        "narHash": "sha256-aGzFfW6Uz97CtlkpnzxlCSmnGEViQPOMfy+w7Qff9qQ=",
         "ref": "refs/heads/main",
-        "rev": "8882aae14fab9783f032ecbfc47904eb7a281b8e",
+        "rev": "72fac9de2cb7f56dd30ae1dc518473cc335d8b16",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
