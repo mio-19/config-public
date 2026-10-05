@@ -398,6 +398,7 @@ let
           "scanner"
           "lp"
           "render"
+          "video"
         ];
       commonAdminGroups = commonGroups ++ [
         "wheel"
