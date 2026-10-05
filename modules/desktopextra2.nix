@@ -36,7 +36,6 @@
             #dissent
             heimdall-gui
             koreader
-            signal-desktop
             #lan-mouse
             #transmission_4-qt
             #(lib.hiPrio transmission_4-gtk)
@@ -64,6 +63,7 @@
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
           ])
           ++ (map cleanPkg [
+            signal-desktop
             #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.beam-studio
             # binaryNativeCode:
             tor-browser # need non flatpak version for the sandbox - https://github.com/flathub/org.torproject.torbrowser-launcher/issues/67
