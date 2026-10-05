@@ -101,6 +101,11 @@ let
           default = [ ];
           description = "Packages to be installed and wrapped with hardenedPkg (on NixOS) or just installed (on Darwin).";
         };
+        systemPackages_hardest = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          default = [ ];
+          description = "hardestPkg";
+        };
         systemPackages_clean = lib.mkOption {
           type = lib.types.listOf lib.types.package;
           default = [ ];
@@ -259,10 +264,11 @@ let
       config = {
         environment.systemPackages =
           if isDarwin then
-            config.systemPackages_hardened ++ config.systemPackages_clean
+            config.systemPackages_hardened ++ config.systemPackages_clean ++ config.systemPackages_hardest
           else
             (map nixosInclude.hardenedPkg config.systemPackages_hardened)
-            ++ (map nixosInclude.cleanPkg config.systemPackages_clean);
+            ++ (map nixosInclude.cleanPkg config.systemPackages_clean)
+            ++ (map nixosInclude.hardestPkg config.systemPackages_hardest);
       }
       // lib.optionalAttrs (!isDarwin) {
         assertions = [
