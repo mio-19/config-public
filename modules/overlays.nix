@@ -70,7 +70,7 @@
                 joplin-desktop
                 rpcs3
                 ;
-              inherit (pkgs-pin3) jabref;
+              inherit (pkgs-pin3) jabref koodoo-reader;
             }
           )
           inputs.chaotic.overlays.default
@@ -109,7 +109,7 @@
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin7) blender;
               inherit (pkgs-pin5) joplin-desktop;
-              inherit (pkgs-pin4) mailspring;
+              inherit (pkgs-pin4) mailspring koodoo-reader;
             }
           )
         ];
