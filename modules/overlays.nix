@@ -64,11 +64,9 @@
               inherit (pkgs-pin2)
                 openshot-qt
                 stuntrally
-                zotero
                 scribus
                 smplayer
                 joplin-desktop
-                rpcs3
                 ;
               inherit (pkgs-pin3) jabref koodoo-reader;
             }
