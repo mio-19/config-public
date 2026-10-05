@@ -244,12 +244,12 @@
       {
         systemPackages_hardened = with pkgs; [
           localsend
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
           element-desktop
           qbittorrent-enhanced
           openlogi
         ];
         systemPackages_clean = [
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.pear-desktop_patched # pear-desktop
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
           (if (config.librewolf_firejail or false) then progs.librewolf'_for_firejail else progs.librewolf')
         ];
