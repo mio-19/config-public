@@ -397,6 +397,7 @@ let
           "vboxusers"
           "scanner"
           "lp"
+          "render"
         ];
       commonAdminGroups = commonGroups ++ [
         "wheel"
