@@ -70,6 +70,7 @@
                 joplin-desktop
                 rpcs3
                 ;
+              inherit (pkgs-pin3) jabref;
             }
           )
           inputs.chaotic.overlays.default
