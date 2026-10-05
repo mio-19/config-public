@@ -68,7 +68,7 @@
                 smplayer
                 joplin-desktop
                 ;
-              inherit (pkgs-pin3) jabref koodoo-reader;
+              inherit (pkgs-pin3) jabref;
             }
           )
           inputs.chaotic.overlays.default
