@@ -67,6 +67,7 @@
                 scribus
                 smplayer
                 joplin-desktop
+                zotero
                 ;
               inherit (pkgs-pin3) jabref;
             }
