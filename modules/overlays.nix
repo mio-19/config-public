@@ -109,7 +109,7 @@
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin7) blender;
               inherit (pkgs-pin5) joplin-desktop;
-              inherit (pkgs-pin4) mailspring koodoo-reader;
+              inherit (pkgs-pin4) mailspring;
             }
           )
         ];
