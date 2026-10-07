@@ -16,7 +16,7 @@
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/767b0d3ec98a143ad9ed7dfc0d5553510ac27133"; # https://hydra.nixos.org/job/nixpkgs/unstable/unstable#tabs-constituents
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-pin4.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1082837.c9fe7d12cd78/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
+    #nixpkgs-pin4.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1082837.c9fe7d12cd78/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
     #nixpkgs-pin5.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1081052.f45c6f04c2f0/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
     nixpkgs-pin6.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1051111.d482ef84049d/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
     #nixpkgs-pin7.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1080404.3181085bfd08/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
