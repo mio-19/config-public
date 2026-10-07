@@ -74,8 +74,26 @@ let
     (if config.use_librewolf_bin then librewolfPkgs.librewolf-bin else librewolfPkgs.librewolf).override
       (
         old:
+        let
+          oldPolicies = old.extraPolicies or { };
+          oldSearchEngines = oldPolicies.SearchEngines or { };
+          oldAdd = oldSearchEngines.Add or [ ];
+        in
         {
           extraPrefs = (old.extraPrefs or "") + librewolf_customize_prefs;
+          extraPolicies = oldPolicies // {
+            SearchEngines = oldSearchEngines // {
+              Default = "Google";
+              Add = oldAdd ++ [
+                {
+                  Name = "Google";
+                  URLTemplate = "https://www.google.com/search?q={searchTerms}";
+                  Method = "GET";
+                  Alias = "@g";
+                }
+              ];
+            };
+          };
         }
         // librewolf_declarative_extension_args_for old
       );
