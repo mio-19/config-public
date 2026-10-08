@@ -1568,11 +1568,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791421886,
-        "narHash": "sha256-PuEHLVuafZfGLWmK7nOXtTQJFtXxdWPVGfaN/vPmnT0=",
+        "lastModified": 1791426896,
+        "narHash": "sha256-FPI51zEXHqGap7NKo91Y+CdxCHagruFWP2wnVY0hkUQ=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "d5abfd96e3c2135602fb0b28331a18ce74e16d8c",
+        "rev": "c33d97fbe3df444dea61bd8b36a668f134aeeae6",
         "type": "github"
       },
       "original": {
@@ -2715,10 +2715,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1791423894,
-        "narHash": "sha256-UrJjNEWKI1QcTogxjMPE4EHBzD1YR43iGzorPjylbM0=",
+        "lastModified": 1791436903,
+        "narHash": "sha256-9m2upSxP9lg2cC3mZpM3z8GqCd9LB9FCHlmO0T64+aU=",
         "ref": "refs/heads/main",
-        "rev": "027c2f424b1f1c8202e028052bb406bb861ff809",
+        "rev": "2be1d65a7b3ab9ca57bb8841eb2acb36a7527639",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3277,11 +3277,11 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1791374838,
-        "narHash": "sha256-2ntLlcg4kDzokBr01VB7sjTX92RqAF7k0BBaQejIRS4=",
+        "lastModified": 1791430716,
+        "narHash": "sha256-M2TxouTfTdtPa56H8SaUki2deHu/4WAPQ+dRhK9Bfew=",
         "owner": "StarryReverie",
         "repo": "selector4nix",
-        "rev": "c3da6448faa20f1c46a5dff107a98c0118984979",
+        "rev": "fbebbd4c86972e87a0cf9117a96e20c7a155882b",
         "type": "github"
       },
       "original": {
@@ -3918,10 +3918,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1791367832,
-        "narHash": "sha256-MSFMvb579iNOOx89nEAligQJaLB6Qv1QfAw31eC4JIU=",
+        "lastModified": 1791435089,
+        "narHash": "sha256-BpS+S99I5/oUAelESZqO8cSK7JyZ3C1SL7EsIv3icvI=",
         "ref": "refs/heads/main",
-        "rev": "a2caf7fe6fb6e4786591acb9cdf1306db1b011f7",
+        "rev": "be226e4c3efaaa2a6ae2d8852839f93d31e6ece9",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
