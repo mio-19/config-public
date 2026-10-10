@@ -61,6 +61,27 @@ let
     pref("privacy.clearOnShutdown.offlineApps", false);
     pref("privacy.clearOnShutdown.siteSettings", false);
   ''
+  + ''
+    // Websites that process the picked picture client-side through <canvas>
+    // (preview, resize/crop, EXIF rotation, thumbnail or checksum) get poisoned
+    // canvas data under LibreWolf's default Resist Fingerprinting: pixel
+    // readback returns noise and toDataURL()/toBlob() emit a noise image, so
+    // the upload fails validation or uploads a blank picture.
+    // Exempting a site disables RFP for that site only; the rest of the browser
+    // keeps it. Verified on librewolf-157.0-1: for an exempted host canvas
+    // readback returns the real pixels again, without the exemption it is noise.
+    // Both the bare domain and *.domain are listed: which form covers
+    // subdomains (www.ebay.com) is not worth relying on, and an extra entry is
+    // harmless. Add/remove sites here. Needs a browser restart; mozilla.cfg
+    // re-applies this at every startup, so edit it here and not in about:config.
+    // https://librewolf.net/docs/faq/
+    pref(
+      "privacy.resistFingerprinting.exemptedDomains",
+      "*.example.invalid,ebay.com,*.ebay.com,amazon.com,*.amazon.com,etsy.com,*.etsy.com,"
+      + "vinted.com,*.vinted.com,facebook.com,*.facebook.com,instagram.com,*.instagram.com,"
+      + "reddit.com,*.reddit.com,x.com,*.x.com,whatsapp.com,*.whatsapp.com"
+    );
+  ''
   + lib.optionalString ((config.middle_click_scroll or "off") == "browsers") ''
     // Firefox/LibreWolf: Settings → General → Browsing → "Use autoscrolling"
     // https://support.mozilla.org/kb/mouse-shortcuts-perform-common-tasks
