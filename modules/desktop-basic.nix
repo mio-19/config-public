@@ -145,6 +145,8 @@
           ]
           ++ [
             pkgs.kdePackages.baloo-widgets
+            pkgs.kdePackages.merkuro
+            pkgs.kdePackages.kaddressbook
           ];
         # note: consider null - https://discourse.nixos.org/t/help-i-cant-have-pantheon-gnome-and-plasma-installed-on-my-system-at-the-same-time/47346/4
         services.displayManager.defaultSession = (
