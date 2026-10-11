@@ -10,4 +10,9 @@
     url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
     hash = "sha256-M2hwE/KpOi9v/sCcXeB7SnXPpqo5aE2E0gkzbzIxvtM=";
   })
+  (fetchpatch {
+    name = "deckcraft: init at 0.3.0";
+    url = "https://github.com/NixOS/nixpkgs/pull/572122.patch";
+    hash = "sha256-kVvRvfy6E89XS1XtTsvQdk3v3n8PT2/qezUhcc89ijE=";
+  })
 ]
