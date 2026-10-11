@@ -156,25 +156,23 @@
             nixpkgs-drv = pkgs0.applyPatches {
               name = "nixpkgs-patched";
               src = inputs0.nixpkgs.outPath;
-              patches = with pkgs0; [
-                # possible to consider patches
-                # supertuxkart: updates for darwin and app experience - https://github.com/NixOS/nixpkgs/pull/520901.diff
-                # gimp3: fix Darwin build - https://github.com/NixOS/nixpkgs/pull/513484.diff
-                # lib.options: several small performance cleanups - https://github.com/NixOS/nixpkgs/pull/517802.diff
-                # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
-                # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
-                # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
-                (fetchurl {
-                  name = "flyline: init at 1.5.0";
-                  url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
-                  hash = "sha256-M2hwE/KpOi9v/sCcXeB7SnXPpqo5aE2E0gkzbzIxvtM=";
-                })
-                (fetchpatch {
-                  name = "tuxguitar: fix launch on darwin when app bundle path contains space";
-                  url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
-                  hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
-                })
-              ];
+              patches =
+                with pkgs0;
+                callPackage ../patches.nix
+                ++ [
+                  # possible to consider patches
+                  # supertuxkart: updates for darwin and app experience - https://github.com/NixOS/nixpkgs/pull/520901.diff
+                  # gimp3: fix Darwin build - https://github.com/NixOS/nixpkgs/pull/513484.diff
+                  # lib.options: several small performance cleanups - https://github.com/NixOS/nixpkgs/pull/517802.diff
+                  # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
+                  # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
+                  # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
+                  (fetchpatch {
+                    name = "tuxguitar: fix launch on darwin when app bundle path contains space";
+                    url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
+                    hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
+                  })
+                ];
             };
             nixpkgs =
               (import "${nixpkgs-drv}/flake.nix").outputs {
