@@ -158,7 +158,7 @@
               src = inputs0.nixpkgs.outPath;
               patches =
                 with pkgs0;
-                (callPackage ../patches.nix)
+                (callPackage ../patches.nix { })
                 ++ [
                   # possible to consider patches
                   # supertuxkart: updates for darwin and app experience - https://github.com/NixOS/nixpkgs/pull/520901.diff

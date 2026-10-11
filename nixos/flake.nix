@@ -392,7 +392,7 @@
             src = inputs.nixpkgs;
             # PR .patch URLs track branch head, so the hash changes when the PR is updated.
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
-            patches = (callPackage ../patches.nix) ++ [
+            patches = (callPackage ../patches.nix { }) ++ [
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               /*
