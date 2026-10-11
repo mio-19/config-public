@@ -1,4 +1,4 @@
-{ fetchpatch }:
+{ fetchpatch, fetchurl }:
 [
   (fetchpatch {
     name = "photocraft: init at 0.7.0";
