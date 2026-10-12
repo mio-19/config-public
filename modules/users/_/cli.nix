@@ -284,7 +284,7 @@ in
   */
 
   programs.difftastic = {
-    enable = true;
+    #enable = true;
     # THIS MESS UP AUTOMATION TOOLS. PLEASE CUSTOMIZE git difftool ONLY, NOT git diff
     /*
       git.enable = true;
