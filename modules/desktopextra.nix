@@ -25,7 +25,7 @@
           gridcraft
           wordcraft
           cadcraft
-          lightcraft
+          #lightcraft
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.chatbox
           progs.bifrost
           downkyicore

@@ -35,9 +35,11 @@
     url = "https://github.com/NixOS/nixpkgs/pull/572118.patch";
     hash = "sha256-9BsbRigt9hq29mTB+3Z2a37DU7e+rNvjkiUz4Ous7Gw=";
   })
-  (fetchpatch {
-    name = "lightcraft: init at 0.5.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/571423.patch";
-    hash = "sha256-ryHVF/iGO0dBGcJ1WdB4H+b/SCzAS5rMTJQqZKA9QiM=";
-  })
+  /*
+    (fetchpatch {
+      name = "lightcraft: init at 0.5.0";
+      url = "https://github.com/NixOS/nixpkgs/pull/571423.patch";
+      hash = "sha256-ryHVF/iGO0dBGcJ1WdB4H+b/SCzAS5rMTJQqZKA9QiM=";
+    })
+  */
 ]
