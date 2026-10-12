@@ -21,6 +21,7 @@
       {
         systemPackages_hardened = with pkgs; [
           photocraft
+          deckcraft
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.chatbox
           progs.bifrost
           downkyicore
