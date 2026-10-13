@@ -40,6 +40,7 @@ customize
     pkg:
     builtins.elem (lib.getName pkg) [
       "libnvvm"
+      "cccl"
       "dumpifs"
       "faac"
       "discord-unwrapped"
