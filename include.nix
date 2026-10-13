@@ -39,6 +39,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "libnvvm"
       "dumpifs"
       "faac"
       "discord-unwrapped"
