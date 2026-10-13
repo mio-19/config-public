@@ -2,7 +2,7 @@
 {
   den.aspects.extra2 = {
     description = "Extra CLI/desktop tools and llm-agents packages";
-    nixos =
+    os =
       args@{
         config,
         inputs,
@@ -28,7 +28,7 @@
           with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
           [
             #oh-my-codex
-            oh-my-opencode
+            #oh-my-opencode # too big
           ]
         );
       };
