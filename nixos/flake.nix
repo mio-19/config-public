@@ -415,11 +415,6 @@
                 })
               */
               (fetchpatch {
-                name = "chatgpt: support linux";
-                url = "https://github.com/NixOS/nixpkgs/pull/551713.diff";
-                hash = "sha256-ND4idJBXPttECpF5crevL39QctHKcYHaIHl1l42DSSE=";
-              })
-              (fetchpatch {
                 name = "grub-module-keep-booted-system-entry-option.patch";
                 url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
                 hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
