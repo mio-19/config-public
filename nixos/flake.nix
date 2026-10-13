@@ -470,11 +470,6 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/529035.patch";
                 hash = "sha256-ejSZR/46qHycDVwbVV4UjESICT2CTBbJ4J51hasgRs4=";
               })
-              (fetchpatch {
-                name = "ONLYOFFICE DesktopEditors: updates";
-                url = "https://github.com/NixOS/nixpkgs/pull/526315.patch";
-                hash = "sha256-sIByggHgklk3j1StTFq8mdo4rqx8Mv/ASVo9TgsW6hc=";
-              })
               # https://github.com/NixOS/nixpkgs/issues/442117
               (fetchpatch {
                 name = "Add deny fprintd PAM auth for su/sudo without tty";
