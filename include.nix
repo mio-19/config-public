@@ -133,11 +133,16 @@ customize
       "libcufile"
       "libcusparse_lt"
     ]
-    || lib.all (l: l == licenses.nvidiaCudaRedist || l == licenses.nvidiaCuda || l.free) (
-      lib.toList pkg.meta.license
+    || (
+      lib.any (l: l == licenses.nvidiaCudaRedist || l == licenses.nvidiaCuda) (
+        lib.toList pkg.meta.license
+      )
+      && lib.all (l: l == licenses.nvidiaCudaRedist || l == licenses.nvidiaCuda || l.free) (
+        lib.toList pkg.meta.license
+      )
     )
-    || lib.hasPrefix "cuda-" (lib.getName pkg)
-    || lib.hasPrefix "cuda_" (lib.getName pkg)
+    #|| lib.hasPrefix "cuda-" (lib.getName pkg)
+    #|| lib.hasPrefix "cuda_" (lib.getName pkg)
     || (
       (config.nixpkgs.config.cudaSupport or false)
       && builtins.elem (lib.getName pkg) [
