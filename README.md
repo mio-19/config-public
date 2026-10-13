@@ -32,6 +32,11 @@ wget https://github.com/ccicnce113424/nixos-config/raw/refs/heads/main/lib/apply
 
 put custom options in the top level so they are special: nixos modules options usually have multiple levels config.x.y
 
+clean up home-manager
+```zsh
+nix run nixpkgs#home-manager -- expire-generations '-1 hour'
+```
+
 ## LLM policy
 
 Headache. Use LLM for boring, no-brain tasks. LLM pushed living cost higher? I cannot opt out of the higher living cost by opting out of LLM myself.
