@@ -7,6 +7,7 @@
   ...
 }@args:
 let
+  inherit (lib) licenses;
   infuse = (import ./infuse.nix { inherit lib; }).v1.infuse;
   customize = import ./customize.nix args;
   nixpkgsConfig = osConfig.nixpkgs.config or config.nixpkgs.config or { };
@@ -132,6 +133,9 @@ customize
       "libcufile"
       "libcusparse_lt"
     ]
+    || lib.all (l: l == licenses.nvidiaCudaRedist || l == licenses.nvidiaCuda || l.free) (
+      lib.toList pkg.meta.license
+    )
     || lib.hasPrefix "cuda-" (lib.getName pkg)
     || lib.hasPrefix "cuda_" (lib.getName pkg)
     || (
