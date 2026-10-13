@@ -169,6 +169,7 @@ customize
         "brave-origin"
         "google-fonts"
         "Jan"
+        "jan"
         "mill"
         "tensorboard"
         "motrix-next"
