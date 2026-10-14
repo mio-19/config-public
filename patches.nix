@@ -23,7 +23,7 @@
   (fetchpatch {
     name = "gridcraft: init at 0.3.0";
     url = "https://github.com/NixOS/nixpkgs/pull/572121.patch";
-    hash = "sha256-uaS4DNyK8dOdnT/O4nJIQM+N1EXG69f3380DPYnJpSk=";
+    hash = "sha256-jDY7BLAJ9pBysHf567/qDYQmsHB/ypBuwyYNxnC18Ts=";
   })
   (fetchpatch {
     name = "wordcraft: init at 0.3.0";

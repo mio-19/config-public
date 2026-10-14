@@ -441,7 +441,7 @@
               (fetchpatch {
                 name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
                 url = "https://github.com/NixOS/nixpkgs/pull/526318.patch";
-                hash = "sha256-nAx/qqnbV4lAVBVKxifSoPOj9S/HJ7jW88Ve4y+Yu50=";
+                hash = "sha256-a7p/7aNKwlj5YsT5r/+Qg1b8VHLv5DMfe7ZjA4Mk4EY=";
               })
               /*
                 # conflicts
