@@ -3,7 +3,7 @@
   (fetchpatch {
     name = "craft-fonts: init at 0.1.0";
     url = "https://github.com/NixOS/nixpkgs/pull/572622.patch";
-    hash = "sha256-tA0U9aPPhEW40xgtwsauDczX5xmDjp0NZZDmQ9JD2ps=";
+    hash = "sha256-X3/N51+ZJy90ynwnJUtNwZeEpcaiexLpvykFk0dadZs=";
   })
   (fetchpatch {
     name = "photocraft: init at 0.7.0";
@@ -18,7 +18,7 @@
   (fetchpatch {
     name = "deckcraft: init at 0.3.0";
     url = "https://github.com/NixOS/nixpkgs/pull/572122.patch";
-    hash = "sha256-kVvRvfy6E89XS1XtTsvQdk3v3n8PT2/qezUhcc89ijE=";
+    hash = "sha256-BorAaCN/yh3NqiSh4tz9tsg0eZCbK436AHYlwxldVS8=";
   })
   (fetchpatch {
     name = "gridcraft: init at 0.3.0";
@@ -28,12 +28,12 @@
   (fetchpatch {
     name = "wordcraft: init at 0.3.0";
     url = "https://github.com/NixOS/nixpkgs/pull/572119.patch";
-    hash = "sha256-NSP22fGB4soKhxv37oxA9HisbuQgISRPCz+U/7slloY=";
+    hash = "sha256-4BYp7epvzIhXdBMGGMA0k7NhCLPAcPOCQdDjqR4g+TI=";
   })
   (fetchpatch {
     name = "cadcraft: init at 0.3.0";
     url = "https://github.com/NixOS/nixpkgs/pull/572118.patch";
-    hash = "sha256-9BsbRigt9hq29mTB+3Z2a37DU7e+rNvjkiUz4Ous7Gw=";
+    hash = "sha256-GjfM/UHoqlGRqsOX0WOcW2TjWpO0ntjtk+ppUeN6OkM=";
   })
   /*
     (fetchpatch {
