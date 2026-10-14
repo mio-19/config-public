@@ -135,10 +135,10 @@ customize
     ]
     || (
       lib.any (l: l == licenses.nvidiaCudaRedist || l == licenses.nvidiaCuda) (
-        lib.toList (pkg.meta.license or [])
+        lib.toList (pkg.meta.license or [ ])
       )
       && lib.all (l: l == licenses.nvidiaCudaRedist || l == licenses.nvidiaCuda || l.free) (
-        lib.toList (pkg.meta.license or [])
+        lib.toList (pkg.meta.license or [ ])
       )
     )
     #|| lib.hasPrefix "cuda-" (lib.getName pkg)

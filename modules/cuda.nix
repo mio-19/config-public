@@ -1,7 +1,7 @@
 { den, ... }: {
   den.aspects.cuda = {
     description = "CUDA binary cache and nixpkgs cudaSupport when NVIDIA is enabled";
-    # when including this aspect, put it last after nixos-base-den / baremetal stack
+    # when including this aspect, put it last after common / baremetal stack
     nixos =
       args@{
         config,
