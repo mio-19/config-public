@@ -47,4 +47,9 @@
     url = "https://github.com/NixOS/nixpkgs/pull/573733.diff";
     hash = "sha256-fco71zfnFyclgzLzCmdq1p0hxRcIB+BSUHrQuCFKOhw=";
   })
+  (fetchpatch {
+    name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, mesh-llm-native-runtime, mesh-llm-native-runtime-vulkan: init at 0.78.1; nixos/mesh-llm: init module";
+    url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
+    hash = "sha256-hsi4EFFF/torQJ4WMcsL947yQmAioucQYm8BNsFUMd0=";
+  })
 ]
