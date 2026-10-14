@@ -17,7 +17,7 @@
       with _include;
       {
         imports = [
-          (inputs.mio.nixosModules.miodroid or inputs.mio.legacyPackages."${system}".modules.miodroid)
+          inputs.mio.nixosModules.miodroid
         ];
 
         virtualisation.miodroid-rootless = {
@@ -57,7 +57,7 @@
 
         # Forward the Home Manager module
         home-manager.sharedModules = [
-          (inputs.mio.homeModules.miodroid or inputs.mio.legacyPackages."${system}".homeModules.miodroid or inputs.mio.legacyPackages."${system}".modules.miodroid-rootless)
+          inputs.mio.homeModules.miodroid
         ];
 
         home-manager.users.user = {
