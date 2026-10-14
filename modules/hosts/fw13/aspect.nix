@@ -3,6 +3,7 @@
   den.aspects.fw13 = {
     includes = [
       den.aspects.rusty
+      den.aspects.waydroid
       den.aspects.miodroid
       den.aspects.common
       den.aspects.laptop
