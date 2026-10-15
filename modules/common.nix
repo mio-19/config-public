@@ -94,7 +94,7 @@
               corefonts
               vista-fonts
               vista-fonts-cht
-              vista-fonts-chs
+              #vista-fonts-chs # hash mismatch in fixed-output derivation
               # https://github.com/Lyndeno/apple-fonts.nix/blob/master/flake.nix
               inputs.apple-fonts.packages."${system}".sf-pro
               inputs.apple-fonts.packages."${system}".sf-compact
