@@ -12,7 +12,7 @@
     # --option extra-substituters https://install.determinate.systems --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=
     #determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*"; # https://docs.determinate.systems/guides/advanced-installation#nixos
     #nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-2511.url = "github:NixOS/nixpkgs/release-25.11";
+    #nixpkgs-2511.url = "github:NixOS/nixpkgs/release-25.11";
     #nixpkgs-2505.url = "github:NixOS/nixpkgs/release-25.05";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     #nixpkgs-small.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -41,10 +41,12 @@
       url = "git+https://github.com/nix-community/home-manager.git?shallow=1&ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager-2511 = {
-      url = "git+https://github.com/nix-community/home-manager.git?shallow=1&ref=release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs-2511";
-    };
+    /*
+      home-manager-2511 = {
+        url = "git+https://github.com/nix-community/home-manager.git?shallow=1&ref=release-25.11";
+        inputs.nixpkgs.follows = "nixpkgs-2511";
+      };
+    */
     home-manager-7074 = {
       # based on https://github.com/nix-community/home-manager/pull/7074
       # default set to copy, so homemanager inside WSL can kind of manage windows home files!
@@ -140,13 +142,13 @@
       inputs.flake-compat.follows = "flake-compat";
     };
     nix-on-droid = {
-      #url = "github:nix-community/nix-on-droid/master";
+      url = "github:nix-community/nix-on-droid/master";
       # https://github.com/nix-community/nix-on-droid/pull/523
-      url = "github:petm5/nix-on-droid/aede3d553095e22404bf4966d4faf865f32614db";
-      inputs.nixpkgs.follows = "nixpkgs-2511";
+      #url = "github:petm5/nix-on-droid/aede3d553095e22404bf4966d4faf865f32614db";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-docs.follows = "nix-on-droid/nixpkgs";
       inputs.nixpkgs-for-bootstrap.follows = "nix-on-droid/nixpkgs";
-      inputs.home-manager.follows = "home-manager-2511";
+      inputs.home-manager.follows = "home-manager";
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -600,7 +602,7 @@
             system = "aarch64-linux";
           };
           # https://github.com/nix-community/nix-on-droid/issues/495
-          pkgs = import inputs.nixpkgs-2511 {
+          pkgs = import inputs.nixpkgs {
             system = "aarch64-linux";
             overlays = [
               nix-on-droid.overlays.default
@@ -609,7 +611,7 @@
               #lix-module.overlays.lixFromNixpkgs
             ];
           };
-          home-manager-path = inputs.home-manager-2511.outPath;
+          home-manager-path = inputs.home-manager.outPath;
         };
       };
     };
