@@ -1,6 +1,6 @@
 { den, lib, ... }:
 {
-  den.aspects.husky = {
+  den.aspects.komodo = {
     includes = [
       den.aspects.common
       den.batteries.hostname

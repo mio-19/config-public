@@ -70,7 +70,7 @@ in
         ipc
         deck
         ;
-      inherit (denA64.hosts.aarch64-linux) husky macvirt;
+      inherit (denA64.hosts.aarch64-linux) komodo macvirt;
     in
     {
       # DETAILS REMOVED
@@ -98,10 +98,10 @@ in
           deck.mainModule
         ];
       };
-      nixosConfigurations.husky = nixosSystem {
+      nixosConfigurations.komodo = nixosSystem {
         system = "aarch64-linux";
         modules = [
-          husky.mainModule
+          komodo.mainModule
         ];
       };
       nixosConfigurations.macvirt = nixosSystem {

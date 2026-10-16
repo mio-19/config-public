@@ -28,8 +28,8 @@
     # DETAILS REMOVED
   };
 
-  den.hosts.aarch64-linux.husky = {
-    hostName = "husky";
+  den.hosts.aarch64-linux.komodo = {
+    hostName = "komodo";
     users.user.classes = [ "homeManager" ];
     users.user.nixosZshUser.enable = true;
   };

@@ -27,7 +27,7 @@ with _include;
   };
 
   system.stateVersion = "25.11";
-  networking.hostName = "husky";
+  networking.hostName = "komodo";
 
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
