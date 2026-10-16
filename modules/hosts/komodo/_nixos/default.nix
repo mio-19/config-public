@@ -26,7 +26,7 @@ with _include;
     uid = 1001;
   };
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
   networking.hostName = "komodo";
 
   services.tailscale.enable = true;
