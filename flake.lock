@@ -1171,29 +1171,6 @@
         "type": "github"
       }
     },
-    "home-manager-2511": {
-      "inputs": {
-        "nixpkgs": [
-          "nixos",
-          "nixpkgs-2511"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779506708,
-        "narHash": "sha256-QOD/CNm196nCJRheux/URi4/HE66fthdOMqCJoPP1Y0=",
-        "ref": "release-25.11",
-        "rev": "3ee51fbdac8c8bdfe1e7e1fcaba6520a563f394f",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/nix-community/home-manager.git"
-      },
-      "original": {
-        "ref": "release-25.11",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/nix-community/home-manager.git"
-      }
-    },
     "home-manager-7074": {
       "inputs": {
         "nixpkgs": [
@@ -1856,12 +1833,12 @@
       "inputs": {
         "home-manager": [
           "nixos",
-          "home-manager-2511"
+          "home-manager"
         ],
         "nix-formatter-pack": "nix-formatter-pack",
         "nixpkgs": [
           "nixos",
-          "nixpkgs-2511"
+          "nixpkgs"
         ],
         "nixpkgs-docs": [
           "nixos",
@@ -1876,17 +1853,17 @@
         "nmd": "nmd"
       },
       "locked": {
-        "lastModified": 1776023155,
-        "narHash": "sha256-kMS+sua7M4TrFCz5wa7zOXCzXg0aoG6yvnVjvgswa3U=",
-        "owner": "petm5",
+        "lastModified": 1787352026,
+        "narHash": "sha256-2MKUKRNV+5qs3nbQDmz7L6KRHSEHDy/lZjfIAYMZSOE=",
+        "owner": "nix-community",
         "repo": "nix-on-droid",
-        "rev": "aede3d553095e22404bf4966d4faf865f32614db",
+        "rev": "df611d5358360092b1d2e7e756f94b23843bd9d6",
         "type": "github"
       },
       "original": {
-        "owner": "petm5",
+        "owner": "nix-community",
+        "ref": "master",
         "repo": "nix-on-droid",
-        "rev": "aede3d553095e22404bf4966d4faf865f32614db",
         "type": "github"
       }
     },
@@ -2062,7 +2039,6 @@
         "grub2-themes": "grub2-themes",
         "hercules-ci-effects": "hercules-ci-effects",
         "home-manager": "home-manager_2",
-        "home-manager-2511": "home-manager-2511",
         "home-manager-7074": "home-manager-7074",
         "impermanence": "impermanence",
         "import-tree": "import-tree_2",
@@ -2090,7 +2066,6 @@
           "nixos",
           "nixpkgs-unstable"
         ],
-        "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-pin3": "nixpkgs-pin3",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
@@ -2258,22 +2233,6 @@
       "original": {
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
-      }
-    },
-    "nixpkgs-2511": {
-      "locked": {
-        "lastModified": 1783375776,
-        "narHash": "sha256-pg6hLjDeAWaUOzh2JM2Cw0BwYpGtOyNr6A4FBwP9Ymo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "cd648d6ea62bc0ffba91e61fcfe5e33c1e2004b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-25.11",
-        "repo": "nixpkgs",
-        "type": "github"
       }
     },
     "nixpkgs-lib": {
