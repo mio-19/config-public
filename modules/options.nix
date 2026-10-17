@@ -82,9 +82,10 @@ let
             "nix_git"
             "nix_latest"
             "lix"
+            "nix_pin4"
           ];
           # is latest nix broken on darwin?
-          default = if stdenv.hostPlatform.isDarwin then "nix" else "nix_latest";
+          default = if stdenv.hostPlatform.isDarwin then "nix_pin4" else "nix_latest";
           description = "use ?";
         };
         ridiculous_fonts = lib.mkOption {

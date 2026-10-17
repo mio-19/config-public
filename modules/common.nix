@@ -132,6 +132,8 @@
               pkgs-chaotic.nix_git
             else if config.use_this_ix == "nix_latest" then
               pkgs.nixVersions.latest
+            else if config.use_this_ix == "nix_pin4" then
+              pkgs-pin4.nix
             else
               assert config.use_this_ix == "nix";
               pkgs.nix;
