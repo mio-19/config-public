@@ -27,6 +27,7 @@
           cadcraft
           #lightcraft
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.chatbox
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.archivetune
           progs.bifrost
           downkyicore
           ghidra
