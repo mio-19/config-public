@@ -350,6 +350,8 @@ customize
     builtins.any (
       p: builtins.match ".*cursor.*" (lib.getName p) != null
     ) cfg.environment.systemPackages;
+  isLix = pkg: pkg != null && lib.hasPrefix "lix" (lib.getName pkg);
+  isLixFor = cfg: isLix (cfg.nix.package or null);
 
   # based on https://github.com/NixOS/nixpkgs/blob/d407951447dcd00442e97087bf374aad70c04cea/pkgs/top-level/unixtools.nix#L31-L70 singleBinary
   singleBinary =

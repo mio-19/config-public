@@ -779,5 +779,6 @@ this
       atleastV4 = this.atleastV4For cfg;
       hasAntigravity = this.hasAntigravityFor cfg;
       hasCursor = this.hasCursorFor cfg;
+      isLix = this.isLixFor cfg;
     };
 }

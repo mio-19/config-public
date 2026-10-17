@@ -74,6 +74,9 @@
         ...
       }:
       with _include;
+      let
+        isLix = isLixFor config;
+      in
       {
         programs.fish.enable = true;
         programs.fish.useBabelfish = true;
@@ -125,27 +128,19 @@
           ];
 
         nix = {
-          package =
-            if config.use_this_ix == "lix" then
-              pkgs.lixPackageSets.latest.lix
-            else if config.use_this_ix == "nix_git" then
-              pkgs-chaotic.nix_git
-            else if config.use_this_ix == "nix_latest" then
-              pkgs.nixVersions.latest
-            else if config.use_this_ix == "nix_pin4" then
-              pkgs-pin4.nix
-            else
-              assert config.use_this_ix == "nix";
-              pkgs.nix;
+          package = lib.mkDefault (
+            # is latest nix broken on darwin?
+            if pkgs.stdenv.hostPlatform.isDarwin then pkgs-pin4.nix else pkgs.nixVersions.latest
+          );
           settings = {
             sandbox = if pkgs.stdenv.hostPlatform.isDarwin then "relaxed" else true;
             auto-optimise-store = true;
-            lint-url-literals = lib.mkIf (config.use_this_ix != "lix") "fatal";
+            lint-url-literals = lib.mkIf (!isLix) "fatal";
             experimental-features = [
               "nix-command"
               "flakes"
             ]
-            ++ lib.optionals (config.use_this_ix != "lix") [
+            ++ lib.optionals (!isLix) [
               "blake3-hashes"
             ];
           };

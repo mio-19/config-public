@@ -76,18 +76,6 @@ let
             if stdenv.hostPlatform.isDarwin then true else stdenv.hostPlatform.isx86_64 && inc.atleastV3;
           description = "compile our custom materialgram&telegram";
         };
-        use_this_ix = lib.mkOption {
-          type = lib.types.enum [
-            "nix"
-            "nix_git"
-            "nix_latest"
-            "lix"
-            "nix_pin4"
-          ];
-          # is latest nix broken on darwin?
-          default = if stdenv.hostPlatform.isDarwin then "nix_pin4" else "nix_latest";
-          description = "use ?";
-        };
         ridiculous_fonts = lib.mkOption {
           type = lib.types.bool;
           default = false;
