@@ -540,11 +540,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1792186720,
-        "narHash": "sha256-n4qy2036HgHO/xicF8A6NTfAbViQUA+fjhsWEX3shfw=",
+        "lastModified": 1792194852,
+        "narHash": "sha256-fzFLPvOwep6CJfyCTne7h+N3hwr3t51/hBpmjJdiiBs=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "4f727f609ffe42ebffab1dd55b5e85d913e78fbd",
+        "rev": "24335005eb2edb1c155163d7f08fca310f34e3c6",
         "type": "github"
       },
       "original": {
@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792190778,
-        "narHash": "sha256-hb3S8/swzIyfbeXtJ/yDdgGk4/iE/pq+nDfZWK4GeDM=",
+        "lastModified": 1792197497,
+        "narHash": "sha256-nC758NtqBZOZKSnIuyAYzQ/lIKjQL8hEN3vyFv+1G94=",
         "ref": "refs/heads/main",
-        "rev": "5945e3f032a2b247070aea104608307fbe5e8e49",
-        "revCount": 134,
+        "rev": "08be28bda7fb0c09b801758ffcac81d5e2de438b",
+        "revCount": 142,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -704,6 +704,19 @@
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
         "type": "github"
+      }
+    },
+    "nixpkgs-pin5": {
+      "locked": {
+        "lastModified": 1791966044,
+        "narHash": "sha256-UwKRZKua8BOagYl0cou05BHtu7F6XV62FD2Hb+f0QYs=",
+        "rev": "319e4cebef10cbb636c6ea392137b52ad105336a",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1092129.319e4cebef10/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1092129.319e4cebef10/nixexprs.tar.zst"
       }
     },
     "nixpkgs-pin6": {
@@ -831,11 +844,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792190875,
-        "narHash": "sha256-JWNCCgZEp8n6W/nxiRAfGSuw/Frw0w0AiJLKVNo6dPc=",
+        "lastModified": 1792197588,
+        "narHash": "sha256-7awBNBBWaZTRVVn+8EHzXz8y/PAQHaKZIkBEE4vK0yo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "520e102dc636e7b57328029392825017a48eca1f",
+        "rev": "775f061d7a61c7e0d47d086753daecefd988790e",
         "type": "github"
       },
       "original": {
@@ -953,6 +966,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-pin6": "nixpkgs-pin6",
         "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-unstable": "nixpkgs-unstable",
