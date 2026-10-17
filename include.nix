@@ -183,7 +183,7 @@ customize
         "jan"
         "mill"
         "tensorboard"
-        "motrix-next"
+        "rayburst"
         "librusty_v8"
         "dotnet-sdk"
         "koreader"

@@ -161,7 +161,7 @@
             jellyfin-desktop
             cpu-x
             giada
-            motrix-next
+            rayburst
             xfce4-terminal
             alacritty
             #kdePackages.tokodon
