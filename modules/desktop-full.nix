@@ -284,7 +284,6 @@
             bitwarden-desktop
             prusa-slicer
             #ytmdesktop # no: this one cannot block ad
-            fluffychat
             progs.zulip
             normcap
             (if qtIsPreferred then libreoffice-qt-stable else libreoffice-stable)
@@ -326,6 +325,7 @@
             sublime-merge # (callPackage ./sublime-merge.nix { })
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
+            fluffychat
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.apple-music-desktop
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.cider
             handbrake
@@ -395,7 +395,7 @@
             };
             # recently fluffychat broken with firejail
             /*
-              fluffychat = {
+              fluffychat = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
                 executable = "${hardenedPkg fluffychat}/bin/fluffychat";
                 profile = "${pkgs.firejail}/etc/firejail/fluffychat.profile";
               };
