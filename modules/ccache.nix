@@ -22,7 +22,9 @@
         '';
 
         # https://nixos.wiki/wiki/CCache
-        programs.ccache.enable = true;
+        # The target executable /nix/store/709y7bnw6dsmp7cy0bhpvgy243vd7dbg-nix-ccache.pl is not an ELF! This is a security risk.
+        # Script wrappers (e.g. bash or python) are commonly susceptible to dangerous env var injections.
+        #programs.ccache.enable = true;
         programs.ccache.cacheDir = "/var/cache/ccache";
         programs.ccache.packageNames = [
           "materialgram-unwrapped"
