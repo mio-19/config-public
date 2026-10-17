@@ -107,6 +107,7 @@
               raycast = mio.raycast_macos15;
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin7) atuin;
+              inherit (pkgs-pin5) mailspring;
             }
           )
         ];
