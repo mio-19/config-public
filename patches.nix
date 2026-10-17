@@ -47,7 +47,7 @@
   (fetchpatch {
     name = "openlogi: 0.6.25 -> 0.8.13";
     url = "https://github.com/NixOS/nixpkgs/pull/573733.diff";
-    hash = "sha256-fco71zfnFyclgzLzCmdq1p0hxRcIB+BSUHrQuCFKOhw=";
+    hash = "sha256-AfhFg4ALppXSIRyCiEbZQl8LhcA3Fhi7H5rKUtznQwo=";
   })
   (fetchpatch {
     name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, mesh-llm-native-runtime, mesh-llm-native-runtime-vulkan: init at 0.78.1; nixos/mesh-llm: init module";
