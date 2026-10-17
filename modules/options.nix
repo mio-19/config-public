@@ -83,7 +83,8 @@ let
             "nix_latest"
             "lix"
           ];
-          default = "nix_latest";
+          # is latest nix broken on darwin?
+          default = if stdenv.hostPlatform.isDarwin then "nix" else "nix_latest";
           description = "use ?";
         };
         ridiculous_fonts = lib.mkOption {
