@@ -139,15 +139,11 @@
         # lockscreen of gnome is only working with gdm
         services.desktopManager.gnome.enable = config.services.displayManager.gdm.enable;
         services.desktopManager.plasma6.enable = true;
-        environment.plasma6.excludePackages =
-          lib.optionals config.services.displayManager.plasma-login-manager.enable [
-            pkgs.kdePackages.kwin-x11 # https://github.com/NixOS/nixpkgs/pull/479797#issuecomment-3748683491
-          ]
-          ++ [
-            pkgs.kdePackages.baloo-widgets
-            pkgs.kdePackages.merkuro
-            pkgs.kdePackages.kaddressbook
-          ];
+        environment.plasma6.excludePackages = [
+          pkgs.kdePackages.baloo-widgets
+          pkgs.kdePackages.merkuro
+          pkgs.kdePackages.kaddressbook
+        ];
         # note: consider null - https://discourse.nixos.org/t/help-i-cant-have-pantheon-gnome-and-plasma-installed-on-my-system-at-the-same-time/47346/4
         services.displayManager.defaultSession = (
           if config.services.displayManager.gdm.enable then
