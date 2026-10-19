@@ -144,6 +144,13 @@ in
     configFile = {
       # https://github.com/nix-community/plasma-manager/blob/6a7d78cebd9a0f84a508bec9bc47ac504c5f51f4/examples/homeManager/home.nix#L70
       "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
+      "dolphinrc" = {
+        "General"."ShowInformationPanel" = false;
+        "InformationPanel" = {
+          "AutoPlayMedia" = true;
+          "PreviewSize" = 256;
+        };
+      };
     };
 
     # https://github.com/9dkc/dotfiles/blob/cbbfeb63729a97d735edf033eaf1f99f6ac957e7/modules/home/desktop/kde/kwin.nix#L7
@@ -190,6 +197,18 @@ in
         };
       }
     ];
+  };
+
+  # Press Space in Dolphin to toggle Information Panel (file inspection preview)
+  xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc" = lib.mkIf osConfig.services.desktopManager.plasma6.enable {
+    text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <kpartgui name="dolphin" version="25">
+        <ActionProperties>
+          <Action name="show_information_panel" shortcut="Space"/>
+        </ActionProperties>
+      </kpartgui>
+    '';
   };
 
   # https://github.com/keenanweaver/nix-config/blob/78fa3cb210be76a64241def0e788edfdab03df6e/modules/apps/steam/default.nix#L117
