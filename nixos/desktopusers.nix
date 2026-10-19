@@ -144,6 +144,7 @@ in
     configFile = {
       # https://github.com/nix-community/plasma-manager/blob/6a7d78cebd9a0f84a508bec9bc47ac504c5f51f4/examples/homeManager/home.nix#L70
       "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
+      # Press Space in Dolphin to toggle Information Panel (file inspection preview)
       "dolphinrc" = {
         "General"."ShowInformationPanel" = false;
         "InformationPanel" = {
