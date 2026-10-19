@@ -200,16 +200,18 @@ in
   };
 
   # Press Space in Dolphin to toggle Information Panel (file inspection preview)
-  xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc" = lib.mkIf osConfig.services.desktopManager.plasma6.enable {
-    text = ''
-      <?xml version="1.0" encoding="UTF-8"?>
-      <kpartgui name="dolphin" version="25">
-        <ActionProperties>
-          <Action name="show_information_panel" shortcut="Space"/>
-        </ActionProperties>
-      </kpartgui>
-    '';
-  };
+  xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc" =
+    lib.mkIf osConfig.services.desktopManager.plasma6.enable
+      {
+        text = ''
+          <?xml version="1.0" encoding="UTF-8"?>
+          <kpartgui name="dolphin" version="25">
+            <ActionProperties>
+              <Action name="show_information_panel" shortcut="Space"/>
+            </ActionProperties>
+          </kpartgui>
+        '';
+      };
 
   # https://github.com/keenanweaver/nix-config/blob/78fa3cb210be76a64241def0e788edfdab03df6e/modules/apps/steam/default.nix#L117
   home.file.steam-slow-fix = {
