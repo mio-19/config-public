@@ -10,11 +10,6 @@
     url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
     hash = "sha256-M2hwE/KpOi9v/sCcXeB7SnXPpqo5aE2E0gkzbzIxvtM=";
   })
-  (fetchpatch {
-    name = "gridcraft: init at 0.3.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572121.patch";
-    hash = "sha256-FZtdZAjwhRh/IfVfWjitslcEv1UB9B4P1ny9wqfkXcc=";
-  })
   /*
     (fetchpatch {
       name = "wordcraft: init at 0.3.0";
