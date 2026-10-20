@@ -395,6 +395,11 @@
             # PR .patch URLs track branch head, so the hash changes when the PR is updated.
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
             patches = (callPackage ../patches.nix { }) ++ [
+              (fetchpatch {
+                name = "craft-fonts: init at 0.1.0 (#572622)";
+                url = "https://github.com/NixOS/nixpkgs/commit/392cd66673d9d7f6e7575362938c7ca472235428.patch";
+                hash = "sha256-iEMeR68SGPJLJw8BwWWeyEyTkY0WAArhp0DHjYldUoc=";
+              })
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               /*

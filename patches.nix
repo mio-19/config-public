@@ -1,11 +1,6 @@
 { fetchpatch, fetchurl }:
 [
   (fetchpatch {
-    name = "craft-fonts: init at 0.1.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572622.patch";
-    hash = "sha256-X3/N51+ZJy90ynwnJUtNwZeEpcaiexLpvykFk0dadZs=";
-  })
-  (fetchpatch {
     name = "photocraft: init at 0.7.0";
     url = "https://github.com/NixOS/nixpkgs/pull/571418.patch";
     hash = "sha256-m0FWIP4LxuJtvUKI5Tdyu2tZsjuMiiAD9OkZyW4zbMM=";
