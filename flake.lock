@@ -277,17 +277,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1783394282,
-        "narHash": "sha256-aHKHSvTLProiVzyMKOo+nbRff9Ts3dTX9PpxlYcc084=",
+        "lastModified": 1791855551,
+        "narHash": "sha256-7KcwzJgoC4rvTpiJHdcALxbeggvHDNG57j3K0LsYoVI=",
         "owner": "brsvh",
         "repo": "chinese-fonts-overlay",
-        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "rev": "89ec4f91c50bbc3515641b91b2fa63538f1df8f5",
         "type": "github"
       },
       "original": {
         "owner": "brsvh",
         "repo": "chinese-fonts-overlay",
-        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "rev": "89ec4f91c50bbc3515641b91b2fa63538f1df8f5",
         "type": "github"
       }
     },
@@ -299,17 +299,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1783394282,
-        "narHash": "sha256-aHKHSvTLProiVzyMKOo+nbRff9Ts3dTX9PpxlYcc084=",
+        "lastModified": 1791855551,
+        "narHash": "sha256-7KcwzJgoC4rvTpiJHdcALxbeggvHDNG57j3K0LsYoVI=",
         "owner": "brsvh",
         "repo": "chinese-fonts-overlay",
-        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "rev": "89ec4f91c50bbc3515641b91b2fa63538f1df8f5",
         "type": "github"
       },
       "original": {
         "owner": "brsvh",
         "repo": "chinese-fonts-overlay",
-        "rev": "da90d47fa1a6f8fbfcc5795bc9351c98142f37ea",
+        "rev": "89ec4f91c50bbc3515641b91b2fa63538f1df8f5",
         "type": "github"
       }
     },
@@ -1814,17 +1814,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1783629929,
-        "narHash": "sha256-8xeLMOhYoxntFjYHmyC0Imao3dDJhJUpYRFbQjKkJuE=",
+        "lastModified": 1792339378,
+        "narHash": "sha256-2GSp02yOdG9BSvb0c9SW1nsMnUpjR1/WBKskGz0D+8g=",
         "owner": "cynicsketch",
         "repo": "nix-mineral",
-        "rev": "16c219cdf9c7349591e4570779092d86c9bfbaec",
+        "rev": "bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce",
         "type": "github"
       },
       "original": {
         "owner": "cynicsketch",
         "repo": "nix-mineral",
-        "rev": "16c219cdf9c7349591e4570779092d86c9bfbaec",
+        "rev": "bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce",
         "type": "github"
       }
     },
