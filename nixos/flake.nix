@@ -109,7 +109,7 @@
       };
     */
     # pin niche inputs to avoid bad people taking over.
-    nix-flatpak.url = "github:gmodena/nix-flatpak/20d42f0ee98c9fe9f85e8d1de474f1409ed10d05";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/02656785ab214fa1c9655f1beaaf0269eeeec2ca";
     /*
       lix-module = {
         #url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
@@ -244,7 +244,7 @@
     #};
     steam-config-nix = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:different-name/steam-config-nix/36c3dc1cfa60a5ce4032bcd801b094e770d8b871";
+      url = "github:different-name/steam-config-nix/ae75eb33cfd73929f519882cc8ec8294bfdc3c0d";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.systems.follows = "systems";
@@ -258,7 +258,7 @@
     };
     nix-snapd = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:nix-community/nix-snapd/f7694a0e26d890e285137e1b726b1b44038805c4";
+      url = "github:nix-community/nix-snapd/69270de9f56f7c4e0dcf87ea32d882723bf04731";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
@@ -274,7 +274,7 @@
     */
     nix-bwrapper = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:Naxdy/nix-bwrapper/49be156ec0ffff4afee501746ff965a5c4776bbd";
+      url = "github:Naxdy/nix-bwrapper/d170b06fafc0703fff36ec422a64516594b39bd9";
       inputs.nixpkgs.follows = "nixpkgs";
       #inputs.treefmt-nix.follows = "llm-agents/treefmt-nix";
       inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -283,7 +283,7 @@
     };
     nixpak = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:nixpak/nixpak/be97295fa81fe743b9753449143dd4931e51d63c";
+      url = "github:nixpak/nixpak/b5811f96aead6c01388095a2b0839559c72c73fe";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.hercules-ci-effects.follows = "hercules-ci-effects";
@@ -355,9 +355,9 @@
       };
     */
     # pin niche inputs to avoid bad people taking over.
-    import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
+    import-tree.url = "github:denful/import-tree/eb1b52eaecc57f7c136d07ae8a93e724dfecac46";
     # pin niche inputs to avoid bad people taking over.
-    den.url = "github:denful/den/99cc0c5a1cc846cb1be681344b10d2731d430e13";
+    den.url = "github:denful/den/436350eea1cde7d059877ed04bbd5d35852e3097";
     # pin to avoid rebuild
     mio-betterbird.url = "github:mio-19/nurpkgs/e15beb66617ebc0ae14103424e1d747361008e45";
     chinese-fonts-overlay = {
