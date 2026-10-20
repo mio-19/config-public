@@ -336,7 +336,7 @@
     };
     nix-mineral = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:cynicsketch/nix-mineral/16c219cdf9c7349591e4570779092d86c9bfbaec";
+      url = "github:cynicsketch/nix-mineral/bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
@@ -364,7 +364,7 @@
     mio-betterbird.url = "github:mio-19/nurpkgs/e15beb66617ebc0ae14103424e1d747361008e45";
     chinese-fonts-overlay = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:brsvh/chinese-fonts-overlay/da90d47fa1a6f8fbfcc5795bc9351c98142f37ea";
+      url = "github:brsvh/chinese-fonts-overlay/89ec4f91c50bbc3515641b91b2fa63538f1df8f5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     apple-fonts = {
