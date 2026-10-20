@@ -432,11 +432,14 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
                 hash = "sha256-rXSixbD+aiCcnwqSNCSeIgtkY0o5M7sWlorL8GXCuws=";
               })
-              (fetchpatch {
-                name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
-                url = "https://github.com/NixOS/nixpkgs/pull/526318.patch";
-                hash = "sha256-a7p/7aNKwlj5YsT5r/+Qg1b8VHLv5DMfe7ZjA4Mk4EY=";
-              })
+              /*
+                # conflicts
+                (fetchpatch {
+                  name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
+                  url = "https://github.com/NixOS/nixpkgs/pull/526318.patch";
+                  hash = "sha256-a7p/7aNKwlj5YsT5r/+Qg1b8VHLv5DMfe7ZjA4Mk4EY=";
+                })
+              */
               /*
                 # conflicts
                 (fetchpatch {
