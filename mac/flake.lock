@@ -759,11 +759,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1792455978,
-        "narHash": "sha256-/5WFAj6mHK42BAr6TU8seaSF+TbnB1jF/ZfRGC8gDcU=",
-        "rev": "70fdef7c16ffb24c9c74d91c73e438a39b46bfb5",
+        "lastModified": 1792488032,
+        "narHash": "sha256-jWdazKTNUOJQ3KE+9BAvpBOo6THrD0Qyb3S8F2GduUI=",
+        "rev": "e513db7b0a65def6f6e17bb55195dfe510871944",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1097458.70fdef7c16ff/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1097569.e513db7b0a65/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
