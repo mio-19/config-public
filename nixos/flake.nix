@@ -410,6 +410,11 @@
                 url = "https://github.com/NixOS/nixpkgs/commit/1c1e8fcc1d0b9d3831eb20ffc6652d0b9753b4d4.patch";
                 hash = "sha256-mQXZpCEM2e+3fO44F/uJ3yyoQD5wU1IlTbplLwoir+o=";
               })
+              (fetchpatch {
+                name = "cadcraft: init at 0.6.2 (#572118)";
+                url = "https://github.com/NixOS/nixpkgs/commit/5790c1c4fe22b50c276ea7da5b266969a0cfa340.patch";
+                hash = "sha256-GjfM/UHoqlGRqsOX0WOcW2TjWpO0ntjtk+ppUeN6OkM=";
+              })
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               /*

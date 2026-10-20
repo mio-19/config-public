@@ -12,18 +12,6 @@
   })
   /*
     (fetchpatch {
-      name = "wordcraft: init at 0.3.0";
-      url = "https://github.com/NixOS/nixpkgs/pull/572119.patch";
-      hash = "sha256-4BYp7epvzIhXdBMGGMA0k7NhCLPAcPOCQdDjqR4g+TI=";
-    })
-  */
-  (fetchpatch {
-    name = "cadcraft: init at 0.3.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572118.patch";
-    hash = "sha256-GjfM/UHoqlGRqsOX0WOcW2TjWpO0ntjtk+ppUeN6OkM=";
-  })
-  /*
-    (fetchpatch {
       name = "lightcraft: init at 0.5.0";
       url = "https://github.com/NixOS/nixpkgs/pull/571423.patch";
       hash = "sha256-ryHVF/iGO0dBGcJ1WdB4H+b/SCzAS5rMTJQqZKA9QiM=";
