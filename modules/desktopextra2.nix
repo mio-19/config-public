@@ -19,9 +19,7 @@
           inputs.nix-snapd.nixosModules.default
           (import ../aspect.nix "extra2")
         ];
-        # > The target executable /nix/store/giwnic01rn1vfvbd9ilwr1r85cg9qg5k-snap-2.67/libexec/snapd/snap-confine-stage-1 is not an EL
-        # > Script wrappers (e.g. bash or python) are commonly susceptible to dangerous env var injections.
-        #services.snap.enable = true;
+        services.snap.enable = true;
         # sudo snap install icloud-for-linux
 
         systemPackages_hardened = with pkgs; [
