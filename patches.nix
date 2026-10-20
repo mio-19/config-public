@@ -11,11 +11,6 @@
     hash = "sha256-M2hwE/KpOi9v/sCcXeB7SnXPpqo5aE2E0gkzbzIxvtM=";
   })
   (fetchpatch {
-    name = "deckcraft: init at 0.3.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572122.patch";
-    hash = "sha256-BorAaCN/yh3NqiSh4tz9tsg0eZCbK436AHYlwxldVS8=";
-  })
-  (fetchpatch {
     name = "gridcraft: init at 0.3.0";
     url = "https://github.com/NixOS/nixpkgs/pull/572121.patch";
     hash = "sha256-FZtdZAjwhRh/IfVfWjitslcEv1UB9B4P1ny9wqfkXcc=";

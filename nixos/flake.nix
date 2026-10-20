@@ -400,6 +400,11 @@
                 url = "https://github.com/NixOS/nixpkgs/commit/392cd66673d9d7f6e7575362938c7ca472235428.patch";
                 hash = "sha256-iEMeR68SGPJLJw8BwWWeyEyTkY0WAArhp0DHjYldUoc=";
               })
+              (fetchpatch {
+                name = "deckcraft: init at 0.6.1 (#572122)";
+                url = "https://github.com/NixOS/nixpkgs/commit/cd8722a35e85a4aae61ef17e21003a0dd85247d1.patch";
+                hash = "sha256-BorAaCN/yh3NqiSh4tz9tsg0eZCbK436AHYlwxldVS8=";
+              })
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               /*
