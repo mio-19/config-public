@@ -716,11 +716,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792537819,
-        "narHash": "sha256-ARZDzZjNO5qnUkPyREMbAMA/+9HzlQ/vzpbLzAeBdRU=",
+        "lastModified": 1792555982,
+        "narHash": "sha256-IKwTRR/NGqwIilc9E+xePm590U5CdaXU0IbHX9dvmag=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "9d41351cd41c70c69f9a4ba635d95d5921ceed33",
+        "rev": "67094fffbbcee1816ceff9abf2270865a4d9acba",
         "type": "github"
       },
       "original": {
@@ -1119,11 +1119,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792469998,
-        "narHash": "sha256-0edTSOJNJ07Yp2WbBTd0OjYhpKVMWHXXBwSTFi+tbsg=",
+        "lastModified": 1792555615,
+        "narHash": "sha256-hgkjMS7s4GRhZiHAgzF1UHFrXwu+2dcBohgF57Wrgps=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "d7743ed8bf8226afc1ea097ee87b49c5178cbe9c",
+        "rev": "2a46f9d8fac507c47e8a659d5a4e91676d06273c",
         "type": "github"
       },
       "original": {
@@ -1331,6 +1331,19 @@
         "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs-pin": {
+      "locked": {
+        "lastModified": 1792094642,
+        "narHash": "sha256-LPFRbrCWWyNsdQLO3SX1B/5UMkFK0hfe7bZR6lENvpc=",
+        "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.zst"
       }
     },
     "nixpkgs-pin2": {
@@ -1577,10 +1590,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1792550706,
-        "narHash": "sha256-BHv1ClVcSIKmtVgS4Mt6RbF5S7Ce8dSi34+5nOQ4qMg=",
+        "lastModified": 1792561384,
+        "narHash": "sha256-/W94GWzwimjDW7jObOcyKwTRFvv5/T89qzr3BovkSCI=",
         "ref": "refs/heads/main",
-        "rev": "b55cc1797e3d7ae06da6b12c7b721e7520f8a987",
+        "rev": "82e5b3879ec3b301dccf281e4eed4c3b91f8c12f",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -1945,6 +1958,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
+        "nixpkgs-pin": "nixpkgs-pin",
         "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-pin3": "nixpkgs-pin3",
         "nixpkgs-unstable": "nixpkgs-unstable",
