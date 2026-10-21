@@ -719,19 +719,6 @@
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1084597.73e728ddb6b7/nixexprs.tar.zst"
       }
     },
-    "nixpkgs-pin5": {
-      "locked": {
-        "lastModified": 1791966044,
-        "narHash": "sha256-UwKRZKua8BOagYl0cou05BHtu7F6XV62FD2Hb+f0QYs=",
-        "rev": "319e4cebef10cbb636c6ea392137b52ad105336a",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1092129.319e4cebef10/nixexprs.tar.zst"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1092129.319e4cebef10/nixexprs.tar.zst"
-      }
-    },
     "nixpkgs-pin6": {
       "locked": {
         "lastModified": 315532800,
@@ -742,19 +729,6 @@
       "original": {
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1051111.d482ef84049d/nixexprs.tar.zst"
-      }
-    },
-    "nixpkgs-pin7": {
-      "locked": {
-        "lastModified": 1791637130,
-        "narHash": "sha256-Xdc4viyLXXA3qos9fo2Ezb+JxRasKk99tSasmSAdnSc=",
-        "rev": "ca1659429c950a11a565b5764e37a1b704e17ec8",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1089329.ca1659429c95/nixexprs.tar.zst"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1089329.ca1659429c95/nixexprs.tar.zst"
       }
     },
     "nixpkgs-pin8": {
@@ -993,9 +967,7 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-pin4": "nixpkgs-pin4",
-        "nixpkgs-pin5": "nixpkgs-pin5",
         "nixpkgs-pin6": "nixpkgs-pin6",
-        "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-pin8": "nixpkgs-pin8",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
