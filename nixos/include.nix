@@ -542,6 +542,17 @@ let
           inputs.chaotic.overlays.default
         ];
       };
+      pkgs-pin' = import inputs.nixpkgs-pin {
+        config = osConfig.nixpkgs.config // {
+          cudaSupport = false;
+          rocmSupport = false;
+        };
+        system = pkgs.stdenv.hostPlatform.system;
+        overlays = [
+          inputs.nur.overlays.default
+          inputs.chaotic.overlays.default
+        ];
+      };
       pkgs-pin2 = import inputs.nixpkgs-pin2 {
         config = osConfig.nixpkgs.config;
         system = pkgs.stdenv.hostPlatform.system;
