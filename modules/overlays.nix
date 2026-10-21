@@ -50,7 +50,6 @@
               inherit (pkgs')
                 ffmpeg-full
                 krita
-                handbrake
                 gimp
                 blender
                 jadx
@@ -70,6 +69,7 @@
                 zotero
                 ;
               inherit (pkgs-pin3) jabref;
+              inherit (pkgs-pin) handbrake;
             }
           )
           inputs.chaotic.overlays.default
