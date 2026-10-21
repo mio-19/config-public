@@ -108,6 +108,7 @@
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin7) atuin;
               inherit (pkgs-pin5) mailspring;
+              inherit (pkgs-pin8) qbittorrent-enhanced;
             }
           )
         ];

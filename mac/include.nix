@@ -102,6 +102,12 @@ upper
     overlays = [
     ];
   };
+  pkgs-pin8 = import inputs.nixpkgs-pin8 {
+    config = config.nixpkgs.config;
+    system = pkgs.stdenv.hostPlatform.system;
+    overlays = [
+    ];
+  };
   pkgs''' = import inputs.nixpkgs-pin2 {
     config = config.nixpkgs.config;
     system = pkgs.stdenv.hostPlatform.system;
