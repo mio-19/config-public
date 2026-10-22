@@ -70,7 +70,7 @@
                 ;
               inherit (pkgs-pin3) jabref;
               inherit (pkgs-pin') handbrake;
-              inherit (pkgs-pin) ladybird;
+              inherit (pkgs-pin) ladybird downkyicore audacity;
             }
           )
           inputs.chaotic.overlays.default
