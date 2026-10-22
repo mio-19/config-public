@@ -44,6 +44,29 @@
           "    fi"
           ""
         ];
+
+        # chaotic's per-kernel `zfs_cachyos` is built with `--with-config=all`,
+        # so it builds zfs' userspace half as well as the kernel module.
+        # nixpkgs exports the kernel's kbuild flags (`commonMakeFlags`) as
+        # `kernelModuleMakeFlags`, and zfs forwards them to its *whole* build as
+        # `makeFlags`, not only to the kernel-module sub-make. Those flags start
+        # with `CC=${stdenv.cc.cc}`, i.e. the *unwrapped* compiler (the kernel
+        # build cannot use the cc-wrapper because of `-target`), and that
+        # compiler does not know the wrapper's include paths. The userspace
+        # compile then fails with `fatal error: 'stdio.h' file not found` on
+        # clang/LTO kernels, or with `blkid/blkid.h`, `uuid/uuid.h`,
+        # `curl/curl.h` not found on the gcc kernels.
+        # The module itself is compiled by kbuild with KERNEL_CC, which zfs
+        # passes to `module/Makefile` at configure time, so the leaked CC is not
+        # needed there either. Drop it from `makeFlags`; make then uses the
+        # compiler configure recorded (the cc-wrapper).
+        # nixpkgs' own per-kernel zfs is `--with-config=kernel` (no userspace
+        # half), so it is unaffected and this is used for chaotic only.
+        zfsWithWrappedCC =
+          zfs:
+          zfs.overrideAttrs (old: {
+            makeFlags = lib.filter (flag: !(lib.hasPrefix "CC=" flag)) (old.makeFlags or [ ]);
+          });
       in
       with _include;
       {
@@ -98,6 +121,13 @@
             else
               pkgs-chaotic.linuxPackages_cachyos;
           boot.zfs.package = if nixpkgs_kernel then pkgs.zfs else pkgs-chaotic.zfs_cachyos;
+          # `boot.zfs.modulePackage` defaults to the zfs package from the kernel
+          # set (`boot.kernelPackages.<zfs.package.kernelModuleAttribute>`).
+          # chaotic's one is `--with-config=all`, i.e. the derivation affected
+          # by the leaked CC above, so point the option at the fixed package.
+          boot.zfs.modulePackage = lib.mkIf (!nixpkgs_kernel) (
+            zfsWithWrappedCC config.boot.kernelPackages.zfs_cachyos
+          );
 
           nixpkgs.overlays = [
             (final: prev: {
