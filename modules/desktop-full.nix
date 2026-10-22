@@ -357,7 +357,7 @@
             (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wechat_bwrap.override {
               followSystemAppearance = true;
             })
-            progs.vscode
+            progs.vscodium
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
             zotero # segfault with hardenedPkg on NixOS

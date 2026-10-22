@@ -276,7 +276,6 @@ let
             }
             // librewolf_declarative_extension_args
           );
-          vscode = pkgs.vscode; # vscode-fhs;
           discord = pkgs.discord.override {
             withVencord = true;
             withOpenASAR = true;

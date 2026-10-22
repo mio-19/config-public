@@ -291,6 +291,8 @@ customize
   #
   # NixOS and macOS-specific include files may extend/override this attrset.
   progs = rec {
+    vscodium = pkgs.vscodium;
+
     nodejs = pkgs.nodejs_latest;
     nodejs-slim = pkgs.nodejs-slim_latest;
 

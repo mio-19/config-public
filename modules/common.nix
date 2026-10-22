@@ -257,7 +257,7 @@
           (
             { ... }:
             {
-              programs.vscode.package = progs.vscode;
+              programs.vscodium.package = progs.vscodium;
             }
           )
         ];
@@ -911,7 +911,7 @@
           # unfree:
           raycast
           #teams#doesn't work
-          vscode
+          vscodium
           #discord # discord wants auto update; it does not work with nix.
           #google-chrome # Out of date, because the updater (pkgs/by-name/go/google-chrome/update.sh) has stopped working, and there does not seem to be another way to get stable URLs to particular Chrome versions.
 
