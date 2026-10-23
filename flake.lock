@@ -1225,10 +1225,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1792503832,
-        "narHash": "sha256-WsqPR04nPS1bi5bYva04cJJcJyHw7x/rbaJmoXMzF04=",
+        "lastModified": 1792739756,
+        "narHash": "sha256-s0TeXWG5Ci75Y/Hzon0Z7NrN/fG773Rc54/z6oPFszQ=",
         "ref": "refs/heads/master",
-        "rev": "936ced36ecd25fcbd9b4789184b88aa2e4c2a901",
+        "rev": "fa627f4c8b8e92f58f58a73d99ee4e1304e64eb2",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/impermanence.git"
@@ -1344,11 +1344,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792728351,
-        "narHash": "sha256-91rRFnBm9hpMIAFYi+ZvuLOupMtBMrnMVsd6CmH5ik8=",
+        "lastModified": 1792747375,
+        "narHash": "sha256-dRJtTgI96G3ypoaUaBZkJsR8LcqsrJQ35ZyxtZBjXW0=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "4726c319ae0692a84f20819395411d9f8b88335a",
+        "rev": "f3afd2855f8d355d3e402baaf95ef9de2a73a5ba",
         "type": "github"
       },
       "original": {
@@ -2106,11 +2106,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791830269,
-        "narHash": "sha256-A3JRH8qkp+NrP3sSwfutu7nZ5AclDY/HDmn/xDxduM4=",
+        "lastModified": 1792748866,
+        "narHash": "sha256-bmrkql7Lmnm+Te57Iio4cPvauZCX4Q7gWStHPhQKo1Q=",
         "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "12cd234285d3037cedfab979aa70b75284a59afc",
+        "rev": "b33a26ae250666760abceb0634b5a22440244f6b",
         "type": "github"
       },
       "original": {
@@ -2714,10 +2714,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1792735587,
-        "narHash": "sha256-yn+NXKdzGNTTQS09L+7PN7B5dUS6DQTE7AlWWaJ0G7k=",
+        "lastModified": 1792748763,
+        "narHash": "sha256-kQSiLbMLBUrxyWrcPmhyAy3XelOExPBoHDLzB9ozZqU=",
         "ref": "refs/heads/main",
-        "rev": "e502e879dc8030faf3519481bc1ff0ad8e7c2039",
+        "rev": "630ffbf8f6f33d503929dcb4275b01ff98e6f337",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -3230,10 +3230,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1792653800,
-        "narHash": "sha256-E8zFJilWlORqzIUJizyhZ/0WKBOizuM6s1nRSgPRomo=",
+        "lastModified": 1792739799,
+        "narHash": "sha256-M2rr/yPbTHvgAzCyZ+zHJHflFM0XU7t42Sw2skA3TQM=",
         "ref": "refs/heads/master",
-        "rev": "5f267b7f323a4d6df0b9c0e3eaa043cbe85386f2",
+        "rev": "b0829a2cc9f7b596583331d78a942c1e5170d8a0",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
