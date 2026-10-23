@@ -61,10 +61,14 @@
                 openshot-qt
                 stuntrally
                 smplayer
-                zotero
                 ;
               inherit (pkgs-pin') handbrake;
-              inherit (pkgs-pin) ladybird downkyicore audacity isabelle;
+              inherit (pkgs-pin)
+                ladybird
+                downkyicore
+                audacity
+                isabelle
+                ;
             }
           )
           inputs.chaotic.overlays.default
