@@ -122,7 +122,7 @@
       with _include;
       {
         boot.supportedFilesystems = [
-          "apfs"
+          # "apfs"
         ]
         ++ lib.optionals (!(builtins.any (tag: tag == "rc") config.system.nixos.tags)) [
           # "bcachefs"
