@@ -117,7 +117,9 @@
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
           [
-            "firefox-esr-140-bin-unwrapped" # https://github.com/NixOS/nixpkgs/commit/abfd73f84c823ed3353e1e9ac485b1fbdda29bdc
+            # https://github.com/NixOS/nixpkgs/commit/abfd73f84c823ed3353e1e9ac485b1fbdda29bdc
+            "firefox-esr-140-bin-unwrapped"
+            "firefox-esr-140-bin-unwrapped-140.17.0esr"
           ]
           ++ map (pkg: pkg.name) [
             electron_39
