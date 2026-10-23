@@ -59,6 +59,18 @@
       }:
       let
         _include = args._include or (import ../nixos/include.nix args);
+        # firejail's `desktop` option rewrites the Exec= line of a .desktop file,
+        # but google-chrome ships the absolute path of the (unhardened) binary.
+        # Point them at the hardened binary first, then firejail rewrites that
+        # path to its own wrapper in $out/bin.
+        chromeDesktop = pkgs.runCommandLocal "google-chrome-desktop" { } ''
+          mkdir -p $out
+          cp ${pkgs.google-chrome}/share/applications/com.google.Chrome.desktop \
+            ${pkgs.google-chrome}/share/applications/google-chrome.desktop $out/
+          substituteInPlace $out/*.desktop \
+            --replace-fail ${pkgs.google-chrome}/bin/google-chrome-stable \
+            ${_include.hardenedPkg pkgs.google-chrome}/bin/google-chrome-stable
+        '';
       in
       with _include;
       {
@@ -142,7 +154,55 @@
             executable = "${hardenedPkg progs.inkscape}/bin/inkscape";
             profile = "${pkgs.firejail}/etc/firejail/inkscape.profile";
           };
+          # Chromium-family flags: WebSerial/U2F USB devices and the dialout
+          # group for serial devices (same as the chromium wrapper).
+          google-chrome = {
+            executable = "${hardenedPkg google-chrome}/bin/google-chrome-stable";
+            desktop = "${chromeDesktop}/google-chrome.desktop";
+            profile = "${pkgs.firejail}/etc/firejail/google-chrome.profile";
+            extraArgs = [
+              "--ignore=private-dev"
+              "--ignore=nogroups"
+            ];
+          };
+          google-chrome-stable = {
+            executable = "${hardenedPkg google-chrome}/bin/google-chrome-stable";
+            desktop = "${chromeDesktop}/com.google.Chrome.desktop";
+            profile = "${pkgs.firejail}/etc/firejail/google-chrome.profile";
+            extraArgs = [
+              "--ignore=private-dev"
+              "--ignore=nogroups"
+            ];
+          };
+          teams-for-linux = {
+            executable = "${hardenedPkg teams-for-linux}/bin/teams-for-linux";
+            profile = "${pkgs.firejail}/etc/firejail/teams-for-linux.profile";
+            extraArgs = [
+              # electron-common.profile hides the camera and audio devices
+              "--ignore=private-dev"
+              "--ignore=novideo"
+              # video/render groups, needed by the camera
+              "--ignore=nogroups"
+            ];
+          };
+          zoom = {
+            executable = "${config.programs.zoom-us.package}/bin/zoom";
+            profile = "${pkgs.firejail}/etc/firejail/zoom.profile";
+            extraArgs = [
+              # electron-common.profile hides the camera and audio devices
+              "--ignore=private-dev"
+            ];
+          };
         };
+
+        # Open links in the browser: xdg-open needs helpers (gio/kde-open) that
+        # private-bin hides; the portal does the actual launch outside the
+        # sandbox (same recipe as Telegram.local).
+        environment.etc."firejail/teams-for-linux.local".text = ''
+          include allow-bin-sh.inc
+          noblacklist ${"$"}{PATH}/xdg-open
+          ignore private-bin
+        '';
 
         # cloudflare-warp could cause problems when mobile devices want to access public wifi login page.
         /*

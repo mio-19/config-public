@@ -451,6 +451,18 @@
                 inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
               }/etc/firejail/wiliwili.profile";
             };
+            firefox-esr = {
+              executable = "${cleanPkg firefox-esr}/bin/firefox-esr";
+              profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
+              extraArgs = [
+                # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                "--dbus-user.talk=org.freedesktop.portal.Desktop"
+              ];
+            };
+            nextcloud = {
+              executable = "${hardenedPkg nextcloud-client}/bin/nextcloud";
+              profile = "${pkgs.firejail}/etc/firejail/nextcloud.profile";
+            };
           }
           // lib.optionalAttrs config.librewolf_firejail {
             librewolf = {
@@ -475,6 +487,14 @@
             noblacklist ${"$"}{PICTURES}
           '';
         };
+
+        # nextcloud.profile sets `dbus-user filter`, so the tray icon, desktop
+        # notifications and opening folders in the file manager have to be allowed.
+        environment.etc."firejail/nextcloud.local".text = ''
+          dbus-user.talk org.kde.StatusNotifierWatcher
+          dbus-user.talk org.freedesktop.Notifications
+          dbus-user.talk org.freedesktop.FileManager1
+        '';
 
         # xone causes issues that controller is blank after reboot until replugged. default driver xpad works fine.
         /*
