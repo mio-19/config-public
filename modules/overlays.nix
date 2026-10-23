@@ -68,7 +68,6 @@
                 joplin-desktop
                 zotero
                 ;
-              inherit (pkgs-pin3) jabref;
               inherit (pkgs-pin') handbrake;
               inherit (pkgs-pin) ladybird downkyicore audacity isabelle;
             }
