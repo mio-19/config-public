@@ -57,15 +57,10 @@
                 ;
               inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
-              #vscode = mio.vscode1133;
-              #vscode-fhs = mio.vscode-fhs1133;
-              #vscode-extensions = mio.vscode-extensions1133;
               inherit (pkgs-pin2)
                 openshot-qt
                 stuntrally
-                scribus
                 smplayer
-                joplin-desktop
                 zotero
                 ;
               inherit (pkgs-pin') handbrake;
