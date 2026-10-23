@@ -40,6 +40,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "firefox-esr-140-bin-unwrapped"
       "libnvvm"
       "cccl"
       "dumpifs"
