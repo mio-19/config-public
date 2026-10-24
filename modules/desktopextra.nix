@@ -20,6 +20,7 @@
       in
       {
         systemPackages_hardened = with pkgs; [
+          cyberchef
           photocraft
           deckcraft
           gridcraft
