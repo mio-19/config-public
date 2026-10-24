@@ -290,7 +290,7 @@
           "zulip"
           #"raycast"
           "orbstack"
-          "isabelle"
+          #"isabelle"
           "parsec"
           #"localsend"
           #"zen"
