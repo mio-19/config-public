@@ -4,7 +4,10 @@
     homeManager =
       { ... }:
       {
-        imports = [ ./users/_/cli.nix ];
+        imports = [
+          ./users/_/cli.nix
+          ./users/_/common.nix
+        ];
       };
   };
 }
