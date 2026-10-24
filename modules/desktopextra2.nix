@@ -2,6 +2,20 @@
 {
   den.aspects.desktopextra2 = {
     description = "Snap + extra desktop apps and flatpaks on top of extra2";
+    os =
+      args@{
+        config,
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+
+        systemPackages_hardened = with pkgs; [
+          isabelle
+        ];
+      };
     nixos =
       args@{
         config,
@@ -25,7 +39,6 @@
         systemPackages_hardened = with pkgs; [
           signal-desktop
           rustdesk-flutter
-          isabelle
           (fixTauriPkg rclone-ui)
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.rclone-browser
           #gnome-frog # https://github.com/NixOS/nixpkgs/issues/457538
