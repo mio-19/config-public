@@ -21,7 +21,7 @@
       {
         systemPackages_hardened = with pkgs; [
           cyberchef
-          #comaps
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
           photocraft
           deckcraft
           gridcraft
