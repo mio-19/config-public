@@ -12,6 +12,7 @@ let
     }:
     with pkgs;
     [
+      inetutils
       lynx
       nh
       nur.repos.mio.nurl_patched
