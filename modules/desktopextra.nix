@@ -21,7 +21,7 @@
       {
         systemPackages_hardened = with pkgs; [
           cyberchef
-          comaps
+          #comaps
           photocraft
           deckcraft
           gridcraft
