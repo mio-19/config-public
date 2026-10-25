@@ -45,7 +45,6 @@ let
       claude-code-router
       opencode
       github-copilot-cli
-      nur.repos.mio.freebuff_patched
     ]
     ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
       dsh
@@ -110,6 +109,7 @@ in
           ++ (map cleanPkg (
             commonCliClean { inherit pkgs inputs; }
             ++ [
+              nur.repos.mio.freebuff_patched
               cursor-cli
               #claude-code
               distrobox
