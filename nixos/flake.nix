@@ -295,7 +295,7 @@
       url = "github:fufexan/nix-gaming";
       #need binary cache#inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
+      #inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
       inputs.flake-compat.follows = "flake-compat";
     };
     # pin niche inputs to avoid bad people taking over.
