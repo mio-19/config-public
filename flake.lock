@@ -5,6 +5,7 @@
         "devshell": "devshell",
         "flake-utils": [
           "nixos",
+          "repo",
           "flake-utils"
         ],
         "nixpkgs": [
@@ -1041,6 +1042,7 @@
       "inputs": {
         "flake-compat": [
           "nixos",
+          "nix-gaming",
           "flake-compat"
         ],
         "nixpkgs": [
@@ -1362,11 +1364,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792962201,
-        "narHash": "sha256-3J6CRLwFjxrc5gqec5/0PgI23w2cCHR8+6qi6C9mOd0=",
+        "lastModified": 1792971270,
+        "narHash": "sha256-pvkekz4R2bbObsKIKQlTkhSw7iEdDXtrfhILxBKLQaQ=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "d7c27bbc1544974a9ea90bdfc27d281683fb69f6",
+        "rev": "0784674971b3ee4681aea5b5e9641c75faf7e846",
         "type": "github"
       },
       "original": {
@@ -2733,10 +2735,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1792968345,
-        "narHash": "sha256-nj87QCgzavmbaL354byYHzDLEmGEmGwbZ5oF+uRdEIo=",
+        "lastModified": 1792971926,
+        "narHash": "sha256-L6TQUKLng2Y5FQT3jKO4rhMTabFp/H7jLauTHGIzt0o=",
         "ref": "refs/heads/main",
-        "rev": "4ef43355c63e27510b4899417d22b9abc45f7a60",
+        "rev": "ed5ab463b03dd818abecec658baf73a51bf00090",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
