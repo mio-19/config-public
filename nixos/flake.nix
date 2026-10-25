@@ -279,7 +279,7 @@
       url = "github:Naxdy/nix-bwrapper/d170b06fafc0703fff36ec422a64516594b39bd9";
       inputs.nixpkgs.follows = "nixpkgs";
       #inputs.treefmt-nix.follows = "llm-agents/treefmt-nix";
-      inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
       #inputs.nuschtosSearch.inputs.nixpkgs.follows = "nixpkgs";
       #inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
     };
