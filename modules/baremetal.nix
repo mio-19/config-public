@@ -32,7 +32,6 @@
           services.userborn.enable = true;
           # https://discourse.nixos.org/t/migrating-to-boot-initrd-systemd-and-debugging-stage-1-systemd-services/54444
           # https://blog.decent.id/post/nixos-systemd-initrd/
-          boot.initrd.systemd.enable = true;
         */
 
         boot.supportedFilesystems = [
