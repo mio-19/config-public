@@ -317,7 +317,9 @@
       };
     */
     nixos-avf = {
-      url = "github:nix-community/nixos-avf";
+      #url = "github:nix-community/nixos-avf";
+      # https://github.com/nix-community/nixos-avf/pull/45
+      url = "github:nix-community/nixos-avf/4c557dc7444eb6b6b16937e9e788cbd20496748a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     repo = {
