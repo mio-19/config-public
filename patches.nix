@@ -3,7 +3,7 @@
   (fetchpatch {
     name = "photocraft: init at 0.10.0";
     url = "https://github.com/NixOS/nixpkgs/pull/571418.patch";
-    hash = "sha256-snq86jX80j2oQ0vwhuMmYITwgU+DbLClFG+sh4cVvQg=";
+    hash = "sha256-g2pheuOjBgi3OaKs37Hf4RcPjMi/QoeX+K/qU4czPww=";
   })
   (fetchurl {
     name = "flyline: init at 1.9.0";
@@ -25,6 +25,6 @@
   (fetchpatch {
     name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, mesh-llm-native-runtime, mesh-llm-native-runtime-vulkan: init at 0.78.1; nixos/mesh-llm: init module";
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
-    hash = "sha256-cnOznfIHQFGQbepnDVARnpARJzFfGoBKRyWT9dpvmEA=";
+    hash = "sha256-GjRpBBjlXJdYi0aO5pZIBMumA94mLkNmNG7YXnC4Foo=";
   })
 ]
