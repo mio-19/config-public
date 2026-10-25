@@ -20,7 +20,7 @@
         boot.consoleLogLevel = 3;
 
         # https://wiki.archlinux.org/title/Silent_boot
-        boot.kernelParams = lib.optionals config.boot.initrd.systemd.enable [
+        boot.kernelParams = [
           "quiet"
         ];
 
