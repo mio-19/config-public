@@ -280,8 +280,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       #inputs.treefmt-nix.follows = "llm-agents/treefmt-nix";
       inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nuschtosSearch.inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
+      #inputs.nuschtosSearch.inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
     };
     nixpak = {
       # pin niche inputs to avoid bad people taking over.
