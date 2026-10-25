@@ -336,7 +336,9 @@
     };
     nix-mineral = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:cynicsketch/nix-mineral/bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce";
+      #url = "github:cynicsketch/nix-mineral/bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce";
+      # https://github.com/cynicsketch/nix-mineral/pull/244
+      url = "github:surfaceflinger/nix-mineral/11acd9af1e7e6ed18b6f87452b51945306539c3f";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";

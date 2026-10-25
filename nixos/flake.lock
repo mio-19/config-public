@@ -1037,17 +1037,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1792339378,
-        "narHash": "sha256-2GSp02yOdG9BSvb0c9SW1nsMnUpjR1/WBKskGz0D+8g=",
-        "owner": "cynicsketch",
+        "lastModified": 1792610103,
+        "narHash": "sha256-oy+w41yoSlEZKpuaahxBMEc7zy+cv+qtZeem3d1g8+k=",
+        "owner": "surfaceflinger",
         "repo": "nix-mineral",
-        "rev": "bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce",
+        "rev": "11acd9af1e7e6ed18b6f87452b51945306539c3f",
         "type": "github"
       },
       "original": {
-        "owner": "cynicsketch",
+        "owner": "surfaceflinger",
         "repo": "nix-mineral",
-        "rev": "bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce",
+        "rev": "11acd9af1e7e6ed18b6f87452b51945306539c3f",
         "type": "github"
       }
     },
