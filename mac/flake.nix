@@ -168,11 +168,6 @@
                   # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
                   # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
                   # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
-                  (fetchpatch {
-                    name = "tuxguitar: fix launch on darwin when app bundle path contains space";
-                    url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
-                    hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
-                  })
                 ];
             };
             nixpkgs =

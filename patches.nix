@@ -1,6 +1,11 @@
 { fetchpatch, fetchurl }:
 [
   (fetchpatch {
+    name = "tuxguitar: 2.0.1 -> 2.1.1";
+    url = "https://github.com/NixOS/nixpkgs/pull/579150.patch";
+    hash = "sha256-k0Lsp/tPfN8N+XU9iSqoAUklGA8gntcQkWszr+rHJCs=";
+  })
+  (fetchpatch {
     name = "photocraft: init at 0.10.0";
     url = "https://github.com/NixOS/nixpkgs/pull/571418.patch";
     hash = "sha256-Yq7vQVYXp2s4DnoNFME9rHrgEx//G86DyOwJi7g6Pw0=";
