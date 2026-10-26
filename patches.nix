@@ -3,7 +3,7 @@
   (fetchpatch {
     name = "tuxguitar: 2.0.1 -> 2.1.1";
     url = "https://github.com/NixOS/nixpkgs/pull/579150.patch";
-    hash = "sha256-k0Lsp/tPfN8N+XU9iSqoAUklGA8gntcQkWszr+rHJCs=";
+    hash = "sha256-MoBwTX19A5rcVlkFDS+ZL5tMKGjYlgOnlSHzNEDLHZQ=";
   })
   (fetchpatch {
     name = "photocraft: init at 0.10.0";
