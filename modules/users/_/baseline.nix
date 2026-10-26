@@ -13,7 +13,7 @@ in
 {
   #programs.git.package = null; # use system git, not home-manager's
   programs.ssh = {
-    package = null; # use system ssh, not home-manager's
+    #package = null; # use system ssh, not home-manager's
     enable = true;
     enableDefaultConfig = false; # home-manager suggests this to be false
     settings."*" = {
