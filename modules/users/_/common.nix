@@ -48,9 +48,9 @@ let
     commonExtensions
     ++ [
       # sync better if we use from vscode-extensions. instead of nix-vscode-extensions.vscode-marketplace. : they require hardcoded vscode verion cannot new or old by even 1
-      # Copilot: github.copilot provides completions, github.copilot-chat the chat UI.
-      # Both are installed from nixpkgs, so no Microsoft Marketplace access is needed.
-      vscode-extensions.github.copilot
+      # Copilot: The standalone `github.copilot` extension was deprecated and merged into
+      # `github.copilot-chat`, which now provides completions, next-edit suggestions, and chat.
+      # Installed from nixpkgs, so no Microsoft Marketplace access is needed.
       vscode-extensions.github.copilot-chat
     ];
 
@@ -127,15 +127,30 @@ let
   # https://github.com/microsoft/vscode-copilot-chat/blob/main/CONTRIBUTING.md#running-with-code-oss
   vscodiumProductJson = {
     trustedExtensionAuthAccess = {
-      github = [ "github.copilot-chat" ];
+      github = [
+        "GitHub.copilot"
+        "GitHub.copilot-chat"
+        "github.copilot-chat"
+      ];
+      github-enterprise = [
+        "GitHub.copilot"
+        "GitHub.copilot-chat"
+        "github.copilot-chat"
+      ];
+      microsoft = [
+        "vscode.github-authentication"
+      ];
     };
     defaultChatAgent = {
       extensionId = "GitHub.copilot";
       chatExtensionId = "GitHub.copilot-chat";
+      chatExtensionOutputId = "GitHub.copilot-chat.GitHub Copilot Chat.log";
+      chatExtensionOutputExtensionStateCommand = "github.copilot.debug.extensionState";
       documentationUrl = "https://aka.ms/github-copilot-overview";
       termsStatementUrl = "https://aka.ms/github-copilot-terms-statement";
       privacyStatementUrl = "https://aka.ms/github-copilot-privacy-statement";
       skusDocumentationUrl = "https://aka.ms/github-copilot-plans";
+      optimizeUsageDocumentationUrl = "https://aka.ms/token-usage-tips";
       publicCodeMatchesUrl = "https://aka.ms/github-copilot-match-public-code";
       manageSettingsUrl = "https://aka.ms/github-copilot-settings";
       managePlanUrl = "https://aka.ms/github-copilot-manage-plan";
@@ -149,7 +164,7 @@ let
         };
         enterprise = {
           id = "github-enterprise";
-          name = "GHE.com";
+          name = "GHE";
         };
         google = {
           id = "google";
@@ -159,17 +174,22 @@ let
           id = "apple";
           name = "Apple";
         };
+        microsoft = {
+          id = "microsoft";
+          name = "Microsoft";
+        };
       };
+      providerExtensionId = "vscode.github-authentication";
       providerUriSetting = "github-enterprise.uri";
       providerScopes = [
-        [ "user:email" ]
-        [ "read:user" ]
         [
           "read:user"
           "user:email"
           "repo"
           "workflow"
         ]
+        [ "user:email" ]
+        [ "read:user" ]
       ];
       entitlementUrl = "https://api.github.com/copilot_internal/user";
       entitlementSignupLimitedUrl = "https://api.github.com/copilot_internal/subscribe_limited_user";
@@ -177,11 +197,16 @@ let
       completionsQuotaExceededContext = "github.copilot.completions.quotaExceeded";
       walkthroughCommand = "github.copilot.open.walkthrough";
       completionsMenuCommand = "github.copilot.toggleStatusMenu";
-      completionsRefreshTokenCommand = "github.copilot.signIn";
       chatRefreshTokenCommand = "github.copilot.refreshToken";
+      generateCommitMessageCommand = "github.copilot.git.generateCommitMessage";
+      resolveMergeConflictsCommand = "github.copilot.git.resolveMergeConflicts";
       completionsAdvancedSetting = "github.copilot.advanced";
       completionsEnablementSetting = "github.copilot.enable";
       nextEditSuggestionsSetting = "github.copilot.nextEditSuggestions.enabled";
+      tokenEntitlementUrl = "https://api.github.com/copilot_internal/v2/token";
+      mcpRegistryDataUrl = "https://api.github.com/copilot/mcp_registry";
+      mcpConnectorsUrl = "https://api.github.com/copilot-connectors/api/v1";
+      managedSettingsUrl = "https://api.github.com/copilot_internal/managed_settings";
     };
   };
 in
