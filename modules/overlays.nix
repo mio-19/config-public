@@ -62,7 +62,10 @@
               inherit (pkgs-pin)
                 isabelle
                 ;
-              inherit (pkgs-pin3) diffoscope; # depending on fuse2
+              inherit (pkgs-pin3)
+                diffoscope # depending on fuse2
+                koodo-reader
+                ;
             }
           )
           inputs.chaotic.overlays.default
