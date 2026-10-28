@@ -17,6 +17,7 @@ config-public is a **sanitized** public repo. Private details are redacted as `#
 
 - Sync only paths that belong in public (shared modules, den aspects, import-line updates on public hosts).
 - Keep every existing `# DETAILS REMOVED` comment and placeholder in config-public files.
+- Avoid editing near `# DETAILS REMOVED` lines for easier git merges between `config` and `config-public` (e.g. define new declarations or hosts in separate files or blocks away from redacted sections).
 - Apply **minimal diffs**: e.g. change an import to `(import ./aspect.nix "bios")` on the public copy of `modules/hosts/fw13/_nixos/default.nix`, not by copying the private host file wholesale.
 - Keep `modules/common.nix` (`den.aspects.common`) structurally in sync between repos: same aspect shape and imports, with `# DETAILS REMOVED` preserved in config-public. Do not copy private-only paths or full private files into config-public.
 - **Always verify the public tree compiles:** Before committing and pushing to `config-public`, you MUST successfully run `nix eval --show-trace ".#nixosConfigurations.<host>.config.system.build.toplevel"` (or equivalent) in `config-public` to catch broken import paths or missing redactions.
