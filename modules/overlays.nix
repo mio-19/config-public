@@ -69,6 +69,7 @@
                 audacity
                 isabelle
                 ;
+              inherit (pkgs-pin3) diffoscope; # depending on fuse2
             }
           )
           inputs.chaotic.overlays.default
