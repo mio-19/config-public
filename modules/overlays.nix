@@ -65,8 +65,6 @@
               inherit (pkgs-pin') handbrake;
               inherit (pkgs-pin)
                 ladybird
-                downkyicore
-                audacity
                 isabelle
                 ;
               inherit (pkgs-pin3) diffoscope; # depending on fuse2
