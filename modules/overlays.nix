@@ -60,7 +60,6 @@
               inherit (pkgs-pin2)
                 openshot-qt
                 stuntrally
-                smplayer
                 ;
               inherit (pkgs-pin)
                 isabelle
