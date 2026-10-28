@@ -10,13 +10,34 @@
   outputs =
     inputs:
     let
+      system = "x86_64-linux";
       den =
         (inputs.nixpkgs.lib.evalModules {
-          modules = [ (inputs.import-tree ../modules) ];
-          specialArgs.inputs = inputs;
+          modules = [
+            (inputs.import-tree ../modules)
+            ({ lib, ... }: {
+              options.flake.nixbsdConfigurations = lib.mkOption {
+                default = { };
+                type = lib.types.lazyAttrsOf lib.types.raw;
+              };
+            })
+            ({ den, lib, ... }: {
+              den.hosts.x86_64-freebsd.fw13 = {
+                instantiate = inputs.nixbsd.lib.nixbsdSystem;
+                intoAttr = [
+                  "nixbsdConfigurations"
+                  "fw13"
+                ];
+              };
+            })
+          ];
+          specialArgs = {
+            inherit inputs system;
+          };
         }).config;
     in
     {
       inherit (den.flake) nixbsdConfigurations;
+      nixosConfigurations = den.flake.nixbsdConfigurations;
     };
 }
