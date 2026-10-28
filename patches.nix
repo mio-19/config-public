@@ -8,7 +8,7 @@
   (fetchpatch {
     name = "photocraft: init at 0.10.0";
     url = "https://github.com/NixOS/nixpkgs/pull/571418.patch";
-    hash = "sha256-Yq7vQVYXp2s4DnoNFME9rHrgEx//G86DyOwJi7g6Pw0=";
+    hash = "sha256-jOhHBCv9QPepWwvvBujp8427yQ/5Oxnx0b6XrwzVXIo=";
   })
   (fetchurl {
     name = "flyline: init at 1.9.0";
