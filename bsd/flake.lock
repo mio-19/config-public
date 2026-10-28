@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "den": {
+      "locked": {
+        "lastModified": 1792194182,
+        "narHash": "sha256-zvs+W7zVQj890E/f5tgiO2S39WdrZ6d7MbpmOlgcsBA=",
+        "owner": "denful",
+        "repo": "den",
+        "rev": "436350eea1cde7d059877ed04bbd5d35852e3097",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "den",
+        "rev": "436350eea1cde7d059877ed04bbd5d35852e3097",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1733328505,
@@ -12,6 +28,22 @@
       "original": {
         "type": "tarball",
         "url": "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz"
+      }
+    },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1788467110,
+        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
+        "owner": "denful",
+        "repo": "import-tree",
+        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "import-tree",
+        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
+        "type": "github"
       }
     },
     "nixbsd": {
@@ -48,6 +80,8 @@
     },
     "root": {
       "inputs": {
+        "den": "den",
+        "import-tree": "import-tree",
         "nixbsd": "nixbsd",
         "nixpkgs": [
           "nixbsd",
