@@ -45,7 +45,7 @@ let
       claude-code-router
       opencode
       github-copilot-cli
-      nur.repos.mio.freebuff_patched
+      nur.repos.mio.freebuff
     ]
     ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
       dsh
