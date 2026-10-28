@@ -2085,6 +2085,7 @@
         ],
         "nixpkgs-pin": "nixpkgs-pin",
         "nixpkgs-pin2": "nixpkgs-pin2",
+        "nixpkgs-pin3": "nixpkgs-pin3",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
         "nur": "nur_2",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
@@ -2308,6 +2309,19 @@
       "original": {
         "type": "tarball",
         "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080855.7a0f122f5090/nixexprs.tar.zst"
+      }
+    },
+    "nixpkgs-pin3": {
+      "locked": {
+        "lastModified": 1792773339,
+        "narHash": "sha256-17eNBI5Khe4JZaRkL5hRGPWf8MZ6qv+bWAr4V8YeKBw=",
+        "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst"
       }
     },
     "nixpkgs-pin4": {
@@ -2735,10 +2749,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793175651,
-        "narHash": "sha256-UtcUEk+TZuhIOW9S0KtLKPjy8L5cKEFNsWajdRgAZ7w=",
+        "lastModified": 1793176754,
+        "narHash": "sha256-xZPF9uwvr3tg/Dwv5bvv5mL2oWSZU4Ep975d5jh8L/k=",
         "ref": "refs/heads/main",
-        "rev": "65df1131b36e2c23e3ac63ad15746c41309a5446",
+        "rev": "e8f614c026c979870bacbe2d6c8e527d34572229",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
