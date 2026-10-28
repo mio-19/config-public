@@ -7,5 +7,14 @@
     # pin niche inputs to avoid bad people taking over.
     den.url = "github:denful/den/436350eea1cde7d059877ed04bbd5d35852e3097";
   };
-  outputs = inputs: {};
+  outputs =
+    inputs:
+    let
+      den =
+        (inputs.nixpkgs.lib.evalModules {
+          modules = [ (inputs.import-tree ../modules) ];
+          specialArgs.inputs = inputs;
+        }).config;
+    in
+    { };
 }
