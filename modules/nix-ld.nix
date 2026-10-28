@@ -64,7 +64,6 @@
             libjpeg
             libmikmod
             libogg
-            libpng12
             libpulseaudio
             librsvg
             libsamplerate
