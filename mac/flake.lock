@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793178091,
-        "narHash": "sha256-wMLYt5hqL9H/RBt9R9sxkWvWZMwdIVLnzYcoeomecB8=",
+        "lastModified": 1793183960,
+        "narHash": "sha256-goXbW/1zTR/nv5qLXBF6RqIKf6inSiSJnlIDYIBvawc=",
         "ref": "refs/heads/main",
-        "rev": "8e44babb765fe1e7806aa966c36d0aea6f17d8c9",
-        "revCount": 213,
+        "rev": "c602ba252039dbf2e5eaf63d67be8890464fec5c",
+        "revCount": 217,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -603,17 +603,17 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1792043602,
-        "narHash": "sha256-w1wQFjX7Oo/HNaBJ8LWFW9z9zuDvlSl7E6/nH7caarE=",
+        "lastModified": 1793179547,
+        "narHash": "sha256-EW+/+BF1E26Tp7oCwc+q7uC4ya6A9v/REcBZhg0NthY=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "1beaee8f60fa8a41598c5cc673c3a7101951d4bd",
+        "rev": "ba6879cc0a41027b8db16d277864c6739d084b7c",
         "type": "github"
       },
       "original": {
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "1beaee8f60fa8a41598c5cc673c3a7101951d4bd",
+        "rev": "ba6879cc0a41027b8db16d277864c6739d084b7c",
         "type": "github"
       }
     },
@@ -807,11 +807,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1791366222,
-        "narHash": "sha256-/4ezBOv6aldGab7qTb6ls3SDpgzG8kuuSqEAA9zEZ8E=",
-        "rev": "39ad350a0602fa0a58a544344e3e9187526ea45c",
+        "lastModified": 1793136825,
+        "narHash": "sha256-8VGQQhZfWvvWCoqOf5lb8AzUVbKJKvnihiXwJKKPH0s=",
+        "rev": "f05535a0efcb2134c478d1e88434fadf486d42b5",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1087089.39ad350a0602/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1103464.f05535a0efcb/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -844,11 +844,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793178525,
-        "narHash": "sha256-Vg5JT4+NCE5jLVV/a5BR4T16zw4lwvLGZRCfn/kCkOo=",
+        "lastModified": 1793188125,
+        "narHash": "sha256-NWYAko1Mhc04xVF+eadp/DJWm/+fODjQJDj40ONvXlo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3a67837c5f7b3feb14bb54c9d334f3b3f9628358",
+        "rev": "a4f7a22d6b1bc0cb90b753722a5a7d4a3a8cdbb2",
         "type": "github"
       },
       "original": {
