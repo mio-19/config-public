@@ -5,11 +5,6 @@
     url = "https://github.com/NixOS/nixpkgs/pull/579150.patch";
     hash = "sha256-MoBwTX19A5rcVlkFDS+ZL5tMKGjYlgOnlSHzNEDLHZQ=";
   })
-  (fetchpatch {
-    name = "photocraft: init at 0.10.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/571418.patch";
-    hash = "sha256-jOhHBCv9QPepWwvvBujp8427yQ/5Oxnx0b6XrwzVXIo=";
-  })
   (fetchurl {
     name = "flyline: init at 1.9.0";
     url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
