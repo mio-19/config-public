@@ -55,14 +55,13 @@
                 jadx
                 ollama
                 ;
-              inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
+              inherit (pkgs') freecad handbrake; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
               inherit (pkgs-pin2)
                 openshot-qt
                 stuntrally
                 smplayer
                 ;
-              inherit (pkgs-pin') handbrake;
               inherit (pkgs-pin)
                 isabelle
                 ;
