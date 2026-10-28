@@ -45,7 +45,6 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               android-translation-layer = mio.android-translation-layer_patched;
-              ollama-cuda = pkgs'.ollama; # build failed
               # build failed/depdendency build failed with cuda
               inherit (pkgs')
                 ffmpeg-full
@@ -53,7 +52,6 @@
                 gimp
                 blender
                 jadx
-                ollama
                 ;
               inherit (pkgs') freecad handbrake; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
