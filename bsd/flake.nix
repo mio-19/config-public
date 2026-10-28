@@ -16,5 +16,7 @@
           specialArgs.inputs = inputs;
         }).config;
     in
-    { };
+    {
+      inherit (den.flake) nixbsdConfigurations;
+    };
 }
