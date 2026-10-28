@@ -64,7 +64,6 @@
                 ;
               inherit (pkgs-pin') handbrake;
               inherit (pkgs-pin)
-                ladybird
                 isabelle
                 ;
               inherit (pkgs-pin3) diffoscope; # depending on fuse2
