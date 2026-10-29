@@ -59,9 +59,6 @@
                 openshot-qt
                 stuntrally
                 ;
-              inherit (pkgs-pin)
-                isabelle
-                ;
               inherit (pkgs-pin3)
                 diffoscope # depending on fuse2
                 jabref
