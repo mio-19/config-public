@@ -20,4 +20,9 @@
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
     hash = "sha256-KLs2r0F+UV13ayKmDDNX90GSaDOZkl032MfmoaPsTdY=";
   })
+  (fetchpatch {
+    name = "Isabelle: Fix Darwin build without Rosetta and cleanup";
+    url = "https://github.com/NixOS/nixpkgs/pull/578078.patch";
+    hash = "sha256-9MDJfjwG7bvcs19szokNW6hStd6N11p7BYHmKHA3BWw=";
+  })
 ]
