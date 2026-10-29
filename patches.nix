@@ -18,6 +18,6 @@
   (fetchpatch {
     name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, mesh-llm-native-runtime, mesh-llm-native-runtime-vulkan: init at 0.78.1; nixos/mesh-llm: init module";
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
-    hash = "sha256-jveWyI9p6+6uSpGvDORYggixlGk4JkddqPtYznMs6Vk=";
+    hash = "sha256-KLs2r0F+UV13ayKmDDNX90GSaDOZkl032MfmoaPsTdY=";
   })
 ]
