@@ -804,11 +804,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793237022,
-        "narHash": "sha256-A+UfZ9m0ksnpxGPqT8H/KEJK+ww2JPCDY5ZhZ6x2kVM=",
+        "lastModified": 1793242876,
+        "narHash": "sha256-r+qEVetdqTsM+uMaXuLxSbGzZNKfUJaauUJt18fl7uA=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "e0701b170369f308a9a56869f073b261a81a34dd",
+        "rev": "a2cf7dbc5976c7a1a0fd992a86134c99eef2aa73",
         "type": "github"
       },
       "original": {
@@ -1354,19 +1354,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-pin": {
-      "locked": {
-        "lastModified": 1792094642,
-        "narHash": "sha256-LPFRbrCWWyNsdQLO3SX1B/5UMkFK0hfe7bZR6lENvpc=",
-        "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.zst"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.zst"
-      }
-    },
     "nixpkgs-pin2": {
       "locked": {
         "lastModified": 1790578696,
@@ -1611,10 +1598,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793240625,
-        "narHash": "sha256-SJVEA4U4N9hvPZTkw+0X0kcKFWLPy99VG3mvrW9jl5g=",
+        "lastModified": 1793244559,
+        "narHash": "sha256-bkU3oATnozikQN08+p/k1X/BURa73CWSToqZlDFBjXw=",
         "ref": "refs/heads/main",
-        "rev": "fb87679839a5d64039743f57d7196c76e4227274",
+        "rev": "2f0641dbbd645d9cbecf33a03c8ea2564d51c014",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -1890,11 +1877,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793175905,
-        "narHash": "sha256-L9AX1naa5OqymE18JQB2xkfprfemJVW3+7F1sfC1fsQ=",
+        "lastModified": 1793242295,
+        "narHash": "sha256-ybV68eAdsvqg/q1p34qBXXJCJGv7A3NzS+lBc3Z+LyU=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "1e4ca272ed07bd39440838c53f0032c8b9980e17",
+        "rev": "9fc43dc0d02a17fdbdb8987d4c433b348f2a53df",
         "type": "github"
       },
       "original": {
@@ -1978,7 +1965,6 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "nixpkgs-pin": "nixpkgs-pin",
         "nixpkgs-pin2": "nixpkgs-pin2",
         "nixpkgs-pin3": "nixpkgs-pin3",
         "nixpkgs-unstable": "nixpkgs-unstable",
