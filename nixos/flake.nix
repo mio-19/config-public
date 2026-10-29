@@ -422,11 +422,6 @@
                   hash = "sha256-qkUXGG0GEe0vC1/0J/DUAPPM9Oj71vRZ24sKmmLtYAQ=";
                 })
               */
-              (fetchpatch {
-                name = "grub-module-keep-booted-system-entry-option.patch";
-                url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
-                hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
-              })
               # conflicts. https://github.com/NixOS/nixpkgs/pull/525012 nixos/hardware/printers: make ensure-printers partOf cups
               (fetchpatch {
                 name = "systemd-boot: add options for entry naming and date format";
@@ -438,11 +433,6 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
                 hash = "sha256-rXSixbD+aiCcnwqSNCSeIgtkY0o5M7sWlorL8GXCuws=";
               })
-              (fetchpatch {
-                name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
-                url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
-                hash = "sha256-w480zZf4tR01wZMojLrn3TNzAkOisD+rOvWCdxTYIu8=";
-              })
               /*
                 # conflicts
                 (fetchpatch {
@@ -451,11 +441,6 @@
                   hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
                 })
               */
-              (fetchpatch {
-                name = "nixos/security/wrappers: avoid linux-headers in closure";
-                url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
-                hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
-              })
               /*
                 (fetchpatch {
                   name = "nixos/systemd-boot: defer boot file garbage collection";
