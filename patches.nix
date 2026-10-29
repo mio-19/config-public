@@ -40,4 +40,9 @@
     url = "https://github.com/NixOS/nixpkgs/pull/579996.patch";
     hash = "sha256-ubCIGJtM1fBr/KzCi2G2zzFi6KohbEkFVv6saUQ3yow=";
   })
+  (fetchpatch {
+    name = "{tor,mullvad}-browser: 15.0.26 -> 16.0";
+    url = "https://github.com/NixOS/nixpkgs/pull/580503.patch";
+    hash = "sha256-7SD6nI/9mDXDiSvSd+/FDc/nXfsAuiHfD6JnWNvNcDI=";
+  })
 ]
