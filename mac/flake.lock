@@ -99,11 +99,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793343415,
-        "narHash": "sha256-QfJY/qjG55KLtBfgUEItjk2tko1oGMb2zjvadFM88+k=",
+        "lastModified": 1793343868,
+        "narHash": "sha256-9lT0bh2tgGh4Sf+IQDXOmOk/RuNafwybbLRzLnIT920=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "498f7a5a6f111b66419c289d99c4e94853928058",
+        "rev": "29bd011b2ecc362661634d93b5a8bede8e79f8f1",
         "type": "github"
       },
       "original": {
@@ -708,9 +708,8 @@
     },
     "nixpkgs-pin4": {
       "locked": {
-        "lastModified": 1791011291,
+        "lastModified": 315532800,
         "narHash": "sha256-4ettaZ6zgjT1Zgjq6zrmIg87gBvLMvPJGA8u0BBTn6Y=",
-        "rev": "73e728ddb6b7a12d18808f510813a13ee1fe4cce",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1084597.73e728ddb6b7/nixexprs.tar.zst"
       },
