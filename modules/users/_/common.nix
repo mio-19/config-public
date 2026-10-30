@@ -208,6 +208,12 @@ let
       mcpConnectorsUrl = "https://api.github.com/copilot-connectors/api/v1";
       managedSettingsUrl = "https://api.github.com/copilot_internal/managed_settings";
     };
+    # Prevent VSCodium's built-in chat setup flow from trying to auto-install
+    # GitHub.copilot-chat from the gallery (Open VSX doesn't carry it).
+    # The extension is already installed via Nix; this stops the "cannot be
+    # installed because it was not found" error after GitHub sign-in.
+    # https://github.com/VSCodium/vscodium/blob/master/docs/ext-github-copilot.md
+    builtInExtensionsEnabledWithAutoUpdates = [ ];
   };
 in
 {
