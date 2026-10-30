@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793360585,
-        "narHash": "sha256-qd4XMIctGG5rcxMzck5hN/NFIVfQ0wOkh2TSBajS1P0=",
+        "lastModified": 1793401966,
+        "narHash": "sha256-EoY/+PEIgunOxfb96XHd9nUFiDWtnHPfqhnKJD4Hq2c=",
         "ref": "refs/heads/main",
-        "rev": "616caa40f73bd6141a284be8be1872eaeffb3ef7",
-        "revCount": 244,
+        "rev": "fac19be39d16b84c0f74a0e5387b54bf2cea9022",
+        "revCount": 245,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -731,6 +731,19 @@
         "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1051111.d482ef84049d/nixexprs.tar.zst"
       }
     },
+    "nixpkgs-pin7": {
+      "locked": {
+        "lastModified": 1793225069,
+        "narHash": "sha256-GYpArmwi/iMuX2ov31oCBhAXRMJdNX9kOl2LZHCuR6M=",
+        "rev": "e62746b0b472753ef019baceab6f1e2e52014980",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1104102.e62746b0b472/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1104102.e62746b0b472/nixexprs.tar.zst"
+      }
+    },
     "nixpkgs-pin8": {
       "locked": {
         "lastModified": 1792116957,
@@ -844,11 +857,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793398713,
-        "narHash": "sha256-HCoV/s3lfuvi5ij5R67C6ssfRjaG4C7CuiKjhTMpyws=",
+        "lastModified": 1793402775,
+        "narHash": "sha256-lnWWQvDXmzcum3fN6N0hlWg1X7PTb+QE/rGRHfYnIYY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "212d444dc93cedee3cec98217303c2b83949ee67",
+        "rev": "6e29dde40ded694a281fbabb1379d5fcb3f216bb",
         "type": "github"
       },
       "original": {
@@ -968,6 +981,7 @@
         ],
         "nixpkgs-pin4": "nixpkgs-pin4",
         "nixpkgs-pin6": "nixpkgs-pin6",
+        "nixpkgs-pin7": "nixpkgs-pin7",
         "nixpkgs-pin8": "nixpkgs-pin8",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
