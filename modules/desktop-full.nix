@@ -297,16 +297,18 @@
             nextcloud-client
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
             nur.repos.mio.icloud-mail
-            (nix-webapps-lib.mkChromiumApp {
-              appName = "chatgpt";
-              desktopName = "ChatGPT";
-              icon = pkgs.fetchurl {
-                url = "https://web.archive.org/web/20260516193252if_/https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png";
-                sha256 = "sha256-+QlDubjI8MLTnpK2Sy3eAKgn2/jTIkNdFUk8rtfYU7k=";
-              };
-              url = "https://chatgpt.com";
-              class = "chrome-chatgpt.com__-Default";
-            })
+            /*
+              (nix-webapps-lib.mkChromiumApp {
+                appName = "chatgpt";
+                desktopName = "ChatGPT";
+                icon = pkgs.fetchurl {
+                  url = "https://web.archive.org/web/20260516193252if_/https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png";
+                  sha256 = "sha256-+QlDubjI8MLTnpK2Sy3eAKgn2/jTIkNdFUk8rtfYU7k=";
+                };
+                url = "https://chatgpt.com";
+                class = "chrome-chatgpt.com__-Default";
+              })
+            */
             (nix-webapps-lib.mkChromiumApp {
               appName = "findmy";
               desktopName = "Find My";
