@@ -7,6 +7,9 @@
       den.aspects.nixbuild
       den.aspects.nixbuild-always
       den.aspects.mac-fix
+      den.aspects.extra
+      den.aspects.harmonia_lan_only_not_public_ip
+      den.aspects.selector4nix
     ];
   };
 }
