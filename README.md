@@ -12,7 +12,7 @@ I spend time in this configuration when I am bored and unable to do other things
 
 this is shared for debugging purposes
 
-you can see `DETAILS REMOVED` with what I feel uncomfortable sharing or unsafe to share.
+you can see `DETAILS REMOVED` or `DETAILS_REMOVED` with what I feel uncomfortable sharing or unsafe to share.
 If a file starts with `# THIS IS A STUB`, it means that the whole file has been recreated for `config-public`.
 
 ```zsh

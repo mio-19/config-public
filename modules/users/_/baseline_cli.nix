@@ -108,7 +108,7 @@ in
 
       if [ ! -f "$file" ]; then
       cat > "$file" <<'EOF'
-      OPENAI_API_KEY=# DETAILS REMOVED
+      OPENAI_API_KEY=DETAILS_REMOVED
       EOF
         chmod 600 "$file"
       fi
