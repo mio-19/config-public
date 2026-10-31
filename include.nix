@@ -154,14 +154,17 @@ customize
         lib.toList (pkg.meta.license or [ ])
       )
     )
-    #|| lib.hasPrefix "cuda-" (lib.getName pkg)
-    #|| lib.hasPrefix "cuda_" (lib.getName pkg)
+  /*
+    || lib.hasPrefix "cuda-" (lib.getName pkg)
+    || lib.hasPrefix "cuda_" (lib.getName pkg)
     || (
       (config.nixpkgs.config.cudaSupport or false)
       && builtins.elem (lib.getName pkg) [
         "blender"
       ]
-    );
+    )
+  */
+  ;
   allowUnfreePredicate =
     pkg:
     allowUnfreeNonSourcePredicate pkg
