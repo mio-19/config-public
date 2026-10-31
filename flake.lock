@@ -254,11 +254,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1793399499,
-        "narHash": "sha256-7871sSCLGeyLLXJ4HVdV7r4hyUQCra020qygqdzO0Cc=",
+        "lastModified": 1793433068,
+        "narHash": "sha256-ZzRBzZ8CD0hQ5NzO5IC3gUau1seluXqOlqs3N2FdMOM=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "16c42bdc08abc66f102b8f8372897f4203421187",
+        "rev": "eb3ecd6ac358146b743f0266ace9620fa0375fdd",
         "type": "github"
       },
       "original": {
@@ -483,11 +483,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792737899,
-        "narHash": "sha256-P0/GhewcEQmAbzq3QunNWY2jLJaYH9F6c/5dEM/jQ4M=",
+        "lastModified": 1793418699,
+        "narHash": "sha256-+RpTlcdh9KqZ+ZiLkNSTvibQWm935EcIdBzRPCTFsrQ=",
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "bb0b90dbd54e207100de72b5dcbe3188c98a4b69",
+        "rev": "ff0e21a414d4547183396da1b44a66f2577b65e9",
         "type": "github"
       },
       "original": {
@@ -1400,11 +1400,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1793400419,
-        "narHash": "sha256-Ac2ml1HXQo7cYZ+3YoYaRLVcEJeEA3IYEXhXuSDYdz4=",
+        "lastModified": 1793429632,
+        "narHash": "sha256-as+Ue5OQyPXaA9myksf2YOhTtHONATTFFjbmumxKW2M=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "2cae3bb5496cf25b2e951a69f8ecbee963e211c7",
+        "rev": "c16784396ad0473d85e058caf0f148d6856c4822",
         "type": "github"
       },
       "original": {
@@ -1572,11 +1572,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793401966,
-        "narHash": "sha256-EoY/+PEIgunOxfb96XHd9nUFiDWtnHPfqhnKJD4Hq2c=",
+        "lastModified": 1793417122,
+        "narHash": "sha256-206tw64wZ1/BPUZkNpqQtEIbdG1my0bFVdMyzc6KZeo=",
         "ref": "refs/heads/main",
-        "rev": "fac19be39d16b84c0f74a0e5387b54bf2cea9022",
-        "revCount": 245,
+        "rev": "05f45689abbe3b759ebda8817e787d716c3c9920",
+        "revCount": 247,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -1991,11 +1991,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793337500,
-        "narHash": "sha256-r5ZNgu58In9a700Ov3BdozWjx9r968jiIG0Ypk/Sud8=",
+        "lastModified": 1793422853,
+        "narHash": "sha256-b9BrYrlAUlUN/DbpJBQvIc8IVFHemruD9U+syWC2gtU=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "fbcca350aef2cf06e98624be6cd8d7148305c7b7",
+        "rev": "9d8aac98d2c007d87a62d36cc4b59a9d48c94c17",
         "type": "github"
       },
       "original": {
@@ -2595,11 +2595,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1793110635,
-        "narHash": "sha256-yXRSdZdZZqccEL+j11lc1gFG1f7V5j8N7oPBTHwf7n4=",
-        "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+        "lastModified": 1793341285,
+        "narHash": "sha256-LOv16TsMYV2/8BUYnhSxHkOASe7es2ORbqMeLlZJ8Hc=",
+        "rev": "1c89083e451e891152365b799595cf7790a43325",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1103272.31ecbaca1bde/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1105037.1c89083e451e/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -2786,11 +2786,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793402775,
-        "narHash": "sha256-lnWWQvDXmzcum3fN6N0hlWg1X7PTb+QE/rGRHfYnIYY=",
+        "lastModified": 1793433313,
+        "narHash": "sha256-6bZ+iwNHpI1Mnfpymj7e9tNR+PzBPD5prNfWQWwEsPY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "6e29dde40ded694a281fbabb1379d5fcb3f216bb",
+        "rev": "8cd35369b27a5a950adafb8042295a6a2fba27dd",
         "type": "github"
       },
       "original": {
