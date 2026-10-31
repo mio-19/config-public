@@ -15,6 +15,7 @@ with _include;
   # workaround for homebrew insecure - https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
   # https://github.com/nix-community/home-manager/blob/9e3a33c0bcbc25619e540b9dfea372282f8a9740/modules/programs/zsh/default.nix#L174
   programs.zsh.completionInit = "autoload -Uz compinit && compinit -u";
+  programs.zsh.enable = true;
 
   programs.emacs.package = progs.emacs;
 
