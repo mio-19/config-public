@@ -11,6 +11,10 @@ let
   ifNoOS = default: f: if osConfig == null then default else f;
 in
 {
+  imports = [
+    ./baseline_a.nix
+    ./baseline_cli.nix
+  ];
   #programs.git.package = null; # use system git, not home-manager's
   programs.ssh = {
     package = null; # use system ssh, not home-manager's
