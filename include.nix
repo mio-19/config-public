@@ -19,7 +19,19 @@ let
           rocmSupport = false;
         };
         system = pkgs.stdenv.hostPlatform.system;
-        overlays = [ inputs.nur.overlays.default ];
+        overlays = [
+          inputs.nur.overlays.default
+          # librewolf-bin-unwrapped is missing enableAddonSigning/enableAddonSideload
+          # that wrapper.nix requires when nixExtensions are passed (added in nixpkgs
+          # for librewolf-unwrapped but not yet for the -bin variant). Patch them in
+          # so declarative extensions work with librewolf-bin.
+          (_final: prev: {
+            librewolf-bin-unwrapped = prev.librewolf-bin-unwrapped.overrideAttrs (_: {
+              enableAddonSigning = false;
+              enableAddonSideload = true;
+            });
+          })
+        ];
       }
     else
       pkgs;
