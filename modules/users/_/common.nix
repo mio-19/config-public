@@ -71,7 +71,7 @@ let
     "git.autofetch" = true;
     "files.autoSave" = "afterDelay";
     "window.autoDetectColorScheme" = true;
-    "workbench.preferredLightColorTheme" = "Light Modern";
+    "workbench.preferredLightColorTheme" = "Light 2026";
     "github.copilot.nextEditSuggestions.enabled" = true;
     "git.openRepositoryInParentFolders" = "always";
     # VSCodium disables Copilot/AI features unless this is false.
