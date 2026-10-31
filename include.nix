@@ -174,6 +174,7 @@ customize
         #"${inputs.mio}/by-name/di/discordchatexporter-desktop_patched/deps.json"
       ];
       allowed = [
+        "libwebrtc"
         "kiwix-apple"
         "vscodium"
         "chatbox"
