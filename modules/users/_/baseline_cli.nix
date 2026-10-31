@@ -23,11 +23,6 @@ let
   bash3workaround = stdenv.hostPlatform.isDarwin;
 in
 {
-  imports = [
-    ./baseline.nix
-    ./cli-extra.nix
-  ];
-
   programs.git = {
     ignores = lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       ".DS_Store"
