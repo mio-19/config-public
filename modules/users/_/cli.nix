@@ -1,3 +1,4 @@
+# TODO: get rid of this file
 {
   inputs,
   config,
