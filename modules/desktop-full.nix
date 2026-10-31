@@ -577,6 +577,7 @@
           trayscale
         ];
         homebrew.casks = [
+          "nextcloud"
           "zotero" # version from nixpkgs does not work
           "discord"
           "iterm2"
