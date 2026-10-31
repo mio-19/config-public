@@ -54,7 +54,7 @@
       den.aspects.options
       den.aspects.fprint-fix
       den.aspects.nix-ld
-      #den.aspects.nixpkgs-workaround
+      den.aspects.nixpkgs-workaround
       den.aspects.customize
       den.aspects.ccache
       #den.aspects.auto-allocate-uids # conflicts with ccache?
