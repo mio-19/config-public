@@ -34,8 +34,8 @@
     users.user.nixosZshUser.enable = true;
   };
 
-  den.hosts.aarch64-linux.macvirt = {
-    hostName = "macvirt";
+  den.hosts.aarch64-linux.nixmac-asahi = {
+    hostName = "nixmac-asahi";
     users.user.classes = [ "homeManager" ];
     users.user.nixosZshUser.enable = true;
   };

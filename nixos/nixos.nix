@@ -70,7 +70,7 @@ in
         ipc
         deck
         ;
-      inherit (denA64.hosts.aarch64-linux) komodo macvirt;
+      inherit (denA64.hosts.aarch64-linux) komodo nixmac-asahi;
     in
     {
       # DETAILS REMOVED
@@ -104,10 +104,10 @@ in
           komodo.mainModule
         ];
       };
-      nixosConfigurations.macvirt = nixosSystem {
+      nixosConfigurations.nixmac-asahi = nixosSystem {
         system = "aarch64-linux";
         modules = [
-          macvirt.mainModule
+          nixmac-asahi.mainModule
         ];
       };
       # DETAILS REMOVED
