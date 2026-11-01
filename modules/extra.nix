@@ -12,7 +12,14 @@ let
     }:
     with pkgs;
     [
-      inetutils
+      (
+        if stdenv.hostPlatform.isDarwin then
+          linkFarm "inetutils-telnet" {
+            "bin/telnet" = "${lib.getBin inetutils}/bin/telnet";
+          }
+        else
+          inetutils
+      )
       lynx
       nh
       nur.repos.mio.nurl_patched
