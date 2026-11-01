@@ -100,6 +100,7 @@
               #harmonia = mio.harmonia_patched;
               inherit (pkgs-pin8) qbittorrent-enhanced;
               inherit (pkgs-pin7) jadx;
+              inherit (pkgs-pin5) atuin;
             }
           )
         ];
