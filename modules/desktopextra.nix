@@ -226,7 +226,6 @@
       with _include;
       {
         environment.systemPackages = with pkgs; [
-          nur.repos.mio.telegram-mac
           nur.repos.mio.mac-apk
 
           #qdiskinfo # needs more patches
