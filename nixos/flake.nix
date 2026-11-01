@@ -410,11 +410,6 @@
                   hash = "sha256-kAzQNvxbAsYGKZ+NUTQPsPqtjFxVdIbj1us+Znt+7EU=";
                 })
               */
-              (fetchpatch {
-                name = "jabref";
-                url = "https://github.com/mio-19/nixpkgs/commit/c452a55ef4e1008f0ea2c9b7b0fe51fdbc310858.diff";
-                hash = "sha256-svwH3egLQJ2zdH/bP+GVrpQ4QjjNoZJjchpcBvwLfJw=";
-              })
               /*
                 (fetchpatch {
                   name = "nixos/firefox: make variant librewolf";
