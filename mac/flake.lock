@@ -99,11 +99,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793464836,
-        "narHash": "sha256-cbZIR/Shhssj4Jg2OVPsy+eudhkPxSyNHF/qP3iGZaw=",
+        "lastModified": 1793503890,
+        "narHash": "sha256-/mwx+B1Q2SMdZuslaKxn1NWVFOmWIOrTi5tsRcwpcEQ=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "39872b702ff1ac3cdde81558e0f36dd36e4e2ba6",
+        "rev": "a14b9d6acc83098b78f7d956d93e59edcb80bb49",
         "type": "github"
       },
       "original": {
@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793485345,
-        "narHash": "sha256-0h++J1DufFn0Q4AjfunL/vAm0ncN+cbznbgNLyAcawA=",
+        "lastModified": 1793503314,
+        "narHash": "sha256-u0Q4cw04G9D3LWvSf/2mT2xo0dUYkesnrvaxrPOCnLc=",
         "ref": "refs/heads/main",
-        "rev": "275278add5ca22cbf8d264c93a823560145d75f0",
-        "revCount": 250,
+        "rev": "26c50f33c2134fe4879a5a67ea30ebb89f0289f8",
+        "revCount": 252,
         "type": "git",
         "url": "https://github.com/mio-19/nurpkgs.git"
       },
@@ -759,11 +759,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1793345420,
-        "narHash": "sha256-RcsCCbI6YtyC9Be5c0XiwLMHJivUaGWSNHjJt0Q3NBE=",
-        "rev": "885ba4d038f10c3d17d7a92e8c3cc185b99c9158",
+        "lastModified": 1793466162,
+        "narHash": "sha256-I/1mmabX9lHq3oipC0QtvxBujtzqEEGPyXbPKmXiTi8=",
+        "rev": "a0788123ada57ec92a79ab2581cda6d3c6cca75f",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1105041.885ba4d038f1/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1105994.a0788123ada5/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -857,11 +857,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793501004,
-        "narHash": "sha256-kR4ZfnvDkDgefULXyXyuIErZ/c5Q9RKMORk9DbwkW+c=",
+        "lastModified": 1793504253,
+        "narHash": "sha256-jUdT1nlVrLZ+yB02i2JTBggfovVWqXR3IU6bUExsYvQ=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "d34d5e7cb57349b4917e1ceb29e493fc3615b663",
+        "rev": "689ffe66e265e043ce12353ba08988d5546ed679",
         "type": "github"
       },
       "original": {
