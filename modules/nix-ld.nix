@@ -45,7 +45,7 @@
             gst_all_1.gst-plugins-base
             gst_all_1.gst-plugins-ugly
             gst_all_1.gstreamer
-            gtk2
+            # gtk2 # marked broken in nixpkgs (EOL 2020)
             harfbuzz
             icu
             keyutils.lib
