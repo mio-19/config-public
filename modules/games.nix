@@ -42,7 +42,16 @@
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
             (offloadPkg bombsquad)
-            lutris
+            (lutris.override {
+              buildFHSEnv =
+                args:
+                pkgs.buildFHSEnv (
+                  args
+                  // {
+                    multiPkgs = pkgs': lib.filter (p: (p.pname or p.name or "") != "gtk+") (args.multiPkgs pkgs');
+                  }
+                );
+            })
             heroic
             rare
             /*
