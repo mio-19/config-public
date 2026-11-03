@@ -23,6 +23,9 @@
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
 
+  kernel_variant = "nixpkgs";
+  boot.kernelModules = [ "iwlwifi" ]; # idk
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
