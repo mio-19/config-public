@@ -159,6 +159,8 @@ with _include;
 
   #linux_tz = lib.mkForce null;
 
+  kernel_variant = "nixpkgs";
+
   #musnix.enable = true; # has conflicts with our limit settings for wine esync!
   # https://wiki.nixos.org/wiki/PipeWire
   services.pipewire = {
