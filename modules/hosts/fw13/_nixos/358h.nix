@@ -24,7 +24,6 @@
   hardware.enableRedistributableFirmware = true;
 
   kernel_variant = "nixpkgs";
-  boot.kernelModules = [ "iwlwifi" ]; # idk
 
   hardware.graphics = {
     enable = true;
