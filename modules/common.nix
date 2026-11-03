@@ -113,7 +113,7 @@
 
         nixpkgs.config.problems.handlers = {
           "sublimetext4".removal = "ignore";
-          "gtk+".broken = "ignore"; # onlyoffice, lutris
+          "gtk+".broken = "ignore"; # gtk2 used by: onlyoffice, lutris
         };
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
