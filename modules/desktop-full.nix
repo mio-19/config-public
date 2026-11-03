@@ -370,7 +370,10 @@
           ];
         programs.localsend.package = hardenedPkg pkgs.localsend;
 
-        programs.onlyoffice.enable = true; # maybe open source but from binary
+        programs.onlyoffice = {
+          enable = true; # maybe open source but from binary
+          package = pkgs.onlyoffice-desktopeditors.override { gtk2 = null; };
+        };
 
         programs.firejail.wrappedBinaries =
           with pkgs;
