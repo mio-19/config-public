@@ -113,6 +113,7 @@
 
         nixpkgs.config.problems.handlers = {
           "sublimetext4".removal = "ignore";
+          "gtk+".broken = "ignore"; # onlyoffice, lutris
         };
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
