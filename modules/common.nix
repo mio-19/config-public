@@ -122,6 +122,7 @@
             "firefox-esr-140-bin-unwrapped-140.17.0esr"
           ]
           ++ map (pkg: pkg.name) [
+            electron_42
             electron_39
             electron_41
             pnpm_10_29_2
