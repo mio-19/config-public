@@ -10,6 +10,7 @@ let
   x86_64-linux = stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isx86_64;
   hostName = config.networking.hostName;
   trusted-public-keys = [
+    "matawaa.cachix.org-1:Lr7VwT3o+MyJPsehlobwZXv5gI+/hh9zhfUWdPCeej8="
     "exo.cachix.org-1:okq7hl624TBeAR3kV+g39dUFSiaZgLRkLsFBCuJ2NZI="
     "selector4nix.cachix.org-1:wovVlT07In5JCVz2tFgxPQTLpnN8hZT6P/RwfFcz3KE="
     "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
@@ -38,6 +39,10 @@ in
       network.ignore_nar_info_error = true;
       network.chunked_streaming = false; # seems to have problems still
       substituters = [
+        {
+          url = "https://matawaa.cachix.org";
+          priority = 40;
+        }
         {
           url = "https://exo.cachix.org";
           priority = 40;
