@@ -101,6 +101,7 @@
               inherit (pkgs-pin8) qbittorrent-enhanced;
               inherit (pkgs-pin7) jadx;
               inherit (pkgs-pin5) atuin atuin-desktop;
+              inherit (pkgs-pin9) uutils-diffutils;
             }
           )
         ];
