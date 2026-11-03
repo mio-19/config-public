@@ -116,7 +116,13 @@
         };
         nixpkgs.config.permittedInsecurePackages =
           with pkgs;
-          map (pkg: pkg.name) [
+          [
+            # https://github.com/NixOS/nixpkgs/commit/abfd73f84c823ed3353e1e9ac485b1fbdda29bdc
+            "firefox-esr-140-bin-unwrapped"
+            "firefox-esr-140-bin-unwrapped-140.17.0esr"
+          ]
+          ++ map (pkg: pkg.name) [
+            electron_42
             electron_39
             electron_41
             pnpm_10_29_2
@@ -257,7 +263,7 @@
           (
             { ... }:
             {
-              programs.vscode.package = progs.vscode;
+              programs.vscodium.package = progs.vscodium;
             }
           )
         ];
@@ -911,7 +917,7 @@
           # unfree:
           raycast
           #teams#doesn't work
-          vscode
+          vscodium
           #discord # discord wants auto update; it does not work with nix.
           #google-chrome # Out of date, because the updater (pkgs/by-name/go/google-chrome/update.sh) has stopped working, and there does not seem to be another way to get stable URLs to particular Chrome versions.
 

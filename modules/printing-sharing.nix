@@ -33,9 +33,10 @@
             enable = true;
             nssmdns4 = true;
             openFirewall = true; # mDNS multicast for LAN discovery (not useful over Tailscale)
-            publish = {
-              enable = true;
-              userServices = true;
+            settings.publish = {
+              disable-publishing = false;
+              disable-user-service-publishing = false;
+              publish-addresses = true;
             };
           };
 

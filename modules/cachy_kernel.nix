@@ -46,8 +46,6 @@
           boot.kernelPackages =
             if nixpkgs_kernel then
               pkgs.linuxPackages_6_18
-            else if config.hardware.nvidia.enabled && config.hardware.nvidia.open then
-              pkgs-chaotic.linuxPackages_cachyos-lts # https://t.me/chaotic_nyx_sac/32764
             else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "no-zen4" then
               pkgs-chaotic.linuxPackages_cachyos
             else if zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "'" then

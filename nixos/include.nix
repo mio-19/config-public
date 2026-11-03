@@ -186,6 +186,12 @@ let
             }
           );
           inherit librewolf_declarative_extension_args;
+          # librewolf-bin-unwrapped is missing enableAddonSigning/enableAddonSideload
+          # that wrapper.nix requires when nixExtensions are passed. Patch them in.
+          librewolf-bin-unwrapped = pkgs.librewolf-bin-unwrapped.overrideAttrs (_: {
+            enableAddonSigning = false;
+            enableAddonSideload = true;
+          });
           librewolf_for_firejail =
             if config.use_librewolf_bin then librewolf_for_firejail_bin else librewolf_for_firejail_src;
           librewolf_for_firejail_bin = cleanPkg (
@@ -276,7 +282,6 @@ let
             }
             // librewolf_declarative_extension_args
           );
-          vscode = pkgs.vscode; # vscode-fhs;
           discord = pkgs.discord.override {
             withVencord = true;
             withOpenASAR = true;
@@ -536,6 +541,17 @@ let
 
       pkgs-pin = import inputs.nixpkgs-pin {
         config = osConfig.nixpkgs.config;
+        system = pkgs.stdenv.hostPlatform.system;
+        overlays = [
+          inputs.nur.overlays.default
+          inputs.chaotic.overlays.default
+        ];
+      };
+      pkgs-pin' = import inputs.nixpkgs-pin {
+        config = osConfig.nixpkgs.config // {
+          cudaSupport = false;
+          rocmSupport = false;
+        };
         system = pkgs.stdenv.hostPlatform.system;
         overlays = [
           inputs.nur.overlays.default

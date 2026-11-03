@@ -299,6 +299,9 @@
             #whitesur-kde # no: buggy
             # https://github.com/tdortman/dotfiles/blob/c6811906d5c5c775b45a772e5e71bab3a305bef2/nix/modules/nixos/hdr/default.nix#L91
             vulkan-hdr-layer-kwin6
+            # Press Space in Dolphin to toggle Information Panel (file inspection preview):
+            kdePackages.kdesdk-thumbnailers
+            taglib
           ]
           ++ lib.optionals config.services.desktopManager.gnome.enable [
             # https://github.com/shrynx/config/blob/29d6a5ad6c76da01ef5e81540c75c393c410388b/modules/nixos/kde.nix#L81-L83

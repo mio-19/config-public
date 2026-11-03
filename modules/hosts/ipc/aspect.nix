@@ -19,6 +19,7 @@
       den.aspects.cachy_kernel
       den.aspects.desktop-baremetal-kde
       #(den.aspects.desktop-specialisation)
+      den.aspects.desktop-specialisation-cutefish
       den.aspects.zram
       den.aspects.alwayson
       den.aspects.extra

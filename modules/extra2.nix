@@ -19,7 +19,7 @@
         systemPackages_hardened = with pkgs; [
           immich-cli
           yt-dlp
-          nur.repos.mio.rocksmith2tab
+          #nur.repos.mio.rocksmith2tab
           nur.repos.mio.mdbook-generate-summary
           inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}".payload-dumper-go
           binwalk

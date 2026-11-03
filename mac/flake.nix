@@ -17,9 +17,10 @@
     nixpkgs.follows = "nixpkgs-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-pin4.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1084597.73e728ddb6b7/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
-    nixpkgs-pin5.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1092129.319e4cebef10/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
+    nixpkgs-pin5.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1105041.885ba4d038f1/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
     nixpkgs-pin6.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1051111.d482ef84049d/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
-    nixpkgs-pin7.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1089329.ca1659429c95/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
+    nixpkgs-pin7.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1104102.e62746b0b472/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
+    nixpkgs-pin8.url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1093421.f20cd90e28fe/nixexprs.tar.zst"; # a commit from nixpkgs-unstable
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -99,7 +100,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # pin to avoid rebuild
-    mio-betterbird.url = "github:mio-19/nurpkgs/1beaee8f60fa8a41598c5cc673c3a7101951d4bd";
+    mio-betterbird.url = "github:mio-19/nurpkgs/ba6879cc0a41027b8db16d277864c6739d084b7c";
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -114,9 +115,9 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     # pin niche inputs to avoid bad people taking over.
-    import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
+    import-tree.url = "github:denful/import-tree/eb1b52eaecc57f7c136d07ae8a93e724dfecac46";
     # pin niche inputs to avoid bad people taking over.
-    den.url = "github:denful/den/99cc0c5a1cc846cb1be681344b10d2731d430e13";
+    den.url = "github:denful/den/436350eea1cde7d059877ed04bbd5d35852e3097";
     apple-fonts = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:Lyndeno/apple-fonts.nix/3861e2249cb244bfbc7cfab2303c152cf5f9d9e9";
@@ -124,7 +125,7 @@
     };
     chinese-fonts-overlay = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:brsvh/chinese-fonts-overlay/da90d47fa1a6f8fbfcc5795bc9351c98142f37ea";
+      url = "github:brsvh/chinese-fonts-overlay/89ec4f91c50bbc3515641b91b2fa63538f1df8f5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -167,11 +168,6 @@
                   # 64gram: fix darwin build with Qt 6.11 - https://github.com/NixOS/nixpkgs/pull/520733.diff
                   # keepassxc: fix pcsc for darwin - https://github.com/NixOS/nixpkgs/pull/520328.diff
                   # remmina: fix missing sidebar icons on macOS - https://github.com/NixOS/nixpkgs/pull/514651.patch
-                  (fetchpatch {
-                    name = "tuxguitar: fix launch on darwin when app bundle path contains space";
-                    url = "https://github.com/NixOS/nixpkgs/pull/487108.diff";
-                    hash = "sha256-MHbE/UY/Rey8a7/zCEQEvvgVH4E4V4CYEm7dqdH6ZGM=";
-                  })
                 ];
             };
             nixpkgs =

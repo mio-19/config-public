@@ -8,10 +8,7 @@
 }:
 {
   imports = [
-    (import ../../../../aspect.nix "extra")
-    (import ../../../../aspect.nix "harmonia_lan_only_not_public_ip")
     #../../../../mac/newinstall.nix
-    (import ../../../../aspect.nix "selector4nix")
   ];
 
   networking.hostName = "NixMac";

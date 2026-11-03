@@ -20,7 +20,6 @@
         ];
         nix-mineral.enable = lib.mkDefault true;
         nix-mineral.preset = "compatibility";
-        nix-mineral.extras.system.zram = false;
         nix-mineral.filesystems.enable = false; # conflicts with persistence
         nix-mineral.settings.entropy.jitterentropy = false; # jitterentropy.service: Main process exited, code=killed, status=31/SYS
         nix-mineral.settings.debug.coredump = false;

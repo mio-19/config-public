@@ -45,31 +45,23 @@
               sniffnet = mio.sniffnet-patched;
               xfce4-terminal = mio.xfce4-terminal-patched;
               android-translation-layer = mio.android-translation-layer_patched;
-              ollama-cuda = pkgs'.ollama; # build failed
               # build failed/depdendency build failed with cuda
               inherit (pkgs')
                 ffmpeg-full
                 krita
-                handbrake
                 gimp
                 blender
                 jadx
-                ollama
                 ;
-              inherit (pkgs') freecad; # no binary cache with cuda and no binary cache with rocm
+              inherit (pkgs') freecad handbrake; # no binary cache with cuda and no binary cache with rocm
               inherit (pkgs') firefox-esr firefox-esr-unwrapped;
-              #vscode = mio.vscode1133;
-              #vscode-fhs = mio.vscode-fhs1133;
-              #vscode-extensions = mio.vscode-extensions1133;
               inherit (pkgs-pin2)
                 openshot-qt
                 stuntrally
-                scribus
-                smplayer
-                joplin-desktop
-                zotero
                 ;
-              inherit (pkgs-pin3) jabref;
+              inherit (pkgs-pin3)
+                diffoscope # depending on fuse2
+                ;
             }
           )
           inputs.chaotic.overlays.default
@@ -106,8 +98,9 @@
               starship = mio.starship_patched;
               raycast = mio.raycast_macos15;
               #harmonia = mio.harmonia_patched;
-              inherit (pkgs-pin7) atuin;
-              inherit (pkgs-pin5) mailspring;
+              inherit (pkgs-pin8) qbittorrent-enhanced;
+              inherit (pkgs-pin7) jadx;
+              inherit (pkgs-pin5) atuin atuin-desktop;
             }
           )
         ];

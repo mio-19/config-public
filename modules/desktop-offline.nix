@@ -122,7 +122,7 @@
       with _include;
       {
         boot.supportedFilesystems = [
-          "apfs"
+          # "apfs"
         ]
         ++ lib.optionals (!(builtins.any (tag: tag == "rc") config.system.nixos.tags)) [
           # "bcachefs"
@@ -188,7 +188,7 @@
             easyeffects
             pixelorama
             plezy
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.komi-store
+            #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.komi-store
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.nix-software-center
             brave-origin
             #quickemu

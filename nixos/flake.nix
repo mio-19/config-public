@@ -21,9 +21,9 @@
     nixpkgs-unstable.url = "https://nixos.org/channels/nixos-unstable/nixexprs.tar.zst";
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/0bb7ec54c8483066ec9d7720e780a5caa71f8612"; # https://hydra.nixos.org/job/nixos/unstable/tested#tabs-constituents
     nixpkgs.follows = "nixpkgs-unstable";
-    #nixpkgs-pin.url = "github:NixOS/nixpkgs/331800de5053fcebacf6813adb5db9c9dca22a0c"; # a commit from nixos-unstable
+    #nixpkgs-pin.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.zst"; # a commit from nixos-unstable
     nixpkgs-pin2.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080855.7a0f122f5090/nixexprs.tar.zst"; # a commit from nixos-unstable
-    nixpkgs-pin3.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst"; # a commit from nixos-unstable
+    nixpkgs-pin3.url = "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst"; # a commit from nixos-unstable
     #nixpkgs-pin4.url = "github:NixOS/nixpkgs/8dc49b8b206a683d1f6605e0fd993c0f5d49c98d"; # a commit from nixos-unstable-small
     #nixpkgs-new.url = "github:NixOS/nixpkgs/master";
     nix-vscode-extensions = {
@@ -76,11 +76,13 @@
       #inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    chaotic_pin = {
-      url = "github:chaotic-cx/nyx/205e298182afe92f1df9a6192a5341cd3eae9dd1";
-      #inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
+    /*
+      chaotic_pin = {
+        url = "github:chaotic-cx/nyx/205e298182afe92f1df9a6192a5341cd3eae9dd1";
+        #inputs.nixpkgs.follows = "nixpkgs";
+        inputs.home-manager.follows = "home-manager";
+      };
+    */
     /*
       chaotic-ff-nightly = {
         #url = "github:lonerOrz/nyx-loner";
@@ -109,7 +111,7 @@
       };
     */
     # pin niche inputs to avoid bad people taking over.
-    nix-flatpak.url = "github:gmodena/nix-flatpak/20d42f0ee98c9fe9f85e8d1de474f1409ed10d05";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/02656785ab214fa1c9655f1beaaf0269eeeec2ca";
     /*
       lix-module = {
         #url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
@@ -244,7 +246,7 @@
     #};
     steam-config-nix = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:different-name/steam-config-nix/36c3dc1cfa60a5ce4032bcd801b094e770d8b871";
+      url = "github:different-name/steam-config-nix/ae75eb33cfd73929f519882cc8ec8294bfdc3c0d";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.systems.follows = "systems";
@@ -258,7 +260,7 @@
     };
     nix-snapd = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:nix-community/nix-snapd/f7694a0e26d890e285137e1b726b1b44038805c4";
+      url = "github:nix-community/nix-snapd/69270de9f56f7c4e0dcf87ea32d882723bf04731";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
@@ -274,16 +276,16 @@
     */
     nix-bwrapper = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:Naxdy/nix-bwrapper/49be156ec0ffff4afee501746ff965a5c4776bbd";
+      url = "github:Naxdy/nix-bwrapper/d170b06fafc0703fff36ec422a64516594b39bd9";
       inputs.nixpkgs.follows = "nixpkgs";
       #inputs.treefmt-nix.follows = "llm-agents/treefmt-nix";
-      inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nuschtosSearch.inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
+      #inputs.treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nuschtosSearch.inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
     };
     nixpak = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:nixpak/nixpak/be97295fa81fe743b9753449143dd4931e51d63c";
+      url = "github:nixpak/nixpak/b5811f96aead6c01388095a2b0839559c72c73fe";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.hercules-ci-effects.follows = "hercules-ci-effects";
@@ -293,7 +295,7 @@
       url = "github:fufexan/nix-gaming";
       #need binary cache#inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
+      #inputs.git-hooks.inputs.flake-compat.follows = "flake-compat";
       inputs.flake-compat.follows = "flake-compat";
     };
     # pin niche inputs to avoid bad people taking over.
@@ -315,7 +317,9 @@
       };
     */
     nixos-avf = {
-      url = "github:nix-community/nixos-avf";
+      #url = "github:nix-community/nixos-avf";
+      # https://github.com/nix-community/nixos-avf/pull/45
+      url = "github:nix-community/nixos-avf/4c557dc7444eb6b6b16937e9e788cbd20496748a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     repo = {
@@ -324,7 +328,7 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
       inputs.treefmt-nix.follows = "treefmt-nix";
-      inputs.android-nixpkgs.inputs.flake-utils.follows = "flake-utils";
+      #inputs.android-nixpkgs.inputs.flake-utils.follows = "flake-utils";
       inputs.nixos-apple-silicon.follows = "nixos-apple-silicon";
     };
     selector4nix = {
@@ -334,7 +338,9 @@
     };
     nix-mineral = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:cynicsketch/nix-mineral/16c219cdf9c7349591e4570779092d86c9bfbaec";
+      #url = "github:cynicsketch/nix-mineral/bcd361bb18fccc4297d668aa5e0d5e4ebd4918ce";
+      # https://github.com/cynicsketch/nix-mineral/pull/244
+      url = "github:surfaceflinger/nix-mineral/11acd9af1e7e6ed18b6f87452b51945306539c3f";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-parts.follows = "flake-parts";
@@ -355,14 +361,14 @@
       };
     */
     # pin niche inputs to avoid bad people taking over.
-    import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
+    import-tree.url = "github:denful/import-tree/eb1b52eaecc57f7c136d07ae8a93e724dfecac46";
     # pin niche inputs to avoid bad people taking over.
-    den.url = "github:denful/den/99cc0c5a1cc846cb1be681344b10d2731d430e13";
+    den.url = "github:denful/den/436350eea1cde7d059877ed04bbd5d35852e3097";
     # pin to avoid rebuild
-    mio-betterbird.url = "github:mio-19/nurpkgs/e15beb66617ebc0ae14103424e1d747361008e45";
+    mio-betterbird.url = "github:mio-19/nurpkgs/ba6879cc0a41027b8db16d277864c6739d084b7c";
     chinese-fonts-overlay = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:brsvh/chinese-fonts-overlay/da90d47fa1a6f8fbfcc5795bc9351c98142f37ea";
+      url = "github:brsvh/chinese-fonts-overlay/89ec4f91c50bbc3515641b91b2fa63538f1df8f5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     apple-fonts = {
@@ -404,11 +410,6 @@
                   hash = "sha256-kAzQNvxbAsYGKZ+NUTQPsPqtjFxVdIbj1us+Znt+7EU=";
                 })
               */
-              (fetchpatch {
-                name = "jabref";
-                url = "https://github.com/mio-19/nixpkgs/commit/c452a55ef4e1008f0ea2c9b7b0fe51fdbc310858.diff";
-                hash = "sha256-svwH3egLQJ2zdH/bP+GVrpQ4QjjNoZJjchpcBvwLfJw=";
-              })
               /*
                 (fetchpatch {
                   name = "nixos/firefox: make variant librewolf";
@@ -416,11 +417,6 @@
                   hash = "sha256-qkUXGG0GEe0vC1/0J/DUAPPM9Oj71vRZ24sKmmLtYAQ=";
                 })
               */
-              (fetchpatch {
-                name = "grub-module-keep-booted-system-entry-option.patch";
-                url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
-                hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
-              })
               # conflicts. https://github.com/NixOS/nixpkgs/pull/525012 nixos/hardware/printers: make ensure-printers partOf cups
               (fetchpatch {
                 name = "systemd-boot: add options for entry naming and date format";
@@ -432,11 +428,6 @@
                 url = "https://github.com/NixOS/nixpkgs/pull/510915.diff";
                 hash = "sha256-rXSixbD+aiCcnwqSNCSeIgtkY0o5M7sWlorL8GXCuws=";
               })
-              (fetchpatch {
-                name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
-                url = "https://github.com/NixOS/nixpkgs/pull/526318.patch";
-                hash = "sha256-a7p/7aNKwlj5YsT5r/+Qg1b8VHLv5DMfe7ZjA4Mk4EY=";
-              })
               /*
                 # conflicts
                 (fetchpatch {
@@ -445,11 +436,6 @@
                   hash = "sha256-C/NMN+/l6W01HKOBib9RJiJt7+0AvIVlmNWXwC/oKAk=";
                 })
               */
-              (fetchpatch {
-                name = "nixos/security/wrappers: avoid linux-headers in closure";
-                url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
-                hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
-              })
               /*
                 (fetchpatch {
                   name = "nixos/systemd-boot: defer boot file garbage collection";
@@ -466,11 +452,6 @@
                 name = "nixos/bash: Reset title bar only for interactive shells";
                 url = "https://github.com/NixOS/nixpkgs/pull/521688.patch";
                 hash = "sha256-sD9sjD+GVoAjMe6gQjJ18Z4pYvWi2xjTdukaQBSm/Ao=";
-              })
-              (fetchpatch {
-                name = "nixos/tailscale: order tailscaled after network-online.target";
-                url = "https://github.com/NixOS/nixpkgs/pull/529035.patch";
-                hash = "sha256-ejSZR/46qHycDVwbVV4UjESICT2CTBbJ4J51hasgRs4=";
               })
               # https://github.com/NixOS/nixpkgs/issues/442117
               (fetchpatch {

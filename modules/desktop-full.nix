@@ -297,16 +297,18 @@
             nextcloud-client
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.prospect-mail
             nur.repos.mio.icloud-mail
-            (nix-webapps-lib.mkChromiumApp {
-              appName = "chatgpt";
-              desktopName = "ChatGPT";
-              icon = pkgs.fetchurl {
-                url = "https://web.archive.org/web/20260516193252if_/https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png";
-                sha256 = "sha256-+QlDubjI8MLTnpK2Sy3eAKgn2/jTIkNdFUk8rtfYU7k=";
-              };
-              url = "https://chatgpt.com";
-              class = "chrome-chatgpt.com__-Default";
-            })
+            /*
+              (nix-webapps-lib.mkChromiumApp {
+                appName = "chatgpt";
+                desktopName = "ChatGPT";
+                icon = pkgs.fetchurl {
+                  url = "https://web.archive.org/web/20260516193252if_/https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/1280px-OpenAI_logo_2025_%28symbol%29.svg.png";
+                  sha256 = "sha256-+QlDubjI8MLTnpK2Sy3eAKgn2/jTIkNdFUk8rtfYU7k=";
+                };
+                url = "https://chatgpt.com";
+                class = "chrome-chatgpt.com__-Default";
+              })
+            */
             (nix-webapps-lib.mkChromiumApp {
               appName = "findmy";
               desktopName = "Find My";
@@ -357,7 +359,7 @@
             (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wechat_bwrap.override {
               followSystemAppearance = true;
             })
-            progs.vscode
+            progs.vscodium
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
             zotero # segfault with hardenedPkg on NixOS
@@ -368,7 +370,10 @@
           ];
         programs.localsend.package = hardenedPkg pkgs.localsend;
 
-        programs.onlyoffice.enable = true; # maybe open source but from binary
+        programs.onlyoffice = {
+          enable = true; # maybe open source but from binary
+          package = pkgs.onlyoffice-desktopeditors.override { gtk2 = null; };
+        };
 
         programs.firejail.wrappedBinaries =
           with pkgs;
@@ -451,6 +456,18 @@
                 inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.firejail-profiles
               }/etc/firejail/wiliwili.profile";
             };
+            firefox-esr = {
+              executable = "${cleanPkg firefox-esr}/bin/firefox-esr";
+              profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
+              extraArgs = [
+                # https://github.com/netblue30/firejail/issues/5062 - light/dark theme switching
+                "--dbus-user.talk=org.freedesktop.portal.Desktop"
+              ];
+            };
+            nextcloud = {
+              executable = "${hardenedPkg nextcloud-client}/bin/nextcloud";
+              profile = "${pkgs.firejail}/etc/firejail/nextcloud.profile";
+            };
           }
           // lib.optionalAttrs config.librewolf_firejail {
             librewolf = {
@@ -475,6 +492,14 @@
             noblacklist ${"$"}{PICTURES}
           '';
         };
+
+        # nextcloud.profile sets `dbus-user filter`, so the tray icon, desktop
+        # notifications and opening folders in the file manager have to be allowed.
+        environment.etc."firejail/nextcloud.local".text = ''
+          dbus-user.talk org.kde.StatusNotifierWatcher
+          dbus-user.talk org.freedesktop.Notifications
+          dbus-user.talk org.freedesktop.FileManager1
+        '';
 
         # xone causes issues that controller is blank after reboot until replugged. default driver xpad works fine.
         /*
@@ -555,6 +580,7 @@
           trayscale
         ];
         homebrew.casks = [
+          "nextcloud"
           "zotero" # version from nixpkgs does not work
           "discord"
           "iterm2"

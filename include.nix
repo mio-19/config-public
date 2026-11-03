@@ -19,7 +19,19 @@ let
           rocmSupport = false;
         };
         system = pkgs.stdenv.hostPlatform.system;
-        overlays = [ inputs.nur.overlays.default ];
+        overlays = [
+          inputs.nur.overlays.default
+          # librewolf-bin-unwrapped is missing enableAddonSigning/enableAddonSideload
+          # that wrapper.nix requires when nixExtensions are passed (added in nixpkgs
+          # for librewolf-unwrapped but not yet for the -bin variant). Patch them in
+          # so declarative extensions work with librewolf-bin.
+          (_final: prev: {
+            librewolf-bin-unwrapped = prev.librewolf-bin-unwrapped.overrideAttrs (_: {
+              enableAddonSigning = false;
+              enableAddonSideload = true;
+            });
+          })
+        ];
       }
     else
       pkgs;
@@ -40,6 +52,7 @@ customize
   allowUnfreeNonSourcePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "firefox-esr-140-bin-unwrapped"
       "libnvvm"
       "cccl"
       "dumpifs"
@@ -141,14 +154,17 @@ customize
         lib.toList (pkg.meta.license or [ ])
       )
     )
-    #|| lib.hasPrefix "cuda-" (lib.getName pkg)
-    #|| lib.hasPrefix "cuda_" (lib.getName pkg)
+  /*
+    || lib.hasPrefix "cuda-" (lib.getName pkg)
+    || lib.hasPrefix "cuda_" (lib.getName pkg)
     || (
       (config.nixpkgs.config.cudaSupport or false)
       && builtins.elem (lib.getName pkg) [
         "blender"
       ]
-    );
+    )
+  */
+  ;
   allowUnfreePredicate =
     pkg:
     allowUnfreeNonSourcePredicate pkg
@@ -173,6 +189,7 @@ customize
         #"${inputs.mio}/by-name/di/discordchatexporter-desktop_patched/deps.json"
       ];
       allowed = [
+        "libwebrtc"
         "kiwix-apple"
         "vscodium"
         "chatbox"
@@ -291,6 +308,8 @@ customize
   #
   # NixOS and macOS-specific include files may extend/override this attrset.
   progs = rec {
+    vscodium = pkgs.vscodium;
+
     nodejs = pkgs.nodejs_latest;
     nodejs-slim = pkgs.nodejs-slim_latest;
 

@@ -8,12 +8,20 @@
     nixos.url = "path:./nixos";
 
     mac.url = "path:./mac";
+
+    bsd.url = "path:./bsd";
   };
 
   outputs =
-    { nixos, mac, ... }:
+    {
+      nixos,
+      mac,
+      bsd,
+      ...
+    }:
     {
       inherit (nixos) nixosConfigurations;
       inherit (mac) darwinConfigurations;
+      inherit (bsd) nixbsdConfigurations;
     };
 }

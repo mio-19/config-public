@@ -12,6 +12,14 @@ let
     }:
     with pkgs;
     [
+      (
+        if stdenv.hostPlatform.isDarwin then
+          linkFarm "inetutils-telnet" {
+            "bin/telnet" = "${lib.getBin inetutils}/bin/telnet";
+          }
+        else
+          inetutils
+      )
       lynx
       nh
       nur.repos.mio.nurl_patched
@@ -44,6 +52,7 @@ let
       claude-code-router
       opencode
       github-copilot-cli
+      #nur.repos.mio.freebuff
     ]
     ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
       dsh
@@ -68,55 +77,53 @@ in
       {
         programs.java.package = hardenedPkg progs.jdk;
         # https://search.nixos.org/packages
-        environment.systemPackages =
+        systemPackages_hardened =
           with pkgs;
-          (map hardenedPkg (
-            commonCliHardened {
-              inherit
-                pkgs
-                progs
-                inputs
-                ;
-            }
-            ++ [
-              wgcf
-              fdroidcl
-              (sbt.override { jre = progs.jre; })
-              mill
-              (pkgs.scala_3.override { jre = progs.jre; })
-              (maven.override { jdk_headless = progs.jdk_headless; })
-              (ammonite.override { jre = progs.jre; })
-              progs.jdk
-              agda
-              lean4
-              yarn-berry
-              update-nix-fetchgit
-              gnumake
-              texliveFull
-              poppler-utils
-              nixd
-              jq
-              ffmpeg-full
-              nixpkgs-reviewFull
-              nix-update
-              nix-tree
-              haskell-language-server
-              ghc
-              diffoscope
-            ]
-          ))
-          ++ (map cleanPkg (
-            commonCliClean { inherit pkgs inputs; }
-            ++ [
-              cursor-cli
-              #claude-code
-              distrobox
-              gcc
-            ]
-          ))
+          commonCliHardened {
+            inherit
+              pkgs
+              progs
+              inputs
+              ;
+          }
           ++ [
-            antigravity-cli
+            wgcf
+            fdroidcl
+            (sbt.override { jre = progs.jre; })
+            mill
+            (pkgs.scala_3.override { jre = progs.jre; })
+            (maven.override { jdk_headless = progs.jdk_headless; })
+            (ammonite.override { jre = progs.jre; })
+            progs.jdk
+            agda
+            lean4
+            yarn-berry
+            update-nix-fetchgit
+            gnumake
+            texliveFull
+            poppler-utils
+            nixd
+            jq
+            ffmpeg-full
+            nixpkgs-reviewFull
+            nix-update
+            nix-tree
+            haskell-language-server
+            ghc
+            diffoscope
           ];
+        systemPackages_clean =
+          with pkgs;
+          commonCliClean { inherit pkgs inputs; }
+          ++ [
+            cursor-cli
+            #claude-code
+            distrobox
+            gcc
+          ];
+        environment.systemPackages = with pkgs; [
+          antigravity-cli
+        ];
         virtualisation.podman.enable = true;
 
         # https://discourse.nixosstag.fcio.net/t/how-to-fix-cursor-size/2938/8

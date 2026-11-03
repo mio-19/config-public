@@ -1,49 +1,30 @@
 { fetchpatch, fetchurl }:
 [
   (fetchpatch {
-    name = "craft-fonts: init at 0.1.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572622.patch";
-    hash = "sha256-X3/N51+ZJy90ynwnJUtNwZeEpcaiexLpvykFk0dadZs=";
+    name = "nixos/security/wrappers: avoid linux-headers in closure";
+    url = "https://github.com/NixOS/nixpkgs/pull/532581.patch";
+    hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
   })
   (fetchpatch {
-    name = "photocraft: init at 0.7.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/571418.patch";
-    hash = "sha256-m0FWIP4LxuJtvUKI5Tdyu2tZsjuMiiAD9OkZyW4zbMM=";
+    name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
+    url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
+    hash = "sha256-w480zZf4tR01wZMojLrn3TNzAkOisD+rOvWCdxTYIu8=";
+  })
+  (fetchpatch {
+    name = "grub-module-keep-booted-system-entry-option.patch";
+    url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
+    hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
+  })
+  (fetchpatch {
+    name = "tuxguitar: 2.0.1 -> 2.1.1";
+    url = "https://github.com/NixOS/nixpkgs/pull/579150.patch";
+    hash = "sha256-MoBwTX19A5rcVlkFDS+ZL5tMKGjYlgOnlSHzNEDLHZQ=";
   })
   (fetchurl {
     name = "flyline: init at 1.9.0";
     url = "https://github.com/NixOS/nixpkgs/pull/538842.patch";
     hash = "sha256-M2hwE/KpOi9v/sCcXeB7SnXPpqo5aE2E0gkzbzIxvtM=";
   })
-  (fetchpatch {
-    name = "deckcraft: init at 0.3.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572122.patch";
-    hash = "sha256-BorAaCN/yh3NqiSh4tz9tsg0eZCbK436AHYlwxldVS8=";
-  })
-  (fetchpatch {
-    name = "gridcraft: init at 0.3.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572121.patch";
-    hash = "sha256-FZtdZAjwhRh/IfVfWjitslcEv1UB9B4P1ny9wqfkXcc=";
-  })
-  /*
-    (fetchpatch {
-      name = "wordcraft: init at 0.3.0";
-      url = "https://github.com/NixOS/nixpkgs/pull/572119.patch";
-      hash = "sha256-4BYp7epvzIhXdBMGGMA0k7NhCLPAcPOCQdDjqR4g+TI=";
-    })
-  */
-  (fetchpatch {
-    name = "cadcraft: init at 0.3.0";
-    url = "https://github.com/NixOS/nixpkgs/pull/572118.patch";
-    hash = "sha256-GjfM/UHoqlGRqsOX0WOcW2TjWpO0ntjtk+ppUeN6OkM=";
-  })
-  /*
-    (fetchpatch {
-      name = "lightcraft: init at 0.5.0";
-      url = "https://github.com/NixOS/nixpkgs/pull/571423.patch";
-      hash = "sha256-ryHVF/iGO0dBGcJ1WdB4H+b/SCzAS5rMTJQqZKA9QiM=";
-    })
-  */
   (fetchpatch {
     name = "openlogi: 0.6.25 -> 0.8.13";
     url = "https://github.com/NixOS/nixpkgs/pull/573733.diff";
@@ -52,6 +33,11 @@
   (fetchpatch {
     name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, mesh-llm-native-runtime, mesh-llm-native-runtime-vulkan: init at 0.78.1; nixos/mesh-llm: init module";
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
-    hash = "sha256-cnOznfIHQFGQbepnDVARnpARJzFfGoBKRyWT9dpvmEA=";
+    hash = "sha256-+3GQvUa+5lzd8ywoj6Ihx+zZw22ZD0SRvljZh5DidQg=";
+  })
+  (fetchpatch {
+    name = "isabelle: 2025-2 -> 2026";
+    url = "https://github.com/NixOS/nixpkgs/pull/579996.patch";
+    hash = "sha256-ubCIGJtM1fBr/KzCi2G2zzFi6KohbEkFVv6saUQ3yow=";
   })
 ]

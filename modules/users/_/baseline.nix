@@ -11,6 +11,10 @@ let
   ifNoOS = default: f: if osConfig == null then default else f;
 in
 {
+  imports = [
+    ./baseline_a.nix
+    ./baseline_cli.nix
+  ];
   #programs.git.package = null; # use system git, not home-manager's
   programs.ssh = {
     package = null; # use system ssh, not home-manager's
@@ -63,7 +67,7 @@ in
 
   # https://github.com/nix-community/home-manager/issues/7583#issuecomment-3187211983
   home.activation.cleanupOldHomemanagerPath =
-    assert (!osConfig.home-manager.enableLegacyProfileManagement);
+    assert (ifNoOS true (!osConfig.home-manager.enableLegacyProfileManagement));
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       rm -f ~/.local/state/nix/profiles/home-manager
     '';
