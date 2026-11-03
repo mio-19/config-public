@@ -1,0 +1,24 @@
+diff --git a/drivers/net/wireless/intel/iwlwifi/iwl-drv.c b/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
+--- a/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
++++ b/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
+@@ -330,20 +330,5 @@ static int iwl_request_firmware(struct iwl_drv *drv, bool first)
+ 	iwl_get_ucode_api_versions(drv->trans, &ucode_api_min, &ucode_api_max);
+ 
+-	if (drv->trans->mac_cfg->device_family == IWL_DEVICE_FAMILY_9000 &&
+-	    (drv->trans->info.hw_rev_step != SILICON_B_STEP &&
+-	     drv->trans->info.hw_rev_step != SILICON_C_STEP)) {
+-		IWL_ERR(drv,
+-			"Only HW steps B and C are currently supported (0x%0x)\n",
+-			drv->trans->info.hw_rev);
+-		return -EINVAL;
+-	}
+-
+-	if (CSR_HW_RFID_TYPE(drv->trans->info.hw_rf_id) == IWL_CFG_RF_TYPE_WH &&
+-	    CSR_HW_RFID_STEP(drv->trans->info.hw_rf_id) == SILICON_A_STEP) {
+-		IWL_ERR(drv, "WH A step is not supported\n");
+-		return -EINVAL;
+-	}
+-
+ 	fw_name_pre = iwl_drv_get_fwname_pre(drv->trans, _fw_name_pre);
+ 
+ 	if (first)
