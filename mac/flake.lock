@@ -772,15 +772,15 @@
     },
     "nixpkgs-pin9": {
       "locked": {
-        "lastModified": 1793645915,
-        "narHash": "sha256-oeIw+gG/Q+bbBGUxbCWseSj4Ae6RACSdxypTixn2fkw=",
-        "rev": "f9887a8a434bfba06e20dfc77bc8e0628266af84",
+        "lastModified": 1793494649,
+        "narHash": "sha256-gh035dq/sQ/OwPltGyvjNl1zNWZgVnng2zug7xKqSu8=",
+        "rev": "d357a2b54f0b6dc4aeb4e993190a52cf151b6f24",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1107035.f9887a8a434b/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1106208.d357a2b54f0b/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1107035.f9887a8a434b/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1106208.d357a2b54f0b/nixexprs.tar.zst"
       }
     },
     "nixpkgs-unstable": {
@@ -883,11 +883,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793703313,
-        "narHash": "sha256-+su+ezvwSObyxJySVtRzxB4kmEc7Ishh0xW5M9lnR+U=",
+        "lastModified": 1793704136,
+        "narHash": "sha256-8jJOcxcjmLg5S/IOXh0rGRztSthKtf53x8yV0fJXokI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "ce31abb06231de35fe19cad7146401f06c89c21f",
+        "rev": "fb2d479696379dd3a9b580bbbde37b0d64429342",
         "type": "github"
       },
       "original": {
