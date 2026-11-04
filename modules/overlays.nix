@@ -36,7 +36,7 @@
             final: prev:
             let
               mio = inputs.mio.legacyPackages."${system}";
-              inherit (final) patchelf;
+              inherit (final) patchelf fetchurl;
             in
             {
               grub2 = mio.grub2_patched;
