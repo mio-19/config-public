@@ -19,11 +19,13 @@
           inputs.mio.nixosModules.cutefish
         ];
 
-        # The session is "Cutefish (Wayland)" on the display manager already in
-        # use (SDDM or plasma-login). cutefish-dm stays unused.
+        # Use SDDM for the Cutefish session. Plasma Login Manager is KDE-specific
+        # and offers no Cutefish integration; cutefish-dm stays unused.
         specialisation.cutefish.configuration = lib.mkIf (!config.services.desktopManager.cutefish.enable) {
           services.desktopManager.cutefish.enable = true;
           system.nixos.tags = [ "cutefish" ];
+          services.displayManager.plasma-login-manager.enable = lib.mkForce false;
+          services.displayManager.sddm.enable = lib.mkForce true;
           services.displayManager.defaultSession = lib.mkForce "cutefish-wayland";
           # Plasma stays enabled and also sets this with mkDefault. The
           # Cutefish module ships the same portals.conf as this attrset
