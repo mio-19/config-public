@@ -376,6 +376,10 @@
       url = "github:Lyndeno/apple-fonts.nix/3861e2249cb244bfbc7cfab2303c152cf5f9d9e9";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpak-apps = {
+      url = "github:Murkiness4095/nixpak-apps/b168c7c512912d56f2c923b8fd54caca863ea4cd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
