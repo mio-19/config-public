@@ -13,7 +13,8 @@
         _include = args._include or (import ../nixos/include.nix args);
         nixpkgs_kernel =
           config.kernel_variant == "nixpkgs"
-          || (zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "nixpkgs");
+          || (zen4 && config.workaround_i_dont_know_kernel_nvidia_refer_problem == "nixpkgs")
+          || config.virtualisation.vmware.host.enable;
         zen4 = config.microarch == "zen4";
       in
       with _include;
