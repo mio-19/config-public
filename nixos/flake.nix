@@ -377,7 +377,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpak-apps = {
-      url = "github:Murkiness4095/nixpak-apps/b168c7c512912d56f2c923b8fd54caca863ea4cd";
+      url = "github:Murkiness4095/nixpak-apps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
