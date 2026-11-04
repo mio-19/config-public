@@ -36,7 +36,7 @@ with _include;
   security.pam.zfs.homes = "${pool}/nixos/safe/encrypted";
   chaotic.zfs-impermanence-on-shutdown.volume = "${pool}/nixos/local/ephemeral";
 
-  virtualisation.vmware.host.enable = true;
+  #virtualisation.vmware.host.enable = true;
   #virtualisation.virtualbox.host.enable = true;
 
   security.allowSimultaneousMultithreading = false; # maybe this avoid Machine Check error https://www.reddit.com/r/techsupport/comments/1am75eu/machine_check_errors_on_14700kf_faulty_cpu/?rdt=32949
