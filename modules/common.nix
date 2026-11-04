@@ -212,6 +212,8 @@
 
         boot.loader.grub.keepBootedSystemEntry = true;
 
+        boot.binfmt.preferStaticEmulators = true;
+
         # Set your time zone.
         #time.timeZone = lib.mkForce "Pacific/Auckland";
         #services.automatic-timezoned.enable = true;
