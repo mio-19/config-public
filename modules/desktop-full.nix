@@ -356,13 +356,10 @@
             firefox-esr
             (wrapPrio gnome-console)
             # unfree:
-            /*
-              # stuck
-              (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wechat_bwrap.override {
-                followSystemAppearance = true;
-              })
-            */
-            inputs.nixpak-apps.packages.${pkgs.stdenv.hostPlatform.system}.wechat
+            (inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wechat_bwrap.override {
+              followSystemAppearance = true;
+            })
+            #inputs.nixpak-apps.packages.${pkgs.stdenv.hostPlatform.system}.wechat
             progs.vscodium
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
