@@ -350,6 +350,10 @@
             })
             progs.discord
           ];
+        environment.systemPackages = with pkgs; [
+          # unfree:
+          inputs.nixpak-apps.packages.${pkgs.stdenv.hostPlatform.system}.wechat
+        ];
         systemPackages_clean =
           with pkgs;
           [
@@ -362,7 +366,6 @@
                 followSystemAppearance = true;
               })
             */
-            inputs.nixpak-apps.packages.${pkgs.stdenv.hostPlatform.system}.wechat
             progs.vscodium
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
