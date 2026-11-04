@@ -31,7 +31,7 @@
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
 
-  kernel_variant = "nixpkgs";
+  #kernel_variant = "nixpkgs";
 
   hardware.graphics = {
     enable = true;
