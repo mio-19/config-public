@@ -736,11 +736,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793749336,
-        "narHash": "sha256-RdSDtMPyW61qZUgwaI7SuodnVvzQbcMhHdLpfS21lnw=",
+        "lastModified": 1793750192,
+        "narHash": "sha256-ueNHsKFN7SA7Lzk4DPnjWgpIET+IaJZ8uIIeDszen+Y=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "15bf3a52cc1d7dcb93f42af2d9a9178cb2c60c06",
+        "rev": "78f777ba4f6141fca604a5cee3f6ff8dfab09f48",
         "type": "github"
       },
       "original": {
@@ -1597,10 +1597,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793749707,
-        "narHash": "sha256-7Q2fgEFwNblbaE9GmGn81SDGnYAv1XZNvpPesF3tMoI=",
+        "lastModified": 1793751027,
+        "narHash": "sha256-Vs/xTini8yQeYkxe0gdEyT8psSjwc5DJYAb4MBaMNFI=",
         "ref": "refs/heads/main",
-        "rev": "c92d360680475fcf667484f5d321c379d67975b3",
+        "rev": "0ec44695d9fce1c5f25a058a7983b96a1d80a342",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
