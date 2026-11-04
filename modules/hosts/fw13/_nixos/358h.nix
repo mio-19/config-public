@@ -19,12 +19,14 @@
     "pcie_aspm=force"
     "snd_hda_intel.power_save=1"
   ];
-  boot.kernelPatches = [
-    {
-      name = "iwlwifi: keep WH A-step support";
-      patch = ./iwlwifi-wh-a-step.patch;
-    }
-  ];
+  /*
+    boot.kernelPatches = [
+      {
+        name = "iwlwifi: keep WH A-step support";
+        patch = ./iwlwifi-wh-a-step.patch;
+      }
+    ];
+  */
   powerManagement.powertop.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
