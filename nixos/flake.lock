@@ -126,11 +126,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793629330,
-        "narHash": "sha256-Gg64ffq+Ys+2pnd1O7K+QsrCJh1ryhook8w+zZnQw4A=",
+        "lastModified": 1793742908,
+        "narHash": "sha256-hyDlsmep/RhFlSVnHBQdKXDgTnQDB6eo1LYQZzmBlKg=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "77a41eca4447d2b5ed0bab43757157705a13cd28",
+        "rev": "4bd136e6f98e240ba0e5d3c494ac8e131b6ecda7",
         "type": "github"
       },
       "original": {
@@ -736,11 +736,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793669982,
-        "narHash": "sha256-yCY0C0Ta7jfK0uSssZ3uEOfER9aZuZV0gj9W7bJIK6U=",
+        "lastModified": 1793749336,
+        "narHash": "sha256-RdSDtMPyW61qZUgwaI7SuodnVvzQbcMhHdLpfS21lnw=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "5ba207f9d264f531e473a4ea8b3187c9ced912f9",
+        "rev": "15bf3a52cc1d7dcb93f42af2d9a9178cb2c60c06",
         "type": "github"
       },
       "original": {
@@ -804,11 +804,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793681286,
-        "narHash": "sha256-FwuGKp/zjChk5ZztucJbKC7t7zcVYwYkkyHyplciLKI=",
+        "lastModified": 1793748485,
+        "narHash": "sha256-nN/70e6EvDEr5Ia1XwjcGSLAtprUsxqezw+ZuR4OqQs=",
         "owner": "mio-19",
         "repo": "nurpkgs",
-        "rev": "13839869ca9e78195b73951e9335d5ff9043252a",
+        "rev": "775870a385e867c8b1116242076dc3288b49b75e",
         "type": "github"
       },
       "original": {
@@ -940,11 +940,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1793510871,
-        "narHash": "sha256-6fsvM/LUHqnG3QJM7hIksvSRxxqW9wvVf6evMTFuMdM=",
+        "lastModified": 1793701090,
+        "narHash": "sha256-TA0MWE1lWF0nE89lEF4fYjBwkEjIiOgJcKjEk5C1u5k=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "d7e74ce5ca04a2e540c6b43431a31c08cca87a17",
+        "rev": "dac06f956e8d6b76a0a67487c7fc3e52e171b23d",
         "type": "github"
       },
       "original": {
@@ -1369,9 +1369,8 @@
     },
     "nixpkgs-pin3": {
       "locked": {
-        "lastModified": 1792773339,
+        "lastModified": 315532800,
         "narHash": "sha256-17eNBI5Khe4JZaRkL5hRGPWf8MZ6qv+bWAr4V8YeKBw=",
-        "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst"
       },
@@ -1598,10 +1597,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793689965,
-        "narHash": "sha256-9WDmWQOmwO5VRc254+CIRdZfHakf13sjk9bbj7O5u78=",
+        "lastModified": 1793749707,
+        "narHash": "sha256-7Q2fgEFwNblbaE9GmGn81SDGnYAv1XZNvpPesF3tMoI=",
         "ref": "refs/heads/main",
-        "rev": "095b247b05a37a3147ff52169f8ee5efedbc5e2c",
+        "rev": "c92d360680475fcf667484f5d321c379d67975b3",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2065,10 +2064,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793610678,
-        "narHash": "sha256-5V08BokWHSUU962Kcr/uSTWyy+1NqB7pjuyqjqXTqQU=",
+        "lastModified": 1793697474,
+        "narHash": "sha256-KgJnMIR0ltd7pMcpDWn5q40bzmC7xtlb71clPFNUu+Y=",
         "ref": "refs/heads/master",
-        "rev": "6b29b8e8d3cc8ebda9342fbbcc7ac06eff58e2fb",
+        "rev": "fb3eee9d296214ebbcc53921f34e80bb4166e859",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/oxalica/rust-overlay.git"
@@ -2492,10 +2491,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793642042,
-        "narHash": "sha256-0z7OZFzumJlefJ+8zycS9G+8oB/ImtIP0yYzhjmhVjM=",
+        "lastModified": 1793710409,
+        "narHash": "sha256-NapxfokR49AvYX5ldtkjrdtH5pWxEj9BXU0Gw+rYX+E=",
         "ref": "refs/heads/main",
-        "rev": "81a04071a4bac9e7391fbaa0d7d6572e8a1ba481",
+        "rev": "d87bba54c0ddc367b2801ef5c66eed8b8e0ac072",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
