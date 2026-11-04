@@ -22,7 +22,7 @@
   boot.kernelPatches = [
     {
       name = "iwlwifi: keep WH A-step support";
-      patch = ../../../../nixos/iwlwifi-wh-a-step.patch;
+      patch = ./iwlwifi-wh-a-step.patch;
     }
   ];
   powerManagement.powertop.enable = true;

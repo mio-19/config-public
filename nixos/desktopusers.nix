@@ -208,6 +208,7 @@ in
           <?xml version="1.0" encoding="UTF-8"?>
           <kpartgui name="dolphin" version="25">
             <ActionProperties>
+              <Action name="toggle_selection_mode" shortcut=""/>
               <Action name="show_information_panel" shortcut="Space"/>
             </ActionProperties>
           </kpartgui>
