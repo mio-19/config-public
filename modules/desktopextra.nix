@@ -20,6 +20,7 @@
       in
       {
         systemPackages_hardened = with pkgs; [
+          progs.inkscape
           cyberchef
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
           #photocraft
@@ -86,7 +87,6 @@
 
           # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
           #inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.wireguird
-          progs.inkscape
           #gg-jj
           kdiskmark
           #gsmartcontrol
@@ -304,7 +304,7 @@
           "krita"
           "gimp"
           "freecad"
-          "inkscape"
+          #"inkscape"
         ];
         homebrew.brews = [
           # https://github.com/nohajc/anylinuxfs

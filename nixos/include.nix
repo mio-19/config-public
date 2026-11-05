@@ -286,13 +286,6 @@ let
             withVencord = true;
             withOpenASAR = true;
           };
-          inkscape =
-            # https://github.com/Chaddai/nixpkgs/blob/f73d4f0ad010966973bc81f51705cef63683c2f2/doc/packages/inkscape.section.md?plain=1#L18
-            (
-              inkscape-with-extensions.override {
-                inkscapeExtensions = with pkgs.inkscape-extensions; [ inkstitch ];
-              }
-            );
         });
 
       pkgs' = import inputs.nixpkgs {
