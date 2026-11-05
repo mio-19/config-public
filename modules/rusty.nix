@@ -66,7 +66,7 @@
           map lib.hiPrio [
             # darwin: they break scripts written for darwin!
             uutils-coreutils-noprefix
-            uutils-tar
+            #uutils-tar # this breaks -C !
             uutils-findutils
           ];
       };
