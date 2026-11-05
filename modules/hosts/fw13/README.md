@@ -9,5 +9,5 @@ distrobox-create --name debian -i debian
 ### debian
 
 ```zsh
-sudo apt install file atuin zoxide build-essential # python3
+sudo apt install file atuin zoxide build-essential libssl-dev python3
 ```
