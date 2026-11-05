@@ -9,5 +9,5 @@ distrobox-create --name debian -i debian
 ### debian
 
 ```zsh
-sudo apt install zoxide
+sudo apt install zoxide python3
 ```
