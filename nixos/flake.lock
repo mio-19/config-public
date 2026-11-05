@@ -1498,8 +1498,9 @@
     },
     "nixpkgs-pin2": {
       "locked": {
-        "lastModified": 315532800,
+        "lastModified": 1790578696,
         "narHash": "sha256-EvoKOTtoIJ7Xflls2Nfo5WDcqjFJB0kuzwOz0nLWs0w=",
+        "rev": "7a0f122f5090cf4c2ade2a13a0e229d4e19ba71f",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080855.7a0f122f5090/nixexprs.tar.zst"
       },
@@ -1510,8 +1511,9 @@
     },
     "nixpkgs-pin3": {
       "locked": {
-        "lastModified": 315532800,
+        "lastModified": 1792773339,
         "narHash": "sha256-17eNBI5Khe4JZaRkL5hRGPWf8MZ6qv+bWAr4V8YeKBw=",
+        "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
         "type": "tarball",
         "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst"
       },
@@ -1738,10 +1740,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793838624,
-        "narHash": "sha256-GcGgRVOGQs9cJsRi8BUJwX7c4n7SUtpk9V0Bp3WTUJ0=",
+        "lastModified": 1793853071,
+        "narHash": "sha256-LwyCauuWbfcyEA/kA3zlWBd70mNFnTtmxpz3cC6xNrM=",
         "ref": "refs/heads/main",
-        "rev": "9bec345cc2581b2931607d40b9a0de2f9bcf3955",
+        "rev": "cfb1a2b59660a6586c241890c479930deecd4f51",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/nix-community/NUR.git"
@@ -2017,11 +2019,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793839358,
-        "narHash": "sha256-xkoKBZu2FrrxacV5ncBJKTw9MYcwHs0uoxOqDcMuXEk=",
+        "lastModified": 1793839881,
+        "narHash": "sha256-lnYRU53UEhDVXcrE47YiaFpcoyMs2JxfIYbpDNdXrMM=",
         "owner": "mio-19",
         "repo": "repo",
-        "rev": "6d01a23b4b1d81afa7be17c66751d93d185f9965",
+        "rev": "9355c5c6a244c4d565742dbb1153548b8fe05334",
         "type": "github"
       },
       "original": {
@@ -2654,10 +2656,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1793781856,
-        "narHash": "sha256-5c93tSlnE1VVunrw3/Q75EayZLkMQmoUcNZv/1fXWKU=",
+        "lastModified": 1793848453,
+        "narHash": "sha256-AUrNeSSdecT4HGoMppft8WdkWkc7HmtXriQSTo+wlf0=",
         "ref": "refs/heads/main",
-        "rev": "3c9750e20fd25605fbd2f7a71253997cc45838c5",
+        "rev": "e7d6c199b7cb0e333abfb33b53125bdabd5ba14d",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/0xc000022070/zen-browser-flake.git"
