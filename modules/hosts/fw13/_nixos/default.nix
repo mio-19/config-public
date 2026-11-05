@@ -109,8 +109,8 @@ with _include;
 
   networking.firewall.allowedTCPPorts = [ 8080 ]; # temp file share with $ nix run nixpkgs#caddy -- file-server --browse --debug --listen :8080
 
-  #virtualisation.docker.rootless.enable = true;
-  #virtualisation.docker.rootless.setSocketVariable = true;
+  virtualisation.docker.rootless.enable = true;
+  virtualisation.docker.rootless.setSocketVariable = true;
 
   services.xserver.enable = true;
 
