@@ -251,7 +251,7 @@
         ];
         systemPackages_clean = [
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.omnimux
-          (if (config.librewolf_firejail or false) then progs.librewolf'_for_firejail else progs.librewolf')
+          #(if (config.librewolf_firejail or false) then progs.librewolf'_for_firejail else progs.librewolf')
         ];
       };
     nixos =
