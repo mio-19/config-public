@@ -310,6 +310,7 @@ let
           cmd = action: ''
             sudo ${lib.optionalString config.config_swit_inhibit "${config.systemd.package}/bin/systemd-inhibit "}env NIX_REMOTE=daemon ${lib.getExe pkgs.nixos-rebuild-ng} ${action} --flake . --log-format internal-json ${lib.optionalString config.config_impure "--impure "}"$@" |& ${pkgs.nix-output-monitor}/bin/nom --json
           '';
+          publicFlakeLock = false;
           upCmd = ''
             set -e
             set -o pipefail
@@ -321,6 +322,7 @@ let
             git config pull.rebase false
             sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
             git pull --no-edit
+            ${lib.optionalString publicFlakeLock ''
             if [ -d ../../config-public ]; then
               cd ../../config-public/nixos
               git config pull.rebase false
@@ -333,11 +335,14 @@ let
               git pull --no-edit https://github.com/mio-19/config-public.git
             else
               echo "[WARNING] ../../config-public does not exist" >&2
+            ''}
               git pull --no-edit https://github.com/mio-19/config-public.git
               nix flake update
               git add flake.lock
               git commit -m "nixos: lockup" || true
+            ${lib.optionalString publicFlakeLock ''
             fi
+            ''}
             git push &
           '';
           fetchCmd = ''
