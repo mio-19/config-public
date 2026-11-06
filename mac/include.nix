@@ -138,6 +138,7 @@ upper
     ];
   };
   script = {
+    publicFlakeLock = false;
     upgrade = pkgs.writeShellScriptBin "upgrade" ''
       set -e
       set -o pipefail
@@ -145,23 +146,27 @@ upper
       ${lib.getExe progs.git} config pull.rebase false
       sudo true
       ${lib.getExe progs.git} pull --no-edit
-      if [ -d ~/Documents/config-public ]; then
-        cd ~/Documents/config-public/mac
-        ${lib.getExe progs.git} config pull.rebase false
-        ${lib.getExe progs.git} pull --no-edit
+      ${lib.optionalString publicFlakeLock ''
+        if [ -d ~/Documents/config-public ]; then
+          cd ~/Documents/config-public/mac
+          ${lib.getExe progs.git} config pull.rebase false
+          ${lib.getExe progs.git} pull --no-edit
+          ${lib.getExe config.nix.package} flake update
+          ${lib.getExe progs.git} add flake.lock
+          ${lib.getExe progs.git} commit -m "mac: lockup" || true
+          ${lib.getExe progs.git} push
+          cd ~/Documents/config/mac
+          ${lib.getExe progs.git} pull --no-edit https://github.com/mio-19/config-public.git
+        else
+          echo "[WARNING] ~/Documents/config-public does not exist" >&2
+      ''}
+        ${lib.getExe progs.git} pull --no-edit https://github.com/mio-19/config-public.git
         ${lib.getExe config.nix.package} flake update
         ${lib.getExe progs.git} add flake.lock
         ${lib.getExe progs.git} commit -m "mac: lockup" || true
-        ${lib.getExe progs.git} push
-        cd ~/Documents/config/mac
-        ${lib.getExe progs.git} pull --no-edit https://github.com/mio-19/config-public.git
-      else
-        echo "[WARNING] ~/Documents/config-public does not exist" >&2
-        ${lib.getExe progs.git} pull --no-edit https://github.com/mio-19/config-public.git
-        ${lib.getExe config.nix.package} flake update
-        ${lib.getExe progs.git} add flake.lock
-        ${lib.getExe progs.git} commit -m "mac: lockup" || true
-      fi
+      ${lib.optionalString publicFlakeLock ''
+        fi
+      ''}
       ${lib.getExe progs.git} push &
       sudo nice -n 20 darwin-rebuild switch --flake ~/Documents/config/mac --print-build-logs "$@" |& ${lib.getExe pkgs.nix-output-monitor}
       brew upgrade; brew cu -af; brew cleanup --prune=all

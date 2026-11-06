@@ -316,25 +316,25 @@ let
             sudo true # sudo with pipe can cause issues when sudo wants a password. this pre-authenticates
             git pull --no-edit
             ${lib.optionalString publicFlakeLock ''
-            if [ -d ../../config-public ]; then
-              cd ../../config-public/nixos
-              git config pull.rebase false
-              git pull --no-edit
-              nix flake update
-              git add flake.lock
-              git commit -m "nixos: lockup" || true
-              git push
-              cd ../../config/nixos
-              git pull --no-edit https://github.com/mio-19/config-public.git
-            else
-              echo "[WARNING] ../../config-public does not exist" >&2
+              if [ -d ../../config-public ]; then
+                cd ../../config-public/nixos
+                git config pull.rebase false
+                git pull --no-edit
+                nix flake update
+                git add flake.lock
+                git commit -m "nixos: lockup" || true
+                git push
+                cd ../../config/nixos
+                git pull --no-edit https://github.com/mio-19/config-public.git
+              else
+                echo "[WARNING] ../../config-public does not exist" >&2
             ''}
               git pull --no-edit https://github.com/mio-19/config-public.git
               nix flake update
               git add flake.lock
               git commit -m "nixos: lockup" || true
             ${lib.optionalString publicFlakeLock ''
-            fi
+              fi
             ''}
             git push &
           '';
