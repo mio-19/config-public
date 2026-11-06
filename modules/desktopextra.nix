@@ -213,6 +213,12 @@
           services.cloudflare-warp.openFirewall = true;
         */
 
+        services.flatpak = {
+          enable = true;
+          packages = [
+            "io.scottlabs.reManager" # built from source in flathub
+          ];
+        };
         programs.wireshark.enable = true;
       };
     # darwin reuses only the cross-platform apps shared with the NixOS desktopextra
