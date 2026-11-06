@@ -330,7 +330,7 @@ let
                 echo "[WARNING] ../../config-public does not exist" >&2
             ''}
               git pull --no-edit https://github.com/mio-19/config-public.git
-              nix flake update
+              ${lib.getExe config.nix.package} flake update
               git add flake.lock
               git commit -m "nixos: lockup" || true
             ${lib.optionalString publicFlakeLock ''
