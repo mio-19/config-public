@@ -108,15 +108,13 @@
           (
             final: prev:
             let
-              mio = inputs.mio.packages."${pkgs.stdenv.hostPlatform.system}";
+              mio = inputs.mio.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
             in
             {
               starship = mio.starship_patched;
               raycast = mio.raycast_macos15;
               #harmonia = mio.harmonia_patched;
-              inherit (pkgs-pin8) qbittorrent-enhanced;
-              inherit (pkgs-pin7) jadx;
-              inherit (pkgs-pin9) uutils-diffutils;
+              inherit (mio.patched) qbittorrent-enhanced jadx uutils-diffutils;
             }
           )
         ];
