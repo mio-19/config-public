@@ -46,6 +46,7 @@ let
     { pkgs, inputs, ... }:
     with pkgs;
     [
+      go
       nvfetcher # with hardened: fatal allocator error: invalid free
       codex
       claude-code
