@@ -61,9 +61,6 @@
                 openshot-qt
                 stuntrally
                 ;
-              inherit (pkgs-pin3)
-                diffoscope # depending on fuse2
-                ;
               # https://github.com/NixOS/nixpkgs/issues/579143#issue-6036505477
               cursor-cli = prev.cursor-cli.overrideAttrs (old: {
                 nativeBuildInputs = [
