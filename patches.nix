@@ -43,6 +43,6 @@
   (fetchpatch {
     name = "opencode: fix hash";
     url = "https://github.com/NixOS/nixpkgs/pull/582675.patch";
-    hash = "sha256-dfH2D8rGO6un64siTy/s7SvenUt1MzWU3EJlI1eszBI=";
+    hash = "sha256-hNKJtVMyuuP9O6voUYonVWDpODnKt8d+TCcD2kt/wRE=";
   })
 ]
