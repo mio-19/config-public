@@ -39,13 +39,14 @@
               inherit (final) patchelf fetchurl;
             in
             {
-              grub2 = mio.grub2_patched;
-              starship = mio.starship_patched;
-              #harmonia = mio.harmonia_patched;
               inherit (mio) wireguird darling miodroid;
-              sniffnet = mio.sniffnet-patched;
-              xfce4-terminal = mio.xfce4-terminal-patched;
-              android-translation-layer = mio.android-translation-layer_patched;
+              inherit (mio.patched)
+                grub2
+                starship
+                sniffnet
+                xfce4-terminal
+                android-translation-layer
+                ;
               # build failed/depdendency build failed with cuda
               inherit (pkgs')
                 ffmpeg-full
@@ -111,10 +112,13 @@
               mio = inputs.mio.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
             in
             {
-              starship = mio.starship_patched;
               raycast = mio.raycast_macos15;
-              #harmonia = mio.harmonia_patched;
-              inherit (mio.patched) qbittorrent-enhanced jadx uutils-diffutils;
+              inherit (mio.patched)
+                starship
+                qbittorrent-enhanced
+                jadx
+                uutils-diffutils
+                ;
             }
           )
         ];
