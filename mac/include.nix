@@ -137,8 +137,8 @@ upper
       inputs.nur.overlays.default
     ];
   };
+  publicFlakeLock = false;
   script = {
-    publicFlakeLock = false;
     upgrade = pkgs.writeShellScriptBin "upgrade" ''
       set -e
       set -o pipefail
