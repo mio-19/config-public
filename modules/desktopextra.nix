@@ -216,7 +216,7 @@
         services.flatpak = {
           enable = true;
           packages = [
-            "io.scottlabs.reManager"
+            "io.scottlabs.reManager" # built from source in flathub
           ];
         };
         programs.wireshark.enable = true;
