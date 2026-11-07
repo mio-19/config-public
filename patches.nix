@@ -31,9 +31,9 @@
     hash = "sha256-AfhFg4ALppXSIRyCiEbZQl8LhcA3Fhi7H5rKUtznQwo=";
   })
   (fetchpatch {
-    name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, mesh-llm-native-runtime, mesh-llm-native-runtime-vulkan: init at 0.78.1; nixos/mesh-llm: init module";
+    name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, skippy-native-runtime, skippy-native-runtime-vulkan: init at 0.78.0-unstable-2026-11-06";
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
-    hash = "sha256-9woCqY6Pr/yOWFMA3MFYC2kZ2UzwmfhXAdOGSax1JjI=";
+    hash = "sha256-TCMMh55105BwiF2csHac8tSq1VhNHc1VoD+ky4vha9Q=";
   })
   (fetchpatch {
     name = "isabelle: 2025-2 -> 2026";

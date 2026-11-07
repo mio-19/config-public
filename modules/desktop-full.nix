@@ -320,7 +320,7 @@
               class = "chrome-www.icloud.com__find_-Default";
             })
             # unfree:
-            nur.repos.mio.qq_bwrap
+            #nur.repos.mio.qq_bwrap
             #cider-2 # paid
             #parsec-bin
             sublime4-dev # sublime4 broken, need -dev # (callPackage ./sublime-text.nix { })
@@ -353,6 +353,7 @@
         environment.systemPackages = with pkgs; [
           # unfree:
           inputs.nixpak-apps.packages.${pkgs.stdenv.hostPlatform.system}.wechat
+          inputs.nixpak-apps.packages.${pkgs.stdenv.hostPlatform.system}.qq
         ];
         systemPackages_clean =
           with pkgs;
