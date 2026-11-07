@@ -40,9 +40,4 @@
     url = "https://github.com/NixOS/nixpkgs/pull/579996.patch";
     hash = "sha256-ubCIGJtM1fBr/KzCi2G2zzFi6KohbEkFVv6saUQ3yow=";
   })
-  (fetchpatch {
-    name = "opencode: fix hash";
-    url = "https://github.com/NixOS/nixpkgs/pull/582675.patch";
-    hash = "sha256-hNKJtVMyuuP9O6voUYonVWDpODnKt8d+TCcD2kt/wRE=";
-  })
 ]
