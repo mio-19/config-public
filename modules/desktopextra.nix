@@ -19,6 +19,10 @@
         inherit (_include) progs;
       in
       {
+        environment.systemPackages = with pkgs; [
+          nur.repos.mio.zen-browser-bin
+        ];
+
         systemPackages_hardened = with pkgs; [
           progs.inkscape
           cyberchef
@@ -77,7 +81,6 @@
       in
       with _include;
       {
-
         home-manager.sharedModules = [
           ../extradeusers.nix
         ];
@@ -101,7 +104,6 @@
           #pianotrans
           # binaryNativeCode:
           spotube
-          inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
           # unfree:
           (lib.hiPrio pkgs.aseprite) # lib.hiPrio: a file colliding with libresprite
           #davinci-resolve
@@ -250,7 +252,6 @@
           #helix
           #jellyfin-desktop
           # open source but downloaded as binary - binaryNativeCode:
-          #(inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default)
           #waveterm
           #aerospace
           # unfree:

@@ -54,11 +54,6 @@
       url = "git+https://github.com/mio-19/home-manager.git?shallow=1&ref=file-mode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser = {
-      url = "git+https://github.com/0xc000022070/zen-browser-flake.git?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     rust-overlay = {
       url = "git+https://github.com/oxalica/rust-overlay.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";

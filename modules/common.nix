@@ -235,7 +235,6 @@
         home-manager.sharedModules = [
           inputs.plasma-manager.homeModules.plasma-manager
           inputs.vscode-server.homeModules.default
-          inputs.zen-browser.homeModules.default
           #inputs.android-nixpkgs.hmModule
           ../users.nix
         ]
@@ -831,7 +830,6 @@
 
         home-manager.sharedModules = [
           #inputs.chaotic.homeManagerModules.default
-          #inputs.zen-browser.homeModules.default
           ../mac/users.nix
           inputs.mac-app-util.homeManagerModules.default
           ../users.nix
