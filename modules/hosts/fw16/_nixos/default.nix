@@ -163,10 +163,6 @@ with _include;
 
   #musnix.enable = true; # has conflicts with our limit settings for wine esync!
   # https://wiki.nixos.org/wiki/PipeWire
-  services.pipewire = {
-    # If you want to use JACK applications, uncomment the following
-    jack.enable = true;
-  };
   services.pipewire.enable = lib.mkDefault true;
 
   hardware.graphics = {

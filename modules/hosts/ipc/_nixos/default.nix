@@ -199,8 +199,6 @@ with _include;
   #musnix.enable = true; # has conflicts with our limit settings for wine esync!
   # https://wiki.nixos.org/wiki/PipeWire
   services.pipewire = {
-    # If you want to use JACK applications, uncomment the following
-    jack.enable = false; # it conflicts with gentoo prefix bootstrap because of LD_LIBRARY_PATH
     wireplumber.extraConfig = {
       # 90-wh1000xm4-no-hw-volume doesn't really work, disable for now
       /*
