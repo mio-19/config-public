@@ -239,9 +239,7 @@
         programs.firejail.wrappedBinaries = with pkgs; {
           # same pattern as chromium in desktop-full; brave.profile includes chromium-common
           brave-origin = {
-            executable = "${
-              hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.brave-origin-bin
-            }/bin/brave-origin";
+            executable = "${hardenedPkg inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.brave-origin-bin}/bin/brave-origin";
             profile = "${pkgs.firejail}/etc/firejail/brave.profile";
             extraArgs = [
               # https://github.com/netblue30/firejail/issues/3170#issuecomment-576266164
