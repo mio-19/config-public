@@ -23,38 +23,42 @@
           nur.repos.mio.zen-browser-bin
         ];
 
-        systemPackages_hardened = with pkgs; [
-          progs.inkscape
-          cyberchef
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
-          photocraft
-          deckcraft
-          gridcraft
-          wordcraft
-          cadcraft
-          #lightcraft
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.chatbox
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.archivetune
-          progs.bifrost
-          downkyicore
-          ghidra
-          blender
-          mailspring
-          nur.repos.mio.musescore-alex
-          musescore-evolution
-          joplin-desktop
-          imhex
-          pympress
-          remmina
-          baobab
-          #hicolor-icon-theme
-          koodo-reader
-          # unfree:
-          jetbrains.gateway
-          jetbrains-toolbox
-          obsidian
-          chatgpt
-        ];
+        systemPackages_hardened =
+          with pkgs;
+          [
+            progs.inkscape
+            cyberchef
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
+            deckcraft
+            gridcraft
+            wordcraft
+            cadcraft
+            #lightcraft
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.chatbox
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.archivetune
+            progs.bifrost
+            downkyicore
+            ghidra
+            blender
+            mailspring
+            nur.repos.mio.musescore-alex
+            musescore-evolution
+            joplin-desktop
+            imhex
+            pympress
+            remmina
+            baobab
+            #hicolor-icon-theme
+            koodo-reader
+            # unfree:
+            jetbrains.gateway
+            jetbrains-toolbox
+            obsidian
+            chatgpt
+          ]
+          ++ lib.optionals (pkgs ? photocraft) [
+            photocraft
+          ];
       };
     nixos =
       args@{
