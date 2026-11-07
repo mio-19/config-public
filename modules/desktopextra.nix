@@ -20,7 +20,7 @@
       in
       {
         environment.systemPackages = with pkgs; [
-          nur.repos.mio.zen-browser-bin
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-bin
         ];
 
         systemPackages_hardened = with pkgs; [
