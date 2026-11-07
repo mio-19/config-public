@@ -33,7 +33,7 @@
   (fetchpatch {
     name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, mesh-llm-native-runtime, mesh-llm-native-runtime-vulkan: init at 0.78.1; nixos/mesh-llm: init module";
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
-    hash = "sha256-8q4VPHa1iiVrP8fBbGIYXPX/Ynmw1UVhD+qkGtF7iHM=";
+    hash = "sha256-9woCqY6Pr/yOWFMA3MFYC2kZ2UzwmfhXAdOGSax1JjI=";
   })
   (fetchpatch {
     name = "isabelle: 2025-2 -> 2026";
