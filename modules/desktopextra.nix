@@ -27,7 +27,7 @@
           progs.inkscape
           cyberchef
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
-          #photocraft
+          photocraft
           deckcraft
           gridcraft
           wordcraft
