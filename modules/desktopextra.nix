@@ -56,7 +56,9 @@
             obsidian
             chatgpt
           ]
-          ++ lib.optional (pkgs ? photocraft) pkgs.photocraft;
+          ++ lib.optionals (pkgs ? photocraft) [
+            photocraft
+          ];
       };
     nixos =
       args@{
