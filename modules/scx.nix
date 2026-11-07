@@ -17,7 +17,6 @@
       with _include;
       {
         services.scx-loader.enable = enable_scx;
-        #services.scx-loader.package = lib.mkDefault pkgs.scx.rustscheds;
         # https://www.phoronix.com/news/Meta-SCX-LAVD-Steam-Deck-Server
         # https://github.com/search?q=scx_lavd+language%3ANix&type=code&l=Nix
         #services.scx-loader.config.default_sched = "scx_pandemonium";
