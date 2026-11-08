@@ -499,11 +499,15 @@
         };
 
         # nextcloud.profile sets `dbus-user filter`, so the tray icon, desktop
-        # notifications and opening folders in the file manager have to be allowed.
+        # notifications, opening folders in the file manager and client dbus registration have to be allowed.
         environment.etc."firejail/nextcloud.local".text = ''
+          dbus-user.own com.nextcloud.desktopclient.nextcloud
+          dbus-user.own com.nextcloud.*
+          dbus-user.own org.kde.*
           dbus-user.talk org.kde.StatusNotifierWatcher
           dbus-user.talk org.freedesktop.Notifications
           dbus-user.talk org.freedesktop.FileManager1
+          dbus-user.talk org.freedesktop.portal.Desktop
         '';
 
         # xone causes issues that controller is blank after reboot until replugged. default driver xpad works fine.
