@@ -110,8 +110,8 @@
             in
             {
               raycast = mio.raycast_macos15;
-              inherit (pkgs-pin7) jadx;
               inherit (mio.patched)
+                jadx
                 starship
                 qbittorrent-enhanced
                 uutils-diffutils
