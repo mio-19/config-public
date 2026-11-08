@@ -35,9 +35,11 @@
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
     hash = "sha256-TCMMh55105BwiF2csHac8tSq1VhNHc1VoD+ky4vha9Q=";
   })
-  (fetchpatch {
-    name = "isabelle: 2025-2 -> 2026";
-    url = "https://github.com/NixOS/nixpkgs/pull/579996.diff";
-    hash = "sha256-8JfUrPJfRykT2idZC5CXAHYU8jvDTowMUE4JGkVOGLg=";
-  })
+  /*
+    (fetchpatch {
+      name = "isabelle: 2025-2 -> 2026";
+      url = "https://github.com/NixOS/nixpkgs/pull/579996.patch";
+      hash = "sha256-ubCIGJtM1fBr/KzCi2G2zzFi6KohbEkFVv6saUQ3yow=";
+    })
+  */
 ]
