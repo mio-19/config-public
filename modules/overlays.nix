@@ -76,7 +76,8 @@
                 ]
                 ++ (old.nativeBuildInputs or [ ]);
               });
-            } // lib.optionalAttrs final.stdenv.hostPlatform.isAarch64 {
+            }
+            // lib.optionalAttrs final.stdenv.hostPlatform.isAarch64 {
               inherit (pkgs-stable) atuin;
             }
           )
