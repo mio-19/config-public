@@ -20,7 +20,7 @@
       with _include;
       {
         imports = [
-          inputs.grub2-themes.nixosModules.default
+          #inputs.grub2-themes.nixosModules.default
           ../nixos/stockhm.nix
           inputs.disko.nixosModules.disko
         ];
