@@ -51,21 +51,6 @@
                 openshot-qt
                 stuntrally
                 ;
-              # https://github.com/NixOS/nixpkgs/issues/579143#issue-6036505477
-              cursor-cli = prev.cursor-cli.overrideAttrs (old: {
-                nativeBuildInputs = [
-                  (patchelf.overrideAttrs (
-                    finalAttrs: previousAttrs: {
-                      version = "0.15.2";
-                      src = fetchurl {
-                        url = "https://github.com/NixOS/patchelf/releases/download/${finalAttrs.version}/patchelf-${finalAttrs.version}.tar.bz2";
-                        hash = "sha256-F3RfVkFZyOIo/EEtplogSLhGxLa0Igt3y/IkFuAvLXw=";
-                      };
-                    }
-                  ))
-                ]
-                ++ (old.nativeBuildInputs or [ ]);
-              });
             }
             // lib.optionalAttrs prev.stdenv.hostPlatform.isAarch64 {
               inherit (pkgs-stable) atuin;
