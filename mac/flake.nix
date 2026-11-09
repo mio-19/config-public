@@ -64,7 +64,7 @@
     #};
     mac-app-util = {
       url = "github:hraban/mac-app-util";
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs/b579d443b37c9c5373044201ea77604e37e748c8"; # a commit from nixpkgs-unstable
+      #inputs.nixpkgs.url = "github:NixOS/nixpkgs/b579d443b37c9c5373044201ea77604e37e748c8"; # a commit from nixpkgs-unstable
       inputs.flake-utils.follows = "flake-utils";
       inputs.cl-nix-lite.inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.inputs.nixpkgs.follows = "mac-app-util/nixpkgs";
