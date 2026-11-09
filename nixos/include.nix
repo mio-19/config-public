@@ -537,6 +537,12 @@ let
       # PRs #555282 (apfs) and #555135 (ryzen-smu) merged upstream; no patches needed.
       nixpkgsPatch = nixpkgs0: nixpkgs0;
 
+      pkgs-stable = import inputs.nixpkgs-stable {
+        config = config.nixpkgs.config;
+        system = pkgs.stdenv.hostPlatform.system;
+        overlays = [
+        ];
+      };
       pkgs-pin = import inputs.nixpkgs-pin {
         config = osConfig.nixpkgs.config;
         system = pkgs.stdenv.hostPlatform.system;

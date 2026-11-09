@@ -76,6 +76,8 @@
                 ]
                 ++ (old.nativeBuildInputs or [ ]);
               });
+            } // lib.optionalAttrs final.stdenv.hostPlatform.isAarch64 {
+              inherit (pkgs-stable) atuin;
             }
           )
           inputs.chaotic.overlays.default
