@@ -255,7 +255,7 @@
     };
     nix-snapd = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:nix-community/nix-snapd/e5558c8b77e4437d3035186bba62c128ed09dbfc";
+      url = "github:nix-community/nix-snapd";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
