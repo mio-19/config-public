@@ -14,7 +14,6 @@ with _include;
 {
   imports = [
     inputs.nix-framework-fingerprint-led-blink.nixosModules.default
-    # Feature aspects: den.aspects.fw13.includes (modules/fw13.nix)
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #../betterbird.nix # tired of compiling
     #../secure.nix
