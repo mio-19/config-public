@@ -115,13 +115,11 @@
         inputs.flake-utils.follows = "flake-utils";
       };
     */
-    /*
-      grub2-themes = {
-        # pin niche inputs to avoid bad people taking over.
-        url = "github:vinceliuice/grub2-themes/4c5a77125b93f833edc9bf7b14a899faa8ac79c6";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-    */
+    grub2-themes = {
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:vinceliuice/grub2-themes/4c5a77125b93f833edc9bf7b14a899faa8ac79c6";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware = {
       url = "git+https://github.com/NixOS/nixos-hardware.git?shallow=1&ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
