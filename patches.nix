@@ -48,4 +48,8 @@
     url = "https://github.com/NixOS/nixpkgs/pull/574219.diff";
     hash = "sha256-M5l+pTSwekYOE+isXpwj/yABkwtRRB1jeCVi82J4RTU=";
   })
+  (fetchpatch {
+    url = "https://github.com/NixOS/nixpkgs/pull/578621.diff";
+    hash = "sha256-gLNZZVA0Qusgb/+zfWqtT2cSc8hZPCTHfH67ibOQeYo=";
+  })
 ]
