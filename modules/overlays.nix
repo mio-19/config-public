@@ -36,7 +36,6 @@
             final: prev:
             let
               mio = inputs.mio.legacyPackages."${system}";
-              inherit (final) patchelf fetchurl;
             in
             {
               inherit (mio) wireguird darling miodroid;
