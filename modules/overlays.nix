@@ -67,7 +67,7 @@
                 ++ (old.nativeBuildInputs or [ ]);
               });
             }
-            // lib.optionalAttrs final.stdenv.hostPlatform.isAarch64 {
+            // lib.optionalAttrs prev.stdenv.hostPlatform.isAarch64 {
               inherit (pkgs-stable) atuin;
             }
             // lib.optionalAttrs cudaOrRocmSupport {
