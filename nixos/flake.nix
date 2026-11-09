@@ -117,7 +117,7 @@
     */
     grub2-themes = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:vinceliuice/grub2-themes/80dd04ddf3ba7b284a7b1a5df2b1e95ee2aad606";
+      url = "github:vinceliuice/grub2-themes/4c5a77125b93f833edc9bf7b14a899faa8ac79c6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
@@ -203,7 +203,7 @@
     };
     hercules-ci-effects = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:hercules-ci/hercules-ci-effects/86c7c78a840b44b1a0a5cbc7e9baa0154c0d0f3f";
+      url = "github:hercules-ci/hercules-ci-effects/9eecf40bc88648c7b5474b476a7b325fa78b5606";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -241,7 +241,7 @@
     #};
     steam-config-nix = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:different-name/steam-config-nix/ae75eb33cfd73929f519882cc8ec8294bfdc3c0d";
+      url = "github:different-name/steam-config-nix/64ed84993738d84cf10dfe6011bc85177414ac2d";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.systems.follows = "systems";
@@ -255,7 +255,7 @@
     };
     nix-snapd = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:nix-community/nix-snapd/69270de9f56f7c4e0dcf87ea32d882723bf04731";
+      url = "github:nix-community/nix-snapd/e5558c8b77e4437d3035186bba62c128ed09dbfc";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
@@ -280,7 +280,7 @@
     };
     nixpak = {
       # pin niche inputs to avoid bad people taking over.
-      url = "github:nixpak/nixpak/b5811f96aead6c01388095a2b0839559c72c73fe";
+      url = "github:nixpak/nixpak/3b061c82f9ccb99973154ffced2391535da7b66b";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.hercules-ci-effects.follows = "hercules-ci-effects";
@@ -372,8 +372,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpak-apps = {
-      url = "github:Murkiness4095/nixpak-apps";
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:Murkiness4095/nixpak-apps/88a4b03b95f9b43c016a24fed339ad1f7ec8a2c4";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpak.follows = "nixpak";
     };
   };
 
