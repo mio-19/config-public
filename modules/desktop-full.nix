@@ -500,7 +500,10 @@
 
         # nextcloud.profile sets `dbus-user filter`, so the tray icon, desktop
         # notifications, opening folders in the file manager and client dbus registration have to be allowed.
+        # Whitelist socket directory in RUNUSER so file manager plugins (e.g. Dolphin overlay icons) can communicate with Nextcloud.
         environment.etc."firejail/nextcloud.local".text = ''
+          mkdir ${"$"}{RUNUSER}/Nextcloud
+          whitelist ${"$"}{RUNUSER}/Nextcloud
           dbus-user.own com.nextcloud.desktopclient.nextcloud
           dbus-user.own com.nextcloud.*
           dbus-user.own org.kde.*
