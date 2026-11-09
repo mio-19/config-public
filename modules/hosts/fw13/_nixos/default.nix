@@ -13,6 +13,7 @@ in
 with _include;
 {
   imports = [
+    nputs.nix-framework-fingerprint-led-blink.nixosModules.default
     # Feature aspects: den.aspects.fw13.includes (modules/fw13.nix)
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     #../betterbird.nix # tired of compiling
@@ -36,6 +37,8 @@ with _include;
   plasma-login-manager_instead = true; # plm seems to take more seconds to launch, but sddm takes more seconds to enter plasma
 
   security.allowSimultaneousMultithreading = true;
+
+  services.framework-fingerprint-led-blink.enable = true;
 
   programs.wireguird.enable = true;
 

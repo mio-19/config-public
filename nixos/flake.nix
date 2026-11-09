@@ -375,6 +375,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpak.follows = "nixpak";
     };
+    nix-framework-fingerprint-led-blink = {
+      # pin niche inputs to avoid bad people taking over.
+      url = "github:sophronesis/nix-framework-fingerprint-led-blink/bc3aabfcebdbf774734fdef83b59794b77dbaad8";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
