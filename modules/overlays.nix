@@ -46,6 +46,13 @@
                 sniffnet
                 xfce4-terminal
                 android-translation-layer
+                chatgpt
+                codex
+                polarity
+                rayburst
+                rustdesk
+                sem-cli
+                thonny
                 ;
               inherit (pkgs-pin2)
                 openshot-qt
