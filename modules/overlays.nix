@@ -53,8 +53,6 @@
                 sem-cli
                 thonny
                 rustdesk-flutter
-                ;
-              inherit (pkgs-pin2)
                 openshot-qt
                 stuntrally
                 ;
