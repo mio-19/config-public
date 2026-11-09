@@ -54,6 +54,7 @@
           jetbrains-toolbox
           obsidian
           chatgpt
+          slack
         ];
       };
     nixos =
