@@ -18,7 +18,7 @@
   (fetchpatch {
     name = "tuxguitar: 2.0.1 -> 2.1.1";
     url = "https://github.com/NixOS/nixpkgs/pull/579150.patch";
-    hash = "sha256-MoBwTX19A5rcVlkFDS+ZL5tMKGjYlgOnlSHzNEDLHZQ=";
+    hash = "sha256-9TmS7ajINgAqsrfWY/FJOsJ7qpVHsgM7ubKlM7Rq+lc=";
   })
   (fetchurl {
     name = "flyline: init at 1.9.0";
