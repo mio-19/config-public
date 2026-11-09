@@ -47,16 +47,6 @@
                 xfce4-terminal
                 android-translation-layer
                 ;
-              # build failed/depdendency build failed with cuda
-              inherit (pkgs')
-                ffmpeg-full
-                krita
-                gimp
-                blender
-                jadx
-                ;
-              inherit (pkgs') freecad handbrake; # no binary cache with cuda and no binary cache with rocm
-              inherit (pkgs') firefox-esr firefox-esr-unwrapped;
               inherit (pkgs-pin2)
                 openshot-qt
                 stuntrally
@@ -79,6 +69,18 @@
             }
             // lib.optionalAttrs final.stdenv.hostPlatform.isAarch64 {
               inherit (pkgs-stable) atuin;
+            }
+            // lib.optionalAttrs cudaOrRocmSupport {
+              # build failed/depdendency build failed with cuda
+              inherit (pkgs')
+                ffmpeg-full
+                krita
+                gimp
+                blender
+                jadx
+                ;
+              inherit (pkgs') freecad handbrake; # no binary cache with cuda and no binary cache with rocm
+              inherit (pkgs') firefox-esr firefox-esr-unwrapped;
             }
           )
           inputs.chaotic.overlays.default

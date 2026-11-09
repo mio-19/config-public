@@ -513,6 +513,9 @@ let
       wrapPrio = lib.setPrio 0; # higher than gnome module, lower than firejail
 
       cudaSupport = osConfig.nixpkgs.config.cudaSupport or false;
+      rocmSupport = osConfig.nixpkgs.config.rocmSupport or false;
+
+      cudaOrRocmSupport = cudaSupport || rocmSupport;
 
       nixpkgsPatch_backup =
         nixpkgs0:
