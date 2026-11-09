@@ -377,7 +377,7 @@
 
             curl
             wget
-            proto
+            #proto
             smartmontools
             mdbook
             dust
