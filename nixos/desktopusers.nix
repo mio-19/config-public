@@ -168,6 +168,20 @@ in
     # under Wayland (see ongoing-problems/vscode-kde-unfocus.md).
     window-rules = [
       {
+        description = "Open all windows maximized by default";
+        match = { };
+        apply = {
+          maximizehoriz = {
+            value = true;
+            apply = "initially";
+          };
+          maximizevert = {
+            value = true;
+            apply = "initially";
+          };
+        };
+      }
+      {
         description = "Allow LibreWolf to focus (Wayland IPC workaround)";
         match = {
           window-class = {
