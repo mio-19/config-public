@@ -55,6 +55,7 @@
           obsidian
           chatgpt
           slack
+          reaper
         ];
       };
     nixos =
