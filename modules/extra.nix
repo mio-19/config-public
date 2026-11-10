@@ -46,6 +46,7 @@ let
     { pkgs, inputs, ... }:
     with pkgs;
     [
+      autossh
       go
       nvfetcher # with hardened: fatal allocator error: invalid free
       codex
