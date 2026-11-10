@@ -53,6 +53,7 @@ customize
     pkg:
     builtins.elem (lib.getName pkg) [
       "slack"
+      "reaper"
       "firefox-esr-140-bin-unwrapped"
       "libnvvm"
       "cccl"
