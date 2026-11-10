@@ -24,6 +24,7 @@
         ];
 
         systemPackages_hardened = with pkgs; [
+          slacky
           progs.inkscape
           cyberchef
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
@@ -54,7 +55,6 @@
           jetbrains-toolbox
           obsidian
           chatgpt
-          slack
           reaper
         ];
       };
