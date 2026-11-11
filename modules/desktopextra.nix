@@ -261,6 +261,7 @@
           #jetbrains.clion
           antigravity-ide
           #code-cursor # in app updater, better with cask.
+          slack
         ];
 
         homebrew.casks = [
