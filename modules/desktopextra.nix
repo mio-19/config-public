@@ -24,6 +24,7 @@
         ];
 
         systemPackages_hardened = with pkgs; [
+          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.slacky_patched
           progs.inkscape
           cyberchef
           inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
@@ -87,7 +88,6 @@
         ];
 
         systemPackages_hardened = with pkgs; [
-          slacky
           rclone
 
           # may need `xhost si:localuser:root` - https://www.reddit.com/r/linux4noobs/comments/lu1plx/hi_i_get_this_authorization_required_but_no/
