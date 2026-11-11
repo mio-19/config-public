@@ -135,6 +135,7 @@ customize
       "idea"
       "clion"
       "gateway"
+      "slack"
       # cuda:
       "libcublas"
       "libcufft"
