@@ -34,7 +34,7 @@
             the-powder-toy
             ludusavi
             (offloadPkg vdrift)
-            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zeroad
+            inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.zeroad_patched
             jumpnbump
             linthesia
             boilr
