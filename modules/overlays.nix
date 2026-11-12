@@ -51,7 +51,6 @@
                 rayburst
                 rustdesk
                 sem-cli
-                thonny
                 rustdesk-flutter
                 openshot-qt
                 stuntrally
