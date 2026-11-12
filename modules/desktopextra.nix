@@ -26,7 +26,12 @@
         systemPackages_hardened = with pkgs; [
           progs.inkscape
           cyberchef
-          comaps
+          (
+            if pkgs.stdenv.hostPlatform.isDarwin then
+              inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
+            else
+              comaps
+          )
           photocraft
           deckcraft
           gridcraft
