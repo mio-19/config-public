@@ -409,7 +409,7 @@
                 name = "openlogi: 0.6.25 -> 0.9.0 (#583471)";
                 url = "https://github.com/NixOS/nixpkgs/commit/472a24da6cb2f4e461e68a3548c844345a15c590.diff";
                 hash = "sha256-bw7V7MfSS58asdz1uEQ/Fx6d7gpyQz1E7rA5yk4LZqU=";
-              } n)
+              })
               (fetchpatch {
                 name = "tuxguitar: 2.0.1 -> 2.1.1 (#579150)";
                 url = "https://github.com/NixOS/nixpkgs/commit/5c08f038d816bab052b421b1eaaa915b9f8ee825.diff";
