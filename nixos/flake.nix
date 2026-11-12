@@ -358,7 +358,7 @@
     # pin niche inputs to avoid bad people taking over.
     den.url = "github:denful/den/bf2504f9f2e8621fee091335132ab3ae698cf808";
     # pin to avoid rebuild
-    mio-betterbird.url = "github:mio-19/nurpkgs/ba6879cc0a41027b8db16d277864c6739d084b7c";
+    mio-betterbird.url = "github:mio-19/nurpkgs/2dc3f5d6aebfeed3db0468d47334dfc4ba8e6b6e";
     chinese-fonts-overlay = {
       # pin niche inputs to avoid bad people taking over.
       url = "github:brsvh/chinese-fonts-overlay/a14d554299d1c8a5f4329a215d4d6217d99bf307";
@@ -405,11 +405,6 @@
             # PR .patch URLs track branch head, so the hash changes when the PR is updated.
             # That is intentional: a hash mismatch surfaces PR updates at rebuild time.
             patches = (callPackage ../patches.nix { }) ++ [
-              (fetchpatch {
-                name = "cursor-cli: 0-unstable-2026-10-01 -> 0-unstable-2026-11-05 (#574219)";
-                url = "https://github.com/NixOS/nixpkgs/commit/240815eadaef7d9eab6c712e720c607a349fccd6.patch";
-                hash = "sha256-M5l+pTSwekYOE+isXpwj/yABkwtRRB1jeCVi82J4RTU=";
-              })
               # to consider:
               # maven: provide default plugins per Maven version to buildMavenPackage https://github.com/NixOS/nixpkgs/pull/527061
               /*
