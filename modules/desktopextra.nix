@@ -26,7 +26,7 @@
         systemPackages_hardened = with pkgs; [
           progs.inkscape
           cyberchef
-          inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.comaps
+          comaps
           photocraft
           deckcraft
           gridcraft
