@@ -42,12 +42,6 @@
       hash = "sha256-ubCIGJtM1fBr/KzCi2G2zzFi6KohbEkFVv6saUQ3yow=";
     })
   */
-  # https://github.com/NixOS/nixpkgs/issues/579143
-  (fetchpatch {
-    name = "cursor-cli: 0-unstable-2026-10-01 -> 0-unstable-2026-11-05";
-    url = "https://github.com/NixOS/nixpkgs/pull/574219.diff";
-    hash = "sha256-M5l+pTSwekYOE+isXpwj/yABkwtRRB1jeCVi82J4RTU=";
-  })
   (fetchpatch {
     url = "https://github.com/NixOS/nixpkgs/pull/578621.diff";
     hash = "sha256-gLNZZVA0Qusgb/+zfWqtT2cSc8hZPCTHfH67ibOQeYo=";
