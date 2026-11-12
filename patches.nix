@@ -21,11 +21,6 @@
     hash = "sha256-M2hwE/KpOi9v/sCcXeB7SnXPpqo5aE2E0gkzbzIxvtM=";
   })
   (fetchpatch {
-    name = "openlogi: 0.6.25 -> 0.8.13";
-    url = "https://github.com/NixOS/nixpkgs/pull/573733.diff";
-    hash = "sha256-AfhFg4ALppXSIRyCiEbZQl8LhcA3Fhi7H5rKUtznQwo=";
-  })
-  (fetchpatch {
     name = "mesh-llm, mesh-llm-cuda, mesh-llm-rocm, skippy-native-runtime, skippy-native-runtime-vulkan: init at 0.79.0";
     url = "https://github.com/NixOS/nixpkgs/pull/571722.diff";
     hash = "sha256-iiCwKJVOSBaOR93MjvYarma6MRbDWkrLMBz1lrBdBek=";
