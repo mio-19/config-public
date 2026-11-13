@@ -107,6 +107,7 @@
                 starship
                 qbittorrent-enhanced
                 uutils-diffutils
+                trayscale
                 ;
             }
           )

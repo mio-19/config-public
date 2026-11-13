@@ -243,6 +243,7 @@
       in
       {
         systemPackages_hardened = with pkgs; [
+          trayscale
           localsend
           element-desktop
           qbittorrent-enhanced
@@ -273,7 +274,6 @@
             kiwix
             inputs.mio.packages.${pkgs.stdenv.hostPlatform.system}.uplink
             simple-scan
-            trayscale
             (wrapPrio gnome-calculator)
             (wrapPrio gnome-system-monitor)
             krita
@@ -589,7 +589,6 @@
         environment.systemPackages = with pkgs; [
           #kiwix-apple
           nur.repos.mio.kiwix_patched
-          #trayscale
         ];
         homebrew.casks = [
           "nextcloud"
