@@ -26,7 +26,6 @@
           system.nixos.tags = [ "cutefish" ];
           services.displayManager.plasma-login-manager.enable = lib.mkForce false;
           services.displayManager.sddm.enable = lib.mkForce true;
-          services.displayManager.sddm.wayland.enable = lib.mkForce false;
           services.displayManager.defaultSession = lib.mkForce "cutefish-wayland";
           # Plasma stays enabled and also sets this with mkDefault. The
           # Cutefish module ships the same portals.conf as this attrset
