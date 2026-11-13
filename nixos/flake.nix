@@ -396,9 +396,7 @@
       perSystem =
         { pkgs, ... }:
         let
-          inherit (pkgs) applyPatches callPackage;
-          # applyPatches = pkgs.callPackage ../apply-patches-cow.nix { };
-          inherit (pkgs) fetchurl fetchpatch;
+          inherit (pkgs) applyPatches callPackage fetchpatch;
           nixpkgs-drv = applyPatches {
             name = "nixpkgs-patched";
             src = inputs.nixpkgs;
