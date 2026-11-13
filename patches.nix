@@ -6,11 +6,6 @@
     hash = "sha256-Tf3Lz9iQGqVVkviGg3FF2UyNVig8vhcYrMG+tIT2zA0=";
   })
   (fetchpatch {
-    name = "update nixos/hardware.fw-fanctrl + package fw-fanctrl";
-    url = "https://github.com/NixOS/nixpkgs/pull/526318.diff";
-    hash = "sha256-w480zZf4tR01wZMojLrn3TNzAkOisD+rOvWCdxTYIu8=";
-  })
-  (fetchpatch {
     name = "grub-module-keep-booted-system-entry-option.patch";
     url = "https://github.com/NixOS/nixpkgs/pull/487895.patch";
     hash = "sha256-q4vOJ2BcNa+K0uWvhzuFvmOV7eVyWnKvD/CY3cGh5XI=";
