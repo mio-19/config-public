@@ -589,7 +589,7 @@
         environment.systemPackages = with pkgs; [
           #kiwix-apple
           nur.repos.mio.kiwix_patched
-          trayscale
+          #trayscale
         ];
         homebrew.casks = [
           "nextcloud"
