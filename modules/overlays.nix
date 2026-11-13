@@ -45,8 +45,6 @@
                 sniffnet
                 xfce4-terminal
                 android-translation-layer
-                chatgpt
-                codex
                 polarity
                 rayburst
                 rustdesk
