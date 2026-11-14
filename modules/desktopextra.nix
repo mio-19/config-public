@@ -276,7 +276,7 @@
           "zoom"
           "racket"
           "cursor"
-          "affinity"
+          #"affinity"
           "microsoft-teams"
           "adobe-acrobat-reader"
           "adobe-creative-cloud"
