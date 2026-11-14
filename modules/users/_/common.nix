@@ -268,6 +268,7 @@ in
           ghc
       */
       nixd
+      rocqPackages.vsrocq-language-server
     ];
 
   # VSCodium is the default editor. VSCode stays fully configured as a fallback
