@@ -9,6 +9,11 @@ let
   shellAliases = {
     ls = "ls --color=auto";
   }
+  // lib.optionalAttrs (config.programs.vscodium.enable or false) {
+    # VSCodium is the default editor; expose the conventional `code` name for
+    # terminal launch (e.g. `code .`, `code file.nix`).
+    code = "codium";
+  }
   // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
     tmux = "tmux -u"; # workaround
   };
